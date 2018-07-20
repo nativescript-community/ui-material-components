@@ -1,28 +1,22 @@
-import {FloatingActionButtonBase, srcCompatProperty} from './floatingactionbutton.common';
+import { imageSourceProperty, srcProperty, FloatingActionButtonBase } from './floatingactionbutton-common';
+import { ImageSource } from 'tns-core-modules/image-source/image-source';
 
 export class FloatingActionButton extends FloatingActionButtonBase {
-    nativeView: UIView;
+    nativeViewProtected: MDCFloatingButton;
 
-    constructor() {
-        super();
+    public _setNativeImage(nativeImage: UIImage) {
+        // this.nativeViewProtected.setImageForState(nativeImage ? nativeImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate) : nativeImage, UIControlState.Normal);
+        this.nativeViewProtected.setImageForState(nativeImage, UIControlState.Normal);
     }
-
-    // theme = UIBlurEffectStyle.Dark;
-
-    get ios(): UIView {
-        return this.nativeView;
-    }
-
     public createNativeView() {
-        let result = UIView.new();
-        // result.effect = UIBlurEffect.effectWithStyle(this.theme);
-        // result.effect.setValueForKeyPath(this.blurRadius, 'effectSettings.blurRadius');
+        let result = MDCFloatingButton.new();
         return result;
     }
-    // [common.blurRadiusProperty.setNative](value: number) {
-    //     this.blurRadius = value;
-    //     if (this.nativeView) {
-    //         (this.nativeView as UIVisualEffectView).effect.setValueForKeyPath(value, 'effectSettings.blurRadius');
-    //     }
-    // }
+    [imageSourceProperty.setNative](value: ImageSource) {
+        this._setNativeImage(value ? value.ios : null);
+    }
+
+    [srcProperty.setNative](value: any) {
+        this._createImageSourceFromSrc(value);
+    }
 }

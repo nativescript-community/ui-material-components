@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="AppThemeFlatMaterialButton" parent="AppTheme">
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button.UnelevatedButton</item>
+    </style>
+    <style name="AppThemeTextMaterialButton" parent="AppTheme">
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button.TextButton</item>
+    </style>
+</resources> 

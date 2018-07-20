@@ -1,10 +1,15 @@
 /* Include.gradle configuration: http://docs.nativescript.org/plugins/plugins#includegradle-specification */
 
 android {
-	supportVersion = '28.0.0-alpha1'
+    compileSdkVersion 28
+    project.ext {
+        supportVersion = '28.0.0-alpha1'
+    }
+    targetSdkVersion = 28
+  }  
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:28.0.0-alpha1"
-    compile 'com.android.support:design:28.0.0-alpha3'
+    compile "com.android.support:appcompat-v7:28+"
+    compile 'com.android.support:design:28+'
 }

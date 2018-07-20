@@ -1,83 +1,72 @@
-import {FloatingActionButtonBase, srcCompatProperty} from './floatingactionbutton-common';
-import * as utils from 'tns-core-modules/utils/utils';
+import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
 
-import { Button } from 'tns-core-modules/ui/button';
+import { ImageSource } from 'tns-core-modules/image-source';
 
-function getSystemResourceId(systemIcon: string): number {
-    return android.content.res.Resources.getSystem().getIdentifier(systemIcon, 'drawable', 'android');
-}
 
-interface ClickListener {
-    new (owner: FloatingActionButton): android.view.View.OnClickListener;
-}
-
-let ClickListener: ClickListener;
 let MDCFabButton: typeof android.support.design.widget.FloatingActionButton;
-
-function initializeClickListener(): void {
-    if (ClickListener) {
-        return;
-    }
-
-    @Interfaces([android.view.View.OnClickListener])
-    class ClickListenerImpl extends java.lang.Object implements android.view.View.OnClickListener {
-        constructor(public owner: FloatingActionButton) {
-            super();
-            return global.__native(this);
-        }
-
-        public onClick(v: android.view.View): void {
-            const owner = this.owner;
-            if (owner) {
-                owner.notify({ eventName: Button.tapEvent, object: owner });
-            }
-        }
-    }
-
-    ClickListener = ClickListenerImpl;
-    MDCFabButton = android.support.design.widget.FloatingActionButton;
-}
 
 export class FloatingActionButton extends FloatingActionButtonBase {
     nativeViewProtected: android.support.design.widget.FloatingActionButton;
-    constructor() {
-        super();
-        console.log('create android FloatingActionButton');
-    }
+
 
     get android(): android.support.design.widget.FloatingActionButton {
         return this.nativeView;
     }
     public createNativeView() {
-        console.log('create FAB1');
-        initializeClickListener();
-        const button = new MDCFabButton(this._context);
-        console.log('create FAB', button);
-        const clickListener = new ClickListener(this);
-        button.setOnClickListener(clickListener);
-        (<any>button).clickListener = clickListener;
-        button.setImageResource(getSystemResourceId('ic_menu_share'));
-        return button;
+        if (!MDCFabButton) {
+            MDCFabButton = android.support.design.widget.FloatingActionButton;
+        }
+        const view = new MDCFabButton(this._context);
+        return view;
     }
 
-    public initNativeView(): void {
+
+    [imageSourceProperty.setNative](value: ImageSource) {
         const nativeView = this.nativeViewProtected;
-        (<any>nativeView).clickListener.owner = this;
-        super.initNativeView();
-    }
-    public disposeNativeView() {
-        (<any>this.nativeViewProtected).clickListener.owner = null;
-        super.disposeNativeView();
-    }
-
-    [srcCompatProperty.setNative](value: string) {
-        this.nativeViewProtected.setImageResource(utils.ad.resources.getDrawableId(value));
+        console.log('imageSourceProperty setNative', value && value.android);
+        if (value && value.android) {
+            nativeView.setImageBitmap(value.android);
+        } else {
+            nativeView.setImageBitmap(null);
+        }
     }
 
+    [srcProperty.setNative](value: any) {
+        this._createImageSourceFromSrc(value);
+    }
     public show() {
         this.nativeView.show();
     }
     public hide() {
         this.nativeView.hide();
+    }
+
+    get elevation(): number {
+        return this.style['elevation'];
+    }
+    set elevation(value: number) {
+        this.style['elevation'] = value;
+        if (this.nativeViewProtected) {
+            this.nativeViewProtected.setCompatElevation(value);
+        }
+    }
+    get size(): string {
+        return this.style['size'];
+    }
+    set size(value: string) {
+        this.style['size'] = value;
+        if (this.nativeViewProtected) {
+            switch (value) {
+                case 'auto':
+                this.nativeViewProtected.setSize(MDCFabButton.SIZE_AUTO);
+                break;
+                case 'mini':
+                this.nativeViewProtected.setSize(MDCFabButton.SIZE_MINI);
+                break;
+                default:
+                this.nativeViewProtected.setSize(MDCFabButton.SIZE_NORMAL);
+                break;
+            }
+        }
     }
 }
