@@ -1,13 +1,11 @@
-import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
+import { FloatingActionButtonBase, imageSourceProperty, srcProperty, elevationProperty } from './floatingactionbutton-common';
 
 import { ImageSource } from 'tns-core-modules/image-source';
-
 
 let MDCFabButton: typeof android.support.design.widget.FloatingActionButton;
 
 export class FloatingActionButton extends FloatingActionButtonBase {
     nativeViewProtected: android.support.design.widget.FloatingActionButton;
-
 
     get android(): android.support.design.widget.FloatingActionButton {
         return this.nativeView;
@@ -20,10 +18,9 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         return view;
     }
 
-
     [imageSourceProperty.setNative](value: ImageSource) {
         const nativeView = this.nativeViewProtected;
-        console.log('imageSourceProperty setNative', value && value.android);
+        // console.log('imageSourceProperty setNative', value && value.android);
         if (value && value.android) {
             nativeView.setImageBitmap(value.android);
         } else {
@@ -41,15 +38,10 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         this.nativeView.hide();
     }
 
-    get elevation(): number {
-        return this.style['elevation'];
+    [elevationProperty.setNative](value: number) {
+        this.nativeViewProtected.setCompatElevation(value);
     }
-    set elevation(value: number) {
-        this.style['elevation'] = value;
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.setCompatElevation(value);
-        }
-    }
+
     get size(): string {
         return this.style['size'];
     }
@@ -58,14 +50,14 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         if (this.nativeViewProtected) {
             switch (value) {
                 case 'auto':
-                this.nativeViewProtected.setSize(MDCFabButton.SIZE_AUTO);
-                break;
+                    this.nativeViewProtected.setSize(MDCFabButton.SIZE_AUTO);
+                    break;
                 case 'mini':
-                this.nativeViewProtected.setSize(MDCFabButton.SIZE_MINI);
-                break;
+                    this.nativeViewProtected.setSize(MDCFabButton.SIZE_MINI);
+                    break;
                 default:
-                this.nativeViewProtected.setSize(MDCFabButton.SIZE_NORMAL);
-                break;
+                    this.nativeViewProtected.setSize(MDCFabButton.SIZE_NORMAL);
+                    break;
             }
         }
     }

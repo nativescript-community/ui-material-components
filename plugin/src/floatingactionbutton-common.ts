@@ -1,28 +1,16 @@
-import { View, Property, CssProperty, Style, paddingBottomProperty, paddingLeftProperty, paddingRightProperty, paddingTopProperty, Length } from 'tns-core-modules/ui/core/view';
+import { View, Property, CssProperty, Style } from 'tns-core-modules/ui/core/view';
 import { ImageAsset } from 'tns-core-modules/image-asset/image-asset';
 import { isDataURI, isFileOrResourcePath, RESOURCE_PREFIX } from 'tns-core-modules/utils/utils';
 import { ImageSource, fromAsset, fromNativeSource, fromUrl } from 'tns-core-modules/image-source';
 
-// export const srcCompatProperty = new Property<FloatingActionButtonBase, string>({
-    // name: 'srcCompat'
-// });
-// export const fabSizeProperty = new Property<FloatingActionButtonBase, string>({
-//     name: 'fabSize'
-// });
-// export const fabCustomSizeProperty = new Property<FloatingActionButtonBase, number>({
-//     name: 'fabCustomSize',
-//     valueConverter: v => parseFloat(v)
-// });
-
 export const imageSourceProperty = new Property<FloatingActionButtonBase, ImageSource>({ name: "imageSource" });
-
 
 export const srcProperty = new Property<FloatingActionButtonBase, any>({ name: "src" });
 
 export abstract class FloatingActionButtonBase extends View {
     constructor() {
         super();
-        console.log('create FloatingActionButton common');
+        // console.log('create FloatingActionButton common');
         this.style.width = this.style.height = 56;
         this.style.margin = 5;
     }
@@ -108,10 +96,10 @@ export abstract class FloatingActionButtonBase extends View {
             this.isLoading = false;
         }
     }
+    set elevation(value: number) {
+        this.style['elevation'] = value;
+    }
 }
-// fabSizeProperty.register(FloatingActionButtonBase);
-// fabCustomSizeProperty.register(FloatingActionButtonBase);
-// srcCompatProperty.register(FloatingActionButtonBase);
 imageSourceProperty.register(FloatingActionButtonBase);
 srcProperty.register(FloatingActionButtonBase);
 

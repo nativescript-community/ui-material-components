@@ -23,3 +23,18 @@ dependencies {
     compile "com.android.support:appcompat-v7:28+"
     compile 'com.android.support:design:28+'
 }
+
+def settingsGradlePath
+
+if(project.hasProperty("appResourcesPath")){
+    settingsGradlePath = "$project.appResourcesPath/Android/settings.gradle";
+} else {
+    settingsGradlePath = "$rootDir/../../app/App_Resources/Android/settings.gradle";
+}
+
+def settingsGradleFile = new File(settingsGradlePath);
+
+if(settingsGradleFile.exists())
+{
+    apply from: settingsGradleFile;
+}

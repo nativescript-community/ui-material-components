@@ -14,7 +14,8 @@ import {
     marginTopProperty,
     marginRightProperty,
     Length,
-    PercentLength
+    PercentLength,
+    maxLengthProperty
 } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
 export const FrameLayout = android.widget.FrameLayout;
 export const LinearLayout = android.widget.LinearLayout;
@@ -31,6 +32,7 @@ declare module 'tns-core-modules/ui/text-field/text-field' {
 }
 import { ad } from 'utils/utils';
 import { Background } from 'tns-core-modules/ui/styling/background';
+import { errorColorProperty, floatingProperty, helperTextProperty } from './cssproperties';
 
 interface EditTextListeners extends android.text.TextWatcher, android.view.View.OnFocusChangeListener, android.widget.TextView.OnEditorActionListener {}
 
@@ -182,7 +184,7 @@ export class TextField extends common.TextField {
     //     return { value: 1, unit: '%' };
     // }
     [widthProperty.setNative](value: PercentLength) {
-        console.log('widthProperty.setNative', value);
+        // console.log('widthProperty.setNative', value);
         this._settingLayout = true;
         super[widthProperty.setNative](value);
         this._settingLayout = false;
@@ -227,7 +229,7 @@ export class TextField extends common.TextField {
     get nativeViewProtected() {
         // trick to get return the TextInputLayout when adding the view but the TextInputEditText when setting props as we subclass TextField
         if (this.viewInit && this._settingLayout) {
-            console.log('returning layout');
+            // console.log('returning layout');
             return this.layoutView;
         }
         return this.editText;
@@ -253,16 +255,6 @@ export class TextField extends common.TextField {
         editText.setOnFocusChangeListener(listeners);
         editText.setOnEditorActionListener(listeners);
         (<any>editText).listener = listeners;
-        // if (this.style['highlightColor']) {
-        //     console.log('highlightColor1', typeof this.style['highlightColor'], this.style['highlightColor']);
-        //     // this.editText.setHighlightColor(new Color(this.style['highlightColor']).android);
-        //     this.layoutView.setDefaultHintTextColor(android.content.res.ColorStateList.valueOf(new Color(this.style['highlightColor']).android));
-        // }
-        // if (this.style.placeholderColor) {
-        //     console.log('placeholderColor1', typeof this.style['placeholderColor'], this.style['placeholderColor']);
-        //     // this.editText.setHighlightColor(new Color(this.style['highlightColor']).android);
-        //     this.layoutView.setDefaultHintTextColor(android.content.res.ColorStateList.valueOf(this.style['placeholderColor'].android));
-        // }
         view.setFocusable(true);
         view.setFocusableInTouchMode(true);
         view.addView(editText);
@@ -302,40 +294,24 @@ export class TextField extends common.TextField {
         this.layoutView.setDefaultHintTextColor(android.content.res.ColorStateList.valueOf(color));
     }
 
-    set placeholderColor(color: Color) {
-        this.style['placeholderColor'] = color;
-    }
-
     blur() {
         this.dismissSoftInput();
         this.nativeViewProtected.clearFocus();
     }
 
-    [common.errorColorProperty.setNative](value: Color) {
+    [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
         this.layoutView.setErrorTextColor(android.content.res.ColorStateList.valueOf(color));
     }
 
-    set errorColor(color: Color) {
-        this.style['errorColor'] = color;
-    }
-    [common.helperTextProperty.setNative](value: string) {
+    [helperTextProperty.setNative](value: string) {
         this.layoutView.setHelperText(value);
     }
 
-    set maxLength(value: number) {
-        this.style['maxLength'] = value;
-    }
-    [common.maxLengthProperty.setNative](value: number) {
+    [maxLengthProperty.setNative](value: number) {
         this.layoutView.setCounterMaxLength(value);
     }
 
-    set helperText(value: string) {
-        this.style['helperText'] = value;
-    }
-    [common.floatingProperty.setNative](value: boolean) {}
+    [floatingProperty.setNative](value: boolean) {}
 
-    set floating(value: boolean) {
-        this.style['floating'] = value;
-    }
 }

@@ -12,10 +12,11 @@ import { HomeComponent } from "./home/home.component";
 // import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { registerElement } from "nativescript-angular/element-registry";
 
-import { FloatingActionButton, Button, TextField } from "./nativescript-material-components/material";
+import { FloatingActionButton, Button, TextField, CardView } from "./nativescript-material-components/material";
 registerElement("FloatingActionButton", () => FloatingActionButton);
 registerElement("MaterialButton", () => Button);
 registerElement("MaterialTextField", () => TextField);
+registerElement("MaterialCard", () => CardView);
 
 @NgModule({
     bootstrap: [

@@ -1,7 +1,9 @@
-import { ButtonBase, variantProperty, rippleColorProperty } from './button-common';
+import { ButtonBase } from './button-common';
 
 import * as utils from 'tns-core-modules/utils/utils';
-import { CSSType, Color, Length, borderRadiusProperty } from 'tns-core-modules/ui/page/page';
+import { CSSType, Color, Length } from 'tns-core-modules/ui/page/page';
+import { rippleColorProperty } from './cssproperties';
+import { elevationProperty } from './floatingactionbutton-common';
 
 interface ClickListener {
     new (owner: Button): android.view.View.OnClickListener;
@@ -54,9 +56,9 @@ export class Button extends ButtonBase {
         const newContext = style ? new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)) : this._context;
 
         const view = new MDCButton(newContext);
-        if (this.style['rippleColor']) {
-            view.setRippleColor(android.content.res.ColorStateList.valueOf(new Color(this.style['rippleColor']).android));
-        }
+        // if (this.style['rippleColor']) {
+        //     view.setRippleColor(android.content.res.ColorStateList.valueOf(new Color(this.style['rippleColor']).android));
+        // }
         if (this._borderRadius !== undefined) {
             view.setCornerRadius(this._borderRadius);
         }
@@ -65,31 +67,16 @@ export class Button extends ButtonBase {
         (<any>view).clickListener = clickListener;
         return view;
     }
-    get rippleColor(): string {
-        return this.style['rippleColor'];
+    [rippleColorProperty.setNative](color: string) {
+        this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(new Color(color).android));
     }
-    set rippleColor(color: string) {
-        this.style['rippleColor'] = color;
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(new Color(color).android));
-        }
+
+    [elevationProperty.setNative](value: number) {
+        android.support.v4.view.ViewCompat.setElevation(this.nativeViewProtected, value);
     }
-    // get elevation(): number {
-    //     return this.style['elevation'];
-    // }
-    // set elevation(value: number) {
-    //     this.style['elevation'] = value;
-    //     if (this.nativeViewProtected) {
-    //         this.nativeViewProtected.setCorner(value);
-    //     }
-    // }
-    _borderRadius: number;
-    get borderRadius(): string | Length {
-        return this._borderRadius;
-    }
+
     set borderRadius(value: string | Length) {
         let newValue = this._borderRadius = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
-        console.log('borderRadius', newValue);
         if (this.nativeViewProtected) {
             this.nativeViewProtected.setCornerRadius(newValue);
         }

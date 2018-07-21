@@ -1,5 +1,6 @@
 import * as common from './textfield.common';
 import { EditableTextBase, textProperty, hintProperty, placeholderColorProperty, Color, FormattedString } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
+import { maxLengthProperty, helperTextProperty, errorColorProperty, floatingProperty } from './cssproperties';
 
 let colorScheme: MDCSemanticColorScheme;
 function getColorScheme() {
@@ -170,42 +171,22 @@ export class TextField extends common.TextField {
         console.log('placeholderColorProperty', color, this.nativeViewProtected);
         this._updateAttributedPlaceholder();
     }
-
-    set placeholderColor(color: Color) {
-        this.style['placeholderColor'] = color;
-    }
-
-    [common.errorColorProperty.setNative](value: Color) {
+    [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.errorColor = color;
         console.log('errorColorProperty', color, this.nativeViewProtected);
     }
-
-    set errorColor(color: Color) {
-        this.style['errorColor'] = color;
-    }
-    [common.helperTextProperty.setNative](value: string) {
+    [helperTextProperty.setNative](value: string) {
         this._controller.helperText = value;
         console.log('helperTextProperty', value, this.nativeViewProtected);
     }
-
-    set maxLength(value: number) {
-        this.style['maxLength'] = value;
-    }
-    [common.maxLengthProperty.setNative](value: number) {
+    [maxLengthProperty.setNative](value: number) {
         this._controller.characterCountMax = value;
         console.log('maxLengthProperty', value, this.nativeViewProtected);
     }
-
-    set helperText(value: string) {
-        this.style['helperText'] = value;
-    }
-    [common.floatingProperty.setNative](value: boolean) {
+    [floatingProperty.setNative](value: boolean) {
         this._controller.floatingEnabled = value;
         console.log('floatingProperty', value, this.nativeViewProtected);
     }
 
-    set floating(value: boolean) {
-        this.style['floating'] = value;
-    }
 }

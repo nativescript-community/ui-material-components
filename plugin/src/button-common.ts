@@ -1,4 +1,4 @@
-import { Property, Style, CssProperty, paddingTopProperty, Length, paddingRightProperty, paddingBottomProperty, paddingLeftProperty } from 'tns-core-modules/ui/core/view';
+import { Property, Length } from 'tns-core-modules/ui/core/view';
 import { Button } from 'tns-core-modules/ui/button/button';
 
 export abstract class ButtonBase extends Button {
@@ -8,21 +8,20 @@ export abstract class ButtonBase extends Button {
         super();
         this.style.margin = 5;
     }
+    set elevation(value: number) {
+        this.style['elevation'] = value;
+    }
+    set rippleColor(color: string) {
+        this.style['rippleColor'] = color;
+    }
 
+    protected _borderRadius: number;
+    get borderRadius(): string | Length {
+        return this._borderRadius;
+    }
 }
 
 export const variantProperty = new Property<ButtonBase, string>({
     name: 'variant'
 });
 variantProperty.register(ButtonBase);
-export const rippleColorProperty = new CssProperty<Style, string>({
-    name: 'rippleColor',
-    cssName: 'ripple-color'
-});
-rippleColorProperty.register(Style);
-// export const elevationProperty = new CssProperty<Style, number>({
-//     name: 'elevation',
-//     cssName: 'elevation',
-//     valueConverter: parseFloat
-// });
-// elevationProperty.register(Style);
