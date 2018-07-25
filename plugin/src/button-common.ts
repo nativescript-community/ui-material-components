@@ -1,6 +1,7 @@
-import { Property, Length } from 'tns-core-modules/ui/core/view';
+import { Property, Length, CSSType } from 'tns-core-modules/ui/core/view';
 import { Button } from 'tns-core-modules/ui/button/button';
 
+@CSSType('MDCButton')
 export abstract class ButtonBase extends Button {
     public variant: string;
     protected _defaultPadding = 5;

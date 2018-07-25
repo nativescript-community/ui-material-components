@@ -15,7 +15,8 @@ import { Component, OnInit } from '@angular/core';
         </FormattedString>
         </MaterialButton>
 		<MaterialButton text="flat button" rippleColor="red" backgroundColor="yellow" variant="flat" (tap)="onTap('mbutton3', $event)"></MaterialButton>
-		<MaterialButton text="outline button"  width="200" backgroundColor="yellow" variant="outline" (tap)="onTap('mbutton4', $event)"></MaterialButton>
+		<MaterialButton text="outline button" color="black"  width="200" backgroundColor="yellow" variant="outline" (tap)="onTap('mbutton4', $event)"></MaterialButton>
+		<MaterialButton className="falseFAb" text="+" color="black"   verticalAlign="center" backgroundColor="green" (tap)="onTap('mbutton5', $event)"></MaterialButton>
 		<MaterialTextField #textField1 helperText="help me!" width="250" backgroundColor="orange"  placeholderColor="green" keyboardType="datetime" hint="i am an hint" returnKeyType="next" (focus)="onFocus('textfield1',$event)" 
         (blur)="onBlur('textfield1',$event)"  (textChange)="onTextChange('textfield1',$event)"></MaterialTextField>
         <MaterialTextField #textField2 backgroundColor="green" maxLength="10"  hint="hint me"  (returnPress)="returnPress(textField2.text,$event)"></MaterialTextField>

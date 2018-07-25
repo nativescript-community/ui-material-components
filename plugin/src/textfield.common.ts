@@ -1,7 +1,9 @@
 import { TextField as NTextField } from 'tns-core-modules/ui/text-field/text-field';
 import { Color } from 'tns-core-modules/color/color';
+import { CSSType } from 'tns-core-modules/ui/page/page';
 
 
+@CSSType('MDCTextField')
 export abstract class TextField extends NTextField {
     constructor() {
         super();

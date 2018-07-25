@@ -10,3 +10,12 @@ of writing your own CSS rules. For a full list of class names in the theme
 refer to http://docs.nativescript.org/ui/theme.
 */
 @import '~nativescript-theme-core/css/core.light.css';
+
+
+mdcbutton {
+    background-color: red;
+}
+
+.falseFAb {
+    font-size:40; border-radius:32; width:64; height:64;
+}

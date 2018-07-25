@@ -1,7 +1,6 @@
-import { FloatingActionButtonBase } from './floatingactionbutton.common';
+import { FloatingActionButtonBase } from './floatingactionbutton-common';
 export declare class FloatingActionButton extends FloatingActionButtonBase {
-    nativeView: UIView;
-    constructor();
-    readonly ios: UIView;
-    createNativeView(): UIView;
+    nativeViewProtected: MDCFloatingButton;
+    _setNativeImage(nativeImage: UIImage): void;
+    createNativeView(): MDCFloatingButton;
 }

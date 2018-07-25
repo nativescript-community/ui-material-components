@@ -1,4 +1,4 @@
-import { View, Property, CssProperty, Style } from 'tns-core-modules/ui/core/view';
+import { View, Property, CssProperty, Style, CSSType } from 'tns-core-modules/ui/core/view';
 import { ImageAsset } from 'tns-core-modules/image-asset/image-asset';
 import { isDataURI, isFileOrResourcePath, RESOURCE_PREFIX } from 'tns-core-modules/utils/utils';
 import { ImageSource, fromAsset, fromNativeSource, fromUrl } from 'tns-core-modules/image-source';
@@ -7,6 +7,7 @@ export const imageSourceProperty = new Property<FloatingActionButtonBase, ImageS
 
 export const srcProperty = new Property<FloatingActionButtonBase, any>({ name: "src" });
 
+@CSSType('MDCFloatingActionButton')
 export abstract class FloatingActionButtonBase extends View {
     constructor() {
         super();

@@ -132,9 +132,9 @@ class MDCTextFieldDelegateImpl extends NSObject implements UITextFieldDelegate {
 }
 
 export class TextField extends common.TextField {
-    _controller: MDCTextInputControllerUnderline;
+    private _controller: MDCTextInputControllerUnderline;
     _ios: MDCTextField;
-    _delegate: MDCTextFieldDelegateImpl;
+    private _delegate: MDCTextFieldDelegateImpl;
     public createNativeView() {
         let view = (this._ios = MDCTextField.new());
         this._controller = MDCTextInputControllerUnderline.alloc().initWithTextInput(view);
