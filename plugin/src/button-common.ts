@@ -4,7 +4,6 @@ import { Button } from 'tns-core-modules/ui/button/button';
 @CSSType('MDCButton')
 export abstract class ButtonBase extends Button {
     public variant: string;
-    protected _defaultPadding = 5;
     constructor() {
         super();
         this.style.margin = 5;

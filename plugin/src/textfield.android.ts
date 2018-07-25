@@ -44,7 +44,7 @@ interface EditTextListenersClass {
 let EditTextListeners: EditTextListenersClass;
 
 // https://github.com/NativeScript/NativeScript/issues/2942
-export let dismissKeyboardTimeoutId: NodeJS.Timer;
+export let dismissKeyboardTimeoutId: any;
 export let dismissKeyboardOwner: WeakRef<EditableTextBase>;
 function clearDismissTimer(): void {
     dismissKeyboardOwner = null;
