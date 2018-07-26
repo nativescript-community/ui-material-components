@@ -28,7 +28,8 @@
     },
     "include": [
         "src/*.ts",
-        "*.d.ts", "typings/mdc.ios.d.ts"
+        "../*.d.ts",
+        "*.d.ts"
     ],
     "compileOnSave": false
 }

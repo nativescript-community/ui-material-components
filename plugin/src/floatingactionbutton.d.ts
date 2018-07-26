@@ -1,1 +1,1 @@
-export * from './floatingActionbutton.android'
+export * from './floatingactionbutton.android'
