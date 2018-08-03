@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import * as common from './textfield.common';
 import { EditableTextBase } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
 export declare const FrameLayout: typeof android.widget.FrameLayout;
@@ -14,7 +13,7 @@ declare module 'tns-core-modules/ui/text-field/text-field' {
     }
 }
 import { Background } from 'tns-core-modules/ui/styling/background';
-export declare let dismissKeyboardTimeoutId: NodeJS.Timer;
+export declare let dismissKeyboardTimeoutId: any;
 export declare let dismissKeyboardOwner: WeakRef<EditableTextBase>;
 export declare class TextField extends common.TextField {
     editText: android.support.design.widget.TextInputEditText;

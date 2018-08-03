@@ -26,7 +26,6 @@ export abstract class FloatingActionButtonBase extends View {
      * @internal //copied from image common
      */
     protected _createImageSourceFromSrc(value: string | ImageSource | ImageAsset): void {
-        console.log('_createImageSourceFromSrc', value);
         const originalValue = value;
         if (typeof value === 'string' || value instanceof String) {
             value = value.trim();
@@ -103,15 +102,3 @@ export abstract class FloatingActionButtonBase extends View {
 }
 imageSourceProperty.register(FloatingActionButtonBase);
 srcProperty.register(FloatingActionButtonBase);
-
-export const elevationProperty = new CssProperty<Style, number>({
-    name: 'elevation',
-    cssName: 'elevation',
-    valueConverter: parseFloat
-});
-elevationProperty.register(Style);
-export const fabSizeProperty = new CssProperty<Style, string>({
-    name: 'size',
-    cssName: 'size'
-});
-fabSizeProperty.register(Style);

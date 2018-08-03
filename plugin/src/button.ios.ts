@@ -1,10 +1,9 @@
 import { ButtonBase } from './button-common';
 import { Length } from 'tns-core-modules/ui/core/view';
 
-import { CSSType, Color, fontInternalProperty, backgroundColorProperty, backgroundInternalProperty, borderTopLeftRadiusProperty, borderRadiusProperty } from 'tns-core-modules/ui/page/page';
+import { Color, fontInternalProperty, backgroundColorProperty, backgroundInternalProperty } from 'tns-core-modules/ui/page/page';
 import { Font } from 'tns-core-modules/ui/styling/font';
-import { rippleColorProperty } from './cssproperties';
-import { elevationProperty } from './floatingactionbutton-common';
+import { rippleColorProperty, elevationProperty } from './cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 
 let buttonScheme: MDCButtonScheme;
@@ -40,7 +39,7 @@ export class Button extends ButtonBase {
         } else {
             MDCContainedButtonThemer.applySchemeToButton(getButtonScheme(), view);
         }
-        view.addTargetActionForControlEvents(this['_tapHandler'], "tap", UIControlEvents.TouchUpInside);
+        view.addTargetActionForControlEvents(this['_tapHandler'], 'tap', UIControlEvents.TouchUpInside);
         return view;
     }
 
@@ -61,8 +60,10 @@ export class Button extends ButtonBase {
 
     set borderRadius(value: string | Length) {
         this.style.borderRadius = value;
-        let newValue = this._borderRadius = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
-        this.nativeViewProtected.layer.cornerRadius = newValue ;
+        if (this.nativeViewProtected) {
+            let newValue = (this._borderRadius = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0));
+            this.nativeViewProtected.layer.cornerRadius = newValue;
+        }
     }
     [backgroundInternalProperty.setNative](value: UIColor | Background) {
         // this._nativeBackgroundState = "invalid";
@@ -70,13 +71,11 @@ export class Button extends ButtonBase {
             if (value instanceof UIColor) {
                 this.nativeViewProtected.backgroundColor = value;
             } else {
-                console.log('backgroundInternalProperty', value);
                 this.nativeViewProtected.backgroundColor = value.color.ios;
                 // this is a trick for now. Though we can't have borderRadius=0 with that :s
                 // we need a way to know borderRadius was actually set
                 if (value.borderTopLeftRadius !== this.defaultBorderRadius) {
                     this.nativeViewProtected.layer.cornerRadius = value.borderTopLeftRadius / 2;
-
                 }
             }
         }

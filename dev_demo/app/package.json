@@ -1,8 +1,11 @@
 {
-  "android": {
-    "v8Flags": "--expose_gc"
-  },
-  "main": "main.js",
-  "name": "tns-template-hello-world-ng",
-  "version": "4.0.1"
+    "android": {
+        "v8Flags": "--expose_gc"
+    },
+    "main": "main.js",
+    "name": "com.akylas.nativescript.materialcomponentsdemo",
+    "version": "4.0.1",
+    "devDependencies": {
+        "typescript": "~2.7.2"
+    }
 }

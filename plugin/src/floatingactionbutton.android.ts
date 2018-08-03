@@ -1,6 +1,7 @@
-import { FloatingActionButtonBase, imageSourceProperty, srcProperty, elevationProperty } from './floatingactionbutton-common';
+import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
 
 import { ImageSource } from 'tns-core-modules/image-source';
+import { elevationProperty } from './cssproperties';
 
 let MDCFabButton: typeof android.support.design.widget.FloatingActionButton;
 

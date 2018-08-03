@@ -62,7 +62,6 @@ export class CardView extends CardViewBase {
         }
     }
     [rippleColorProperty.setNative](color: string) {
-        console.log('rippleColorProperty', color);
         this.nativeViewProtected.inkView.inkColor = this.getRippleColor(color);
     }
 }

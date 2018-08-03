@@ -7,13 +7,11 @@ import {
     Color,
     widthProperty,
     heightProperty,
-    marginProperty,
     marginLeftProperty,
     minWidthProperty,
     marginBottomProperty,
     marginTopProperty,
     marginRightProperty,
-    Length,
     PercentLength,
     maxLengthProperty
 } from 'tns-core-modules/ui/editable-text-base/editable-text-base';

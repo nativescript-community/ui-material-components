@@ -4,7 +4,7 @@
 	"readme": "NativeScript Application",
 	"repository": "<fill-your-repository-here>",
 	"nativescript": {
-		"id": "com.akylas.nativescript.materialcomponents",
+		"id": "com.akylas.nativescript.materialcomponentsdemo",
 		"tns-ios": {
 			"version": "4.1.0"
 		},

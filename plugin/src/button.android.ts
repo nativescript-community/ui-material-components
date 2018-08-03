@@ -2,8 +2,7 @@ import { ButtonBase } from './button-common';
 
 import * as utils from 'tns-core-modules/utils/utils';
 import { CSSType, Color, Length, backgroundInternalProperty, heightProperty } from 'tns-core-modules/ui/page/page';
-import { rippleColorProperty } from './cssproperties';
-import { elevationProperty } from './floatingactionbutton-common';
+import { rippleColorProperty, elevationProperty } from './cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 
 interface ClickListener {

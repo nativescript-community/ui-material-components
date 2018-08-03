@@ -1,5 +1,10 @@
 // this import should be first in order to load some required settings (like globals and reflect-metadata)
 import { platformNativeScriptDynamic } from "nativescript-angular/platform";
+import {viewUtilCategory} from "nativescript-angular/trace";
+import * as trace from "tns-core-modules/trace";
+// trace.addCategories(viewUtilCategory);
+trace.addCategories(trace.categories.ViewHierarchy);
+// trace.enable();
 
 import { AppModule } from "./app.module";
 

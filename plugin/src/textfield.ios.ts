@@ -168,25 +168,20 @@ export class TextField extends common.TextField {
     [placeholderColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.floatingPlaceholderActiveColor = color;
-        console.log('placeholderColorProperty', color, this.nativeViewProtected);
         this._updateAttributedPlaceholder();
     }
     [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.errorColor = color;
-        console.log('errorColorProperty', color, this.nativeViewProtected);
     }
     [helperTextProperty.setNative](value: string) {
         this._controller.helperText = value;
-        console.log('helperTextProperty', value, this.nativeViewProtected);
     }
     [maxLengthProperty.setNative](value: number) {
         this._controller.characterCountMax = value;
-        console.log('maxLengthProperty', value, this.nativeViewProtected);
     }
     [floatingProperty.setNative](value: boolean) {
         this._controller.floatingEnabled = value;
-        console.log('floatingProperty', value, this.nativeViewProtected);
     }
 
 }

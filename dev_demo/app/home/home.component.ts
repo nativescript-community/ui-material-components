@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'home',
+    moduleId: module.id,
+    selector: 'Home',
     template: `
+    <AppBar class="action-bar" title="test">
+        <ActionItem ios.systemIcon="16" ios.position="right" text="delete" android.position="popup">
+        </ActionItem>
+    </AppBar>
+    <ScrollView>
     <MaterialCard margin="20" rippleColor="green" borderRadius="10">
     <StackLayout horizontalAlignment="center">
         <FloatingActionButton src="res://ic_action_add" backgroundColor="blue" (tap)="onTap('fab', $event)">
@@ -20,12 +26,12 @@ import { Component, OnInit } from '@angular/core';
 		<MaterialTextField #textField1 helperText="help me!" width="250" backgroundColor="orange"  placeholderColor="green" keyboardType="datetime" hint="i am an hint" returnKeyType="next" (focus)="onFocus('textfield1',$event)" 
         (blur)="onBlur('textfield1',$event)"  (textChange)="onTextChange('textfield1',$event)"></MaterialTextField>
         <MaterialTextField #textField2 backgroundColor="green" maxLength="10"  hint="hint me"  (returnPress)="returnPress(textField2.text,$event)"></MaterialTextField>
-        </StackLayout></MaterialCard>`
+        <StackLayout height="200"></StackLayout>
+        </StackLayout></MaterialCard></ScrollView>`
 })
 export class HomeComponent implements OnInit {
-    constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() {}
     onTap(command, e) {
         console.log('onTap', command);
     }
