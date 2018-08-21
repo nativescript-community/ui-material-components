@@ -1,6 +1,7 @@
 import { CardViewBase } from './cardview-common';
 import { elevationProperty, rippleColorProperty } from './cssproperties';
 import { Length, Color } from 'tns-core-modules/ui/page/page';
+import { themer } from './material';
 
 export class CardView extends CardViewBase {
     nativeViewProtected: MDCCard;
@@ -13,6 +14,10 @@ export class CardView extends CardViewBase {
 
     public createNativeView() {
         let view = MDCCard.new();
+        let colorScheme = themer.getAppColorScheme();
+        if (colorScheme) {
+            MDCCardsColorThemer.applySemanticColorSchemeToCard(colorScheme, view);
+        }
         if (this._backgroundColor) {
             view.backgroundColor = this._backgroundColor.ios;
         }

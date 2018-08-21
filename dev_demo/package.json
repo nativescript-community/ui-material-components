@@ -6,38 +6,36 @@
 	"nativescript": {
 		"id": "com.akylas.nativescript.materialcomponentsdemo",
 		"tns-ios": {
-			"version": "4.1.0"
-		},
-		"tns-android": {
-			"version": "4.1.3"
+			"version": "4.2.0"
 		}
 	},
 	"dependencies": {
-		"@angular/animations": "~6.0.9",
-		"@angular/common": "~6.0.9",
-		"@angular/compiler": "~6.0.9",
-		"@angular/core": "~6.0.9",
-		"@angular/forms": "~6.0.9",
-		"@angular/http": "~6.0.9",
-		"@angular/platform-browser": "~6.0.9",
-		"@angular/platform-browser-dynamic": "~6.0.9",
-		"@angular/router": "~6.0.9",
-		"nativescript-angular": "~6.0.6",
+		"@angular/animations": "~6.1.3",
+		"@angular/common": "~6.1.3",
+		"@angular/compiler": "~6.1.3",
+		"@angular/core": "~6.1.3",
+		"@angular/forms": "~6.1.3",
+		"@angular/http": "~6.1.3",
+		"@angular/platform-browser": "~6.1.3",
+		"@angular/platform-browser-dynamic": "~6.1.3",
+		"@angular/router": "~6.1.3",
+		"fake-material-components-ios": "file:../fake_ios_plugin",
+		"nativescript-angular": "~6.1.0",
 		"nativescript-theme-core": "~1.0.4",
+		"tns-core-modules": "~4.3.0-2018-08-10-02",
 		"reflect-metadata": "~0.1.12",
 		"rxjs": "~6.2.2",
-		"tns-core-modules": "~4.1.0",
 		"zone.js": "~0.8.26"
 	},
 	"devDependencies": {
-		"@angular-devkit/build-angular": "0.7.0-rc.0",
-		"@angular/compiler-cli": "6.1.0-beta.1",
-		"babel-traverse": "6.4.5",
+		"@angular-devkit/build-angular": "0.7.3",
+		"@angular/compiler-cli": "6.1.3",
+		"babel-traverse": "6.26.0",
 		"babel-types": "6.4.5",
-		"babylon": "6.4.5",
+		"babylon": "6.18.0",
 		"lazy": "1.0.11",
 		"nativescript-dev-typescript": "~0.7.2",
-		"tns-platform-declarations": "^4.1.0",
+		"tns-platform-declarations": "^4.2.0",
 		"typescript": "~2.7.2"
 	}
 }

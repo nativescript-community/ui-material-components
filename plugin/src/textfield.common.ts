@@ -10,8 +10,8 @@ export abstract class TextField extends NTextField {
     }
     abstract blur();
 
-    set helperText(value: string) {
-        this.style['helperText'] = value;
+    set helper(value: string) {
+        this.style['helper'] = value;
     }
     set maxLength(value: number) {
         this.style['maxLength'] = value;
@@ -24,5 +24,11 @@ export abstract class TextField extends NTextField {
     }
     set placeholderColor(color: Color) {
         this.style['placeholderColor'] = color;
+    }
+    set variant(value: string) {
+        this.style['variant'] = value;
+    }
+    set error(value: string) {
+        this.style['error'] = value;
     }
 }

@@ -9,11 +9,16 @@ export const errorColorProperty = new CssProperty<Style, string>({
     cssName: 'error-color'
 });
 errorColorProperty.register(Style);
-export const helperTextProperty = new CssProperty<Style, string>({
-    name: 'helperText',
-    cssName: 'helper-text'
+export const helperProperty = new CssProperty<Style, string>({
+    name: 'helper',
+    cssName: 'helper'
 });
-helperTextProperty.register(Style);
+helperProperty.register(Style);
+export const errorProperty = new CssProperty<Style, string>({
+    name: 'error',
+    cssName: 'error'
+});
+errorProperty.register(Style);
 export const maxLengthProperty = new CssProperty<Style, number>({
     name: 'maxLength',
     cssName: 'max-length'
@@ -29,3 +34,9 @@ export const elevationProperty = new CssProperty<Style, number>({
     cssName: 'elevation'
 });
 elevationProperty.register(Style);
+
+export const variantProperty = new CssProperty<Style, string>({
+    name: 'variant',
+    cssName: 'variant'
+});
+variantProperty.register(Style);

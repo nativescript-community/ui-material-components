@@ -32,3 +32,6 @@ declare module 'nativescript-material-components/src/cardview' {
 declare module 'nativescript-material-components/src/appbar' {
     export { AppBar };
 }
+
+
+export var themer;

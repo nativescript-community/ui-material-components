@@ -7,6 +7,6 @@ export declare class Button extends ButtonBase {
     constructor();
     isLoading: boolean;
     readonly android: android.support.design.button.MaterialButton;
-    createNativeView(): android.support.design.button.MaterialButton;
+    createNativeView(): globalAndroid.support.design.button.MaterialButton;
     borderRadius: string | Length;
 }

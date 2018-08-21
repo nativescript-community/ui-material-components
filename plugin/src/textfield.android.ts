@@ -1,4 +1,5 @@
 import * as common from './textfield.common';
+import * as utils from 'tns-core-modules/utils/utils';
 import {
     EditableTextBase,
     textProperty,
@@ -30,7 +31,7 @@ declare module 'tns-core-modules/ui/text-field/text-field' {
 }
 import { ad } from 'utils/utils';
 import { Background } from 'tns-core-modules/ui/styling/background';
-import { errorColorProperty, floatingProperty, helperTextProperty } from './cssproperties';
+import { errorColorProperty, floatingProperty, helperProperty, errorProperty } from './cssproperties';
 
 interface EditTextListeners extends android.text.TextWatcher, android.view.View.OnFocusChangeListener, android.widget.TextView.OnEditorActionListener {}
 
@@ -92,7 +93,7 @@ function initializeEditTextListeners(): void {
             // owner.android.setSelection(selectionStart);
         }
 
-        public afterTextChanged(editable: android.text.IEditable): void {
+        public afterTextChanged(editable: android.text.Editable): void {
             const owner = this.owner;
             if (!owner || owner._changeFromCode) {
                 return;
@@ -245,7 +246,15 @@ export class TextField extends common.TextField {
     }
     public createNativeView() {
         initializeEditTextListeners();
-        const view = (this.layoutView = new android.support.design.widget.TextInputLayout(this._context));
+
+        let style;
+        if (this.variant === 'filled') {
+            style = 'AppThemeMaterialTextInputLayoutFilled';
+        } else if (this.variant === 'outline') {
+            style = 'AppThemeMaterialTextInputLayoutOutline';
+        }
+        const newContext = style ? new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)) : this._context;
+        const view = (this.layoutView = new android.support.design.widget.TextInputLayout(newContext));
         const editText = (this.editText = new android.support.design.widget.TextInputEditText(view.getContext()));
         this._configureEditText(editText);
         const listeners = new EditTextListeners(this);
@@ -289,7 +298,7 @@ export class TextField extends common.TextField {
 
     [placeholderColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
-        this.layoutView.setDefaultHintTextColor(android.content.res.ColorStateList.valueOf(color));
+        (this.layoutView as any).setDefaultHintTextColor(android.content.res.ColorStateList.valueOf(color));
     }
 
     blur() {
@@ -299,11 +308,14 @@ export class TextField extends common.TextField {
 
     [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
-        this.layoutView.setErrorTextColor(android.content.res.ColorStateList.valueOf(color));
+        (this.layoutView as any).setErrorTextColor(android.content.res.ColorStateList.valueOf(color));
     }
 
-    [helperTextProperty.setNative](value: string) {
-        this.layoutView.setHelperText(value);
+    [helperProperty.setNative](value: string) {
+        (this.layoutView as any).setHelperText(value);
+    }
+    [errorProperty.setNative](value: string) {
+        (this.layoutView as any).setError(value);
     }
 
     [maxLengthProperty.setNative](value: number) {

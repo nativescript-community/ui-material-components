@@ -1,10 +1,12 @@
 import { ButtonBase } from './button-common';
+import { themer } from './material';
 import { Length } from 'tns-core-modules/ui/core/view';
 
 import { Color, fontInternalProperty, backgroundColorProperty, backgroundInternalProperty } from 'tns-core-modules/ui/page/page';
 import { Font } from 'tns-core-modules/ui/styling/font';
 import { rippleColorProperty, elevationProperty } from './cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
+import { screen } from 'tns-core-modules/platform';
 
 let buttonScheme: MDCButtonScheme;
 function getButtonScheme() {
@@ -29,6 +31,10 @@ export class Button extends ButtonBase {
 
     public createNativeView() {
         let view = MDCButton.new();
+        let colorScheme = themer.getAppColorScheme();
+        if (colorScheme) {
+            MDCTextButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
+        }
 
         // console.log('create material button', this.variant, this._backgroundColor, this._borderRadius);
         if (this.variant === 'text') {
@@ -62,6 +68,7 @@ export class Button extends ButtonBase {
         this.style.borderRadius = value;
         if (this.nativeViewProtected) {
             let newValue = (this._borderRadius = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0));
+            console.log('set borderRadius', value, newValue);
             this.nativeViewProtected.layer.cornerRadius = newValue;
         }
     }
@@ -75,7 +82,7 @@ export class Button extends ButtonBase {
                 // this is a trick for now. Though we can't have borderRadius=0 with that :s
                 // we need a way to know borderRadius was actually set
                 if (value.borderTopLeftRadius !== this.defaultBorderRadius) {
-                    this.nativeViewProtected.layer.cornerRadius = value.borderTopLeftRadius / 2;
+                    this.nativeViewProtected.layer.cornerRadius = value.borderTopLeftRadius / screen.mainScreen.scale;
                 }
             }
         }

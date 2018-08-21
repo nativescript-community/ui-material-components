@@ -220,9 +220,13 @@ declare class MDCAppBar extends NSObject {
 
 	static new(): MDCAppBar; // inherited from NSObject
 
+	readonly appBarViewController: MDCAppBarViewController;
+
 	readonly headerStackView: MDCHeaderStackView;
 
 	readonly headerViewController: MDCFlexibleHeaderViewController;
+
+	inferTopSafeAreaInsetFromViewController: boolean;
 
 	readonly navigationBar: MDCNavigationBar;
 
@@ -235,9 +239,13 @@ declare class MDCAppBarColorThemer extends NSObject {
 
 	static applyColorSchemeToAppBar(colorScheme: MDCColorScheme, appBar: MDCAppBar): void;
 
+	static applyColorSchemeToAppBarViewController(colorScheme: MDCColorScheming, appBarViewController: MDCAppBarViewController): void;
+
 	static applySemanticColorSchemeToAppBar(colorScheme: MDCColorScheming, appBar: MDCAppBar): void;
 
 	static applySurfaceVariantWithColorSchemeToAppBar(colorScheme: MDCColorScheming, appBar: MDCAppBar): void;
+
+	static applySurfaceVariantWithColorSchemeToAppBarViewController(colorScheme: MDCColorScheming, appBarViewController: MDCAppBarViewController): void;
 
 	static new(): MDCAppBarColorThemer; // inherited from NSObject
 }
@@ -250,6 +258,8 @@ declare class MDCAppBarContainerViewController extends UIViewController {
 
 	readonly appBar: MDCAppBar;
 
+	readonly appBarViewController: MDCAppBarViewController;
+
 	readonly contentViewController: UIViewController;
 
 	topLayoutGuideAdjustmentEnabled: boolean;
@@ -258,6 +268,30 @@ declare class MDCAppBarContainerViewController extends UIViewController {
 
 	initWithContentViewController(contentViewController: UIViewController): this;
 }
+
+declare class MDCAppBarNavigationController extends UINavigationController {
+
+	static alloc(): MDCAppBarNavigationController; // inherited from NSObject
+
+	static new(): MDCAppBarNavigationController; // inherited from NSObject
+
+	delegate: MDCAppBarNavigationControllerDelegate;
+
+	appBarForViewController(viewController: UIViewController): MDCAppBar;
+
+	appBarViewControllerForViewController(viewController: UIViewController): MDCAppBarViewController;
+}
+
+interface MDCAppBarNavigationControllerDelegate extends UINavigationControllerDelegate {
+
+	appBarNavigationControllerWillAddAppBarAsChildOfViewController?(navigationController: MDCAppBarNavigationController, appBar: MDCAppBar, viewController: UIViewController): void;
+
+	appBarNavigationControllerWillAddAppBarViewControllerAsChildOfViewController?(navigationController: MDCAppBarNavigationController, appBarViewController: MDCAppBarViewController, viewController: UIViewController): void;
+}
+declare var MDCAppBarNavigationControllerDelegate: {
+
+	prototype: MDCAppBarNavigationControllerDelegate;
+};
 
 declare class MDCAppBarTextColorAccessibilityMutator extends NSObject {
 
@@ -274,7 +308,20 @@ declare class MDCAppBarTypographyThemer extends NSObject {
 
 	static applyTypographySchemeToAppBar(typographyScheme: MDCTypographyScheming, appBar: MDCAppBar): void;
 
+	static applyTypographySchemeToAppBarViewController(typographyScheme: MDCTypographyScheming, appBarViewController: MDCAppBarViewController): void;
+
 	static new(): MDCAppBarTypographyThemer; // inherited from NSObject
+}
+
+declare class MDCAppBarViewController extends MDCFlexibleHeaderViewController {
+
+	static alloc(): MDCAppBarViewController; // inherited from NSObject
+
+	static new(): MDCAppBarViewController; // inherited from NSObject
+
+	headerStackView: MDCHeaderStackView;
+
+	navigationBar: MDCNavigationBar;
 }
 
 declare const enum MDCBarButtonItemLayoutHints {
@@ -2491,6 +2538,8 @@ declare class MDCFlexibleHeaderView extends UIView {
 
 	minimumHeight: number;
 
+	observesTrackingScrollViewScrollEvents: boolean;
+
 	readonly prefersStatusBarHidden: boolean;
 
 	readonly scrollPhase: MDCFlexibleHeaderScrollPhase;
@@ -2506,6 +2555,8 @@ declare class MDCFlexibleHeaderView extends UIView {
 	shiftBehavior: MDCFlexibleHeaderShiftBehavior;
 
 	statusBarHintCanOverlapHeader: boolean;
+
+	readonly topSafeAreaGuide: any;
 
 	trackingScrollView: UIScrollView;
 
@@ -2556,7 +2607,13 @@ declare class MDCFlexibleHeaderViewController extends UIViewController implement
 
 	readonly headerView: MDCFlexibleHeaderView;
 
+	inferPreferredStatusBarStyle: boolean;
+
+	inferTopSafeAreaInsetFromViewController: boolean;
+
 	layoutDelegate: MDCFlexibleHeaderViewLayoutDelegate;
+
+	preferredStatusBarStyle: UIStatusBarStyle;
 
 	topLayoutGuideAdjustmentEnabled: boolean;
 
@@ -2591,8 +2648,6 @@ declare class MDCFlexibleHeaderViewController extends UIViewController implement
 	performSelectorWithObject(aSelector: string, object: any): any;
 
 	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
-
-	// preferredStatusBarStyle(): UIStatusBarStyle;
 
 	// prefersStatusBarHidden(): boolean;
 
@@ -4463,9 +4518,29 @@ declare class MDCSnackbarManager extends NSObject {
 
 	static suspendMessagesWithCategory(category: string): MDCSnackbarSuspensionToken;
 
+	alignment: MDCSnackbarAlignment;
+
+	buttonFont: UIFont;
+
+	delegate: MDCSnackbarManagerDelegate;
+
+	mdc_adjustsFontForContentSizeCategory: boolean;
+
+	messageFont: UIFont;
+
+	messageTextColor: UIColor;
+
+	shouldApplyStyleChangesToVisibleSnackbars: boolean;
+
+	snackbarMessageViewBackgroundColor: UIColor;
+
+	snackbarMessageViewShadowColor: UIColor;
+
 	static alignment: MDCSnackbarAlignment;
 
 	static buttonFont: UIFont;
+
+	static readonly defaultManager: MDCSnackbarManager;
 
 	static delegate: MDCSnackbarManagerDelegate;
 
@@ -4480,6 +4555,26 @@ declare class MDCSnackbarManager extends NSObject {
 	static snackbarMessageViewBackgroundColor: UIColor;
 
 	static snackbarMessageViewShadowColor: UIColor;
+
+	buttonTitleColorForState(state: UIControlState): UIColor;
+
+	dismissAndCallCompletionBlocksWithCategory(category: string): void;
+
+	hasMessagesShowingOrQueued(): boolean;
+
+	resumeMessagesWithToken(token: MDCSnackbarSuspensionToken): void;
+
+	setBottomOffset(offset: number): void;
+
+	setButtonTitleColorForState(titleColor: UIColor, state: UIControlState): void;
+
+	setPresentationHostView(hostView: UIView): void;
+
+	showMessage(message: MDCSnackbarMessage): void;
+
+	suspendAllMessages(): MDCSnackbarSuspensionToken;
+
+	suspendMessagesWithCategory(category: string): MDCSnackbarSuspensionToken;
 }
 
 interface MDCSnackbarManagerDelegate extends NSObjectProtocol {
@@ -5362,7 +5457,7 @@ declare var MDCTextInputCharacterCounter: {
 	prototype: MDCTextInputCharacterCounter;
 };
 
-interface MDCTextInputController extends MDCTextInputPositioningDelegate, NSCopying, NSObjectProtocol, NSSecureCoding {
+interface MDCTextInputController extends MDCTextInputPositioningDelegate, NSCopying, NSObjectProtocol {
 
 	activeColor: UIColor;
 
@@ -5415,6 +5510,8 @@ interface MDCTextInputController extends MDCTextInputPositioningDelegate, NSCopy
 	initWithTextInput?(input: UIView): MDCTextInputController;
 
 	setErrorTextErrorAccessibilityValue(errorText: string, errorAccessibilityValue: string): void;
+
+	setHelperTextHelperAccessibilityLabel(helperText: string, helperAccessibilityLabel: string): void;
 }
 declare var MDCTextInputController: {
 
@@ -5533,8 +5630,6 @@ declare class MDCTextInputControllerBase extends NSObject implements MDCTextInpu
 
 	static roundedCornersDefault: UIRectCorner; // inherited from MDCTextInputController
 
-	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
-
 	static textInputClearButtonTintColorDefault: UIColor; // inherited from MDCTextInputController
 
 	static textInputFontDefault: UIFont; // inherited from MDCTextInputController
@@ -5549,8 +5644,6 @@ declare class MDCTextInputControllerBase extends NSObject implements MDCTextInpu
 
 	static underlineViewModeDefault: UITextFieldViewMode; // inherited from MDCTextInputController
 
-	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
-
 	constructor(o: { textInput: UIView; }); // inherited from MDCTextInputController
 
 	class(): typeof NSObject;
@@ -5560,10 +5653,6 @@ declare class MDCTextInputControllerBase extends NSObject implements MDCTextInpu
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
 	editingRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
-
-	encodeWithCoder(aCoder: NSCoder): void;
-
-	initWithCoder(aDecoder: NSCoder): this;
 
 	initWithTextInput(input: UIView): this;
 
@@ -5590,6 +5679,8 @@ declare class MDCTextInputControllerBase extends NSObject implements MDCTextInpu
 	self(): this;
 
 	setErrorTextErrorAccessibilityValue(errorText: string, errorAccessibilityValue: string): void;
+
+	setHelperTextHelperAccessibilityLabel(helperText: string, helperAccessibilityLabel: string): void;
 
 	textInputDidLayoutSubviews(): void;
 
@@ -5718,8 +5809,6 @@ declare class MDCTextInputControllerFullWidth extends NSObject implements MDCTex
 
 	static roundedCornersDefault: UIRectCorner; // inherited from MDCTextInputController
 
-	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
-
 	static textInputClearButtonTintColorDefault: UIColor; // inherited from MDCTextInputController
 
 	static textInputFontDefault: UIFont; // inherited from MDCTextInputController
@@ -5734,8 +5823,6 @@ declare class MDCTextInputControllerFullWidth extends NSObject implements MDCTex
 
 	static underlineViewModeDefault: UITextFieldViewMode; // inherited from MDCTextInputController
 
-	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
-
 	constructor(o: { textInput: UIView; }); // inherited from MDCTextInputController
 
 	class(): typeof NSObject;
@@ -5745,10 +5832,6 @@ declare class MDCTextInputControllerFullWidth extends NSObject implements MDCTex
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
 	editingRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
-
-	encodeWithCoder(aCoder: NSCoder): void;
-
-	initWithCoder(aDecoder: NSCoder): this;
 
 	initWithTextInput(input: UIView): this;
 
@@ -5776,6 +5859,8 @@ declare class MDCTextInputControllerFullWidth extends NSObject implements MDCTex
 
 	setErrorTextErrorAccessibilityValue(errorText: string, errorAccessibilityValue: string): void;
 
+	setHelperTextHelperAccessibilityLabel(helperText: string, helperAccessibilityLabel: string): void;
+
 	textInputDidLayoutSubviews(): void;
 
 	textInputDidUpdateConstraints(): void;
@@ -5794,19 +5879,11 @@ declare class MDCTextInputControllerLegacyDefault extends MDCTextInputController
 	static new(): MDCTextInputControllerLegacyDefault; // inherited from NSObject
 }
 
-declare class MDCTextInputControllerLegacyFullWidth extends MDCTextInputControllerFullWidth implements NSSecureCoding {
+declare class MDCTextInputControllerLegacyFullWidth extends MDCTextInputControllerFullWidth {
 
 	static alloc(): MDCTextInputControllerLegacyFullWidth; // inherited from NSObject
 
 	static new(): MDCTextInputControllerLegacyFullWidth; // inherited from NSObject
-
-	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
-
-	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
-
-	encodeWithCoder(aCoder: NSCoder): void;
-
-	initWithCoder(aDecoder: NSCoder): this;
 }
 
 declare class MDCTextInputControllerOutlined extends MDCTextInputControllerBase {
@@ -5862,7 +5939,7 @@ declare const enum MDCTextInputTextInsetsMode {
 	Always = 2
 }
 
-declare class MDCTextInputUnderlineView extends UIView implements NSCopying, NSSecureCoding {
+declare class MDCTextInputUnderlineView extends UIView implements NSCopying {
 
 	static alloc(): MDCTextInputUnderlineView; // inherited from NSObject
 
@@ -5888,15 +5965,7 @@ declare class MDCTextInputUnderlineView extends UIView implements NSCopying, NSS
 
 	lineHeight: number;
 
-	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
-
-	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
-
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	encodeWithCoder(aCoder: NSCoder): void;
-
-	initWithCoder(aDecoder: NSCoder): this;
 }
 
 declare class MDCThumbTrack extends UIControl {

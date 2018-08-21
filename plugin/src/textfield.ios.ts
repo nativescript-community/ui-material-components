@@ -1,6 +1,8 @@
 import * as common from './textfield.common';
-import { EditableTextBase, textProperty, hintProperty, placeholderColorProperty, Color, FormattedString } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
-import { maxLengthProperty, helperTextProperty, errorColorProperty, floatingProperty } from './cssproperties';
+import { EditableTextBase, textProperty, hintProperty, placeholderColorProperty, Color, FormattedString, Style } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
+import { maxLengthProperty, helperProperty, errorColorProperty, floatingProperty, errorProperty } from './cssproperties';
+import { themer } from './material';
+import { secureProperty } from 'tns-core-modules/ui/text-field/text-field';
 
 let colorScheme: MDCSemanticColorScheme;
 function getColorScheme() {
@@ -88,7 +90,6 @@ class MDCTextFieldDelegateImpl extends NSObject implements UITextFieldDelegate {
         return true;
     }
 
-
     public textFieldShouldReturn(textField: UITextField): boolean {
         // Called when the user presses the return button.
         const owner = this._owner.get();
@@ -132,12 +133,27 @@ class MDCTextFieldDelegateImpl extends NSObject implements UITextFieldDelegate {
 }
 
 export class TextField extends common.TextField {
-    private _controller: MDCTextInputControllerUnderline;
+    private _controller: MDCTextInputControllerBase;
     _ios: MDCTextField;
     private _delegate: MDCTextFieldDelegateImpl;
+    public readonly style: Style & { variant: 'outline' | 'underline' | 'filled' };
+
+    variant = 'underline';
     public createNativeView() {
         let view = (this._ios = MDCTextField.new());
-        this._controller = MDCTextInputControllerUnderline.alloc().initWithTextInput(view);
+        let colorScheme = themer.getAppColorScheme();
+        if (this.style.variant === 'filled') {
+            this._controller = MDCTextInputControllerFilled.alloc().initWithTextInput(view);
+        } else if (this.style.variant === 'outline') {
+            this._controller = MDCTextInputControllerOutlined.alloc().initWithTextInput(view);
+        } else {
+            this._controller = MDCTextInputControllerUnderline.alloc().initWithTextInput(view);
+        }
+        if (colorScheme) {
+            MDCTextFieldColorThemer.applySemanticColorSchemeToTextInput(colorScheme, view);
+            MDCTextFieldColorThemer.applySemanticColorSchemeToTextInputController(colorScheme, this._controller);
+        }
+
         this._delegate = MDCTextFieldDelegateImpl.initWithOwner(new WeakRef(this));
         return view;
     }
@@ -174,7 +190,8 @@ export class TextField extends common.TextField {
         const color = value instanceof Color ? value.ios : value;
         this._controller.errorColor = color;
     }
-    [helperTextProperty.setNative](value: string) {
+    [helperProperty.setNative](value: string) {
+        console.log('helperText', value);
         this._controller.helperText = value;
     }
     [maxLengthProperty.setNative](value: number) {
@@ -183,5 +200,15 @@ export class TextField extends common.TextField {
     [floatingProperty.setNative](value: boolean) {
         this._controller.floatingEnabled = value;
     }
+    [errorProperty.setNative](value: string) {
+        console.log('set error', value);
+        this._controller.setErrorTextErrorAccessibilityValue(value, value);
+    }
 
+    // [secureProperty.getDefault](): boolean {
+    //     return this._controller.pass;
+    // }
+    // [secureProperty.setNative](value: boolean) {
+    //     this.nativeViewProtected.secureTextEntry = value;
+    // }
 }

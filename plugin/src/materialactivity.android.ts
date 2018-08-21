@@ -23,7 +23,9 @@ function initializeAppCompatCallback(): void {
         public onSupportActionModeStarted(mode) {}
 
         public onSupportActionModeFinished(mode) {}
-        public onWindowStartingSupportActionMode(callback) {}
+        public onWindowStartingSupportActionMode(callback) {
+            return null;
+        }
     }
 
     AppCompatCallback = AppCompatCallbackImpl;
@@ -33,7 +35,7 @@ function initializeAppCompatCallback(): void {
 class MaterialActivity extends android.app.Activity {
     private _callbacks: AndroidActivityCallbacks;
     private delegate: android.support.v7.app.AppCompatDelegate;
-    protected onCreate(savedInstanceState: any): void {
+    public onCreate(savedInstanceState: any): void {
         // android.os.Bundle
         if (!this._callbacks) {
             setActivityCallbacks(this);
@@ -46,20 +48,20 @@ class MaterialActivity extends android.app.Activity {
         this.delegate.setContentView(this._callbacks.getRootView().nativeViewProtected);
     }
 
-    protected onSaveInstanceState(outState: any): void {
+    public onSaveInstanceState(outState: any): void {
         // android.os.Bundle
         this._callbacks.onSaveInstanceState(this, outState, super.onSaveInstanceState);
     }
 
-    protected onStart(): void {
+    public onStart(): void {
         this._callbacks.onStart(this, super.onStart);
     }
 
-    protected onStop(): void {
+    public onStop(): void {
         this._callbacks.onStop(this, super.onStop);
     }
 
-    protected onDestroy(): void {
+    public onDestroy(): void {
         this._callbacks.onDestroy(this, super.onDestroy);
     }
 
@@ -67,11 +69,11 @@ class MaterialActivity extends android.app.Activity {
         this._callbacks.onBackPressed(this, super.onBackPressed);
     }
 
-    public onRequestPermissionsResult(requestCode: number, permissions: Array<String>, grantResults: Array<number>): void {
+    public onRequestPermissionsResult(requestCode: number, permissions: Array<string>, grantResults: Array<number>): void {
         this._callbacks.onRequestPermissionsResult(this, requestCode, permissions, grantResults, undefined /*TODO: Enable if needed*/);
     }
 
-    protected onActivityResult(requestCode: number, resultCode: number, data: any): void {
+    public onActivityResult(requestCode: number, resultCode: number, data: any): void {
         // android.content.Intent
         this._callbacks.onActivityResult(this, requestCode, resultCode, data, super.onActivityResult);
     }

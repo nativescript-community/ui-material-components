@@ -1,7 +1,7 @@
 import * as common from './textfield.common';
 import { EditableTextBase } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
-export declare const FrameLayout: typeof android.widget.FrameLayout;
-export declare const LinearLayout: typeof android.widget.LinearLayout;
+export declare const FrameLayout: typeof globalAndroid.widget.FrameLayout;
+export declare const LinearLayout: typeof globalAndroid.widget.LinearLayout;
 declare module 'tns-core-modules/ui/text-field/text-field' {
     interface TextField {
         _configureEditText(editText: any): any;
@@ -20,10 +20,10 @@ export declare class TextField extends common.TextField {
     layoutView: android.support.design.widget.TextInputLayout;
     constructor();
     onResumeNativeUpdates(): void;
-    readonly nativeViewProtected: android.support.design.widget.TextInputLayout | android.support.design.widget.TextInputEditText;
+    readonly nativeViewProtected: globalAndroid.support.design.widget.TextInputLayout | globalAndroid.support.design.widget.TextInputEditText;
     readonly android: android.support.design.widget.TextInputLayout;
     layoutNativeView(left: number, top: number, right: number, bottom: number): void;
-    createNativeView(): android.support.design.widget.TextInputLayout;
+    createNativeView(): globalAndroid.support.design.widget.TextInputLayout;
     viewInit: boolean;
     _settingLayout: boolean;
     initNativeView(): void;

@@ -1,6 +1,7 @@
 import { imageSourceProperty, srcProperty, FloatingActionButtonBase } from './floatingactionbutton-common';
 import { ImageSource } from 'tns-core-modules/image-source/image-source';
 import { elevationProperty } from './cssproperties';
+import { themer } from './material';
 
 export class FloatingActionButton extends FloatingActionButtonBase {
     nativeViewProtected: MDCFloatingButton;
@@ -11,6 +12,10 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     }
     public createNativeView() {
         let result = MDCFloatingButton.new();
+        let colorScheme = themer.getAppColorScheme();
+        if (colorScheme) {
+            MDCFloatingButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, result);
+        }
         return result;
     }
     [elevationProperty.setNative](value: number) {
