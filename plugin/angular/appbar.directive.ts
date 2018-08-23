@@ -2,7 +2,7 @@ import { Directive, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Page } from 'tns-core-modules/ui/page/page';
 import { ios as iosApp, addCss } from 'tns-core-modules/application';
-import { themer } from '../nativescript-material-components/material';
+import { themer } from '../src/material';
 
 @Directive({
     selector: '[materialAppBar]'
