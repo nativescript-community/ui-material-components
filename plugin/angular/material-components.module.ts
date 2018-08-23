@@ -10,7 +10,7 @@ import {
 export const FORMS_DIRECTIVES = [
   TextValueAccessor
 ];
-import { FloatingActionButton, Button, TextField, CardView, AppBar } from "../nativescript-material-components/material";
+import { FloatingActionButton, Button, TextField, CardView, AppBar } from "../src/material";
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -19,7 +19,7 @@ import { FloatingActionButton, Button, TextField, CardView, AppBar } from "../na
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 // import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { registerElement } from "nativescript-angular/element-registry";
-import { appBarMeta } from "~/material-components-angular/app-bar";
+import { appBarMeta } from "./app-bar";
 
 registerElement("FloatingActionButton", () => FloatingActionButton);
 registerElement("MaterialButton", () => Button);
