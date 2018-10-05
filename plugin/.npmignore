@@ -1,5 +1,6 @@
 node_modules/
 bin/
+src/
 hooks/
 *.ts
 *.map

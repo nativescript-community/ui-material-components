@@ -1,29 +1,60 @@
-.vscode
-.idea
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+bin
+obj
+.vs
+.tscache
+*.user
 *.js
-*.js.map
-*.log
-src/*.d.ts
-!src/index.d.ts
-!src/references.d.ts
-!src/scripts/*.js
-!seed-tests/*.js
-seed-tests/seed-copy/**/*.*
-seed-tests/seed-copy-new-git-repo/**/*.*
-!demo/karma.conf.js
-!dev_demo/karma.conf.js
-!demo/app/tests/*.js
-!dev_demo/app/tests/*.js
-demo/*.d.ts
-!demo/references.d.ts
-dev_demo/*.d.ts
-!dev_demo/references.d.ts
-demo/lib
-demo/platforms
-dev_demo/platforms
+*.map
+!gruntfile.js
 node_modules
-publish/src
-publish/package
-demo/report
-dev_demo/report
+*.tmp.*
+platforms
+lib
+*.css
+!webpack.*.js
+report
+*.log

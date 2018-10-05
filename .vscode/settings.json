@@ -1,0 +1,15 @@
+{
+    "files.exclude": {
+        "dev_demo*/app/**/*.js": true,
+        "dev_demo*/app/**/*.js.map": true,
+        "demo*/app/**/*.js": true,
+        "demo*/app/**/*.js.map": true,
+        "plugin/src/**/*.js": true,
+        "plugin/src/**/*.android.d.ts": true,
+        "plugin/src/**/*.ios.d.ts": true,
+        "plugin/src/**/*.map": true
+    },
+    "search.exclude": {
+        "**/platforms": true
+    }
+}
