@@ -22,7 +22,7 @@ export class AppBar extends AppBarBase {
         // _appBar.navigationBar.tintColor  = new Color('blue').ios;
         // _appBar.headerViewController.headerView.backgroundColor = new Color('yellow').ios;
         // _appBar.navigationBar.sizeToFit();
-        let colorScheme = themer.getAppColorScheme();
+        const colorScheme = themer.getAppColorScheme();
         if (colorScheme) {
             MDCAppBarColorThemer.applyColorSchemeToAppBarViewController(colorScheme, this._appBarController);
         }
@@ -63,17 +63,16 @@ export class AppBar extends AppBarBase {
             if (page && page.parent) {
                 let showNavigationBar = true;
                 Object.defineProperty(page.frame.ios, 'showNavigationBar', {
-                    get: function() {
-
+                    get() {
                         console.log('getting showNavigationBar');
                         return showNavigationBar;
                     },
-                    set: function(value) {
+                    set(value) {
                         console.log('setting showNavigationBar', value);
                         showNavigationBar = value;
                     }
                 });
-                const viewController = <UIViewController>page.ios;
+                const viewController = page.ios as UIViewController;
                 if (viewController.navigationController) {
                     viewController.navigationController.navigationBarHidden = true;
                 }
@@ -98,7 +97,7 @@ export class AppBar extends AppBarBase {
         console.log('onLoaded');
         this._addController();
         // setTimeout(() => {
-        const viewController = <UIViewController>this.page.ios;
+        const viewController = this.page.ios as UIViewController;
         // if (viewController.navigationController) {
         //     viewController.navigationController.setNavigationBarHiddenAnimated(true, false);
         // }

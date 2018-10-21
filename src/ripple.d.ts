@@ -1,0 +1,1 @@
+../plugin/ripple.d.ts

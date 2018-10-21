@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-components",
-    "version": "1.0.2",
+    "version": "1.0.4",
     "description": "Your awesome NativeScript plugin.",
     "main": "./material",
     "typings": "./material.d.ts",
@@ -9,23 +9,6 @@
             "android": "4.2.0",
             "ios": "4.2.0"
         }
-    },
-    "scripts": {
-        "tsc": "tsc -skipLibCheck",
-        "ngc": "ngc -p tsconfig.json",
-        "build": "npm i && tsc",
-        "postclone": "npm i && node scripts/postclone.js && cd ../demo && npm i && cd ../src && npm run plugin.link",
-        "test.android": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build android && tns test android --justlaunch",
-        "test.ios": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build ios && tns test ios --justlaunch",
-        "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
-        "plugin.link": "npm link && cd ../demo && npm link nativescript-material-components && cd ../src",
-        "plugin.tscwatch": "npm run tsc -- -w",
-        "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
-        "demo.android": "npm i && npm run tsc && cd ../demo && tns run android --syncAllFiles",
-        "demo.reset": "cd ../demo && rimraf platforms",
-        "plugin.prepare": "npm run tsc && cd ../demo && tns plugin remove nativescript-material-components && tns plugin add ../src",
-        "clean": "cd ../demo && rimraf hooks node_modules platforms && cd ../src && rimraf node_modules && npm run plugin.link",
-        "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'"
     },
     "keywords": [
         "NativeScript",
@@ -43,6 +26,5 @@
     "license": "Apache-2.0",
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
-    "dependencies": {},
-    "bootstrapper": "nativescript-plugin-seed"
+    "dependencies": {}
 }

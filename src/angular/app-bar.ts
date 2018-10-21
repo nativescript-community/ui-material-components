@@ -1,7 +1,7 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { ActionBarComponent } from 'nativescript-angular/directives/action-bar';
-import { ActionBar, ActionItem, ActionItems, NavigationButton } from "tns-core-modules/ui/action-bar/action-bar";
-import { ViewExtensions, ViewClassMeta, NgView, isInvisibleNode, isView } from "nativescript-angular/element-registry";
+import { ActionBar, ActionItem, ActionItems, NavigationButton } from 'tns-core-modules/ui/action-bar/action-bar';
+import { isInvisibleNode, isView, NgView, ViewClassMeta, ViewExtensions } from 'nativescript-angular/element-registry';
 
 export function isActionItem(view: any): view is ActionItem {
     return view instanceof ActionItem;
@@ -11,7 +11,7 @@ export function isNavigationButton(view: any): view is NavigationButton {
     return view instanceof NavigationButton;
 }
 
-type NgActionBar = (ActionBar & ViewExtensions);
+type NgActionBar = ActionBar & ViewExtensions;
 
 export const appBarMeta: ViewClassMeta = {
     skipAddToDom: true,
@@ -43,7 +43,7 @@ export const appBarMeta: ViewClassMeta = {
         } else if (isView(child) && parent.titleView && parent.titleView === child) {
             parent.titleView = null;
         }
-    },
+    }
 };
 
 const addActionItem = (bar: NgActionBar, item: ActionItem, next: ActionItem) => {
@@ -61,7 +61,7 @@ const insertActionItemBefore = (bar: NgActionBar, item: ActionItem, next: Action
     const indexToInsert = actionItemsCollection.indexOf(next);
     actionItemsCollection.splice(indexToInsert, 0, item);
 
-    (<any>actionItems).setItems(actionItemsCollection);
+    (actionItems as any).setItems(actionItemsCollection);
 };
 
 const appendActionItem = (bar: NgActionBar, item: ActionItem) => {
@@ -69,15 +69,14 @@ const appendActionItem = (bar: NgActionBar, item: ActionItem) => {
 };
 
 @Component({
-    selector: "AppBar",
-    template: "<ng-content></ng-content>"
+    selector: 'AppBar',
+    template: '<ng-content></ng-content>'
 })
 export class AppBarComponent extends ActionBarComponent {
     // constructor(public element: ElementRef, private page: Page) {
     //     if (!this.page) {
     //         throw new Error("Inside ActionBarComponent but no Page found in DI.");
     //     }
-
     //     if (isBlank(this.page.actionBarHidden)) {
     //         this.page.actionBarHidden = false;
     //     }

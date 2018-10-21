@@ -1,5 +1,5 @@
-import { View, Length, Color, CSSType } from 'tns-core-modules/ui/core/view';
-import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout";
+import { Color, CSSType, Length, View } from 'tns-core-modules/ui/core/view';
+import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 
 @CSSType('MDCCardView')
 export abstract class CardViewBase extends StackLayout {

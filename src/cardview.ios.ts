@@ -1,6 +1,6 @@
 import { CardViewBase } from './cardview-common';
 import { elevationProperty, rippleColorProperty } from './cssproperties';
-import { Length, Color } from 'tns-core-modules/ui/page/page';
+import { Color, Length } from 'tns-core-modules/ui/page/page';
 import { themer } from './material';
 
 export class CardView extends CardViewBase {
@@ -8,13 +8,13 @@ export class CardView extends CardViewBase {
     _backgroundColor: Color;
 
     getRippleColor(color: string) {
-        let temp = new Color(color);
+        const temp = new Color(color);
         return new Color(36, temp.r, temp.g, temp.b).ios; // default alpha is 0.14
     }
 
     public createNativeView() {
-        let view = MDCCard.new();
-        let colorScheme = themer.getAppColorScheme();
+        const view = MDCCard.new();
+        const colorScheme = themer.getAppColorScheme();
         if (colorScheme) {
             MDCCardsColorThemer.applySemanticColorSchemeToCard(colorScheme, view);
         }
@@ -23,6 +23,8 @@ export class CardView extends CardViewBase {
         }
         if (this._borderRadius !== undefined) {
             view.layer.cornerRadius = this._borderRadius;
+            // view.layer.masksToBounds = true;
+            // view.clipsToBounds = true;
         }
         // if (this.style['rippleColor']) {
         //     view.inkView.inkColor = this.getRippleColor(this.style['rippleColor']);
@@ -31,20 +33,23 @@ export class CardView extends CardViewBase {
         // view.clipsToBounds = false;
         return view;
     }
+    _setNativeClipToBounds() {
+        // this.ios.clipsToBounds = true;
+    }
 
     [elevationProperty.setNative](value: number) {
         this.nativeViewProtected.setShadowElevationForState(value, UIControlState.Normal);
         this.nativeViewProtected.setShadowElevationForState(value * 2, UIControlState.Highlighted);
     }
     set borderRadius(value: string | Length) {
-        let newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+        const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
         this._borderRadius = newValue;
         if (this.nativeViewProtected) {
             this.nativeViewProtected.layer.cornerRadius = newValue;
         }
     }
     set borderWidth(value: string | Length) {
-        let newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+        const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
         this._borderRadius = newValue;
         if (this.nativeViewProtected) {
             this.nativeViewProtected.setBorderWidthForState(newValue, UIControlState.Normal);

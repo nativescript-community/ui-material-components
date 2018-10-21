@@ -1,39 +1,33 @@
 import * as common from './textfield.common';
 import * as utils from 'tns-core-modules/utils/utils';
 import {
-    EditableTextBase,
-    textProperty,
-    hintProperty,
-    placeholderColorProperty,
     Color,
-    widthProperty,
+    EditableTextBase,
     heightProperty,
-    marginLeftProperty,
-    minWidthProperty,
+    hintProperty,
     marginBottomProperty,
-    marginTopProperty,
+    marginLeftProperty,
     marginRightProperty,
+    marginTopProperty,
+    maxLengthProperty,
+    minWidthProperty,
     PercentLength,
-    maxLengthProperty
+    placeholderColorProperty,
+    textProperty,
+    widthProperty
 } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
 export const FrameLayout = android.widget.FrameLayout;
 export const LinearLayout = android.widget.LinearLayout;
 import * as application from 'application';
 
-
 function getLayout(id: string) {
     const context = application.android.context;
-    return context
-      .getResources()
-      .getIdentifier(id, "layout", context.getPackageName());
-  }
-  function getId(id: string) {
+    return context.getResources().getIdentifier(id, 'layout', context.getPackageName());
+}
+function getId(id: string) {
     const context = application.android.context;
-    return context
-      .getResources()
-      .getIdentifier(id, "id", context.getPackageName());
-  }
-
+    return context.getResources().getIdentifier(id, 'id', context.getPackageName());
+}
 
 declare module 'tns-core-modules/ui/text-field/text-field' {
     interface TextField {
@@ -47,7 +41,7 @@ declare module 'tns-core-modules/ui/text-field/text-field' {
 }
 import { ad } from 'utils/utils';
 import { Background } from 'tns-core-modules/ui/styling/background';
-import { errorColorProperty, floatingProperty, helperProperty, errorProperty } from './cssproperties';
+import { errorColorProperty, errorProperty, floatingProperty, helperProperty } from './cssproperties';
 
 interface EditTextListeners extends android.text.TextWatcher, android.view.View.OnFocusChangeListener, android.widget.TextView.OnEditorActionListener {}
 
@@ -264,19 +258,19 @@ export class TextField extends common.TextField {
         initializeEditTextListeners();
 
         let layoutId = 'material_text_field';
-        if (this.style['variant']  === 'filled') {
+        if (this.style['variant'] === 'filled') {
             layoutId = 'material_text_field_filled';
-        } else if (this.style['variant']  === 'outline') {
+        } else if (this.style['variant'] === 'outline') {
             layoutId = 'material_text_field_outline';
         }
-        const view = this.layoutView = android.view.LayoutInflater.from(this._context).inflate(getLayout(layoutId), null, false) as android.support.design.widget.TextInputLayout;
-        const editText = this.editText = (view.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText;
+        const view = (this.layoutView = android.view.LayoutInflater.from(this._context).inflate(getLayout(layoutId), null, false) as android.support.design.widget.TextInputLayout);
+        const editText = (this.editText = (view.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText);
         this._configureEditText(editText);
         const listeners = new EditTextListeners(this);
         editText.addTextChangedListener(listeners);
         editText.setOnFocusChangeListener(listeners);
         editText.setOnEditorActionListener(listeners);
-        (<any>editText).listener = listeners;
+        (editText as any).listener = listeners;
         view.setFocusable(true);
         view.setFocusableInTouchMode(true);
         // view.addView(editText);
@@ -338,5 +332,4 @@ export class TextField extends common.TextField {
     }
 
     [floatingProperty.setNative](value: boolean) {}
-
 }

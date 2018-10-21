@@ -61,6 +61,8 @@
         "tns-core-modules": "4.2.1",
         "tns-platform-declarations": "^4.2.1",
         "tslint": "^5.11.0",
+        "tslint-config-prettier": "^1.15.0",
+        "tslint-config-standard": "^8.0.1",
         "typescript": "~2.7.2"
     },
     "dependencies": {},

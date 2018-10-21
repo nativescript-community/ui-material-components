@@ -1,5 +1,5 @@
-import { Color, Length } from 'tns-core-modules/ui/core/view';
-import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
+import { Length, Color } from 'tns-core-modules/ui/core/view';
+import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout";
 export declare abstract class CardViewBase extends StackLayout {
     protected _borderRadius: number;
     protected _borderColor: Color;

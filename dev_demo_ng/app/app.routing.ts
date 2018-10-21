@@ -1,19 +1,23 @@
-import { NgModule } from "@angular/core";
-import { NativeScriptRouterModule } from "nativescript-angular/router";
-import { Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { NativeScriptRouterModule } from 'nativescript-angular/router';
+import { Routes } from '@angular/router';
 
-import { ButtonsComponent } from "./buttons/buttons.component";
-import { TextfieldsComponent } from "./textfields/textfields.component";
+import { ButtonsComponent } from './buttons/buttons.component';
+import { TextfieldsComponent } from './textfields/textfields.component';
 export const COMPONENTS = [ButtonsComponent, TextfieldsComponent];
 
 const routes: Routes = [
-    { path: "", redirectTo: "/(btnTab:buttons//tfTab:textfields)", pathMatch: "full" },
+    { path: '', redirectTo: '/(btnTab:buttons//tfTab:textfields)', pathMatch: 'full' },
 
     {
-        path: "buttons", component: ButtonsComponent, outlet: "btnTab"
+        path: 'buttons',
+        component: ButtonsComponent,
+        outlet: 'btnTab'
     },
     {
-        path: "textfields", component: TextfieldsComponent, outlet: "tfTab"
+        path: 'textfields',
+        component: TextfieldsComponent,
+        outlet: 'tfTab'
     }
 ];
 
@@ -21,4 +25,4 @@ const routes: Routes = [
     imports: [NativeScriptRouterModule.forRoot(routes)],
     exports: [NativeScriptRouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

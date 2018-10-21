@@ -6,5 +6,6 @@ export declare class Button extends ButtonBase {
     nativeViewProtected: MDCButton;
     getRippleColor(color: string): any;
     createNativeView(): MDCButton;
+    private setCornerRadius(value);
     borderRadius: string | Length;
 }

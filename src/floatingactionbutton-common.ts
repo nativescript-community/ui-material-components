@@ -1,11 +1,11 @@
-import { View, Property, CssProperty, Style, CSSType } from 'tns-core-modules/ui/core/view';
+import { CSSType, Property, View } from 'tns-core-modules/ui/core/view';
 import { ImageAsset } from 'tns-core-modules/image-asset/image-asset';
 import { isDataURI, isFileOrResourcePath, RESOURCE_PREFIX } from 'tns-core-modules/utils/utils';
-import { ImageSource, fromAsset, fromNativeSource, fromUrl } from 'tns-core-modules/image-source';
+import { fromAsset, fromNativeSource, fromUrl, ImageSource } from 'tns-core-modules/image-source';
 
-export const imageSourceProperty = new Property<FloatingActionButtonBase, ImageSource>({ name: "imageSource" });
+export const imageSourceProperty = new Property<FloatingActionButtonBase, ImageSource>({ name: 'imageSource' });
 
-export const srcProperty = new Property<FloatingActionButtonBase, any>({ name: "src" });
+export const srcProperty = new Property<FloatingActionButtonBase, any>({ name: 'src' });
 
 @CSSType('MDCFloatingActionButton')
 export abstract class FloatingActionButtonBase extends View {
@@ -36,7 +36,7 @@ export abstract class FloatingActionButtonBase extends View {
 
             const source = new ImageSource();
             const imageLoaded = () => {
-                let currentValue = this.src;
+                const currentValue = this.src;
                 if (currentValue !== originalValue) {
                     return;
                 }
@@ -48,8 +48,8 @@ export abstract class FloatingActionButtonBase extends View {
                 const base64Data = value.split(',')[1];
                 if (base64Data !== undefined) {
                     // if (sync) {
-                        source.loadFromBase64(base64Data);
-                        imageLoaded();
+                    source.loadFromBase64(base64Data);
+                    imageLoaded();
                     // } else {
                     //     source.fromBase64(base64Data).then(imageLoaded);
                     // }
@@ -58,8 +58,8 @@ export abstract class FloatingActionButtonBase extends View {
                 if (value.indexOf(RESOURCE_PREFIX) === 0) {
                     const resPath = value.substr(RESOURCE_PREFIX.length);
                     // if (sync) {
-                        source.loadFromResource(resPath);
-                        imageLoaded();
+                    source.loadFromResource(resPath);
+                    imageLoaded();
                     // } else {
                     //     this.imageSource = null;
                     //     source.fromResource(resPath).then(imageLoaded);

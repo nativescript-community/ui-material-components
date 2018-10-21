@@ -1,4 +1,4 @@
-import {Style, CssProperty } from 'tns-core-modules/ui/core/view';
+import { CssProperty, Style } from 'tns-core-modules/ui/core/view';
 export const rippleColorProperty = new CssProperty<Style, string>({
     name: 'rippleColor',
     cssName: 'ripple-color'

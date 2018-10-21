@@ -1,12 +1,11 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 // import { themer } from "./nativescript-material-components/material";
-
 
 // themer.setPrimaryColor('red');
 
 @Component({
-    selector: "ns-app",
+    selector: 'ns-app',
     template: `<TabView androidTabsPosition="bottom">
 
 	<page-router-outlet *tabItem="{title: 'Buttons'}" name="btnTab">
@@ -17,5 +16,4 @@ import { Component } from "@angular/core";
 
 </TabView>`
 })
-
-export class AppComponent { }
+export class AppComponent {}

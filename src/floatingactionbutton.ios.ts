@@ -1,4 +1,4 @@
-import { imageSourceProperty, srcProperty, FloatingActionButtonBase } from './floatingactionbutton-common';
+import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
 import { ImageSource } from 'tns-core-modules/image-source/image-source';
 import { elevationProperty } from './cssproperties';
 import { themer } from './material';
@@ -11,8 +11,8 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         this.nativeViewProtected.setImageForState(nativeImage, UIControlState.Normal);
     }
     public createNativeView() {
-        let result = MDCFloatingButton.new();
-        let colorScheme = themer.getAppColorScheme();
+        const result = MDCFloatingButton.new();
+        const colorScheme = themer.getAppColorScheme();
         if (colorScheme) {
             MDCFloatingButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, result);
         }

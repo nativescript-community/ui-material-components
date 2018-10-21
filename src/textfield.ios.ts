@@ -1,6 +1,6 @@
 import * as common from './textfield.common';
-import { EditableTextBase, textProperty, hintProperty, placeholderColorProperty, Color, FormattedString, Style } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
-import { maxLengthProperty, helperProperty, errorColorProperty, floatingProperty, errorProperty } from './cssproperties';
+import { Color, EditableTextBase, FormattedString, hintProperty, placeholderColorProperty, Style, textProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
+import { errorColorProperty, errorProperty, floatingProperty, helperProperty, maxLengthProperty } from './cssproperties';
 import { themer } from './material';
 import { secureProperty } from 'tns-core-modules/ui/text-field/text-field';
 
@@ -16,12 +16,12 @@ function splice(value: string, start: number, delCount: number, newSubStr: strin
     return value.slice(0, start) + newSubStr + value.slice(start + Math.abs(delCount));
 }
 function _updateCharactersInRangeReplacementString(formattedText: FormattedString, rangeLocation: number, rangeLength: number, replacementString: string): void {
-    let deletingText = !replacementString;
+    const deletingText = !replacementString;
     let currentLocation = 0;
     for (let i = 0, length = formattedText.spans.length; i < length; i++) {
-        let span = formattedText.spans.getItem(i);
+        const span = formattedText.spans.getItem(i);
         if (currentLocation <= rangeLocation && rangeLocation < currentLocation + span.text.length) {
-            let newText = splice(span.text, rangeLocation - currentLocation, deletingText ? rangeLength : 0, replacementString);
+            const newText = splice(span.text, rangeLocation - currentLocation, deletingText ? rangeLength : 0, replacementString);
             (span as any)._setTextInternal(newText);
             return;
         }
@@ -47,7 +47,7 @@ class MDCTextFieldDelegateImpl extends NSObject implements UITextFieldDelegate {
     private firstEdit: boolean;
 
     public static initWithOwner(owner: WeakRef<TextField>): MDCTextFieldDelegateImpl {
-        const delegate = <MDCTextFieldDelegateImpl>MDCTextFieldDelegateImpl.new();
+        const delegate = MDCTextFieldDelegateImpl.new() as MDCTextFieldDelegateImpl;
         delegate._owner = owner;
         return delegate;
     }
@@ -140,8 +140,8 @@ export class TextField extends common.TextField {
 
     variant = 'underline';
     public createNativeView() {
-        let view = (this._ios = MDCTextField.new());
-        let colorScheme = themer.getAppColorScheme();
+        const view = (this._ios = MDCTextField.new());
+        const colorScheme = themer.getAppColorScheme();
         if (this.style.variant === 'filled') {
             this._controller = MDCTextInputControllerFilled.alloc().initWithTextInput(view);
         } else if (this.style.variant === 'outline') {

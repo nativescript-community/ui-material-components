@@ -1,7 +1,7 @@
-import { Directive, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Directive } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Page } from 'tns-core-modules/ui/page/page';
-import { ios as iosApp, addCss } from 'tns-core-modules/application';
+import { addCss, ios as iosApp } from 'tns-core-modules/application';
 import { themer } from '../material';
 
 @Directive({
@@ -24,7 +24,7 @@ export class AppBarDirective implements AfterViewInit {
         // _appBar.navigationBar.tintColor  = new Color('blue').ios;
         // _appBar.headerViewController.headerView.backgroundColor = new Color('yellow').ios;
         // _appBar.navigationBar.sizeToFit();
-        let colorScheme = themer.getAppColorScheme();
+        const colorScheme = themer.getAppColorScheme();
         if (colorScheme) {
             MDCAppBarColorThemer.applyColorSchemeToAppBarViewController(colorScheme, this._appBarController);
         }
@@ -39,7 +39,7 @@ export class AppBarDirective implements AfterViewInit {
             const page = this.page;
             if (page && page.parent) {
                 page['customNavigationBar'] = true;
-                const viewController = <UIViewController>page.ios;
+                const viewController = page.ios as UIViewController;
                 if (viewController.navigationController) {
                     viewController.navigationController.navigationBarHidden = true;
                 }
@@ -66,7 +66,7 @@ export class AppBarDirective implements AfterViewInit {
         console.log('AppBarDirective ngAfterViewInit');
         this._addController();
         // setTimeout(() => {
-        const viewController = <UIViewController>this.page.ios;
+        const viewController = this.page.ios as UIViewController;
         if (viewController.navigationController) {
             viewController.navigationController.setNavigationBarHiddenAnimated(true, false);
         }

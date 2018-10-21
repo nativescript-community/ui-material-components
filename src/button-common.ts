@@ -1,4 +1,4 @@
-import { Property, Length, CSSType } from 'tns-core-modules/ui/core/view';
+import { CSSType, Length, Property } from 'tns-core-modules/ui/core/view';
 import { Button } from 'tns-core-modules/ui/button/button';
 
 @CSSType('MDCButton')

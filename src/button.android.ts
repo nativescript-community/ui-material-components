@@ -1,8 +1,8 @@
 import { ButtonBase } from './button-common';
 
 import * as utils from 'tns-core-modules/utils/utils';
-import { CSSType, Color, Length, backgroundInternalProperty, heightProperty } from 'tns-core-modules/ui/page/page';
-import { rippleColorProperty, elevationProperty } from './cssproperties';
+import { backgroundInternalProperty, Color, CSSType, Length } from 'tns-core-modules/ui/page/page';
+import { elevationProperty, rippleColorProperty } from './cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 
 interface ClickListener {
@@ -36,12 +36,11 @@ function initializeClickListener(): void {
     MDCButton = android.support.design.button.MaterialButton;
 }
 
-@CSSType('Button')
 export class Button extends ButtonBase {
     nativeViewProtected: android.support.design.button.MaterialButton;
     defaultBorderRadius;
 
-    _settingDefaultValues =  false;
+    _settingDefaultValues = false;
     constructor() {
         super();
         this.defaultBorderRadius = this.style.borderRadius;
@@ -72,7 +71,7 @@ export class Button extends ButtonBase {
         }
         const clickListener = new ClickListener(this);
         view.setOnClickListener(clickListener);
-        (<any>view).clickListener = clickListener;
+        (view as any).clickListener = clickListener;
         return view;
     }
     [rippleColorProperty.setNative](color: string) {
@@ -84,18 +83,19 @@ export class Button extends ButtonBase {
     }
 
     set borderRadius(value: string | Length) {
-        let newValue = (this._borderRadius = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0));
+        const newValue = (this._borderRadius = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0));
         if (this.nativeViewProtected) {
             this.nativeViewProtected.setCornerRadius(newValue);
         }
     }
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
-
         if (this.nativeViewProtected) {
             if (value instanceof android.graphics.drawable.Drawable) {
                 this.nativeViewProtected.setBackgroundDrawable(value);
             } else {
-                this.nativeViewProtected.setBackgroundTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                if (value.color) {
+                    this.nativeViewProtected.setBackgroundTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                }
                 // this is a trick for now. Though we can't have borderRadius=0 with that :s
                 // we need a way to know borderRadius was actually set
                 if (value.borderTopLeftRadius !== this.defaultBorderRadius) {
