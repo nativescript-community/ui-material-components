@@ -7,8 +7,6 @@ declare module 'tns-core-modules/ui/text-field/text-field' {
 }
 export declare class TextField extends common.TextField {
     private _controller;
-    _ios: MDCTextField;
-    private _delegate;
     readonly style: Style & {
         variant: 'outline' | 'underline' | 'filled';
     };
@@ -16,7 +14,5 @@ export declare class TextField extends common.TextField {
     createNativeView(): MDCTextField;
     dismissSoftInput(): void;
     readonly ios: MDCTextField;
-    onLoaded(): void;
-    onUnloaded(): void;
     blur(): void;
 }

@@ -15,10 +15,10 @@ export abstract class ButtonBase extends Button {
         this.style['rippleColor'] = color;
     }
 
-    protected _borderRadius: number;
-    get borderRadius(): string | Length {
-        return this._borderRadius;
-    }
+    // protected _borderRadius: number;
+    // get borderRadius(): string | Length {
+    //     return this._borderRadius;
+    // }
 }
 
 export const variantProperty = new Property<ButtonBase, string>({

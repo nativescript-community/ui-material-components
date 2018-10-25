@@ -1,6 +1,6 @@
 import { ButtonBase } from './button-common';
 import { themer } from './material';
-import { Length } from 'tns-core-modules/ui/core/view';
+import { borderBottomLeftRadiusProperty, borderBottomRightRadiusProperty, borderTopLeftRadiusProperty, borderTopRightRadiusProperty, Length } from 'tns-core-modules/ui/core/view';
 
 import { backgroundColorProperty, backgroundInternalProperty, Color, fontInternalProperty } from 'tns-core-modules/ui/page/page';
 import { Font } from 'tns-core-modules/ui/styling/font';
@@ -8,6 +8,7 @@ import { elevationProperty, rippleColorProperty } from './cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { screen } from 'tns-core-modules/platform';
 
+const MDCButtonDefaultCornerRadius = 2;
 let buttonScheme: MDCButtonScheme;
 function getButtonScheme() {
     if (!buttonScheme) {
@@ -17,13 +18,28 @@ function getButtonScheme() {
 }
 
 export class Button extends ButtonBase {
-    defaultBorderRadius;
-    constructor() {
-        super();
-        this.defaultBorderRadius = this.style.borderRadius;
-    }
+    // defaultBorderRadius;
     nativeViewProtected: MDCButton;
-    // _backgroundColor: Color;
+    _ios: MDCButton;
+    applyShapeScheme() {
+        MDCButtonShapeThemer.applyShapeSchemeToButton(this.shapeScheme, this.nativeViewProtected);
+    }
+    [borderBottomLeftRadiusProperty.setNative](value) {
+        this.setBottomLeftCornerRadius(value);
+        this.applyShapeScheme();
+    }
+    [borderBottomRightRadiusProperty.setNative](value) {
+        this.setBottomRightCornerRadius(value);
+        this.applyShapeScheme();
+    }
+    [borderTopLeftRadiusProperty.setNative](value) {
+        this.setTopLeftCornerRadius(value);
+        this.applyShapeScheme();
+    }
+    [borderTopRightRadiusProperty.setNative](value) {
+        this.setTopRightCornerRadius(value);
+        this.applyShapeScheme();
+    }
     getRippleColor(color: string) {
         const temp = new Color(color);
         return new Color(36, temp.r, temp.g, temp.b).ios; // default alpha is 0.14
@@ -36,7 +52,6 @@ export class Button extends ButtonBase {
             MDCTextButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
         }
 
-        // console.log('create material button', this.variant, this._backgroundColor, this._borderRadius);
         if (this.variant === 'text') {
             MDCTextButtonThemer.applySchemeToButton(getButtonScheme(), view);
         } else if (this.variant === 'flat') {
@@ -45,14 +60,7 @@ export class Button extends ButtonBase {
         } else {
             MDCContainedButtonThemer.applySchemeToButton(getButtonScheme(), view);
         }
-        // console.log('creating button', this._borderRadius, this.style.borderRadius);
-        // if (this._borderRadius !== undefined) {
-        //     this.setCornerRadius(this._borderRadius);
-        // } else if (this.style.borderRadius) {
-        //     this.borderRadius = this.style.borderRadius;
-        //     this.setCornerRadius(this._borderRadius);
-        // }
-        view.addTargetActionForControlEvents(this['_tapHandler'], 'tap', UIControlEvents.TouchUpInside);
+        // view.addTargetActionForControlEvents(this['_tapHandler'], 'tap', UIControlEvents.TouchUpInside);
         return view;
     }
 
@@ -71,44 +79,42 @@ export class Button extends ButtonBase {
         }
     }
 
-    private setCornerRadius(value: number) {
-        // console.log('setCornerRadius', value, !!this.nativeViewProtected);
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.layer.cornerRadius = value;
+    shapeScheme: MDCShapeScheme;
+    private getShapeScheme() {
+        if (!this.shapeScheme) {
+            this.shapeScheme = MDCShapeScheme.new();
+            const shapeCategory = MDCShapeCategory.new();
+            this.shapeScheme.smallComponentShape = shapeCategory;
         }
+        return this.shapeScheme;
     }
 
-    set borderRadius(value: string | Length) {
-        this.style.borderRadius = value;
-        const newValue = (this._borderRadius = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0));
-        // console.log('set borderRadius', value, newValue);
-        this.setCornerRadius(newValue);
-        // if (this.nativeViewProtected) {
-        //     this.nativeViewProtected.layer.cornerRadius = newValue;
-        // }
+    private setBottomLeftCornerRadius(value: number) {
+        const shapeScheme = this.getShapeScheme();
+        shapeScheme.smallComponentShape.bottomLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
+        // MDCButtonShapeThemer.applyShapeSchemeToButton(this.shapeScheme, this._ios);
     }
-    [backgroundInternalProperty.setNative](value: UIColor | Background) {
-        // this._nativeBackgroundState = "invalid";
-        if (this.nativeViewProtected) {
-            console.log('set backgroundInternalProperty', value);
-            if (value instanceof UIColor) {
-                this.nativeViewProtected.backgroundColor = value;
-            } else if (typeof value === 'string') {
-                this.nativeViewProtected.backgroundColor = new Color(value).ios;
-            } else if (value instanceof Background) {
-                this.nativeViewProtected.backgroundColor = value.color ? value.color.ios : null;
-                // this is a trick for now. Though we can't have borderRadius=0 with that :s
-                // we need a way to know borderRadius was actually set
-                this._borderRadius = value.borderTopLeftRadius / screen.mainScreen.scale;
-                // console.log('borderTopLeftRadius', value.borderTopLeftRadius, this.defaultBorderRadius, value.borderTopLeftRadius / screen.mainScreen.scale);
-                if (value.borderTopLeftRadius !== this.defaultBorderRadius) {
-                    this.setCornerRadius(this._borderRadius);
-                // this.nativeViewProtected.layer.cornerRadius = value.borderTopLeftRadius;
-                }
-            } else {
-                this.nativeViewProtected.backgroundColor = null;
-            }
-        }
+    private setBottomRightCornerRadius(value: number) {
+        const shapeScheme = this.getShapeScheme();
+        shapeScheme.smallComponentShape.bottomRightCorner = MDCCornerTreatment.cornerWithRadius(value);
+        // MDCButtonShapeThemer.applyShapeSchemeToButton(this.shapeScheme, this._ios);
+    }
+    private setTopLeftCornerRadius(value: number) {
+        const shapeScheme = this.getShapeScheme();
+        shapeScheme.smallComponentShape.topLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
+        // MDCButtonShapeThemer.applyShapeSchemeToButton(this.shapeScheme, this._ios);
+    }
+    private setTopRightCornerRadius(value: number) {
+        const shapeScheme = this.getShapeScheme();
+        shapeScheme.smallComponentShape.topRightCorner = MDCCornerTreatment.cornerWithRadius(value);
+        // MDCButtonShapeThemer.applyShapeSchemeToButton(this.shapeScheme, this._ios);
+    }
+    _setNativeClipToBounds() {
+        // const backgroundInternal = this.style.backgroundInternal;
+        // this.nativeViewProtected.clipsToBounds =
+        //     this.nativeViewProtected instanceof UIScrollView ||
+        //     backgroundInternal.hasBorderWidth() ||
+        //     backgroundInternal.hasBorderRadius();
     }
 
     [fontInternalProperty.setNative](value: Font | UIFont) {

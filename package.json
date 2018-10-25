@@ -6,8 +6,8 @@
     "typings": "./material.d.ts",
     "nativescript": {
         "platforms": {
-            "android": "4.2.0",
-            "ios": "4.2.0"
+            "android": "5.0.0",
+            "ios": "5.0.0"
         }
     },
     "scripts": {
@@ -59,7 +59,7 @@
         "rimraf": "^2.6.2",
         "rxjs": "^6.3.2",
         "tns-core-modules": "4.2.1",
-        "tns-platform-declarations": "^4.2.1",
+        "tns-platform-declarations": "5.1.0-rc-2018-10-16-182917-07",
         "tslint": "^5.11.0",
         "tslint-config-prettier": "^1.15.0",
         "tslint-config-standard": "^8.0.1",

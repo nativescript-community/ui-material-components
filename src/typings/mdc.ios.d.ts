@@ -92,7 +92,7 @@ declare class MDCActivityIndicatorTransition extends NSObject {
 	initWithAnimation(animation: (p1: number, p2: number) => void): this;
 }
 
-declare class MDCAlertAction extends NSObject implements NSCopying {
+declare class MDCAlertAction extends NSObject implements NSCopying, UIAccessibilityIdentification {
 
 	static actionWithTitleHandler(title: string, handler: (p1: MDCAlertAction) => void): MDCAlertAction;
 
@@ -102,7 +102,43 @@ declare class MDCAlertAction extends NSObject implements NSCopying {
 
 	readonly title: string;
 
+	accessibilityIdentifier: string; // inherited from UIAccessibilityIdentification
+
+	readonly debugDescription: string; // inherited from NSObjectProtocol
+
+	readonly description: string; // inherited from NSObjectProtocol
+
+	readonly hash: number; // inherited from NSObjectProtocol
+
+	readonly isProxy: boolean; // inherited from NSObjectProtocol
+
+	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+
+	readonly  // inherited from NSObjectProtocol
+
+	class(): typeof NSObject;
+
+	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+
+	isEqual(object: any): boolean;
+
+	isKindOfClass(aClass: typeof NSObject): boolean;
+
+	isMemberOfClass(aClass: typeof NSObject): boolean;
+
+	performSelector(aSelector: string): any;
+
+	performSelectorWithObject(aSelector: string, object: any): any;
+
+	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+
+	respondsToSelector(aSelector: string): boolean;
+
+	retainCount(): number;
+
+	self(): this;
 }
 
 declare class MDCAlertColorThemer extends NSObject {
@@ -128,7 +164,13 @@ declare class MDCAlertController extends UIViewController {
 
 	buttonFont: UIFont;
 
+	buttonInkColor: UIColor;
+
 	buttonTitleColor: UIColor;
+
+	cornerRadius: number;
+
+	elevation: number;
 
 	mdc_adjustsFontForContentSizeCategory: boolean;
 
@@ -138,11 +180,28 @@ declare class MDCAlertController extends UIViewController {
 
 	messageFont: UIFont;
 
+	scrimColor: UIColor;
+
+	titleAlignment: NSTextAlignment;
+
 	titleColor: UIColor;
 
 	titleFont: UIFont;
 
+	titleIcon: UIImage;
+
+	titleIconTintColor: UIColor;
+
 	addAction(action: MDCAlertAction): void;
+}
+
+declare class MDCAlertControllerThemer extends NSObject {
+
+	static alloc(): MDCAlertControllerThemer; // inherited from NSObject
+
+	static applySchemeToAlertController(alertScheme: MDCAlertScheming, alertController: MDCAlertController): void;
+
+	static new(): MDCAlertControllerThemer; // inherited from NSObject
 }
 
 declare class MDCAlertControllerView extends UIView {
@@ -167,16 +226,56 @@ declare class MDCAlertControllerView extends UIView {
 
 	buttonFont: UIFont;
 
+	buttonInkColor: UIColor;
+
+	cornerRadius: number;
+
 	mdc_adjustsFontForContentSizeCategory: boolean;
 
 	messageColor: UIColor;
 
 	messageFont: UIFont;
 
+	titleAlignment: NSTextAlignment;
+
 	titleColor: UIColor;
 
 	titleFont: UIFont;
+
+	titleIcon: UIImage;
+
+	titleIconTintColor: UIColor;
 }
+
+declare class MDCAlertScheme extends NSObject implements MDCAlertScheming {
+
+	static alloc(): MDCAlertScheme; // inherited from NSObject
+
+	static new(): MDCAlertScheme; // inherited from NSObject
+
+	colorScheme: MDCColorScheming;
+
+	cornerRadius: number;
+
+	elevation: number;
+
+	typographyScheme: MDCTypographyScheming;
+}
+
+interface MDCAlertScheming {
+
+	colorScheme: MDCColorScheming;
+
+	cornerRadius: number;
+
+	elevation: number;
+
+	typographyScheme: MDCTypographyScheming;
+}
+declare var MDCAlertScheming: {
+
+	prototype: MDCAlertScheming;
+};
 
 declare class MDCAlertTypographyThemer extends NSObject {
 
@@ -292,15 +391,6 @@ declare var MDCAppBarNavigationControllerDelegate: {
 
 	prototype: MDCAppBarNavigationControllerDelegate;
 };
-
-declare class MDCAppBarTextColorAccessibilityMutator extends NSObject {
-
-	static alloc(): MDCAppBarTextColorAccessibilityMutator; // inherited from NSObject
-
-	static new(): MDCAppBarTextColorAccessibilityMutator; // inherited from NSObject
-
-	mutate(appBar: MDCAppBar): void;
-}
 
 declare class MDCAppBarTypographyThemer extends NSObject {
 
@@ -500,6 +590,8 @@ declare class MDCBottomAppBarColorThemer extends NSObject {
 
 	static applyColorSchemeToBottomAppBarView(colorScheme: MDCColorScheme, bottomAppBarView: MDCBottomAppBarView): void;
 
+	static applySurfaceVariantWithSemanticColorSchemeToBottomAppBarView(colorScheme: MDCColorScheming, bottomAppBarView: MDCBottomAppBarView): void;
+
 	static new(): MDCBottomAppBarColorThemer; // inherited from NSObject
 }
 
@@ -547,11 +639,17 @@ declare class MDCBottomAppBarView extends UIView {
 
 	floatingButtonPosition: MDCBottomAppBarFloatingButtonPosition;
 
+	floatingButtonVerticalOffset: number;
+
 	leadingBarButtonItems: NSArray<UIBarButtonItem>;
+
+	leadingBarItemsTintColor: UIColor;
 
 	shadowColor: UIColor;
 
 	trailingBarButtonItems: NSArray<UIBarButtonItem>;
+
+	trailingBarItemsTintColor: UIColor;
 
 	setFloatingButtonElevationAnimated(floatingButtonElevation: MDCBottomAppBarFloatingButtonElevation, animated: boolean): void;
 
@@ -603,6 +701,8 @@ declare class MDCBottomNavigationBar extends UIView {
 	titleVisibility: MDCBottomNavigationBarTitleVisibility;
 
 	unselectedItemTintColor: UIColor;
+
+	viewForItem(item: UITabBarItem): UIView;
 }
 
 declare const enum MDCBottomNavigationBarAlignment {
@@ -696,6 +796,15 @@ declare var MDCBottomSheetControllerDelegate: {
 	prototype: MDCBottomSheetControllerDelegate;
 };
 
+declare class MDCBottomSheetControllerShapeThemer extends NSObject {
+
+	static alloc(): MDCBottomSheetControllerShapeThemer; // inherited from NSObject
+
+	static applyShapeSchemeToBottomSheetController(shapeScheme: MDCShapeScheming, bottomSheetController: MDCBottomSheetController): void;
+
+	static new(): MDCBottomSheetControllerShapeThemer; // inherited from NSObject
+}
+
 declare class MDCBottomSheetPresentationController extends UIPresentationController {
 
 	static alloc(): MDCBottomSheetPresentationController; // inherited from NSObject
@@ -707,6 +816,8 @@ declare class MDCBottomSheetPresentationController extends UIPresentationControl
 	dismissOnBackgroundTap: boolean;
 
 	isScrimAccessibilityElement: boolean;
+
+	preferredSheetHeight: number;
 
 	scrimAccessibilityHint: string;
 
@@ -739,6 +850,8 @@ declare class MDCBottomSheetTransitionController extends NSObject implements UIV
 	dismissOnBackgroundTap: boolean;
 
 	isScrimAccessibilityElement: boolean;
+
+	preferredSheetHeight: number;
 
 	scrimAccessibilityHint: string;
 
@@ -904,11 +1017,15 @@ declare class MDCButtonBar extends UIView {
 
 	buttonTitleBaseline: number;
 
+	delegate: MDCButtonBarDelegate;
+
 	inkColor: UIColor;
 
 	items: NSArray<UIBarButtonItem>;
 
 	layoutPosition: MDCButtonBarLayoutPosition;
+
+	uppercasesButtonTitles: boolean;
 
 	buttonsTitleColorForState(state: UIControlState): UIColor;
 
@@ -953,7 +1070,9 @@ declare class MDCButtonBarColorThemer extends NSObject {
 
 interface MDCButtonBarDelegate extends NSObjectProtocol {
 
-	buttonBarViewForItemLayoutHints(buttonBar: MDCButtonBar, barButtonItem: UIBarButtonItem, layoutHints: MDCBarButtonItemLayoutHints): UIView;
+	buttonBarDidInvalidateIntrinsicContentSize?(buttonBar: MDCButtonBar): void;
+
+	buttonBarViewForItemLayoutHints?(buttonBar: MDCButtonBar, barButtonItem: UIBarButtonItem, layoutHints: MDCBarButtonItemLayoutHints): UIView;
 }
 declare var MDCButtonBarDelegate: {
 
@@ -1011,6 +1130,8 @@ declare class MDCButtonScheme extends NSObject implements MDCButtonScheming {
 
 	minimumHeight: number;
 
+	shapeScheme: MDCShapeScheming;
+
 	typographyScheme: MDCTypographyScheming;
 }
 
@@ -1022,12 +1143,23 @@ interface MDCButtonScheming {
 
 	minimumHeight: number;
 
+	shapeScheme: MDCShapeScheming;
+
 	typographyScheme: MDCTypographyScheming;
 }
 declare var MDCButtonScheming: {
 
 	prototype: MDCButtonScheming;
 };
+
+declare class MDCButtonShapeThemer extends NSObject {
+
+	static alloc(): MDCButtonShapeThemer; // inherited from NSObject
+
+	static applyShapeSchemeToButton(shapeScheme: MDCShapeScheming, button: MDCButton): void;
+
+	static new(): MDCButtonShapeThemer; // inherited from NSObject
+}
 
 declare class MDCButtonTitleColorAccessibilityMutator extends NSObject {
 
@@ -1187,11 +1319,15 @@ declare class MDCCardScheme extends NSObject implements MDCCardScheming {
 	static new(): MDCCardScheme; // inherited from NSObject
 
 	colorScheme: MDCSemanticColorScheme;
+
+	shapeScheme: MDCShapeScheme;
 }
 
 interface MDCCardScheming {
 
 	colorScheme: MDCColorScheming;
+
+	shapeScheme: MDCShapeScheming;
 }
 declare var MDCCardScheming: {
 
@@ -1226,6 +1362,17 @@ declare class MDCCardsColorThemer extends NSObject {
 	static applySemanticColorSchemeToCardCell(colorScheme: MDCColorScheming, cardCell: MDCCardCollectionCell): void;
 
 	static new(): MDCCardsColorThemer; // inherited from NSObject
+}
+
+declare class MDCCardsShapeThemer extends NSObject {
+
+	static alloc(): MDCCardsShapeThemer; // inherited from NSObject
+
+	static applyShapeSchemeToCard(shapeScheme: MDCShapeScheming, card: MDCCard): void;
+
+	static applyShapeSchemeToCardCell(shapeScheme: MDCShapeScheming, cardCell: MDCCardCollectionCell): void;
+
+	static new(): MDCCardsShapeThemer; // inherited from NSObject
 }
 
 declare var MDCCellDefaultOneLineHeight: number;
@@ -1297,6 +1444,8 @@ declare class MDCChipField extends UIView {
 	delimiter: MDCChipFieldDelimiter;
 
 	minTextFieldWidth: number;
+
+	showChipsDeleteButton: boolean;
 
 	showPlaceholderWithChips: boolean;
 
@@ -1468,6 +1617,8 @@ declare class MDCChipViewScheme extends NSObject implements MDCChipViewScheming 
 
 	colorScheme: MDCColorScheming;
 
+	shapeScheme: MDCShapeScheming;
+
 	typographyScheme: MDCTypographyScheming;
 }
 
@@ -1475,12 +1626,23 @@ interface MDCChipViewScheming {
 
 	colorScheme: MDCColorScheming;
 
+	shapeScheme: MDCShapeScheming;
+
 	typographyScheme: MDCTypographyScheming;
 }
 declare var MDCChipViewScheming: {
 
 	prototype: MDCChipViewScheming;
 };
+
+declare class MDCChipViewShapeThemer extends NSObject {
+
+	static alloc(): MDCChipViewShapeThemer; // inherited from NSObject
+
+	static applyShapeSchemeToChipView(shapeScheme: MDCShapeScheming, chipView: MDCChipView): void;
+
+	static new(): MDCChipViewShapeThemer; // inherited from NSObject
+}
 
 declare class MDCChipViewThemer extends NSObject {
 
@@ -2144,7 +2306,21 @@ declare class MDCCornerTreatment extends NSObject implements NSCopying, NSSecure
 
 	static alloc(): MDCCornerTreatment; // inherited from NSObject
 
+	static cornerWithCurve(value: CGSize): MDCCurvedCornerTreatment;
+
+	static cornerWithCurveValueType(value: CGSize, valueType: MDCCornerTreatmentValueType): MDCCurvedCornerTreatment;
+
+	static cornerWithCut(value: number): MDCCutCornerTreatment;
+
+	static cornerWithCutValueType(value: number, valueType: MDCCornerTreatmentValueType): MDCCutCornerTreatment;
+
+	static cornerWithRadius(value: number): MDCRoundedCornerTreatment;
+
+	static cornerWithRadiusValueType(value: number, valueType: MDCCornerTreatmentValueType): MDCRoundedCornerTreatment;
+
 	static new(): MDCCornerTreatment; // inherited from NSObject
+
+	valueType: MDCCornerTreatmentValueType;
 
 	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
 
@@ -2157,6 +2333,15 @@ declare class MDCCornerTreatment extends NSObject implements NSCopying, NSSecure
 	initWithCoder(aDecoder: NSCoder): this;
 
 	pathGeneratorForCornerWithAngle(angle: number): MDCPathGenerator;
+
+	pathGeneratorForCornerWithAngleForViewSize(angle: number, size: CGSize): MDCPathGenerator;
+}
+
+declare const enum MDCCornerTreatmentValueType {
+
+	Absolute = 0,
+
+	Percentage = 1
 }
 
 declare class MDCCurvedCornerTreatment extends MDCCornerTreatment {
@@ -2220,7 +2405,11 @@ declare class MDCDialogPresentationController extends UIPresentationController {
 
 	dialogCornerRadius: number;
 
+	dialogElevation: number;
+
 	dismissOnBackgroundTap: boolean;
+
+	scrimColor: UIColor;
 
 	// frameOfPresentedViewInContainerView(): CGRect;
 }
@@ -2520,6 +2709,8 @@ declare class MDCFlexibleHeaderView extends UIView {
 
 	behavior: MDCFlexibleHeaderShiftBehavior;
 
+	canAlwaysExpandToMaximumHeight: boolean;
+
 	canOverExtend: boolean;
 
 	contentIsTranslucent: boolean;
@@ -2527,6 +2718,8 @@ declare class MDCFlexibleHeaderView extends UIView {
 	contentView: UIView;
 
 	delegate: MDCFlexibleHeaderViewDelegate;
+
+	disableContentInsetAdjustmentWhenContentInsetAdjustmentBehaviorIsNever: boolean;
 
 	headerContentImportance: MDCFlexibleHeaderContentImportance;
 
@@ -2541,6 +2734,8 @@ declare class MDCFlexibleHeaderView extends UIView {
 	observesTrackingScrollViewScrollEvents: boolean;
 
 	readonly prefersStatusBarHidden: boolean;
+
+	resetShadowAfterTrackingScrollViewIsReset: boolean;
 
 	readonly scrollPhase: MDCFlexibleHeaderScrollPhase;
 
@@ -2618,6 +2813,8 @@ declare class MDCFlexibleHeaderViewController extends UIViewController implement
 	topLayoutGuideAdjustmentEnabled: boolean;
 
 	topLayoutGuideViewController: UIViewController;
+
+	useAdditionalSafeAreaInsetsForWebKitScrollViews: boolean;
 
 	readonly debugDescription: string; // inherited from NSObjectProtocol
 
@@ -2876,6 +3073,15 @@ declare const enum MDCFloatingButtonShape {
 	Default = 0,
 
 	Mini = 1
+}
+
+declare class MDCFloatingButtonShapeThemer extends NSObject {
+
+	static alloc(): MDCFloatingButtonShapeThemer; // inherited from NSObject
+
+	static applyShapeSchemeToButton(shapeScheme: MDCShapeScheming, button: MDCFloatingButton): void;
+
+	static new(): MDCFloatingButtonShapeThemer; // inherited from NSObject
 }
 
 interface MDCFontScheme extends NSObjectProtocol {
@@ -3272,6 +3478,59 @@ declare class MDCLibraryInfo extends NSObject {
 	static readonly versionString: string;
 }
 
+declare class MDCListColorThemer extends NSObject {
+
+	static alloc(): MDCListColorThemer; // inherited from NSObject
+
+	static applySemanticColorSchemeToBaseCell(colorScheme: MDCColorScheming, cell: MDCBaseCell): void;
+
+	static applySemanticColorSchemeToSelfSizingStereoCell(colorScheme: MDCColorScheming, cell: MDCSelfSizingStereoCell): void;
+
+	static new(): MDCListColorThemer; // inherited from NSObject
+}
+
+declare class MDCListScheme extends NSObject implements MDCListScheming {
+
+	static alloc(): MDCListScheme; // inherited from NSObject
+
+	static new(): MDCListScheme; // inherited from NSObject
+
+	colorScheme: MDCColorScheming;
+
+	typographyScheme: MDCTypographyScheming;
+}
+
+interface MDCListScheming {
+
+	colorScheme: MDCColorScheming;
+
+	typographyScheme: MDCTypographyScheming;
+}
+declare var MDCListScheming: {
+
+	prototype: MDCListScheming;
+};
+
+declare class MDCListThemer extends NSObject {
+
+	static alloc(): MDCListThemer; // inherited from NSObject
+
+	static applySchemeToBaseCell(scheme: MDCListScheming, cell: MDCBaseCell): void;
+
+	static applySchemeToSelfSizingStereoCell(scheme: MDCListScheming, cell: MDCSelfSizingStereoCell): void;
+
+	static new(): MDCListThemer; // inherited from NSObject
+}
+
+declare class MDCListTypographyThemer extends NSObject {
+
+	static alloc(): MDCListTypographyThemer; // inherited from NSObject
+
+	static applyTypographySchemeToSelfSizingStereoCell(typographyScheme: MDCTypographyScheming, cell: MDCSelfSizingStereoCell): void;
+
+	static new(): MDCListTypographyThemer; // inherited from NSObject
+}
+
 declare class MDCMaskedTransitionController extends NSObject implements UIViewControllerTransitioningDelegate {
 
 	static alloc(): MDCMaskedTransitionController; // inherited from NSObject
@@ -3491,6 +3750,8 @@ declare class MDCNavigationBar extends UIView {
 
 	static new(): MDCNavigationBar; // inherited from NSObject
 
+	allowAnyTitleFontSize: boolean;
+
 	backItem: UIBarButtonItem;
 
 	hidesBackButton: boolean;
@@ -3500,6 +3761,8 @@ declare class MDCNavigationBar extends UIView {
 	leadingBarButtonItem: UIBarButtonItem;
 
 	leadingBarButtonItems: NSArray<UIBarButtonItem>;
+
+	leadingBarItemsTintColor: UIColor;
 
 	leadingItemsSupplementBackButton: boolean;
 
@@ -3532,6 +3795,10 @@ declare class MDCNavigationBar extends UIView {
 	trailingBarButtonItem: UIBarButtonItem;
 
 	trailingBarButtonItems: NSArray<UIBarButtonItem>;
+
+	trailingBarItemsTintColor: UIColor;
+
+	uppercasesButtonTitles: boolean;
 
 	buttonsTitleColorForState(state: UIControlState): UIColor;
 
@@ -4106,6 +4373,35 @@ declare class MDCRoundedCornerTreatment extends MDCCornerTreatment {
 	initWithRadius(radius: number): this;
 }
 
+declare class MDCSelfSizingStereoCell extends MDCBaseCell {
+
+	static alloc(): MDCSelfSizingStereoCell; // inherited from NSObject
+
+	static appearance(): MDCSelfSizingStereoCell; // inherited from UIAppearance
+
+	static appearanceForTraitCollection(trait: UITraitCollection): MDCSelfSizingStereoCell; // inherited from UIAppearance
+
+	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCSelfSizingStereoCell; // inherited from UIAppearance
+
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCSelfSizingStereoCell; // inherited from UIAppearance
+
+	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCSelfSizingStereoCell; // inherited from UIAppearance
+
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCSelfSizingStereoCell; // inherited from UIAppearance
+
+	static new(): MDCSelfSizingStereoCell; // inherited from NSObject
+
+	readonly detailLabel: UILabel;
+
+	readonly leadingImageView: UIImageView;
+
+	mdc_adjustsFontForContentSizeCategory: boolean;
+
+	readonly titleLabel: UILabel;
+
+	readonly trailingImageView: UIImageView;
+}
+
 declare class MDCSemanticColorScheme extends NSObject implements MDCColorScheming {
 
 	static alloc(): MDCSemanticColorScheme; // inherited from NSObject
@@ -4263,6 +4559,32 @@ declare class MDCShadowMetrics extends NSObject {
 	readonly topShadowRadius: number;
 }
 
+declare class MDCShapeCategory extends NSObject {
+
+	static alloc(): MDCShapeCategory; // inherited from NSObject
+
+	static new(): MDCShapeCategory; // inherited from NSObject
+
+	bottomLeftCorner: MDCCornerTreatment;
+
+	bottomRightCorner: MDCCornerTreatment;
+
+	topLeftCorner: MDCCornerTreatment;
+
+	topRightCorner: MDCCornerTreatment;
+
+	constructor(o: { cornersWithFamily: MDCShapeCornerFamily; andSize: number; });
+
+	initCornersWithFamilyAndSize(cornerFamily: MDCShapeCornerFamily, cornerSize: number): this;
+}
+
+declare const enum MDCShapeCornerFamily {
+
+	Rounded = 0,
+
+	Cut = 1
+}
+
 interface MDCShapeGenerating extends NSCopying, NSSecureCoding {
 
 	pathForSize(size: CGSize): any;
@@ -4270,6 +4592,41 @@ interface MDCShapeGenerating extends NSCopying, NSSecureCoding {
 declare var MDCShapeGenerating: {
 
 	prototype: MDCShapeGenerating;
+};
+
+declare class MDCShapeScheme extends NSObject implements MDCShapeScheming {
+
+	static alloc(): MDCShapeScheme; // inherited from NSObject
+
+	static new(): MDCShapeScheme; // inherited from NSObject
+
+	largeComponentShape: MDCShapeCategory;
+
+	mediumComponentShape: MDCShapeCategory;
+
+	smallComponentShape: MDCShapeCategory;
+
+	constructor(o: { defaults: MDCShapeSchemeDefaults; });
+
+	initWithDefaults(defaults: MDCShapeSchemeDefaults): this;
+}
+
+declare const enum MDCShapeSchemeDefaults {
+
+	Material201809 = 0
+}
+
+interface MDCShapeScheming {
+
+	largeComponentShape: MDCShapeCategory;
+
+	mediumComponentShape: MDCShapeCategory;
+
+	smallComponentShape: MDCShapeCategory;
+}
+declare var MDCShapeScheming: {
+
+	prototype: MDCShapeScheming;
 };
 
 declare class MDCShapedShadowLayer extends MDCShadowLayer {
@@ -4531,6 +4888,8 @@ declare class MDCSnackbarManager extends NSObject {
 	messageTextColor: UIColor;
 
 	shouldApplyStyleChangesToVisibleSnackbars: boolean;
+
+	shouldEnableAccessibilityViewIsModal: boolean;
 
 	snackbarMessageViewBackgroundColor: UIColor;
 
@@ -5906,6 +6265,8 @@ declare class MDCTextInputControllerUnderline extends MDCTextInputControllerBase
 
 	static new(): MDCTextInputControllerUnderline; // inherited from NSObject
 }
+
+declare var MDCTextInputDidToggleEnabledNotification: string;
 
 interface MDCTextInputPositioningDelegate extends NSObjectProtocol {
 
