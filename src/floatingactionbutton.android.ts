@@ -9,7 +9,7 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     nativeViewProtected: android.support.design.widget.FloatingActionButton;
 
     get android(): android.support.design.widget.FloatingActionButton {
-        return this.nativeView;
+        return this.nativeViewProtected;
     }
     public createNativeView() {
         if (!MDCFabButton) {

@@ -1,4 +1,28 @@
 import { CssProperty, Style } from 'tns-core-modules/ui/core/view';
+
+
+export const cssProperty = (target: Object, key: string | symbol) => {
+    // property getter
+    const getter = function() {
+        return this.style.key;
+    };
+
+    // property setter
+    const setter = function(newVal) {
+        this.style[key] = newVal;
+    };
+
+    Object.defineProperty(target, key, {
+        get: getter,
+        set: setter,
+        enumerable: true,
+        configurable: true
+    });
+    // }
+};
+
+
+
 export const rippleColorProperty = new CssProperty<Style, string>({
     name: 'rippleColor',
     cssName: 'ripple-color'
