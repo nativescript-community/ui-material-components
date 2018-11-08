@@ -4,9 +4,9 @@ export declare abstract class CardViewBase extends StackLayout {
     protected _borderRadius: number;
     protected _borderColor: Color;
     protected _borderWidth: number;
+    elevation: number;
+    rippleColor: string | Color;
     readonly borderRadius: string | Length;
     readonly borderWidth: string | Length;
     readonly borderColor: Color;
-    rippleColor: string;
-    elevation: number;
 }

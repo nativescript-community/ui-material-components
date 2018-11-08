@@ -1,4 +1,5 @@
 import { CssProperty, Style } from 'tns-core-modules/ui/core/view';
+export declare const cssProperty: (target: Object, key: string | symbol) => void;
 export declare const rippleColorProperty: CssProperty<Style, string>;
 export declare const errorColorProperty: CssProperty<Style, string>;
 export declare const helperProperty: CssProperty<Style, string>;

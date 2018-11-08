@@ -1,13 +1,13 @@
 {
     "name": "nativescript-material-components",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "description": "Your awesome NativeScript plugin.",
     "main": "./material",
     "typings": "./material.d.ts",
     "nativescript": {
         "platforms": {
-            "android": "4.2.0",
-            "ios": "4.2.0"
+            "android": "5.0.0",
+            "ios": "5.0.0"
         }
     },
     "keywords": [

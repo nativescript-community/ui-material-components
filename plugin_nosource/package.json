@@ -1,1 +1,30 @@
-../src/package.json
+{
+    "name": "nativescript-material-components",
+    "version": "1.1.2",
+    "description": "Your awesome NativeScript plugin.",
+    "main": "./material",
+    "typings": "./material.d.ts",
+    "nativescript": {
+        "platforms": {
+            "android": "4.2.0",
+            "ios": "4.2.0"
+        }
+    },
+    "keywords": [
+        "NativeScript",
+        "JavaScript",
+        "Android",
+        "iOS"
+    ],
+    "author": {
+        "name": "Martin Guillon",
+        "email": "martin@akylas.fr"
+    },
+    "bugs": {
+        "url": "https://github.com/Akylas/nativescript-material-components/issues"
+    },
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/Akylas/nativescript-material-components",
+    "readmeFilename": "README.md",
+    "dependencies": {}
+}

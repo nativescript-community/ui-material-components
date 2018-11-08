@@ -1,6 +1,6 @@
 import { Color } from 'tns-core-modules/color/color';
 
-export * from './material.common';
+// export * from './material.common';
 
 export class Themer {
     appColorScheme: MDCSemanticColorScheme;
