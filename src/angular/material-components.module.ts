@@ -11,11 +11,11 @@ export const FORMS_DIRECTIVES = [TextValueAccessor];
 
 import { registerElement } from 'nativescript-angular/element-registry';
 
-registerElement('FloatingActionButton', () => require('../floatingactionbutton'));
-registerElement('MaterialButton', () => require('../button'));
-registerElement('MaterialTextField', () => require('../textfield'));
-registerElement('MaterialCard', () => require('../card'));
-registerElement('AppBar', () => require('../appbar'), appBarMeta);
+registerElement('FloatingActionButton', () => require('../floatingactionbutton').FloatingActionButton);
+registerElement('MaterialButton', () => require('../button').Button);
+registerElement('MaterialTextField', () => require('../textfield').TextField);
+registerElement('MaterialCard', () => require('../cardview').CardView);
+registerElement('AppBar', () => require('../appbar').AppBar, appBarMeta);
 
 @NgModule({
     imports: [],
