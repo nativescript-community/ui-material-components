@@ -1,0 +1,1 @@
+../plugin/activityindicator.d.ts
