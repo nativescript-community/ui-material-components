@@ -43,7 +43,6 @@ export class TextField extends common.TextField {
         if (layoutId !== 0) {
             layout = (this.layoutView = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as android.support.design.widget.TextInputLayout);
             editText = (this.editText = (layout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText);
-            editText.setLayoutParams(new android.widget.FrameLayout.LayoutParams(android.widget.FrameLayout.LayoutParams.MATCH_PARENT, android.widget.FrameLayout.LayoutParams.WRAP_CONTENT));
         } else {
             layout = (this.layoutView = new android.support.design.widget.TextInputLayout(this._context));
             editText = (this.editText = new android.support.design.widget.TextInputEditText(layout.getContext()));
