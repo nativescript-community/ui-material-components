@@ -48,18 +48,28 @@ export class Button extends ButtonBase {
     public createNativeView() {
         const view = MDCButton.new();
         const colorScheme = themer.getAppColorScheme();
-        if (colorScheme) {
-            MDCTextButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
-        }
 
         if (this.variant === 'text') {
             MDCTextButtonThemer.applySchemeToButton(getButtonScheme(), view);
+            if (colorScheme) {
+                MDCTextButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
+            }
         } else if (this.variant === 'flat') {
+            if (colorScheme) {
+                MDCButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
+            }
         } else if (this.variant === 'outline') {
             MDCOutlinedButtonThemer.applySchemeToButton(getButtonScheme(), view);
+            if (colorScheme) {
+                MDCOutlinedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
+            }
         } else {
             MDCContainedButtonThemer.applySchemeToButton(getButtonScheme(), view);
+            if (colorScheme) {
+                MDCContainedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
+            }
         }
+        
         // view.addTargetActionForControlEvents(this['_tapHandler'], 'tap', UIControlEvents.TouchUpInside);
         return view;
     }
