@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { alert, prompt } from '~/nativescript-material-components/dialog';
+import { Color } from 'tns-core-modules/color/color';
 
 @Component({
     moduleId: module.id,
@@ -13,5 +15,12 @@ export class ButtonsComponent implements OnInit {
 	ngOnInit() { }
 	onTap(command, e) {
         console.log('onTap', command);
+		prompt({
+			title:'alert test',
+			message:command,
+			okButtonText:'ok',
+			// buttonTitleColor:new Color('blue'),
+			// buttonInkColor:new Color('red')
+	});
     }
 }

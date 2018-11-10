@@ -1,0 +1,1 @@
+../plugin/dialog.d.ts
