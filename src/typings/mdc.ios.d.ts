@@ -1,4 +1,13 @@
 
+declare const enum MDCActionEmphasis {
+
+	Low = 0,
+
+	Medium = 1,
+
+	High = 2
+}
+
 declare class MDCActivityIndicator extends UIView {
 
 	static alloc(): MDCActivityIndicator; // inherited from NSObject
@@ -94,11 +103,15 @@ declare class MDCActivityIndicatorTransition extends NSObject {
 
 declare class MDCAlertAction extends NSObject implements NSCopying, UIAccessibilityIdentification {
 
+	static actionWithTitleEmphasisHandler(title: string, emphasis: MDCActionEmphasis, handler: (p1: MDCAlertAction) => void): MDCAlertAction;
+
 	static actionWithTitleHandler(title: string, handler: (p1: MDCAlertAction) => void): MDCAlertAction;
 
 	static alloc(): MDCAlertAction; // inherited from NSObject
 
 	static new(): MDCAlertAction; // inherited from NSObject
+
+	readonly emphasis: MDCActionEmphasis;
 
 	readonly title: string;
 
@@ -193,6 +206,8 @@ declare class MDCAlertController extends UIViewController {
 	titleIconTintColor: UIColor;
 
 	addAction(action: MDCAlertAction): void;
+
+	buttonForAction(action: MDCAlertAction): MDCButton;
 }
 
 declare class MDCAlertControllerThemer extends NSObject {
@@ -253,6 +268,8 @@ declare class MDCAlertScheme extends NSObject implements MDCAlertScheming {
 
 	static new(): MDCAlertScheme; // inherited from NSObject
 
+	buttonScheme: MDCButtonScheming;
+
 	colorScheme: MDCColorScheming;
 
 	cornerRadius: number;
@@ -263,6 +280,8 @@ declare class MDCAlertScheme extends NSObject implements MDCAlertScheming {
 }
 
 interface MDCAlertScheming {
+
+	buttonScheme: MDCButtonScheming;
 
 	colorScheme: MDCColorScheming;
 
@@ -656,6 +675,185 @@ declare class MDCBottomAppBarView extends UIView {
 	setFloatingButtonHiddenAnimated(floatingButtonHidden: boolean, animated: boolean): void;
 
 	setFloatingButtonPositionAnimated(floatingButtonPosition: MDCBottomAppBarFloatingButtonPosition, animated: boolean): void;
+}
+
+declare class MDCBottomDrawerColorThemer extends NSObject {
+
+	static alloc(): MDCBottomDrawerColorThemer; // inherited from NSObject
+
+	static applySemanticColorSchemeToBottomDrawer(colorScheme: MDCColorScheming, bottomDrawer: MDCBottomDrawerViewController): void;
+
+	static new(): MDCBottomDrawerColorThemer; // inherited from NSObject
+}
+
+interface MDCBottomDrawerHeader {
+
+	updateDrawerHeaderTransitionRatio?(transitionToTopRatio: number): void;
+}
+declare var MDCBottomDrawerHeader: {
+
+	prototype: MDCBottomDrawerHeader;
+};
+
+declare class MDCBottomDrawerPresentationController extends UIPresentationController {
+
+	static alloc(): MDCBottomDrawerPresentationController; // inherited from NSObject
+
+	static new(): MDCBottomDrawerPresentationController; // inherited from NSObject
+
+	delegate: MDCBottomDrawerPresentationControllerDelegate;
+
+	scrimColor: UIColor;
+
+	trackingScrollView: UIScrollView;
+}
+
+interface MDCBottomDrawerPresentationControllerDelegate extends UIAdaptivePresentationControllerDelegate {
+
+	bottomDrawerTopTransitionRatioTransitionRatio(presentationController: MDCBottomDrawerPresentationController, transitionRatio: number): void;
+
+	bottomDrawerWillChangeStateDrawerState(presentationController: MDCBottomDrawerPresentationController, drawerState: MDCBottomDrawerState): void;
+}
+declare var MDCBottomDrawerPresentationControllerDelegate: {
+
+	prototype: MDCBottomDrawerPresentationControllerDelegate;
+};
+
+declare const enum MDCBottomDrawerState {
+
+	Collapsed = 0,
+
+	Expanded = 1,
+
+	FullScreen = 2
+}
+
+declare class MDCBottomDrawerTransitionController extends NSObject implements UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
+
+	static alloc(): MDCBottomDrawerTransitionController; // inherited from NSObject
+
+	static new(): MDCBottomDrawerTransitionController; // inherited from NSObject
+
+	trackingScrollView: UIScrollView;
+
+	readonly debugDescription: string; // inherited from NSObjectProtocol
+
+	readonly description: string; // inherited from NSObjectProtocol
+
+	readonly hash: number; // inherited from NSObjectProtocol
+
+	readonly isProxy: boolean; // inherited from NSObjectProtocol
+
+	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+
+	readonly  // inherited from NSObjectProtocol
+
+	animateTransition(transitionContext: UIViewControllerContextTransitioning): void;
+
+	animationControllerForDismissedController(dismissed: UIViewController): UIViewControllerAnimatedTransitioning;
+
+	animationControllerForPresentedControllerPresentingControllerSourceController(presented: UIViewController, presenting: UIViewController, source: UIViewController): UIViewControllerAnimatedTransitioning;
+
+	animationEnded(transitionCompleted: boolean): void;
+
+	class(): typeof NSObject;
+
+	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+
+	interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning): UIViewControllerInteractiveTransitioning;
+
+	interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning): UIViewControllerInteractiveTransitioning;
+
+	interruptibleAnimatorForTransition(transitionContext: UIViewControllerContextTransitioning): UIViewImplicitlyAnimating;
+
+	isEqual(object: any): boolean;
+
+	isKindOfClass(aClass: typeof NSObject): boolean;
+
+	isMemberOfClass(aClass: typeof NSObject): boolean;
+
+	performSelector(aSelector: string): any;
+
+	performSelectorWithObject(aSelector: string, object: any): any;
+
+	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+
+	presentationControllerForPresentedViewControllerPresentingViewControllerSourceViewController(presented: UIViewController, presenting: UIViewController, source: UIViewController): UIPresentationController;
+
+	respondsToSelector(aSelector: string): boolean;
+
+	retainCount(): number;
+
+	self(): this;
+
+	transitionDuration(transitionContext: UIViewControllerContextTransitioning): number;
+}
+
+declare class MDCBottomDrawerViewController extends UIViewController implements MDCBottomDrawerPresentationControllerDelegate {
+
+	static alloc(): MDCBottomDrawerViewController; // inherited from NSObject
+
+	static new(): MDCBottomDrawerViewController; // inherited from NSObject
+
+	contentViewController: UIViewController;
+
+	readonly drawerState: MDCBottomDrawerState;
+
+	headerViewController: UIViewController;
+
+	scrimColor: UIColor;
+
+	trackingScrollView: UIScrollView;
+
+	readonly debugDescription: string; // inherited from NSObjectProtocol
+
+	readonly description: string; // inherited from NSObjectProtocol
+
+	readonly hash: number; // inherited from NSObjectProtocol
+
+	readonly isProxy: boolean; // inherited from NSObjectProtocol
+
+	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+
+	readonly  // inherited from NSObjectProtocol
+
+	adaptivePresentationStyleForPresentationController(controller: UIPresentationController): UIModalPresentationStyle;
+
+	adaptivePresentationStyleForPresentationControllerTraitCollection(controller: UIPresentationController, traitCollection: UITraitCollection): UIModalPresentationStyle;
+
+	bottomDrawerTopTransitionRatioTransitionRatio(presentationController: MDCBottomDrawerPresentationController, transitionRatio: number): void;
+
+	bottomDrawerWillChangeStateDrawerState(presentationController: MDCBottomDrawerPresentationController, drawerState: MDCBottomDrawerState): void;
+
+	class(): typeof NSObject;
+
+	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+
+	isEqual(object: any): boolean;
+
+	isKindOfClass(aClass: typeof NSObject): boolean;
+
+	isMemberOfClass(aClass: typeof NSObject): boolean;
+
+	performSelector(aSelector: string): any;
+
+	performSelectorWithObject(aSelector: string, object: any): any;
+
+	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+
+	presentationControllerViewControllerForAdaptivePresentationStyle(controller: UIPresentationController, style: UIModalPresentationStyle): UIViewController;
+
+	presentationControllerWillPresentWithAdaptiveStyleTransitionCoordinator(presentationController: UIPresentationController, style: UIModalPresentationStyle, transitionCoordinator: UIViewControllerTransitionCoordinator): void;
+
+	respondsToSelector(aSelector: string): boolean;
+
+	retainCount(): number;
+
+	self(): this;
+
+	setTopCornersRadiusForDrawerState(radius: number, drawerState: MDCBottomDrawerState): void;
+
+	topCornersRadiusForDrawerState(drawerState: MDCBottomDrawerState): number;
 }
 
 declare class MDCBottomNavigationBar extends UIView {
@@ -4507,6 +4705,8 @@ declare class MDCShadowLayer extends CALayer implements CALayerDelegate {
 
 	actionForLayerForKey(layer: CALayer, event: string): CAAction;
 
+	animateCornerRadiusWithTimingFunctionDuration(cornerRadius: number, timingFunction: CAMediaTimingFunction, duration: number): void;
+
 	class(): typeof NSObject;
 
 	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
@@ -4834,6 +5034,8 @@ declare class MDCSnackbarColorThemer extends NSObject {
 	static applyColorSchemeToSnackbarMessageView(colorScheme: MDCColorScheme, snackbarMessageView: MDCSnackbarMessageView): void;
 
 	static applySemanticColorScheme(colorScheme: MDCColorScheming): void;
+
+	static applySemanticColorSchemeToSnackbarManager(colorScheme: MDCColorScheming, snackbarManager: MDCSnackbarManager): void;
 
 	static new(): MDCSnackbarColorThemer; // inherited from NSObject
 }
