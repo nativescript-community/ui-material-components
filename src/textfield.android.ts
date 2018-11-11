@@ -27,7 +27,6 @@ export class TextField extends common.TextField {
     }
 
     public createNativeView() {
-        // initializeEditTextListeners();
 
         let layoutIdName = 'material_text_field';
         if (this.style['variant'] === 'filled') {
