@@ -25,8 +25,6 @@ import {
     DialogOptions
 } from "tns-core-modules/ui/dialogs"
 import { android as androidApp } from "tns-core-modules/application";
-import { Color } from "tns-core-modules/color/color";
-import { Page } from "tns-core-modules/ui/page/page";
 import { MDCAlertControlerOptions } from "./dialog";
 
 function isString(value): value is string {

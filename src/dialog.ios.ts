@@ -1,8 +1,6 @@
-import { Color } from "tns-core-modules/color"
 import { ios as iosView } from "tns-core-modules/ui/core/view"
 
 import { getRootView } from "tns-core-modules/application"
-import { ImageSource } from "tns-core-modules/image-source/image-source"
 import {
     ActionOptions,
     ALERT,
@@ -25,9 +23,6 @@ import {
     PromptOptions,
     PromptResult
 } from "tns-core-modules/ui/dialogs"
-import { Page } from "tns-core-modules/ui/page/page"
-import { Font } from "tns-core-modules/ui/styling/font"
-import { TextAlignment } from "tns-core-modules/ui/text-base/text-base"
 import { isDefined, isFunction, isString } from "tns-core-modules/utils/types"
 import { MDCAlertControlerOptions } from "./dialog"
 import { themer } from "./material"
