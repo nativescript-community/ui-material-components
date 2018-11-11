@@ -12,12 +12,6 @@ export abstract class ButtonBase extends Button {
         super();
         this.style.margin = 5;
     }
-
-
-    // protected _borderRadius: number;
-    // get borderRadius(): string | Length {
-    //     return this._borderRadius;
-    // }
 }
 
 export const variantProperty = new Property<ButtonBase, string>({

@@ -2,13 +2,10 @@ import { ButtonBase } from './button-common';
 import { themer } from './material';
 import { borderBottomLeftRadiusProperty, borderBottomRightRadiusProperty, borderTopLeftRadiusProperty, borderTopRightRadiusProperty, Length } from 'tns-core-modules/ui/core/view';
 
-import { backgroundColorProperty, backgroundInternalProperty, Color, fontInternalProperty } from 'tns-core-modules/ui/page/page';
+import { backgroundColorProperty, Color, fontInternalProperty } from 'tns-core-modules/ui/page/page';
 import { Font } from 'tns-core-modules/ui/styling/font';
 import { elevationProperty, rippleColorProperty } from './cssproperties';
-import { Background } from 'tns-core-modules/ui/styling/background';
-import { screen } from 'tns-core-modules/platform';
 
-const MDCButtonDefaultCornerRadius = 2;
 let buttonScheme: MDCButtonScheme;
 function getButtonScheme() {
     if (!buttonScheme) {
