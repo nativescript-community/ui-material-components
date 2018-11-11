@@ -9,7 +9,7 @@ export class CardView extends CardViewBase {
 
     getRippleColor(color: string) {
         const temp = new Color(color);
-        return new Color(36, temp.r, temp.g, temp.b).ios; // default alpha is 0.14
+        return new Color(120, temp.r, temp.g, temp.b).ios; // default alpha is 0.14
     }
 
     public createNativeView() {
