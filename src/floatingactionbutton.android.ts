@@ -2,6 +2,8 @@ import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './fl
 
 import { ImageSource } from 'tns-core-modules/image-source';
 import { elevationProperty } from './cssproperties';
+import { backgroundInternalProperty } from 'tns-core-modules/ui/page/page';
+import { Background } from 'tns-core-modules/ui/styling/background';
 
 let MDCFabButton: typeof android.support.design.widget.FloatingActionButton;
 
@@ -59,6 +61,22 @@ export class FloatingActionButton extends FloatingActionButtonBase {
                 default:
                     this.nativeViewProtected.setSize(MDCFabButton.SIZE_NORMAL);
                     break;
+            }
+        }
+    }
+    [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
+        if (this.nativeViewProtected) {
+            if (value instanceof android.graphics.drawable.Drawable) {
+                this.nativeViewProtected.setBackgroundDrawable(value);
+            } else {
+                
+                // if (android.os.Build.VERSION.SDK_INT >= 21) {
+                    if (value.color) {
+                        this.nativeViewProtected.setBackgroundTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                    }
+                // } else {
+                //     (this as any)._redrawNativeBackground(value);
+                // }
             }
         }
     }

@@ -28,7 +28,6 @@
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
     </style>
-
     <style name="AppThemeMaterialButton" parent="AppTheme">
         <item name="materialButtonStyle">@style/Button.Custom</item>
     </style>
@@ -38,8 +37,6 @@
     <style name="AppThemeTextMaterialButton" parent="AppTheme">
         <item name="materialButtonStyle">@style/TextButton.Custom</item>
     </style>
-
-
 
     <style name="AppThemeMaterialTextInputLayoutFilled" parent="AppTheme">
         <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.FilledBox</item>

@@ -1,6 +1,6 @@
-import { ButtonBase } from './button-common';
+import { ButtonBase } from "./button-common"
 
-import * as utils from 'tns-core-modules/utils/utils';
+import * as utils from "tns-core-modules/utils/utils"
 import {
     backgroundInternalProperty,
     borderBottomLeftRadiusProperty,
@@ -9,66 +9,108 @@ import {
     borderTopRightRadiusProperty,
     Color,
     Length
-} from 'tns-core-modules/ui/page/page';
-import { elevationProperty, rippleColorProperty } from './cssproperties';
-import { Background } from 'tns-core-modules/ui/styling/background';
+} from "tns-core-modules/ui/page/page"
+import { elevationProperty, rippleColorProperty } from "./cssproperties"
+import { Background } from "tns-core-modules/ui/styling/background"
+import {
+    getEnabledColorStateList,
+    getRippleColorStateList
+} from "./android/utils"
+
+let PRE_LOLLIPOP: boolean = undefined
+
+function isPreLollipop() {
+    if (PRE_LOLLIPOP === undefined) {
+        PRE_LOLLIPOP = android.os.Build.VERSION.SDK_INT < 21
+    }
+    return PRE_LOLLIPOP
+}
 
 export class Button extends ButtonBase {
-    nativeViewProtected: android.support.design.button.MaterialButton;
+    nativeViewProtected: android.support.design.button.MaterialButton
 
-    public isLoading: boolean;
+    public isLoading: boolean
 
     get android(): android.support.design.button.MaterialButton {
-        return this.nativeView;
+        return this.nativeView
     }
-    public createNativeView() {
-        let style = 'AppThemeMaterialButton';
-        if (this.variant === 'text') {
-            style = 'AppThemeTextMaterialButton';
-        } else if (this.variant === 'flat') {
-            style = 'AppThemeFlatMaterialButton';
-        }
-        const newContext = style ? new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)) : this._context;
 
-        const view = new android.support.design.button.MaterialButton(newContext);
-        return view;
+    getRippleColor(color: string) {
+        const temp = new Color(color)
+        return new Color(120, temp.r, temp.g, temp.b).android // default alpha is 0.14
+    }
+
+    public createNativeView() {
+        let style = "AppThemeMaterialButton"
+        if (this.variant === "text") {
+            style = "AppThemeTextMaterialButton"
+        } else if (this.variant === "flat") {
+            style = "AppThemeFlatMaterialButton"
+        } else if (this.variant === "outline") {
+            style = "AppThemeTextMaterialButton"
+        }
+        const view = new android.support.design.button.MaterialButton(
+            new android.view.ContextThemeWrapper(
+                this._context,
+                utils.ad.resources.getId(":style/" + style)
+            )
+        )
+        if (this.variant === "outline") {
+            view.setStrokeWidth(1);
+        }
+        return view
     }
     [rippleColorProperty.setNative](color: string) {
-        this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(new Color(color).android));
+        if (isPreLollipop()) {
+            this.nativeViewProtected.setRippleColor(
+                getRippleColorStateList(this.getRippleColor(color))
+            )
+        } else {
+            this.nativeViewProtected.setRippleColor(
+                android.content.res.ColorStateList.valueOf(
+                    new Color(color).android
+                )
+            )
+        }
     }
 
     [elevationProperty.setNative](value: number) {
-        android.support.v4.view.ViewCompat.setElevation(this.nativeViewProtected, value);
+        android.support.v4.view.ViewCompat.setElevation(
+            this.nativeViewProtected,
+            value
+        )
     }
 
     setCornerRadius(value) {
-        const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
-        this.nativeViewProtected.setCornerRadius(newValue);
+        const newValue = Length.toDevicePixels(
+            typeof value === "string" ? Length.parse(value) : value,
+            0
+        )
+        this.nativeViewProtected.setCornerRadius(newValue)
     }
     [borderBottomLeftRadiusProperty.setNative](value) {
-        this.setCornerRadius(value);
+        this.setCornerRadius(value)
     }
     [borderBottomRightRadiusProperty.setNative](value) {
-        this.setCornerRadius(value);
+        this.setCornerRadius(value)
     }
     [borderTopLeftRadiusProperty.setNative](value) {
-        this.setCornerRadius(value);
+        this.setCornerRadius(value)
     }
     [borderTopRightRadiusProperty.setNative](value) {
-        this.setCornerRadius(value);
+        this.setCornerRadius(value)
     }
-    [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
+    [backgroundInternalProperty.setNative](
+        value: android.graphics.drawable.Drawable | Background
+    ) {
         if (this.nativeViewProtected) {
             if (value instanceof android.graphics.drawable.Drawable) {
-                this.nativeViewProtected.setBackgroundDrawable(value);
+                this.nativeViewProtected.setBackgroundDrawable(value)
             } else {
-                
-                if (android.os.Build.VERSION.SDK_INT >= 21) {
-                    if (value.color) {
-                        this.nativeViewProtected.setBackgroundTintList(android.content.res.ColorStateList.valueOf(value.color.android));
-                    }
-                } else {
-                    (this as any)._redrawNativeBackground(value);
+                if (value.color) {
+                    this.nativeViewProtected.setBackgroundTintList(
+                        getEnabledColorStateList(value.color.android, this.variant)
+                    )
                 }
             }
         }

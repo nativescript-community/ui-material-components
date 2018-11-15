@@ -284,8 +284,8 @@ export class CardView extends CardViewBase {
         return rippleDrawable
     }
     private createStateListAnimator(view: android.view.View) {
-        const elevation = view.getElevation()
-        const translationZ = view.getTranslationZ()
+        const elevation = android.support.v4.view.ViewCompat.getElevation(view);
+        const translationZ = android.support.v4.view.ViewCompat.getTranslationZ(view);
         const elevationSelected = elevation * 8 //for now to be the same as iOS
         const translationSelectedZ = translationZ + 6
         const animationDuration = 100
@@ -371,7 +371,9 @@ export class CardView extends CardViewBase {
         initMDCCardView()
         // const newContext = new android.view.ContextThemeWrapper(this._context, ad.resources.getId('@style/Widget.MaterialComponents.CardView'));
         const view = new MDCCardView(this._context)
-        this.createStateListAnimator(view)
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            this.createStateListAnimator(view)
+        }
         view.setClickable(true)
         // if (this.style['rippleColor']) {
         //     (view.getForeground() as any).setColor(android.content.res.ColorStateList.valueOf(new Color(this.style['rippleColor']).android));
