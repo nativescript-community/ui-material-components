@@ -96,19 +96,19 @@ export function getRippleColorStateList(color: number) {
 }
 export function getEnabledColorStateList(color: number, variant:string) {
     const states = Array.create("[I", 2);
-    const SELECTED_PRESSED_STATE_SET = Array.create("int",1);
-    SELECTED_PRESSED_STATE_SET[0] =  android.R.attr.state_enabled;
-    states[0] = SELECTED_PRESSED_STATE_SET;
-    states[1] = Array.create("int", 0);
-    // states[1][0] = new java.lang.Integer(android.R.attr.state_enabled);
+    // const SELECTED_PRESSED_STATE_SET = Array.create("int",1);
+    // SELECTED_PRESSED_STATE_SET[0] =  android.R.attr.state_enabled;
+    states[0] = Array.create("int", 1);
+    states[0][0] = -android.R.attr.state_enabled;
+    states[1] = android.util.StateSet.NOTHING;
     // states[1][0] = new java.lang.Integer(-android.R.attr.state_enabled);
     // const states = [
     //     getSELECTED_PRESSED_STATE_SET(),
     //     []]
     // ;
     const colors = Array.create("int", 2);
-    colors[0] = color;
-    colors[1] = variant === 'text' ? 0 : new Color(30, 0,0,0).android;
+    colors[0] = (variant === 'text' || variant === 'outline') ? 0 : new Color(30, 0,0,0).android;
+    colors[1] = color;
     return  new android.content.res.ColorStateList(
         states,
         colors

@@ -1,4 +1,4 @@
-import { ButtonBase } from './button-common';
+import { ButtonBase } from "./button-common";
 export declare class Button extends ButtonBase {
     nativeViewProtected: MDCButton;
     _ios: MDCButton;

@@ -42,12 +42,10 @@ export class Button extends ButtonBase {
 
     public createNativeView() {
         let style = "AppThemeMaterialButton"
-        if (this.variant === "text") {
+        if (this.variant === "text" || this.variant === "outline") {
             style = "AppThemeTextMaterialButton"
         } else if (this.variant === "flat") {
             style = "AppThemeFlatMaterialButton"
-        } else if (this.variant === "outline") {
-            style = "AppThemeTextMaterialButton"
         }
         const view = new android.support.design.button.MaterialButton(
             new android.view.ContextThemeWrapper(
@@ -56,7 +54,12 @@ export class Button extends ButtonBase {
             )
         )
         if (this.variant === "outline") {
-            view.setStrokeWidth(1);
+            view.setStrokeWidth(1)
+            view.setStrokeColor(
+                android.content.res.ColorStateList.valueOf(
+                    new Color("gray").android
+                )
+            )
         }
         return view
     }
@@ -108,9 +111,25 @@ export class Button extends ButtonBase {
                 this.nativeViewProtected.setBackgroundDrawable(value)
             } else {
                 if (value.color) {
-                    this.nativeViewProtected.setBackgroundTintList(
-                        getEnabledColorStateList(value.color.android, this.variant)
+                    console.log(
+                        "set background color",
+                        value.color,
+                        this.variant
                     )
+                    // if (isPreLollipop()) {
+                        this.nativeViewProtected.setBackgroundTintList(
+                            getEnabledColorStateList(
+                                value.color.android,
+                                this.variant
+                            )
+                        )
+                    // } else {
+                    //     this.nativeViewProtected.setBackgroundTintList(
+                    //         android.content.res.ColorStateList.valueOf(
+                    //             value.color.android
+                    //         )
+                    //     )
+                    // }
                 }
             }
         }

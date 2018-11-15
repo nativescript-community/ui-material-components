@@ -3,7 +3,7 @@
         <FloatingActionButton src="res://ic_action_add" backgroundColor="blue" (tap)="onTap('fab', $event)">
         </FloatingActionButton>
         <MaterialButton elevation="5" borderRadius="10" fontSize="20" text="raised button" backgroundColor="blue" (tap)="onTap('mbutton1', $event)"></MaterialButton>
-        <MaterialButton borderRadius="10" color="red" text="text button" rippleColor="green" variant="text" (tap)="onTap('mbutton2', $event)">
+        <MaterialButton borderRadius="10" color="red" text="text button" rippleColor="green" backgroundColor="red" variant="text" (tap)="onTap('mbutton2', $event)">
             <FormattedString>
                 <Span text="Words " color="#006600"></Span>
                 <Span text="with " color="#990000" fontAttributes="Bold"></Span>
@@ -12,7 +12,7 @@
         <MaterialButton text="flat button \n test" rippleColor="red" backgroundColor="yellow" variant="flat" (tap)="onTap('mbutton3', $event)"></MaterialButton>
         <MaterialButton text="flat disabled button" isEnabled="false" rippleColor="red" backgroundColor="yellow" (tap)="onTap('mbutton3', $event)"></MaterialButton>
         <MaterialButton text="outline button" color="black" width="200" className="buttonYellow" variant="outline" (tap)="onTap('mbutton4', $event)"></MaterialButton>
-        <MaterialButton text="disabled yellow button" isEnabled="false" width="200" backgroundColor="yellow" variant="outline" (tap)="onTap('mbutton4', $event)"></MaterialButton>
+        <MaterialButton text="disabled outline button" isEnabled="false" width="200" backgroundColor="yellow" variant="outline" (tap)="onTap('mbutton4', $event)"></MaterialButton>
         <MaterialButton text="text button" width="200" color="blue" variant="text" (tap)="onTap('mbutton4', $event)"></MaterialButton>
         <MaterialButton text="disabled text button" isEnabled="false" width="200" backgroundColor="yellow" variant="text" (tap)="onTap('mbutton4', $event)"></MaterialButton>
         <MaterialButton className="falseFAb" text="+" color="white" verticalAlign="center" backgroundColor="green" (tap)="onTap('mbutton5', $event)"></MaterialButton>
