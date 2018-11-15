@@ -62,14 +62,14 @@ export class Button extends ButtonBase {
             if (value instanceof android.graphics.drawable.Drawable) {
                 this.nativeViewProtected.setBackgroundDrawable(value);
             } else {
-                if (value.color) {
-                    this.nativeViewProtected.setBackgroundTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                
+                if (android.os.Build.VERSION.SDK_INT >= 21) {
+                    if (value.color) {
+                        this.nativeViewProtected.setBackgroundTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                    }
+                } else {
+                    (this as any)._redrawNativeBackground(value);
                 }
-                // this is a trick for now. Though we can't have borderRadius=0 with that :s
-                // we need a way to know borderRadius was actually set
-                // if (value.borderTopLeftRadius !== this.defaultBorderRadius) {
-                //     this.nativeViewProtected.setCornerRadius(value.borderTopLeftRadius);
-                // }
             }
         }
     }
