@@ -140,26 +140,27 @@ export class Button extends ButtonBase {
     }
 
     [backgroundInternalProperty.setNative](value: Background) {
-    //     if (this.nativeViewProtected) {
+        // if (this.nativeViewProtected) {
     //         // if (value instanceof android.graphics.drawable.Drawable) {
     //         // this.nativeViewProtected.setBackgroundDrawable(value)
     //         // } else {
-    //         if (value.color) {
-    //             const color = value.color
-    //             this.nativeViewProtected.setBackgroundColorForState(
-    //                 color.ios,
-    //                 UIControlState.Normal
-    //             )
-    //             this.nativeViewProtected.setBackgroundColorForState(
-    //                 color.ios,
-    //                 UIControlState.Highlighted
-    //             )
-    //             this.nativeViewProtected.setBackgroundColorForState(
-    //                 color.ios,
-    //                 UIControlState.Selected
-    //             )
-    //         }
-    //     }
+        // console.log('backgroundInternalProperty', value.color);
+        //     if (value.color) {
+        //         const color = value.color
+        //         this.nativeViewProtected.setBackgroundColorForState(
+        //             color.ios,
+        //             UIControlState.Normal
+        //         )
+        //         this.nativeViewProtected.setBackgroundColorForState(
+        //             color.ios,
+        //             UIControlState.Highlighted
+        //         )
+        //         this.nativeViewProtected.setBackgroundColorForState(
+        //             color.ios,
+        //             UIControlState.Selected
+        //         )
+        //     }
+        // }
     }
 
     shapeScheme: MDCShapeScheme

@@ -111,11 +111,11 @@ export class Button extends ButtonBase {
                 this.nativeViewProtected.setBackgroundDrawable(value)
             } else {
                 if (value.color) {
-                    console.log(
-                        "set background color",
-                        value.color,
-                        this.variant
-                    )
+                    // console.log(
+                    //     "set background color",
+                    //     value.color,
+                    //     this.variant
+                    // )
                     // if (isPreLollipop()) {
                         this.nativeViewProtected.setBackgroundTintList(
                             getEnabledColorStateList(
