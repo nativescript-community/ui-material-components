@@ -1,4 +1,6 @@
-import { CssProperty, Style } from 'tns-core-modules/ui/core/view';
+import { CssProperty } from 'tns-core-modules/ui/core/properties';
+import { booleanConverter } from 'tns-core-modules/ui/core/view';
+import { Style } from 'tns-core-modules/ui/styling/style';
 
 
 export const cssProperty = (target: Object, key: string | symbol) => {
@@ -50,7 +52,8 @@ export const maxLengthProperty = new CssProperty<Style, number>({
 maxLengthProperty.register(Style);
 export const floatingProperty = new CssProperty<Style, boolean>({
     name: 'floating',
-    cssName: 'floating'
+    cssName: 'floating',
+    valueConverter: booleanConverter
 });
 floatingProperty.register(Style);
 export const elevationProperty = new CssProperty<Style, number>({
