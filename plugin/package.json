@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-components",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "description": "Your awesome NativeScript plugin.",
     "main": "./material",
     "typings": "./material.d.ts",
