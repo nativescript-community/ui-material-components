@@ -117,7 +117,7 @@ export class Button extends ButtonBase {
 
     [backgroundColorProperty.setNative](value: Color) {
         if (this.nativeViewProtected) {
-            console.log('backgroundColorProperty', value);
+            // console.log('backgroundColorProperty', value);
             this.nativeViewProtected.setBackgroundColorForState(
                 value.ios,
                 UIControlState.Normal
