@@ -86,13 +86,6 @@ function createAlertController(
         options.title,
         options.message
     )
-    const colorScheme = themer.getAppColorScheme()
-    if (colorScheme) {
-        MDCAlertColorThemer.applySemanticColorSchemeToAlertController(
-            colorScheme,
-            alertController
-        )
-    }
 
     if (options.buttonFont) {
         alertController.buttonFont = options.buttonFont.getUIFont(
@@ -130,9 +123,6 @@ function createAlertController(
     if (options.elevation) {
         alertController.elevation = options.elevation
     }
-    if (options.elevation) {
-        alertController.elevation = options.elevation
-    }
     if (options.cornerRadius) {
         alertController.cornerRadius = options.cornerRadius
     }
@@ -154,7 +144,7 @@ function createAlertController(
         }
     }
 
-    const transitionController = MDCDialogTransitionController.alloc().init()
+    // const transitionController = MDCDialogTransitionController.alloc().init()
     // alertController.modalPresentationStyle = UIModalPresentationStyle.Custom;
     // alertController.transitioningDelegate = transitionController;
     return alertController as MDCAlertController
@@ -429,9 +419,11 @@ export function login(): Promise<LoginResult> {
 
 function showUIAlertController(alertController: MDCAlertController) {
     // themer needs to be applied after actions creation
-    const alertScheme = MDCAlertScheme.alloc().init()
-    MDCAlertControllerThemer.applySchemeToAlertController(
-        alertScheme,
+
+    const colorScheme: MDCSemanticColorScheme =
+        themer.getAppColorScheme() || MDCAlertScheme.alloc().init()
+    MDCAlertColorThemer.applySemanticColorSchemeToAlertController(
+        colorScheme,
         alertController
     )
 
