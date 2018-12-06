@@ -701,11 +701,19 @@ declare class MDCBottomDrawerPresentationController extends UIPresentationContro
 
 	static new(): MDCBottomDrawerPresentationController; // inherited from NSObject
 
+	readonly contentReachesFullscreen: boolean;
+
 	delegate: MDCBottomDrawerPresentationControllerDelegate;
 
 	scrimColor: UIColor;
 
+	topHandleColor: UIColor;
+
+	topHandleHidden: boolean;
+
 	trackingScrollView: UIScrollView;
+
+	setContentOffsetYAnimated(contentOffsetY: number, animated: boolean): void;
 }
 
 interface MDCBottomDrawerPresentationControllerDelegate extends UIAdaptivePresentationControllerDelegate {
@@ -797,11 +805,17 @@ declare class MDCBottomDrawerViewController extends UIViewController implements 
 
 	contentViewController: UIViewController;
 
+	delegate: MDCBottomDrawerViewControllerDelegate;
+
 	readonly drawerState: MDCBottomDrawerState;
 
 	headerViewController: UIViewController;
 
 	scrimColor: UIColor;
+
+	topHandleColor: UIColor;
+
+	topHandleHidden: boolean;
 
 	trackingScrollView: UIScrollView;
 
@@ -851,10 +865,21 @@ declare class MDCBottomDrawerViewController extends UIViewController implements 
 
 	self(): this;
 
+	setContentOffsetYAnimated(contentOffsetY: number, animated: boolean): void;
+
 	setTopCornersRadiusForDrawerState(radius: number, drawerState: MDCBottomDrawerState): void;
 
 	topCornersRadiusForDrawerState(drawerState: MDCBottomDrawerState): number;
 }
+
+interface MDCBottomDrawerViewControllerDelegate extends NSObjectProtocol {
+
+	bottomDrawerControllerDidChangeTopInsetTopInset(controller: MDCBottomDrawerViewController, topInset: number): void;
+}
+declare var MDCBottomDrawerViewControllerDelegate: {
+
+	prototype: MDCBottomDrawerViewControllerDelegate;
+};
 
 declare class MDCBottomNavigationBar extends UIView {
 
@@ -879,6 +904,8 @@ declare class MDCBottomNavigationBar extends UIView {
 	barTintColor: UIColor;
 
 	delegate: MDCBottomNavigationBarDelegate;
+
+	elevation: number;
 
 	itemTitleFont: UIFont;
 
@@ -2162,6 +2189,8 @@ interface MDCCollectionViewEditing extends NSObjectProtocol {
 	reorderingCellIndexPath: NSIndexPath;
 
 	setEditingAnimated(editing: boolean, animated: boolean): void;
+
+	updateReorderCellPosition(): void;
 }
 declare var MDCCollectionViewEditing: {
 
@@ -2500,7 +2529,7 @@ declare class MDCContainedButtonThemer extends NSObject {
 	static new(): MDCContainedButtonThemer; // inherited from NSObject
 }
 
-declare class MDCCornerTreatment extends NSObject implements NSCopying, NSSecureCoding {
+declare class MDCCornerTreatment extends NSObject implements NSCopying {
 
 	static alloc(): MDCCornerTreatment; // inherited from NSObject
 
@@ -2520,15 +2549,7 @@ declare class MDCCornerTreatment extends NSObject implements NSCopying, NSSecure
 
 	valueType: MDCCornerTreatmentValueType;
 
-	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
-
-	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
-
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	encodeWithCoder(aCoder: NSCoder): void;
-
-	initWithCoder(aDecoder: NSCoder): this;
 
 	pathGeneratorForCornerWithAngle(angle: number): MDCPathGenerator;
 
@@ -2563,17 +2584,9 @@ declare class MDCCurvedRectShapeGenerator extends NSObject implements MDCShapeGe
 
 	cornerSize: CGSize;
 
-	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
-
-	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
-
 	constructor(o: { cornerSize: CGSize; });
 
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	encodeWithCoder(aCoder: NSCoder): void;
-
-	initWithCoder(aDecoder: NSCoder): this;
 
 	initWithCornerSize(cornerSize: CGSize): this;
 
@@ -2671,21 +2684,13 @@ declare class MDCDialogTransitionController extends NSObject implements UIViewCo
 	transitionDuration(transitionContext: UIViewControllerContextTransitioning): number;
 }
 
-declare class MDCEdgeTreatment extends NSObject implements NSCopying, NSSecureCoding {
+declare class MDCEdgeTreatment extends NSObject implements NSCopying {
 
 	static alloc(): MDCEdgeTreatment; // inherited from NSObject
 
 	static new(): MDCEdgeTreatment; // inherited from NSObject
 
-	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
-
-	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
-
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	encodeWithCoder(aCoder: NSCoder): void;
-
-	initWithCoder(aDecoder: NSCoder): this;
 
 	pathGeneratorForEdgeWithLength(length: number): MDCPathGenerator;
 }
@@ -4212,6 +4217,8 @@ declare class MDCPageControl extends UIControl implements UIScrollViewDelegate {
 
 	pageIndicatorTintColor: UIColor;
 
+	respectsUserInterfaceLayoutDirection: boolean;
+
 	readonly debugDescription: string; // inherited from NSObjectProtocol
 
 	readonly description: string; // inherited from NSObjectProtocol
@@ -4430,15 +4437,7 @@ declare class MDCPillShapeGenerator extends NSObject implements MDCShapeGenerati
 
 	static new(): MDCPillShapeGenerator; // inherited from NSObject
 
-	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
-
-	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
-
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	encodeWithCoder(aCoder: NSCoder): void;
-
-	initWithCoder(aDecoder: NSCoder): this;
 
 	pathForSize(size: CGSize): any;
 }
@@ -4541,15 +4540,7 @@ declare class MDCRectangleShapeGenerator extends NSObject implements MDCShapeGen
 
 	topRightCornerOffset: CGPoint;
 
-	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
-
-	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
-
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	encodeWithCoder(aCoder: NSCoder): void;
-
-	initWithCoder(aDecoder: NSCoder): this;
 
 	pathForSize(size: CGSize): any;
 
@@ -4785,7 +4776,7 @@ declare const enum MDCShapeCornerFamily {
 	Cut = 1
 }
 
-interface MDCShapeGenerating extends NSCopying, NSSecureCoding {
+interface MDCShapeGenerating extends NSCopying {
 
 	pathForSize(size: CGSize): any;
 }
@@ -4894,20 +4885,12 @@ declare class MDCSlantedRectShapeGenerator extends NSObject implements MDCShapeG
 
 	slant: number;
 
-	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
-
-	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
-
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	encodeWithCoder(aCoder: NSCoder): void;
-
-	initWithCoder(aDecoder: NSCoder): this;
 
 	pathForSize(size: CGSize): any;
 }
 
-declare class MDCSlider extends UIControl implements NSSecureCoding {
+declare class MDCSlider extends UIControl {
 
 	static alloc(): MDCSlider; // inherited from NSObject
 
@@ -4961,17 +4944,9 @@ declare class MDCSlider extends UIControl implements NSSecureCoding {
 
 	valueLabelTextColor: UIColor;
 
-	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
-
-	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
-
 	backgroundTrackTickColorForState(state: UIControlState): UIColor;
 
-	encodeWithCoder(aCoder: NSCoder): void;
-
 	filledTrackTickColorForState(state: UIControlState): UIColor;
-
-	initWithCoder(aDecoder: NSCoder): this;
 
 	setBackgroundTrackTickColorForState(tickColor: UIColor, state: UIControlState): void;
 
@@ -6741,7 +6716,7 @@ declare class MDCTonalColorScheme extends NSObject implements MDCColorScheme, NS
 	self(): this;
 }
 
-declare class MDCTonalPalette extends NSObject implements NSCopying, NSSecureCoding {
+declare class MDCTonalPalette extends NSObject implements NSCopying {
 
 	static alloc(): MDCTonalPalette; // inherited from NSObject
 
@@ -6761,17 +6736,9 @@ declare class MDCTonalPalette extends NSObject implements NSCopying, NSSecureCod
 
 	readonly mainColorIndex: number;
 
-	static readonly supportsSecureCoding: boolean; // inherited from NSSecureCoding
-
-	constructor(o: { coder: NSCoder; }); // inherited from NSCoding
-
 	constructor(o: { colors: NSArray<UIColor>; mainColorIndex: number; lightColorIndex: number; darkColorIndex: number; });
 
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	encodeWithCoder(aCoder: NSCoder): void;
-
-	initWithCoder(aDecoder: NSCoder): this;
 
 	initWithColorsMainColorIndexLightColorIndexDarkColorIndex(colors: NSArray<UIColor>, mainColorIndex: number, lightColorIndex: number, darkColorIndex: number): this;
 }
