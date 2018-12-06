@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-// import { themer } from "./nativescript-material-components/material";
+import { themer } from "./nativescript-material-components/material";
 
-// themer.setPrimaryColor('red');
+themer.setPrimaryColor('red');
 
 @Component({
     selector: 'ns-app',
