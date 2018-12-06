@@ -2,7 +2,7 @@
     <StackLayout horizontalAlignment="center">
         <FloatingActionButton src="res://ic_action_add" backgroundColor="blue" (tap)="onTap('fab', $event)">
         </FloatingActionButton>
-        <MaterialButton elevation="5" borderRadius="10" fontSize="20" text="raised button" backgroundColor="blue" (tap)="onTap('mbutton1', $event)"></MaterialButton>
+        <MaterialButton elevation="5" borderRadius="10" fontSize="20" text="raised button" (tap)="onTap('mbutton1', $event)"></MaterialButton>
         <MaterialButton borderRadius="10" color="red" text="text button" rippleColor="green" backgroundColor="red" variant="text" (tap)="onTap('mbutton2', $event)">
             <FormattedString>
                 <Span text="Words " color="#006600"></Span>
