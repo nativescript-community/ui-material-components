@@ -49,7 +49,7 @@ export class AppBarDirective implements AfterViewInit {
                 //     currentControllers[0].removeFromParentViewController();
                 // }
                 // viewController.childViewControllers[0]
-                viewController.addChildViewController(this._appBarController);
+                // viewController.addChildViewController(this._appBarController);
                 // console.log('addChildViewController done');
                 this.addedToParent = true;
             }
