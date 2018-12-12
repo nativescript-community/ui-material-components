@@ -19,13 +19,10 @@ export class Progress extends ProgressBase {
                 colorScheme,
                 result
             )
-
             //light color is not applied
             if (colorScheme.primaryColorVariant) {
                 result.trackTintColor = colorScheme.primaryColorVariant;
             }
-        } else {
-            MDCProgressViewColorThemer.applyColorSchemeToProgressView(MDCSemanticColorScheme.new(), result)
         }
         console.log("created MDCProgressView")
         return result
