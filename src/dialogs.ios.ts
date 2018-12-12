@@ -24,7 +24,7 @@ import {
     PromptResult
 } from "tns-core-modules/ui/dialogs"
 import { isDefined, isFunction, isString } from "tns-core-modules/utils/types"
-import { MDCAlertControlerOptions } from "./dialog"
+import { MDCAlertControlerOptions } from "./dialogs"
 import { themer } from "./material"
 
 function addButtonsToAlertController(
@@ -420,12 +420,16 @@ export function login(): Promise<LoginResult> {
 function showUIAlertController(alertController: MDCAlertController) {
     // themer needs to be applied after actions creation
 
-    const colorScheme: MDCSemanticColorScheme =
-        themer.getAppColorScheme() || MDCAlertScheme.alloc().init()
-    MDCAlertColorThemer.applySemanticColorSchemeToAlertController(
-        colorScheme,
-        alertController
-    )
+    const colorScheme: MDCSemanticColorScheme = themer.getAppColorScheme()
+    if(colorScheme) {
+        MDCAlertColorThemer.applySemanticColorSchemeToAlertController(
+            colorScheme,
+            alertController
+        )
+    } else {
+        MDCAlertControllerThemer.applySchemeToAlertController(MDCAlertScheme.alloc().init(), alertController);
+    }
+    
 
     let currentView = getCurrentPage() || getRootView()
 
