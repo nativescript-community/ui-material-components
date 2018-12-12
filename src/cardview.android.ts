@@ -276,13 +276,13 @@ export class CardView extends CardViewBase {
         const shape = this.createRoundRectShape()
         return new android.graphics.drawable.ShapeDrawable(shape)
     }
-    private createCompatRippleDrawable(rippleColor) {
-        const rippleDrawable = new android.graphics.drawable.StateListDrawable()
-        const foregroundShape = this.createForegroundShapeDrawable()
-        foregroundShape.getPaint().setColor(rippleColor)
-        rippleDrawable.addState([android.R.attr.state_pressed], foregroundShape)
-        return rippleDrawable
-    }
+    // private createCompatRippleDrawable(rippleColor) {
+    //     const rippleDrawable = new android.graphics.drawable.StateListDrawable()
+    //     const foregroundShape = this.createForegroundShapeDrawable()
+    //     foregroundShape.getPaint().setColor(rippleColor)
+    //     rippleDrawable.addState([android.R.attr.state_pressed], foregroundShape)
+    //     return rippleDrawable
+    // }
     private createStateListAnimator(view: android.view.View) {
         const elevation = android.support.v4.view.ViewCompat.getElevation(view);
         const translationZ = android.support.v4.view.ViewCompat.getTranslationZ(view);
@@ -375,9 +375,7 @@ export class CardView extends CardViewBase {
             this.createStateListAnimator(view)
         }
         view.setClickable(true)
-        // if (this.style['rippleColor']) {
-        //     (view.getForeground() as any).setColor(android.content.res.ColorStateList.valueOf(new Color(this.style['rippleColor']).android));
-        // }
+
         if (this._borderRadius !== undefined) {
             view.setRadius(this._borderRadius)
         }
@@ -407,11 +405,11 @@ export class CardView extends CardViewBase {
             value
         )
     }
-    [rippleColorProperty.setNative](color: string) {
+    [rippleColorProperty.setNative](color: Color) {
         if (android.os.Build.VERSION.SDK_INT >= 23) {
             ;(this.nativeViewProtected.getForeground() as any).setColor(
                 android.content.res.ColorStateList.valueOf(
-                    new Color(color).android
+                    color.android
                 )
             )
         } else {

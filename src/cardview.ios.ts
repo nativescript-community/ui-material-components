@@ -7,9 +7,8 @@ export class CardView extends CardViewBase {
     nativeViewProtected: MDCCard;
     _backgroundColor: Color;
 
-    getRippleColor(color: string) {
-        const temp = new Color(color);
-        return new Color(120, temp.r, temp.g, temp.b).ios; // default alpha is 0.14
+    getRippleColor(color: Color) {
+        return new Color(120, color.r, color.g, color.b).ios; // default alpha is 0.14
     }
 
     public createNativeView() {
@@ -23,14 +22,7 @@ export class CardView extends CardViewBase {
         }
         if (this._borderRadius !== undefined) {
             view.layer.cornerRadius = this._borderRadius;
-            // view.layer.masksToBounds = true;
-            // view.clipsToBounds = true;
         }
-        // if (this.style['rippleColor']) {
-        //     view.inkView.inkColor = this.getRippleColor(this.style['rippleColor']);
-        // }
-        // view.layer.masksToBounds = true;
-        // view.clipsToBounds = false;
         return view;
     }
     _setNativeClipToBounds() {
@@ -71,7 +63,7 @@ export class CardView extends CardViewBase {
             this.nativeViewProtected.backgroundColor = color.ios;
         }
     }
-    [rippleColorProperty.setNative](color: string) {
+    [rippleColorProperty.setNative](color: Color) {
         this.nativeViewProtected.inkView.inkColor = this.getRippleColor(color);
     }
 }

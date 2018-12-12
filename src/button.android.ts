@@ -35,9 +35,8 @@ export class Button extends ButtonBase {
         return this.nativeView
     }
 
-    getRippleColor(color: string) {
-        const temp = new Color(color)
-        return new Color(120, temp.r, temp.g, temp.b).android // default alpha is 0.14
+    getRippleColor(color: Color) {
+        return new Color(120, color.r, color.g, color.b).android // default alpha is 0.14
     }
 
     public createNativeView() {
@@ -63,7 +62,7 @@ export class Button extends ButtonBase {
         }
         return view
     }
-    [rippleColorProperty.setNative](color: string) {
+    [rippleColorProperty.setNative](color: Color) {
         if (isPreLollipop()) {
             this.nativeViewProtected.setRippleColor(
                 getRippleColorStateList(this.getRippleColor(color))
@@ -71,7 +70,7 @@ export class Button extends ButtonBase {
         } else {
             this.nativeViewProtected.setRippleColor(
                 android.content.res.ColorStateList.valueOf(
-                    new Color(color).android
+                    color.android
                 )
             )
         }

@@ -1,5 +1,5 @@
 import { CssProperty } from 'tns-core-modules/ui/core/properties';
-import { booleanConverter } from 'tns-core-modules/ui/core/view';
+import { booleanConverter, Color } from 'tns-core-modules/ui/core/view';
 import { Style } from 'tns-core-modules/ui/styling/style';
 
 
@@ -23,16 +23,16 @@ export const cssProperty = (target: Object, key: string | symbol) => {
     // }
 };
 
-
-
-export const rippleColorProperty = new CssProperty<Style, string>({
+export const rippleColorProperty = new CssProperty<Style, Color>({
     name: 'rippleColor',
-    cssName: 'ripple-color'
+    cssName: 'ripple-color',
+    equalityComparer: Color.equals, valueConverter: (v) => new Color(v)
 });
 rippleColorProperty.register(Style);
-export const errorColorProperty = new CssProperty<Style, string>({
+export const errorColorProperty = new CssProperty<Style, Color>({
     name: 'errorColor',
-    cssName: 'error-color'
+    cssName: 'error-color',
+    equalityComparer: Color.equals, valueConverter: (v) => new Color(v)
 });
 errorColorProperty.register(Style);
 export const helperProperty = new CssProperty<Style, string>({
@@ -67,3 +67,11 @@ export const variantProperty = new CssProperty<Style, string>({
     cssName: 'variant'
 });
 variantProperty.register(Style);
+
+export const trackBackgroundColorProperty = new CssProperty<Style, Color>({
+    name: "trackBackgroundColor",
+    cssName: 'track-background-color',
+    equalityComparer: Color.equals,
+    valueConverter: v => new Color(v)
+})
+trackBackgroundColorProperty.register(Style);

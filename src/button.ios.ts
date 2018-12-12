@@ -51,9 +51,8 @@ export class Button extends ButtonBase {
         this.setTopRightCornerRadius(value)
         this.applyShapeScheme()
     }
-    getRippleColor(color: string) {
-        const temp = new Color(color)
-        return new Color(36, temp.r, temp.g, temp.b).ios // default alpha is 0.14
+    getRippleColor(color: Color) {
+        return new Color(36, color.r, color.g, color.b).ios // default alpha is 0.14
     }
 
     public createNativeView() {
@@ -100,7 +99,7 @@ export class Button extends ButtonBase {
         return view
     }
 
-    [rippleColorProperty.setNative](color: string) {
+    [rippleColorProperty.setNative](color: Color) {
         this.nativeViewProtected.inkColor = this.getRippleColor(color)
     }
 

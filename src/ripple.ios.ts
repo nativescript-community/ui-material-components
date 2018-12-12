@@ -4,9 +4,9 @@ import { Color } from 'tns-core-modules/ui/page/page';
 import { themer } from './material';
 
 export class Ripple extends RippleBase {
-    getRippleColor(color: string) {
-        const temp = new Color(color);
-        return new Color(36, temp.r, temp.g, temp.b).ios; // default alpha is 0.14
+    getRippleColor(color: Color) {
+        // const temp = typeof color === "string" ? new Color(color) : color
+        return new Color(36, color.r, color.g, color.b).ios; // default alpha is 0.14
     }
     inkTouchController: MDCInkTouchController;
 
@@ -14,18 +14,18 @@ export class Ripple extends RippleBase {
         return this.nativeViewProtected as MDCInkView;
     }
     public createNativeView() {
-        const view = UIButton.alloc().init();
+        const view = UIView.alloc().init();
         this.inkTouchController = MDCInkTouchController.alloc().initWithView(view);
         this.inkTouchController.addInkView();
-        if (this.style['rippleColor']) {
-            this.inkTouchController.defaultInkView.inkColor = this.getRippleColor(this.style['rippleColor']);
-        } else {
+        // if (this.style['rippleColor']) {
+        //     this.inkTouchController.defaultInkView.inkColor = this.getRippleColor(this.style['rippleColor']);
+        // } else {
             const colorScheme = themer.getAppColorScheme();
             MDCInkColorThemer.applyColorSchemeToInkView(colorScheme, this.inkTouchController.defaultInkView);
-        }
+        // }
         return view;
     }
-    [rippleColorProperty.setNative](color: string) {
+    [rippleColorProperty.setNative](color: Color) {
         this.inkTouchController.defaultInkView.inkColor = this.getRippleColor(color);
     }
 }
