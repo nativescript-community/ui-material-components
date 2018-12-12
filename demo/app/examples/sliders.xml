@@ -1,0 +1,8 @@
+<StackLayout xmlns:mdcs="nativescript-material-components/slider">
+<Label text="Default Slider" padding="10"/>
+<mdcs:Slider elevation="3" rippleColor="blue" value="40"  minValue="0" maxValue="100"/>
+<Label text="Green slider without hollow at 0" padding="10"/>
+<mdcs:Slider thumbHollowAtStart="false" color="green" value="40"  minValue="0" maxValue="100"/>
+<Label text="Disabled slider" padding="10"/>
+<mdcs:Slider isEnabled="false"  value="40"  minValue="0" maxValue="100"/>
+</StackLayout>

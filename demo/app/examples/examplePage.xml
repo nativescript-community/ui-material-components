@@ -1,0 +1,11 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      navigatingTo="onNavigatingTo" 
+      xmlns:img="nativescript-image">
+    <Page.actionBar>
+        <ActionBar title="{{title}}">
+            <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onBack"/>
+        </ActionBar>
+    </Page.actionBar>
+    <StackLayout id="container">
+    </StackLayout>
+</Page>

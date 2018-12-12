@@ -1,7 +1,0 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:mdc="nativescript-material-components">
-    <StackLayout backgroundColor="red">
-
-        <mdc:FloatingActionButton backgroundColor="blue" width="56"></mdc:FloatingActionButton>
-
-    </StackLayout>
-</Page>
