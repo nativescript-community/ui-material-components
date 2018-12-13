@@ -11,7 +11,28 @@ function getObjectClass(obj) {
     else return /(\w+)\(/.exec(obj.constructor.toString())[1]
 }
 
+interface DataItem {
+    title: string
+}
+
 class Model {
+    private _dataItems: ObservableArray<DataItem>
+    public get dataItems() {
+        if (!this._dataItems) {
+            this.initDataItems()
+        }
+        return this._dataItems
+    }
+
+    private initDataItems() {
+        if (!this._dataItems) {
+            this._dataItems = new ObservableArray<DataItem>()
+
+            for (let i = 1; i <= 50; i++) {
+                this._dataItems.push({ title: `item ${i}` })
+            }
+        }
+    }
     constructor(public title) {}
     onTap(args: EventData) {
         const obj = args.object as View
@@ -31,13 +52,29 @@ class Model {
                 })
                 break
             }
-            case "bottomsheet1":
-                {
-                    obj.showBottomSheet('examples/bottomsheetinner1', {}, (objId)=>{
-                        alert(`bottomsheet closed ${objId}`);
-                    });
-                    break
-                }
+            case "bottomsheet1": {
+                obj.showBottomSheet({
+                    view: "examples/bottomsheetinner1",
+                    context: {},
+                    closeCallback: objId => {
+                        alert(`bottomsheet closed ${objId}`)
+                    }
+                })
+                break
+            }
+            case "bottomsheet2": {
+                obj.showBottomSheet({
+                    view: "examples/bottomsheetinner2",
+                    trackingScrollView: "listview",
+                    context: {
+                        dataItems: this.dataItems
+                    },
+                    closeCallback: objId => {
+                        alert(`bottomsheet closed ${objId}`)
+                    }
+                })
+                break
+            }
         }
     }
 }

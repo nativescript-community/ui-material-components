@@ -9,7 +9,7 @@
 
 <lv:RadListView items="{{ examples }}" class="list-group" itemTap="{{ onTap }}">
   <lv:RadListView.itemTemplate>
-    <mdcr:Ripple class="list-group-item" height="50" borderBottomColor="black" borderBottomWidth="0" isPassThroughParentEnabled="false">
+    <mdcr:Ripple class="list-group-item" height="50" borderBottomColor="black" borderBottomWidth="0" >
       <Label text="{{ title }}" textWrap="true"/>
     </mdcr:Ripple>
   </lv:RadListView.itemTemplate>
