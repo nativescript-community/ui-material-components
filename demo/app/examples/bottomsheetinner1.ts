@@ -1,12 +1,12 @@
 import { EventData, View } from "tns-core-modules/ui/core/view"
 
-let closeCallback
+// let closeCallback
 
 export function onShownInBottomSheet(args) {
     console.log('onShownInBottomSheet1')
     const context = args.context
-    closeCallback = args.closeCallback
-    console.log('onShownInBottomSheet', context, closeCallback)
+    // closeCallback = args.closeCallback
+    console.log('onShownInBottomSheet', context)
     // const view: View = <View>args.object
     // view.bindingContext = fromObject(context)
 }
