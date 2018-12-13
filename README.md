@@ -1,40 +1,52 @@
-# Your Plugin Name
+# Nativescript Material Components
 
-Add your plugin badges here. See [nativescript-urlhandler](https://github.com/hypery2k/nativescript-urlhandler) for example.
+[//]: # ([![Build Status][build-status]][build-url])
+[![NPM version][npm-image]][npm-url]
 
-Then describe what's the purpose of your plugin. 
+[npm-url]:https://npmjs.org/package/nativescript-material-components
 
-In case you develop UI plugin, this is where you can add some screenshots.
 
-## (Optional) Prerequisites / Requirements
 
-Describe the prerequisites that the user need to have installed before using your plugin. See [nativescript-firebase plugin](https://github.com/eddyverbruggen/nativescript-plugin-firebase) for example.
+## Components
+* Button
+* Floating Action Button
+* Textfield
+* CardView
+* Slider
+* Progress
+* ActivityIndicator
+* dialogs
+* bottomsheets
+* Ripple View
+
 
 ## Installation
 
-Describe your plugin installation steps. Ideally it would be something like:
+From the command prompt go to your app's root folder and execute:
 
-```javascript
-tns plugin add <your-plugin-name>
+```bash
+tns plugin add nativescript-material-components
 ```
 
-## Usage 
+## Usage
 
-Describe any usage specifics for your plugin. Give examples for Android, iOS, Angular if needed. See [nativescript-drop-down](https://www.npmjs.com/package/nativescript-drop-down) for example.
-	
-	```javascript
-    Usage code snippets here
-    ```)
+### Demo app
+If you want a quickstart, clone the repo, then:
+- `cd demo`.
+- `tns run ios` or `tns run android`.
 
-## API
+### Start-up wiring
+For some features (coordinatorLayout, bottomsheets ...), we need to do some wiring when your app starts, so open `app.js` and add this before creating any View/App/Frame:
 
-Describe your plugin methods and properties here. See [nativescript-feedback](https://github.com/EddyVerbruggen/nativescript-feedback) for example.
-    
-| Property | Default | Description |
-| --- | --- | --- |
-| some property | property default value | property description, default values, etc.. |
-| another property | property default value | property description, default values, etc.. |
-    
-## License
+##### JavaScript
+```js
+var material = require("nativescript-material-components");
 
-Apache License Version 2.0, January 2004
+material.install();
+```
+
+#### TypeScript
+```ts
+import { install } from "nativescript-material-components";
+install();
+```
