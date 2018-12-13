@@ -32,5 +32,26 @@ export class Themer {
 
 export const themer = new Themer();
 
+function applyMixins(derivedCtor: any, baseCtors: any[]) {
+    baseCtors.forEach(baseCtor => {
+        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+            console.log('overrinding', name);
+            if (name !== 'constructor') {
+                derivedCtor.prototype[name] = baseCtor.prototype[name]
+            }
+        })
+    })
+}
+export function overridePage() {
+    // const NSPage = require("tns-core-modules/ui/page/page").Page
+    // applyMixins(NSPage, [require("./page").Page])
+}export function overrideBottomSheet() {
+    console.log('overrideBottomSheet');
+    
+    const NSView = require("tns-core-modules/ui/core/view").View
+    applyMixins(NSView, [require("./bottomsheet-common").ViewWithBottomSheetBase, require("./bottomsheet").ViewWithBottomSheet])
+}
 export function install() {
+    overridePage()
+    overrideBottomSheet()
 }

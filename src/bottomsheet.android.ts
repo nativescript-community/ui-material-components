@@ -1,13 +1,9 @@
-import {
-    View,
-    View as ViewDefinition,
-    EventData,
-    eachDescendant
-} from "tns-core-modules/ui/core/view"
-import { ViewRef_ } from "@angular/core/src/view"
-import { createViewFromEntry } from "tns-core-modules/ui/builder"
+import { View } from "tns-core-modules/ui/core/view"
 import { fromObject } from "tns-core-modules/data/observable/observable"
-import { Frame } from "tns-core-modules/ui/frame/frame";
+import {
+    ViewWithBottomSheetBase
+} from "./bottomsheet-common"
+import { BottomSheetOptions } from "./bottomsheet";
 
 let BottomSheetDialogFragment: BottomSheetDialogFragment
 
@@ -15,7 +11,7 @@ interface BottomSheetDialogFragment {
     new (): android.support.design.widget.BottomSheetDialogFragment
 }
 
-interface BottomSheetOptions {
+interface BottomSheetDataOptions {
     owner: View
     // fullscreen: boolean;
     // stretched: boolean;
@@ -24,9 +20,9 @@ interface BottomSheetOptions {
 }
 const DOMID = "_domId"
 const androidBackPressedEvent = "androidBackPressed"
-const bottomSheetMap = new Map<number, BottomSheetOptions>()
+const bottomSheetMap = new Map<number, BottomSheetDataOptions>()
 
-function saveBottomSheet(options: BottomSheetOptions) {
+function saveBottomSheet(options: BottomSheetDataOptions) {
     bottomSheetMap.set(options.owner._domId, options)
 }
 
@@ -34,7 +30,7 @@ function removeBottomSheet(domId: number) {
     bottomSheetMap.delete(domId)
 }
 
-function getBottomSheetOptions(domId: number): BottomSheetOptions {
+function getBottomSheetOptions(domId: number): BottomSheetDataOptions {
     return bottomSheetMap.get(domId)
 }
 
@@ -167,107 +163,28 @@ function initializeBottomSheetDialogFragment() {
     BottomSheetDialogFragment = BottomSheetDialogFragmentImpl
 }
 
-export interface ShownBottomSheetData extends EventData {
-    /**
-     * The context (optional, may be undefined) passed to the view when shown modally.
-     */
-    context?: any
-
-    /**
-     * A callback to call when you want to close the modally shown view.
-     * Pass in any kind of arguments and you will receive when the callback parameter
-     * of View.showModal is executed.
-     */
-    closeCallback?: Function
-}
-export const shownInBottomSheetEvent = "shownInBottomSheet"
-export const showingInBottomSheetEvent = "showingInBottomSheet"
-
-export class ViewWithBottomSheet extends ViewDefinition {
-    protected _closeBottomSheetCallback: Function;
-    protected _bottomSheetContext: any;
-    _raiseShownBottomSheetEvent() {
-        console.log('_raiseShownBottomSheetEvent', this);
-        const args: ShownBottomSheetData = {
-            eventName: shownInBottomSheetEvent,
-            object: this,
-            context:this._bottomSheetContext,
-            closeCallback:this._closeBottomSheetCallback
-        }
-
-        this.notify(args)
-    }
-    protected _raiseShowingBottomSheetEvent() {
-        console.log('_raiseShowingBottomSheetEvent');
-        const args: ShownBottomSheetData = {
-            eventName: showingInBottomSheetEvent,
-            object: this,
-            context:this._bottomSheetContext,
-            closeCallback:this._closeBottomSheetCallback
-        }
-        this.notify(args)
-    }
-    protected _hideNativeBottomSheet(parent: View, whenClosedCallback: () => void) {
-        const manager = this._bottomSheetFragment.getFragmentManager();
+export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
+    protected _hideNativeBottomSheet(
+        parent: View,
+        whenClosedCallback: () => void
+    ) {
+        const manager = this._bottomSheetFragment.getFragmentManager()
         if (manager) {
-            this._bottomSheetFragment.dismissAllowingStateLoss();
+            this._bottomSheetFragment.dismissAllowingStateLoss()
         }
 
-        this._bottomSheetFragment = null;
-        whenClosedCallback();
+        this._bottomSheetFragment = null
+        whenClosedCallback()
     }
-    public closeBottomSheet(...args) {
-        let closeCallback = this._closeBottomSheetCallback;
-        if (closeCallback) {
-            closeCallback.apply(undefined, arguments);
-        } else {
-            let parent = this.parent as ViewWithBottomSheet;
-            if (parent) {
-                parent.closeBottomSheet(...args);
-            }
-        }
-    }
-    public _bottomSheetClosed(): void {
-        if (this instanceof Frame) {
-            this._removeFromFrameStack();
-        }
-        eachDescendant(this, (child: ViewWithBottomSheet) => {
-            child._bottomSheetClosed();
-            return true;
-        });
-    }
+
     protected _showNativeBottomSheet(
         parent: View,
-        context: any,
-        closeCallback: Function
+        options: BottomSheetOptions
     ) {
-        // super._showNativeModalView(parent, context, closeCallback)
+        super._showNativeBottomSheet(parent, options)
         // if (!this.backgroundColor) {
         //     this.backgroundColor = new Color("White");
         // }
-
-        this._bottomSheetContext = context;
-        const that = this;
-        this._closeBottomSheetCallback = function (...originalArgs) {
-            if (that._closeBottomSheetCallback) {
-                // const modalIndex = _rootModalViews.indexOf(that);
-                // _rootModalViews.splice(modalIndex);
-                // that._modalParent = null;
-                that._bottomSheetContext = null;
-                that._closeBottomSheetCallback = null;
-                that._bottomSheetClosed();
-                // parent._modal = null;
-
-                const whenClosedCallback = () => {
-                    if (typeof closeCallback === "function") {
-                        closeCallback.apply(undefined, originalArgs);
-                    }
-                }
-
-                that._hideNativeBottomSheet(parent, whenClosedCallback);
-            }
-        };
-        context.closeCallback = this._closeBottomSheetCallback;
 
         initializeBottomSheetDialogFragment()
 
@@ -276,13 +193,13 @@ export class ViewWithBottomSheet extends ViewDefinition {
         args.putInt(DOMID, this._domId)
         df.setArguments(args)
 
-        const bottomSheetOptions: BottomSheetOptions = {
+        const bottomSheetOptions: BottomSheetDataOptions = {
             owner: this,
             // fullscreen: !!fullscreen,
             // stretched: !!stretched,
             shownCallback: () => {
-                this.bindingContext = fromObject(context)
-                this._raiseShownBottomSheetEvent();
+                this.bindingContext = fromObject(options.context)
+                this._raiseShownBottomSheetEvent()
             },
             dismissCallback: () => this.closeBottomSheet()
         }
@@ -296,29 +213,5 @@ export class ViewWithBottomSheet extends ViewDefinition {
             (<any>parent)._getRootFragmentManager(),
             this._domId.toString()
         )
-    }
-    public showBottomSheet(): ViewWithBottomSheet {
-        if (arguments.length === 0) {
-            throw new Error(
-                "showModal without parameters is deprecated. Please call showModal on a view instance instead."
-            )
-        } else {
-            const firstAgrument = arguments[0]
-            const context: any = arguments[1]
-            const closeCallback: Function = arguments[2]
-            // const fullscreen: boolean = arguments[3];
-            // const animated = arguments[4];
-            // const stretched = arguments[5];
-
-            const view =
-                firstAgrument instanceof ViewWithBottomSheet
-                    ? firstAgrument
-                    : <ViewWithBottomSheet>(
-                          createViewFromEntry({ moduleName: firstAgrument })
-                      )
-
-            view._showNativeBottomSheet(this, context, closeCallback)
-            return view
-        }
     }
 }
