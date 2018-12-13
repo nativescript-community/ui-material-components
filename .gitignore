@@ -53,6 +53,7 @@ obj
 node_modules
 *.tmp.*
 platforms
+!plugin/platforms
 lib
 *.css
 !webpack.*.js
