@@ -38,10 +38,4 @@
         <item name="materialButtonStyle">@style/TextButton.Custom</item>
     </style>
 
-    <style name="AppThemeMaterialTextInputLayoutFilled" parent="AppTheme">
-        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.FilledBox</item>
-    </style>
-    <style name="AppThemeMaterialTextInputLayoutOutline" parent="AppTheme">
-        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
-    </style>
 </resources> 
