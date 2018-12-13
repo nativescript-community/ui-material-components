@@ -5,7 +5,7 @@ export class Themer {
     // appColorScheme: MDCSemanticColorScheme;
     getOrcreateAppColorScheme() {
         // if (!this.appColorScheme) {
-            // this.appColorScheme = MDCSemanticColorScheme.alloc().init();
+        // this.appColorScheme = MDCSemanticColorScheme.alloc().init();
         // }
         // return this.appColorScheme;
     }
@@ -20,4 +20,24 @@ export class Themer {
     }
 }
 
-export const themer = new Themer();
+function applyMixins(derivedCtor: any, baseCtors: any[]) {
+    baseCtors.forEach(baseCtor => {
+        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+            console.log('overrinding', name);
+            derivedCtor.prototype[name] = baseCtor.prototype[name]
+        })
+    })
+}
+export const themer = new Themer()
+
+export function overridePage() {
+    const NSPage = require("tns-core-modules/ui/page/page").Page
+    applyMixins(NSPage, [require("./page").Page])
+}export function overrideBottomSheet() {
+    const NSView = require("tns-core-modules/ui/core/view").View
+    applyMixins(NSView, [require("./bottomsheet").ViewWithBottomSheet])
+}
+export function install() {
+    overridePage()
+    overrideBottomSheet()
+}

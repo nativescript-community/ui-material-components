@@ -27,3 +27,5 @@ export class Themer {
 
 
 export var themer: Themer;
+
+export function install()

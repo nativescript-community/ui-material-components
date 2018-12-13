@@ -31,3 +31,6 @@ export class Themer {
 }
 
 export const themer = new Themer();
+
+export function install() {
+}
