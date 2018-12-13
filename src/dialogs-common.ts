@@ -18,25 +18,3 @@ declare module "tns-core-modules/ui/dialogs" {
     const OK: string
     const CANCEL: string
 }
-
-@CSSType("MDCButton")
-export abstract class ButtonBase extends Button {
-    public variant: string
-    @cssProperty elevation: number
-    @cssProperty rippleColor: Color | string
-
-    constructor() {
-        super()
-        this.style.margin = 5
-    }
-
-    // protected _borderRadius: number;
-    // get borderRadius(): string | Length {
-    //     return this._borderRadius;
-    // }
-}
-
-export const variantProperty = new Property<ButtonBase, string>({
-    name: "variant"
-})
-variantProperty.register(ButtonBase)
