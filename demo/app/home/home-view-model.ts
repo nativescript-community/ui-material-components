@@ -5,7 +5,8 @@ const examples = [
     'textfields',
     'sliders',
     'progress',
-    'dialogs'
+    'dialogs',
+    'bottomsheets'
 ];
 
 export class ViewModel {
