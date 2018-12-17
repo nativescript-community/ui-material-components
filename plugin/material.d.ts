@@ -17,6 +17,12 @@
 //     export {Button, FloatingActionButton, TextField, CardView, AppBar}
 // }
 
+
+export interface TypographyOptions {
+    fontFamily?: string
+    fontSize?: number
+}
+
 export class Themer {
     // appColorScheme: MDCSemanticColorScheme;
     getOrcreateAppColorScheme()

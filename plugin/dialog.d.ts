@@ -1,7 +1,7 @@
 import { AlertOptions, ConfirmOptions, PromptOptions, PromptResult, LoginResult, LoginOptions, ActionOptions } from 'tns-core-modules/ui/dialogs';
 import { Font } from 'tns-core-modules/ui/styling/font';
 import { Color } from 'tns-core-modules/color/color';
-import { TextAlignment } from 'tns-core-modules/ui/text-base/text-base';
+import { TextAlignment, View } from 'tns-core-modules/ui/text-base/text-base';
 import { ImageSource } from 'tns-core-modules/image-source/image-source';
 
 export * from 'tns-core-modules/ui/dialogs'
@@ -21,6 +21,10 @@ export interface MDCAlertControlerOptions {
 	titleFont?: Font;
 	titleIcon?: ImageSource;
 	titleIconTintColor?: Color;
+	customTitleView?: View;
+	view?: View | string;
+	context?:any
+	closeCallback?: Function
 }
 
 /**
