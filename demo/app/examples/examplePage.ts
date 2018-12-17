@@ -1,115 +1,135 @@
-import { NavigationButton } from "tns-core-modules/ui/action-bar/action-bar"
-import { Frame, EventData, View } from "tns-core-modules/ui/frame/frame"
-import { alert, prompt } from "~/nativescript-material-components/dialogs"
-import { ObservableArray } from "tns-core-modules/data/observable-array/observable-array"
-import * as http from "tns-core-modules/http"
-import { isAndroid, isIOS } from "tns-core-modules/platform"
-const builder = require("ui/builder")
+import { NavigationButton } from 'tns-core-modules/ui/action-bar/action-bar';
+import { EventData, Frame, View } from 'tns-core-modules/ui/frame/frame';
+import { alert, login, prompt } from '~/nativescript-material-components/dialogs';
+import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
+import * as http from 'tns-core-modules/http';
+import { isAndroid, isIOS } from 'tns-core-modules/platform';
+const builder = require('ui/builder');
 
 function getObjectClass(obj) {
-    if (typeof obj != "object" || obj === null) return false
-    else return /(\w+)\(/.exec(obj.constructor.toString())[1]
+    if (typeof obj !== 'object' || obj === null) return false;
+    else return /(\w+)\(/.exec(obj.constructor.toString())[1];
 }
 
 interface DataItem {
-    title: string
+    title: string;
 }
 
 class Model {
-    private _dataItems: ObservableArray<DataItem>
+    private _dataItems: ObservableArray<DataItem>;
     public get dataItems() {
         if (!this._dataItems) {
-            this.initDataItems()
+            this.initDataItems();
         }
-        return this._dataItems
+        return this._dataItems;
     }
 
     private initDataItems() {
         if (!this._dataItems) {
-            this._dataItems = new ObservableArray<DataItem>()
+            this._dataItems = new ObservableArray<DataItem>();
 
             for (let i = 1; i <= 50; i++) {
-                this._dataItems.push({ title: `item ${i}` })
+                this._dataItems.push({ title: `item ${i}` });
             }
         }
     }
     constructor(public title) {}
     onTap(args: EventData) {
-        const obj = args.object as View
-        const objId = obj.id
-        console.log("tapped", getObjectClass(obj), objId)
+        const obj = args.object as View;
+        const objId = obj.id;
+        console.log('tapped', getObjectClass(obj), objId);
         switch (objId) {
-            case "alert": {
-                alert("this is test Alert!")
-                break
+            case 'alert': {
+                alert('this is test Alert!');
+                break;
             }
-            case "prompt": {
+            case 'dialogCustomView': {
+                alert({
+                    okButtonText: 'OK',
+                    title: 'custom dialog view',
+                    context: {
+                        dataItems: this.dataItems
+                    },
+                    view: 'examples/bottomsheetinner2'
+                }).then(result => {
+                    alert(`closed  dialog with customview and result: ${result}`);
+                });
+                break;
+            }
+            case 'prompt': {
                 prompt({
-                    message: "this is test Prompt!",
-                    okButtonText: "OK",
-                    cancelButtonText: "Cancel",
-                    title: "title?"
-                })
-                break
+                    message: 'this is test Prompt!',
+                    okButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    title: 'title?'
+                }).then(result=>console.log('prompt result', result));
+                break;
             }
-            case "bottomsheet1": {
+            case 'login': {
+                login({
+                    message: 'this is test Prompt!',
+                    okButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    title: 'title?',
+                    userName:'my username?',
+                    password:'my password?'
+                }).then(result=>console.log('login result', result));
+                break;
+            }
+            case 'bottomsheet1': {
                 obj.showBottomSheet({
-                    view: "examples/bottomsheetinner1",
+                    view: 'examples/bottomsheetinner1',
                     context: {},
                     closeCallback: objId => {
-                        alert(`bottomsheet closed ${objId}`)
+                        alert(`bottomsheet closed ${objId}`);
                     }
-                })
-                break
+                });
+                break;
             }
-            case "bottomsheet2": {
+            case 'bottomsheet2': {
                 obj.showBottomSheet({
-                    view: "examples/bottomsheetinner2",
-                    trackingScrollView: "listview",
+                    view: 'examples/bottomsheetinner2',
+                    trackingScrollView: 'listview',
                     context: {
                         dataItems: this.dataItems
                     },
                     closeCallback: objId => {
-                        alert(`bottomsheet closed ${objId}`)
+                        alert(`bottomsheet closed ${objId}`);
                     }
-                })
-                break
+                });
+                break;
             }
         }
     }
 }
 
 export function onNavigatingTo(args) {
-    const page = args.object
-    const context = page.navigationContext
+    const page = args.object;
+    const context = page.navigationContext;
 
-    page.bindingContext = new Model(context.example)
+    page.bindingContext = new Model(context.example);
 
     try {
-        const theModule = require("./" + context.example)
-        console.log(
-            "trying to load onNavigatingTo for",
-            "examples/" + context.example
-        ),
-            theModule
+        const theModule = require('./' + context.example);
+        console.log('trying to load onNavigatingTo for', 'examples/' + context.example), theModule;
         if (theModule && theModule.onNavigatingTo) {
-            theModule.onNavigatingTo(args)
+            theModule.onNavigatingTo(args);
         }
     } catch (e) {
         // console.log('error', e)
     }
 
-    const container = page.getViewById("container")
+    const container = page.getViewById('container');
     const component = builder.load({
-        path: "examples",
+        path: 'examples',
         name: context.example
-    })
+    });
 
-    container.addChild(component)
+    container.addChild(component);
 }
 
 export function onBack(args) {
-    const navigationButton = args.object as NavigationButton
-    const frame = navigationButton.page.frame as Frame
-    frame.goBack()
+    const navigationButton = args.object as NavigationButton;
+    const frame = navigationButton.page.frame as Frame;
+    frame.goBack();
 }
