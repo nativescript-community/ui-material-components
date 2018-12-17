@@ -5,6 +5,7 @@ const examples = [
     'textfields',
     'sliders',
     'progress',
+    'activityindicators',
     'dialogs',
     'bottomsheets'
 ];

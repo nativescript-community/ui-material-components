@@ -1,10 +1,11 @@
 <StackLayout 
     xmlns:lv="nativescript-ui-listview"
     xmlns:mdcr="nativescript-material-components/ripple" 
-    >
-    <ListView id="listview" height="200" items="{{ dataItems }}" itemTap="onTap" class="list-group">
+    height="100"
+    backgroundColor="blue">
+    <ListView id="listview" items="{{ dataItems }}" itemTap="onTap" class="list-group">
         <ListView.itemTemplate>
-            <mdcr:Ripple class="list-group-item item-with-border">
+            <mdcr:Ripple class="list-group-item"  height="50" borderBottomColor="lightGray" borderBottomWidth="1">
                 <Label text="{{ title }}" textWrap="true" class="title"/>
             </mdcr:Ripple>
         </ListView.itemTemplate>

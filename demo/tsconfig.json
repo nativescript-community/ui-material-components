@@ -31,9 +31,6 @@
             ]
         }
     },
-    "exclude": [
-        "node_modules",
-        "platforms"
-    ],
+    "exclude": ["node_modules", "platforms", "**/angular"],
     "compileOnSave": false
 }
