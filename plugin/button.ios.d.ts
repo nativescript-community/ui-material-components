@@ -1,9 +1,10 @@
-import { ButtonBase } from "./button-common";
+import { ButtonBase } from './button-common';
+import { Color } from 'tns-core-modules/ui/page/page';
 export declare class Button extends ButtonBase {
     nativeViewProtected: MDCButton;
     _ios: MDCButton;
     applyShapeScheme(): void;
-    getRippleColor(color: string): any;
+    getRippleColor(color: Color): any;
     createNativeView(): MDCButton;
     shapeScheme: MDCShapeScheme;
     private getShapeScheme();

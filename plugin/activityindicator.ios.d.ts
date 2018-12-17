@@ -1,5 +1,5 @@
-import { ActivityIndicatorBase } from "./activityindicator-common";
-declare module "tns-core-modules/ui/core/view" {
+import { ActivityIndicatorBase } from './activityindicator-common';
+declare module 'tns-core-modules/ui/core/view' {
     interface View {
         _onSizeChanged(): any;
     }

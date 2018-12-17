@@ -5,3 +5,6 @@ export declare class Themer {
     setPrimaryColorVariant(value: string): void;
 }
 export declare const themer: Themer;
+export declare function overridePage(): void;
+export declare function overrideBottomSheet(): void;
+export declare function install(): void;

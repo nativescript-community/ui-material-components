@@ -1,7 +1,8 @@
 import { RippleBase } from './ripple-common';
+import { Color } from 'tns-core-modules/ui/page/page';
 export declare class Ripple extends RippleBase {
-    getRippleColor(color: string): any;
+    getRippleColor(color: Color): any;
     inkTouchController: MDCInkTouchController;
     readonly ios: MDCInkView;
-    createNativeView(): UIButton;
+    createNativeView(): UIView;
 }

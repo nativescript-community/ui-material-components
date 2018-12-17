@@ -2,4 +2,5 @@ import { ActivityIndicator as NSActivityIndicator } from 'tns-core-modules/ui/ac
 export declare abstract class ActivityIndicatorBase extends NSActivityIndicator {
     startAnimating(): void;
     stopAnimating(): void;
+    onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void;
 }
