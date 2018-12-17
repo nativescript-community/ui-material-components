@@ -8,8 +8,8 @@ export abstract class CardViewBase extends StackLayout {
     protected _borderColor: Color;
     protected _borderWidth: number;
 
-    @cssProperty elevation: number
-    @cssProperty rippleColor: string | Color
+    @cssProperty elevation: number;
+    @cssProperty rippleColor: string | Color;
 
     get borderRadius(): string | Length {
         return this._borderRadius;
@@ -20,5 +20,4 @@ export abstract class CardViewBase extends StackLayout {
     get borderColor(): Color {
         return this._borderColor;
     }
-
 }

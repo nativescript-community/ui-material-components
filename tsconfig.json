@@ -26,6 +26,6 @@
         }
     },
     "include": ["src/**/*.ts", "./references.d.ts", "./src/references.d.ts"],
-    "exclude": ["node_modules", ".git", "dist"],
+    "exclude": ["node_modules", "platforms"],
     "compileOnSave": false
 }

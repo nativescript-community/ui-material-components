@@ -1,43 +1,37 @@
-import {
-    CSSType,
-    Property,
-    Color,
-    colorProperty,
-    booleanConverter
-} from "tns-core-modules/ui/core/view"
-import { Slider as NSSlider } from "tns-core-modules/ui/slider"
-import { rippleColorProperty, cssProperty } from "./cssproperties"
+import { booleanConverter, Color, colorProperty, CSSType, Property } from 'tns-core-modules/ui/core/view';
+import { Slider as NSSlider } from 'tns-core-modules/ui/slider';
+import { cssProperty, rippleColorProperty } from './cssproperties';
 
-@CSSType("MDCSlider")
+@CSSType('MDCSlider')
 export abstract class SliderBase extends NSSlider {
-    @cssProperty rippleColor: Color | string
-    @cssProperty trackBackgroundColor: Color | string
-    @cssProperty elevation: number
+    @cssProperty rippleColor: Color | string;
+    @cssProperty trackBackgroundColor: Color | string;
+    @cssProperty elevation: number;
     constructor() {
-        super()
+        super();
     }
     [colorProperty.setNative](color: Color) {
-        this[rippleColorProperty.setNative](color)
-        this[thumbColorProperty.setNative](color)
-        this[trackFillColorProperty.setNative](color)
+        this[rippleColorProperty.setNative](color);
+        this[thumbColorProperty.setNative](color);
+        this[trackFillColorProperty.setNative](color);
     }
 }
 
 export const thumbColorProperty = new Property<SliderBase, Color>({
-    name: "thumbColor",
+    name: 'thumbColor',
     equalityComparer: Color.equals,
     valueConverter: v => new Color(v)
-})
-thumbColorProperty.register(SliderBase)
+});
+thumbColorProperty.register(SliderBase);
 
 export const trackFillColorProperty = new Property<SliderBase, Color>({
-    name: "trackFillColor",
+    name: 'trackFillColor',
     equalityComparer: Color.equals,
     valueConverter: v => new Color(v)
-})
-trackFillColorProperty.register(SliderBase)
+});
+trackFillColorProperty.register(SliderBase);
 export const thumbHollowAtStartProperty = new Property<SliderBase, boolean>({
-    name: "thumbHollowAtStart",
+    name: 'thumbHollowAtStart',
     valueConverter: booleanConverter
-})
-thumbHollowAtStartProperty.register(SliderBase)
+});
+thumbHollowAtStartProperty.register(SliderBase);

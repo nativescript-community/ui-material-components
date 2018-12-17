@@ -1,10 +1,5 @@
 import * as common from './textfield.common';
-import {
-    Color,
-    hintProperty,
-    maxLengthProperty,
-    placeholderColorProperty
-} from 'tns-core-modules/ui/editable-text-base/editable-text-base';
+import { Color, hintProperty, maxLengthProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
 
 import * as application from 'application';
 import { errorColorProperty, errorProperty, floatingProperty, helperProperty } from './cssproperties';
@@ -27,7 +22,6 @@ export class TextField extends common.TextField {
     }
 
     public createNativeView() {
-
         let layoutIdName = 'material_text_field';
         if (this.style['variant'] === 'filled') {
             layoutIdName = 'material_text_field_filled';
@@ -40,11 +34,11 @@ export class TextField extends common.TextField {
         let editText: android.support.design.widget.TextInputEditText;
 
         if (layoutId !== 0) {
-            layout = (this.layoutView = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as android.support.design.widget.TextInputLayout);
-            editText = (this.editText = (layout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText);
+            layout = this.layoutView = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as android.support.design.widget.TextInputLayout;
+            editText = this.editText = (layout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText;
         } else {
-            layout = (this.layoutView = new android.support.design.widget.TextInputLayout(this._context));
-            editText = (this.editText = new android.support.design.widget.TextInputEditText(layout.getContext()));
+            layout = this.layoutView = new android.support.design.widget.TextInputLayout(this._context);
+            editText = this.editText = new android.support.design.widget.TextInputEditText(layout.getContext());
             editText.setLayoutParams(new android.widget.LinearLayout.LayoutParams(android.widget.FrameLayout.LayoutParams.MATCH_PARENT, android.widget.FrameLayout.LayoutParams.WRAP_CONTENT));
             layout.addView(editText);
         }
@@ -73,9 +67,11 @@ export class TextField extends common.TextField {
             // because of setFocusableInTouchMode fix we need this for focus to work
             const oldDesc = this.layoutView.getDescendantFocusability();
             this.layoutView.setDescendantFocusability(android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS);
-        // }
+            // }
             this.layoutView.requestFocus();
-            setTimeout(() => { this.layoutView.setDescendantFocusability(oldDesc); }, 0);
+            setTimeout(() => {
+                this.layoutView.setDescendantFocusability(oldDesc);
+            }, 0);
         }
 
         return false;

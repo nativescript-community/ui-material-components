@@ -20,8 +20,8 @@ export class Ripple extends RippleBase {
         // if (this.style['rippleColor']) {
         //     this.inkTouchController.defaultInkView.inkColor = this.getRippleColor(this.style['rippleColor']);
         // } else {
-            const colorScheme = themer.getAppColorScheme();
-            MDCInkColorThemer.applyColorSchemeToInkView(colorScheme, this.inkTouchController.defaultInkView);
+        const colorScheme = themer.getAppColorScheme();
+        MDCInkColorThemer.applyColorSchemeToInkView(colorScheme, this.inkTouchController.defaultInkView);
         // }
         return view;
     }

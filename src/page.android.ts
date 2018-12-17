@@ -1,5 +1,5 @@
-import { Page as INSPage, View } from "tns-core-modules/ui/page/page"
-import { ActionBar } from "tns-core-modules/ui/action-bar/action-bar"
+import { Page as INSPage, View } from 'tns-core-modules/ui/page/page';
+import { ActionBar } from 'tns-core-modules/ui/action-bar/action-bar';
 import * as application from 'application';
 
 function getLayout(id: string) {
@@ -12,20 +12,19 @@ function getId(id: string) {
     return context.getResources().getIdentifier(id, 'id', context.getPackageName());
 }
 
-
 export class Page extends INSPage {
-    appBarLayout: android.support.design.widget.AppBarLayout
-    collapsingToolbarLayout: android.support.design.widget.CollapsingToolbarLayout
-    nativeViewProtected: android.support.design.widget.CoordinatorLayout
-    contentLayout: android.widget.LinearLayout
+    appBarLayout: android.support.design.widget.AppBarLayout;
+    collapsingToolbarLayout: android.support.design.widget.CollapsingToolbarLayout;
+    nativeViewProtected: android.support.design.widget.CoordinatorLayout;
+    contentLayout: android.widget.LinearLayout;
 
     createNativeView() {
         const layout = android.view.LayoutInflater.from(this._context).inflate(getLayout('material_page'), null, false) as android.support.design.widget.CoordinatorLayout;
-        
+
         this.appBarLayout = layout.findViewById(getId('appbarLayout')) as android.support.design.widget.AppBarLayout;
         this.collapsingToolbarLayout = layout.findViewById(getId('collapsingToolbarLayout')) as android.support.design.widget.CollapsingToolbarLayout;
         this.contentLayout = layout.findViewById(getId('contentLayout')) as android.widget.LinearLayout;
-        return layout
+        return layout;
     }
     _addViewToNativeVisualTree(child: View, atIndex?: number): boolean {
         // super._addViewToNativeVisualTree(child);
@@ -37,16 +36,16 @@ export class Page extends INSPage {
                 params.setScrollFlags(0);
                 // params.setScrollFlags(android.support.design.widget.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | android.support.design.widget.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
                 child.nativeViewProtected.setLayoutParams(params);
-                this.appBarLayout.addView(child.nativeViewProtected)
+                this.appBarLayout.addView(child.nativeViewProtected);
             } else {
-                this.contentLayout.addView(child.nativeViewProtected)
+                this.contentLayout.addView(child.nativeViewProtected);
             }
             if (child instanceof View) {
-                ;(this as any)._updateNativeLayoutParams(child)
+                (this as any)._updateNativeLayoutParams(child);
             }
-            return true
+            return true;
         }
 
-        return false
+        return false;
     }
 }

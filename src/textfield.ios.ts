@@ -23,7 +23,7 @@ export class TextField extends common.TextField {
 
     variant = 'underline';
     public createNativeView() {
-        const view =  MDCTextField.new();
+        const view = MDCTextField.new();
         const colorScheme = themer.getAppColorScheme();
         if (this.style.variant === 'filled') {
             this._controller = MDCTextInputControllerFilled.alloc().initWithTextInput(view);
@@ -73,5 +73,4 @@ export class TextField extends common.TextField {
     [errorProperty.setNative](value: string) {
         this._controller.setErrorTextErrorAccessibilityValue(value, value);
     }
-
 }

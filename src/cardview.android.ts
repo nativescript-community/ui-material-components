@@ -1,77 +1,60 @@
-import { CardViewBase } from "./cardview-common"
-import { elevationProperty, rippleColorProperty } from "./cssproperties"
-import { Color, Length } from "tns-core-modules/ui/page/page"
-import { ad } from "tns-core-modules/utils/utils"
+import { CardViewBase } from './cardview-common';
+import { elevationProperty, rippleColorProperty } from './cssproperties';
+import { Color, Length } from 'tns-core-modules/ui/page/page';
+import { ad } from 'tns-core-modules/utils/utils';
 
-let MDCCardView: typeof android.support.design.card.MaterialCardView
-let BACKGROUND_DEFAULT_STATE_1: number[]
-let BACKGROUND_DEFAULT_STATE_2: number[]
-let BACKGROUND_SELECTED_STATE: number[]
-let BACKGROUND_CHECKED_STATE: number[]
-let BACKGROUND_FOCUSED_STATE: number[]
-let BACKGROUND_DISABLED_STATE: number[]
+let MDCCardView: typeof android.support.design.card.MaterialCardView;
+let BACKGROUND_DEFAULT_STATE_1: number[];
+let BACKGROUND_DEFAULT_STATE_2: number[];
+let BACKGROUND_SELECTED_STATE: number[];
+let BACKGROUND_CHECKED_STATE: number[];
+let BACKGROUND_FOCUSED_STATE: number[];
+let BACKGROUND_DISABLED_STATE: number[];
 
 function initMDCCardView() {
     if (!MDCCardView) {
         // if (android.os.Build.VERSION.SDK_INT >= 23) {
-            MDCCardView = android.support.design.card.MaterialCardView
+        MDCCardView = android.support.design.card.MaterialCardView;
         // } else {
         //     initializePreLollipopCardView()
         //     MDCCardView = PreLollipopCardView as any
         // }
-        BACKGROUND_DEFAULT_STATE_1 = [
-            android.R.attr.state_window_focused,
-            android.R.attr.state_enabled
-        ]
-        BACKGROUND_DEFAULT_STATE_2 = [android.R.attr.state_enabled]
-        BACKGROUND_SELECTED_STATE = [
-            android.R.attr.state_window_focused,
-            android.R.attr.state_enabled,
-            android.R.attr.state_pressed
-        ]
+        BACKGROUND_DEFAULT_STATE_1 = [android.R.attr.state_window_focused, android.R.attr.state_enabled];
+        BACKGROUND_DEFAULT_STATE_2 = [android.R.attr.state_enabled];
+        BACKGROUND_SELECTED_STATE = [android.R.attr.state_window_focused, android.R.attr.state_enabled, android.R.attr.state_pressed];
 
-        BACKGROUND_CHECKED_STATE = [
-            android.R.attr.state_window_focused,
-            android.R.attr.state_enabled,
-            android.R.attr.state_checked
-        ]
-        BACKGROUND_FOCUSED_STATE = [
-            android.R.attr.state_focused,
-            android.R.attr.state_window_focused,
-            android.R.attr.state_enabled
-        ]
-        BACKGROUND_DISABLED_STATE = [-android.R.attr.state_enabled]
+        BACKGROUND_CHECKED_STATE = [android.R.attr.state_window_focused, android.R.attr.state_enabled, android.R.attr.state_checked];
+        BACKGROUND_FOCUSED_STATE = [android.R.attr.state_focused, android.R.attr.state_window_focused, android.R.attr.state_enabled];
+        BACKGROUND_DISABLED_STATE = [-android.R.attr.state_enabled];
     }
 }
 
-interface PreLollipopCardView
-    extends android.support.design.card.MaterialCardView {
+interface PreLollipopCardView extends android.support.design.card.MaterialCardView {
     // tslint:disable-next-line:no-misused-new
-    new (context): PreLollipopCardView
+    new (context): PreLollipopCardView;
 }
-let PreLollipopCardView: PreLollipopCardView
+let PreLollipopCardView: PreLollipopCardView;
 
 function initializePreLollipopCardView() {
     if (PreLollipopCardView) {
-        return
+        return;
     }
-    class PreLollipopCardViewImpl extends android.support.design.card
-        .MaterialCardView {
+    class PreLollipopCardViewImpl extends android.support.design.card.MaterialCardView {
         constructor(context) {
-            super(context)
-            return global.__native(this)
+            super(context);
+            return global.__native(this);
         }
-        private mForeground
+        private mForeground;
 
-        private mSelfBounds = new android.graphics.Rect()
+        private mSelfBounds = new android.graphics.Rect();
 
-        private mOverlayBounds = new android.graphics.Rect()
+        private mOverlayBounds = new android.graphics.Rect();
 
-        private mForegroundGravity = android.view.Gravity.FILL
+        private mForegroundGravity = android.view.Gravity.FILL;
 
-        protected mForegroundInPadding = true
+        protected mForegroundInPadding = true;
 
-        mForegroundBoundsChanged = false
+        mForegroundBoundsChanged = false;
 
         /**
          * Describes how the foreground is positioned.
@@ -80,7 +63,7 @@ function initializePreLollipopCardView() {
          * @see #setForegroundGravity(int)
          */
         getForegroundGravity() {
-            return this.mForegroundGravity
+            return this.mForegroundGravity;
         }
 
         /**
@@ -91,52 +74,40 @@ function initializePreLollipopCardView() {
          */
         setForegroundGravity(foregroundGravity) {
             if (this.mForegroundGravity !== foregroundGravity) {
-                if (
-                    (foregroundGravity &
-                        android.view.Gravity
-                            .RELATIVE_HORIZONTAL_GRAVITY_MASK) ===
-                    0
-                ) {
-                    foregroundGravity |= android.view.Gravity.START
+                if ((foregroundGravity & android.view.Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK) === 0) {
+                    foregroundGravity |= android.view.Gravity.START;
                 }
 
-                if (
-                    (foregroundGravity &
-                        android.view.Gravity.VERTICAL_GRAVITY_MASK) ===
-                    0
-                ) {
-                    foregroundGravity |= android.view.Gravity.TOP
+                if ((foregroundGravity & android.view.Gravity.VERTICAL_GRAVITY_MASK) === 0) {
+                    foregroundGravity |= android.view.Gravity.TOP;
                 }
 
-                this.mForegroundGravity = foregroundGravity
+                this.mForegroundGravity = foregroundGravity;
 
-                if (
-                    this.mForegroundGravity === android.view.Gravity.FILL &&
-                    this.mForeground != null
-                ) {
-                    const padding = new android.graphics.Rect()
-                    this.mForeground.getPadding(padding)
+                if (this.mForegroundGravity === android.view.Gravity.FILL && this.mForeground != null) {
+                    const padding = new android.graphics.Rect();
+                    this.mForeground.getPadding(padding);
                 }
 
-                this.requestLayout()
+                this.requestLayout();
             }
         }
 
         verifyDrawable(who) {
-            return super.verifyDrawable(who) || who === this.mForeground
+            return super.verifyDrawable(who) || who === this.mForeground;
         }
 
         jumpDrawablesToCurrentState() {
-            super.jumpDrawablesToCurrentState()
+            super.jumpDrawablesToCurrentState();
             if (this.mForeground != null) {
-                this.mForeground.jumpToCurrentState()
+                this.mForeground.jumpToCurrentState();
             }
         }
 
         drawableStateChanged() {
-            super.drawableStateChanged()
+            super.drawableStateChanged();
             if (this.mForeground != null && this.mForeground.isStateful()) {
-                this.mForeground.setState(this.getDrawableState())
+                this.mForeground.setState(this.getDrawableState());
             }
         }
 
@@ -151,27 +122,27 @@ function initializePreLollipopCardView() {
         setForeground(drawable) {
             if (this.mForeground !== drawable) {
                 if (this.mForeground != null) {
-                    this.mForeground.setCallback(null)
-                    this.unscheduleDrawable(this.mForeground)
+                    this.mForeground.setCallback(null);
+                    this.unscheduleDrawable(this.mForeground);
                 }
 
-                this.mForeground = drawable
+                this.mForeground = drawable;
 
                 if (drawable != null) {
-                    this.setWillNotDraw(false)
-                    drawable.setCallback(this)
+                    this.setWillNotDraw(false);
+                    drawable.setCallback(this);
                     if (drawable.isStateful()) {
-                        drawable.setState(this.getDrawableState())
+                        drawable.setState(this.getDrawableState());
                     }
                     if (this.mForegroundGravity === android.view.Gravity.FILL) {
-                        const padding = new android.graphics.Rect()
-                        drawable.getPadding(padding)
+                        const padding = new android.graphics.Rect();
+                        drawable.getPadding(padding);
                     }
                 } else {
-                    this.setWillNotDraw(true)
+                    this.setWillNotDraw(true);
                 }
-                this.requestLayout()
-                this.invalidate()
+                this.requestLayout();
+                this.invalidate();
             }
         }
 
@@ -182,99 +153,81 @@ function initializePreLollipopCardView() {
          * @return A Drawable or null if no foreground was set.
          */
         getForeground() {
-            return this.mForeground
+            return this.mForeground;
         }
 
         onLayout(changed: boolean, left, top, right, bottom) {
-            super.onLayout(changed, left, top, right, bottom)
-            this.mForegroundBoundsChanged =
-                this.mForegroundBoundsChanged || changed
+            super.onLayout(changed, left, top, right, bottom);
+            this.mForegroundBoundsChanged = this.mForegroundBoundsChanged || changed;
         }
 
         onSizeChanged(w, h, oldw, oldh) {
-            super.onSizeChanged(w, h, oldw, oldh)
-            this.mForegroundBoundsChanged = true
+            super.onSizeChanged(w, h, oldw, oldh);
+            this.mForegroundBoundsChanged = true;
         }
 
         draw(canvas) {
-            super.draw(canvas)
+            super.draw(canvas);
 
             if (this.mForeground != null) {
-                const foreground = this.mForeground
+                const foreground = this.mForeground;
 
                 if (this.mForegroundBoundsChanged) {
-                    this.mForegroundBoundsChanged = false
-                    const selfBounds = this.mSelfBounds
-                    const overlayBounds = this.mOverlayBounds
+                    this.mForegroundBoundsChanged = false;
+                    const selfBounds = this.mSelfBounds;
+                    const overlayBounds = this.mOverlayBounds;
 
-                    const w = this.getRight() - this.getLeft()
-                    const h = this.getBottom() - this.getTop()
+                    const w = this.getRight() - this.getLeft();
+                    const h = this.getBottom() - this.getTop();
 
                     if (this.mForegroundInPadding) {
-                        selfBounds.set(0, 0, w, h)
+                        selfBounds.set(0, 0, w, h);
                     } else {
-                        selfBounds.set(
-                            this.getPaddingLeft(),
-                            this.getPaddingTop(),
-                            w - this.getPaddingRight(),
-                            h - this.getPaddingBottom()
-                        )
+                        selfBounds.set(this.getPaddingLeft(), this.getPaddingTop(), w - this.getPaddingRight(), h - this.getPaddingBottom());
                     }
 
-                    android.view.Gravity.apply(
-                        this.mForegroundGravity,
-                        foreground.getIntrinsicWidth(),
-                        foreground.getIntrinsicHeight(),
-                        selfBounds,
-                        overlayBounds
-                    )
-                    foreground.setBounds(overlayBounds)
+                    android.view.Gravity.apply(this.mForegroundGravity, foreground.getIntrinsicWidth(), foreground.getIntrinsicHeight(), selfBounds, overlayBounds);
+                    foreground.setBounds(overlayBounds);
                 }
 
-                foreground.draw(canvas)
+                foreground.draw(canvas);
             }
         }
 
         drawableHotspotChanged(x, y) {
-            super.drawableHotspotChanged(x, y)
+            super.drawableHotspotChanged(x, y);
             if (this.mForeground != null) {
-                this.mForeground.setHotspot(x, y)
+                this.mForeground.setHotspot(x, y);
             }
         }
     }
-    PreLollipopCardView = PreLollipopCardViewImpl as any
+    PreLollipopCardView = PreLollipopCardViewImpl as any;
 }
 
 export class CardView extends CardViewBase {
-    nativeViewProtected: android.support.design.card.MaterialCardView
+    nativeViewProtected: android.support.design.card.MaterialCardView;
 
     get android(): android.support.design.card.MaterialCardView {
-        return this.nativeView
+        return this.nativeView;
     }
     private getSelectedItemDrawable(context: android.content.Context) {
-        const ta = this._context.obtainStyledAttributes([
-            ad.resources.getId(":attr/selectableItemBackground")
-        ])
-        const selectedItemDrawable = ta.getDrawable(0)
-        ta.recycle()
-        return selectedItemDrawable
+        const ta = this._context.obtainStyledAttributes([ad.resources.getId(':attr/selectableItemBackground')]);
+        const selectedItemDrawable = ta.getDrawable(0);
+        ta.recycle();
+        return selectedItemDrawable;
     }
 
     private createRoundRectShape() {
-        const radius = this._borderRadius
-        const radii = Array.create("float", 8)
+        const radius = this._borderRadius;
+        const radii = Array.create('float', 8);
         for (let index = 0; index < 8; index++) {
-            radii[index] = radius
+            radii[index] = radius;
         }
-        return new android.graphics.drawable.shapes.RoundRectShape(
-            radii,
-            null,
-            null
-        )
+        return new android.graphics.drawable.shapes.RoundRectShape(radii, null, null);
     }
     private createForegroundShapeDrawable() {
-        const shape = this.createRoundRectShape()
-        return new android.graphics.drawable.ShapeDrawable(shape)
+        const shape = this.createRoundRectShape();
+        return new android.graphics.drawable.ShapeDrawable(shape);
     }
     // private createCompatRippleDrawable(rippleColor) {
     //     const rippleDrawable = new android.graphics.drawable.StateListDrawable()
@@ -286,158 +239,121 @@ export class CardView extends CardViewBase {
     private createStateListAnimator(view: android.view.View) {
         const elevation = android.support.v4.view.ViewCompat.getElevation(view);
         const translationZ = android.support.v4.view.ViewCompat.getTranslationZ(view);
-        const elevationSelected = elevation * 8 //for now to be the same as iOS
-        const translationSelectedZ = translationZ + 6
-        const animationDuration = 100
-        const listAnimator = new android.animation.StateListAnimator()
-        let animators = new java.util.ArrayList<android.animation.Animator>()
-        let set = new android.animation.AnimatorSet()
-        let animator = android.animation.ObjectAnimator.ofFloat(
-            view,
-            "translationZ",
-            [translationSelectedZ]
-        )
-        animators.add(animator)
-        animator = android.animation.ObjectAnimator.ofFloat(view, "elevation", [
-            elevationSelected
-        ])
+        const elevationSelected = elevation * 8; // for now to be the same as iOS
+        const translationSelectedZ = translationZ + 6;
+        const animationDuration = 100;
+        const listAnimator = new android.animation.StateListAnimator();
+        let animators = new java.util.ArrayList<android.animation.Animator>();
+        let set = new android.animation.AnimatorSet();
+        let animator = android.animation.ObjectAnimator.ofFloat(view, 'translationZ', [translationSelectedZ]);
+        animators.add(animator);
+        animator = android.animation.ObjectAnimator.ofFloat(view, 'elevation', [elevationSelected]);
         // animator.setDuration(0)
-        animators.add(animator)
-        set.playTogether(animators)
-        set.setDuration(animationDuration)
-        listAnimator.addState(BACKGROUND_SELECTED_STATE, set)
+        animators.add(animator);
+        set.playTogether(animators);
+        set.setDuration(animationDuration);
+        listAnimator.addState(BACKGROUND_SELECTED_STATE, set);
 
-        animators.clear()
-        set = new android.animation.AnimatorSet()
-        animator = android.animation.ObjectAnimator.ofFloat(
-            view,
-            "translationZ",
-            [translationSelectedZ]
-        )
+        animators.clear();
+        set = new android.animation.AnimatorSet();
+        animator = android.animation.ObjectAnimator.ofFloat(view, 'translationZ', [translationSelectedZ]);
         // animator.setDuration(animationDuration)
-        animators.add(animator)
-        animator = android.animation.ObjectAnimator.ofFloat(view, "elevation", [
-            elevationSelected
-        ])
+        animators.add(animator);
+        animator = android.animation.ObjectAnimator.ofFloat(view, 'elevation', [elevationSelected]);
         // animator.setDuration(0)
-        animators.add(animator)
-        set.playTogether(animators)
-        set.setDuration(animationDuration)
-        listAnimator.addState(BACKGROUND_FOCUSED_STATE, set)
+        animators.add(animator);
+        set.playTogether(animators);
+        set.setDuration(animationDuration);
+        listAnimator.addState(BACKGROUND_FOCUSED_STATE, set);
 
-        animators.clear()
-        set = new android.animation.AnimatorSet()
-        animator = android.animation.ObjectAnimator.ofFloat(
-            view,
-            "translationZ",
-            [translationZ]
-        )
+        animators.clear();
+        set = new android.animation.AnimatorSet();
+        animator = android.animation.ObjectAnimator.ofFloat(view, 'translationZ', [translationZ]);
         // animator.setDuration(animationDuration)
         // animator.setStartDelay(animationDuration)
-        animators.add(animator)
-        animator = android.animation.ObjectAnimator.ofFloat(view, "elevation", [
-            elevation
-        ])
+        animators.add(animator);
+        animator = android.animation.ObjectAnimator.ofFloat(view, 'elevation', [elevation]);
         // animator.setDuration(0)
-        animators.add(animator)
-        set.playTogether(animators)
-        set.setDuration(animationDuration)
-        set.setStartDelay(animationDuration)
-        listAnimator.addState(BACKGROUND_DEFAULT_STATE_2, set)
+        animators.add(animator);
+        set.playTogether(animators);
+        set.setDuration(animationDuration);
+        set.setStartDelay(animationDuration);
+        listAnimator.addState(BACKGROUND_DEFAULT_STATE_2, set);
 
-        animators.clear()
-        set = new android.animation.AnimatorSet()
-        animator = android.animation.ObjectAnimator.ofFloat(
-            view,
-            "translationZ",
-            [translationZ]
-        )
+        animators.clear();
+        set = new android.animation.AnimatorSet();
+        animator = android.animation.ObjectAnimator.ofFloat(view, 'translationZ', [translationZ]);
         // animator.setDuration(0)
-        animators.add(animator)
-        animator = android.animation.ObjectAnimator.ofFloat(view, "elevation", [
-            elevation
-        ])
-        animator.setDuration(0)
-        animators.add(animator)
-        set.playTogether(animators)
-        set.setDuration(animationDuration)
-        set.setStartDelay(animationDuration)
-        listAnimator.addState([], set)
+        animators.add(animator);
+        animator = android.animation.ObjectAnimator.ofFloat(view, 'elevation', [elevation]);
+        animator.setDuration(0);
+        animators.add(animator);
+        set.playTogether(animators);
+        set.setDuration(animationDuration);
+        set.setStartDelay(animationDuration);
+        listAnimator.addState([], set);
 
-        view.setStateListAnimator(listAnimator)
+        view.setStateListAnimator(listAnimator);
     }
 
     public createNativeView() {
-        initMDCCardView()
+        initMDCCardView();
         // const newContext = new android.view.ContextThemeWrapper(this._context, ad.resources.getId('@style/Widget.MaterialComponents.CardView'));
-        const view = new MDCCardView(this._context)
+        const view = new MDCCardView(this._context);
         if (android.os.Build.VERSION.SDK_INT >= 21) {
-            this.createStateListAnimator(view)
+            this.createStateListAnimator(view);
         }
-        view.setClickable(true)
+        view.setClickable(true);
 
         if (this._borderRadius !== undefined) {
-            view.setRadius(this._borderRadius)
+            view.setRadius(this._borderRadius);
         }
         // needs to be done after setRadius
-        this.setRippleDrawable(view)
-        return view
+        this.setRippleDrawable(view);
+        return view;
     }
     getRippleColor(color: string) {
-        const temp = new Color(color)
-        return new Color(36, temp.r, temp.g, temp.b).android // default alpha is 0.14
+        const temp = new Color(color);
+        return new Color(36, temp.r, temp.g, temp.b).android; // default alpha is 0.14
     }
     setRippleDrawable(view) {
         if (android.os.Build.VERSION.SDK_INT >= 23) {
-        view.setForeground(this.getSelectedItemDrawable(this._context))
+            view.setForeground(this.getSelectedItemDrawable(this._context));
         } else {
-        //       view.setBackground(
-        //         this.createCompatRippleDrawable(
-        //           this.getRippleColor(this.style["rippleColor"] || 'red')
-        //         )
-        //       );
+            //       view.setBackground(
+            //         this.createCompatRippleDrawable(
+            //           this.getRippleColor(this.style["rippleColor"] || 'red')
+            //         )
+            //       );
         }
     }
 
     [elevationProperty.setNative](value: number) {
-        android.support.v4.view.ViewCompat.setElevation(
-            this.nativeViewProtected,
-            value
-        )
+        android.support.v4.view.ViewCompat.setElevation(this.nativeViewProtected, value);
     }
     [rippleColorProperty.setNative](color: Color) {
         if (android.os.Build.VERSION.SDK_INT >= 23) {
-            ;(this.nativeViewProtected.getForeground() as any).setColor(
-                android.content.res.ColorStateList.valueOf(
-                    color.android
-                )
-            )
+            (this.nativeViewProtected.getForeground() as any).setColor(android.content.res.ColorStateList.valueOf(color.android));
         } else {
-            this.setRippleDrawable(this.nativeViewProtected)
+            this.setRippleDrawable(this.nativeViewProtected);
         }
     }
     set borderRadius(value: string | Length) {
-        const newValue = (this._borderRadius = Length.toDevicePixels(
-            typeof value === "string" ? Length.parse(value) : value,
-            0
-        ))
+        const newValue = (this._borderRadius = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0));
         if (this.nativeViewProtected) {
-            this.nativeViewProtected.setRadius(newValue)
+            this.nativeViewProtected.setRadius(newValue);
         }
     }
     set borderWidth(value: string | Length) {
-        const newValue = (this._borderRadius = Length.toDevicePixels(
-            typeof value === "string" ? Length.parse(value) : value,
-            0
-        ))
+        const newValue = (this._borderRadius = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0));
         if (this.nativeViewProtected) {
-            this.nativeViewProtected.setStrokeWidth(newValue)
+            this.nativeViewProtected.setStrokeWidth(newValue);
         }
     }
     set borderColor(value: Color) {
-        this._borderColor = value
+        this._borderColor = value;
         if (this.nativeViewProtected) {
-            this.nativeViewProtected.setStrokeColor(value.android)
+            this.nativeViewProtected.setStrokeColor(value.android);
         }
     }
 }

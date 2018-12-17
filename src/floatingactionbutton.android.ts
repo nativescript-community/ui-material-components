@@ -69,11 +69,10 @@ export class FloatingActionButton extends FloatingActionButtonBase {
             if (value instanceof android.graphics.drawable.Drawable) {
                 this.nativeViewProtected.setBackgroundDrawable(value);
             } else {
-                
                 // if (android.os.Build.VERSION.SDK_INT >= 21) {
-                    if (value.color) {
-                        this.nativeViewProtected.setBackgroundTintList(android.content.res.ColorStateList.valueOf(value.color.android));
-                    }
+                if (value.color) {
+                    this.nativeViewProtected.setBackgroundTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                }
                 // } else {
                 //     (this as any)._redrawNativeBackground(value);
                 // }

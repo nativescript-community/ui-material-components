@@ -1,6 +1,6 @@
 // export * from './material.common';
 
-//stub class as we don't use this on android
+// stub class as we don't use this on android
 export class Themer {
     // appColorScheme: MDCSemanticColorScheme;
     getOrcreateAppColorScheme() {
@@ -24,20 +24,21 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
     baseCtors.forEach(baseCtor => {
         Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
             console.log('overrinding', name);
-            derivedCtor.prototype[name] = baseCtor.prototype[name]
-        })
-    })
+            derivedCtor.prototype[name] = baseCtor.prototype[name];
+        });
+    });
 }
-export const themer = new Themer()
+export const themer = new Themer();
 
 export function overridePage() {
-    const NSPage = require("tns-core-modules/ui/page/page").Page
-    applyMixins(NSPage, [require("./page").Page])
-}export function overrideBottomSheet() {
-    const NSView = require("tns-core-modules/ui/core/view").View
-    applyMixins(NSView, [require("./bottomsheet").ViewWithBottomSheet])
+    const NSPage = require('tns-core-modules/ui/page/page').Page;
+    applyMixins(NSPage, [require('./page').Page]);
+}
+export function overrideBottomSheet() {
+    const NSView = require('tns-core-modules/ui/core/view').View;
+    applyMixins(NSView, [require('./bottomsheet-common').ViewWithBottomSheetBase, require('./bottomsheet').ViewWithBottomSheet]);
 }
 export function install() {
-    overridePage()
-    overrideBottomSheet()
+    overridePage();
+    overrideBottomSheet();
 }
