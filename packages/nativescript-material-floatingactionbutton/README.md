@@ -1,7 +1,7 @@
 [![npm](https://img.shields.io/npm/v/nativescript-material-floatingactionbutton.svg)](https://www.npmjs.com/package/nativescript-material-floatingactionbutton)
 [![npm](https://img.shields.io/npm/dt/nativescript-material-floatingactionbutton.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-floatingactionbutton)
-[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-material-floatingactionbutton.svg)](https://github.com/bradmartin/nativescript-material-floatingactionbutton/network)
-[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-material-floatingactionbutton.svg)](https://github.com/bradmartin/nativescript-material-floatingactionbutton/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/network)
+[![GitHub stars](https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/stargazers)
 
 ## Installation
 

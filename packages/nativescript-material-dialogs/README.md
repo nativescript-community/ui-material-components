@@ -1,7 +1,7 @@
 [![npm](https://img.shields.io/npm/v/nativescript-material-dialogs.svg)](https://www.npmjs.com/package/nativescript-material-dialogs)
 [![npm](https://img.shields.io/npm/dt/nativescript-material-dialogs.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-dialogs)
-[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-material-dialogs.svg)](https://github.com/bradmartin/nativescript-material-dialogs/network)
-[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-material-dialogs.svg)](https://github.com/bradmartin/nativescript-material-dialogs/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/network)
+[![GitHub stars](https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/stargazers)
 
 # NativeScript Material Dialogs
 

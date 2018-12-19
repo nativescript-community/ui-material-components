@@ -1,7 +1,7 @@
 [![npm](https://img.shields.io/npm/v/nativescript-material-progress.svg)](https://www.npmjs.com/package/nativescript-material-progress)
 [![npm](https://img.shields.io/npm/dt/nativescript-material-progress.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-progress)
-[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-material-progress.svg)](https://github.com/bradmartin/nativescript-material-progress/network)
-[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-material-progress.svg)](https://github.com/bradmartin/nativescript-material-progress/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/network)
+[![GitHub stars](https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/stargazers)
 
 ## Installation
 

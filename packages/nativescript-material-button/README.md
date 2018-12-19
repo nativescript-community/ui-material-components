@@ -1,7 +1,7 @@
 [![npm](https://img.shields.io/npm/v/nativescript-material-button.svg)](https://www.npmjs.com/package/nativescript-material-button)
 [![npm](https://img.shields.io/npm/dt/nativescript-material-button.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-button)
-[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-material-button.svg)](https://github.com/bradmartin/nativescript-material-button/network)
-[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-material-button.svg)](https://github.com/bradmartin/nativescript-material-button/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/network)
+[![GitHub stars](https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/stargazers)
 
 ## Installation
 

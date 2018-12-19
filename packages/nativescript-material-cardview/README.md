@@ -1,7 +1,7 @@
 [![npm](https://img.shields.io/npm/v/nativescript-material-cardview.svg)](https://www.npmjs.com/package/nativescript-material-cardview)
 [![npm](https://img.shields.io/npm/dt/nativescript-material-cardview.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-cardview)
-[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-material-cardview.svg)](https://github.com/bradmartin/nativescript-material-cardview/network)
-[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-material-cardview.svg)](https://github.com/bradmartin/nativescript-material-cardview/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/network)
+[![GitHub stars](https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/stargazers)
 
 ## Installation
 
