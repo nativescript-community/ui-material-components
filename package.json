@@ -15,6 +15,7 @@
     },
     "scripts": {
         "publish": "lerna run tsc && lerna publish",
+        "tsc": "lerna run tsc",
         "clean":"rimraf packages/**/*.d.ts packages/**/*.js packages/**/*.js.map packages/core/android"
     },
     "keywords": [
