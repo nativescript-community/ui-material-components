@@ -1,1 +1,0 @@
-../plugin/progress.d.ts

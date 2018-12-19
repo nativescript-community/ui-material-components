@@ -1,0 +1,8 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "../../src/activityindicator",
+        "outDir": "./"
+    },
+    "include": ["../../src/activityindicator/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
+}

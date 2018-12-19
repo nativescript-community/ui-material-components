@@ -1,0 +1,4 @@
+<StackLayout backgroundColor="red" xmlns:mdcb="nativescript-material-button" shownInBottomSheet="onShownInBottomSheet">
+    <mdcb:Button id="test1" text="test1" tap="onTap"/>
+    <mdcb:Button id="test2" text="test2" tap="onTap"/>
+</StackLayout>

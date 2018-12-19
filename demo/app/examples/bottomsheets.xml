@@ -1,4 +1,0 @@
-<StackLayout xmlns:mdcb="nativescript-material-components/button">
-    <mdcb:Button id="bottomsheet1" text="bottomsheet" tap="{{ onTap }}"/>
-    <mdcb:Button id="bottomsheet2" text="bottomsheet listview" tap="{{ onTap }}"/>
-</StackLayout>

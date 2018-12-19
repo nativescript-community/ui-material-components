@@ -1,1 +1,0 @@
-../plugin/appbar.d.ts

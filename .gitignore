@@ -59,3 +59,7 @@ lib
 !webpack.*.js
 report
 *.log
+
+packages/**/*.js
+packages/**/*.ts
+packages/**/*.js.map

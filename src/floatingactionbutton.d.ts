@@ -1,1 +1,0 @@
-../plugin/floatingactionbutton.d.ts

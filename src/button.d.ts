@@ -1,1 +1,0 @@
-../plugin/button.d.ts

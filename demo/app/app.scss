@@ -1,0 +1,27 @@
+﻿@import '~nativescript-theme-core/css/core.light.css';
+
+mdcbutton {
+}
+
+.falseFAb {
+    elevation: 2;
+    font-size: 40;
+    border-radius: 32;
+    width: 64;
+    height: 64;
+    padding: 0;
+    margin: 0;
+}
+
+.buttonYellow {
+    background-color: yellow;
+}
+mdcslider {
+    /* track-background-color: #E0E0E0; */
+}
+
+.item-with-border {
+    height: 50;
+    border-bottom-color: green;
+    border-bottom-width: 2;
+}

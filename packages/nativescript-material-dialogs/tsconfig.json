@@ -1,0 +1,11 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "../../src/dialogs",
+        "outDir": "./",
+        "paths": {
+            "*": ["node_modules/tns-core-modules/*", "node_modules/*", "packages/*"]
+        }
+    },
+    "include": ["../../src/dialogs/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
+}

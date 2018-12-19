@@ -1,0 +1,11 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "../../src/cardview",
+        "outDir": "./",
+        "paths": {
+            "*": ["node_modules/tns-core-modules/*", "node_modules/*", "packages/*"]
+        }
+    },
+    "include": ["../../src/cardview/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
+}

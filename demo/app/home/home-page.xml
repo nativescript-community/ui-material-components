@@ -1,6 +1,6 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" 
       loaded="pageLoaded" 
-      xmlns:mdcr="nativescript-material-components/ripple"
+      xmlns:mdcr="nativescript-material-ripple"
       xmlns:lv="nativescript-ui-listview">
 <Page.actionBar>
     <ActionBar title="Material Components">

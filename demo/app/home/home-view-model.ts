@@ -1,14 +1,6 @@
 import { getFrameById } from 'tns-core-modules/ui/frame/frame';
 import { ItemEventData } from 'tns-core-modules/ui/list-view';
-const examples = [
-    'buttons',
-    'textfields',
-    'sliders',
-    'progress',
-    'activityindicators',
-    'dialogs',
-    'bottomsheets'
-];
+const examples = ['buttons', 'textfields', 'sliders', 'progress', 'activityindicators', 'dialogs', 'bottomsheets'];
 
 export class ViewModel {
     public examples = examples.map(t => {
@@ -23,7 +15,7 @@ export class ViewModel {
         // console.log('onTap', btn, );
         const example = this.examples[args.index];
         const navigationEntry = {
-            moduleName: 'examples/examplePage',
+            moduleName: 'examples/example-page',
             context: {
                 example: example.title
             },
@@ -34,11 +26,11 @@ export class ViewModel {
     }
 }
 
-export function  onTap(args: ItemEventData) {
+export function onTap(args: ItemEventData) {
     console.log('onTap', args);
     const example = this.examples[args.index];
     const navigationEntry = {
-        moduleName: 'examples/examplePage',
+        moduleName: 'examples/example-page',
         context: {
             example: example.title
         },

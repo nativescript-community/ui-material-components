@@ -1,1 +1,0 @@
-../plugin/material.d.ts

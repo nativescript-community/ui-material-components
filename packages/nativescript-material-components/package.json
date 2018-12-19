@@ -1,0 +1,43 @@
+{
+    "name": "nativescript-material-components",
+    "version": "2.0.0",
+    "description": "Your awesome NativeScript plugin.",
+    "main": "./material",
+    "typings": "./material.d.ts",
+    "nativescript": {
+        "platforms": {
+            "android": "5.0.0",
+            "ios": "5.0.0"
+        }
+    },
+    "keywords": [
+        "NativeScript",
+        "JavaScript",
+        "Android",
+        "iOS"
+    ],
+    "author": {
+        "name": "Martin Guillon",
+        "email": "martin@akylas.fr"
+    },
+    "bugs": {
+        "url": "https://github.com/Akylas/nativescript-material-components/issues"
+    },
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/Akylas/nativescript-material-components",
+    "readmeFilename": "README.md",
+    "dependencies": {
+        "nativescript-material-core":"^2.0.0",
+        "nativescript-material-activityindicator":"^2.0.0",
+        "nativescript-material-button":"^2.0.0",
+        "nativescript-material-bottomsheet":"^2.0.0",
+        "nativescript-material-dialogs":"^2.0.0",
+        "nativescript-material-slider":"^2.0.0",
+        "nativescript-material-progress":"^2.0.0",
+        "nativescript-material-floatingactionbutton":"^2.0.0",
+        "nativescript-material-cardview":"^2.0.0",
+        "nativescript-material-ripple":"^2.0.0",
+        "nativescript-material-snackbar":"^2.0.0",
+        "nativescript-material-textfield":"^2.0.0"
+    }
+}

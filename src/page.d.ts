@@ -1,1 +1,0 @@
-../plugin/page.d.ts

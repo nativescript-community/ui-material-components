@@ -1,8 +1,9 @@
-﻿import * as app from 'tns-core-modules/application';
+﻿import './bundle-config';
+import * as app from 'tns-core-modules/application';
 
-import { themer, install } from '~/nativescript-material-components/material'
+import { install, themer } from 'nativescript-material-core';
 
-install()
+install();
 // themer.setPrimaryColor('red');
 // themer.setPrimaryColorVariant('#3cff0000');
 

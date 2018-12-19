@@ -1,0 +1,7 @@
+<StackLayout xmlns:mdcb="nativescript-material-button">
+    <mdcb:Button id="alert" text="alert" tap="{{ onTap }}"/>
+    <mdcb:Button id="prompt" text="prompt" tap="{{ onTap }}"/>
+    <mdcb:Button id="login" text="login" tap="{{ onTap }}"/>
+    <mdcb:Button id="dialogCustomView" text="customView" tap="{{ onTap }}"/>
+    <StackLayout backgroundColor="yellow" height="100"/>
+</StackLayout>

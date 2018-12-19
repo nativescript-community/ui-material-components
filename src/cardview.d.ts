@@ -1,1 +1,0 @@
-../plugin/cardview.d.ts

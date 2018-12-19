@@ -14,21 +14,8 @@
         }
     },
     "scripts": {
-        "tsc": "tsc -skipLibCheck",
-        "ngc": "ngc -p tsconfig.json",
-        "build": "npm i && tsc",
-        "postclone": "npm i && node scripts/postclone.js && cd ../demo && npm i && cd ../src && npm run plugin.link",
-        "test.android": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build android && tns test android --justlaunch",
-        "test.ios": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build ios && tns test ios --justlaunch",
-        "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
-        "plugin.link": "npm link && cd ../demo && npm link nativescript-material-components && cd ../src",
-        "plugin.tscwatch": "npm run tsc -- -w",
-        "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios --syncAllFiles",
-        "demo.android": "npm i && npm run tsc && cd ../demo && tns run android --syncAllFiles",
-        "demo.reset": "cd ../demo && rimraf platforms",
-        "plugin.prepare": "npm run tsc && cd ../demo && tns plugin remove nativescript-material-components && tns plugin add ../src",
-        "clean": "cd ../demo && rimraf hooks node_modules platforms && cd ../src && rimraf node_modules && npm run plugin.link",
-        "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'"
+        "publish": "lerna run tsc && lerna publish",
+        "clean":"rimraf packages/**/*.d.ts packages/**/*.js packages/**/*.js.map packages/core/android"
     },
     "keywords": [
         "NativeScript",
@@ -57,6 +44,7 @@
         "@angular/platform-browser": "~7.1.3",
         "@angular/platform-browser-dynamic": "~7.1.3",
         "@angular/router": "~7.1.3",
+        "lerna": "^3.6.0",
         "nativescript-angular": "~7.1.0",
         "prettier": "^1.15.3",
         "prompt": "^1.0.0",
@@ -69,7 +57,5 @@
         "tslint-config-standard": "^8.0.1",
         "tslint-plugin-prettier": "^2.0.1",
         "typescript": "~3.2.2"
-    },
-    "dependencies": {},
-    "bootstrapper": "nativescript-plugin-seed"
+    }
 }

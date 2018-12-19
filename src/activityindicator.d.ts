@@ -1,1 +1,1 @@
-../plugin/activityindicator.d.ts
+../packages/activityindicator/activityindicator.d.ts

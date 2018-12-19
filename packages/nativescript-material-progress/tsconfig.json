@@ -1,0 +1,11 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "../../src/progress",
+        "outDir": "./",
+        "paths": {
+            "*": ["node_modules/tns-core-modules/*", "node_modules/*", "packages/*"]
+        }
+    },
+    "include": ["../../src/progress/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
+}

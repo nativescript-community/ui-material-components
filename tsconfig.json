@@ -22,7 +22,14 @@
         "outDir": "./plugin",
         "rootDir": "src",
         "paths": {
-            "*": ["./node_modules/tns-core-modules/*", "./node_modules/*"]
+            "nativescript-material-dialogs": ["src/dialogs/dialogs"],
+            "nativescript-material-button": ["src/button/button"],
+            "nativescript-material-cardview": ["src/cardview/cardview"],
+            "nativescript-material-floatingactionbutton": ["src/floatingactionbutton/floatingactionbutton"],
+            "nativescript-material-core": ["src/core/material"],
+            "nativescript-material-core/*": ["src/core/*"],
+            "nativescript-material-textfield": ["src/textfield/textfield"],
+            "*": ["node_modules/tns-core-modules/*", "node_modules/*"]
         }
     },
     "include": ["src/**/*.ts", "./references.d.ts", "./src/references.d.ts"],

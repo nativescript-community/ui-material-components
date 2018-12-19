@@ -10,5 +10,7 @@
             "systemId": "/Volumes/data/dev/nativescript/nativescript-material-components/schema/tns.xsd",
             "pattern": "**/**/*.xml"
         }
-    ]
+    ],
+    "editor.snippetSuggestions": "top",
+    "NE.enable.snippets": true
 }
