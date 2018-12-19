@@ -1,39 +1,66 @@
-# Nativescript Material ActivityIndicator
-
-[//]: # ([![Build Status][build-status]][build-url])
-[![NPM version][npm-image]][npm-url]
-
-[npm-url]:https://npmjs.org/package/nativescript-material-components
-
-
+[![npm](https://img.shields.io/npm/v/nativescript-material-activityindicator.svg)](https://www.npmjs.com/package/nativescript-material-activityindicator)
+[![npm](https://img.shields.io/npm/dt/nativescript-material-activityindicator.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-activityindicator)
+[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-material-activityindicator.svg)](https://github.com/bradmartin/nativescript-material-activityindicator/network)
+[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-material-activityindicator.svg)](https://github.com/bradmartin/nativescript-material-activityindicator/stargazers)
 
 ## Installation
 
-From the command prompt go to your app's root folder and execute:
+* `tns plugin add nativescript-material-activityindicator`
 
-```bash
-tns plugin add nativescript-material-activityindicator
+Be sure to run a new build after adding plugins to avoid any issues.
+
+---
+
+##### [Material Design Spec](https://material.io/design/components/progress-indicators.html#circular-progress-indicators)
+
+### Usage
+
+
+## Plain NativeScript
+
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mda="nativescript-material-activityindicator"` on the Page element_
+
+### XML
+
+```XML
+<Page xmlns:mda="nativescript-material-activityindicator">
+    <StackLayout horizontalAlignment="center">
+        <mda:ActivityIndicator busy="true"/>
+    </StackLayout>
+</Page>
 ```
 
-## Usage
+### CSS
 
-### Demo app
-If you want a quickstart, clone the repo, then:
-- `cd demo`.
-- `tns run ios` or `tns run android`.
-
-### Start-up wiring
-For some features (coordinatorLayout, bottomsheets ...), we need to do some wiring when your app starts, so open `app.js` and add this before creating any View/App/Frame:
-
-##### JavaScript
-```js
-var material = require("nativescript-material-components");
-
-material.install();
+```CSS
+mdcactivityindicator {
+    color: #fff;
+}
 ```
 
-#### TypeScript
-```ts
-import { install } from "nativescript-material-components";
-install();
+## NativeScript + Angular
+
+```typescript
+import { registerElement } from 'nativescript-angular/element-registry';
+import { ActivityIndicator } from 'nativescript-material-activityindicator';
+registerElement('MDActivityIndicator', () => ActivityIndicator);
 ```
+
+```html
+<MDActivityIndicator busy="true"></MDActivityIndicator>
+```
+
+## NativeScript + Vue
+
+```javascript
+import Vue from 'nativescript-vue';
+Vue.registerElement('MDActivityIndicator', () => require('nativescript-material-activityindicator').ActivityIndicator);
+```
+
+```html
+<MDActivityIndicator busy="true"/>
+```
+
+## Attributes
+
+Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/activity-indicator) so it already has all the same attributes

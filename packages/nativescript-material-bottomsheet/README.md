@@ -1,39 +1,51 @@
-# Nativescript Material ActivityIndicator
+[![npm](https://img.shields.io/npm/v/nativescript-material-bottomsheet.svg)](https://www.npmjs.com/package/nativescript-material-bottomsheet)
+[![npm](https://img.shields.io/npm/dt/nativescript-material-bottomsheet.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-bottomsheet)
+[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-material-bottomsheet.svg)](https://github.com/bradmartin/nativescript-material-bottomsheet/network)
+[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-material-bottomsheet.svg)](https://github.com/bradmartin/nativescript-material-bottomsheet/stargazers)
 
-[//]: # ([![Build Status][build-status]][build-url])
-[![NPM version][npm-image]][npm-url]
+# NativeScript Material Dialogs
 
-[npm-url]:https://npmjs.org/package/nativescript-material-components
-
-
+Use the Material Design Dialogs in your {N} app
 
 ## Installation
 
-From the command prompt go to your app's root folder and execute:
+`tns plugin add nativescript-material-bottomsheet`
 
-```bash
-tns plugin add nativescript-material-activityindicator
-```
+## [Changelog](./CHANGELOG.md)
 
 ## Usage
 
-### Demo app
-If you want a quickstart, clone the repo, then:
-- `cd demo`.
-- `tns run ios` or `tns run android`.
-
 ### Start-up wiring
-For some features (coordinatorLayout, bottomsheets ...), we need to do some wiring when your app starts, so open `app.js` and add this before creating any View/App/Frame:
+We need to do some wiring when your app starts, so open `app.js` and add this before creating any View/App/Frame:
+
 
 ##### JavaScript
 ```js
-var material = require("nativescript-material-components");
+var material = require("nativescript-material-bottomsheet");
 
 material.install();
 ```
 
 #### TypeScript
 ```ts
-import { install } from "nativescript-material-components";
+import { install } from "nativescript-material-bottomsheet";
 install();
+```
+
+Uses the same kind of API as [Nativescript Modals](https://docs.nativescript.org/ui/modal-view)
+
+### TS
+
+```typescript
+const modalViewModulets = "ns-ui-category/modal-view/basics/modal-ts-view-page";
+export function openBottomSheet(args) {
+    const mainView: Button = <Button>args.object;
+    const context = { username: "test_username", password: "test" };
+    const fullscreen = true;
+    mainView.showBottomSheet(modalViewModulets, context, (username, password) => {
+        // Receive data from the bottomsheet view. e.g. username & password
+        alert(`Username: ${username} : Password: ${password}`);
+    }, fullscreen);
+}
+
 ```

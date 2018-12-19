@@ -1,39 +1,92 @@
-# Nativescript Material ActivityIndicator
-
-[//]: # ([![Build Status][build-status]][build-url])
-[![NPM version][npm-image]][npm-url]
-
-[npm-url]:https://npmjs.org/package/nativescript-material-components
-
-
+[![npm](https://img.shields.io/npm/v/nativescript-material-textfield.svg)](https://www.npmjs.com/package/nativescript-material-textfield)
+[![npm](https://img.shields.io/npm/dt/nativescript-material-textfield.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-textfield)
+[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-material-textfield.svg)](https://github.com/bradmartin/nativescript-material-textfield/network)
+[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-material-textfield.svg)](https://github.com/bradmartin/nativescript-material-textfield/stargazers)
 
 ## Installation
 
-From the command prompt go to your app's root folder and execute:
+* `tns plugin add nativescript-material-textfield`
 
-```bash
-tns plugin add nativescript-material-activityindicator
+Be sure to run a new build after adding plugins to avoid any issues.
+
+---
+
+##### [Material Design Spec](https://material.io/design/components/textfields.html)
+
+### Usage
+
+
+## Plain NativeScript
+
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdb="nativescript-material-textfield"` on the Page element_
+
+### XML
+
+```XML
+<Page xmlns:mdb="nativescript-material-textfield">
+    <StackLayout horizontalAlignment="center">
+        <mdb:TextField text="raised textfield"/>
+        <mdb:TextField variant="flat" text="flat textfield"/>
+        <mdb:TextField variant="text" text="text textfield"/>
+        <mdb:TextField elevation="5" rippleColor="red" text="raised custom textfield"/>
+   </StackLayout>
+</Page>
 ```
 
-## Usage
+### CSS
 
-### Demo app
-If you want a quickstart, clone the repo, then:
-- `cd demo`.
-- `tns run ios` or `tns run android`.
-
-### Start-up wiring
-For some features (coordinatorLayout, bottomsheets ...), we need to do some wiring when your app starts, so open `app.js` and add this before creating any View/App/Frame:
-
-##### JavaScript
-```js
-var material = require("nativescript-material-components");
-
-material.install();
+```CSS
+mdctextfield {
+    ripple-color: blue;
+    elevation: 4;
+}
 ```
 
-#### TypeScript
-```ts
-import { install } from "nativescript-material-components";
-install();
+## NativeScript + Angular
+
+```typescript
+import { registerElement } from 'nativescript-angular/element-registry';
+import { TextField } from 'nativescript-material-textfield';
+registerElement('MDTextField', () => TextField);
 ```
+
+```html
+<MDTextField  helper="example helper" placeholderColor="green" keyboardType="datetime"
+        hint="i am an hint" returnKeyType="next" (focus)="onFocus($event)" (blur)="onBlur($event)"
+        (textChange)="onTextChange($event)"></MDTextField>
+```
+
+## NativeScript + Vue
+
+```javascript
+import Vue from 'nativescript-vue';
+Vue.registerElement('MDTextField', () => require('nativescript-material-textfield').TextField);
+```
+
+```html
+<MDTextField helper="example helper" placeholderColor="green" keyboardType="datetime"
+        hint="i am an hint" returnKeyType="next" @focus="onFocus" @blur="onBlur"
+        @textChange="onTextChange"/>
+```
+
+## Attributes
+
+Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/text-field) so it already has all the same attributes
+
+## Attributes
+
+* **variant** _optional_
+
+An attribute to set the variant of the textfield. Can be ```outline``` or ```underline``` or ```filled```. No value means ```underline``` textfield
+
+* **errorColor** _optional_
+
+An attribute to set the error color of the textfield.
+
+* **helper** _optional_
+
+An attribute to set the helper text of the textfield.
+
+* **floating** _optional_
+
+A boolean attribute to set the floating state of the textfield.

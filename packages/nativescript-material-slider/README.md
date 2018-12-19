@@ -1,39 +1,77 @@
-# Nativescript Material ActivityIndicator
-
-[//]: # ([![Build Status][build-status]][build-url])
-[![NPM version][npm-image]][npm-url]
-
-[npm-url]:https://npmjs.org/package/nativescript-material-components
-
-
+[![npm](https://img.shields.io/npm/v/nativescript-material-slider.svg)](https://www.npmjs.com/package/nativescript-material-slider)
+[![npm](https://img.shields.io/npm/dt/nativescript-material-slider.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-slider)
+[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-material-slider.svg)](https://github.com/bradmartin/nativescript-material-slider/network)
+[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-material-slider.svg)](https://github.com/bradmartin/nativescript-material-slider/stargazers)
 
 ## Installation
 
-From the command prompt go to your app's root folder and execute:
+* `tns plugin add nativescript-material-slider`
 
-```bash
-tns plugin add nativescript-material-activityindicator
+Be sure to run a new build after adding plugins to avoid any issues.
+
+---
+
+##### [Material Design Spec](https://material.io/design/components/sliders.html)
+
+### Usage
+
+
+## Plain NativeScript
+
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdb="nativescript-material-slider"` on the Page element_
+
+### XML
+
+```XML
+<Page xmlns:mdb="nativescript-material-slider">
+    <StackLayout horizontalAlignment="center">
+        <mdb:Slider value="50" minValue="0" maxValue="100" />
+   </StackLayout>
+</Page>
 ```
 
-## Usage
+### CSS
 
-### Demo app
-If you want a quickstart, clone the repo, then:
-- `cd demo`.
-- `tns run ios` or `tns run android`.
-
-### Start-up wiring
-For some features (coordinatorLayout, bottomsheets ...), we need to do some wiring when your app starts, so open `app.js` and add this before creating any View/App/Frame:
-
-##### JavaScript
-```js
-var material = require("nativescript-material-components");
-
-material.install();
+```CSS
+mdcslider {
+    ripple-color: blue;
+    elevation: 4;
+}
 ```
 
-#### TypeScript
-```ts
-import { install } from "nativescript-material-components";
-install();
+## NativeScript + Angular
+
+```typescript
+import { registerElement } from 'nativescript-angular/element-registry';
+import { Slider } from 'nativescript-material-slider';
+registerElement('MDSlider', () => Slider);
 ```
+
+```html
+<MDSlider value="50" minValue="0" maxValue="100"></MDSlider>
+```
+
+## NativeScript + Vue
+
+```javascript
+import Vue from 'nativescript-vue';
+Vue.registerElement('MDSlider', () => require('nativescript-material-slider').Slider);
+```
+
+```html
+<MDSlider value="50" minValue="0" maxValue="100"/>
+```
+
+## Attributes
+
+Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/slider) so it already has all the same attributes
+
+## Attributes
+
+* **elevation** _optional_
+
+An attribute to set the elevation of the slider. This will increase the 'drop-shadow' of the slider.
+
+* **rippleColor** _optional_
+
+An attribute to set the ripple color of the slider.
