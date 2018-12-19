@@ -18,15 +18,15 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdb="nativescript-material-cardview"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdc="nativescript-material-cardview"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mdb="nativescript-material-cardview">
+<Page xmlns:mdc="nativescript-material-cardview">
     <StackLayout horizontalAlignment="center">
-        <mdb:CardView width="100" height="100"/>
-        <mdb:CardView elevation="5" rippleColor="red"  width="100" height="100"/>
+        <mdc:CardView width="100" height="100"/>
+        <mdc:CardView elevation="5" rippleColor="red"  width="100" height="100"/>
    </StackLayout>
 </Page>
 ```
@@ -65,7 +65,7 @@ Vue.registerElement('MDCardView', () => require('nativescript-material-cardview'
 
 ## Attributes
 
-Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/layouts/layout-containers#stacklayout-properties)
+Inherite from Nativescript [StackLayout](https://docs.nativescript.org/ui/layouts/layout-containers#stacklayout-properties)
 
 ## Attributes
 

@@ -18,15 +18,15 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdb="nativescript-material-floatingactionbutton"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdf="nativescript-material-floatingactionbutton"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mdb="nativescript-material-floatingactionbutton">
+<Page xmlns:mdf="nativescript-material-floatingactionbutton">
     <StackLayout horizontalAlignment="center">
-        <mdb:FloatingActionButton src="res://ic_action_add"/>
-        <mdb:FloatingActionButton elevation="5" src="res://ic_action_add"/>
+        <mdf:FloatingActionButton src="res://ic_action_add"/>
+        <mdf:FloatingActionButton elevation="5" src="res://ic_action_add"/>
    </StackLayout>
 </Page>
 ```

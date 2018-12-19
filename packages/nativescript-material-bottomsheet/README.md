@@ -3,9 +3,11 @@
 [![GitHub forks](https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/network)
 [![GitHub stars](https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/stargazers)
 
-# NativeScript Material Dialogs
+# NativeScript Material BottomSheets
 
-Use the Material Design Dialogs in your {N} app
+Use the Material Design Bottom Sheets in your {N} app
+
+##### [Material Design Spec](https://material.io/design/components/sheets-bottom.html)
 
 ## Installation
 

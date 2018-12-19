@@ -18,14 +18,14 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdb="nativescript-material-slider"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="nativescript-material-slider"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mdb="nativescript-material-slider">
+<Page xmlns:mds="nativescript-material-slider">
     <StackLayout horizontalAlignment="center">
-        <mdb:Slider value="50" minValue="0" maxValue="100" />
+        <mds:Slider value="50" minValue="0" maxValue="100" />
    </StackLayout>
 </Page>
 ```

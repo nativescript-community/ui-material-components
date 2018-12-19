@@ -18,17 +18,17 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdb="nativescript-material-textfield"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdt="nativescript-material-textfield"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mdb="nativescript-material-textfield">
+<Page xmlns:mdt="nativescript-material-textfield">
     <StackLayout horizontalAlignment="center">
-        <mdb:TextField text="raised textfield"/>
-        <mdb:TextField variant="flat" text="flat textfield"/>
-        <mdb:TextField variant="text" text="text textfield"/>
-        <mdb:TextField elevation="5" rippleColor="red" text="raised custom textfield"/>
+        <mdt:TextField text="raised textfield"/>
+        <mdt:TextField variant="flat" text="flat textfield"/>
+        <mdt:TextField variant="text" text="text textfield"/>
+        <mdt:TextField elevation="5" rippleColor="red" text="raised custom textfield"/>
    </StackLayout>
 </Page>
 ```
