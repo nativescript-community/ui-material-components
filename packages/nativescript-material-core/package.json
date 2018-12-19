@@ -5,8 +5,8 @@
     "main": "./material",
     "typings": "./material.d.ts",
     "scripts": {
-        "tsc":"tsc && cp ../../src/core/material.d.ts ./",
-        "clean":"../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
+        "tsc": "tsc && cp ../../src/core/material.d.ts ./",
+        "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
     },
     "nativescript": {
         "platforms": {
@@ -29,6 +29,5 @@
     },
     "license": "Apache-2.0",
     "homepage": "https://github.com/Akylas/nativescript-material-components",
-    "readmeFilename": "README.md",
-    "dependencies": {}
+    "readmeFilename": "README.md"
 }

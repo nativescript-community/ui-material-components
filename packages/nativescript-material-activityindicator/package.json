@@ -5,8 +5,8 @@
     "main": "./activityindicator",
     "typings": "./activityindicator.d.ts",
     "scripts": {
-        "tsc":"tsc && cp ../../src/activityindicator/activityindicator.d.ts ./",
-        "clean":"../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
+        "tsc": "tsc && cp ../../src/activityindicator/activityindicator.d.ts ./",
+        "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {
         "platforms": {
@@ -31,6 +31,6 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core":"^2.0.0"
+        "nativescript-material-core": "^2.0.0"
     }
 }
