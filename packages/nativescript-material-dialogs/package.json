@@ -33,5 +33,6 @@
     "dependencies": {
         "nativescript-material-core": "^2.0.0",
         "nativescript-material-textfield": "^2.0.0"
-    }
+    },
+    "gitHead": "1f78748c30210d211cccdbc403752260cfcc69ed"
 }

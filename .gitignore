@@ -63,3 +63,4 @@ report
 packages/**/*.js
 packages/**/*.ts
 packages/**/*.js.map
+*.tgz

@@ -29,5 +29,6 @@
     },
     "license": "Apache-2.0",
     "homepage": "https://github.com/Akylas/nativescript-material-components",
-    "readmeFilename": "README.md"
+    "readmeFilename": "README.md",
+    "gitHead": "1f78748c30210d211cccdbc403752260cfcc69ed"
 }
