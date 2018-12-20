@@ -54,6 +54,7 @@ node_modules
 *.tmp.*
 platforms
 !plugin/platforms
+!packages/**/platforms
 lib
 *.css
 !webpack.*.js
