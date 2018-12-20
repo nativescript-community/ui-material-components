@@ -3,6 +3,7 @@ import { fromObject } from 'tns-core-modules/data/observable/observable';
 import { ViewWithBottomSheetBase } from './bottomsheet-common';
 import { BottomSheetOptions } from './bottomsheet';
 import { applyMixins } from 'nativescript-material-core';
+import { overridePage } from '../page/page.android';
 
 interface BottomSheetDataOptions {
     owner: View;
@@ -188,5 +189,6 @@ export function overrideBottomSheet() {
     applyMixins(NSView, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
 }
 export function install() {
+    // overridePage();
     overrideBottomSheet();
 }

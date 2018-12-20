@@ -20,7 +20,7 @@ export class Themer {
     }
 }
 
-function applyMixins(derivedCtor: any, baseCtors: any[]) {
+export function applyMixins(derivedCtor: any, baseCtors: any[]) {
     baseCtors.forEach(baseCtor => {
         Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
             console.log('overrinding', name);
@@ -31,10 +31,9 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
 export const themer = new Themer();
 
 export function install() {
-    // try {
-    //     require('nativescript-material-page').install();
-    // } catch (e) {}
     try {
         require('nativescript-material-bottomsheet').install();
-    } catch (e) {}
+    } catch (e) {
+        // console.log('error installing bottomsheet', e);
+    }
 }
