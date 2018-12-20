@@ -22,20 +22,48 @@
         "noFallthroughCasesInSwitch": true,
         "baseUrl": ".",
         "paths": {
-            "nativescript-material-activityindicator": ["app/nativescript-material-components/activityindicator/activityindicator"],
-            "nativescript-material-bottomsheet": ["app/nativescript-material-components/bottomsheet/bottomsheet"],
-            "nativescript-material-snackbar": ["app/nativescript-material-components/snackbar/snackbar"],
-            "nativescript-material-ripple": ["app/nativescript-material-components/ripple/ripple"],
-            "nativescript-material-slider": ["app/nativescript-material-components/slider/slider"],
-            "nativescript-material-progress": ["app/nativescript-material-components/progress/progress"],
-            "nativescript-material-dialogs": ["app/nativescript-material-components/dialogs/dialogs"],
-            "nativescript-material-button": ["app/nativescript-material-components/button/button"],
-            "nativescript-material-cardview": ["app/nativescript-material-components/cardview/cardview"],
-            "nativescript-material-floatingactionbutton": ["app/nativescript-material-components/floatingactionbutton/floatingactionbutton"],
-            "nativescript-material-core": ["app/nativescript-material-components/core/material"],
-            "nativescript-material-core/*": ["app/nativescript-material-components/core/*"],
-            "nativescript-material-textfield": ["app/nativescript-material-components//textfield/textfield"],
-            "nativescript-material-textfield/*": ["app/nativescript-material-components/textfield/*"],
+            "nativescript-material-activityindicator": [
+                "app/nativescript-material-components/activityindicator/activityindicator"
+            ],
+            "nativescript-material-bottomsheet": [
+                "app/nativescript-material-components/bottomsheet/bottomsheet"
+            ],
+            "nativescript-material-snackbar": [
+                "app/nativescript-material-components/snackbar/snackbar"
+            ],
+            "nativescript-material-ripple": [
+                "app/nativescript-material-components/ripple/ripple"
+            ],
+            "nativescript-material-slider": [
+                "app/nativescript-material-components/slider/slider"
+            ],
+            "nativescript-material-progress": [
+                "app/nativescript-material-components/progress/progress"
+            ],
+            "nativescript-material-dialogs": [
+                "app/nativescript-material-components/dialogs/dialogs"
+            ],
+            "nativescript-material-button": [
+                "app/nativescript-material-components/button/button"
+            ],
+            "nativescript-material-cardview": [
+                "app/nativescript-material-components/cardview/cardview"
+            ],
+            "nativescript-material-floatingactionbutton": [
+                "app/nativescript-material-components/floatingactionbutton/floatingactionbutton"
+            ],
+            "nativescript-material-core": [
+                "app/nativescript-material-components/core/material"
+            ],
+            "nativescript-material-core/*": [
+                "app/nativescript-material-components/core/*"
+            ],
+            "nativescript-material-textfield": [
+                "app/nativescript-material-components//textfield/textfield"
+            ],
+            "nativescript-material-textfield/*": [
+                "app/nativescript-material-components/textfield/*"
+            ],
             "*": [
                 "./node_modules/tns-core-modules/*",
                 "./node_modules/*"
@@ -45,6 +73,10 @@
             ]
         }
     },
-    "exclude": ["node_modules", "platforms", "**/angular"],
+    "exclude": [
+        "node_modules",
+        "platforms",
+        "**/angular"
+    ],
     "compileOnSave": false
 }

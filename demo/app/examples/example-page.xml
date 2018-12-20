@@ -6,6 +6,7 @@
             <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onBack"/>
         </ActionBar>
     </Page.actionBar>
-    <StackLayout id="container">
-    </StackLayout>
+    <ScrollView>
+        <StackLayout id="container"></StackLayout>
+    </ScrollView>
 </Page>

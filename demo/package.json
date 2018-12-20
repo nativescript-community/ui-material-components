@@ -3,24 +3,27 @@
     "id": "org.nativescript.demo",
     "tns-ios": {
       "version": "5.0.1-rc-2018-11-30-133527-01"
+    },
+    "tns-android": {
+      "version": "5.1.0"
     }
   },
   "dependencies": {
-    "nativescript-material-activityindicator": "../packages/nativescript-material-activityindicator",
-    "nativescript-material-bottomsheet": "../packages/nativescript-material-bottomsheet",
-    "nativescript-material-button": "../packages/nativescript-material-button",
-    "nativescript-material-cardview": "../packages/nativescript-material-cardview",
-    "nativescript-material-core": "../packages/nativescript-material-core",
-    "nativescript-material-dialogs": "../packages/nativescript-material-dialogs",
-    "nativescript-material-floatingactionbutton": "../packages/nativescript-material-floatingactionbutton",
-    "nativescript-material-progress": "../packages/nativescript-material-progress",
-    "nativescript-material-ripple": "../packages/nativescript-material-ripple",
-    "nativescript-material-slider": "../packages/nativescript-material-slider",
-    "nativescript-material-snackbar": "../packages/nativescript-material-snackbar",
-    "nativescript-material-textfield": "../packages/nativescript-material-textfield",
+    "nativescript-material-activityindicator": "file:../packages/nativescript-material-activityindicator",
+    "nativescript-material-bottomsheet": "file:../packages/nativescript-material-bottomsheet",
+    "nativescript-material-button": "file:../packages/nativescript-material-button",
+    "nativescript-material-cardview": "file:../packages/nativescript-material-cardview",
+    "nativescript-material-core": "file:../packages/nativescript-material-core",
+    "nativescript-material-dialogs": "file:../packages/nativescript-material-dialogs",
+    "nativescript-material-floatingactionbutton": "file:../packages/nativescript-material-floatingactionbutton",
+    "nativescript-material-progress": "file:../packages/nativescript-material-progress",
+    "nativescript-material-ripple": "file:../packages/nativescript-material-ripple",
+    "nativescript-material-slider": "file:../packages/nativescript-material-slider",
+    "nativescript-material-snackbar": "file:../packages/nativescript-material-snackbar",
+    "nativescript-material-textfield": "file:../packages/nativescript-material-textfield",
     "nativescript-theme-core": "^1.0.4",
     "nativescript-ui-listview": "5.0.1",
-    "tns-core-modules": "^5.1.0"
+    "tns-core-modules": "^5.1.1"
   },
   "devDependencies": {
     "awesome-typescript-loader": "~5.2.1",
