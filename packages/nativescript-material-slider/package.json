@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-slider",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "Material slider component",
     "main": "./slider",
     "typings": "./slider.d.ts",
@@ -31,7 +31,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^2.0.1"
+        "nativescript-material-core": "^2.0.2"
     },
     "gitHead": "1485289c51843d82c6e64f6a7033e6d661a07afb"
 }
