@@ -2,11 +2,11 @@
     xmlns:lv="nativescript-ui-listview"
     xmlns:mdcr="nativescript-material-ripple" 
     >
-    <ListView id="listview" height="200" items="{{ dataItems }}" itemTap="onTap" class="list-group">
-        <ListView.itemTemplate>
+    <lv:RadListView id="listview" height="200" items="{{ dataItems }}" itemTap="onTap" class="list-group">
+        <lv:RadListView.itemTemplate>
             <mdcr:Ripple class="list-group-item item-with-border">
                 <Label text="{{ title }}" textWrap="true" class="title"/>
             </mdcr:Ripple>
-        </ListView.itemTemplate>
-    </ListView>
+        </lv:RadListView.itemTemplate>
+    </lv:RadListView>
 </StackLayout>
