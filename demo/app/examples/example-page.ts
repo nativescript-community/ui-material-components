@@ -107,16 +107,17 @@ export function onNavigatingTo(args) {
     const page = args.object;
     const context = page.navigationContext;
 
-    page.bindingContext = new Model(context.example);
+    const exampleTitle = context.example;
+    page.bindingContext = new Model(exampleTitle);
 
+    let theModule;
     try {
-        const theModule = require(`./${context.example}-fragment`);
-        console.log('trying to load onNavigatingTo for', 'examples/' + context.example), theModule;
+        theModule = require(`./${context.example}-fragment`);
         if (theModule && theModule.onNavigatingTo) {
             theModule.onNavigatingTo(args);
         }
     } catch (e) {
-        // console.log('error', e)
+        console.log('error', e);
     }
 
     const container = page.getViewById('container');
@@ -124,9 +125,9 @@ export function onNavigatingTo(args) {
     if (global.TNS_WEBPACK) {
         // some-fragment.xml registered via bundle-config.ts, because it's postfixed with "fragment"
         // so it already exist in bundle.js as module
-        innerComponent = builder.parse(<string>require(`./${context.example}-fragment.xml`));
+        innerComponent = builder.parse(require(`./${exampleTitle}-fragment.xml`) as string, theModule);
     } else {
-        innerComponent = builder.load(__dirname + `./${context.example}-fragment.xml`);
+        innerComponent = builder.load(`${__dirname}/${exampleTitle}-fragment.xml`, theModule);
     }
 
     container.addChild(innerComponent);
