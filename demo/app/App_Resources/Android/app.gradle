@@ -6,9 +6,4 @@ android {
   aaptOptions {  
     additionalParameters "--no-version-vectors"  
   }  
-} 
-sourceSets {
-    main {
-        java.srcDirs = ['src/main/java']
-    }
 }
