@@ -2,6 +2,17 @@ import { RippleBase } from './ripple-common';
 import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/ui/page/page';
 import { ad } from 'tns-core-modules/utils/utils';
+import { getRippleColor } from 'nativescript-material-core/material';
+
+// function getThemeAccentColor(context: android.content.Context) {
+//     const value = new android.util.TypedValue();
+//     const attr = java.lang.Class.forName('android.support.v7.appcompat.R$attr');
+
+//     // https://developer.android.com/reference/java/lang/Class#getField(java.lang.String)
+//     const field = attr.getField('colorAccent') as java.lang.reflect.Field;
+//     context.getTheme().resolveAttribute(field.getInt(null), value, true);
+//     return value.data;
+// }
 
 export class Ripple extends RippleBase {
     nativeViewProtected: android.view.View;
@@ -12,9 +23,15 @@ export class Ripple extends RippleBase {
         this.setRippleDrawable(view);
         return view;
     }
-
+    private getAccentColor(context: android.content.Context) {
+        const ta = context.obtainStyledAttributes([ad.resources.getId(':attr/colorAccent')]);
+        const color = ta.getColor(0, 0);
+        ta.recycle();
+        return color;
+    }
     private getSelectedItemDrawable(context: android.content.Context) {
-        const ta = this._context.obtainStyledAttributes([ad.resources.getId(':attr/selectableItemBackground')]);
+        const ta = context.obtainStyledAttributes([ad.resources.getId(':attr/selectableItemBackground')]);
+        // getContext().getTheme().applyStyle(R.style.colorControlHighlight_blue, true); //blue ripple color
         const selectedItemDrawable = ta.getDrawable(0);
         ta.recycle();
         return selectedItemDrawable;
@@ -39,15 +56,11 @@ export class Ripple extends RippleBase {
         rippleDrawable.addState([android.R.attr.state_pressed], foregroundShape);
         return rippleDrawable;
     }
-    getRippleColor(color: string | Color) {
-        const temp = typeof color === 'string' ? new Color(color) : color;
-        return new Color(36, temp.r, temp.g, temp.b).android; // default alpha is 0.14
-    }
     setRippleDrawable(view: android.view.View) {
-        if (android.os.Build.VERSION.SDK_INT >= 23) {
+        if (android.os.Build.VERSION.SDK_INT >= 22) {
             view.setBackground(this.getSelectedItemDrawable(this._context));
         } else {
-            view.setBackground(this.createCompatRippleDrawable(this.getRippleColor(this.style['rippleColor'])));
+            view.setBackground(this.createCompatRippleDrawable(getRippleColor(this.style['rippleColor'] || new Color(this.getAccentColor(this._context)))));
             //   view.setForeground(
             //     this.createCompatRippleDrawable(
             //       this.getRippleColor(this.style["rippleColor"])
@@ -56,10 +69,10 @@ export class Ripple extends RippleBase {
         }
     }
     [rippleColorProperty.setNative](color: Color) {
-        if (android.os.Build.VERSION.SDK_INT >= 23) {
-            (this.nativeViewProtected.getBackground() as any).setColor(android.content.res.ColorStateList.valueOf(color.android));
-        } else {
-            this.setRippleDrawable(this.nativeViewProtected);
-        }
+        // if (android.os.Build.VERSION.SDK_INT >= 22) {
+        //     (this.nativeViewProtected.getBackground() as any).setColor(android.content.res.ColorStateList.valueOf(color.android));
+        // } else {
+        this.setRippleDrawable(this.nativeViewProtected);
+        // }
     }
 }
