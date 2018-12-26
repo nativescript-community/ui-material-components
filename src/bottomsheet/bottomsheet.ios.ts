@@ -1,6 +1,6 @@
 import { ViewWithBottomSheetBase } from './bottomsheet-common';
-import { ios, traceCategories, traceError, traceMessageType, traceWrite, View } from 'tns-core-modules/ui/core/view';
-import { ios as iosUtils } from 'tns-core-modules/utils/utils';
+import { ios, traceCategories, traceError, traceMessageType, traceWrite, View, ViewBase } from 'tns-core-modules/ui/core/view';
+import { ios as iosUtils, layout } from 'tns-core-modules/utils/utils';
 import { BottomSheetOptions } from './bottomsheet';
 import { fromObject } from 'tns-core-modules/data/observable/observable';
 import { applyMixins } from 'nativescript-material-core';
@@ -23,6 +23,129 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottom
             if (owner && owner.isLoaded) {
                 owner.callUnloaded();
             }
+        }
+    }
+}
+
+declare module 'tns-core-modules/ui/core/view' {
+    interface View {
+        _setLayoutFlags(left: number, top: number, right: number, bottom: number);
+    }
+    namespace ios {
+        interface UILayoutViewController extends UIViewController {
+            owner: WeakRef<View>;
+        }
+    }
+}
+
+class BottomSheetUILayoutViewController extends UIViewController {
+    public owner: WeakRef<View>;
+
+    public static initWithOwner(owner: WeakRef<View>): BottomSheetUILayoutViewController {
+        const controller = <BottomSheetUILayoutViewController>BottomSheetUILayoutViewController.new();
+        controller.owner = owner;
+        return controller;
+    }
+
+    // public viewWillLayoutSubviews(): void {
+    //     super.viewWillLayoutSubviews();
+    //     const owner = this.owner.get();
+    //     if (owner) {
+    //         ios.updateConstraints(this, owner);
+    //     }
+    // }
+
+    public viewDidLayoutSubviews(): void {
+        super.viewDidLayoutSubviews();
+        console.log('viewDidLayoutSubviews');
+        const owner = this.owner.get();
+        if (owner) {
+            this.layoutView(this, owner);
+        }
+    }
+
+    public viewWillAppear(animated: boolean): void {
+        super.viewWillAppear(animated);
+        const owner = this.owner.get();
+        if (!owner) {
+            return;
+        }
+
+        ios.updateAutoAdjustScrollInsets(this, owner);
+
+        if (!owner.parent) {
+            owner.callLoaded();
+        }
+    }
+    initLayoutGuide(controller: UIViewController) {
+        const rootView = controller.view;
+        const layoutGuide = UILayoutGuide.alloc().init();
+        rootView.addLayoutGuide(layoutGuide);
+        // NSLayoutConstraint.activateConstraints(<any>[
+        //     layoutGuide.topAnchor.constraintEqualToAnchor(controller.topLayoutGuide.bottomAnchor),
+        //     layoutGuide.bottomAnchor.constraintEqualToAnchor(controller.bottomLayoutGuide.topAnchor),
+        //     layoutGuide.leadingAnchor.constraintEqualToAnchor(rootView.leadingAnchor),
+        //     layoutGuide.trailingAnchor.constraintEqualToAnchor(rootView.trailingAnchor)
+        // ]);
+        return layoutGuide;
+    }
+    layoutView(controller: UIViewController, owner: View): void {
+        let layoutGuide = controller.view.safeAreaLayoutGuide;
+        if (!layoutGuide) {
+            traceWrite(`safeAreaLayoutGuide during layout of ${owner}. Creating fallback constraints, but layout might be wrong.`, traceCategories.Layout, traceMessageType.error);
+
+            layoutGuide = this.initLayoutGuide(controller);
+        }
+        const safeArea = layoutGuide.layoutFrame;
+        let position = ios.getPositionFromFrame(safeArea);
+        const safeAreaSize = safeArea.size;
+
+        const hasChildViewControllers = controller.childViewControllers.count > 0;
+        if (hasChildViewControllers) {
+            const fullscreen = controller.view.frame;
+            position = ios.getPositionFromFrame(fullscreen);
+        }
+
+        const safeAreaWidth = layout.round(layout.toDevicePixels(safeAreaSize.width));
+        const safeAreaHeight = layout.round(layout.toDevicePixels(safeAreaSize.height));
+
+        const widthSpec = layout.makeMeasureSpec(safeAreaWidth, layout.EXACTLY);
+        const heightSpec = layout.makeMeasureSpec(safeAreaHeight, layout.UNSPECIFIED);
+
+        View.measureChild(null, owner, widthSpec, heightSpec);
+        console.log('measured child', position.left, position.top, widthSpec, heightSpec, owner.getMeasuredWidth(), owner.getMeasuredHeight());
+        View.layoutChild(null, owner, position.left, position.top, position.right, position.top + owner.getMeasuredHeight());
+
+        this.preferredContentSize = CGSizeMake(layout.toDeviceIndependentPixels(owner.getMeasuredWidth()), position.top + layout.toDeviceIndependentPixels(owner.getMeasuredHeight()));
+
+        this.layoutParent(owner.parent);
+    }
+
+    layoutParent(view: ViewBase): void {
+        if (!view) {
+            return;
+        }
+
+        if (view instanceof View && view.nativeViewProtected) {
+            const frame = view.nativeViewProtected.frame;
+            const origin = frame.origin;
+            const size = frame.size;
+            const left = layout.toDevicePixels(origin.x);
+            const top = layout.toDevicePixels(origin.y);
+            const width = layout.toDevicePixels(size.width);
+            const height = layout.toDevicePixels(size.height);
+            view._setLayoutFlags(left, top, width + left, height + top);
+        }
+
+        this.layoutParent(view.parent);
+    }
+
+    public viewDidDisappear(animated: boolean): void {
+        super.viewDidDisappear(animated);
+        console.log('viewDidDisappear');
+        const owner = this.owner.get();
+        if (owner && !owner.parent) {
+            owner.callUnloaded();
         }
     }
 }
@@ -53,7 +176,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         let controller = this.viewController;
         if (!controller) {
             const nativeView = this.ios || this.nativeViewProtected;
-            controller = ios.UILayoutViewController.initWithOwner(new WeakRef(this));
+            controller = BottomSheetUILayoutViewController.initWithOwner(new WeakRef(this));
 
             if (nativeView instanceof UIView) {
                 controller.view.addSubview(nativeView);
