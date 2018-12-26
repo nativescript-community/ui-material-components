@@ -7,10 +7,7 @@ export class Ripple extends RippleBase {
     constructor() {
         super();
     }
-    getRippleColor(color: Color) {
-        // const temp = typeof color === "string" ? new Color(color) : color
-        return new Color(36, color.r, color.g, color.b).ios; // default alpha is 0.14
-    }
+    
     inkTouchController: MDCInkTouchController;
 
     get ios() {

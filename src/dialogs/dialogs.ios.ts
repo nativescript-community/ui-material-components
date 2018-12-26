@@ -2,7 +2,6 @@ import { themer } from 'nativescript-material-core';
 import { TextField } from 'nativescript-material-textfield';
 import { getRootView } from 'tns-core-modules/application';
 import { fromObject } from 'tns-core-modules/data/observable/observable';
-import { screen } from 'tns-core-modules/platform/platform';
 import { createViewFromEntry } from 'tns-core-modules/ui/builder/builder';
 import { ios as iosView, layout, View } from 'tns-core-modules/ui/core/view';
 import {
@@ -93,8 +92,7 @@ class MDCAlertControllerImpl extends MDCAlertController {
     get preferredContentSize() {
         const result = this._preferredContentSize;
         if (this._customContentView) {
-            const scale = screen.mainScreen.scale;
-            return CGSizeMake(result.width, result.height + this._customContentView.getMeasuredHeight() / scale);
+            return CGSizeMake(result.width, result.height + layout.toDeviceIndependentPixels(this._customContentView.getMeasuredHeight()));
             // result.height = this._customContentView.getMeasuredHeight() / scale;
         }
         return result;

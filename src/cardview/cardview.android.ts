@@ -312,10 +312,7 @@ export class CardView extends CardViewBase {
         this.setRippleDrawable(view);
         return view;
     }
-    getRippleColor(color: string) {
-        const temp = new Color(color);
-        return new Color(36, temp.r, temp.g, temp.b).android; // default alpha is 0.14
-    }
+
     setRippleDrawable(view) {
         if (android.os.Build.VERSION.SDK_INT >= 23) {
             view.setForeground(this.getSelectedItemDrawable(this._context));

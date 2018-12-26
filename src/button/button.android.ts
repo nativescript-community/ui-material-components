@@ -1,4 +1,5 @@
 import { ButtonBase } from './button-common';
+import { getRippleColor } from 'nativescript-material-core';
 
 import * as utils from 'tns-core-modules/utils/utils';
 import {
@@ -32,10 +33,6 @@ export class Button extends ButtonBase {
         return this.nativeView;
     }
 
-    getRippleColor(color: Color) {
-        return new Color(120, color.r, color.g, color.b).android; // default alpha is 0.14
-    }
-
     public createNativeView() {
         let style = 'AppThemeMaterialButton';
         if (this.variant === 'text' || this.variant === 'outline') {
@@ -52,7 +49,7 @@ export class Button extends ButtonBase {
     }
     [rippleColorProperty.setNative](color: Color) {
         if (isPreLollipop()) {
-            this.nativeViewProtected.setRippleColor(getRippleColorStateList(this.getRippleColor(color)));
+            this.nativeViewProtected.setRippleColor(getRippleColorStateList(getRippleColor(color)));
         } else {
             this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
         }

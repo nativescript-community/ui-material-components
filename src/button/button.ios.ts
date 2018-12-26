@@ -6,6 +6,7 @@ import { Background } from 'tns-core-modules/ui/styling/background';
 import { backgroundColorProperty, backgroundInternalProperty, Color, fontInternalProperty } from 'tns-core-modules/ui/page/page';
 import { Font } from 'tns-core-modules/ui/styling/font';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { getRippleColor } from 'nativescript-material-core/material';
 
 let buttonScheme: MDCButtonScheme;
 function getButtonScheme() {
@@ -38,9 +39,6 @@ export class Button extends ButtonBase {
         this.setTopRightCornerRadius(value);
         this.applyShapeScheme();
     }
-    getRippleColor(color: Color) {
-        return new Color(36, color.r, color.g, color.b).ios; // default alpha is 0.14
-    }
 
     public createNativeView() {
         const view = MDCButton.new();
@@ -72,7 +70,7 @@ export class Button extends ButtonBase {
     }
 
     [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.inkColor = this.getRippleColor(color);
+        this.nativeViewProtected.inkColor = getRippleColor(color);
     }
 
     [elevationProperty.setNative](value: number) {

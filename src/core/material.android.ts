@@ -1,4 +1,5 @@
 // export * from './material.common';
+import { Color } from 'tns-core-modules/color/color';
 
 // stub class as we don't use this on android
 export class Themer {
@@ -36,4 +37,12 @@ export function install() {
     } catch (e) {
         // console.log('error installing bottomsheet', e);
     }
+}
+
+export function getRippleColor(color: string | Color) {
+    if (color) {
+        const temp = typeof color === 'string' ? new Color(color) : color;
+        return new Color(36, temp.r, temp.g, temp.b).android; // default alpha is 0.14
+    }
+    return null;
 }

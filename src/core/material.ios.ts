@@ -67,5 +67,15 @@ export function install() {
     // } catch (e) {}
     try {
         require('nativescript-material-bottomsheet').install();
-    } catch (e) {}
+    } catch (e) {
+        console.log('error installing bottomsheet', e);
+    }
+}
+
+export function getRippleColor(color: string | Color): UIColor {
+    if (color) {
+        const temp = typeof color === 'string' ? new Color(color) : color;
+        return new Color(36, temp.r, temp.g, temp.b).ios; // default alpha is 0.14
+    }
+    return null;
 }

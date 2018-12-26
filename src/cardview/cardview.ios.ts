@@ -1,15 +1,11 @@
 import { CardViewBase } from './cardview-common';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color, Length } from 'tns-core-modules/ui/page/page';
-import { themer } from 'nativescript-material-core';
+import { getRippleColor, themer } from 'nativescript-material-core';
 
 export class CardView extends CardViewBase {
     nativeViewProtected: MDCCard;
     _backgroundColor: Color;
-
-    getRippleColor(color: Color) {
-        return new Color(120, color.r, color.g, color.b).ios; // default alpha is 0.14
-    }
 
     public createNativeView() {
         const view = MDCCard.new();
@@ -64,6 +60,6 @@ export class CardView extends CardViewBase {
         }
     }
     [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.inkView.inkColor = this.getRippleColor(color);
+        this.nativeViewProtected.inkView.inkColor = getRippleColor(color);
     }
 }
