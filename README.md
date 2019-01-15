@@ -19,6 +19,6 @@
 * [bottomsheets](./packages/nativescript-material-bottomsheet/README.md)
 * [Ripple View](./packages/nativescript-material-ripple/README.md)
 
-## Dev setup
+## Contribution 
 
-```cd packages/nativescript-material-textfield && npm link && cd ../nativescript-material-dialogs && npm link nativescript-material-textfield```
+```cd demo && tns run ios --bundle --env.development```
