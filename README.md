@@ -18,6 +18,7 @@
 * [dialogs](./packages/nativescript-material-dialogs/README.md)
 * [bottomsheets](./packages/nativescript-material-bottomsheet/README.md)
 * [Ripple View](./packages/nativescript-material-ripple/README.md)
+* [Snackbar](./packages/nativescript-material-snackbar/README.md) (not finished yet on iOS side)
 
 ## Contribution 
 
