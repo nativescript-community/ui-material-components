@@ -1,12 +1,5 @@
 # Nativescript Material Components
 
-[//]: # ([![Build Status][build-status]][build-url])
-[![NPM version][npm-image]][npm-url]
-
-[npm-url]:https://npmjs.org/package/nativescript-material-components
-
-
-
 ## Components
 * [Button](./packages/nativescript-material-button/README.md)
 * [Floating Action Button](./packages/nativescript-material-floatingactionbutton/README.md)
