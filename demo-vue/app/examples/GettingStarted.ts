@@ -13,7 +13,7 @@ export default {
                         @tap="onNavigationButtonTap"></NavigationButton>
     </ActionBar>
     <StackLayout>
-      <Label text="Hello world"></Label>
+      <Label text="Hello world" class="titleLabel"></Label>
     </StackLayout>
   </Page>
   `,

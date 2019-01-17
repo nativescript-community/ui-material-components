@@ -30,6 +30,7 @@
     "nativescript-dev-typescript": "~0.7.0",
     "nativescript-dev-webpack": "~0.18.0",
     "nativescript-vue-template-compiler": "~2.0.2",
+    "tns-platform-declarations": "^5.1.0",
     "shelljs": "^0.8.2",
     "vue-loader": "~15.4.2"
   }

@@ -4,7 +4,7 @@ export default {
   name: 'Home',
   template: `
   <Page>
-    <ActionBar title="SideDrawer Vue">
+    <ActionBar title="Material Vue">
     </ActionBar>
     <ListView ref="listView"
         for="example in examples"
