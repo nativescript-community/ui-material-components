@@ -1,6 +1,8 @@
 import Vue from 'nativescript-vue';
+import ButtonPlugin from 'nativescript-material-button/vue';
 import CardViewPlugin from 'nativescript-material-cardview/vue';
 
+Vue.use(ButtonPlugin);
 Vue.use(CardViewPlugin);
 
 import { getExamples } from './examples';

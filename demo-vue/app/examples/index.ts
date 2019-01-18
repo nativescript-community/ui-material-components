@@ -1,7 +1,9 @@
-import CardView from './CardView';
+import Buttons from './Buttons';
+import CardViews from './CardViews';
 
 export const getExamples = () => {
   return [
-    CardView,
+    Buttons,
+    CardViews,
   ];
 };

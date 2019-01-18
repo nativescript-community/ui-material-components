@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "nativescript-material-cardview": "../packages/nativescript-material-cardview",
+    "nativescript-material-button": "../packages/nativescript-material-button",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-vue": "~2.0.2",
     "tns-core-modules": "^5.1.0",

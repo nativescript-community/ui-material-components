@@ -1,9 +1,9 @@
 import * as frameModule from 'tns-core-modules/ui/frame';
 
-const description = 'CardView sample';
+const description = 'CardViews sample';
 
 export default {
-  name: 'CardView',
+  name: 'CardViews',
   description: description,
   template: `
   <Page>
@@ -14,9 +14,9 @@ export default {
     </ActionBar>
     <StackLayout class="bg-green">
       <ScrollView>
-        <MDCardView margin="20" width="200" height="100">
+        <MDCardViews margin="20" width="200" height="100">
           <Label text="Hello world" class="title"></Label>
-        </MDCardView>
+        </MDCardViews>
       </ScrollView>
     </StackLayout>
   </Page>
