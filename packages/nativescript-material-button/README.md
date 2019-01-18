@@ -58,7 +58,9 @@ registerElement('MDButton', () => Button);
 
 ```javascript
 import Vue from 'nativescript-vue';
-Vue.registerElement('MDButton', () => require('nativescript-material-button').Button);
+import ButtonPlugin from 'nativescript-material-button/vue';
+
+Vue.use(ButtonPlugin);
 ```
 
 ```html
