@@ -13,9 +13,7 @@ export default {
                         @tap="onNavigationButtonTap"></NavigationButton>
     </ActionBar>
     <StackLayout>
-      <!--
       <MDFloatingActionButton id="fab" src="res://ic_action_add" backgroundColor="blue" @tap="onTap"/>
-      -->
       <MDButton id="button1" elevation="5" borderRadius="10" fontSize="20" text="raised button" @tap="onTap"/>
       <MDButton id="button2" class="bg-red" borderRadius="10" color="red" text="text button" variant="text" @tap="onTap">
         <FormattedString>
