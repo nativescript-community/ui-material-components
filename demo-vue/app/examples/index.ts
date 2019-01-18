@@ -1,7 +1,7 @@
-import GettingStarted from './GettingStarted';
+import CardView from './CardView';
 
 export const getExamples = () => {
   return [
-    GettingStarted,
+    CardView,
   ];
 };

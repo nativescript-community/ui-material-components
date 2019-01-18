@@ -1,9 +1,9 @@
 import * as frameModule from 'tns-core-modules/ui/frame';
 
-const description = 'Getting Started';
+const description = 'CardView sample';
 
 export default {
-  name: 'GettingStarted',
+  name: 'CardView',
   description: description,
   template: `
   <Page>
