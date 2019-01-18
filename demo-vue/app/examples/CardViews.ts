@@ -14,9 +14,9 @@ export default {
     </ActionBar>
     <StackLayout class="bg-green">
       <ScrollView>
-        <MDCardViews margin="20" width="200" height="100">
+        <MDCardView margin="20" width="200" height="100">
           <Label text="Hello world" class="title"></Label>
-        </MDCardViews>
+        </MDCardView>
       </ScrollView>
     </StackLayout>
   </Page>
