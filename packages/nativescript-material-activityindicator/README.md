@@ -54,7 +54,9 @@ registerElement('MDActivityIndicator', () => ActivityIndicator);
 
 ```javascript
 import Vue from 'nativescript-vue';
-Vue.registerElement('MDActivityIndicator', () => require('nativescript-material-activityindicator').ActivityIndicator);
+import ActivityIndicatorPlugin from 'nativescript-material-activityindicator/vue';
+
+Vue.use(ActivityIndicatorPlugin);
 ```
 
 ```html
