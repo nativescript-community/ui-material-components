@@ -56,7 +56,9 @@ registerElement('MDFloatingActionButton', () => FloatingActionButton);
 
 ```javascript
 import Vue from 'nativescript-vue';
-Vue.registerElement('MDFloatingActionButton', () => require('nativescript-material-floatingactionbutton').FloatingActionButton);
+import FloatingActionButtonPlugin from 'nativescript-material-floatingactionbutton/vue';
+
+Vue.use(FloatingActionButtonPlugin);
 ```
 
 ```html
