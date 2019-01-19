@@ -1,12 +1,5 @@
 # Nativescript Material Components
 
-[//]: # ([![Build Status][build-status]][build-url])
-[![NPM version][npm-image]][npm-url]
-
-[npm-url]:https://npmjs.org/package/nativescript-material-components
-
-
-
 ## Components
 * [Button](./packages/nativescript-material-button/README.md)
 * [Floating Action Button](./packages/nativescript-material-floatingactionbutton/README.md)
@@ -18,7 +11,8 @@
 * [dialogs](./packages/nativescript-material-dialogs/README.md)
 * [bottomsheets](./packages/nativescript-material-bottomsheet/README.md)
 * [Ripple View](./packages/nativescript-material-ripple/README.md)
+* [Snackbar](./packages/nativescript-material-snackbar/README.md) (not finished yet on iOS side)
 
-## Dev setup
+## Contribution 
 
-```cd packages/nativescript-material-textfield && npm link && cd ../nativescript-material-dialogs && npm link nativescript-material-textfield```
+```cd demo && tns run ios --bundle --env.development```
