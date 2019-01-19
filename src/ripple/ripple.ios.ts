@@ -1,13 +1,13 @@
 import { RippleBase } from './ripple-common';
 import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/ui/page/page';
-import { themer } from 'nativescript-material-core';
+import { getRippleColor, themer } from 'nativescript-material-core';
 
 export class Ripple extends RippleBase {
     constructor() {
         super();
     }
-    
+
     inkTouchController: MDCInkTouchController;
 
     get ios() {
@@ -26,6 +26,6 @@ export class Ripple extends RippleBase {
         return view;
     }
     [rippleColorProperty.setNative](color: Color) {
-        this.inkTouchController.defaultInkView.inkColor = this.getRippleColor(color);
+        this.inkTouchController.defaultInkView.inkColor = getRippleColor(color);
     }
 }
