@@ -3,6 +3,9 @@ import ActivityIndicatorPlugin from 'nativescript-material-activityindicator/vue
 import ButtonPlugin from 'nativescript-material-button/vue';
 import CardViewPlugin from 'nativescript-material-cardview/vue';
 import FloatingActionButtonPlugin from 'nativescript-material-floatingactionbutton/vue';
+import { install as installBottomSheet } from 'nativescript-material-bottomsheet';
+
+installBottomSheet();
 
 Vue.use(ActivityIndicatorPlugin);
 Vue.use(ButtonPlugin);
