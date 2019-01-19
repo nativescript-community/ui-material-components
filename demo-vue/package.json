@@ -16,6 +16,7 @@
     "nativescript-material-activityindicator": "../packages/nativescript-material-activityindicator",
     "nativescript-material-bottomsheet": "../packages/nativescript-material-bottomsheet",
     "nativescript-material-button": "../packages/nativescript-material-button",
+    "nativescript-material-core": "../packages/nativescript-material-core",
     "nativescript-material-cardview": "../packages/nativescript-material-cardview",
     "nativescript-material-floatingactionbutton": "../packages/nativescript-material-floatingactionbutton",
     "nativescript-theme-core": "~1.0.4",
