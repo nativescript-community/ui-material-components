@@ -42,9 +42,9 @@ mdcslider {
 ## NativeScript + Angular
 
 ```typescript
-import SliderPlugin from 'nativescript-material-slider/vue';
-
-Vue.use(SliderPlugin);
+import { registerElement } from 'nativescript-angular/element-registry';
+import { Slider } from 'nativescript-material-slider';
+registerElement('MDSlider', () => Slider);
 ```
 
 ```html
@@ -54,8 +54,9 @@ Vue.use(SliderPlugin);
 ## NativeScript + Vue
 
 ```javascript
-import Vue from 'nativescript-vue';
-Vue.registerElement('MDSlider', () => require('nativescript-material-slider').Slider);
+import SliderPlugin from 'nativescript-material-slider/vue';
+
+Vue.use(SliderPlugin);
 ```
 
 ```html
