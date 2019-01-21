@@ -16,15 +16,15 @@ export default {
       <Label text="Default slider with dynamic value" padding="10" />
       <MDSlider elevation="3" rippleColor="blue"
                 minValue="0" maxValue="100"
-                :value="value" @valueChange="onValueChanged" />
+                v-model="value" @valueChange="onValueChanged" />
       <Label text="Green slider without hollow at 0" padding="10" />
       <MDSlider thumbHollowAtStart="false" color="green"
                 minValue="0" maxValue="100"
-                :value="value" />
+                v-model="value" />
       <Label text="Disabled slider" padding="10" />
       <MDSlider isEnabled="false"
                 minValue="0" maxValue="100"
-                :value="value" />
+                v-model="value" />
     </StackLayout>
   </Page>
   `,
@@ -40,7 +40,6 @@ export default {
     },
     onValueChanged({ value }) {
       console.log(`Value changed to ${value}`);
-      this.value = value;
     },
   },
 };

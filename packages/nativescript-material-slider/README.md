@@ -60,7 +60,13 @@ Vue.use(SliderPlugin);
 ```
 
 ```html
-<MDSlider value="50" minValue="0" maxValue="100"/>
+<MDSlider value="50" minValue="0" maxValue="100" @valueChange="onValueChanged"/>
+```
+
+Or you can bind the value to some instance data using the `v-model` directive:
+
+```html
+<MDSlider v-model="value" minValue="0" maxValue="100"/>
 ```
 
 ## Attributes

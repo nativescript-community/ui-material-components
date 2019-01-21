@@ -4,7 +4,12 @@ const SliderPlugin = {
     Vue.registerElement(
       'MDSlider',
       () => require('./..').Slider,
-      {}
+      {
+        model: {
+          prop: 'value',
+          event: 'valueChange'
+        }
+      }
     );
   }
 };
