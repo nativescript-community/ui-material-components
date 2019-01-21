@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-components",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Your awesome NativeScript plugin.",
     "main": "./material",
     "typings": "./material.d.ts",
@@ -15,6 +15,7 @@
     },
     "scripts": {
         "publish": "lerna run tsc && lerna publish",
+        "force_publish": "lerna publish from-package",
         "tsc": "lerna run tsc",
         "clean": "rimraf packages/**/*.d.ts packages/**/*.js packages/**/*.js.map packages/core/android"
     },
