@@ -60,7 +60,7 @@ Vue.use(ProgressPlugin);
 ```
 
 ```html
-<MDProgress v-model="value" maxValue="100"></MDProgress>
+<MDProgress value="50" maxValue="100"></MDProgress>
 ```
 
 ## Attributes
