@@ -59,8 +59,9 @@ registerElement('MDTextField', () => TextField);
 ## NativeScript + Vue
 
 ```javascript
-import Vue from 'nativescript-vue';
-Vue.registerElement('MDTextField', () => require('nativescript-material-textfield').TextField);
+import TextFieldPlugin from 'nativescript-material-textfield/vue';
+
+Vue.use(TextFieldPlugin);
 ```
 
 ```html
