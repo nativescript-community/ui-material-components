@@ -16,9 +16,11 @@ export default {
       <MDTextField id="textField1" helper="help me!" width="250" backgroundColor="orange"
                    placeholderColor="green" keyboardType="datetime"
                    hint="i am an hint" returnKeyType="next"
+                   v-model="value"
                    @focus="onFocus" @blur="onBlur"
                    @textChange="onTextChange" @returnPress="onReturnPress" />
       <MDTextField id="textField2" maxLength="10" hint="hint me"
+                   v-model="value"
                    @focus="onFocus" @blur="onBlur"
                    @textChange="onTextChange" @returnPress="onReturnPress"/>
       <MDTextField id="textField3" variant="outline" hint="outline"
@@ -33,6 +35,7 @@ export default {
   data () {
     return {
       title: description,
+      value: '',
     };
   },
   methods: {

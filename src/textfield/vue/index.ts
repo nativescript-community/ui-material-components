@@ -4,7 +4,12 @@ const TextFieldPlugin = {
     Vue.registerElement(
       'MDTextField',
       () => require('./..').TextField,
-      {}
+      {
+        model: {
+          prop: 'text',
+          event: 'textChange'
+        }
+      }
     );
   }
 };

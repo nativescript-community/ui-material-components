@@ -70,6 +70,13 @@ Vue.use(TextFieldPlugin);
         @textChange="onTextChange"/>
 ```
 
+Also, you can bind the text to some instance data using the `v-model` directive:
+
+```html
+<MDTextField v-model="value" />
+```
+
+
 ## Attributes
 
 Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/text-field) so it already has all the same attributes
