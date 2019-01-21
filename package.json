@@ -16,6 +16,7 @@
     "scripts": {
         "publish": "lerna run tsc && lerna publish",
         "force_publish": "lerna publish from-package",
+        "increment_version": "lerna version",
         "tsc": "lerna run tsc",
         "clean": "rimraf packages/**/*.d.ts packages/**/*.js packages/**/*.js.map packages/core/android"
     },
