@@ -1,6 +1,7 @@
 import ActivityIndicators from './ActivityIndicators';
 import Buttons from './Buttons';
 import CardViews from './CardViews';
+import ProgressBars from './ProgressBars';
 import TextFields from './TextFields';
 
 export const getExamples = () => {
@@ -9,5 +10,6 @@ export const getExamples = () => {
     CardViews,
     ActivityIndicators,
     TextFields,
+    ProgressBars,
   ];
 };

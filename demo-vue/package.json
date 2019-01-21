@@ -19,6 +19,7 @@
     "nativescript-material-core": "../packages/nativescript-material-core",
     "nativescript-material-cardview": "../packages/nativescript-material-cardview",
     "nativescript-material-floatingactionbutton": "../packages/nativescript-material-floatingactionbutton",
+    "nativescript-material-progress": "../packages/nativescript-material-progress",
     "nativescript-material-textfield": "../packages/nativescript-material-textfield",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-vue": "~2.0.2",

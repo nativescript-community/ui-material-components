@@ -3,6 +3,7 @@ import ActivityIndicatorPlugin from 'nativescript-material-activityindicator/vue
 import ButtonPlugin from 'nativescript-material-button/vue';
 import CardViewPlugin from 'nativescript-material-cardview/vue';
 import FloatingActionButtonPlugin from 'nativescript-material-floatingactionbutton/vue';
+import ProgressPlugin from 'nativescript-material-progress/vue';
 import TextFieldPlugin from 'nativescript-material-textfield/vue';
 import { install as installBottomSheet } from 'nativescript-material-bottomsheet';
 
@@ -12,6 +13,7 @@ Vue.use(ActivityIndicatorPlugin);
 Vue.use(ButtonPlugin);
 Vue.use(CardViewPlugin);
 Vue.use(FloatingActionButtonPlugin);
+Vue.use(ProgressPlugin);
 Vue.use(TextFieldPlugin);
 
 import { getExamples } from './examples';
