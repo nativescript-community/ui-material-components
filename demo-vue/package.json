@@ -20,6 +20,7 @@
     "nativescript-material-cardview": "../packages/nativescript-material-cardview",
     "nativescript-material-floatingactionbutton": "../packages/nativescript-material-floatingactionbutton",
     "nativescript-material-progress": "../packages/nativescript-material-progress",
+    "nativescript-material-ripple": "../packages/nativescript-material-ripple",
     "nativescript-material-slider": "../packages/nativescript-material-slider",
     "nativescript-material-textfield": "../packages/nativescript-material-textfield",
     "nativescript-theme-core": "~1.0.4",
