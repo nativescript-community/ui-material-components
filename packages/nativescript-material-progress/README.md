@@ -42,9 +42,9 @@ mdcprogress {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
-import { Progress } from 'nativescript-material-progress';
-registerElement('MDProgress', () => Progress);
+import ProgressPlugin from 'nativescript-material-progress/vue';
+
+Vue.use(ProgressPlugin);
 ```
 
 ```html
