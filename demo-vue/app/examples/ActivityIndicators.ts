@@ -31,9 +31,6 @@ export default {
     onNavigationButtonTap() {
       frameModule.topmost().goBack();
     },
-    onTap () {
-      console.log('Button tapped');
-    },
   },
   created() {
     this.interval = setInterval(() => {
