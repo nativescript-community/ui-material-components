@@ -3,7 +3,7 @@ const ButtonPlugin = {
   install(Vue) {
     Vue.registerElement(
       'MDButton',
-      () => require('./..').Button,
+      () => require('../button').Button,
       {}
     );
   }

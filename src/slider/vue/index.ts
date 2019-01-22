@@ -3,7 +3,7 @@ const SliderPlugin = {
   install(Vue) {
     Vue.registerElement(
       'MDSlider',
-      () => require('./..').Slider,
+      () => require('../slider').Slider,
       {
         model: {
           prop: 'value',

@@ -3,7 +3,7 @@ const ActivityIndicatorPlugin = {
   install(Vue) {
     Vue.registerElement(
       'MDActivityIndicator',
-      () => require('./..').ActivityIndicator,
+      () => require('../activityindicator').ActivityIndicator,
       {}
     );
   }

@@ -3,7 +3,7 @@ const FloatingActionButtonPlugin = {
   install(Vue) {
     Vue.registerElement(
       'MDFloatingActionButton',
-      () => require('./..').FloatingActionButton,
+      () => require('../floatingactionbutton').FloatingActionButton,
       {}
     );
   }

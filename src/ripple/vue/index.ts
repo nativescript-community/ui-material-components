@@ -3,7 +3,7 @@ const RipplePlugin = {
   install(Vue) {
     Vue.registerElement(
       'MDRipple',
-      () => require('./..').Ripple,
+      () => require('../ripple').Ripple,
       {}
     );
   }

@@ -3,7 +3,7 @@ const CardViewPlugin = {
   install(Vue) {
     Vue.registerElement(
       'MDCardView',
-      () => require('./..').CardView,
+      () => require('../cardview').CardView,
       {}
     );
   }

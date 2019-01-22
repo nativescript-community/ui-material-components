@@ -3,7 +3,7 @@ const TextFieldPlugin = {
   install(Vue) {
     Vue.registerElement(
       'MDTextField',
-      () => require('./..').TextField,
+      () => require('../textfield').TextField,
       {
         model: {
           prop: 'text',
