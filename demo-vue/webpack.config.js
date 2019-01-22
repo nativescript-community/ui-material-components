@@ -40,6 +40,7 @@ module.exports = env => {
             appResourcesPath = "app/App_Resources",
 
             // You can provide the following flags when running 'tns run android|ios'
+            development = false, // --env.development
             snapshot, // --env.snapshot
             production, // --env.production
             report, // --env.report
@@ -58,6 +59,38 @@ module.exports = env => {
     const entryModule = nsWebpack.getEntryModule(appFullPath);
     const entryPath = resolve(appFullPath, entryModule);
     console.log(`Bundling application for entryPath ${entryPath}...`);
+
+    let aliases = {
+        '~': appFullPath,
+        '@': appFullPath,
+        'vue': 'nativescript-vue'
+    };
+
+    if (!!development) {
+        const srcFullPath = resolve(projectRoot, '..', 'src');
+        aliases = Object.assign(aliases, {
+            '#': srcFullPath,
+            'nativescript-material-core$': '#/core/material',
+            'nativescript-material-core': '#/core',
+            'nativescript-material-bottomsheet$': '#/bottomsheet/bottomsheet',
+            'nativescript-material-progress$': '#/progress/progress',
+            'nativescript-material-progress': '#/progress',
+            'nativescript-material-slider$': '#/slider/slider',
+            'nativescript-material-slider': '#/slider',
+            'nativescript-material-button$': '#/button/button',
+            'nativescript-material-button': '#/button',
+            'nativescript-material-textfield$': '#/textfield/textfield',
+            'nativescript-material-textfield': '#/textfield',
+            'nativescript-material-floatingactionbutton$': '#/floatingactionbutton/floatingactionbutton',
+            'nativescript-material-floatingactionbutton': '#/floatingactionbutton',
+            'nativescript-material-activityindicator$': '#/activityindicator/activityindicator',
+            'nativescript-material-activityindicator': '#/activityindicator',
+            'nativescript-material-ripple$': '#/ripple/ripple',
+            'nativescript-material-ripple': '#/ripple',
+            'nativescript-material-dialogs$': '#/dialogs/dialogs',
+            'nativescript-material-components': '#'
+        });
+    }
 
     const config = {
         mode: mode,
@@ -91,11 +124,7 @@ module.exports = env => {
                 "node_modules/tns-core-modules",
                 "node_modules",
             ],
-            alias: {
-                '~': appFullPath,
-                '@': appFullPath,
-                'vue': 'nativescript-vue'
-            },
+            alias: aliases,
             // resolve symlinks to symlinked modules
             symlinks: true,
         },
