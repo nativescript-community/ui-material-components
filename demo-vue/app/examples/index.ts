@@ -7,13 +7,5 @@ import Sliders from './Sliders';
 import TextFields from './TextFields';
 
 export const getExamples = () => {
-  return [
-    Buttons,
-    CardViews,
-    ActivityIndicators,
-    TextFields,
-    ProgressBars,
-    Sliders,
-    Ripples,
-  ];
+    return [Buttons, CardViews, ActivityIndicators, TextFields, ProgressBars, Sliders, Ripples];
 };
