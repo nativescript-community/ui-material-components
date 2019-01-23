@@ -43,5 +43,8 @@
     "tns-platform-declarations": "^5.1.0",
     "shelljs": "^0.8.2",
     "vue-loader": "~15.4.2"
+  },
+  "scripts": {
+    "tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'"
   }
 }
