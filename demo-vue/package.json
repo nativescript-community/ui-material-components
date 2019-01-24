@@ -16,8 +16,8 @@
     "nativescript-material-activityindicator": "../packages/nativescript-material-activityindicator",
     "nativescript-material-bottomsheet": "../packages/nativescript-material-bottomsheet",
     "nativescript-material-button": "../packages/nativescript-material-button",
-    "nativescript-material-core": "../packages/nativescript-material-core",
     "nativescript-material-cardview": "../packages/nativescript-material-cardview",
+    "nativescript-material-core": "../packages/nativescript-material-core",
     "nativescript-material-floatingactionbutton": "../packages/nativescript-material-floatingactionbutton",
     "nativescript-material-progress": "../packages/nativescript-material-progress",
     "nativescript-material-ripple": "../packages/nativescript-material-ripple",
@@ -27,7 +27,7 @@
     "nativescript-vue": "~2.0.2",
     "tns-core-modules": "^5.1.0",
     "tslib": "^1.9.3",
-    "vue": "^2.5.17"
+    "vue-class-component": "^6.3.2"
   },
   "devDependencies": {
     "@babel/core": "~7.1.0",
@@ -42,6 +42,7 @@
     "nativescript-vue-template-compiler": "~2.0.2",
     "tns-platform-declarations": "^5.1.0",
     "shelljs": "^0.8.2",
+    "vue": "^2.5.17",
     "vue-loader": "~15.4.2"
   },
   "scripts": {

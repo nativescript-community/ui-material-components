@@ -1,10 +1,8 @@
 import * as frameModule from 'tns-core-modules/ui/frame';
+import Vue from 'vue';
+import Component from 'vue-class-component'
 
-const description = 'Buttons sample';
-
-export default {
-    name: 'Buttons',
-    description: description,
+@Component({
     template: `
     <Page>
       <ActionBar :title="title">
@@ -30,18 +28,17 @@ export default {
         <MDButton id="button9" class="falseFAb bg-green" text="+" color="white" verticalAlign="center" backgroundColor="#53ba82" @tap="onTap"/>
       </StackLayout>
     </Page>
-    `,
-    data() {
-        return {
-            title: description
-        };
-    },
-    methods: {
-        onNavigationButtonTap() {
-            frameModule.topmost().goBack();
-        },
-        onTap() {
-            console.log('Button tapped');
-        }
+    `
+})
+export default class Buttons extends Vue {
+    name: 'Buttons'
+    title: 'Buttons sample'
+
+    onNavigationButtonTap() {
+        frameModule.topmost().goBack();
+    }
+
+    onTap() {
+        console.log('Button tapped');
     }
 };
