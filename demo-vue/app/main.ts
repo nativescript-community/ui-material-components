@@ -23,8 +23,8 @@ Vue.use(TextFieldPlugin);
 import { getExamples } from './examples';
 import * as views from './views';
 
-for (let comp of getExamples()) {
-    Vue.component(comp.name, comp);
+for (let item of getExamples()) {
+    Vue.component(item.component.name, item.component);
 }
 
 Vue.component(views.Home.name, views.Home);

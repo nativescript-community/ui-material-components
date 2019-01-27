@@ -12,7 +12,7 @@ export default {
           @itemTap="goToExample">
         <v-template>
           <StackLayout class="item" orientation="vertical">
-            <Label :text="example.description" class="title"></Label>
+            <Label :text="example.title" class="title"></Label>
             <StackLayout height="1" backgroundColor="#EEEEEE"></StackLayout>
           </StackLayout>
         </v-template>
@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         goToExample({ item }) {
-            this.$navigateTo(item);
+            this.$navigateTo(item.component);
         }
     }
 };
