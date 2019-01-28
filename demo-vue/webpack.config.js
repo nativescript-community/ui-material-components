@@ -9,6 +9,29 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const NsVueTemplateCompiler = require("nativescript-vue-template-compiler");
 
+// temporary hack to support v-model using ns-vue-template-compiler
+// See https://github.com/nativescript-vue/nativescript-vue/issues/371
+NsVueTemplateCompiler.registerElement(
+    "MDTextField",
+    () => require("~/nativescript-material-components/textfield").TextField,
+    {
+        model: {
+            prop: "text",
+            event: "textChange"
+        }
+    }
+);
+NsVueTemplateCompiler.registerElement(
+    "MDSlider",
+    () => require("~/nativescript-material-components/slider").Slider,
+    {
+        model: {
+            prop: 'value',
+            event: 'valueChange'
+        }
+    }
+);
+
 const nsWebpack = require("nativescript-dev-webpack");
 const nativescriptTarget = require("nativescript-dev-webpack/nativescript-target");
 const { NativeScriptWorkerPlugin } = require("nativescript-worker-loader/NativeScriptWorkerPlugin");
