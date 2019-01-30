@@ -11,7 +11,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ---
 
-##### [Material Design Spec](https://material.io/design/components/textfields.html)
+##### [Material Design Spec](https://material.io/design/components/text-fields.html)
 
 ### Usage
 
