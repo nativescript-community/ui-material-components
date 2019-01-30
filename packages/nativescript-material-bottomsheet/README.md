@@ -44,10 +44,15 @@ export function openBottomSheet(args) {
     const mainView: Button = <Button>args.object;
     const context = { username: "test_username", password: "test" };
     const fullscreen = true;
-    mainView.showBottomSheet(modalViewModulets, context, (username, password) => {
-        // Receive data from the bottomsheet view. e.g. username & password
-        alert(`Username: ${username} : Password: ${password}`);
-    }, fullscreen);
+    mainView.showBottomSheet({
+        view: modalViewModulets,
+        context,
+        closeCallback: (username, password) => {
+            // Receive data from the bottomsheet view. e.g. username & password
+            alert(`Username: ${username} : Password: ${password}`);
+        },
+        fullscreen
+    });
 }
 
 ```
