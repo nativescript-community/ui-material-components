@@ -1,7 +1,9 @@
-import { CardViewBase } from './cardview-common';
+import { CardViewBase, borderColorProperty, borderRadiusProperty, borderWidthProperty, interactableProperty } from './cardview-common';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import * as application from 'tns-core-modules/application/application';
 import { Color, Length } from 'tns-core-modules/ui/page/page';
-import { ad } from 'tns-core-modules/utils/utils';
+import { ad, layout } from 'tns-core-modules/utils/utils';
+import { backgroundColorProperty, backgroundInternalProperty } from 'tns-core-modules/ui/core/view/view';
 
 let MDCCardView: typeof android.support.design.card.MaterialCardView;
 let BACKGROUND_DEFAULT_STATE_1: number[];
@@ -218,7 +220,7 @@ export class CardView extends CardViewBase {
     }
 
     private createRoundRectShape() {
-        const radius = this._borderRadius;
+        const radius = this.borderRadius;
         const radii = Array.create('float', 8);
         for (let index = 0; index < 8; index++) {
             radii[index] = radius;
@@ -239,7 +241,7 @@ export class CardView extends CardViewBase {
     private createStateListAnimator(view: android.view.View) {
         const elevation = android.support.v4.view.ViewCompat.getElevation(view);
         const translationZ = android.support.v4.view.ViewCompat.getTranslationZ(view);
-        const elevationSelected = elevation * 8; // for now to be the same as iOS
+        const elevationSelected = elevation * 2; // for now to be the same as iOS
         const translationSelectedZ = translationZ + 6;
         const animationDuration = 100;
         const listAnimator = new android.animation.StateListAnimator();
@@ -303,19 +305,20 @@ export class CardView extends CardViewBase {
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             this.createStateListAnimator(view);
         }
-        view.setClickable(true);
-
-        if (this._borderRadius !== undefined) {
-            view.setRadius(this._borderRadius);
-        }
-        // needs to be done after setRadius
+        view.setClickable(true); // Give it same default as iOS
         this.setRippleDrawable(view);
         return view;
     }
 
     setRippleDrawable(view) {
         if (android.os.Build.VERSION.SDK_INT >= 23) {
-            view.setForeground(this.getSelectedItemDrawable(this._context));
+            const currentDrawable = view.getForeground();
+            const rippleDrawable = this.getSelectedItemDrawable(this._context);
+            const drawableArray = Array.create(android.graphics.drawable.Drawable, 2);
+            drawableArray[0] = rippleDrawable;
+            drawableArray[1] = currentDrawable;
+            const newForeground = new android.graphics.drawable.LayerDrawable(drawableArray);
+            view.setForeground(newForeground);
         } else {
             //       view.setBackground(
             //         this.createCompatRippleDrawable(
@@ -325,32 +328,76 @@ export class CardView extends CardViewBase {
         }
     }
 
+    [backgroundColorProperty.setNative](value: Color) {
+        try {
+            this.nativeView.setCardBackgroundColor(value !== undefined ? value.android : new Color('#FFFFFF').android);
+        } catch (error) {
+            // do nothing, catch bad color value
+            console.log('nativescript-material-cardview --- invalid background-color value:', error);
+        }
+    }
+
+    [backgroundInternalProperty.setNative](value: any) {
+        if (value) {
+            try {
+                this.nativeView.setCardBackgroundColor(
+                    new Color(value.color !== undefined ? value.color + '' : '#FFFFFF').android
+                );
+            } catch (error) {
+                // do nothing, catch bad color value
+                console.log('nativescript-material-cardview --- invalid background-color value:', error);
+            }
+        }
+    }
+
+    [borderColorProperty.setNative](value: Color) {
+        this.nativeViewProtected.setStrokeColor(value !== undefined ? value.android : new Color('#FFFFFF').android);
+        this.setRippleDrawable(this.nativeViewProtected);
+    }
+
+    [borderColorProperty.getDefault](): Color {
+        return new Color(this.nativeViewProtected.getStrokeColor());
+    }
+
+    [borderRadiusProperty.setNative](value: number) {
+        this.nativeViewProtected.setRadius(layout.toDevicePixels(value));
+        this.setRippleDrawable(this.nativeViewProtected);
+    }
+
+    [borderRadiusProperty.getDefault](): number {
+        return layout.toDeviceIndependentPixels(this.nativeViewProtected.getRadius());
+    }
+
+    [borderWidthProperty.setNative](value: number) {
+        this.nativeViewProtected.setStrokeWidth(layout.toDevicePixels(value));
+        this.setRippleDrawable(this.nativeViewProtected);
+    }
+
+    [borderWidthProperty.getDefault](): number {
+        return layout.toDeviceIndependentPixels(this.nativeViewProtected.getStrokeWidth());
+    }
+
     [elevationProperty.setNative](value: number) {
         android.support.v4.view.ViewCompat.setElevation(this.nativeViewProtected, value);
     }
+
+    [elevationProperty.getDefault](): number {
+        return android.support.v4.view.ViewCompat.getElevation(this.nativeViewProtected);
+    }
+
+    [interactableProperty.setNative](value: boolean) {
+        this.nativeViewProtected.setClickable(value);
+    }
+
+    [interactableProperty.getDefault]() {
+        this.nativeViewProtected.isClickable();
+    }
+
     [rippleColorProperty.setNative](color: Color) {
         if (android.os.Build.VERSION.SDK_INT >= 23) {
             (this.nativeViewProtected.getForeground() as any).setColor(android.content.res.ColorStateList.valueOf(color.android));
         } else {
             this.setRippleDrawable(this.nativeViewProtected);
-        }
-    }
-    set borderRadius(value: string | Length) {
-        const newValue = (this._borderRadius = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0));
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.setRadius(newValue);
-        }
-    }
-    set borderWidth(value: string | Length) {
-        const newValue = (this._borderRadius = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0));
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.setStrokeWidth(newValue);
-        }
-    }
-    set borderColor(value: Color) {
-        this._borderColor = value;
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.setStrokeColor(value.android);
         }
     }
 }

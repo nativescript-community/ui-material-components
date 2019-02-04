@@ -64,4 +64,6 @@ report
 packages/**/*.js
 packages/**/*.ts
 packages/**/*.js.map
+packages/**/*.metadata.json
+packages/**/*.ngsummary.json
 *.tgz

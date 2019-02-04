@@ -1,11 +1,11 @@
-import { CardViewBase } from './cardview-common';
+import { CardViewBase, borderRadiusProperty, borderColorProperty, borderWidthProperty, interactableProperty } from './cardview-common';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color, Length } from 'tns-core-modules/ui/page/page';
 import { getRippleColor, themer } from 'nativescript-material-core';
+import { backgroundColorProperty, backgroundInternalProperty } from 'tns-core-modules/ui/core/view/view';
 
 export class CardView extends CardViewBase {
     nativeViewProtected: MDCCard;
-    _backgroundColor: Color;
 
     public createNativeView() {
         const view = MDCCard.new();
@@ -13,53 +13,74 @@ export class CardView extends CardViewBase {
         if (colorScheme) {
             MDCCardsColorThemer.applySemanticColorSchemeToCard(colorScheme, view);
         }
-        if (this._backgroundColor) {
-            view.backgroundColor = this._backgroundColor.ios;
-        }
-        if (this._borderRadius !== undefined) {
-            view.layer.cornerRadius = this._borderRadius;
-        }
         return view;
     }
     _setNativeClipToBounds() {
         // this.ios.clipsToBounds = true;
     }
 
+    [backgroundColorProperty.setNative](value: Color) {
+        this.nativeView.backgroundColor = value !== undefined ? value.ios : new Color('#FFFFFF').ios;
+    }
+
+    [backgroundColorProperty.getDefault]() {
+        return this.nativeView.backgroundColor;
+    }
+
+    [backgroundInternalProperty.setNative](value) {
+        this.nativeView.backgroundColor = new Color(value.color !== undefined ? value.color + '' : '#FFFFFF').ios;
+    }
+
+    [backgroundInternalProperty.getDefault]() {
+        return this.nativeView.backgroundColor;
+    }
+
+    [borderColorProperty.setNative](value: Color) {
+        this.nativeView.setBorderColorForState(value !== undefined ? value.ios : new Color('#FFFFFF').ios, UIControlState.Normal);
+    }
+
+    [borderColorProperty.getDefault](): Color {
+        return this.nativeView.borderColorForState(UIControlState.Normal);
+    }
+
+    [borderRadiusProperty.setNative](value: number) {
+        this.nativeViewProtected.cornerRadius = value;
+    }
+
+    [borderRadiusProperty.getDefault](): number {
+        return this.nativeViewProtected.cornerRadius;
+    }
+
+    [borderWidthProperty.setNative](value: number) {
+        this.nativeView.setBorderWidthForState(value, UIControlState.Normal);
+    }
+
+    [borderWidthProperty.getDefault](): number {
+        return this.nativeView.borderWidthForState(UIControlState.Normal);
+    }
+
     [elevationProperty.setNative](value: number) {
         this.nativeViewProtected.setShadowElevationForState(value, UIControlState.Normal);
         this.nativeViewProtected.setShadowElevationForState(value * 2, UIControlState.Highlighted);
     }
-    set borderRadius(value: string | Length) {
-        const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
-        this._borderRadius = newValue;
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.layer.cornerRadius = newValue;
-        }
+
+    [elevationProperty.getDefault]() {
+        return this.nativeView.shadowElevationForState(UIControlState.Normal);
     }
-    set borderWidth(value: string | Length) {
-        const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
-        this._borderRadius = newValue;
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.setBorderWidthForState(newValue, UIControlState.Normal);
-        }
+
+    [interactableProperty.setNative](value: boolean) {
+        this.nativeView.interactable = value;
     }
-    set borderColor(value: Color) {
-        this._borderColor = value;
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.setBorderColorForState(value.ios, UIControlState.Normal);
-        }
+
+    [interactableProperty.getDefault](): boolean {
+        return this.nativeView.interactable;
     }
-    get backgroundColor() {
-        return this._backgroundColor;
-    }
-    set backgroundColor(value: Color | string) {
-        const color = typeof value === 'string' ? new Color(value) : value;
-        this._backgroundColor = color;
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.backgroundColor = color.ios;
-        }
-    }
+
     [rippleColorProperty.setNative](color: Color) {
         this.nativeViewProtected.inkView.inkColor = getRippleColor(color);
+    }
+
+    [rippleColorProperty.getDefault]() {
+        return this.nativeViewProtected.inkView.inkColor;
     }
 }

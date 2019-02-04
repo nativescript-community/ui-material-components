@@ -335,6 +335,7 @@ declare module android {
 					public constructor(param0: android.content.Context);
 					public constructor(param0: android.content.Context, param1: android.util.AttributeSet);
 					public setRadius(param0: number): void;
+					public getRadius(): number;
 					public setStrokeColor(param0: number): void;
 					public getStrokeColor(): number;
 					public setStrokeWidth(param0: number): void;

@@ -2,23 +2,24 @@
     "name": "nativescript-material-components",
     "version": "1.0.2",
     "description": "Your awesome NativeScript plugin.",
-    "main": "./material",
-    "typings": "./material.d.ts",
     "nativescript": {
         "platforms": {
             "android": "5.0.0",
             "ios": "5.0.0"
-        },
-        "tns-ios": {
-            "version": "5.0.0"
         }
     },
     "scripts": {
-        "publish": "lerna run tsc && lerna publish",
+        "publish": "lerna run tsc && lerna run ngc && lerna publish",
+        "build.plugin": "lerna run tsc && lerna run ngc",
         "force_publish": "lerna publish from-package",
         "increment_version": "lerna version",
         "tsc": "lerna run tsc",
-        "clean": "rimraf packages/**/*.d.ts packages/**/*.js packages/**/*.js.map packages/core/android"
+        "ngc": "lerna run ngc",
+        "clean": "rimraf packages/**/*.d.ts packages/**/*.js packages/**/*.js.map packages/core/android",
+        "demo.android": "cd ./demo && tns run android --syncAllFiles --bundle",
+        "demo.ios": "cd ./demo && tns run ios --syncAllFiles --bundle",
+        "build.demo.android": "cd ./demo && tns build android --bundle",
+        "build.demo.ios": "cd ./demo && tns build ios --bundle"
     },
     "keywords": [
         "NativeScript",
@@ -37,18 +38,18 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "devDependencies": {
-        "@angular/animations": "~7.1.4",
-        "@angular/common": "~7.1.4",
-        "@angular/compiler": "~7.1.4",
-        "@angular/compiler-cli": "~7.1.4",
-        "@angular/core": "~7.1.4",
-        "@angular/forms": "~7.1.4",
-        "@angular/http": "~7.1.4",
-        "@angular/platform-browser": "~7.1.4",
-        "@angular/platform-browser-dynamic": "~7.1.4",
-        "@angular/router": "~7.1.4",
+        "@angular/animations": "~7.2.3",
+        "@angular/common": "~7.2.3",
+        "@angular/compiler": "~7.2.3",
+        "@angular/compiler-cli": "~7.2.3",
+        "@angular/core": "~7.2.3",
+        "@angular/forms": "~7.2.3",
+        "@angular/http": "~7.2.3",
+        "@angular/platform-browser": "~7.2.3",
+        "@angular/platform-browser-dynamic": "~7.2.3",
+        "@angular/router": "~7.2.3",
         "lerna": "^3.8.0",
-        "nativescript-angular": "~7.1.0",
+        "nativescript-angular": "~7.2.0",
         "nativescript-vue": "~2.0.2",
         "prettier": "^1.15.3",
         "prompt": "^1.0.0",

@@ -2,10 +2,10 @@
     "nativescript": {
         "id": "org.nativescript.demo",
         "tns-ios": {
-            "version": "5.0.1-rc-2018-11-30-133527-01"
+            "version": "5.0.0"
         },
         "tns-android": {
-            "version": "5.1.0"
+            "version": "5.0.0"
         }
     },
     "dependencies": {
@@ -49,14 +49,7 @@
         "webpack-sources": "~1.3.0"
     },
     "scripts": {
-        "build.plugin": "cd ../src && npm run build",
-        "ci.tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'",
-        "ns-bundle": "ns-bundle",
-        "publish-ios-bundle": "npm run ns-bundle --ios --publish-app",
-        "generate-android-snapshot": "generate-android-snapshot --targetArchs arm,arm64,ia32 --install",
-        "start-android-bundle": "npm run ns-bundle --android --run-app",
-        "start-ios-bundle": "npm run ns-bundle --ios --run-app",
-        "build-android-bundle": "npm run ns-bundle --android --build-app",
-        "build-ios-bundle": "npm run ns-bundle --ios --build-app"
+        "build.plugin": "cd ./ && npm run build.plugin",
+        "ci.tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'"
     }
 }

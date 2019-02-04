@@ -6,6 +6,7 @@
     "typings": "./cardview.d.ts",
     "scripts": {
         "tsc": "tsc && cp ../../src/cardview/cardview.d.ts ./",
+        "ngc": "node --max-old-space-size=8192 ../../node_modules/.bin/ngc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {
