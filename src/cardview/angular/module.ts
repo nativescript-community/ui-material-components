@@ -1,16 +1,7 @@
 import { NgModule } from '@angular/core';
 import { registerElement } from 'nativescript-angular/element-registry';
 
-import { DIRECTIVES } from './directives';
-
-@NgModule({
-    declarations: [
-        DIRECTIVES
-    ],
-    exports: [
-        DIRECTIVES
-    ],
-})
+@NgModule()
 export class NativeScriptMaterialCardViewModule { }
 
 registerElement('CardView', () => require('../card').CardView);
