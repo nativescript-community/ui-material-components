@@ -2,7 +2,7 @@ import { Color, CSSType, Length, View, Property } from 'tns-core-modules/ui/core
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 
-@CSSType('MDCCardView')
+@CSSType('MDCardView')
 export abstract class CardViewBase extends StackLayout {
     borderColor: string;
     borderRadius: number;

@@ -3,7 +3,7 @@ import { Color } from 'tns-core-modules/color/color';
 import { CSSType } from 'tns-core-modules/ui/page/page';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 
-@CSSType('MDCTextField')
+@CSSType('MDTextField')
 export abstract class TextFieldBase extends NTextField {
     constructor() {
         super();

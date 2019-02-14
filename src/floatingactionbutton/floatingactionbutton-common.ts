@@ -11,7 +11,7 @@ export const srcProperty = new Property<FloatingActionButtonBase, any>({
     name: 'src'
 });
 
-@CSSType('MDCFloatingActionButton')
+@CSSType('MDFloatingActionButton')
 export abstract class FloatingActionButtonBase extends View {
     constructor() {
         super();

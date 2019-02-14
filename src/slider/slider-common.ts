@@ -2,7 +2,7 @@ import { booleanConverter, Color, colorProperty, CSSType, Property } from 'tns-c
 import { Slider as NSSlider } from 'tns-core-modules/ui/slider';
 import { cssProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 
-@CSSType('MDCSlider')
+@CSSType('MDSlider')
 export abstract class SliderBase extends NSSlider {
     @cssProperty rippleColor: Color | string;
     @cssProperty trackBackgroundColor: Color | string;

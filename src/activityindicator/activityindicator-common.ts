@@ -2,7 +2,7 @@ import { CSSType, layout } from 'tns-core-modules/ui/core/view';
 import { ActivityIndicator as NSActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 
-@CSSType('MDCActivityIndicator')
+@CSSType('MDActivityIndicator')
 export abstract class ActivityIndicatorBase extends NSActivityIndicator {
     // public variant: string;
     // @cssProperty elevation: number
