@@ -312,13 +312,7 @@ export class CardView extends CardViewBase {
 
     setRippleDrawable(view) {
         if (android.os.Build.VERSION.SDK_INT >= 23) {
-            const currentDrawable = view.getForeground();
-            const rippleDrawable = this.getSelectedItemDrawable(this._context);
-            const drawableArray = Array.create(android.graphics.drawable.Drawable, 2);
-            drawableArray[0] = rippleDrawable;
-            drawableArray[1] = currentDrawable;
-            const newForeground = new android.graphics.drawable.LayerDrawable(drawableArray);
-            view.setForeground(newForeground);
+            view.setForeground(this.getSelectedItemDrawable(this._context));
         } else {
             //       view.setBackground(
             //         this.createCompatRippleDrawable(
