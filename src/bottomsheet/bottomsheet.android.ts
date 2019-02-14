@@ -1,9 +1,9 @@
 import { View } from 'tns-core-modules/ui/core/view';
 import { fromObject } from 'tns-core-modules/data/observable/observable';
-import { ViewWithBottomSheetBase } from './bottomsheet-common';
-import { BottomSheetOptions } from './bottomsheet';
+import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
 import { applyMixins } from 'nativescript-material-core';
 
+export { BottomSheetOptions };
 interface BottomSheetDataOptions {
     owner: View;
     // fullscreen: boolean;
@@ -12,7 +12,6 @@ interface BottomSheetDataOptions {
     dismissCallback: () => void;
 }
 const DOMID = '_domId';
-const androidBackPressedEvent = 'androidBackPressed';
 const bottomSheetMap = new Map<number, BottomSheetDataOptions>();
 
 function saveBottomSheet(options: BottomSheetDataOptions) {
