@@ -6,7 +6,7 @@ import { Background } from 'tns-core-modules/ui/styling/background';
 import { backgroundColorProperty, backgroundInternalProperty, Color, fontInternalProperty } from 'tns-core-modules/ui/page/page';
 import { Font } from 'tns-core-modules/ui/styling/font';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { getRippleColor } from 'nativescript-material-core/material';
+import { getRippleColor } from 'nativescript-material-core';
 
 let buttonScheme: MDCButtonScheme;
 function getButtonScheme() {

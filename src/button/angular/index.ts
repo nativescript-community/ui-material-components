@@ -4,4 +4,4 @@ import { registerElement } from 'nativescript-angular/element-registry';
 @NgModule()
 export class NativeScriptMaterialCardViewModule {}
 
-registerElement('MDCardView', () => require('../card').CardView);
+registerElement('MDButton', () => require('../button').Button);
