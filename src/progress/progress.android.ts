@@ -2,6 +2,7 @@ import { progressBackgroundColorProperty, ProgressBase, progressColorProperty } 
 import { Color } from 'tns-core-modules/color/color';
 
 export class Progress extends ProgressBase {
+    nativeViewProtected: android.widget.ProgressBar;
     [progressColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setProgressTintList(color ? android.content.res.ColorStateList.valueOf(color.android) : null);
     }
