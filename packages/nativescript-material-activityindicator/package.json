@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-activityindicator",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Material ActivityIndicator component",
     "main": "./activityindicator",
     "typings": "./activityindicator.d.ts",

@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-slider",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Material slider component",
     "main": "./slider",
     "typings": "./slider.d.ts",

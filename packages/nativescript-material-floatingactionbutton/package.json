@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-floatingactionbutton",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Material floatingactionbutton component",
     "main": "./floatingactionbutton",
     "typings": "./floatingactionbutton.d.ts",

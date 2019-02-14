@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-bottomsheet",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Material bottomsheet component",
     "main": "./bottomsheet",
     "typings": "./bottomsheet.d.ts",
