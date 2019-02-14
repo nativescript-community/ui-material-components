@@ -4,7 +4,7 @@
             <Label text="Hello World!"></Label>
         </StackLayout>
     </mdcv:CardView>
-    <mdcv:CardView elevation="2" borderRadius="3" borderColor="green" borderWidth="1"  margin="10">
+    <mdcv:CardView  class="carviewtest" elevation="2" borderRadius="3" borderWidth="1"  margin="10">
         <StackLayout padding="10">
             <Label text="Hello World!"></Label>
         </StackLayout>
