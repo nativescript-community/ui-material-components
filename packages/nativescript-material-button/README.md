@@ -36,7 +36,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 ### CSS
 
 ```CSS
-mdcbutton {
+mdbutton {
     ripple-color: blue;
     elevation: 4;
 }

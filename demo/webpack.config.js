@@ -58,25 +58,18 @@ module.exports = env => {
         const srcFullPath = resolve(projectRoot,  '..', 'src');
         aliases = Object.assign(aliases, {
             '#':srcFullPath,
-            'nativescript-material-core$': '#/core/material',
+            'nativescript-material-core$': '#/core/material.' + platform,
             'nativescript-material-core': '#/core',
-            'nativescript-material-bottomsheet$': '#/bottomsheet/bottomsheet',
-            'nativescript-material-progress$': '#/progress/progress',
-            'nativescript-material-progress': '#/progress',
-            'nativescript-material-slider$': '#/slider/slider',
-            'nativescript-material-slider': '#/slider',
-            'nativescript-material-button$': '#/button/button',
-            'nativescript-material-button': '#/button',
-            'nativescript-material-textfield$': '#/textfield/textfield',
-            'nativescript-material-textfield': '#/textfield',
-            'nativescript-material-floatingactionbutton$': '#/floatingactionbutton/floatingactionbutton',
-            'nativescript-material-floatingactionbutton': '#/floatingactionbutton',
-            'nativescript-material-activityindicator$': '#/activityindicator/activityindicator',
-            'nativescript-material-activityindicator': '#/activityindicator',
-            'nativescript-material-ripple$': '#/ripple/ripple',
-            'nativescript-material-ripple': '#/ripple',
-            'nativescript-material-dialogs$': '#/dialogs/dialogs',
-            'nativescript-material-components': '#'
+            'nativescript-material-bottomsheet': '#/bottomsheet/bottomsheet.' + platform,
+            'nativescript-material-cardview': '#/cardview/cardview.' + platform,
+            'nativescript-material-progress': '#/progress/progress.' + platform,
+            'nativescript-material-slider': '#/slider/slider.' + platform,
+            'nativescript-material-button': '#/button/button.' + platform,
+            'nativescript-material-textfield': '#/textfield/textfield.' + platform,
+            'nativescript-material-floatingactionbutton': '#/floatingactionbutton/floatingactionbutton.' + platform,
+            'nativescript-material-activityindicator': '#/activityindicator/activityindicator.' + platform,
+            'nativescript-material-ripple': '#/ripple/ripple.' + platform,
+            'nativescript-material-dialogs': '#/dialogs/dialogs.' + platform
         });
     }
 

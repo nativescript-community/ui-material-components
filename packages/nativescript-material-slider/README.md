@@ -33,7 +33,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 ### CSS
 
 ```CSS
-mdcslider {
+mdslider {
     ripple-color: blue;
     elevation: 4;
 }

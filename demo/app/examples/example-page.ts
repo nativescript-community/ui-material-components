@@ -1,10 +1,7 @@
 import { NavigationButton } from 'tns-core-modules/ui/action-bar/action-bar';
 import { EventData, Frame, View } from 'tns-core-modules/ui/frame/frame';
 import { alert, login, prompt } from 'nativescript-material-dialogs';
-import 'nativescript-material-bottomsheet';
 import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
-import * as http from 'tns-core-modules/http';
-import { isAndroid, isIOS } from 'tns-core-modules/platform';
 const builder = require('ui/builder');
 // importing adds the View augmentation
 import { BottomSheetOptions } from 'nativescript-material-bottomsheet';
