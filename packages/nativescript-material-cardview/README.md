@@ -56,7 +56,9 @@ registerElement('MDCardView', () => CardView);
 
 ```javascript
 import Vue from 'nativescript-vue';
-Vue.registerElement('MDCardView', () => require('nativescript-material-cardview').CardView);
+import CardViewPlugin from 'nativescript-material-cardview/vue';
+
+Vue.use(CardViewPlugin);
 ```
 
 ```html

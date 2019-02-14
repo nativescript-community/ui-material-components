@@ -6,6 +6,8 @@ import { ObservableArray } from 'tns-core-modules/data/observable-array/observab
 import * as http from 'tns-core-modules/http';
 import { isAndroid, isIOS } from 'tns-core-modules/platform';
 const builder = require('ui/builder');
+// importing adds the View augmentation
+import { BottomSheetOptions } from 'nativescript-material-bottomsheet';
 
 function getObjectClass(obj) {
     if (typeof obj !== 'object' || obj === null) return false;

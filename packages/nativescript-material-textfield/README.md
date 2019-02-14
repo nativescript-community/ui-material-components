@@ -59,8 +59,9 @@ registerElement('MDTextField', () => TextField);
 ## NativeScript + Vue
 
 ```javascript
-import Vue from 'nativescript-vue';
-Vue.registerElement('MDTextField', () => require('nativescript-material-textfield').TextField);
+import TextFieldPlugin from 'nativescript-material-textfield/vue';
+
+Vue.use(TextFieldPlugin);
 ```
 
 ```html
@@ -68,6 +69,13 @@ Vue.registerElement('MDTextField', () => require('nativescript-material-textfiel
         hint="i am an hint" returnKeyType="next" @focus="onFocus" @blur="onBlur"
         @textChange="onTextChange"/>
 ```
+
+Also, you can bind the text to some instance data using the `v-model` directive:
+
+```html
+<MDTextField v-model="value" />
+```
+
 
 ## Attributes
 

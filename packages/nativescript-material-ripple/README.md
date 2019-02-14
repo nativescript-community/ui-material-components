@@ -54,7 +54,9 @@ registerElement('MDRipple', () => Ripple);
 
 ```javascript
 import Vue from 'nativescript-vue';
-Vue.registerElement('MDRipple', () => require('nativescript-material-ripple').Ripple);
+import RipplePlugin from 'nativescript-material-ripple/vue';
+
+Vue.use(RipplePlugin);
 ```
 
 ```html

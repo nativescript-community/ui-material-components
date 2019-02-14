@@ -55,7 +55,7 @@ module.exports = env => {
         '~': appFullPath
     };
     if (!!development) {
-        const srcFullPath = resolve(projectRoot, 'src');
+        const srcFullPath = resolve(projectRoot,  '..', 'src');
         aliases = Object.assign(aliases, {
             '#':srcFullPath,
             'nativescript-material-core$': '#/core/material',

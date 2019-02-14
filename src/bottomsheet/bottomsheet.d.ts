@@ -10,8 +10,12 @@ export interface BottomSheetOptions {
 }
 
 declare module "tns-core-modules/ui/core/view" {
-    
+
     interface View {
         showBottomSheet(options: BottomSheetOptions): ViewBase
     }
 }
+
+declare function install();
+
+

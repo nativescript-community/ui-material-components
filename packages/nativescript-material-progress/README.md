@@ -48,18 +48,19 @@ registerElement('MDProgress', () => Progress);
 ```
 
 ```html
-<MDProgress value="50" maxValue="100"></MDProgress>
+<MDProgress v-model="value" maxValue="100"></MDProgress>
 ```
 
 ## NativeScript + Vue
 
-```javascript
-import Vue from 'nativescript-vue';
-Vue.registerElement('MDProgress', () => require('nativescript-material-progress').Progress);
+```typescript
+import ProgressPlugin from 'nativescript-material-progress/vue';
+
+Vue.use(ProgressPlugin);
 ```
 
 ```html
-<MDProgress value="50" maxValue="100"/>
+<MDProgress value="50" maxValue="100"></MDProgress>
 ```
 
 ## Attributes

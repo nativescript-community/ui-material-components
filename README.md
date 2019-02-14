@@ -13,6 +13,10 @@
 * [Ripple View](./packages/nativescript-material-ripple/README.md)
 * [Snackbar](./packages/nativescript-material-snackbar/README.md) (not finished yet on iOS side)
 
-## Contribution 
+## Contribution
 
-```cd demo && tns run ios --bundle --env.development```
+``` bash
+cd demo
+tns run tsc
+tns run ios --bundle --env.development
+```
