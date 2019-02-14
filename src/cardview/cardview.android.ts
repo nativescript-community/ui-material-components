@@ -1,4 +1,4 @@
-import { CardViewBase, borderColorProperty, borderRadiusProperty, borderWidthProperty, interactableProperty } from './cardview-common';
+import { borderColorProperty, borderRadiusProperty, borderWidthProperty, CardViewBase, interactableProperty } from './cardview-common';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import * as application from 'tns-core-modules/application/application';
 import { Color, Length } from 'tns-core-modules/ui/page/page';
@@ -31,180 +31,180 @@ function initMDCCardView() {
     }
 }
 
-interface PreLollipopCardView extends android.support.design.card.MaterialCardView {
-    // tslint:disable-next-line:no-misused-new
-    new (context): PreLollipopCardView;
-}
-let PreLollipopCardView: PreLollipopCardView;
+// interface PreLollipopCardView extends android.support.design.card.MaterialCardView {
+//     // tslint:disable-next-line:no-misused-new
+//     new (context): PreLollipopCardView;
+// }
+// let PreLollipopCardView: PreLollipopCardView;
 
-function initializePreLollipopCardView() {
-    if (PreLollipopCardView) {
-        return;
-    }
-    class PreLollipopCardViewImpl extends android.support.design.card.MaterialCardView {
-        constructor(context) {
-            super(context);
-            return global.__native(this);
-        }
-        private mForeground;
+// function initializePreLollipopCardView() {
+//     if (PreLollipopCardView) {
+//         return;
+//     }
+//     class PreLollipopCardViewImpl extends android.support.design.card.MaterialCardView {
+//         constructor(context) {
+//             super(context);
+//             return global.__native(this);
+//         }
+//         private mForeground;
 
-        private mSelfBounds = new android.graphics.Rect();
+//         private mSelfBounds = new android.graphics.Rect();
 
-        private mOverlayBounds = new android.graphics.Rect();
+//         private mOverlayBounds = new android.graphics.Rect();
 
-        private mForegroundGravity = android.view.Gravity.FILL;
+//         private mForegroundGravity = android.view.Gravity.FILL;
 
-        protected mForegroundInPadding = true;
+//         protected mForegroundInPadding = true;
 
-        mForegroundBoundsChanged = false;
+//         mForegroundBoundsChanged = false;
 
-        /**
-         * Describes how the foreground is positioned.
-         *
-         * @return foreground gravity.
-         * @see #setForegroundGravity(int)
-         */
-        getForegroundGravity() {
-            return this.mForegroundGravity;
-        }
+//         /**
+//          * Describes how the foreground is positioned.
+//          *
+//          * @return foreground gravity.
+//          * @see #setForegroundGravity(int)
+//          */
+//         getForegroundGravity() {
+//             return this.mForegroundGravity;
+//         }
 
-        /**
-         * Describes how the foreground is positioned. Defaults to START and TOP.
-         *
-         * @param foregroundGravity See {@link android.view.Gravity}
-         * @see #getForegroundGravity()
-         */
-        setForegroundGravity(foregroundGravity) {
-            if (this.mForegroundGravity !== foregroundGravity) {
-                if ((foregroundGravity & android.view.Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK) === 0) {
-                    foregroundGravity |= android.view.Gravity.START;
-                }
+//         /**
+//          * Describes how the foreground is positioned. Defaults to START and TOP.
+//          *
+//          * @param foregroundGravity See {@link android.view.Gravity}
+//          * @see #getForegroundGravity()
+//          */
+//         setForegroundGravity(foregroundGravity) {
+//             if (this.mForegroundGravity !== foregroundGravity) {
+//                 if ((foregroundGravity & android.view.Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK) === 0) {
+//                     foregroundGravity |= android.view.Gravity.START;
+//                 }
 
-                if ((foregroundGravity & android.view.Gravity.VERTICAL_GRAVITY_MASK) === 0) {
-                    foregroundGravity |= android.view.Gravity.TOP;
-                }
+//                 if ((foregroundGravity & android.view.Gravity.VERTICAL_GRAVITY_MASK) === 0) {
+//                     foregroundGravity |= android.view.Gravity.TOP;
+//                 }
 
-                this.mForegroundGravity = foregroundGravity;
+//                 this.mForegroundGravity = foregroundGravity;
 
-                if (this.mForegroundGravity === android.view.Gravity.FILL && this.mForeground != null) {
-                    const padding = new android.graphics.Rect();
-                    this.mForeground.getPadding(padding);
-                }
+//                 if (this.mForegroundGravity === android.view.Gravity.FILL && this.mForeground != null) {
+//                     const padding = new android.graphics.Rect();
+//                     this.mForeground.getPadding(padding);
+//                 }
 
-                this.requestLayout();
-            }
-        }
+//                 this.requestLayout();
+//             }
+//         }
 
-        verifyDrawable(who) {
-            return super.verifyDrawable(who) || who === this.mForeground;
-        }
+//         verifyDrawable(who) {
+//             return super.verifyDrawable(who) || who === this.mForeground;
+//         }
 
-        jumpDrawablesToCurrentState() {
-            super.jumpDrawablesToCurrentState();
-            if (this.mForeground != null) {
-                this.mForeground.jumpToCurrentState();
-            }
-        }
+//         jumpDrawablesToCurrentState() {
+//             super.jumpDrawablesToCurrentState();
+//             if (this.mForeground != null) {
+//                 this.mForeground.jumpToCurrentState();
+//             }
+//         }
 
-        drawableStateChanged() {
-            super.drawableStateChanged();
-            if (this.mForeground != null && this.mForeground.isStateful()) {
-                this.mForeground.setState(this.getDrawableState());
-            }
-        }
+//         drawableStateChanged() {
+//             super.drawableStateChanged();
+//             if (this.mForeground != null && this.mForeground.isStateful()) {
+//                 this.mForeground.setState(this.getDrawableState());
+//             }
+//         }
 
-        /**
-         * Supply a Drawable that is to be rendered on top of all of the child
-         * views in the frame layout.  Any padding in the Drawable will be taken
-         * into account by ensuring that the children are inset to be placed
-         * inside of the padding area.
-         *
-         * @param drawable The Drawable to be drawn on top of the children.
-         */
-        setForeground(drawable) {
-            if (this.mForeground !== drawable) {
-                if (this.mForeground != null) {
-                    this.mForeground.setCallback(null);
-                    this.unscheduleDrawable(this.mForeground);
-                }
+//         /**
+//          * Supply a Drawable that is to be rendered on top of all of the child
+//          * views in the frame layout.  Any padding in the Drawable will be taken
+//          * into account by ensuring that the children are inset to be placed
+//          * inside of the padding area.
+//          *
+//          * @param drawable The Drawable to be drawn on top of the children.
+//          */
+//         setForeground(drawable) {
+//             if (this.mForeground !== drawable) {
+//                 if (this.mForeground != null) {
+//                     this.mForeground.setCallback(null);
+//                     this.unscheduleDrawable(this.mForeground);
+//                 }
 
-                this.mForeground = drawable;
+//                 this.mForeground = drawable;
 
-                if (drawable != null) {
-                    this.setWillNotDraw(false);
-                    drawable.setCallback(this);
-                    if (drawable.isStateful()) {
-                        drawable.setState(this.getDrawableState());
-                    }
-                    if (this.mForegroundGravity === android.view.Gravity.FILL) {
-                        const padding = new android.graphics.Rect();
-                        drawable.getPadding(padding);
-                    }
-                } else {
-                    this.setWillNotDraw(true);
-                }
-                this.requestLayout();
-                this.invalidate();
-            }
-        }
+//                 if (drawable != null) {
+//                     this.setWillNotDraw(false);
+//                     drawable.setCallback(this);
+//                     if (drawable.isStateful()) {
+//                         drawable.setState(this.getDrawableState());
+//                     }
+//                     if (this.mForegroundGravity === android.view.Gravity.FILL) {
+//                         const padding = new android.graphics.Rect();
+//                         drawable.getPadding(padding);
+//                     }
+//                 } else {
+//                     this.setWillNotDraw(true);
+//                 }
+//                 this.requestLayout();
+//                 this.invalidate();
+//             }
+//         }
 
-        /**
-         * Returns the drawable used as the foreground of this FrameLayout. The
-         * foreground drawable, if non-null, is always drawn on top of the children.
-         *
-         * @return A Drawable or null if no foreground was set.
-         */
-        getForeground() {
-            return this.mForeground;
-        }
+//         /**
+//          * Returns the drawable used as the foreground of this FrameLayout. The
+//          * foreground drawable, if non-null, is always drawn on top of the children.
+//          *
+//          * @return A Drawable or null if no foreground was set.
+//          */
+//         getForeground() {
+//             return this.mForeground;
+//         }
 
-        onLayout(changed: boolean, left, top, right, bottom) {
-            super.onLayout(changed, left, top, right, bottom);
-            this.mForegroundBoundsChanged = this.mForegroundBoundsChanged || changed;
-        }
+//         onLayout(changed: boolean, left, top, right, bottom) {
+//             super.onLayout(changed, left, top, right, bottom);
+//             this.mForegroundBoundsChanged = this.mForegroundBoundsChanged || changed;
+//         }
 
-        onSizeChanged(w, h, oldw, oldh) {
-            super.onSizeChanged(w, h, oldw, oldh);
-            this.mForegroundBoundsChanged = true;
-        }
+//         onSizeChanged(w, h, oldw, oldh) {
+//             super.onSizeChanged(w, h, oldw, oldh);
+//             this.mForegroundBoundsChanged = true;
+//         }
 
-        draw(canvas) {
-            super.draw(canvas);
+//         draw(canvas) {
+//             super.draw(canvas);
 
-            if (this.mForeground != null) {
-                const foreground = this.mForeground;
+//             if (this.mForeground != null) {
+//                 const foreground = this.mForeground;
 
-                if (this.mForegroundBoundsChanged) {
-                    this.mForegroundBoundsChanged = false;
-                    const selfBounds = this.mSelfBounds;
-                    const overlayBounds = this.mOverlayBounds;
+//                 if (this.mForegroundBoundsChanged) {
+//                     this.mForegroundBoundsChanged = false;
+//                     const selfBounds = this.mSelfBounds;
+//                     const overlayBounds = this.mOverlayBounds;
 
-                    const w = this.getRight() - this.getLeft();
-                    const h = this.getBottom() - this.getTop();
+//                     const w = this.getRight() - this.getLeft();
+//                     const h = this.getBottom() - this.getTop();
 
-                    if (this.mForegroundInPadding) {
-                        selfBounds.set(0, 0, w, h);
-                    } else {
-                        selfBounds.set(this.getPaddingLeft(), this.getPaddingTop(), w - this.getPaddingRight(), h - this.getPaddingBottom());
-                    }
+//                     if (this.mForegroundInPadding) {
+//                         selfBounds.set(0, 0, w, h);
+//                     } else {
+//                         selfBounds.set(this.getPaddingLeft(), this.getPaddingTop(), w - this.getPaddingRight(), h - this.getPaddingBottom());
+//                     }
 
-                    android.view.Gravity.apply(this.mForegroundGravity, foreground.getIntrinsicWidth(), foreground.getIntrinsicHeight(), selfBounds, overlayBounds);
-                    foreground.setBounds(overlayBounds);
-                }
+//                     android.view.Gravity.apply(this.mForegroundGravity, foreground.getIntrinsicWidth(), foreground.getIntrinsicHeight(), selfBounds, overlayBounds);
+//                     foreground.setBounds(overlayBounds);
+//                 }
 
-                foreground.draw(canvas);
-            }
-        }
+//                 foreground.draw(canvas);
+//             }
+//         }
 
-        drawableHotspotChanged(x, y) {
-            super.drawableHotspotChanged(x, y);
-            if (this.mForeground != null) {
-                this.mForeground.setHotspot(x, y);
-            }
-        }
-    }
-    PreLollipopCardView = PreLollipopCardViewImpl as any;
-}
+//         drawableHotspotChanged(x, y) {
+//             super.drawableHotspotChanged(x, y);
+//             if (this.mForeground != null) {
+//                 this.mForeground.setHotspot(x, y);
+//             }
+//         }
+//     }
+//     PreLollipopCardView = PreLollipopCardViewImpl as any;
+// }
 
 export class CardView extends CardViewBase {
     nativeViewProtected: android.support.design.card.MaterialCardView;
@@ -340,9 +340,7 @@ export class CardView extends CardViewBase {
     [backgroundInternalProperty.setNative](value: any) {
         if (value) {
             try {
-                this.nativeView.setCardBackgroundColor(
-                    new Color(value.color !== undefined ? value.color + '' : '#FFFFFF').android
-                );
+                this.nativeView.setCardBackgroundColor(new Color(value.color !== undefined ? value.color + '' : '#FFFFFF').android);
             } catch (error) {
                 // do nothing, catch bad color value
                 console.log('nativescript-material-cardview --- invalid background-color value:', error);
