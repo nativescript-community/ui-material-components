@@ -2,7 +2,7 @@ import { RippleBase } from './ripple-common';
 import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/ui/page/page';
 import { ad } from 'tns-core-modules/utils/utils';
-import { getRippleColor } from 'nativescript-material-core/material';
+import { getRippleColor } from 'nativescript-material-core';
 
 // function getThemeAccentColor(context: android.content.Context) {
 //     const value = new android.util.TypedValue();
