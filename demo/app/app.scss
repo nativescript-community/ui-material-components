@@ -4,7 +4,7 @@ mdbutton {
 }
 
 .falseFAb {
-    elevation: 2;
+    elevation: 0;
     font-size: 40;
     border-radius: 32;
     width: 64;
@@ -26,9 +26,11 @@ mdslider {
     border-bottom-width: 2;
 }
 
-.carviewtest {
+.cardviewtest {
     border-color: green;
-    border-radius: 3;
+    border-width:4;
+    border-radius: 20;
     ripple-color:blue;
-    elevation:6;
+    elevation:5;
+    background-color: lightgray;
 }

@@ -1,10 +1,10 @@
 <StackLayout xmlns:mdcv="nativescript-material-cardview" padding="20">
-    <mdcv:CardView elevation="15" borderRadius="10" borderColor="red" borderWidth="5" margin="10" rippleColor="red">
+    <mdcv:CardView elevation="1" borderRadius="10" borderColor="yellow" borderWidth="2" margin="10" rippleColor="red" >
         <StackLayout padding="10">
             <Label text="Hello World!"></Label>
         </StackLayout>
     </mdcv:CardView>
-    <mdcv:CardView  class="carviewtest"  margin="10">
+    <mdcv:CardView  className="cardviewtest"  margin="10">
         <StackLayout padding="10">
             <Label text="Hello World!"></Label>
         </StackLayout>
@@ -12,6 +12,12 @@
     <mdcv:CardView margin="10" isUserInteractionEnabled="false">
         <StackLayout padding="10">
             <Label text="Hello World!"></Label>
+        </StackLayout>
+    </mdcv:CardView>
+    <mdcv:CardView margin="10">
+        <StackLayout padding="10">
+            <Label text="Hello World!"></Label>
+            <Button text="testButton"></Button>
         </StackLayout>
     </mdcv:CardView>
 </StackLayout>
