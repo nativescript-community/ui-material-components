@@ -1,5 +1,5 @@
 import { CssProperty } from 'tns-core-modules/ui/core/properties';
-import { booleanConverter, Color } from 'tns-core-modules/ui/core/view';
+import { booleanConverter, Color, Length } from 'tns-core-modules/ui/core/view';
 import { Style } from 'tns-core-modules/ui/styling/style';
 
 export const cssProperty = (target: Object, key: string | symbol) => {
@@ -29,9 +29,16 @@ export const rippleColorProperty = new CssProperty<Style, Color>({
     valueConverter: v => new Color(v)
 });
 rippleColorProperty.register(Style);
-export const elevationProperty = new CssProperty<Style, number>({
+export const elevationProperty = new CssProperty<Style, Length>({
     name: 'elevation',
-    cssName: 'elevation'
+    cssName: 'elevation',
+    // valueChanged: (target, oldValue, newValue) => {
+    //     let value = Length.toDevicePixels(newValue, 0);
+
+    //     const background = target.backgroundInternal.withBorderTopLeftRadius(value);
+    //     target.backgroundInternal = background;
+    // },
+    valueConverter: v => Length.toDevicePixels(Length.parse(v), 0)
 });
 elevationProperty.register(Style);
 
