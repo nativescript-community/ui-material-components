@@ -5,23 +5,10 @@ import { ActivityIndicatorBase } from './activityindicator-common';
 export class ActivityIndicator extends ActivityIndicatorBase {
     nativeViewProtected: android.widget.ProgressBar;
 
-    // get android(): android.support.design.widget.ActivityIndicator {
-    //     return this.nativeViewProtected;
-    // }
-    // public createNativeView() {
-    //     if (!MDCActivityIndicator) {
-    //         MDCActivityIndicator = android.support.design.widget.ActivityIndicator;
-    //     }
-    //     const view = new MDCActivityIndicator(this._context);
-    //     return view;
-    // }
-
     public startAnimating() {
         this.busy = true;
-        // this.nativeViewProtected.startAnimating();
     }
     public stopAnimating() {
         this.busy = false;
-        // this.nativeViewProtected.stopAnimating();
     }
 }
