@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-progress",
-    "version": "2.1.1",
+    "version": "2.1.2",
     "description": "Material progress component",
     "main": "./progress",
     "typings": "./progress.d.ts",
