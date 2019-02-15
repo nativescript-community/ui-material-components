@@ -2,15 +2,7 @@ import { ButtonBase } from './button-common';
 import { getRippleColor } from 'nativescript-material-core';
 
 import * as utils from 'tns-core-modules/utils/utils';
-import {
-    backgroundInternalProperty,
-    borderBottomLeftRadiusProperty,
-    borderBottomRightRadiusProperty,
-    borderTopLeftRadiusProperty,
-    borderTopRightRadiusProperty,
-    Color,
-    Length
-} from 'tns-core-modules/ui/page/page';
+import { backgroundInternalProperty, Color, Length } from 'tns-core-modules/ui/page/page';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { getEnabledColorStateList, getRippleColorStateList } from 'nativescript-material-core/android/utils';
@@ -63,38 +55,14 @@ export class Button extends ButtonBase {
         const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
         this.nativeViewProtected.setCornerRadius(newValue);
     }
-    [borderBottomLeftRadiusProperty.setNative](value) {
-        this.setCornerRadius(value);
-    }
-    [borderBottomRightRadiusProperty.setNative](value) {
-        this.setCornerRadius(value);
-    }
-    [borderTopLeftRadiusProperty.setNative](value) {
-        this.setCornerRadius(value);
-    }
-    [borderTopRightRadiusProperty.setNative](value) {
-        this.setCornerRadius(value);
-    }
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
         if (this.nativeViewProtected) {
             if (value instanceof android.graphics.drawable.Drawable) {
                 this.nativeViewProtected.setBackgroundDrawable(value);
             } else {
                 if (value.color) {
-                    // console.log(
-                    //     "set background color",
-                    //     value.color,
-                    //     this.variant
-                    // )
-                    // if (isPreLollipop()) {
                     this.nativeViewProtected.setBackgroundTintList(getEnabledColorStateList(value.color.android, this.variant));
-                    // } else {
-                    //     this.nativeViewProtected.setBackgroundTintList(
-                    //         android.content.res.ColorStateList.valueOf(
-                    //             value.color.android
-                    //         )
-                    //     )
-                    // }
+                    this.setCornerRadius(value.borderTopLeftRadius);
                 }
             }
         }
