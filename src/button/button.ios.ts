@@ -17,7 +17,6 @@ function getButtonScheme() {
 }
 
 export class Button extends ButtonBase {
-    // defaultBorderRadius;
     nativeViewProtected: MDCButton;
     _ios: MDCButton;
     applyShapeScheme() {
@@ -96,29 +95,7 @@ export class Button extends ButtonBase {
         }
     }
 
-    [backgroundInternalProperty.setNative](value: Background) {
-        // if (this.nativeViewProtected) {
-        //         // if (value instanceof android.graphics.drawable.Drawable) {
-        //         // this.nativeViewProtected.setBackgroundDrawable(value)
-        //         // } else {
-        // console.log('backgroundInternalProperty', value.color);
-        //     if (value.color) {
-        //         const color = value.color
-        //         this.nativeViewProtected.setBackgroundColorForState(
-        //             color.ios,
-        //             UIControlState.Normal
-        //         )
-        //         this.nativeViewProtected.setBackgroundColorForState(
-        //             color.ios,
-        //             UIControlState.Highlighted
-        //         )
-        //         this.nativeViewProtected.setBackgroundColorForState(
-        //             color.ios,
-        //             UIControlState.Selected
-        //         )
-        //     }
-        // }
-    }
+    [backgroundInternalProperty.setNative](value: Background) {}
 
     shapeScheme: MDCShapeScheme;
     private getShapeScheme() {
@@ -133,22 +110,18 @@ export class Button extends ButtonBase {
     private setBottomLeftCornerRadius(value: number) {
         const shapeScheme = this.getShapeScheme();
         shapeScheme.smallComponentShape.bottomLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
-        // MDCButtonShapeThemer.applyShapeSchemeToButton(this.shapeScheme, this._ios);
     }
     private setBottomRightCornerRadius(value: number) {
         const shapeScheme = this.getShapeScheme();
         shapeScheme.smallComponentShape.bottomRightCorner = MDCCornerTreatment.cornerWithRadius(value);
-        // MDCButtonShapeThemer.applyShapeSchemeToButton(this.shapeScheme, this._ios);
     }
     private setTopLeftCornerRadius(value: number) {
         const shapeScheme = this.getShapeScheme();
         shapeScheme.smallComponentShape.topLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
-        // MDCButtonShapeThemer.applyShapeSchemeToButton(this.shapeScheme, this._ios);
     }
     private setTopRightCornerRadius(value: number) {
         const shapeScheme = this.getShapeScheme();
         shapeScheme.smallComponentShape.topRightCorner = MDCCornerTreatment.cornerWithRadius(value);
-        // MDCButtonShapeThemer.applyShapeSchemeToButton(this.shapeScheme, this._ios);
     }
     _setNativeClipToBounds() {
         // const backgroundInternal = this.style.backgroundInternal;

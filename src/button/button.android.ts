@@ -62,8 +62,8 @@ export class Button extends ButtonBase {
             } else {
                 if (value.color) {
                     this.nativeViewProtected.setBackgroundTintList(getEnabledColorStateList(value.color.android, this.variant));
-                    this.setCornerRadius(value.borderTopLeftRadius);
                 }
+                this.setCornerRadius(value.borderTopLeftRadius);
             }
         }
     }
