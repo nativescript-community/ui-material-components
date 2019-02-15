@@ -1,29 +1,42 @@
 import { CardViewBase } from './cardview-common';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { backgroundInternalProperty, Color, Length } from 'tns-core-modules/ui/page/page';
+import { backgroundInternalProperty, Color, isUserInteractionEnabledProperty, Length } from 'tns-core-modules/ui/page/page';
 import { getRippleColor, themer } from 'nativescript-material-core';
 import { Background } from 'tns-core-modules/ui/styling/background';
+import { screen } from 'tns-core-modules/platform/platform';
 
+// use custom class to get the same behavior as android which is
+// highlight even if clicked on subview (which is not a control)
+class Card extends MDCCard {
+    touchesBeganWithEvent(touches, event) {
+        super.touchesBeganWithEvent(touches, event);
+        if (this.interactable) {
+            this.highlighted = true;
+        }
+    }
+    touchesEndedWithEvent(touches, event) {
+        super.touchesEndedWithEvent(touches, event);
+        this.highlighted = false;
+    }
+}
 export class CardView extends CardViewBase {
     nativeViewProtected: MDCCard;
     _backgroundColor: Color;
 
     public createNativeView() {
-        const view = MDCCard.new();
+        const view = Card.new();
         const colorScheme = themer.getAppColorScheme();
         if (colorScheme) {
             MDCCardsColorThemer.applySemanticColorSchemeToCard(colorScheme, view);
         }
-        // if (this._backgroundColor) {
-        //     view.backgroundColor = this._backgroundColor.ios;
-        // }
-        // if (this._borderRadius !== undefined) {
-        //     view.layer.cornerRadius = this._borderRadius;
-        // }
+        view.interactable = this.isUserInteractionEnabled;
         return view;
     }
     _setNativeClipToBounds() {
         // this.ios.clipsToBounds = true;
+    }
+    [isUserInteractionEnabledProperty.setNative](value: boolean) {
+        this.nativeViewProtected.interactable = value;
     }
 
     [elevationProperty.setNative](value: number) {
@@ -32,10 +45,11 @@ export class CardView extends CardViewBase {
     }
     [backgroundInternalProperty.setNative](value: Background) {
         if (this.nativeViewProtected) {
+            const scale = screen.mainScreen.scale;
             this.nativeViewProtected.backgroundColor = value.color ? value.color.ios : null;
-            this.nativeViewProtected.setBorderWidthForState(value.borderLeftWidth, UIControlState.Normal);
+            this.nativeViewProtected.setBorderWidthForState(value.borderLeftWidth / scale, UIControlState.Normal);
             this.nativeViewProtected.setBorderColorForState(value.borderTopColor ? value.borderTopColor.ios : null, UIControlState.Normal);
-            this.nativeViewProtected.layer.cornerRadius = value.borderTopLeftRadius;
+            this.nativeViewProtected.layer.cornerRadius = value.borderTopLeftRadius / scale;
         }
     }
     [rippleColorProperty.setNative](color: Color) {
