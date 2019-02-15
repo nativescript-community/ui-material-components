@@ -339,6 +339,8 @@ declare module android {
 					public setStrokeColor(param0: number): void;
 					public getStrokeColor(): number;
 					public setStrokeWidth(param0: number): void;
+					public setCardBackgroundColor(color:any);
+					public setCardElevation(color:any);
 				}
 			}
 		}
