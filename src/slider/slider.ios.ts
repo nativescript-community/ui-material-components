@@ -36,7 +36,6 @@ export class Slider extends SliderBase {
         this.nativeViewProtected.thumbHollowAtStart = value;
     }
     [elevationProperty.setNative](value: number) {
-        console.log('elevationProperty', value);
         this.nativeViewProtected.thumbElevation = value;
     }
 }
