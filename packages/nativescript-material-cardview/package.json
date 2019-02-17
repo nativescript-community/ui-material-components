@@ -32,7 +32,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^2.0.2"
+        "nativescript-material-core": "^2.1.2"
     },
     "gitHead": "69fe942fbde055b60bb1582148448c5dc7176348"
 }
