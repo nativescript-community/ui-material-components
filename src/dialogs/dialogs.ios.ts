@@ -74,7 +74,6 @@ class MDCAlertControllerImpl extends MDCAlertController {
             contentScrollView.addSubview(nativeViewProtected);
         }
         this.measureChild(); // ensure custom view is measured for preferredContentSize
-        // this._preferredContentSize = this.updatePreferredContentSize(this._preferredContentSize);
     }
     get customContentView() {
         return this._customContentView;
@@ -93,31 +92,17 @@ class MDCAlertControllerImpl extends MDCAlertController {
         const result = this._preferredContentSize;
         if (this._customContentView) {
             return CGSizeMake(result.width, result.height + layout.toDeviceIndependentPixels(this._customContentView.getMeasuredHeight()));
-            // result.height = this._customContentView.getMeasuredHeight() / scale;
         }
         return result;
     }
     set preferredContentSize(size: CGSize) {
-        // if (this._customContentView && this._customContentView.nativeViewProtected) {
-        //     this._preferredContentSize = this.updatePreferredContentSize(size);
-        // } else {
         this._preferredContentSize = size;
-        // }
     }
     measureChild() {
         let boundsSize = CGRectInfinite.size;
         boundsSize.width = this.preferredContentSize.width;
         View.measureChild(null, this._customContentView, layout.makeMeasureSpec(boundsSize.width, layout.AT_MOST), UNSPECIFIED);
     }
-    // updatePreferredContentSize(preferredContentSize) {
-    //     const scale = screen.mainScreen.scale;
-    //     let boundsSize = CGRectInfinite.size;
-    //     boundsSize.width = preferredContentSize.width;
-    //     View.measureChild(null, this._customContentView, UNSPECIFIED, UNSPECIFIED);
-    //     console.log('updatePreferredContentSize', preferredContentSize.width, preferredContentSize.height, this._customContentView.getMeasuredHeight() / scale);
-    //     preferredContentSize.height = preferredContentSize.height + this._customContentView.getMeasuredHeight() / scale;
-    //     return preferredContentSize;
-    // }
     viewDidLayoutSubviews() {
         if (this._customContentView) {
             const contentScrollView = this.contentScrollView;
@@ -130,9 +115,6 @@ class MDCAlertControllerImpl extends MDCAlertController {
 
             this._customContentView.measure(widthSpec, heightSpec);
             const measuredHeight = this._customContentView.getMeasuredHeight();
-
-            // console.log('viewDidLayoutSubviews', measuredHeight, this._customContentView.height);
-
             this._customContentView.layout(0, originY, width, layout.toDevicePixels(measuredHeight));
             const bounds = contentScrollView.frame;
             const boundsSize = bounds.size;

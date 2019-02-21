@@ -57,7 +57,6 @@ function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): 
                       moduleName: options.view as string
                   });
         (activity as any)._currentModalCustomView = view;
-        console.log('did set _currentModalCustomView', activity, (activity as any)._currentModalCustomView);
         view._setupAsRootView(activity);
         view._isAddedToNativeVisualTree = true;
         view.callLoaded();
@@ -69,20 +68,14 @@ function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): 
 function showDialog(builder: android.support.v7.app.AlertDialog.Builder, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
     const dlg = builder.show();
     const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
-    console.log('showDialog', activity, (activity as any)._currentModalCustomView);
     if ((activity as any)._currentModalCustomView) {
         const view = (activity as any)._currentModalCustomView as View;
         const context = options.context || {};
         context.closeCallback = function(...originalArgs) {
-            console.log('closeCallback', originalArgs);
             dlg.dismiss();
-
             if (resolve) {
                 resolve(originalArgs);
             }
-            // if (typeof options.closeCallback === 'function') {
-            //     options.closeCallback.apply(undefined, originalArgs);
-            // }
         };
         view.bindingContext = fromObject(context);
     }

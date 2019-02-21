@@ -63,15 +63,12 @@ export class AppBarDirective implements AfterViewInit {
     // }
 
     ngAfterViewInit() {
-        console.log('AppBarDirective ngAfterViewInit');
         this._addController();
-        // setTimeout(() => {
         const viewController = this.page.ios as UIViewController;
         if (viewController.navigationController) {
             viewController.navigationController.setNavigationBarHiddenAnimated(true, false);
         }
         viewController.view.addSubview(this._appBarController.view);
         this._appBarController.didMoveToParentViewController(viewController);
-        // this.appBar.addSubviewsToParent();
     }
 }

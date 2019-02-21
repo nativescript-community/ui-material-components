@@ -17,7 +17,6 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottom
     }
     bottomSheetControllerDidDismissBottomSheet(controller: MDCBottomSheetController) {
         const owner = this._owner.get();
-        console.log('bottomSheetControllerDidDismissBottomSheet', !!owner);
         if (owner) {
             owner.closeBottomSheet();
             if (owner && owner.isLoaded) {
@@ -57,7 +56,6 @@ class BottomSheetUILayoutViewController extends UIViewController {
 
     public viewDidLayoutSubviews(): void {
         super.viewDidLayoutSubviews();
-        console.log('viewDidLayoutSubviews');
         const owner = this.owner.get();
         if (owner) {
             this.layoutView(this, owner);
@@ -113,7 +111,6 @@ class BottomSheetUILayoutViewController extends UIViewController {
         const heightSpec = layout.makeMeasureSpec(safeAreaHeight, layout.UNSPECIFIED);
 
         View.measureChild(null, owner, widthSpec, heightSpec);
-        console.log('measured child', position.left, position.top, widthSpec, heightSpec, owner.getMeasuredWidth(), owner.getMeasuredHeight());
         View.layoutChild(null, owner, position.left, position.top, position.right, position.top + owner.getMeasuredHeight());
 
         this.preferredContentSize = CGSizeMake(layout.toDeviceIndependentPixels(owner.getMeasuredWidth()), position.top + layout.toDeviceIndependentPixels(owner.getMeasuredHeight()));
@@ -142,7 +139,6 @@ class BottomSheetUILayoutViewController extends UIViewController {
 
     public viewDidDisappear(animated: boolean): void {
         super.viewDidDisappear(animated);
-        console.log('viewDidDisappear');
         const owner = this.owner.get();
         if (owner && !owner.parent) {
             owner.callUnloaded();
@@ -152,7 +148,6 @@ class BottomSheetUILayoutViewController extends UIViewController {
 
 export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     protected _showNativeBottomSheet(parent: View, options: BottomSheetOptions) {
-        console.log('ViewWithBottomSheet', '_showNativeBottomSheet');
         const parentWithController = ios.getParentWithViewController(parent);
         if (!parentWithController) {
             traceWrite(`Could not find parent with viewController for ${parent} while showing bottom sheet view.`, traceCategories.ViewHierarchy, traceMessageType.error);
@@ -201,7 +196,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         if (options.trackingScrollView) {
             const scrollView = this.getViewById(options.trackingScrollView);
             if (scrollView && scrollView.nativeViewProtected instanceof UIScrollView) {
-                console.log('setting trackingScrollView', options.trackingScrollView);
                 bottomSheet.trackingScrollView = scrollView.nativeViewProtected;
             }
         }
@@ -228,7 +222,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     }
 
     protected _hideNativeBottomSheet(parent: View, whenClosedCallback: () => void) {
-        console.log('_hideNativeBottomSheet', parent && parent.viewController);
         if (!parent || !parent.viewController) {
             traceError('Trying to hide bottomsheet view but no parent with viewController specified.');
             return;
@@ -243,7 +236,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
 export function overrideBottomSheet() {
     const NSView = require('tns-core-modules/ui/core/view').View;
-    console.log('about to override bottom sheet');
     applyMixins(NSView, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
 }
 export function install() {

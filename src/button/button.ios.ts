@@ -79,19 +79,10 @@ export class Button extends ButtonBase {
 
     [backgroundColorProperty.setNative](value: Color) {
         if (this.nativeViewProtected) {
-            // console.log('backgroundColorProperty', value);
             this.nativeViewProtected.setBackgroundColorForState(value.ios, UIControlState.Normal);
             if (this.variant === 'outline') {
                 this.nativeViewProtected.setBackgroundColorForState(new Color('transparent').ios, UIControlState.Disabled);
             }
-            // this.nativeViewProtected.setBackgroundColorForState(
-            //     value.ios,
-            //     UIControlState.Highlighted
-            // )
-            // this.nativeViewProtected.setBackgroundColorForState(
-            //     value.ios,
-            //     UIControlState.Selected
-            // )
         }
     }
 

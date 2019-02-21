@@ -33,8 +33,6 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     }
 
     _onSizeChanged(): void {
-        console.log('_onSizeChanged', this.getMeasuredWidth(), this.getMeasuredHeight());
-        // this.nativeViewProtected.sizeToFit()
         if (this.autoSize) {
             this.updateStrokeRadius(this.getMeasuredWidth(), this.getMeasuredHeight());
         }
@@ -44,7 +42,6 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     private updateStrokeRadius(width: number, height: number) {
         // radius is maxed to 72
         const min = Math.min(Math.min(width, height), 144);
-        console.log('updateStrokeRadius', width, height);
         const strokeWidth = min / 25;
         const scale = screen.mainScreen.scale;
 

@@ -222,7 +222,6 @@ function initializeOutlineProvider() {
         }
         getOutline(view: android.view.View, outline: any) {
             const cardView = this.owner && this.owner.get();
-            console.log('getOutline', cardView);
             if (cardView) {
                 outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), cardView._borderRadius - cardView._strokeWidth);
             }
@@ -247,7 +246,6 @@ export class CardView extends CardViewBase {
     private createStateListAnimator(view: android.view.View) {
         const elevation = android.support.v4.view.ViewCompat.getElevation(view);
         const translationZ = android.support.v4.view.ViewCompat.getTranslationZ(view);
-        console.log('createStateListAnimator', elevation, translationZ);
         const elevationSelected = elevation * 2;
         const translationSelectedZ = translationZ + 6;
         const animationDuration = 100;

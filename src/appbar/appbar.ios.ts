@@ -52,23 +52,19 @@ export class AppBar extends AppBarBase {
         const size = navBar.sizeThatFits(this._appBarController.navigationBar.frame.size);
         const width = layout.toDevicePixels(size.width);
         const height = layout.toDevicePixels(size.height);
-        console.log('_getActualSize', width, height);
         return { width, height };
     }
 
     private _addController() {
-        // console.log('_addController', this.addedToParent, this instanceof AppBar, this instanceof ActionBar);
         if (this._appBarController && !this.addedToParent) {
             const page = this.page;
             if (page && page.parent) {
                 let showNavigationBar = true;
                 Object.defineProperty(page.frame.ios, 'showNavigationBar', {
                     get() {
-                        console.log('getting showNavigationBar');
                         return showNavigationBar;
                     },
                     set(value) {
-                        console.log('setting showNavigationBar', value);
                         showNavigationBar = value;
                     }
                 });
@@ -76,37 +72,21 @@ export class AppBar extends AppBarBase {
                 if (viewController.navigationController) {
                     viewController.navigationController.navigationBarHidden = true;
                 }
-                // let currentControllers = viewController.childViewControllers;
-                // console.log('currentControllers', currentControllers.count);
-                // if (currentControllers.count > 0) {
-                //     currentControllers[0].removeFromParentViewController();
-                // }
-                // viewController.childViewControllers[0]
+
                 this._appBarController.topLayoutGuideViewController = viewController;
                 this._appBarController.inferPreferredStatusBarStyle = true;
                 this._appBarController.inferTopSafeAreaInsetFromViewController = true;
                 this._appBarController.topLayoutGuideAdjustmentEnabled = true;
                 viewController.addChildViewController(this._appBarController);
-                // console.log('addChildViewController done');
                 this.addedToParent = true;
             }
         }
     }
     public onLoaded() {
         super.onLoaded();
-        console.log('onLoaded');
         this._addController();
-        // setTimeout(() => {
         const viewController = this.page.ios as UIViewController;
-        // if (viewController.navigationController) {
-        //     viewController.navigationController.setNavigationBarHiddenAnimated(true, false);
-        // }
-
         viewController.view.addSubview(this._appBarController.view);
-        console.log('didMoveToParentViewController', viewController, viewController.navigationItem);
         this._appBarController.didMoveToParentViewController(viewController);
-        // viewController.navigationItem.rightBarButtonItem = UIBarButtonItem.alloc().initWithBarButtonSystemItemTargetAction(UIBarButtonSystemItem.Done, null, null);
-        // this.appBar.addSubviewsToParent();
-        // }, 1000);
     }
 }
