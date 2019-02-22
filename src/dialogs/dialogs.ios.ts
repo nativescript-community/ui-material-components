@@ -288,6 +288,10 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
         // view.bindingContext = fromObject(context);
     }
 
+    if (options && options.cancelable === false) {
+        alertController.mdc_dialogPresentationController.dismissOnBackgroundTap = false;
+    }
+
     // const transitionController = MDCDialogTransitionController.alloc().init()
     // alertController.modalPresentationStyle = UIModalPresentationStyle.Custom;
     // alertController.transitioningDelegate = transitionController;
@@ -584,7 +588,6 @@ function showUIAlertController(alertController: MDCAlertController) {
                     alertController.setValueForKey(message, 'attributedMessage');
                 }
             }
-
             viewController.presentModalViewControllerAnimated(alertController, true);
         }
     }
