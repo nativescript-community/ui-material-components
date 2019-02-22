@@ -1,10 +1,14 @@
 import { NavigationButton } from 'tns-core-modules/ui/action-bar/action-bar';
 import { EventData, Frame, View } from 'tns-core-modules/ui/frame/frame';
-import { alert, login, prompt } from 'nativescript-material-dialogs';
+import { alert, AlertDialog, login, prompt } from 'nativescript-material-dialogs';
 import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
 const builder = require('ui/builder');
 // importing adds the View augmentation
 import { BottomSheetOptions } from 'nativescript-material-bottomsheet';
+import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
+import { ActivityIndicator } from 'nativescript-material-activityindicator';
+import { Label } from 'tns-core-modules/ui/label/label';
+import { Button } from 'tns-core-modules/ui/button/button';
 
 function getObjectClass(obj) {
     if (typeof obj !== 'object' || obj === null) return false;
@@ -99,6 +103,31 @@ class Model {
                 });
                 break;
             }
+            case 'alertdialog':
+                const stack = new StackLayout();
+                stack.orientation = 'horizontal';
+                stack.verticalAlignment = 'middle';
+                stack.height = {value:100, unit:'dip'};
+                // stack.padding = 24;
+                // stack.margin = 30;
+                stack.backgroundColor = 'red';
+                const activityIndicator = new ActivityIndicator();
+                activityIndicator.className = 'activity-indicator';
+                activityIndicator.backgroundColor = 'yellow';
+                activityIndicator.busy = true;
+                activityIndicator.verticalAlignment = 'middle';
+                stack.addChild(activityIndicator);
+                const label = new Label();
+                label.verticalAlignment = 'middle';
+                label.backgroundColor = 'brown';
+                label.text = 'test';
+                stack.addChild(label);
+                const dialog = new AlertDialog({
+                    // title: 'tsst',
+                    // message: null,
+                    view: stack
+                });
+                dialog.show();
         }
     }
 }

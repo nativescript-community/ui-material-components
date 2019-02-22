@@ -4,7 +4,7 @@
 interface MDCAlertController {
     alertView: MDCAlertControllerView;
 }
-interface MDCAlertControllerView {
+interface MDCAlertControllerView extends UIView {
     customContentView: UIView;
     calculateContentSizeThatFitsWidth(width: number): CGSize;
 }

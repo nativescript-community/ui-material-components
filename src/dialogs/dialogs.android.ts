@@ -35,8 +35,8 @@ function isString(value): value is string {
 function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): android.support.v7.app.AlertDialog.Builder {
     const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
     const alert = new android.support.v7.app.AlertDialog.Builder(activity);
-    alert.setTitle(options && isString(options.title) ? options.title : '');
-    alert.setMessage(options && isString(options.message) ? options.message : '');
+    alert.setTitle(options && isString(options.title) ? options.title : null);
+    alert.setMessage(options && isString(options.message) ? options.message : null);
     if (options.titleIcon) {
         alert.setIcon(options.titleIcon.android);
     }
@@ -60,7 +60,11 @@ function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): 
         view._setupAsRootView(activity);
         view._isAddedToNativeVisualTree = true;
         view.callLoaded();
-        alert.setView(view.nativeViewProtected);
+
+        // seems necessary to add a frame or the view wont correctly size itself
+        const frame = new android.widget.FrameLayout(activity);
+        frame.addView(view.nativeViewProtected);
+        alert.setView(frame);
     }
     return alert;
 }
@@ -128,6 +132,7 @@ function showDialog(builder: android.support.v7.app.AlertDialog.Builder, options
             }
         });
     }
+    return dlg;
 }
 
 function addButtonsToAlertDialog(alert: android.support.v7.app.AlertDialog.Builder, options: ConfirmOptions, callback: Function): void {
@@ -216,6 +221,39 @@ export function alert(arg: any): Promise<void> {
             reject(ex);
         }
     });
+}
+
+export class AlertDialog {
+    dialog: android.support.v7.app.AlertDialog;
+    constructor(private options: any) {}
+    show() {
+        if (!this.dialog) {
+            const alert = createAlertDialog(this.options);
+
+            const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
+            alert.setOnDismissListener(
+                new android.content.DialogInterface.OnDismissListener({
+                    onDismiss: function() {
+                        if ((activity as any)._currentModalCustomView) {
+                            const view = (activity as any)._currentModalCustomView;
+                            view.callUnloaded();
+                            view._tearDownUI(true);
+                            view._isAddedToNativeVisualTree = false;
+                            (activity as any)._currentModalCustomView = null;
+                        }
+                    }
+                })
+            );
+
+            this.dialog = showDialog(alert, this.options);
+        }
+    }
+    hide() {
+        if ( this.dialog) {
+            this.dialog.cancel();
+            this.dialog = null;
+        }
+    }
 }
 
 export function confirm(arg: any): Promise<boolean> {

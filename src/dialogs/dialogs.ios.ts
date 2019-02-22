@@ -43,7 +43,11 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
         get preferredContentSize() {
             const result = this.super.preferredContentSize;
             if (this._customContentView) {
-                return CGSizeMake(result.width, result.height + layout.toDeviceIndependentPixels(this._customContentView.getMeasuredHeight()));
+                const hasTitleOrMessage = this.title || this.message;
+                if (hasTitleOrMessage) {
+                    return CGSizeMake(result.width, result.height + layout.toDeviceIndependentPixels(this._customContentView.getMeasuredHeight()));
+                }
+                return CGSizeMake(result.width,  layout.toDeviceIndependentPixels(this._customContentView.getMeasuredHeight()));
             }
             return result;
         },
@@ -56,7 +60,9 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
         get contentScrollView() {
             const alertView = this.super.view as MDCAlertControllerView;
             if (alertView) {
+                alertView.backgroundColor = UIColor.blueColor;
                 const contentScrollView = alertView.subviews[0] as UIScrollView;
+                contentScrollView.backgroundColor = UIColor.greenColor;
                 return contentScrollView;
             }
             return null;
@@ -87,8 +93,8 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             const nativeViewProtected = this._customContentView.nativeViewProtected;
             if (contentScrollView && nativeViewProtected) {
                 contentScrollView.addSubview(nativeViewProtected);
+                this.measureChild(); // ensure custom view is measured for preferredContentSize
             }
-            this.measureChild(); // ensure custom view is measured for preferredContentSize
         },
         get customContentView() {
             return this._customContentView;
@@ -103,31 +109,33 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             }
         },
         measureChild() {
-            let boundsSize = CGRectInfinite.size;
-            boundsSize.width = this.preferredContentSize.width;
-            View.measureChild(null, this._customContentView, layout.makeMeasureSpec(boundsSize.width, layout.EXACTLY), UNSPECIFIED);
+            const contentSize = this.contentScrollView.contentSize;
+            const width = layout.toDevicePixels(contentSize.width);
+            const widthSpec = layout.makeMeasureSpec(width, layout.EXACTLY);
+            View.measureChild(null, this._customContentView, widthSpec, UNSPECIFIED);
         },
         viewDidLayoutSubviews() {
             if (this._customContentView) {
-                const contentScrollView = this.contentScrollView;
+                const view = this._customContentView as View;
+                const hasTitleOrMessage = this.title || this.message;
+                const contentScrollView = this.contentScrollView as UIScrollView;
+                contentScrollView.clipsToBounds = true;
                 const contentSize = contentScrollView.contentSize;
+                const originY = hasTitleOrMessage ? layout.toDevicePixels(contentSize.height) : 0;
 
-                const width = layout.toDevicePixels(contentSize.width);
-                const originY = layout.toDevicePixels(contentSize.height);
-                const widthSpec = layout.makeMeasureSpec(width, layout.EXACTLY);
-                const heightSpec = UNSPECIFIED;
+                this.measureChild();
+                const measuredHeight = view.getMeasuredHeight(); //pixels
+                const measuredWidth = view.getMeasuredWidth(); //pixels
+                View.layoutChild(null, view, 0, originY, measuredWidth, originY + measuredHeight);
 
-                this._customContentView.measure(widthSpec, heightSpec);
-                const measuredHeight = this._customContentView.getMeasuredHeight();
-                this._customContentView.layout(0, originY, width, layout.toDevicePixels(measuredHeight));
                 const bounds = contentScrollView.frame;
                 const boundsSize = bounds.size;
                 contentSize.height = contentSize.height + measuredHeight;
                 boundsSize.height = boundsSize.height + measuredHeight;
                 contentScrollView.contentSize = contentSize;
-                // contentScrollView.autoresizingMask = UIViewAutoresizing.FlexibleHeight;
                 bounds.size = boundsSize;
                 contentScrollView.frame = bounds;
+                console.log('test', contentSize.height, boundsSize.height, contentScrollView.frame.size.height, view.nativeViewProtected.frame.size.height);
                 // this.preferredContentSize = this.updatePreferredContentSize(this.preferredContentSize);
             }
             this.super.viewDidLayoutSubviews();
@@ -143,6 +151,7 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             if (this.customContentView) {
                 this._customContentView.callUnloaded();
                 this._customContentView._tearDownUI(true);
+                this._customContentView._isAddedToNativeVisualTree = false;
                 this._customContentView = null;
             }
         }
@@ -251,6 +260,7 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
 
     if (options.view) {
+        console.log('createAlertController', 'custom view', options.view);
         const view =
             options.view instanceof View
                 ? (options.view as View)
@@ -293,6 +303,29 @@ export function alert(arg: any): Promise<void> {
             reject(ex);
         }
     });
+}
+
+export class AlertDialog {
+    alertController: MDCAlertController;
+    constructor(private options: any) {}
+    show() {
+        if (!this.alertController) {
+            this.alertController = createAlertController(this.options);
+
+            // addButtonsToAlertController(this.alertController, options, result => {
+            //     (this.alertController as any)._resolveFunction = null;
+            //     resolve(result);
+            // });
+
+            showUIAlertController(this.alertController);
+        }
+    }
+    hide() {
+        if (this.alertController) {
+            this.alertController.dismissModalViewControllerAnimated(true);
+            this.alertController = null;
+        }
+    }
 }
 
 export function confirm(arg: any): Promise<boolean> {

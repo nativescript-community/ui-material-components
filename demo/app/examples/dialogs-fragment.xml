@@ -3,5 +3,5 @@
     <mdb:Button id="prompt" text="prompt" tap="{{ onTap }}"/>
     <mdb:Button id="login" text="login" tap="{{ onTap }}"/>
     <mdb:Button id="dialogCustomView" text="customView" tap="{{ onTap }}"/>
-    <StackLayout backgroundColor="yellow" height="100"/>
+    <mdb:Button id="alertdialog" text="alertdialog" tap="{{ onTap }}"/>
 </StackLayout>

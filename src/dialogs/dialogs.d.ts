@@ -109,3 +109,10 @@ export function action(message: string, cancelButtonText: string, actions: Array
  * @param options The options for the dialog box.
  */
 export function action(options: ActionOptions & MDCAlertControlerOptions): Promise<string>;
+
+
+export class AlertDialog  {
+    constructor(options: AlertOptions & MDCAlertControlerOptions)
+    show();
+    hide();
+}
