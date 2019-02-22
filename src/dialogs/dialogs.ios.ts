@@ -32,117 +32,125 @@ import { MDCAlertControlerOptions } from './dialogs';
 
 const UNSPECIFIED = layout.makeMeasureSpec(0, layout.UNSPECIFIED);
 
-class MDCAlertControllerImpl extends MDCAlertController {
-    // Override an existing method from the base class.
-    // We will obtain the method signature from the protocol.
-    _customContentView?: View;
+interface MDCAlertControllerImpl extends MDCAlertController {
+    // new (): MDCAlertControllerImpl;
+    customContentView?: View;
     _customContentViewContext?: any;
     _resolveFunction?: Function;
-    get contentScrollView() {
-        const alertView = this.view as MDCAlertControllerView;
-        if (alertView) {
-            const contentScrollView = alertView.subviews[0] as UIScrollView;
-            return contentScrollView;
-        }
-        return null;
-    }
+}
+const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as any).extend(
+    {
+        get preferredContentSize() {
+            const result = this.super.preferredContentSize;
+            if (this._customContentView) {
+                return CGSizeMake(result.width, result.height + layout.toDeviceIndependentPixels(this._customContentView.getMeasuredHeight()));
+            }
+            return result;
+        },
+        set preferredContentSize(x) {
+            this.super.preferredContentSize = x;
+        },
+        // _customContentView?: View;
+        // _customContentViewContext?: any;
+        // _resolveFunction?: Function;
+        get contentScrollView() {
+            const alertView = this.super.view as MDCAlertControllerView;
+            if (alertView) {
+                const contentScrollView = alertView.subviews[0] as UIScrollView;
+                return contentScrollView;
+            }
+            return null;
+        },
 
-    // viewWillAppear(animated: boolean) {
-    //     super.viewWillAppear(animated);
+        // viewWillAppear(animated: boolean) {
+        //     super.viewWillAppear(animated);
 
-    // }
-    viewDidDisappear(animated: boolean) {
-        super.viewDidDisappear(animated);
-        if (this._resolveFunction) {
-            this._resolveFunction();
-            this._resolveFunction = null;
-        }
-    }
+        // }
+        viewDidDisappear(animated: boolean) {
+            this.super.viewDidDisappear(animated);
+            if (this._resolveFunction) {
+                this._resolveFunction();
+                this._resolveFunction = null;
+            }
+        },
 
-    addCustomViewToLayout() {
-        const contentScrollView = this.contentScrollView;
-        const view = this._customContentView;
-        view._setupAsRootView({});
-        view._isAddedToNativeVisualTree = true;
-        view.callLoaded();
-        if (this._customContentViewContext) {
-            view.bindingContext = fromObject(this._customContentViewContext);
-            this._customContentViewContext = null;
-        }
-        const nativeViewProtected = this._customContentView.nativeViewProtected;
-        if (contentScrollView && nativeViewProtected) {
-            contentScrollView.addSubview(nativeViewProtected);
-        }
-        this.measureChild(); // ensure custom view is measured for preferredContentSize
-    }
-    get customContentView() {
-        return this._customContentView;
-    }
-    set customContentView(view: View) {
-        this._customContentView = view;
-        if (view) {
-            view.viewController = this;
-            if (this.viewLoaded) {
+        addCustomViewToLayout() {
+            const contentScrollView = this.contentScrollView;
+            const view = this._customContentView;
+            view._setupAsRootView({});
+            view._isAddedToNativeVisualTree = true;
+            view.callLoaded();
+            if (this._customContentViewContext) {
+                view.bindingContext = fromObject(this._customContentViewContext);
+                this._customContentViewContext = null;
+            }
+            const nativeViewProtected = this._customContentView.nativeViewProtected;
+            if (contentScrollView && nativeViewProtected) {
+                contentScrollView.addSubview(nativeViewProtected);
+            }
+            this.measureChild(); // ensure custom view is measured for preferredContentSize
+        },
+        get customContentView() {
+            return this._customContentView;
+        },
+        set customContentView(view: View) {
+            this._customContentView = view;
+            if (view) {
+                view.viewController = this;
+                if (this.viewLoaded) {
+                    this.addCustomViewToLayout();
+                }
+            }
+        },
+        measureChild() {
+            let boundsSize = CGRectInfinite.size;
+            boundsSize.width = this.preferredContentSize.width;
+            View.measureChild(null, this._customContentView, layout.makeMeasureSpec(boundsSize.width, layout.EXACTLY), UNSPECIFIED);
+        },
+        viewDidLayoutSubviews() {
+            if (this._customContentView) {
+                const contentScrollView = this.contentScrollView;
+                const contentSize = contentScrollView.contentSize;
+
+                const width = layout.toDevicePixels(contentSize.width);
+                const originY = layout.toDevicePixels(contentSize.height);
+                const widthSpec = layout.makeMeasureSpec(width, layout.EXACTLY);
+                const heightSpec = UNSPECIFIED;
+
+                this._customContentView.measure(widthSpec, heightSpec);
+                const measuredHeight = this._customContentView.getMeasuredHeight();
+                this._customContentView.layout(0, originY, width, layout.toDevicePixels(measuredHeight));
+                const bounds = contentScrollView.frame;
+                const boundsSize = bounds.size;
+                contentSize.height = contentSize.height + measuredHeight;
+                boundsSize.height = boundsSize.height + measuredHeight;
+                contentScrollView.contentSize = contentSize;
+                // contentScrollView.autoresizingMask = UIViewAutoresizing.FlexibleHeight;
+                bounds.size = boundsSize;
+                contentScrollView.frame = bounds;
+                // this.preferredContentSize = this.updatePreferredContentSize(this.preferredContentSize);
+            }
+            this.super.viewDidLayoutSubviews();
+        },
+        viewDidLoad() {
+            this.super.viewDidLoad();
+            if (this._customContentView) {
                 this.addCustomViewToLayout();
             }
+        },
+        viewDidUnload() {
+            this.super.viewDidUnload();
+            if (this.customContentView) {
+                this._customContentView.callUnloaded();
+                this._customContentView._tearDownUI(true);
+                this._customContentView = null;
+            }
         }
+    },
+    {
+        name: 'MDCAlertControllerImpl'
     }
-    _preferredContentSize: CGSize;
-    get preferredContentSize() {
-        const result = this._preferredContentSize;
-        if (this._customContentView) {
-            return CGSizeMake(result.width, result.height + layout.toDeviceIndependentPixels(this._customContentView.getMeasuredHeight()));
-        }
-        return result;
-    }
-    set preferredContentSize(size: CGSize) {
-        this._preferredContentSize = size;
-    }
-    measureChild() {
-        let boundsSize = CGRectInfinite.size;
-        boundsSize.width = this.preferredContentSize.width;
-        View.measureChild(null, this._customContentView, layout.makeMeasureSpec(boundsSize.width, layout.AT_MOST), UNSPECIFIED);
-    }
-    viewDidLayoutSubviews() {
-        if (this._customContentView) {
-            const contentScrollView = this.contentScrollView;
-            const contentSize = contentScrollView.contentSize;
-
-            const width = layout.toDevicePixels(contentSize.width);
-            const originY = layout.toDevicePixels(contentSize.height);
-            const widthSpec = layout.makeMeasureSpec(width, layout.AT_MOST);
-            const heightSpec = UNSPECIFIED;
-
-            this._customContentView.measure(widthSpec, heightSpec);
-            const measuredHeight = this._customContentView.getMeasuredHeight();
-            this._customContentView.layout(0, originY, width, layout.toDevicePixels(measuredHeight));
-            const bounds = contentScrollView.frame;
-            const boundsSize = bounds.size;
-            contentSize.height = contentSize.height + measuredHeight;
-            boundsSize.height = boundsSize.height + measuredHeight;
-            contentScrollView.contentSize = contentSize;
-            // contentScrollView.autoresizingMask = UIViewAutoresizing.FlexibleHeight;
-            bounds.size = boundsSize;
-            contentScrollView.frame = bounds;
-            // this.preferredContentSize = this.updatePreferredContentSize(this.preferredContentSize);
-        }
-        super.viewDidLayoutSubviews();
-    }
-    viewDidLoad() {
-        super.viewDidLoad();
-        if (this._customContentView) {
-            this.addCustomViewToLayout();
-        }
-    }
-    viewDidUnload() {
-        super.viewDidUnload();
-        if (this.customContentView) {
-            this._customContentView.callUnloaded();
-            this._customContentView._tearDownUI(true);
-            this._customContentView = null;
-        }
-    }
-}
+);
 
 function addButtonsToAlertController(alertController: MDCAlertController, options: ConfirmOptions, callback?: Function): void {
     if (!options) {
@@ -181,7 +189,7 @@ function raiseCallback(callback, result) {
 }
 
 function createAlertController(options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
-    const alertController = MDCAlertControllerImpl.new() as MDCAlertControllerImpl;
+    const alertController = (MDCAlertControllerImpl as any).new() as MDCAlertControllerImpl;
 
     if (options.title) {
         alertController.title = options.title;
