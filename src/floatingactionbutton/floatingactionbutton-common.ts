@@ -14,7 +14,6 @@ export const srcProperty = new Property<FloatingActionButtonBase, any>({
 export abstract class FloatingActionButtonBase extends View {
     constructor() {
         super();
-        // console.log('create FloatingActionButton common');
         this.style.width = this.style.height = 56;
         this.style.margin = 5;
     }

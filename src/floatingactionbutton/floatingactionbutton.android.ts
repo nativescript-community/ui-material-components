@@ -23,7 +23,6 @@ export class FloatingActionButton extends FloatingActionButtonBase {
 
     [imageSourceProperty.setNative](value: ImageSource) {
         const nativeView = this.nativeViewProtected;
-        // console.log('imageSourceProperty setNative', value && value.android);
         if (value && value.android) {
             nativeView.setImageBitmap(value.android);
         } else {
