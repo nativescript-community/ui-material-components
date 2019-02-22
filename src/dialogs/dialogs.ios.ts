@@ -41,22 +41,23 @@ interface MDCAlertControllerImpl extends MDCAlertController {
 const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as any).extend(
     {
         get preferredContentSize() {
-            const result = this.super.preferredContentSize;
+            const superResult = this.super.preferredContentSize;
             if (this._customContentView) {
+                const measuredHeight = this._customContentView.getMeasuredHeight(); // pixels
                 const hasTitleOrMessage = this.title || this.message;
+                let result: CGSize;
                 if (hasTitleOrMessage) {
-                    return CGSizeMake(result.width, result.height + layout.toDeviceIndependentPixels(this._customContentView.getMeasuredHeight()));
+                    result = CGSizeMake(superResult.width, superResult.height + layout.toDeviceIndependentPixels(measuredHeight));
+                } else {
+                    result = CGSizeMake(superResult.width, layout.toDeviceIndependentPixels(measuredHeight));
                 }
-                return CGSizeMake(result.width,  layout.toDeviceIndependentPixels(this._customContentView.getMeasuredHeight()));
+                return result;
             }
-            return result;
+            return superResult;
         },
         set preferredContentSize(x) {
             this.super.preferredContentSize = x;
         },
-        // _customContentView?: View;
-        // _customContentViewContext?: any;
-        // _resolveFunction?: Function;
         get contentScrollView() {
             const alertView = this.super.view as MDCAlertControllerView;
             if (alertView) {
@@ -109,9 +110,10 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             }
         },
         measureChild() {
+            const view = this._customContentView as View;
             const contentSize = this.contentScrollView.contentSize;
-            const width = layout.toDevicePixels(contentSize.width);
-            const widthSpec = layout.makeMeasureSpec(width, layout.EXACTLY);
+            const width = contentSize.width || this.super.preferredContentSize.width;
+            const widthSpec = layout.makeMeasureSpec(layout.toDevicePixels(width), layout.EXACTLY);
             View.measureChild(null, this._customContentView, widthSpec, UNSPECIFIED);
         },
         viewDidLayoutSubviews() {
@@ -124,8 +126,8 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
                 const originY = hasTitleOrMessage ? layout.toDevicePixels(contentSize.height) : 0;
 
                 this.measureChild();
-                const measuredHeight = view.getMeasuredHeight(); //pixels
-                const measuredWidth = view.getMeasuredWidth(); //pixels
+                const measuredHeight = view.getMeasuredHeight(); // pixels
+                const measuredWidth = view.getMeasuredWidth(); // pixels
                 View.layoutChild(null, view, 0, originY, measuredWidth, originY + measuredHeight);
 
                 const bounds = contentScrollView.frame;
@@ -135,10 +137,15 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
                 contentScrollView.contentSize = contentSize;
                 bounds.size = boundsSize;
                 contentScrollView.frame = bounds;
-                console.log('test', contentSize.height, boundsSize.height, contentScrollView.frame.size.height, view.nativeViewProtected.frame.size.height);
-                // this.preferredContentSize = this.updatePreferredContentSize(this.preferredContentSize);
             }
             this.super.viewDidLayoutSubviews();
+            const hasTitleOrMessage = this.title || this.message;
+            if (!hasTitleOrMessage && this._customContentView) {
+                this.preferredContentSize = {
+                    width: this.super.preferredContentSize.width,
+                    height: layout.toDeviceIndependentPixels(this._customContentView.getMeasuredHeight())
+                };
+            }
         },
         viewDidLoad() {
             this.super.viewDidLoad();
