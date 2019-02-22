@@ -79,12 +79,12 @@ class BottomSheetUILayoutViewController extends UIViewController {
         const rootView = controller.view;
         const layoutGuide = UILayoutGuide.alloc().init();
         rootView.addLayoutGuide(layoutGuide);
-        // NSLayoutConstraint.activateConstraints(<any>[
-        //     layoutGuide.topAnchor.constraintEqualToAnchor(controller.topLayoutGuide.bottomAnchor),
-        //     layoutGuide.bottomAnchor.constraintEqualToAnchor(controller.bottomLayoutGuide.topAnchor),
-        //     layoutGuide.leadingAnchor.constraintEqualToAnchor(rootView.leadingAnchor),
-        //     layoutGuide.trailingAnchor.constraintEqualToAnchor(rootView.trailingAnchor)
-        // ]);
+        NSLayoutConstraint.activateConstraints(<any>[
+            layoutGuide.topAnchor.constraintEqualToAnchor(controller.topLayoutGuide.bottomAnchor),
+            layoutGuide.bottomAnchor.constraintEqualToAnchor(controller.bottomLayoutGuide.topAnchor),
+            layoutGuide.leadingAnchor.constraintEqualToAnchor(rootView.leadingAnchor),
+            layoutGuide.trailingAnchor.constraintEqualToAnchor(rootView.trailingAnchor)
+        ]);
         return layoutGuide;
     }
     layoutView(controller: UIViewController, owner: View): void {
