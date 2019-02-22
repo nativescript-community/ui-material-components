@@ -107,8 +107,8 @@ class Model {
                 const stack = new StackLayout();
                 stack.orientation = 'horizontal';
                 stack.verticalAlignment = 'middle';
-                stack.height = {value:100, unit:'dip'};
-                // stack.padding = 24;
+                // stack.height = {value:100, unit:'dip'};
+                stack.padding = 24;
                 // stack.margin = 30;
                 stack.backgroundColor = 'red';
                 const activityIndicator = new ActivityIndicator();
