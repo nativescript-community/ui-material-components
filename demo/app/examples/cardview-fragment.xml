@@ -14,7 +14,7 @@
             <Label text="Hello World!"></Label>
         </StackLayout>
     </mdcv:CardView>
-    <mdcv:CardView margin="10">
+    <mdcv:CardView margin="10" elevation="10" elevationHighlighted="5">
         <StackLayout padding="10">
             <Label text="Hello World!"></Label>
             <Button text="testButton"></Button>

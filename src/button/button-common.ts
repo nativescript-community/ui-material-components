@@ -6,6 +6,7 @@ import { cssProperty } from 'nativescript-material-core/cssproperties';
 export abstract class ButtonBase extends Button {
     public variant: string;
     @cssProperty elevation: number;
+    @cssProperty elevationHighlighted: number;
     @cssProperty rippleColor: Color | string;
 
     constructor() {

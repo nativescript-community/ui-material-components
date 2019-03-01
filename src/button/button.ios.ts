@@ -5,7 +5,7 @@ import { Background } from 'tns-core-modules/ui/styling/background';
 
 import { backgroundColorProperty, backgroundInternalProperty, Color, fontInternalProperty } from 'tns-core-modules/ui/page/page';
 import { Font } from 'tns-core-modules/ui/styling/font';
-import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { getRippleColor } from 'nativescript-material-core';
 
 let buttonScheme: MDCButtonScheme;
@@ -74,9 +74,13 @@ export class Button extends ButtonBase {
 
     [elevationProperty.setNative](value: number) {
         this.nativeViewProtected.setElevationForState(value, UIControlState.Normal);
-        this.nativeViewProtected.setElevationForState(value * 2, UIControlState.Highlighted);
+        if (this.elevationHighlighted === undefined) {
+            this.nativeViewProtected.setElevationForState(value * 2, UIControlState.Highlighted);
+        }
     }
-
+    [elevationHighlightedProperty.setNative](value: number) {
+        this.nativeViewProtected.setElevationForState(value, UIControlState.Highlighted);
+    }
     [backgroundColorProperty.setNative](value: Color) {
         if (this.nativeViewProtected) {
             this.nativeViewProtected.setBackgroundColorForState(value.ios, UIControlState.Normal);

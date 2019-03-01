@@ -32,15 +32,17 @@ rippleColorProperty.register(Style);
 export const elevationProperty = new CssProperty<Style, Length>({
     name: 'elevation',
     cssName: 'elevation',
-    // valueChanged: (target, oldValue, newValue) => {
-    //     let value = Length.toDevicePixels(newValue, 0);
 
-    //     const background = target.backgroundInternal.withBorderTopLeftRadius(value);
-    //     target.backgroundInternal = background;
-    // },
     valueConverter: v => Length.toDevicePixels(Length.parse(v), 0)
 });
 elevationProperty.register(Style);
+export const elevationHighlightedProperty = new CssProperty<Style, Length>({
+    name: 'elevationHighlighted',
+    cssName: 'elevation-highlighted',
+
+    valueConverter: v => Length.toDevicePixels(Length.parse(v), 0)
+});
+elevationHighlightedProperty.register(Style);
 
 export const variantProperty = new CssProperty<Style, string>({
     name: 'variant',

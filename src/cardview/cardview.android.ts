@@ -1,15 +1,10 @@
 import { CardViewBase } from './cardview-common';
-import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { backgroundInternalProperty, Color, Length, ViewBase } from 'tns-core-modules/ui/page/page';
 import { ad } from 'tns-core-modules/utils/utils';
+import { createStateListAnimator } from 'nativescript-material-core/material.android';
 
 let MDCCardView: typeof android.support.design.card.MaterialCardView;
-let BACKGROUND_DEFAULT_STATE_1: number[];
-let BACKGROUND_DEFAULT_STATE_2: number[];
-let BACKGROUND_SELECTED_STATE: number[];
-let BACKGROUND_CHECKED_STATE: number[];
-let BACKGROUND_FOCUSED_STATE: number[];
-let BACKGROUND_DISABLED_STATE: number[];
 
 const DEFAULT_STROKE_VALUE = -1;
 function initMDCCardView() {
@@ -20,13 +15,6 @@ function initMDCCardView() {
         //     initializePreLollipopCardView()
         //     MDCCardView = PreLollipopCardView as any
         // }
-        BACKGROUND_DEFAULT_STATE_1 = [android.R.attr.state_window_focused, android.R.attr.state_enabled];
-        BACKGROUND_DEFAULT_STATE_2 = [android.R.attr.state_enabled];
-        BACKGROUND_SELECTED_STATE = [android.R.attr.state_window_focused, android.R.attr.state_enabled, android.R.attr.state_pressed];
-
-        BACKGROUND_CHECKED_STATE = [android.R.attr.state_window_focused, android.R.attr.state_enabled, android.R.attr.state_checked];
-        BACKGROUND_FOCUSED_STATE = [android.R.attr.state_focused, android.R.attr.state_window_focused, android.R.attr.state_enabled];
-        BACKGROUND_DISABLED_STATE = [-android.R.attr.state_enabled];
     }
 }
 
@@ -243,72 +231,12 @@ export class CardView extends CardViewBase {
         return this.nativeView;
     }
 
-    private createStateListAnimator(view: android.view.View) {
-        const elevation = android.support.v4.view.ViewCompat.getElevation(view);
-        const translationZ = android.support.v4.view.ViewCompat.getTranslationZ(view);
-        const elevationSelected = elevation * 2;
-        const translationSelectedZ = translationZ + 6;
-        const animationDuration = 100;
-        const listAnimator = new android.animation.StateListAnimator();
-        let animators = new java.util.ArrayList<android.animation.Animator>();
-        let set = new android.animation.AnimatorSet();
-        let animator = android.animation.ObjectAnimator.ofFloat(view, 'translationZ', [translationSelectedZ]);
-        animators.add(animator);
-        animator = android.animation.ObjectAnimator.ofFloat(view, 'elevation', [elevationSelected]);
-        // animator.setDuration(0)
-        animators.add(animator);
-        set.playTogether(animators);
-        set.setDuration(animationDuration);
-        listAnimator.addState(BACKGROUND_SELECTED_STATE, set);
-
-        animators.clear();
-        set = new android.animation.AnimatorSet();
-        animator = android.animation.ObjectAnimator.ofFloat(view, 'translationZ', [translationSelectedZ]);
-        // animator.setDuration(animationDuration)
-        animators.add(animator);
-        animator = android.animation.ObjectAnimator.ofFloat(view, 'elevation', [elevationSelected]);
-        // animator.setDuration(0)
-        animators.add(animator);
-        set.playTogether(animators);
-        set.setDuration(animationDuration);
-        listAnimator.addState(BACKGROUND_FOCUSED_STATE, set);
-
-        animators.clear();
-        set = new android.animation.AnimatorSet();
-        animator = android.animation.ObjectAnimator.ofFloat(view, 'translationZ', [translationZ]);
-        // animator.setDuration(animationDuration)
-        // animator.setStartDelay(animationDuration)
-        animators.add(animator);
-        animator = android.animation.ObjectAnimator.ofFloat(view, 'elevation', [elevation]);
-        // animator.setDuration(0)
-        animators.add(animator);
-        set.playTogether(animators);
-        set.setDuration(animationDuration);
-        set.setStartDelay(animationDuration);
-        listAnimator.addState(BACKGROUND_DEFAULT_STATE_2, set);
-
-        animators.clear();
-        set = new android.animation.AnimatorSet();
-        animator = android.animation.ObjectAnimator.ofFloat(view, 'translationZ', [translationZ]);
-        // animator.setDuration(0)
-        animators.add(animator);
-        animator = android.animation.ObjectAnimator.ofFloat(view, 'elevation', [elevation]);
-        animator.setDuration(0);
-        animators.add(animator);
-        set.playTogether(animators);
-        set.setDuration(animationDuration);
-        set.setStartDelay(animationDuration);
-        listAnimator.addState([], set);
-
-        view.setStateListAnimator(listAnimator);
-    }
-
     public createNativeView() {
         initMDCCardView();
         initializeOutlineProvider();
         const view = new MDCCardView(this._context);
         if (android.os.Build.VERSION.SDK_INT >= 21) {
-            this.createStateListAnimator(view);
+            createStateListAnimator(this, view);
         }
         view.setClickable(this.isUserInteractionEnabled);
 
@@ -405,7 +333,15 @@ export class CardView extends CardViewBase {
         }
         android.support.v4.view.ViewCompat.setElevation(this.nativeViewProtected, value);
         if (android.os.Build.VERSION.SDK_INT >= 21) {
-            this.createStateListAnimator(this.nativeViewProtected);
+            createStateListAnimator(this, this.nativeViewProtected);
+        }
+    }
+    [elevationHighlightedProperty.setNative](value: number) {
+        if (!this.nativeViewProtected) {
+            return;
+        }
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            createStateListAnimator(this, this.nativeViewProtected);
         }
     }
     [rippleColorProperty.setNative](color: Color) {

@@ -1,5 +1,5 @@
 import { CardViewBase } from './cardview-common';
-import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { backgroundInternalProperty, Color, isUserInteractionEnabledProperty, Length } from 'tns-core-modules/ui/page/page';
 import { getRippleColor, themer } from 'nativescript-material-core';
 import { Background } from 'tns-core-modules/ui/styling/background';
@@ -41,7 +41,12 @@ export class CardView extends CardViewBase {
 
     [elevationProperty.setNative](value: number) {
         this.nativeViewProtected.setShadowElevationForState(value, UIControlState.Normal);
-        this.nativeViewProtected.setShadowElevationForState(value * 2, UIControlState.Highlighted);
+        if (this.elevationHighlighted === undefined) {
+            this.nativeViewProtected.setShadowElevationForState(value * 2, UIControlState.Highlighted);
+        }
+    }
+    [elevationHighlightedProperty.setNative](value: number) {
+        this.nativeViewProtected.setShadowElevationForState(value, UIControlState.Highlighted);
     }
     [backgroundInternalProperty.setNative](value: Background) {
         if (this.nativeViewProtected) {

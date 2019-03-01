@@ -3,9 +3,10 @@ import { getRippleColor } from 'nativescript-material-core';
 
 import * as utils from 'tns-core-modules/utils/utils';
 import { backgroundInternalProperty, Color, Length } from 'tns-core-modules/ui/page/page';
-import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { getEnabledColorStateList, getRippleColorStateList } from 'nativescript-material-core/android/utils';
+import { createStateListAnimator } from 'nativescript-material-core/material.android';
 
 let PRE_LOLLIPOP: boolean = undefined;
 
@@ -49,6 +50,14 @@ export class Button extends ButtonBase {
 
     [elevationProperty.setNative](value: number) {
         android.support.v4.view.ViewCompat.setElevation(this.nativeViewProtected, value);
+    }
+    [elevationHighlightedProperty.setNative](value: number) {
+        if (!this.nativeViewProtected) {
+            return;
+        }
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            createStateListAnimator(this, this.nativeViewProtected);
+        }
     }
 
     setCornerRadius(value) {
