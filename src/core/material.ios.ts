@@ -71,7 +71,7 @@ export function install() {
 export function getRippleColor(color: string | Color): UIColor {
     if (color) {
         const temp = typeof color === 'string' ? new Color(color) : color;
-        return new Color(36, temp.r, temp.g, temp.b).ios; // default alpha is 0.14
+        return new Color(temp.a !== 255 ? temp.a : 36, temp.r, temp.g, temp.b).ios; // default alpha is 0.14
     }
     return null;
 }
