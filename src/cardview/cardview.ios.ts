@@ -21,7 +21,6 @@ class Card extends MDCCard {
 }
 export class CardView extends CardViewBase {
     nativeViewProtected: MDCCard;
-    _backgroundColor: Color;
 
     public createNativeView() {
         const view = Card.new();
@@ -35,6 +34,8 @@ export class CardView extends CardViewBase {
     _setNativeClipToBounds() {
         // this.ios.clipsToBounds = true;
     }
+
+    // trick to get the same behavior as android (don't disable all children)
     [isUserInteractionEnabledProperty.setNative](value: boolean) {
         this.nativeViewProtected.interactable = value;
     }
