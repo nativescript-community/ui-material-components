@@ -1,6 +1,8 @@
 // export * from './material.common';
 import { Color } from 'tns-core-modules/color/color';
 import { ViewBase } from 'tns-core-modules/ui/page/page';
+import { applyMixins } from './material.common';
+export { applyMixins };
 
 // stub class as we don't use this on android
 export class Themer {
@@ -22,13 +24,6 @@ export class Themer {
     }
 }
 
-export function applyMixins(derivedCtor: any, baseCtors: any[]) {
-    baseCtors.forEach(baseCtor => {
-        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-            derivedCtor.prototype[name] = baseCtor.prototype[name];
-        });
-    });
-}
 export const themer = new Themer();
 
 export function install() {

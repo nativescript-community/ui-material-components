@@ -2,6 +2,8 @@ import { Color } from 'tns-core-modules/color/color';
 import { TypographyOptions } from './material';
 
 // export * from './material.common';
+import { applyMixins } from './material.common';
+export { applyMixins };
 
 export class Themer {
     appColorScheme: MDCSemanticColorScheme;
@@ -49,16 +51,6 @@ export class Themer {
 }
 
 export const themer = new Themer();
-
-export function applyMixins(derivedCtor: any, baseCtors: any[]) {
-    baseCtors.forEach(baseCtor => {
-        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
-            if (name !== 'constructor') {
-                derivedCtor.prototype[name] = baseCtor.prototype[name];
-            }
-        });
-    });
-}
 
 export function install() {
     try {
