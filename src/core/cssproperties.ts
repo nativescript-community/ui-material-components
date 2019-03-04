@@ -2,24 +2,24 @@ import { CssProperty } from 'tns-core-modules/ui/core/properties';
 import { booleanConverter, Color, Length } from 'tns-core-modules/ui/core/view';
 import { Style } from 'tns-core-modules/ui/styling/style';
 
-export const cssProperty = (target: Object, key: string | symbol) => {
-    // property getter
-    const getter = function() {
-        return this.style.key;
+function createGetter(key) {
+    return function() {
+        return this.style[key];
     };
-
-    // property setter
-    const setter = function(newVal) {
+}
+function createSetter(key) {
+    return function(newVal) {
         this.style[key] = newVal;
     };
+}
 
+export const cssProperty = (target: Object, key: string | symbol) => {
     Object.defineProperty(target, key, {
-        get: getter,
-        set: setter,
+        get: createGetter(key),
+        set: createSetter(key),
         enumerable: true,
         configurable: true
     });
-    // }
 };
 
 export const rippleColorProperty = new CssProperty<Style, Color>({
