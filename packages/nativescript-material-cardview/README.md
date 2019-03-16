@@ -49,7 +49,7 @@ registerElement('MDCardView', () => CardView);
 ```
 
 ```html
-<MDCardView rippleColor="blue"  width="100" height="100"></MDCCardView>
+<MDCardView rippleColor="blue"  width="100" height="100"></MDCardView>
 ```
 
 ## NativeScript + Vue
