@@ -1,4 +1,4 @@
-import { Color, CSSType, Length, View } from 'tns-core-modules/ui/core/view';
+import { Color, CSSType } from 'tns-core-modules/ui/core/view';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 
