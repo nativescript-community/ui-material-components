@@ -24,18 +24,31 @@ export class ViewModel {
         const frame = getFrameById('firstFrame');
         frame.navigate(navigationEntry);
     }
-}
-
-export function onTap(args: ItemEventData) {
-    console.log('onTap', args);
-    const example = this.examples[args.index];
-    const navigationEntry = {
+    onTapInsideTemplate(args) {
+    var btn = args.object;
+   var item = btn.bindingContext;
+   const navigationEntry = {
         moduleName: 'examples/example-page',
         context: {
-            example: example.title
+            example: item.title
         },
         animated: true
     };
     const frame = getFrameById('firstFrame');
     frame.navigate(navigationEntry);
 }
+}
+
+// export function onTap(args: ItemEventData) {
+//     console.log('onTap', args);
+//     const example = this.examples[args.index];
+//     const navigationEntry = {
+//         moduleName: 'examples/example-page',
+//         context: {
+//             example: example.title
+//         },
+//         animated: true
+//     };
+//     const frame = getFrameById('firstFrame');
+//     frame.navigate(navigationEntry);
+// }

@@ -7,11 +7,11 @@
     </ActionBar>
 </Page.actionBar>
 
-<lv:RadListView items="{{ examples }}" class="list-group" itemTap="{{ onTap }}">
-  <lv:RadListView.itemTemplate>
-    <mdr:Ripple class="list-group-item" height="50" borderBottomColor="black" borderBottomWidth="0" >
+<ListView items="{{ examples }}" class="list-group" itemTap="{{ onTap }}">
+  <ListView.itemTemplate>
+    <mdr:Ripple class="list-group-item" height="50" borderBottomColor="black" borderBottomWidth="0" tap="{{ $parents['ListView'].onTapInsideTemplate }}" >
       <Label text="{{ title }}" textWrap="true"/>
     </mdr:Ripple>
-  </lv:RadListView.itemTemplate>
-</lv:RadListView>
+  </ListView.itemTemplate>
+</ListView>
 </Page>

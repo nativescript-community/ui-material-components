@@ -5,3 +5,5 @@ export function pageLoaded(args) {
     this.page = args.object;
     this.page.bindingContext = new ViewModel();
 }
+
+export function onTapInsideTemplate() {}
