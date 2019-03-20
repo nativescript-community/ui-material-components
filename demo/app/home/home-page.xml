@@ -1,6 +1,6 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" 
       loaded="pageLoaded" 
-      xmlns:mdcr="nativescript-material-ripple"
+      xmlns:mdr="nativescript-material-ripple"
       xmlns:lv="nativescript-ui-listview">
 <Page.actionBar>
     <ActionBar title="Material Components">
@@ -9,9 +9,9 @@
 
 <lv:RadListView items="{{ examples }}" class="list-group" itemTap="{{ onTap }}">
   <lv:RadListView.itemTemplate>
-    <mdcr:Ripple class="list-group-item" height="50" borderBottomColor="black" borderBottomWidth="0" >
+    <mdr:Ripple class="list-group-item" height="50" borderBottomColor="black" borderBottomWidth="0" >
       <Label text="{{ title }}" textWrap="true"/>
-    </mdcr:Ripple>
+    </mdr:Ripple>
   </lv:RadListView.itemTemplate>
 </lv:RadListView>
 </Page>
