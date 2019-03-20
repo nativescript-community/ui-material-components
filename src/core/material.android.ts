@@ -2,6 +2,7 @@
 import { Color } from 'tns-core-modules/color/color';
 import { ViewBase } from 'tns-core-modules/ui/page/page';
 import { applyMixins } from './material.common';
+import { ad } from 'tns-core-modules/utils/utils';
 export { applyMixins };
 
 // stub class as we don't use this on android
@@ -128,4 +129,55 @@ export function createStateListAnimator(view: ViewBase, nativeView: android.view
     listAnimator.addState([], set);
 
     nativeView.setStateListAnimator(listAnimator);
+}
+
+export function getAttrColor(context: android.content.Context, name: string) {
+    const ta = context.obtainStyledAttributes([ad.resources.getId(':attr/' + name)]);
+    const color = ta.getColor(0, 0);
+    ta.recycle();
+    return color;
+}
+
+function createForegroundShape(radius) {
+    const radii = Array.create('float', 8);
+    java.util.Arrays.fill(radii, radius);
+    const shape = new android.graphics.drawable.shapes.RoundRectShape(radii, null, null);
+    const shapeDrawable = new android.graphics.drawable.ShapeDrawable(shape);
+    return shapeDrawable;
+}
+export function createRippleDrawable(view: android.view.View, rippleColor: number, radius = 0) {
+    const rippleShape = createForegroundShape(radius);
+    let rippleDrawable: android.graphics.drawable.StateListDrawable | android.graphics.drawable.RippleDrawable;
+    if (isPostLollipopMR1()) {
+        //noinspection NewApi
+        rippleDrawable = new android.graphics.drawable.RippleDrawable(android.content.res.ColorStateList.valueOf(rippleColor), null, rippleShape);
+    } else {
+        rippleDrawable = new android.graphics.drawable.StateListDrawable();
+        // const foregroundShape = this.createForegroundShape(this._borderRadius);
+        rippleShape.getPaint().setColor(rippleColor);
+        (rippleDrawable as android.graphics.drawable.StateListDrawable).addState([android.R.attr.state_pressed], rippleShape);
+        // this.rippleDrawable = this.createCompatRippleDrawable(this.getCardRippleColor());
+        // view.setForeground(this.createCompatRippleDrawable(this.getRippleColor(this.style['rippleColor'])));
+    }
+    // some classes might need this
+    (rippleDrawable as any).rippleShape = rippleShape;
+    return rippleDrawable;
+}
+
+export function installMixins() {}
+
+let isPostLollipopVar: boolean = undefined;
+export function isPostLollipop() {
+    if (isPostLollipopVar === undefined) {
+        isPostLollipopVar = android.os.Build.VERSION.SDK_INT >= 21;
+    }
+    return isPostLollipopVar;
+}
+
+let isPostLollipopMR1Var: boolean = undefined;
+export function isPostLollipopMR1() {
+    if (isPostLollipopMR1Var === undefined) {
+        isPostLollipopMR1Var = android.os.Build.VERSION.SDK_INT >= 22;
+    }
+    return isPostLollipopMR1Var;
 }
