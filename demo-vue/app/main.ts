@@ -7,9 +7,9 @@ import ProgressPlugin from 'nativescript-material-progress/vue';
 import RipplePlugin from 'nativescript-material-ripple/vue';
 import SliderPlugin from 'nativescript-material-slider/vue';
 import TextFieldPlugin from 'nativescript-material-textfield/vue';
-import { install as installBottomSheet } from 'nativescript-material-bottomsheet';
+// import { install as installBottomSheet } from 'nativescript-material-bottomsheet';
 
-installBottomSheet();
+// installBottomSheet();
 
 Vue.use(ActivityIndicatorPlugin);
 Vue.use(ButtonPlugin);
