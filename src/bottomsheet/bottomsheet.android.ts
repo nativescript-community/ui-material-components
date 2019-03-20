@@ -6,6 +6,7 @@ import { applyMixins } from 'nativescript-material-core';
 export { BottomSheetOptions };
 interface BottomSheetDataOptions {
     owner: View;
+    options: BottomSheetOptions;
     // fullscreen: boolean;
     // stretched: boolean;
     shownCallback: () => void;
@@ -66,6 +67,15 @@ function initializeBottomSheetDialogFragment() {
             // this.setStyle(androidx.fragment.app.DialogFragment.STYLE_NO_TITLE, 0);
 
             const dialog = super.onCreateDialog(savedInstanceState) as android.support.design.widget.BottomSheetDialog;
+            if (options.options) {
+                const creationOptions = options.options;
+                if (creationOptions.dismissOnBackgroundTap !== undefined) {
+                    dialog.setCanceledOnTouchOutside(creationOptions.dismissOnBackgroundTap);
+                }
+                // if (creationOptions.cancelable !== undefined) {
+                //     dialog.setCancelable(creationOptions.cancelable);
+                // }
+            }
             // const dialog = new DialogImpl(this, this.getActivity(), this.getTheme());
 
             // do not override alignment unless fullscreen modal will be shown;
@@ -163,6 +173,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
         const bottomSheetOptions: BottomSheetDataOptions = {
             owner: this,
+            options: options,
             // fullscreen: !!fullscreen,
             // stretched: !!stretched,
             shownCallback: () => {
