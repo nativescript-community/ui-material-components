@@ -114,7 +114,7 @@ export abstract class ViewWithBottomSheetBase extends View {
             // const animated = arguments[4];
             // const stretched = arguments[5];
 
-            const view = options.view instanceof ViewBase ? (options.view as ViewWithBottomSheetBase) : <ViewWithBottomSheetBase>createViewFromEntry({
+            const view = options.view instanceof View ? (options.view as ViewWithBottomSheetBase) : <ViewWithBottomSheetBase>createViewFromEntry({
                           moduleName: options.view as string
                       });
 
