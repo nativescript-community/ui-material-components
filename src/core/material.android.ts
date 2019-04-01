@@ -3,6 +3,7 @@ import { Color } from 'tns-core-modules/color/color';
 import { ViewBase } from 'tns-core-modules/ui/page/page';
 import { applyMixins } from './material.common';
 import { ad } from 'tns-core-modules/utils/utils';
+import { state } from './android/utils';
 export { applyMixins };
 
 // stub class as we don't use this on android
@@ -59,13 +60,13 @@ function init() {
         //     initializePreLollipopCardView()
         //     MDCCardView = PreLollipopCardView as any
         // }
-        BACKGROUND_DEFAULT_STATE_1 = [android.R.attr.state_window_focused, android.R.attr.state_enabled];
-        BACKGROUND_DEFAULT_STATE_2 = [android.R.attr.state_enabled];
-        BACKGROUND_SELECTED_STATE = [android.R.attr.state_window_focused, android.R.attr.state_enabled, android.R.attr.state_pressed];
+        BACKGROUND_DEFAULT_STATE_1 = [state.window_focused, state.enabled];
+        BACKGROUND_DEFAULT_STATE_2 = [state.enabled];
+        BACKGROUND_SELECTED_STATE = [state.window_focused, state.enabled, state.pressed];
 
-        BACKGROUND_CHECKED_STATE = [android.R.attr.state_window_focused, android.R.attr.state_enabled, android.R.attr.state_checked];
-        BACKGROUND_FOCUSED_STATE = [android.R.attr.state_focused, android.R.attr.state_window_focused, android.R.attr.state_enabled];
-        BACKGROUND_DISABLED_STATE = [-android.R.attr.state_enabled];
+        BACKGROUND_CHECKED_STATE = [state.window_focused, state.enabled, state.checked];
+        BACKGROUND_FOCUSED_STATE = [state.focused, state.window_focused, state.enabled];
+        BACKGROUND_DISABLED_STATE = [-state.enabled];
     }
 }
 init();
@@ -155,7 +156,7 @@ export function createRippleDrawable(view: android.view.View, rippleColor: numbe
         rippleDrawable = new android.graphics.drawable.StateListDrawable();
         // const foregroundShape = this.createForegroundShape(this._borderRadius);
         rippleShape.getPaint().setColor(rippleColor);
-        (rippleDrawable as android.graphics.drawable.StateListDrawable).addState([android.R.attr.state_pressed], rippleShape);
+        (rippleDrawable as android.graphics.drawable.StateListDrawable).addState([state.pressed], rippleShape);
         // this.rippleDrawable = this.createCompatRippleDrawable(this.getCardRippleColor());
         // view.setForeground(this.createCompatRippleDrawable(this.getRippleColor(this.style['rippleColor'])));
     }

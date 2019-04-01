@@ -1,70 +1,95 @@
 import { Color } from 'tns-core-modules/color/color';
+import { ad } from 'tns-core-modules/utils/utils';
 
-let PRESSED_STATE_SET: number[];
-let HOVERED_FOCUSED_STATE_SET: number[];
-let FOCUSED_STATE_SET: number[];
-let HOVERED_STATE_SET: number[];
-let SELECTED_PRESSED_STATE_SET: number[];
-let SELECTED_HOVERED_FOCUSED_STATE_SET: number[];
-let SELECTED_FOCUSED_STATE_SET: number[];
-let SELECTED_HOVERED_STATE_SET: number[];
-let SELECTED_STATE_SET: number[];
+export const state = {
+    get selected() {
+        return 16842913;
+    },
+    get hovered() {
+        return 16843623;
+    },
+    get focused() {
+        return 16842908;
+    },
+    get enabled() {
+        return 16842910;
+    },
+    get pressed() {
+        return 16842919;
+    },
+    get window_focused() {
+        return 16842909;
+    },
+    get checked() {
+        return 16842912;
+    }
+};
 
-export function getPRESSED_STATE_SET() {
-    if (!PRESSED_STATE_SET) {
-        PRESSED_STATE_SET = [android.R.attr.state_pressed];
+export const stateSets = {
+    get PRESSED_STATE_SET() {
+        if (!this._PRESSED_STATE_SET) {
+            this._PRESSED_STATE_SET = [state.pressed];
+        }
+        return this._PRESSED_STATE_SET as number[];
+    },
+    get HOVERED_FOCUSED_STATE_SET() {
+        if (!this._HOVERED_FOCUSED_STATE_SET) {
+            this._HOVERED_FOCUSED_STATE_SET = [state.hovered, state.focused];
+        }
+        return this._PRESSED_STATE_SET as number[];
+    },
+    get FOCUSED_STATE_SET() {
+        if (!this._FOCUSED_STATE_SET) {
+            this._FOCUSED_STATE_SET = [state.focused];
+        }
+        return this._FOCUSED_STATE_SET as number[];
+    },
+    get HOVERED_STATE_SET() {
+        if (!this._HOVERED_STATE_SET) {
+            this._HOVERED_STATE_SET = [state.hovered];
+        }
+        return this._HOVERED_STATE_SET as number[];
+    },
+    get SELECTED_PRESSED_STATE_SET() {
+        if (!this._SELECTED_PRESSED_STATE_SET) {
+            this._SELECTED_PRESSED_STATE_SET = Array.create('int', 2);
+            this._SELECTED_PRESSED_STATE_SET[0] = state.enabled;
+            this._SELECTED_PRESSED_STATE_SET[1] = state.pressed;
+        }
+        return this._SELECTED_PRESSED_STATE_SET as native.Array<number>;
+    },
+    get SELECTED_HOVERED_FOCUSED_STATE_SET() {
+        if (!this._SELECTED_HOVERED_FOCUSED_STATE_SET) {
+            this._SELECTED_HOVERED_FOCUSED_STATE_SET = [state.selected, state.hovered, state.focused];
+        }
+        return this._SELECTED_HOVERED_FOCUSED_STATE_SET as number[];
+    },
+    get SELECTED_FOCUSED_STATE_SET() {
+        if (!this._SELECTED_FOCUSED_STATE_SET) {
+            this._SELECTED_FOCUSED_STATE_SET = [state.selected, state.focused];
+        }
+        return this._SELECTED_FOCUSED_STATE_SET as number[];
+    },
+    get SELECTED_HOVERED_STATE_SET() {
+        if (!this._SELECTED_HOVERED_STATE_SET) {
+            this._SELECTED_HOVERED_STATE_SET = [state.selected, state.hovered];
+        }
+        return this._SELECTED_HOVERED_STATE_SET as number[];
+    },
+    get SELECTED_STATE_SET() {
+        if (!this._SELECTED_STATE_SET) {
+            this._SELECTED_STATE_SET = [state.selected];
+        }
+        return this._SELECTED_STATE_SET as number[];
     }
-}
-export function getHOVERED_FOCUSED_STATE_SET() {
-    if (!HOVERED_FOCUSED_STATE_SET) {
-        HOVERED_FOCUSED_STATE_SET = [android.R.attr.state_hovered, android.R.attr.state_focused];
-    }
-}
-export function getFOCUSED_STATE_SET() {
-    if (!FOCUSED_STATE_SET) {
-        FOCUSED_STATE_SET = [android.R.attr.state_focused];
-    }
-}
-export function getHOVERED_STATE_SET() {
-    if (!HOVERED_STATE_SET) {
-        HOVERED_STATE_SET = [android.R.attr.state_hovered];
-    }
-}
-export function getSELECTED_PRESSED_STATE_SET() {
-    if (!SELECTED_PRESSED_STATE_SET) {
-        SELECTED_PRESSED_STATE_SET = [android.R.attr.state_selected, android.R.attr.state_pressed];
-    }
-}
-export function getSELECTED_HOVERED_FOCUSED_STATE_SET() {
-    if (!SELECTED_HOVERED_FOCUSED_STATE_SET) {
-        SELECTED_HOVERED_FOCUSED_STATE_SET = [android.R.attr.state_selected, android.R.attr.state_hovered, android.R.attr.state_focused];
-    }
-}
-export function getSELECTED_FOCUSED_STATE_SET() {
-    if (!SELECTED_FOCUSED_STATE_SET) {
-        SELECTED_FOCUSED_STATE_SET = [android.R.attr.state_selected, android.R.attr.state_focused];
-    }
-}
-export function getSELECTED_HOVERED_STATE_SET() {
-    if (!SELECTED_HOVERED_STATE_SET) {
-        SELECTED_HOVERED_STATE_SET = [android.R.attr.state_selected, android.R.attr.state_hovered];
-    }
-}
-export function getSELECTED_STATE_SET() {
-    if (!SELECTED_STATE_SET) {
-        SELECTED_STATE_SET = [android.R.attr.state_selected];
-    }
-}
+};
 
 export function getRippleColorStateList(color: number) {
     const states = Array.create('[I', 2);
-    const SELECTED_PRESSED_STATE_SET = Array.create('int', 2);
-    SELECTED_PRESSED_STATE_SET[0] = android.R.attr.state_enabled;
-    SELECTED_PRESSED_STATE_SET[1] = android.R.attr.state_pressed;
-    states[0] = SELECTED_PRESSED_STATE_SET;
+    states[0] = stateSets.SELECTED_PRESSED_STATE_SET;
     states[1] = Array.create('int', 0);
-    // states[1][0] = new java.lang.Integer(android.R.attr.state_enabled);
-    // states[1][1] = new java.lang.Integer(-android.R.attr.state_pressed);
+    // states[1][0] = new java.lang.Integer(state.enabled);
+    // states[1][1] = new java.lang.Integer(-state.pressed);
     // const states = [
     //     getSELECTED_PRESSED_STATE_SET(),
     //     []]
@@ -77,11 +102,11 @@ export function getRippleColorStateList(color: number) {
 export function getEnabledColorStateList(color: number, variant: string) {
     const states = Array.create('[I', 2);
     // const SELECTED_PRESSED_STATE_SET = Array.create("int",1);
-    // SELECTED_PRESSED_STATE_SET[0] =  android.R.attr.state_enabled;
+    // SELECTED_PRESSED_STATE_SET[0] =  state.enabled;
     states[0] = Array.create('int', 1);
-    states[0][0] = -android.R.attr.state_enabled;
+    states[0][0] = -state.enabled;
     states[1] = android.util.StateSet.NOTHING;
-    // states[1][0] = new java.lang.Integer(-android.R.attr.state_enabled);
+    // states[1][0] = new java.lang.Integer(-state.enabled);
     // const states = [
     //     getSELECTED_PRESSED_STATE_SET(),
     //     []]
