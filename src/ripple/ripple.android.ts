@@ -2,7 +2,7 @@ import { RippleBase } from './ripple-common';
 import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/ui/page/page';
 import { getRippleColor } from 'nativescript-material-core';
-import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from 'nativescript-material-core/material.android';
+import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
 
 let MDStackLayout: typeof org.nativescript.widgets.StackLayout;
 
@@ -218,7 +218,6 @@ export class Ripple extends RippleBase {
         }
     }
     [rippleColorProperty.setNative](color: Color) {
-
         this.setRippleDrawable(this.nativeViewProtected);
         const rippleColor = getRippleColor(color);
         if (isPostLollipopMR1()) {

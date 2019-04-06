@@ -1,5 +1,22 @@
 import { Color } from 'tns-core-modules/color/color';
 import { ad } from 'tns-core-modules/utils/utils';
+import { ViewBase } from 'tns-core-modules/ui/page/page';
+
+let isPostLollipopVar: boolean = undefined;
+export function isPostLollipop() {
+    if (isPostLollipopVar === undefined) {
+        isPostLollipopVar = android.os.Build.VERSION.SDK_INT >= 21;
+    }
+    return isPostLollipopVar;
+}
+
+let isPostLollipopMR1Var: boolean = undefined;
+export function isPostLollipopMR1() {
+    if (isPostLollipopMR1Var === undefined) {
+        isPostLollipopMR1Var = android.os.Build.VERSION.SDK_INT >= 22;
+    }
+    return isPostLollipopMR1Var;
+}
 
 export const state = {
     get selected() {
@@ -25,62 +42,101 @@ export const state = {
     }
 };
 
+function createNativeArray(...args) {
+    const result = Array.create('int', args.length);
+    args.forEach((a, i) => (result[i] = a));
+    return result;
+}
 export const stateSets = {
     get PRESSED_STATE_SET() {
         if (!this._PRESSED_STATE_SET) {
-            this._PRESSED_STATE_SET = [state.pressed];
+            this._PRESSED_STATE_SET = createNativeArray(state.pressed);
         }
         return this._PRESSED_STATE_SET as number[];
     },
     get HOVERED_FOCUSED_STATE_SET() {
         if (!this._HOVERED_FOCUSED_STATE_SET) {
-            this._HOVERED_FOCUSED_STATE_SET = [state.hovered, state.focused];
+            this._HOVERED_FOCUSED_STATE_SET = createNativeArray(state.hovered, state.focused);
         }
         return this._PRESSED_STATE_SET as number[];
     },
     get FOCUSED_STATE_SET() {
         if (!this._FOCUSED_STATE_SET) {
-            this._FOCUSED_STATE_SET = [state.focused];
+            this._FOCUSED_STATE_SET = createNativeArray(state.focused);
         }
         return this._FOCUSED_STATE_SET as number[];
     },
     get HOVERED_STATE_SET() {
         if (!this._HOVERED_STATE_SET) {
-            this._HOVERED_STATE_SET = [state.hovered];
+            this._HOVERED_STATE_SET = createNativeArray(state.hovered);
         }
         return this._HOVERED_STATE_SET as number[];
     },
     get SELECTED_PRESSED_STATE_SET() {
         if (!this._SELECTED_PRESSED_STATE_SET) {
-            this._SELECTED_PRESSED_STATE_SET = Array.create('int', 2);
-            this._SELECTED_PRESSED_STATE_SET[0] = state.enabled;
-            this._SELECTED_PRESSED_STATE_SET[1] = state.pressed;
+            this._SELECTED_PRESSED_STATE_SET = createNativeArray(state.enabled, state.pressed);
         }
         return this._SELECTED_PRESSED_STATE_SET as native.Array<number>;
     },
     get SELECTED_HOVERED_FOCUSED_STATE_SET() {
         if (!this._SELECTED_HOVERED_FOCUSED_STATE_SET) {
-            this._SELECTED_HOVERED_FOCUSED_STATE_SET = [state.selected, state.hovered, state.focused];
+            this._SELECTED_HOVERED_FOCUSED_STATE_SET = createNativeArray(state.selected, state.hovered, state.focused);
         }
         return this._SELECTED_HOVERED_FOCUSED_STATE_SET as number[];
     },
     get SELECTED_FOCUSED_STATE_SET() {
         if (!this._SELECTED_FOCUSED_STATE_SET) {
-            this._SELECTED_FOCUSED_STATE_SET = [state.selected, state.focused];
+            this._SELECTED_FOCUSED_STATE_SET = createNativeArray(state.selected, state.focused);
         }
         return this._SELECTED_FOCUSED_STATE_SET as number[];
     },
     get SELECTED_HOVERED_STATE_SET() {
         if (!this._SELECTED_HOVERED_STATE_SET) {
-            this._SELECTED_HOVERED_STATE_SET = [state.selected, state.hovered];
+            this._SELECTED_HOVERED_STATE_SET = createNativeArray(state.selected, state.hovered);
         }
         return this._SELECTED_HOVERED_STATE_SET as number[];
     },
     get SELECTED_STATE_SET() {
         if (!this._SELECTED_STATE_SET) {
-            this._SELECTED_STATE_SET = [state.selected];
+            this._SELECTED_STATE_SET = createNativeArray(state.selected);
         }
         return this._SELECTED_STATE_SET as number[];
+    },
+    get BACKGROUND_DEFAULT_STATE_1() {
+        if (!this._BACKGROUND_DEFAULT_STATE_1) {
+            this._BACKGROUND_DEFAULT_STATE_1 = createNativeArray(state.window_focused, state.enabled);
+        }
+        return this._BACKGROUND_DEFAULT_STATE_1 as number[];
+    },
+    get BACKGROUND_DEFAULT_STATE_2() {
+        if (!this._BACKGROUND_DEFAULT_STATE_1_SET) {
+            this._BACKGROUND_DEFAULT_STATE_1_SET = createNativeArray(state.enabled);
+        }
+        return this._BACKGROUND_DEFAULT_STATE_1_SET as number[];
+    },
+    get BACKGROUND_SELECTED_STATE() {
+        if (!this._BACKGROUND_SELECTED_STATE) {
+            this._BACKGROUND_SELECTED_STATE = createNativeArray(state.window_focused, state.enabled, state.pressed);
+        }
+        return this._BACKGROUND_SELECTED_STATE as number[];
+    },
+    get BACKGROUND_CHECKED_STATE() {
+        if (!this._BACKGROUND_CHECKED_STATE) {
+            this._BACKGROUND_CHECKED_STATE = createNativeArray(state.window_focused, state.enabled, state.checked);
+        }
+        return this._BACKGROUND_CHECKED_STATE as number[];
+    },
+    get BACKGROUND_FOCUSED_STATE() {
+        if (!this._BACKGROUND_FOCUSED_STATE) {
+            this._BACKGROUND_FOCUSED_STATE = createNativeArray(state.focused, state.window_focused, state.enabled);
+        }
+        return this._BACKGROUND_FOCUSED_STATE as number[];
+    },
+    get BACKGROUND_DISABLED_STATE() {
+        if (!this._BACKGROUND_DISABLED_STATE) {
+            this._BACKGROUND_DISABLED_STATE = createNativeArray(-state.enabled);
+        }
+        return this._BACKGROUND_DISABLED_STATE as number[];
     }
 };
 
@@ -115,4 +171,98 @@ export function getEnabledColorStateList(color: number, variant: string) {
     colors[0] = variant === 'text' || variant === 'outline' ? 0 : new Color(30, 0, 0, 0).android;
     colors[1] = color;
     return new android.content.res.ColorStateList(states, colors);
+}
+
+export function createStateListAnimator(view: ViewBase, nativeView: android.view.View) {
+    const elevation = android.support.v4.view.ViewCompat.getElevation(nativeView);
+    const translationZ = android.support.v4.view.ViewCompat.getTranslationZ(nativeView);
+    const elevationSelected = view.style['elevationHighlighted'] !== undefined ? view.style['elevationHighlighted'] : elevation * 2;
+    // compute translationSelectedZ base on elevationSelected
+    const translationSelectedZ = translationZ + (6 * elevationSelected) / elevation / 2;
+    const animationDuration = 100;
+    const listAnimator = new android.animation.StateListAnimator();
+    let animators = new java.util.ArrayList<android.animation.Animator>();
+    let set = new android.animation.AnimatorSet();
+    let animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'translationZ', [translationSelectedZ]);
+    animators.add(animator);
+    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'elevation', [elevationSelected]);
+    // animator.setDuration(0)
+    animators.add(animator);
+    set.playTogether(animators);
+    set.setDuration(animationDuration);
+    listAnimator.addState(stateSets.BACKGROUND_SELECTED_STATE, set);
+
+    animators.clear();
+    set = new android.animation.AnimatorSet();
+    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'translationZ', [translationSelectedZ]);
+    // animator.setDuration(animationDuration)
+    animators.add(animator);
+    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'elevation', [elevationSelected]);
+    // animator.setDuration(0)
+    animators.add(animator);
+    set.playTogether(animators);
+    set.setDuration(animationDuration);
+    listAnimator.addState(stateSets.BACKGROUND_FOCUSED_STATE, set);
+
+    animators.clear();
+    set = new android.animation.AnimatorSet();
+    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'translationZ', [translationZ]);
+    // animator.setDuration(animationDuration)
+    // animator.setStartDelay(animationDuration)
+    animators.add(animator);
+    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'elevation', [elevation]);
+    // animator.setDuration(0)
+    animators.add(animator);
+    set.playTogether(animators);
+    set.setDuration(animationDuration);
+    set.setStartDelay(animationDuration);
+    listAnimator.addState(stateSets.BACKGROUND_DEFAULT_STATE_2, set);
+
+    animators.clear();
+    set = new android.animation.AnimatorSet();
+    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'translationZ', [translationZ]);
+    // animator.setDuration(0)
+    animators.add(animator);
+    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'elevation', [elevation]);
+    animator.setDuration(0);
+    animators.add(animator);
+    set.playTogether(animators);
+    set.setDuration(animationDuration);
+    set.setStartDelay(animationDuration);
+    listAnimator.addState([], set);
+
+    nativeView.setStateListAnimator(listAnimator);
+}
+
+export function getAttrColor(context: android.content.Context, name: string) {
+    const ta = context.obtainStyledAttributes([ad.resources.getId(':attr/' + name)]);
+    const color = ta.getColor(0, 0);
+    ta.recycle();
+    return color;
+}
+
+function createForegroundShape(radius) {
+    const radii = Array.create('float', 8);
+    java.util.Arrays.fill(radii, radius);
+    const shape = new android.graphics.drawable.shapes.RoundRectShape(radii, null, null);
+    const shapeDrawable = new android.graphics.drawable.ShapeDrawable(shape);
+    return shapeDrawable;
+}
+export function createRippleDrawable(view: android.view.View, rippleColor: number, radius = 0) {
+    const rippleShape = createForegroundShape(radius);
+    let rippleDrawable: android.graphics.drawable.StateListDrawable | android.graphics.drawable.RippleDrawable;
+    if (isPostLollipopMR1()) {
+        //noinspection NewApi
+        rippleDrawable = new android.graphics.drawable.RippleDrawable(android.content.res.ColorStateList.valueOf(rippleColor), null, rippleShape);
+    } else {
+        rippleDrawable = new android.graphics.drawable.StateListDrawable();
+        // const foregroundShape = this.createForegroundShape(this._borderRadius);
+        rippleShape.getPaint().setColor(rippleColor);
+        (rippleDrawable as android.graphics.drawable.StateListDrawable).addState([state.pressed], rippleShape);
+        // this.rippleDrawable = this.createCompatRippleDrawable(this.getCardRippleColor());
+        // view.setForeground(this.createCompatRippleDrawable(this.getRippleColor(this.style['rippleColor'])));
+    }
+    // some classes might need this
+    (rippleDrawable as any).rippleShape = rippleShape;
+    return rippleDrawable;
 }

@@ -6,7 +6,7 @@ import { backgroundInternalProperty, Color, Length } from 'tns-core-modules/ui/p
 import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { getEnabledColorStateList, getRippleColorStateList } from 'nativescript-material-core/android/utils';
-import { createStateListAnimator } from 'nativescript-material-core/material.android';
+import { createStateListAnimator } from 'nativescript-material-core/android/utils';
 
 let PRE_LOLLIPOP: boolean = undefined;
 
