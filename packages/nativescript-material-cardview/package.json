@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-cardview",
-    "version": "2.2.0-alpha.1",
+    "version": "2.2.0",
     "description": "Material cardview component",
     "main": "./cardview",
     "typings": "./cardview.d.ts",
@@ -32,7 +32,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^2.2.0-alpha.1"
+        "nativescript-material-core": "^2.2.0"
     },
     "gitHead": "ed19b977ca854c03cc8889e006d81259c4bbe6c1"
 }
