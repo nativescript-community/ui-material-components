@@ -1,6 +1,7 @@
-import { CSSType, layout } from 'tns-core-modules/ui/core/view';
+import { CSSType } from 'tns-core-modules/ui/core/view/view';
 import { ActivityIndicator as NSActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
+import { layout } from 'tns-core-modules/utils/utils';
 
 @CSSType('MDActivityIndicator')
 export abstract class ActivityIndicatorBase extends NSActivityIndicator {

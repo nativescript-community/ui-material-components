@@ -1,7 +1,7 @@
-import { Color, CSSType, View } from 'tns-core-modules/ui/core/view';
+import { CSSType } from 'tns-core-modules/ui/core/view/view';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
-import { ContentView } from 'tns-core-modules/ui/page/page';
+import { Color } from 'tns-core-modules/color';
 
 @CSSType('MDRipple')
 export abstract class RippleBase extends StackLayout {

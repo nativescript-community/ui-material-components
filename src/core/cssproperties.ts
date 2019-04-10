@@ -1,5 +1,6 @@
 import { CssProperty } from 'tns-core-modules/ui/core/properties';
-import { booleanConverter, Color, Length } from 'tns-core-modules/ui/core/view';
+import { Color } from 'tns-core-modules/color';
+import { Length } from 'tns-core-modules/ui/styling/style-properties';
 import { Style } from 'tns-core-modules/ui/styling/style';
 
 function createGetter(key) {

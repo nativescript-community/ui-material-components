@@ -1,6 +1,6 @@
 import { RippleBase } from './ripple-common';
 import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { Color } from 'tns-core-modules/ui/page/page';
+import { Color } from 'tns-core-modules/color';
 import { getRippleColor } from 'nativescript-material-core';
 import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
 

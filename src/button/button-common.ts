@@ -1,6 +1,8 @@
-import { Color, CSSType, Length, Property } from 'tns-core-modules/ui/core/view';
+import { CSSType } from 'tns-core-modules/ui/core/view/view';
 import { Button } from 'tns-core-modules/ui/button/button';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
+import { Color } from 'tns-core-modules/color';
+import { Property } from 'tns-core-modules/ui/core/properties';
 
 @CSSType('MDButton')
 export abstract class ButtonBase extends Button {

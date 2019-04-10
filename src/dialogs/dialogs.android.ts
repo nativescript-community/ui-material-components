@@ -3,9 +3,9 @@
  */
 
 import { android as androidApp } from 'tns-core-modules/application';
-import { fromObject } from 'tns-core-modules/data/observable/observable';
+import { fromObject } from 'tns-core-modules/data/observable';
 import { createViewFromEntry } from 'tns-core-modules/ui/builder/builder';
-import { View } from 'tns-core-modules/ui/core/view';
+import { View } from 'tns-core-modules/ui/core/view/view';
 import {
     ActionOptions,
     ALERT,
@@ -27,6 +27,13 @@ import {
     PromptResult
 } from 'tns-core-modules/ui/dialogs';
 import { MDCAlertControlerOptions } from './dialogs';
+
+declare module 'tns-core-modules/ui/core/view/view' {
+    interface View {
+        _setupAsRootView(context: any): void;
+        callLoaded(): void;
+    }
+}
 
 function isString(value): value is string {
     return typeof value === 'string';
@@ -249,7 +256,7 @@ export class AlertDialog {
         }
     }
     hide() {
-        if ( this.dialog) {
+        if (this.dialog) {
             this.dialog.cancel();
             this.dialog = null;
         }

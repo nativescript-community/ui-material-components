@@ -1,5 +1,5 @@
 // export * from './material.common';
-import { Color } from 'tns-core-modules/color/color';
+import { Color } from 'tns-core-modules/color';
 import { applyMixins } from './material.common';
 export { applyMixins };
 

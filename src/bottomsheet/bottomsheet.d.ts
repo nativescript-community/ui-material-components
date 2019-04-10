@@ -9,3 +9,15 @@ declare module 'tns-core-modules/ui/core/view' {
 }
 
 declare function install();
+declare module 'tns-core-modules/ui/core/view/view' {
+    interface View {
+        // _modalContext: any;
+        _showNativeModalView(parent: View, context: any, closeCallback: Function, fullscreen?: boolean, animated?: boolean, stretched?: boolean);
+        // _closeModalCallback: Function;
+
+        _setupAsRootView(context: any): void;
+        callLoaded(): void;
+        callUnloaded(): void;
+        _removeFromFrameStack(): void;
+    }
+}

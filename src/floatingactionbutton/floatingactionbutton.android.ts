@@ -2,7 +2,7 @@ import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './fl
 
 import { ImageSource } from 'tns-core-modules/image-source';
 import { elevationProperty } from 'nativescript-material-core/cssproperties';
-import { backgroundInternalProperty } from 'tns-core-modules/ui/page/page';
+import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 
 let MDCFabButton: typeof android.support.design.widget.FloatingActionButton;

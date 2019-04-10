@@ -1,8 +1,9 @@
 import { ViewWithBottomSheetBase } from './bottomsheet-common';
-import { ios, traceCategories, traceError, traceMessageType, traceWrite, View, ViewBase } from 'tns-core-modules/ui/core/view';
+import { ios, traceCategories, traceError, traceMessageType, traceWrite, View } from 'tns-core-modules/ui/core/view/view';
+import { ViewBase } from 'tns-core-modules/ui/core/view-base';
 import { ios as iosUtils, layout } from 'tns-core-modules/utils/utils';
 import { BottomSheetOptions } from './bottomsheet';
-import { fromObject } from 'tns-core-modules/data/observable/observable';
+import { fromObject } from 'tns-core-modules/data/observable';
 import { applyMixins } from 'nativescript-material-core';
 
 class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottomSheetControllerDelegate {
@@ -26,7 +27,7 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottom
     }
 }
 
-declare module 'tns-core-modules/ui/core/view' {
+declare module 'tns-core-modules/ui/core/view/view' {
     interface View {
         _setLayoutFlags(left: number, top: number, right: number, bottom: number);
     }

@@ -1,10 +1,10 @@
 import { ActivityIndicatorBase } from './activityindicator-common';
 import { themer } from 'nativescript-material-core';
 import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
-import { Color } from 'tns-core-modules/color/color';
-import { screen } from 'tns-core-modules/platform/platform';
+import { Color } from 'tns-core-modules/color';
+import { screen } from 'tns-core-modules/platform';
 
-declare module 'tns-core-modules/ui/core/view' {
+declare module 'tns-core-modules/ui/core/view/view' {
     interface View {
         _onSizeChanged();
     }

@@ -1,12 +1,14 @@
-import { Color } from 'tns-core-modules/color/color';
+import { Color } from 'tns-core-modules/color';
 import { TypographyOptions } from './material';
-import { backgroundInternalProperty, layout, PseudoClassHandler, View } from 'tns-core-modules/ui/core/view';
+import { View } from 'tns-core-modules/ui/core/view/view';
+import { layout } from 'tns-core-modules/utils/utils';
+
 import { cssProperty, elevationHighlightedProperty, elevationProperty, rippleColorProperty } from './cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { ControlStateChangeListener } from 'tns-core-modules/ui/core/control-state-change';
-import { screen } from 'tns-core-modules/platform/platform';
+import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { applyMixins } from './material.common';
-import { GestureTypes, TouchAction, TouchGestureEventData } from 'tns-core-modules/ui/gestures/gestures';
+import { GestureTypes, TouchAction, TouchGestureEventData } from 'tns-core-modules/ui/gestures';
 export { applyMixins };
 
 export class Themer {

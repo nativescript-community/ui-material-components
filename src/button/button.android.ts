@@ -2,11 +2,13 @@ import { ButtonBase } from './button-common';
 import { getRippleColor } from 'nativescript-material-core';
 
 import * as utils from 'tns-core-modules/utils/utils';
-import { backgroundInternalProperty, Color, Length } from 'tns-core-modules/ui/page/page';
 import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { getEnabledColorStateList, getRippleColorStateList } from 'nativescript-material-core/android/utils';
 import { createStateListAnimator } from 'nativescript-material-core/android/utils';
+import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
+import { Color } from 'tns-core-modules/color';
+import { Length } from 'tns-core-modules/ui/styling/style-properties';
 
 let PRE_LOLLIPOP: boolean = undefined;
 

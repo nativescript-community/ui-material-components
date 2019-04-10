@@ -1,8 +1,9 @@
 import { TextFieldBase } from './textfield.common';
-import { Color, hintProperty, maxLengthProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
+import { hintProperty, maxLengthProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
 
 import * as application from 'application';
 import { errorColorProperty, errorProperty, floatingProperty, helperProperty } from './textfield_cssproperties';
+import { Color } from 'tns-core-modules/color';
 
 function getLayout(id: string) {
     const context: android.content.Context = application.android.context;

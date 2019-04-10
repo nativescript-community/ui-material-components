@@ -1,5 +1,7 @@
-import { Color, CSSType, Property } from 'tns-core-modules/ui/core/view';
+import { CSSType } from 'tns-core-modules/ui/core/view/view';
 import { Progress as NSProgress } from 'tns-core-modules/ui/progress';
+import { Color } from 'tns-core-modules/color';
+import { Property } from 'tns-core-modules/ui/core/properties';
 
 @CSSType('MDProgress')
 export abstract class ProgressBase extends NSProgress {}

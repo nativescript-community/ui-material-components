@@ -3,7 +3,8 @@ import { TextField } from 'nativescript-material-textfield';
 import { getRootView } from 'tns-core-modules/application';
 import { fromObject } from 'tns-core-modules/data/observable/observable';
 import { createViewFromEntry } from 'tns-core-modules/ui/builder/builder';
-import { ios as iosView, layout, View } from 'tns-core-modules/ui/core/view';
+import { ios as iosView, View } from 'tns-core-modules/ui/core/view/view';
+import { layout } from 'tns-core-modules/utils/utils';
 import {
     ActionOptions,
     ALERT,

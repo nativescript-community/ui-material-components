@@ -1,6 +1,6 @@
 import { TextField as NTextField } from 'tns-core-modules/ui/text-field/text-field';
-import { Color } from 'tns-core-modules/color/color';
-import { CSSType } from 'tns-core-modules/ui/page/page';
+import { Color } from 'tns-core-modules/color';
+import { CSSType } from 'tns-core-modules/ui/core/view/view';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 
 @CSSType('MDTextField')

@@ -1,7 +1,8 @@
 import { CardViewBase } from './cardview-common';
 import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { backgroundInternalProperty, Color, Length, ViewBase } from 'tns-core-modules/ui/page/page';
+import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { createRippleDrawable, createStateListAnimator, getAttrColor, isPostLollipop, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
+import { Color } from 'tns-core-modules/color';
 
 let MDCCardView: typeof android.support.design.card.MaterialCardView;
 

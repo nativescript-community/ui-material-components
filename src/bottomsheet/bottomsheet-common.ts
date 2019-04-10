@@ -1,6 +1,8 @@
-import { View } from 'tns-core-modules/ui/core/view';
+import { View } from 'tns-core-modules/ui/core/view/view';
 import { createViewFromEntry } from 'tns-core-modules/ui/builder/builder';
-import { eachDescendant, EventData, Frame, ViewBase } from 'tns-core-modules/ui/frame/frame';
+import { Frame } from 'tns-core-modules/ui/frame/frame';
+import { EventData } from 'tns-core-modules/data/observable';
+import { eachDescendant, ViewBase } from 'tns-core-modules/ui/core/view-base';
 
 declare module 'tns-core-modules/ui/core/view' {
     interface View {
@@ -40,6 +42,7 @@ export interface BottomSheetOptions {
 
 export abstract class ViewWithBottomSheetBase extends View {
     protected _closeBottomSheetCallback: Function;
+    _bottomSheetFragment: android.support.design.widget.BottomSheetDialogFragment;
     protected abstract _hideNativeBottomSheet(parent, whenClosedCallback);
     protected _bottomSheetContext: any;
     _raiseShownBottomSheetEvent() {

@@ -1,6 +1,7 @@
-import { Color, CSSType } from 'tns-core-modules/ui/core/view';
+import { CSSType } from 'tns-core-modules/ui/core/view/view';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
+import { Color } from 'tns-core-modules/color';
 
 @CSSType('MDCardView')
 export abstract class CardViewBase extends StackLayout {

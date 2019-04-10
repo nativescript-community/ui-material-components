@@ -14,7 +14,7 @@ export function applyMixins(derivedCtor: any, baseCtors: any[]) {
                     derivedCtor.prototype[name] = function(...args) {
                         oldImpl.apply(this, args);
                         baseCtor.prototype[name].apply(this, args);
-                    }
+                    };
                 }
             }
         });
@@ -26,8 +26,7 @@ export function applyMixins(derivedCtor: any, baseCtors: any[]) {
                 derivedCtor.prototype[symbol] = function(...args) {
                     oldImpl.apply(this, args);
                     baseCtor.prototype[symbol].apply(this, args);
-                }
-
+                };
             }
         });
     });

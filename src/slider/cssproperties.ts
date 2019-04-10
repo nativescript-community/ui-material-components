@@ -1,5 +1,5 @@
 import { CssProperty } from 'tns-core-modules/ui/core/properties';
-import { Color } from 'tns-core-modules/ui/core/view';
+import { Color } from 'tns-core-modules/color';
 import { Style } from 'tns-core-modules/ui/styling/style';
 
 export const trackBackgroundColorProperty = new CssProperty<Style, Color>({

@@ -1,4 +1,8 @@
-import { booleanConverter, Color, colorProperty, CSSType, Property } from 'tns-core-modules/ui/core/view';
+import { CSSType } from 'tns-core-modules/ui/core/view/view';
+import { Color } from 'tns-core-modules/color';
+import { booleanConverter } from 'tns-core-modules/ui/core/view-base';
+import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
+import { Property } from 'tns-core-modules/ui/core/properties';
 import { Slider as NSSlider } from 'tns-core-modules/ui/slider';
 import { cssProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 

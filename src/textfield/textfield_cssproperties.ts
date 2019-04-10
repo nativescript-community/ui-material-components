@@ -1,6 +1,7 @@
 import { CssProperty } from 'tns-core-modules/ui/core/properties';
-import { booleanConverter, Color } from 'tns-core-modules/ui/core/view';
+import { Color } from 'tns-core-modules/color';
 import { Style } from 'tns-core-modules/ui/styling/style';
+import { booleanConverter } from 'tns-core-modules/ui/core/view-base';
 
 export const errorColorProperty = new CssProperty<Style, Color>({
     name: 'errorColor',

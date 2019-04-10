@@ -1,5 +1,5 @@
-import { View } from 'tns-core-modules/ui/core/view';
-import { fromObject } from 'tns-core-modules/data/observable/observable';
+import { View } from 'tns-core-modules/ui/core/view/view';
+import { fromObject } from 'tns-core-modules/data/observable';
 import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
 import { applyMixins } from 'nativescript-material-core';
 
@@ -63,7 +63,7 @@ function initializeBottomSheetDialogFragment() {
             // this._stretched = options.stretched;
             this._dismissCallback = options.dismissCallback;
             this._shownCallback = options.shownCallback;
-            this.owner._bottomSheetFragment = this;
+            (this.owner as ViewWithBottomSheetBase)._bottomSheetFragment = this;
             // this.setStyle(androidx.fragment.app.DialogFragment.STYLE_NO_TITLE, 0);
 
             const dialog = super.onCreateDialog(savedInstanceState) as android.support.design.widget.BottomSheetDialog;
@@ -193,7 +193,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 }
 
 export function overrideBottomSheet() {
-    const NSView = require('tns-core-modules/ui/core/view').View;
+    const NSView = require('tns-core-modules/ui/core/view/view').View;
     console.log('about to override bottom sheet');
     applyMixins(NSView, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
 }
