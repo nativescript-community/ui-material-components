@@ -1,5 +1,5 @@
-import { Color } from 'tns-core-modules/color/color';
-import { Length } from 'tns-core-modules/ui/page/page';
+import { Color } from 'tns-core-modules/color';
+import { Length } from 'tns-core-modules/ui/styling/style-properties';
 
 export interface TypographyOptions {
     fontFamily?: string;

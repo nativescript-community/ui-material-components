@@ -1,7 +1,8 @@
 import { ActionOptions, AlertOptions, ConfirmOptions, LoginOptions, LoginResult, PromptOptions, PromptResult } from 'tns-core-modules/ui/dialogs';
 import { Font } from 'tns-core-modules/ui/styling/font';
-import { Color } from 'tns-core-modules/color/color';
-import { TextAlignment, View } from 'tns-core-modules/ui/text-base/text-base';
+import { Color } from 'tns-core-modules/color';
+import { TextAlignment } from 'tns-core-modules/ui/text-base/text-base';
+import { View } from 'tns-core-modules/ui/core/view/view';
 import { ImageSource } from 'tns-core-modules/image-source/image-source';
 import { Page } from 'tns-core-modules/ui/page/page';
 

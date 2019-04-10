@@ -1,4 +1,4 @@
-import { ViewBase } from 'tns-core-modules/ui/page/page';
+import { ViewBase } from 'tns-core-modules/ui/core/view-base';
 import { BottomSheetOptions } from './bottomsheet-common';
 
 export { BottomSheetOptions };
