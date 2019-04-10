@@ -1,6 +1,7 @@
+import { ActivityIndicator } from '../activityindicator';
 const ActivityIndicatorPlugin = {
     install(Vue) {
-        Vue.registerElement('MDActivityIndicator', () => require('../activityindicator').ActivityIndicator, {});
+        Vue.registerElement('MDActivityIndicator', () => ActivityIndicator, {});
     }
 };
 

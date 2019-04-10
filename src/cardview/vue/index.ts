@@ -1,12 +1,8 @@
+import { CardView } from '../cardview';
 const CardViewPlugin = {
-
-  install(Vue) {
-    Vue.registerElement(
-      'MDCardView',
-      () => require('../cardview').CardView,
-      {}
-    );
-  }
+    install(Vue) {
+        Vue.registerElement('MDCardView', () => CardView, {});
+    }
 };
 
 export default CardViewPlugin;

@@ -1,6 +1,7 @@
+import { FloatingActionButton } from '../floatingactionbutton';
 const FloatingActionButtonPlugin = {
     install(Vue) {
-        Vue.registerElement('MDFloatingActionButton', () => require('../floatingactionbutton').FloatingActionButton, {});
+        Vue.registerElement('MDFloatingActionButton', () => FloatingActionButton, {});
     }
 };
 
