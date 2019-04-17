@@ -25,18 +25,18 @@ export class ViewModel {
         frame.navigate(navigationEntry);
     }
     onTapInsideTemplate(args) {
-    var btn = args.object;
-   var item = btn.bindingContext;
-   const navigationEntry = {
-        moduleName: 'examples/example-page',
-        context: {
-            example: item.title
-        },
-        animated: true
-    };
-    const frame = getFrameById('firstFrame');
-    frame.navigate(navigationEntry);
-}
+        let btn = args.object;
+        let item = btn.bindingContext;
+        const navigationEntry = {
+            moduleName: 'examples/example-page',
+            context: {
+                example: item.title
+            },
+            animated: true
+        };
+        const frame = getFrameById('firstFrame');
+        frame.navigate(navigationEntry);
+    }
 }
 
 // export function onTap(args: ItemEventData) {

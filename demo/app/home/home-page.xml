@@ -7,10 +7,10 @@
     </ActionBar>
 </Page.actionBar>
 
-<ListView items="{{ examples }}" class="list-group" itemTap="{{ onTap }}">
+<ListView items="{{ examples }}" class="list-group" itemTap="{{ onTap }}" rowHeight="50">
   <ListView.itemTemplate>
-    <mdr:Ripple class="list-group-item" height="50" borderBottomColor="black" borderBottomWidth="0" tap="{{ $parents['ListView'].onTapInsideTemplate }}" >
-      <Label text="{{ title }}" textWrap="true"/>
+    <mdr:Ripple class="list-group-item" height="100%" borderBottomColor="black" borderBottomWidth="0" tap="{{ $parents['ListView'].onTapInsideTemplate }}" orientation="horizontal">
+      <Label paddingLeft="10"  text="{{ title }}" fontSize="20" textWrap="true" verticalAlignment="center" />
     </mdr:Ripple>
   </ListView.itemTemplate>
 </ListView>
