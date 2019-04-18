@@ -42,7 +42,7 @@ export interface BottomSheetOptions {
 
 export abstract class ViewWithBottomSheetBase extends View {
     protected _closeBottomSheetCallback: Function;
-    _bottomSheetFragment: android.support.design.widget.BottomSheetDialogFragment;
+    _bottomSheetFragment: com.google.android.material.bottomsheet.BottomSheetDialogFragment;
     protected abstract _hideNativeBottomSheet(parent, whenClosedCallback);
     protected _bottomSheetContext: any;
     _raiseShownBottomSheetEvent() {

@@ -1,8 +1,15 @@
-dependencies {
-	def supportVer = "28.0.0"
-    if (project.hasProperty("supportVersion")) {
-        supportVer = supportVersion
+def computeAndroidXVersion() {
+    if(project.hasProperty("androidxVersion")) {
+        return androidxVersion
     }
-	compile "com.android.support:appcompat-v7:$supportVer"
-	compile "com.android.support:design:$supportVer"
+    else {
+        return "1.0.0"
+    }
+}
+
+dependencies {
+	def androidxVersion = computeAndroidXVersion()
+
+	compile "androidx.appcompat:appcompat:$androidxVersion"
+	compile "com.google.android.material:material:1.0.0-rc01"
 }

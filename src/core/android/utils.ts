@@ -174,8 +174,8 @@ export function getEnabledColorStateList(color: number, variant: string) {
 }
 
 export function createStateListAnimator(view: ViewBase, nativeView: android.view.View) {
-    const elevation = android.support.v4.view.ViewCompat.getElevation(nativeView);
-    const translationZ = android.support.v4.view.ViewCompat.getTranslationZ(nativeView);
+    const elevation = androidx.core.view.ViewCompat.getElevation(nativeView);
+    const translationZ = androidx.core.view.ViewCompat.getTranslationZ(nativeView);
     const elevationSelected = view.style['elevationHighlighted'] !== undefined ? view.style['elevationHighlighted'] : elevation * 2;
     // compute translationSelectedZ base on elevationSelected
     const translationSelectedZ = translationZ + (6 * elevationSelected) / elevation / 2;

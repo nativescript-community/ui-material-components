@@ -3,7 +3,7 @@ declare module android {
 		export module design {
 			export module animation {
 				export class AnimationUtils {
-					public static class: java.lang.Class<android.support.design.animation.AnimationUtils>;
+					public static class: java.lang.Class<com.google.android.material.animation.AnimationUtils>;
 					public static LINEAR_INTERPOLATOR: android.animation.TimeInterpolator;
 					public static FAST_OUT_SLOW_IN_INTERPOLATOR: android.animation.TimeInterpolator;
 					public static FAST_OUT_LINEAR_IN_INTERPOLATOR: android.animation.TimeInterpolator;
@@ -22,7 +22,7 @@ declare module android {
 		export module design {
 			export module animation {
 				export class AnimatorSetCompat {
-					public static class: java.lang.Class<android.support.design.animation.AnimatorSetCompat>;
+					public static class: java.lang.Class<com.google.android.material.animation.AnimatorSetCompat>;
 					public constructor();
 					public static playTogether(param0: android.animation.AnimatorSet, param1: java.util.List<android.animation.Animator>): void;
 				}
@@ -36,9 +36,9 @@ declare module android {
 		export module design {
 			export module animation {
 				export class ArgbEvaluatorCompat extends android.animation.TypeEvaluator<java.lang.Integer> {
-					public static class: java.lang.Class<android.support.design.animation.ArgbEvaluatorCompat>;
+					public static class: java.lang.Class<com.google.android.material.animation.ArgbEvaluatorCompat>;
 					public constructor();
-					public static getInstance(): android.support.design.animation.ArgbEvaluatorCompat;
+					public static getInstance(): com.google.android.material.animation.ArgbEvaluatorCompat;
 					public evaluate(param0: number, param1: java.lang.Integer, param2: java.lang.Integer): java.lang.Integer;
 				}
 			}
@@ -51,7 +51,7 @@ declare module android {
 		export module design {
 			export module animation {
 				export class ChildrenAlphaProperty extends android.util.Property<android.view.ViewGroup,java.lang.Float> {
-					public static class: java.lang.Class<android.support.design.animation.ChildrenAlphaProperty>;
+					public static class: java.lang.Class<com.google.android.material.animation.ChildrenAlphaProperty>;
 					public static CHILDREN_ALPHA: android.util.Property<android.view.ViewGroup,java.lang.Float>;
 					public set(param0: android.view.ViewGroup, param1: java.lang.Float): void;
 					public get(param0: android.view.ViewGroup): java.lang.Float;
@@ -66,7 +66,7 @@ declare module android {
 		export module design {
 			export module animation {
 				export class DrawableAlphaProperty extends android.util.Property<android.graphics.drawable.Drawable,java.lang.Integer> {
-					public static class: java.lang.Class<android.support.design.animation.DrawableAlphaProperty>;
+					public static class: java.lang.Class<com.google.android.material.animation.DrawableAlphaProperty>;
 					public static DRAWABLE_ALPHA_COMPAT: android.util.Property<android.graphics.drawable.Drawable,java.lang.Integer>;
 					public get(param0: android.graphics.drawable.Drawable): java.lang.Integer;
 					public set(param0: android.graphics.drawable.Drawable, param1: java.lang.Integer): void;
@@ -81,7 +81,7 @@ declare module android {
 		export module design {
 			export module animation {
 				export class ImageMatrixProperty extends android.util.Property<android.widget.ImageView,android.graphics.Matrix> {
-					public static class: java.lang.Class<android.support.design.animation.ImageMatrixProperty>;
+					public static class: java.lang.Class<com.google.android.material.animation.ImageMatrixProperty>;
 					public get(param0: android.widget.ImageView): android.graphics.Matrix;
 					public constructor();
 					public set(param0: android.widget.ImageView, param1: android.graphics.Matrix): void;
@@ -96,7 +96,7 @@ declare module android {
 		export module design {
 			export module animation {
 				export class MatrixEvaluator extends android.animation.TypeEvaluator<android.graphics.Matrix> {
-					public static class: java.lang.Class<android.support.design.animation.MatrixEvaluator>;
+					public static class: java.lang.Class<com.google.android.material.animation.MatrixEvaluator>;
 					public constructor();
 					public evaluate(param0: number, param1: android.graphics.Matrix, param2: android.graphics.Matrix): android.graphics.Matrix;
 				}
@@ -110,16 +110,16 @@ declare module android {
 		export module design {
 			export module animation {
 				export class MotionSpec {
-					public static class: java.lang.Class<android.support.design.animation.MotionSpec>;
+					public static class: java.lang.Class<com.google.android.material.animation.MotionSpec>;
 					public equals(param0: any): boolean;
 					public toString(): string;
 					public hasTiming(param0: string): boolean;
-					public static createFromAttribute(param0: android.content.Context, param1: android.content.res.TypedArray, param2: number): android.support.design.animation.MotionSpec;
+					public static createFromAttribute(param0: android.content.Context, param1: android.content.res.TypedArray, param2: number): com.google.android.material.animation.MotionSpec;
 					public constructor();
-					public setTiming(param0: string, param1: android.support.design.animation.MotionTiming): void;
+					public setTiming(param0: string, param1: com.google.android.material.animation.MotionTiming): void;
 					public getTotalDuration(): number;
-					public getTiming(param0: string): android.support.design.animation.MotionTiming;
-					public static createFromResource(param0: android.content.Context, param1: number): android.support.design.animation.MotionSpec;
+					public getTiming(param0: string): com.google.android.material.animation.MotionTiming;
+					public static createFromResource(param0: android.content.Context, param1: number): com.google.android.material.animation.MotionSpec;
 					public hashCode(): number;
 				}
 			}
@@ -132,7 +132,7 @@ declare module android {
 		export module design {
 			export module animation {
 				export class MotionTiming {
-					public static class: java.lang.Class<android.support.design.animation.MotionTiming>;
+					public static class: java.lang.Class<com.google.android.material.animation.MotionTiming>;
 					public equals(param0: any): boolean;
 					public constructor(param0: number, param1: number, param2: android.animation.TimeInterpolator);
 					public getDuration(): number;
@@ -155,7 +155,7 @@ declare module android {
 		export module design {
 			export module animation {
 				export class Positioning {
-					public static class: java.lang.Class<android.support.design.animation.Positioning>;
+					public static class: java.lang.Class<com.google.android.material.animation.Positioning>;
 					public gravity: number;
 					public xAdjustment: number;
 					public yAdjustment: number;
@@ -170,10 +170,10 @@ declare module android {
 	export module support {
 		export module design {
 			export module expandable {
-				export class ExpandableTransformationWidget extends android.support.design.expandable.ExpandableWidget {
-					public static class: java.lang.Class<android.support.design.expandable.ExpandableTransformationWidget>;
+				export class ExpandableTransformationWidget extends com.google.android.material.expandable.ExpandableWidget {
+					public static class: java.lang.Class<com.google.android.material.expandable.ExpandableTransformationWidget>;
 					/**
-					 * Constructs a new instance of the android.support.design.expandable.ExpandableTransformationWidget interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+					 * Constructs a new instance of the com.google.android.material.expandable.ExpandableTransformationWidget interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
 					 */
 					public constructor(implementation: {
 						getExpandedComponentIdHint(): number;
@@ -197,9 +197,9 @@ declare module android {
 		export module design {
 			export module expandable {
 				export class ExpandableWidget {
-					public static class: java.lang.Class<android.support.design.expandable.ExpandableWidget>;
+					public static class: java.lang.Class<com.google.android.material.expandable.ExpandableWidget>;
 					/**
-					 * Constructs a new instance of the android.support.design.expandable.ExpandableWidget interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+					 * Constructs a new instance of the com.google.android.material.expandable.ExpandableWidget interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
 					 */
 					public constructor(implementation: {
 						isExpanded(): boolean;
@@ -219,12 +219,12 @@ declare module android {
 		export module design {
 			export module expandable {
 				export class ExpandableWidgetHelper {
-					public static class: java.lang.Class<android.support.design.expandable.ExpandableWidgetHelper>;
+					public static class: java.lang.Class<com.google.android.material.expandable.ExpandableWidgetHelper>;
 					public onRestoreInstanceState(param0: android.os.Bundle): void;
 					public isExpanded(): boolean;
 					public setExpandedComponentIdHint(param0: number): void;
 					public setExpanded(param0: boolean): boolean;
-					public constructor(param0: android.support.design.expandable.ExpandableWidget);
+					public constructor(param0: com.google.android.material.expandable.ExpandableWidget);
 					public getExpandedComponentIdHint(): number;
 					public onSaveInstanceState(): android.os.Bundle;
 				}
@@ -238,8 +238,8 @@ declare module android {
 	export module support {
 		export module design {
 			export module button {
-				export class MaterialButton extends android.support.v7.widget.AppCompatButton {
-					public static class: java.lang.Class<android.support.design.button.MaterialButton>;
+				export class MaterialButton extends androidx.appcompat.widget.AppCompatButton {
+					public static class: java.lang.Class<com.google.android.material.button.MaterialButton>;
 					public setButtonPadding(param0: number, param1: number, param2: number, param3: number): void;
 					public getButtonPaddingBottom(): number;
 					public setAdditionalPaddingEndForIcon(param0: number): void;
@@ -301,7 +301,7 @@ declare module android {
 		export module design {
 			export module button {
 				export class MaterialButtonBackgroundDrawable {
-					public static class: java.lang.Class<android.support.design.button.MaterialButtonBackgroundDrawable>;
+					public static class: java.lang.Class<com.google.android.material.button.MaterialButtonBackgroundDrawable>;
 					public setColorFilter(param0: android.graphics.ColorFilter): void;
 				}
 			}
@@ -314,9 +314,9 @@ declare module android {
 		export module design {
 			export module button {
 				export class MaterialButtonHelper {
-					public static class: java.lang.Class<android.support.design.button.MaterialButtonHelper>;
+					public static class: java.lang.Class<com.google.android.material.button.MaterialButtonHelper>;
 					public loadFromAttributes(param0: android.content.res.TypedArray): void;
-					public constructor(param0: android.support.design.button.MaterialButton);
+					public constructor(param0: com.google.android.material.button.MaterialButton);
 				}
 			}
 		}
@@ -329,7 +329,7 @@ declare module android {
 		export module design {
 			export module card {
 				export class MaterialCardView extends android.widget.FrameLayout {
-					public static class: java.lang.Class<android.support.design.card.MaterialCardView>;
+					public static class: java.lang.Class<com.google.android.material.card.MaterialCardView>;
 					public getStrokeWidth(): number;
 					public constructor(param0: android.content.Context, param1: android.util.AttributeSet, param2: number);
 					public constructor(param0: android.content.Context);
@@ -352,8 +352,8 @@ declare module android {
 		export module design {
 			export module card {
 				export class MaterialCardViewHelper {
-					public static class: java.lang.Class<android.support.design.card.MaterialCardViewHelper>;
-					public constructor(param0: android.support.design.card.MaterialCardView);
+					public static class: java.lang.Class<com.google.android.material.card.MaterialCardViewHelper>;
+					public constructor(param0: com.google.android.material.card.MaterialCardView);
 					public loadFromAttributes(param0: android.content.res.TypedArray): void;
 				}
 			}
@@ -366,7 +366,7 @@ declare module android {
 		export module design {
 			export module resources {
 				export class TextAppearance {
-					public static class: java.lang.Class<android.support.design.resources.TextAppearance>;
+					public static class: java.lang.Class<com.google.android.material.resources.TextAppearance>;
 					public textSize: number;
 					public textColor: android.content.res.ColorStateList;
 					public textColorHint: android.content.res.ColorStateList;
@@ -393,9 +393,9 @@ declare module android {
 	export module support {
 		export module design {
 			export module chip {
-				export class Chip implements android.support.design.chip.ChipDrawable.Delegate {
-					public static class: java.lang.Class<android.support.design.chip.Chip>;
-					public getTextAppearance(): android.support.design.resources.TextAppearance;
+				export class Chip implements com.google.android.material.chip.ChipDrawable.Delegate {
+					public static class: java.lang.Class<com.google.android.material.chip.Chip>;
+					public getTextAppearance(): com.google.android.material.resources.TextAppearance;
 					public setChipStrokeColorResource(param0: number): void;
 					public getCloseIconContentDescription(): string;
 					public setCloseIconEnabledResource(param0: number): void;
@@ -449,17 +449,17 @@ declare module android {
 					public constructor(param0: android.content.Context);
 					public getChipMinHeight(): number;
 					public setCloseIconSize(param0: number): void;
-					public setHideMotionSpec(param0: android.support.design.animation.MotionSpec): void;
+					public setHideMotionSpec(param0: com.google.android.material.animation.MotionSpec): void;
 					public setChipIconEnabled(param0: boolean): void;
 					public setBackgroundTintList(param0: android.content.res.ColorStateList): void;
 					public setChipStrokeWidth(param0: number): void;
 					public getChipStrokeColor(): android.content.res.ColorStateList;
 					public setCloseIconStartPadding(param0: number): void;
-					public setChipDrawable(param0: android.support.design.chip.ChipDrawable): void;
+					public setChipDrawable(param0: com.google.android.material.chip.ChipDrawable): void;
 					public onHoverEvent(param0: android.view.MotionEvent): boolean;
 					public setCheckedIcon(param0: android.graphics.drawable.Drawable): void;
 					public onChipDrawableSizeChange(): void;
-					public setTextAppearance(param0: android.support.design.resources.TextAppearance): void;
+					public setTextAppearance(param0: com.google.android.material.resources.TextAppearance): void;
 					public getCloseIconEndPadding(): number;
 					public setCheckedIconResource(param0: number): void;
 					public getChipDrawable(): android.graphics.drawable.Drawable;
@@ -467,7 +467,7 @@ declare module android {
 					public setTextStartPaddingResource(param0: number): void;
 					public getChipIcon(): android.graphics.drawable.Drawable;
 					public getRippleColor(): android.content.res.ColorStateList;
-					public getHideMotionSpec(): android.support.design.animation.MotionSpec;
+					public getHideMotionSpec(): com.google.android.material.animation.MotionSpec;
 					public performCloseIconClick(): boolean;
 					public setCheckedIconEnabledResource(param0: number): void;
 					public setBackground(param0: android.graphics.drawable.Drawable): void;
@@ -487,7 +487,7 @@ declare module android {
 					public setMinLines(param0: number): void;
 					public getChipEndPadding(): number;
 					public getIconStartPadding(): number;
-					public setShowMotionSpec(param0: android.support.design.animation.MotionSpec): void;
+					public setShowMotionSpec(param0: com.google.android.material.animation.MotionSpec): void;
 					public setChipMinHeight(param0: number): void;
 					public setTextEndPadding(param0: number): void;
 					public onCreateDrawableState(param0: number): native.Array<number>;
@@ -507,7 +507,7 @@ declare module android {
 					public getChipStartPadding(): number;
 					public setChipIconResource(param0: number): void;
 					public setCloseIconSizeResource(param0: number): void;
-					public getShowMotionSpec(): android.support.design.animation.MotionSpec;
+					public getShowMotionSpec(): com.google.android.material.animation.MotionSpec;
 					public setIconEndPadding(param0: number): void;
 					public constructor(param0: android.content.Context, param1: android.util.AttributeSet);
 					public setChipStartPaddingResource(param0: number): void;
@@ -521,12 +521,12 @@ declare module android {
 				}
 				export module Chip {
 					export class ChipTouchHelper {
-						public static class: java.lang.Class<android.support.design.chip.Chip.ChipTouchHelper>;
+						public static class: java.lang.Class<com.google.android.material.chip.Chip.ChipTouchHelper>;
 						public getVirtualViewAt(param0: number, param1: number): number;
-						public onPopulateNodeForHost(param0: android.support.v4.view.accessibility.AccessibilityNodeInfoCompat): void;
+						public onPopulateNodeForHost(param0: androidx.core.view.accessibility.AccessibilityNodeInfoCompat): void;
 						public onPerformActionForVirtualView(param0: number, param1: number, param2: android.os.Bundle): boolean;
 						public getVisibleVirtualViews(param0: java.util.List<java.lang.Integer>): void;
-						public onPopulateNodeForVirtualView(param0: number, param1: android.support.v4.view.accessibility.AccessibilityNodeInfoCompat): void;
+						public onPopulateNodeForVirtualView(param0: number, param1: androidx.core.view.accessibility.AccessibilityNodeInfoCompat): void;
 					}
 				}
 			}
@@ -539,8 +539,8 @@ declare module android {
 		export module design {
 			export module chip {
 				export class ChipDrawable {
-					public static class: java.lang.Class<android.support.design.chip.ChipDrawable>;
-					public getTextAppearance(): android.support.design.resources.TextAppearance;
+					public static class: java.lang.Class<com.google.android.material.chip.ChipDrawable>;
+					public getTextAppearance(): com.google.android.material.resources.TextAppearance;
 					public setChipStrokeColorResource(param0: number): void;
 					public getCloseIconContentDescription(): string;
 					public setTintMode(param0: android.graphics.PorterDuff.Mode): void;
@@ -580,7 +580,7 @@ declare module android {
 					public setIconEndPaddingResource(param0: number): void;
 					public setCloseIconState(param0: native.Array<number>): boolean;
 					public setChipIconSize(param0: number): void;
-					public setDelegate(param0: android.support.design.chip.ChipDrawable.Delegate): void;
+					public setDelegate(param0: com.google.android.material.chip.ChipDrawable.Delegate): void;
 					public isCheckable(): boolean;
 					public setChipIconEnabledResource(param0: number): void;
 					public getChipCornerRadius(): number;
@@ -593,7 +593,7 @@ declare module android {
 					public setTextStartPadding(param0: number): void;
 					public getChipMinHeight(): number;
 					public setCloseIconSize(param0: number): void;
-					public setHideMotionSpec(param0: android.support.design.animation.MotionSpec): void;
+					public setHideMotionSpec(param0: com.google.android.material.animation.MotionSpec): void;
 					public setChipIconEnabled(param0: boolean): void;
 					public getUseCompatRipple(): boolean;
 					public setChipStrokeWidth(param0: number): void;
@@ -603,7 +603,7 @@ declare module android {
 					public setCheckedIcon(param0: android.graphics.drawable.Drawable): void;
 					public getIntrinsicWidth(): number;
 					public setColorFilter(param0: android.graphics.ColorFilter): void;
-					public setTextAppearance(param0: android.support.design.resources.TextAppearance): void;
+					public setTextAppearance(param0: com.google.android.material.resources.TextAppearance): void;
 					public getCloseIconEndPadding(): number;
 					public setCheckedIconResource(param0: number): void;
 					public setCloseIconContentDescription(param0: string): void;
@@ -614,7 +614,7 @@ declare module android {
 					public getText(): string;
 					public getChipIcon(): android.graphics.drawable.Drawable;
 					public getRippleColor(): android.content.res.ColorStateList;
-					public getHideMotionSpec(): android.support.design.animation.MotionSpec;
+					public getHideMotionSpec(): com.google.android.material.animation.MotionSpec;
 					public setCheckedIconEnabledResource(param0: number): void;
 					public getOutline(param0: any): void;
 					public setVisible(param0: boolean, param1: boolean): boolean;
@@ -629,10 +629,10 @@ declare module android {
 					public isCheckedIconEnabled(): boolean;
 					public onLevelChange(param0: number): boolean;
 					public setCloseIconStartPaddingResource(param0: number): void;
-					public static createFromResource(param0: android.content.Context, param1: number): android.support.design.chip.ChipDrawable;
+					public static createFromResource(param0: android.content.Context, param1: number): com.google.android.material.chip.ChipDrawable;
 					public getChipEndPadding(): number;
 					public getIconStartPadding(): number;
-					public setShowMotionSpec(param0: android.support.design.animation.MotionSpec): void;
+					public setShowMotionSpec(param0: com.google.android.material.animation.MotionSpec): void;
 					public setChipMinHeight(param0: number): void;
 					public setTextEndPadding(param0: number): void;
 					public scheduleDrawable(param0: android.graphics.drawable.Drawable, param1: java.lang.Runnable, param2: number): void;
@@ -641,7 +641,7 @@ declare module android {
 					public onLayoutDirectionChanged(param0: number): boolean;
 					public setCloseIconEndPaddingResource(param0: number): void;
 					public setIconStartPaddingResource(param0: number): void;
-					public static createFromAttributes(param0: android.content.Context, param1: android.util.AttributeSet, param2: number, param3: number): android.support.design.chip.ChipDrawable;
+					public static createFromAttributes(param0: android.content.Context, param1: android.util.AttributeSet, param2: number, param3: number): com.google.android.material.chip.ChipDrawable;
 					public draw(param0: android.graphics.Canvas): void;
 					public getCloseIcon(): android.graphics.drawable.Drawable;
 					public setChipEndPadding(param0: number): void;
@@ -651,7 +651,7 @@ declare module android {
 					public getChipStartPadding(): number;
 					public setChipIconResource(param0: number): void;
 					public setCloseIconSizeResource(param0: number): void;
-					public getShowMotionSpec(): android.support.design.animation.MotionSpec;
+					public getShowMotionSpec(): com.google.android.material.animation.MotionSpec;
 					public setIconEndPadding(param0: number): void;
 					public setChipStartPaddingResource(param0: number): void;
 					public setChipCornerRadius(param0: number): void;
@@ -661,9 +661,9 @@ declare module android {
 				}
 				export module ChipDrawable {
 					export class Delegate {
-						public static class: java.lang.Class<android.support.design.chip.ChipDrawable.Delegate>;
+						public static class: java.lang.Class<com.google.android.material.chip.ChipDrawable.Delegate>;
 						/**
-						 * Constructs a new instance of the android.support.design.chip.ChipDrawable$Delegate interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+						 * Constructs a new instance of the com.google.android.material.chip.ChipDrawable$Delegate interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
 						 */
 						public constructor(implementation: {
 							onChipDrawableSizeChange(): void;
@@ -1010,7 +1010,7 @@ declare module android {
 		export module design {
 			export module chip {
 				export class ChipGroup extends android.support.design.internal.FlexboxLayout {
-					public static class: java.lang.Class<android.support.design.chip.ChipGroup>;
+					public static class: java.lang.Class<com.google.android.material.chip.ChipGroup>;
 					public setSingleLine(param0: number): void;
 					public getFlexLines(): java.util.List<android.support.design.internal.FlexLine>;
 					public addView(param0: android.view.View, param1: number): void;
@@ -1041,7 +1041,7 @@ declare module android {
 					public getDecorationLengthMainAxis(param0: android.view.View, param1: number, param2: number): number;
 					public addView(param0: android.view.View, param1: number, param2: android.view.ViewGroup.LayoutParams): void;
 					public getDecorationLengthCrossAxis(param0: android.view.View): number;
-					public setOnCheckedChangeListener(param0: android.support.design.chip.ChipGroup.OnCheckedChangeListener): void;
+					public setOnCheckedChangeListener(param0: com.google.android.material.chip.ChipGroup.OnCheckedChangeListener): void;
 					public getFlexWrap(): number;
 					public setOnHierarchyChangeListener(param0: android.view.ViewGroup.OnHierarchyChangeListener): void;
 					public generateDefaultLayoutParams(): android.view.ViewGroup.LayoutParams;
@@ -1074,11 +1074,11 @@ declare module android {
 				}
 				export module ChipGroup {
 					export class CheckedStateTracker {
-						public static class: java.lang.Class<android.support.design.chip.ChipGroup.CheckedStateTracker>;
+						public static class: java.lang.Class<com.google.android.material.chip.ChipGroup.CheckedStateTracker>;
 						public onCheckedChanged(param0: android.widget.CompoundButton, param1: boolean): void;
 					}
 					export class LayoutParams extends android.support.design.internal.FlexboxLayout.LayoutParams {
-						public static class: java.lang.Class<android.support.design.chip.ChipGroup.LayoutParams>;
+						public static class: java.lang.Class<com.google.android.material.chip.ChipGroup.LayoutParams>;
 						public constructor(param0: android.view.ViewGroup.MarginLayoutParams);
 						public setOrder(param0: number): void;
 						public constructor(param0: android.view.ViewGroup.LayoutParams);
@@ -1115,23 +1115,23 @@ declare module android {
 						public getMarginRight(): number;
 					}
 					export class OnCheckedChangeListener {
-						public static class: java.lang.Class<android.support.design.chip.ChipGroup.OnCheckedChangeListener>;
+						public static class: java.lang.Class<com.google.android.material.chip.ChipGroup.OnCheckedChangeListener>;
 						/**
-						 * Constructs a new instance of the android.support.design.chip.ChipGroup$OnCheckedChangeListener interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+						 * Constructs a new instance of the com.google.android.material.chip.ChipGroup$OnCheckedChangeListener interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
 						 */
 						public constructor(implementation: {
-							onCheckedChanged(param0: android.support.design.chip.ChipGroup, param1: number): void;
+							onCheckedChanged(param0: com.google.android.material.chip.ChipGroup, param1: number): void;
 						});
 						public constructor();
-						public onCheckedChanged(param0: android.support.design.chip.ChipGroup, param1: number): void;
+						public onCheckedChanged(param0: com.google.android.material.chip.ChipGroup, param1: number): void;
 					}
 					export class PassThroughHierarchyChangeListener {
-						public static class: java.lang.Class<android.support.design.chip.ChipGroup.PassThroughHierarchyChangeListener>;
+						public static class: java.lang.Class<com.google.android.material.chip.ChipGroup.PassThroughHierarchyChangeListener>;
 						public onChildViewAdded(param0: android.view.View, param1: android.view.View): void;
 						public onChildViewRemoved(param0: android.view.View, param1: android.view.View): void;
 					}
 					export class SpacingDrawable {
-						public static class: java.lang.Class<android.support.design.chip.ChipGroup.SpacingDrawable>;
+						public static class: java.lang.Class<com.google.android.material.chip.ChipGroup.SpacingDrawable>;
 						public draw(param0: android.graphics.Canvas): void;
 						public getIntrinsicWidth(): number;
 						public setColorFilter(param0: android.graphics.ColorFilter): void;

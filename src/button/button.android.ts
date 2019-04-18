@@ -20,11 +20,11 @@ function isPreLollipop() {
 }
 
 export class Button extends ButtonBase {
-    nativeViewProtected: android.support.design.button.MaterialButton;
+    nativeViewProtected: com.google.android.material.button.MaterialButton;
 
     public isLoading: boolean;
 
-    get android(): android.support.design.button.MaterialButton {
+    get android(): com.google.android.material.button.MaterialButton {
         return this.nativeView;
     }
 
@@ -35,7 +35,7 @@ export class Button extends ButtonBase {
         } else if (this.variant === 'flat') {
             style = 'AppThemeFlatMaterialButton';
         }
-        const view = new android.support.design.button.MaterialButton(new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)));
+        const view = new com.google.android.material.button.MaterialButton(new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)));
         if (this.variant === 'outline') {
             view.setStrokeWidth(1);
             view.setStrokeColor(android.content.res.ColorStateList.valueOf(new Color('gray').android));
@@ -51,7 +51,7 @@ export class Button extends ButtonBase {
     }
 
     [elevationProperty.setNative](value: number) {
-        android.support.v4.view.ViewCompat.setElevation(this.nativeViewProtected, value);
+        androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, value);
     }
     [elevationHighlightedProperty.setNative](value: number) {
         if (!this.nativeViewProtected) {

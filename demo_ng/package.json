@@ -9,7 +9,7 @@
             "version": "4.2.0"
         },
         "tns-android": {
-            "version": "4.2.0"
+            "version": "5.3.0-2019-03-19-143503-02"
         }
     },
     "dependencies": {
@@ -22,12 +22,12 @@
         "@angular/platform-browser": "~7.1.2",
         "@angular/platform-browser-dynamic": "~7.1.2",
         "@angular/router": "~7.1.2",
-        "nativescript-material-components": "file:../plugin_nosource",
         "nativescript-angular": "~7.0.3",
+        "nativescript-material-components": "file:../plugin_nosource",
         "nativescript-theme-core": "~1.0.4",
-        "tns-core-modules": "5.0.5",
         "reflect-metadata": "~0.1.12",
         "rxjs": "~6.3.3",
+        "tns-core-modules": "5.4.0-androidx-2019-03-22-160602-06",
         "zone.js": "~0.8.26"
     },
     "devDependencies": {
@@ -38,7 +38,7 @@
         "babylon": "6.18.0",
         "lazy": "1.0.11",
         "nativescript-dev-typescript": "~0.7.2",
-        "tns-platform-declarations": "5.0.5",
+        "tns-platform-declarations": "5.4.0-androidx-2019-03-22-160602-06",
         "typescript": "~2.7.2"
     }
 }

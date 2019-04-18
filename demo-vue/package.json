@@ -7,6 +7,9 @@
     "id": "org.nativescript.demovuematerial",
     "tns-ios": {
       "version": "5.2.0"
+    },
+    "tns-android": {
+      "version": "5.3.0-2019-03-19-143503-02"
     }
   },
   "dependencies": {
@@ -22,7 +25,7 @@
     "nativescript-material-textfield": "../packages/nativescript-material-textfield",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-vue": "~2.0.2",
-    "tns-core-modules": "^5.2.2",
+    "tns-core-modules": "5.4.0-androidx-2019-03-22-160602-06",
     "tslib": "^1.9.3",
     "vue-class-component": "^7.0.1"
   },
@@ -37,12 +40,12 @@
     "nativescript-dev-typescript": "~0.8.0",
     "nativescript-dev-webpack": "~0.20.2",
     "nativescript-vue-template-compiler": "~2.0.2",
-    "tns-platform-declarations": "^5.2.2",
     "shelljs": "^0.8.3",
+    "tns-platform-declarations": "5.4.0-androidx-2019-03-22-160602-06",
     "vue": "~2.5.17",
+    "vue-class-component": "~6.3.2",
     "vue-loader": "~15.7.0",
-    "vue-property-decorator": "~7.3.0",
-    "vue-class-component": "~6.3.2"
+    "vue-property-decorator": "~7.3.0"
   },
   "scripts": {
     "tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'"

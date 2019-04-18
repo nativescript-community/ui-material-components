@@ -29,21 +29,21 @@ function getBottomSheetOptions(domId: number): BottomSheetDataOptions {
 
 declare module 'tns-core-modules/ui/core/view' {
     interface View {
-        _bottomSheetFragment: android.support.design.widget.BottomSheetDialogFragment;
+        _bottomSheetFragment: com.google.android.material.bottomsheet.BottomSheetDialogFragment;
     }
 }
 
 let BottomSheetDialogFragment: BottomSheetDialogFragment;
 
 interface BottomSheetDialogFragment {
-    new (): android.support.design.widget.BottomSheetDialogFragment;
+    new (): com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 }
 function initializeBottomSheetDialogFragment() {
     if (BottomSheetDialogFragment) {
         return;
     }
 
-    class BottomSheetDialogFragmentImpl extends android.support.design.widget.BottomSheetDialogFragment {
+    class BottomSheetDialogFragmentImpl extends com.google.android.material.bottomsheet.BottomSheetDialogFragment {
         public owner: View;
         private _fullscreen: boolean;
         private _stretched: boolean;
@@ -66,7 +66,7 @@ function initializeBottomSheetDialogFragment() {
             (this.owner as ViewWithBottomSheetBase)._bottomSheetFragment = this;
             // this.setStyle(androidx.fragment.app.DialogFragment.STYLE_NO_TITLE, 0);
 
-            const dialog = super.onCreateDialog(savedInstanceState) as android.support.design.widget.BottomSheetDialog;
+            const dialog = super.onCreateDialog(savedInstanceState) as com.google.android.material.bottomsheet.BottomSheetDialog;
             if (options.options) {
                 const creationOptions = options.options;
                 if (creationOptions.dismissOnBackgroundTap !== undefined) {

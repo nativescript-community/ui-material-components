@@ -1,4 +1,4 @@
-project.supportVersion = project.hasProperty("supportVersion") ? project.supportVersion : "28.0.0"
+project.androidxVersion = project.hasProperty("androidxVersion") ? project.androidxVersion : "1.0.0"
 project.buildToolsVersion = project.hasProperty("buildToolsVersion") ? project.buildToolsVersion : "28.0.3"
 project.compileSdk = project.hasProperty("compileSdk") ? project.compileSdk : 28
 project.targetSdk = project.hasProperty("targetSdk") ? project.targetSdk : 28

@@ -39,9 +39,9 @@ function isString(value): value is string {
     return typeof value === 'string';
 }
 
-function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): android.support.v7.app.AlertDialog.Builder {
+function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): androidx.appcompat.app.AlertDialog.Builder {
     const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
-    const alert = new android.support.v7.app.AlertDialog.Builder(activity);
+    const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
     alert.setTitle(options && isString(options.title) ? options.title : null);
     alert.setMessage(options && isString(options.message) ? options.message : null);
     if (options.titleIcon) {
@@ -76,7 +76,7 @@ function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): 
     return alert;
 }
 
-function showDialog(builder: android.support.v7.app.AlertDialog.Builder, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
+function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
     const dlg = builder.show();
     const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
     if ((activity as any)._currentModalCustomView) {
@@ -142,7 +142,7 @@ function showDialog(builder: android.support.v7.app.AlertDialog.Builder, options
     return dlg;
 }
 
-function addButtonsToAlertDialog(alert: android.support.v7.app.AlertDialog.Builder, options: ConfirmOptions, callback: Function): void {
+function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions, callback: Function): void {
     if (!options) {
         return;
     }
@@ -231,7 +231,7 @@ export function alert(arg: any): Promise<void> {
 }
 
 export class AlertDialog {
-    dialog: android.support.v7.app.AlertDialog;
+    dialog: androidx.appcompat.app.AlertDialog;
     constructor(private options: any) {}
     show() {
         if (!this.dialog) {
@@ -320,8 +320,8 @@ export function prompt(arg: any): Promise<PromptResult> {
         try {
             const alert = createAlertDialog(options);
 
-            const layout = android.view.LayoutInflater.from(androidApp.foregroundActivity).inflate(getLayout('material_text_field'), null, false) as android.support.design.widget.TextInputLayout;
-            const input = (layout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText;
+            const layout = android.view.LayoutInflater.from(androidApp.foregroundActivity).inflate(getLayout('material_text_field'), null, false) as com.google.android.material.textfield.TextInputLayout;
+            const input = (layout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as com.google.android.material.textfield.TextInputEditText;
 
             if (options) {
                 if (options.inputType === inputType.password) {
@@ -405,16 +405,16 @@ export function login(arg: any): Promise<LoginResult> {
                 getLayout('material_text_field'),
                 null,
                 false
-            ) as android.support.design.widget.TextInputLayout;
-            const userNameInput = (userNameLayout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText;
+            ) as com.google.android.material.textfield.TextInputLayout;
+            const userNameInput = (userNameLayout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as com.google.android.material.textfield.TextInputEditText;
             userNameInput.setText(options.userName ? options.userName : '');
 
             const passwordLayout = android.view.LayoutInflater.from(androidApp.foregroundActivity).inflate(
                 getLayout('material_text_field'),
                 null,
                 false
-            ) as android.support.design.widget.TextInputLayout;
-            const passwordInput = (passwordLayout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText;
+            ) as com.google.android.material.textfield.TextInputLayout;
+            const passwordInput = (passwordLayout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as com.google.android.material.textfield.TextInputEditText;
             passwordInput.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
             passwordInput.setText(options.password ? options.password : '');
 
@@ -470,7 +470,7 @@ export function action(arg: any): Promise<string> {
     return new Promise<string>((resolve, reject) => {
         try {
             const activity = androidApp.foregroundActivity || androidApp.startActivity;
-            const alert = new android.support.v7.app.AlertDialog.Builder(activity);
+            const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
             const message = options && isString(options.message) ? options.message : '';
             const title = options && isString(options.title) ? options.title : '';
             if (options && options.cancelable === false) {

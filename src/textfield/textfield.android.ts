@@ -11,15 +11,15 @@ function getLayout(id: string) {
 }
 
 export class TextField extends TextFieldBase {
-    editText: android.support.design.widget.TextInputEditText;
-    layoutView: android.support.design.widget.TextInputLayout;
+    editText: com.google.android.material.textfield.TextInputEditText;
+    layoutView: com.google.android.material.textfield.TextInputLayout;
 
-    nativeViewProtected: android.support.design.widget.TextInputLayout;
+    nativeViewProtected: com.google.android.material.textfield.TextInputLayout;
     constructor() {
         super();
     }
     get nativeTextViewProtected() {
-        return this.editText as android.support.design.widget.TextInputEditText;
+        return this.editText as com.google.android.material.textfield.TextInputEditText;
     }
 
     public createNativeView() {
@@ -31,15 +31,15 @@ export class TextField extends TextFieldBase {
         }
         const layoutId = getLayout(layoutIdName);
 
-        let layout: android.support.design.widget.TextInputLayout;
-        let editText: android.support.design.widget.TextInputEditText;
+        let layout: com.google.android.material.textfield.TextInputLayout;
+        let editText: com.google.android.material.textfield.TextInputEditText;
 
         if (layoutId !== 0) {
-            layout = this.layoutView = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as android.support.design.widget.TextInputLayout;
-            editText = this.editText = (layout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText;
+            layout = this.layoutView = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.textfield.TextInputLayout;
+            editText = this.editText = (layout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as com.google.android.material.textfield.TextInputEditText;
         } else {
-            layout = this.layoutView = new android.support.design.widget.TextInputLayout(this._context);
-            editText = this.editText = new android.support.design.widget.TextInputEditText(layout.getContext());
+            layout = this.layoutView = new com.google.android.material.textfield.TextInputLayout(this._context);
+            editText = this.editText = new com.google.android.material.textfield.TextInputEditText(layout.getContext());
             editText.setLayoutParams(new android.widget.LinearLayout.LayoutParams(android.widget.FrameLayout.LayoutParams.MATCH_PARENT, android.widget.FrameLayout.LayoutParams.WRAP_CONTENT));
             layout.addView(editText);
         }

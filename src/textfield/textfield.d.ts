@@ -4,7 +4,7 @@ import { Color } from 'tns-core-modules/color/color';
 export class TextField extends NTextField {
     /*
     * nativeView
-    * @Android : android.support.design.widget.TextInputLayout
+    * @Android : com.google.android.material.textfield.TextInputLayout
     * @iOS : MDCTextField
     */
     nativeViewProtected : any

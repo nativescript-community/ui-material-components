@@ -4,13 +4,13 @@ import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-pr
 import { createRippleDrawable, createStateListAnimator, getAttrColor, isPostLollipop, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
 import { Color } from 'tns-core-modules/color';
 
-let MDCCardView: typeof android.support.design.card.MaterialCardView;
+let MDCCardView: typeof com.google.android.material.card.MaterialCardView;
 
 const DEFAULT_STROKE_VALUE = -1;
 function initMDCCardView() {
     if (!MDCCardView) {
         // if (android.os.Build.VERSION.SDK_INT >= 23) {
-        MDCCardView = android.support.design.card.MaterialCardView;
+        MDCCardView = com.google.android.material.card.MaterialCardView;
         // } else {
         //     initializePreLollipopCardView()
         //     MDCCardView = PreLollipopCardView as any
@@ -18,7 +18,7 @@ function initMDCCardView() {
     }
 }
 
-// interface PreLollipopCardView extends android.support.design.card.MaterialCardView {
+// interface PreLollipopCardView extends com.google.android.material.card.MaterialCardView {
 //     // tslint:disable-next-line:no-misused-new
 //     new (context): PreLollipopCardView;
 // }
@@ -28,7 +28,7 @@ function initMDCCardView() {
 //     if (PreLollipopCardView) {
 //         return;
 //     }
-//     class PreLollipopCardViewImpl extends android.support.design.card.MaterialCardView {
+//     class PreLollipopCardViewImpl extends com.google.android.material.card.MaterialCardView {
 //         constructor(context) {
 //             super(context);
 //             return global.__native(this);
@@ -219,7 +219,7 @@ function initializeOutlineProvider() {
 }
 
 export class CardView extends CardViewBase {
-    nativeViewProtected: android.support.design.card.MaterialCardView;
+    nativeViewProtected: com.google.android.material.card.MaterialCardView;
 
     fgDrawable: android.graphics.drawable.GradientDrawable;
     rippleDrawable: android.graphics.drawable.StateListDrawable | android.graphics.drawable.RippleDrawable;
@@ -227,7 +227,7 @@ export class CardView extends CardViewBase {
     _strokeWidth = 0;
     _borderRadius = 0;
 
-    get android(): android.support.design.card.MaterialCardView {
+    get android(): com.google.android.material.card.MaterialCardView {
         return this.nativeView;
     }
 
@@ -256,7 +256,7 @@ export class CardView extends CardViewBase {
         const color = this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight'));
         return color.android;
     }
-    createForegroundDrawable(view: android.support.design.card.MaterialCardView, strokeWidth, strokeColor: Color) {
+    createForegroundDrawable(view: com.google.android.material.card.MaterialCardView, strokeWidth, strokeColor: Color) {
         this.fgDrawable = new android.graphics.drawable.GradientDrawable();
         const radius = view.getRadius();
         this.fgDrawable.setCornerRadius(radius);
@@ -308,7 +308,7 @@ export class CardView extends CardViewBase {
         if (!this.nativeViewProtected) {
             return;
         }
-        android.support.v4.view.ViewCompat.setElevation(this.nativeViewProtected, value);
+        androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, value);
         if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
         }

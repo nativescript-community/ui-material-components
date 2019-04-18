@@ -6,7 +6,7 @@ import { View } from 'tns-core-modules/ui/core/view';
 export class SnackBar {
     // Use this to get the textview instance inside the snackbar
     private static SNACKBAR_TEXT_ID = (android.support.design as any).R.id.snackbar_text;
-    private _snackbar: android.support.design.widget.Snackbar;
+    private _snackbar: com.google.android.material.snackbar.Snackbar;
 
     constructor() {}
 
@@ -20,13 +20,13 @@ export class SnackBar {
                 }
 
                 const attachToView = (view && view.android) || topmost().currentPage.android;
-                this._snackbar = android.support.design.widget.Snackbar.make(attachToView, snackText, 3000);
+                this._snackbar = com.google.android.material.snackbar.Snackbar.make(attachToView, snackText, 3000);
 
                 this._snackbar.setText(snackText);
 
                 // Brad - not using this bc it's almost too quick, ~1.5 seconds
                 // this._snackbar.setDuration(
-                //   android.support.design.widget.Snackbar.LENGTH_SHORT
+                //   com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
                 // );
 
                 // set text color
@@ -73,7 +73,7 @@ export class SnackBar {
                 options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
 
                 const attachToView = (options.view && options.view.android) || topmost().currentPage.android;
-                this._snackbar = android.support.design.widget.Snackbar.make(attachToView, options.snackText, options.hideDelay);
+                this._snackbar = com.google.android.material.snackbar.Snackbar.make(attachToView, options.snackText, options.hideDelay);
 
                 this._snackbar.setText(options.snackText);
                 this._snackbar.setDuration(options.hideDelay);
@@ -159,19 +159,19 @@ export class SnackBar {
     public _getReason(value: number) {
         switch (value) {
             // Indicates that the Snackbar was dismissed via a swipe.
-            case android.support.design.widget.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_SWIPE:
+            case com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_SWIPE:
                 return DismissReasons.SWIPE;
             // Indicates that the Snackbar was dismissed via an action click.
-            case android.support.design.widget.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_ACTION:
+            case com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_ACTION:
                 return DismissReasons.ACTION;
             // Indicates that the Snackbar was dismissed via a swipe.
-            case android.support.design.widget.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_TIMEOUT:
+            case com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_TIMEOUT:
                 return DismissReasons.TIMEOUT;
             // Indicates that the Snackbar was dismissed via a call to dismiss().
-            case android.support.design.widget.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_MANUAL:
+            case com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_MANUAL:
                 return DismissReasons.MANUAL;
             // Indicates that the Snackbar was dismissed from a new Snackbar being shown.
-            case android.support.design.widget.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_CONSECUTIVE:
+            case com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_CONSECUTIVE:
                 return DismissReasons.CONSECUTIVE;
             default:
                 return DismissReasons.UNKNOWN;
@@ -198,14 +198,14 @@ let SnackCallback: SnackCallback;
 
 interface SnackCallback {
     // resolve: Function;
-    new (owner: WeakRef<SnackBar>): android.support.design.widget.BaseTransientBottomBar.BaseCallback<android.support.design.widget.Snackbar>;
+    new (owner: WeakRef<SnackBar>): com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback<com.google.android.material.snackbar.Snackbar>;
 }
 function initializeSnackCallback() {
     if (SnackCallback) {
         return;
     }
 
-    class SnackCallbackImpl extends android.support.design.widget.BaseTransientBottomBar.BaseCallback<android.support.design.widget.Snackbar> {
+    class SnackCallbackImpl extends com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback<com.google.android.material.snackbar.Snackbar> {
         public resolve: Function = null;
         private _owner: WeakRef<SnackBar>;
 
@@ -215,9 +215,9 @@ function initializeSnackCallback() {
             return global.__native(this);
         }
 
-        onDismissed(snackbar: android.support.design.widget.Snackbar, event: number) {
+        onDismissed(snackbar: com.google.android.material.snackbar.Snackbar, event: number) {
             // if the dismiss was not caused by the action button click listener
-            if (event !== android.support.design.widget.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_ACTION) {
+            if (event !== com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_ACTION) {
                 this.resolve({
                     command: 'Dismiss',
                     reason: this._owner.get()._getReason(event),
@@ -227,7 +227,7 @@ function initializeSnackCallback() {
             }
         }
 
-        onShown(snackbar: android.support.design.widget.Snackbar) {
+        onShown(snackbar: com.google.android.material.snackbar.Snackbar) {
             // console.log('callback onShown fired');
         }
     }
