@@ -16,14 +16,21 @@
 <script lang="ts">
 import * as frameModule from 'tns-core-modules/ui/frame';
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+export const title = 'CardViews sample';
 
-@Component({})
-export default class CardViews extends Vue {
-    title: 'CardViews sample';
 
-    onNavigationButtonTap() {
-        frameModule.topmost().goBack();
-    }
-}
+export default Vue.extend({
+    name: 'CardView',
+    data () {
+        return {
+            name: 'CardView',
+            title: title,
+        }
+    },
+    methods: {
+        onNavigationButtonTap() {
+            frameModule.topmost().goBack();
+        }
+    },
+})
 </script>

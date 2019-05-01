@@ -29,7 +29,7 @@ for (let item of getExamples()) {
 
 Vue.component(views.Home.name, views.Home);
 
-Vue.config.silent = false;
+Vue.config.silent = true;
 
 new Vue({
     template: `

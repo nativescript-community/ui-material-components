@@ -6,21 +6,23 @@
                         @tap="onNavigationButtonTap"></NavigationButton>
     </ActionBar>
     <StackLayout>
-      <MDTextField id="textField1" helper="help me!" width="250" backgroundColor="orange"
+      <MDTextField id="textField1" helper="help me!" width="250"
                   placeholderColor="green" keyboardType="datetime"
                   hint="i am an hint" returnKeyType="next"
                   v-model="value"
+                  highlightColor="yellow"
                   @focus="onFocus" @blur="onBlur"
                   @textChange="onTextChange" @returnPress="onReturnPress" />
       <MDTextField id="textField2" maxLength="10" hint="hint me"
                   v-model="value"
+                  backgroundColor="transparent"
                   @focus="onFocus" @blur="onBlur"
                   @textChange="onTextChange" @returnPress="onReturnPress"/>
       <MDTextField id="textField3" variant="outline" hint="outline"
-                  @focus="onFocus" @blur="onBlur"
+                  @focus="onFocus" @blur="onBlur" 
                   @textChange="onTextChange" @returnPress="onReturnPress"/>
       <MDTextField  variant="filled" required="true" email="true" hint="fill this out..."
-                  @focus="onFocus" @blur="onBlur"
+                  @focus="onFocus" @blur="onBlur" floating="false"
                   @textChange="onTextChange" @returnPress="onReturnPress"/>
     </StackLayout>
   </Page>
