@@ -1,4 +1,4 @@
-import { FloatingActionButton } from '../floatingactionbutton';
+import { FloatingActionButton } from 'nativescript-material-floatingactionbutton';
 const FloatingActionButtonPlugin = {
     install(Vue) {
         Vue.registerElement('MDFloatingActionButton', () => FloatingActionButton, {});

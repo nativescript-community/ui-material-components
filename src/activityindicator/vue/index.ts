@@ -1,4 +1,4 @@
-import { ActivityIndicator } from '../activityindicator';
+import { ActivityIndicator } from 'nativescript-material-activityindicator';
 const ActivityIndicatorPlugin = {
     install(Vue) {
         Vue.registerElement('MDActivityIndicator', () => ActivityIndicator, {});

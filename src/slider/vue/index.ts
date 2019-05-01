@@ -1,4 +1,4 @@
-import { Slider } from '../slider';
+import { Slider } from 'nativescript-material-slider';
 const SliderPlugin = {
     install(Vue) {
         Vue.registerElement('MDSlider', () => Slider, {
