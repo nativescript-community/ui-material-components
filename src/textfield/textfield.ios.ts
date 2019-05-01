@@ -1,9 +1,10 @@
 import { TextFieldBase } from './textfield.common';
-import { placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
-import { errorColorProperty, errorProperty, floatingProperty, helperProperty, maxLengthProperty } from './textfield_cssproperties';
+import { placeholderColorProperty, borderColorProperty, backgroundInternalProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
+import { errorColorProperty, errorProperty, floatingProperty, helperProperty, maxLengthProperty, highlightColorProperty } from './textfield_cssproperties';
 import { themer } from 'nativescript-material-core';
 import { Color } from 'tns-core-modules/color';
 import { Style } from 'tns-core-modules/ui/styling/style';
+import { Background } from 'tns-core-modules/ui/styling/background';
 
 let colorScheme: MDCSemanticColorScheme;
 function getColorScheme() {
@@ -23,6 +24,10 @@ export class TextField extends TextFieldBase {
     nativeViewProtected: MDCTextField;
     private _controller: MDCTextInputControllerBase;
     public readonly style: Style & { variant: 'outline' | 'underline' | 'filled' };
+
+    public clearFocus() {
+        this.dismissSoftInput();
+    }
 
     variant = 'underline';
     public createNativeView() {
@@ -58,11 +63,16 @@ export class TextField extends TextFieldBase {
     [placeholderColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.floatingPlaceholderActiveColor = color;
+        this._controller.inlinePlaceholderColor = color;
         this._updateAttributedPlaceholder();
     }
     [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.errorColor = color;
+    }
+    [highlightColorProperty.setNative](value: Color) {
+        const color = value instanceof Color ? value.ios : value;
+        this._controller.activeColor = color;
     }
     [helperProperty.setNative](value: string) {
         this._controller.helperText = value;
@@ -75,5 +85,19 @@ export class TextField extends TextFieldBase {
     }
     [errorProperty.setNative](value: string) {
         this._controller.setErrorTextErrorAccessibilityValue(value, value);
+    }
+
+    [backgroundInternalProperty.setNative](value: Background) {
+        super[backgroundInternalProperty.setNative](value);
+        if (this.nativeViewProtected) {
+            if (value.color) {
+                // hide the underline like on android
+                this._controller.underlineHeightActive = 0;
+                this._controller.underlineHeightNormal = 0;
+            } else {
+                this._controller.underlineHeightActive = MDCTextInputControllerBase.underlineHeightActiveDefault;
+                this._controller.underlineHeightNormal = MDCTextInputControllerBase.underlineHeightNormalDefault;
+            }
+        }
     }
 }
