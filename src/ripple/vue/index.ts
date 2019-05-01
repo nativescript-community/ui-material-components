@@ -1,4 +1,4 @@
-import { Ripple } from 'nativescript-material-ripple';
+import { Ripple } from '../ripple';
 const RipplePlugin = {
     install(Vue) {
         Vue.registerElement('MDRipple', () => Ripple, {});

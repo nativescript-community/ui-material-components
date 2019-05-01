@@ -1,4 +1,4 @@
-import { CardView } from 'nativescript-material-cardview';
+import { CardView } from '../cardview';
 const CardViewPlugin = {
     install(Vue) {
         Vue.registerElement('MDCardView', () => CardView, {});

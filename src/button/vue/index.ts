@@ -1,4 +1,4 @@
-import { Button } from 'nativescript-material-button';
+import { Button } from '../button';
 const ButtonPlugin = {
     install(Vue) {
         Vue.registerElement('MDButton', () => Button, {});
