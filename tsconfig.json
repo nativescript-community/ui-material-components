@@ -24,6 +24,10 @@
         "paths": {
             "nativescript-material-dialogs": ["src/dialogs/dialogs"],
             "nativescript-material-button": ["src/button/button"],
+            "nativescript-material-activityindicator": ["src/activityindicator/activityindicator"],
+            "nativescript-material-ripple": ["src/ripple/ripple"],
+            "nativescript-material-slider": ["src/slider/slider"],
+            "nativescript-material-progress": ["src/progress/progress"],
             "nativescript-material-cardview": ["src/cardview/cardview"],
             "nativescript-material-floatingactionbutton": ["src/floatingactionbutton/floatingactionbutton"],
             "nativescript-material-core": ["src/core/material"],

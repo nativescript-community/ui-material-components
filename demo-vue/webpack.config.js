@@ -93,26 +93,51 @@ module.exports = env => {
         const srcFullPath = resolve(projectRoot, '..', 'src');
         aliases = Object.assign(aliases, {
             '#': srcFullPath,
-            'nativescript-material-core$': '#/core/material',
-            'nativescript-material-core': '#/core',
-            'nativescript-material-bottomsheet$': '#/bottomsheet/bottomsheet',
-            'nativescript-material-progress$': '#/progress/progress',
-            'nativescript-material-progress': '#/progress',
-            'nativescript-material-slider$': '#/slider/slider',
-            'nativescript-material-slider': '#/slider',
-            'nativescript-material-button$': '#/button/button',
-            'nativescript-material-button': '#/button',
-            'nativescript-material-textfield$': '#/textfield/textfield',
-            'nativescript-material-textfield': '#/textfield',
-            'nativescript-material-floatingactionbutton$': '#/floatingactionbutton/floatingactionbutton',
-            'nativescript-material-floatingactionbutton': '#/floatingactionbutton',
-            'nativescript-material-activityindicator$': '#/activityindicator/activityindicator',
-            'nativescript-material-activityindicator': '#/activityindicator',
-            'nativescript-material-ripple$': '#/ripple/ripple',
-            'nativescript-material-ripple': '#/ripple',
-            'nativescript-material-dialogs$': '#/dialogs/dialogs',
-            'nativescript-material-components': '#'
+            'nativescript-material-core$': '#/core/material.' + platform,
+            'nativescript-material-core/android/utils$': '#/core/android/utils',
+            'nativescript-material-core/cssproperties$': '#/core/cssproperties',
+            
+            'nativescript-material-bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
+            'nativescript-material-bottomsheet/vue$': '#/bottomsheet/vue/index',
+            'nativescript-material-progbottomsheetress/bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
+
+            'nativescript-material-progress$': '#/progress/progress.' + platform,
+            'nativescript-material-progress/vue$': '#/progress/vue/index',
+            'nativescript-material-progress/progress$': '#/progress/progress.' + platform,
+
+            'nativescript-material-cardview$': '#/cardview/cardview.' + platform,
+            'nativescript-material-cardview/vue$': '#/cardview/vue/index',
+            'nativescript-material-cardview/cardview$': '#/cardview/cardview.' + platform,
+
+            'nativescript-material-slider$': '#/slider/slider.' + platform,
+            'nativescript-material-slider/vue$': '#/slider/vue/index',
+            'nativescript-material-slider/slider$': '#/slider/slider.' + platform,
+
+            'nativescript-material-button$': '#/button/button.' + platform,
+            'nativescript-material-button/vue$': '#/button/vue/index',
+            'nativescript-material-button/button$': '#/button/button.' + platform,
+
+            'nativescript-material-textfield$': '#/textfield/textfield.' + platform,
+            'nativescript-material-textfield/textfield$': '#/textfield/textfield.' + platform,
+            'nativescript-material-textfield/textfield_cssproperties$': '#/textfield/textfield_cssproperties',
+            'nativescript-material-textfield/vue$': '#/textfield/vue/index',
+
+            'nativescript-material-floatingactionbutton$': '#/floatingactionbutton/floatingactionbutton.' + platform,
+            'nativescript-material-floatingactionbutton/vue$': '#/floatingactionbutton/vue/index',
+            'nativescript-material-floatingactionbutton/floatingactionbutton$': '#/floatingactionbutton/floatingactionbutton.' + platform,
+
+            'nativescript-material-activityindicator$': '#/activityindicator/activityindicator.' + platform,
+            'nativescript-material-activityindicator/vue$': '#/activityindicator/vue/index',
+            'nativescript-material-activityindicator/activityindicator$': '#/activityindicator/activityindicator.' + platform,
+
+            'nativescript-material-ripple$': '#/ripple/ripple.' + platform,
+            'nativescript-material-ripple/vue$': '#/ripple/vue/index',
+            'nativescript-material-ripple/ripple$': '#/ripple/ripple.' + platform,
+
+            'nativescript-material-dialogs$': '#/dialogs/dialogs.' + platform
         });
+
+        console.log('alias', aliases)
     }
 
     const config = {
