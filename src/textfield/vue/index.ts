@@ -1,4 +1,4 @@
-import { TextField } from 'nativescript-material-textfield';
+import { TextField } from '../textfield';
 const TextFieldPlugin = {
     install(Vue) {
         Vue.registerElement('MDTextField', () => TextField, {
