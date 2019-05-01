@@ -1,6 +1,6 @@
 import { TextFieldBase } from './textfield.common';
-import { placeholderColorProperty, borderColorProperty, backgroundInternalProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
-import { errorColorProperty, errorProperty, floatingProperty, helperProperty, maxLengthProperty, highlightColorProperty } from './textfield_cssproperties';
+import { backgroundInternalProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
+import { errorColorProperty, errorProperty, floatingProperty, helperProperty, highlightColorProperty, maxLengthProperty } from './textfield_cssproperties';
 import { themer } from 'nativescript-material-core';
 import { Color } from 'tns-core-modules/color';
 import { Style } from 'tns-core-modules/ui/styling/style';
