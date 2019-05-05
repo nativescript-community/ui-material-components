@@ -167,7 +167,6 @@ export class TextField extends TextFieldBase {
     }
 
     [highlightColorProperty.setNative](value: Color) {
-        console.log('highlightColor', value);
         const color = value instanceof Color ? value.android : value;
         this.editText.setSupportBackgroundTintList(getFocusedColorStateList(color, this.style['variant']));
         // this.editText.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
