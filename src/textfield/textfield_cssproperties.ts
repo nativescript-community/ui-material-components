@@ -22,7 +22,8 @@ export const errorProperty = new CssProperty<Style, string>({
 errorProperty.register(Style);
 export const maxLengthProperty = new CssProperty<Style, number>({
     name: 'maxLength',
-    cssName: 'max-length'
+    cssName: 'max-length',
+    valueConverter: v => parseFloat(v)
 });
 maxLengthProperty.register(Style);
 export const floatingProperty = new CssProperty<Style, boolean>({
