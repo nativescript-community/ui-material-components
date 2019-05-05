@@ -62,9 +62,9 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
         get contentScrollView() {
             const alertView = this.super.view as MDCAlertControllerView;
             if (alertView) {
-                alertView.backgroundColor = UIColor.blueColor;
+                // alertView.backgroundColor = UIColor.blueColor;
                 const contentScrollView = alertView.subviews[0] as UIScrollView;
-                contentScrollView.backgroundColor = UIColor.greenColor;
+                // contentScrollView.backgroundColor = UIColor.greenColor;
                 return contentScrollView;
             }
             return null;
