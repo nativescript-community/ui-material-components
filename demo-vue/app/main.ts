@@ -20,12 +20,12 @@ Vue.use(RipplePlugin);
 Vue.use(SliderPlugin);
 Vue.use(TextFieldPlugin);
 
-import { getExamples } from './examples';
+// import { getExamples } from './examples';
 import * as views from './views';
 
-for (let item of getExamples()) {
-    Vue.component(item.component.name, item.component);
-}
+// for (let item of getExamples()) {
+//     Vue.component(item.component.name, item.component);
+// }
 
 Vue.component(views.Home.name, views.Home);
 

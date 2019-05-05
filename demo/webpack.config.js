@@ -58,7 +58,7 @@ module.exports = env => {
         const srcFullPath = resolve(projectRoot,  '..', 'src');
         aliases = Object.assign(aliases, {
             '#':srcFullPath,
-            'nativescript-material-core$': '#/core/material.' + platform,
+            'nativescript-material-core$': '#/core/core.' + platform,
             'nativescript-material-core': '#/core',
             'nativescript-material-bottomsheet': '#/bottomsheet/bottomsheet.' + platform,
             'nativescript-material-cardview': '#/cardview/cardview.' + platform,

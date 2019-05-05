@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { themer } from "./nativescript-material-components/material";
+import { themer } from "./nativescript-material-components/core";
 
 themer.setPrimaryColor('red');
 
