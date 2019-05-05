@@ -27,6 +27,7 @@ import {
     PromptResult
 } from 'tns-core-modules/ui/dialogs';
 import { MDCAlertControlerOptions } from './dialogs';
+import { initTextInputEditText } from 'nativescript-material-textfield';
 
 declare module 'tns-core-modules/ui/core/view/view' {
     interface View {
@@ -225,6 +226,7 @@ export function alert(arg: any): Promise<void> {
 
             showDialog(alert, options, resolve);
         } catch (ex) {
+            console.error(ex);
             reject(ex);
         }
     });
@@ -282,6 +284,7 @@ export function confirm(arg: any): Promise<boolean> {
 
             showDialog(alert, options);
         } catch (ex) {
+            console.error(ex);
             reject(ex);
         }
     });
@@ -319,7 +322,7 @@ export function prompt(arg: any): Promise<PromptResult> {
     return new Promise<PromptResult>((resolve, reject) => {
         try {
             const alert = createAlertDialog(options);
-
+            initTextInputEditText();
             const layout = android.view.LayoutInflater.from(androidApp.foregroundActivity).inflate(getLayout('material_text_field'), null, false) as android.support.design.widget.TextInputLayout;
             const input = (layout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText;
 
@@ -360,6 +363,7 @@ export function prompt(arg: any): Promise<PromptResult> {
 
             showDialog(alert, options);
         } catch (ex) {
+            console.error(ex);
             reject(ex);
         }
     });
@@ -401,6 +405,7 @@ export function login(arg: any): Promise<LoginResult> {
 
             const alert = createAlertDialog(options);
 
+            initTextInputEditText();
             const userNameLayout = android.view.LayoutInflater.from(androidApp.foregroundActivity).inflate(
                 getLayout('material_text_field'),
                 null,
@@ -435,6 +440,7 @@ export function login(arg: any): Promise<LoginResult> {
 
             showDialog(alert, options);
         } catch (ex) {
+            console.error(ex);
             reject(ex);
         }
     });
@@ -523,6 +529,7 @@ export function action(arg: any): Promise<string> {
 
             showDialog(alert, options);
         } catch (ex) {
+            console.error(ex);
             reject(ex);
         }
     });

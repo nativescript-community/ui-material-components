@@ -26,7 +26,7 @@ interface TextInputEditText extends android.support.design.widget.TextInputEditT
 }
 let TextInputEditText: TextInputEditText;
 
-function initTextInputEditText() {
+export function initTextInputEditText() {
     if (TextInputEditText) {
         return;
     }

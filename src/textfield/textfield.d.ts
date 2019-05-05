@@ -20,3 +20,6 @@ export class TextField extends NTextField {
     focus();
     blur();
 }
+
+
+export function initTextInputEditText() //android only
