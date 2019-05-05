@@ -1,5 +1,5 @@
 import { progressBackgroundColorProperty, ProgressBase, progressColorProperty } from './progress-common';
-import { themer } from 'nativescript-material-core';
+import { themer } from 'nativescript-material-core/core';
 import { screen } from 'tns-core-modules/platform';
 import { Color } from 'tns-core-modules/color';
 

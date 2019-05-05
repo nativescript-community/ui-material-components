@@ -1,7 +1,7 @@
 import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
 import { ImageSource } from 'tns-core-modules/image-source/image-source';
 import { elevationProperty } from 'nativescript-material-core/cssproperties';
-import { themer } from 'nativescript-material-core';
+import { themer } from 'nativescript-material-core/core';
 
 export class FloatingActionButton extends FloatingActionButtonBase {
     nativeViewProtected: MDCFloatingButton;

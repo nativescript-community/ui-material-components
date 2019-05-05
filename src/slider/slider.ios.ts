@@ -1,5 +1,5 @@
 import { SliderBase, thumbColorProperty, thumbHollowAtStartProperty, trackFillColorProperty } from './slider-common';
-import { themer } from 'nativescript-material-core';
+import { themer } from 'nativescript-material-core/core';
 import { Color } from 'tns-core-modules/color';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { trackBackgroundColorProperty } from './cssproperties';

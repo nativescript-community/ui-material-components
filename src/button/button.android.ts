@@ -1,5 +1,5 @@
 import { ButtonBase } from './button-common';
-import { getRippleColor } from 'nativescript-material-core';
+import { getRippleColor } from 'nativescript-material-core/core';
 
 import * as utils from 'tns-core-modules/utils/utils';
 import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';

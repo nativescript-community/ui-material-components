@@ -3,7 +3,7 @@ import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } 
 import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { isUserInteractionEnabledProperty } from 'tns-core-modules/ui/core/view/view';
 import { Color } from 'tns-core-modules/color';
-import { getRippleColor, themer } from 'nativescript-material-core';
+import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { screen } from 'tns-core-modules/platform/platform';
 

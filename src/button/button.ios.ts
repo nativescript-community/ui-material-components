@@ -1,12 +1,12 @@
 import { ButtonBase } from './button-common';
-import { themer } from 'nativescript-material-core';
+import { themer } from 'nativescript-material-core/core';
 import { borderBottomLeftRadiusProperty, borderBottomRightRadiusProperty, borderTopLeftRadiusProperty, borderTopRightRadiusProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 
 import { backgroundColorProperty, backgroundInternalProperty, fontInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Font } from 'tns-core-modules/ui/styling/font';
 import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { getRippleColor } from 'nativescript-material-core';
+import { getRippleColor } from 'nativescript-material-core/core';
 import { Color } from 'tns-core-modules/color';
 
 let buttonScheme: MDCButtonScheme;
