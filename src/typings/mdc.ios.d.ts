@@ -1,3 +1,4 @@
+
 declare const enum MDCActionEmphasis {
 
 	Low = 0,
@@ -5,6 +6,100 @@ declare const enum MDCActionEmphasis {
 	Medium = 1,
 
 	High = 2
+}
+
+declare class MDCActionSheetAction extends NSObject implements NSCopying, UIAccessibilityIdentification {
+
+	static actionWithTitleImageHandler(title: string, image: UIImage, handler: (p1: MDCActionSheetAction) => void): MDCActionSheetAction;
+
+	static alloc(): MDCActionSheetAction; // inherited from NSObject
+
+	static new(): MDCActionSheetAction; // inherited from NSObject
+
+	readonly image: UIImage;
+
+	readonly title: string;
+
+	accessibilityIdentifier: string; // inherited from UIAccessibilityIdentification
+
+	readonly debugDescription: string; // inherited from NSObjectProtocol
+
+	readonly description: string; // inherited from NSObjectProtocol
+
+	readonly hash: number; // inherited from NSObjectProtocol
+
+	readonly isProxy: boolean; // inherited from NSObjectProtocol
+
+	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+
+	readonly  // inherited from NSObjectProtocol
+
+	class(): typeof NSObject;
+
+	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+
+	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+
+	isEqual(object: any): boolean;
+
+	isKindOfClass(aClass: typeof NSObject): boolean;
+
+	isMemberOfClass(aClass: typeof NSObject): boolean;
+
+	performSelector(aSelector: string): any;
+
+	performSelectorWithObject(aSelector: string, object: any): any;
+
+	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+
+	respondsToSelector(aSelector: string): boolean;
+
+	retainCount(): number;
+
+	self(): this;
+}
+
+declare class MDCActionSheetController extends UIViewController {
+
+	static actionSheetControllerWithTitle(title: string): MDCActionSheetController;
+
+	static actionSheetControllerWithTitleMessage(title: string, message: string): MDCActionSheetController;
+
+	static alloc(): MDCActionSheetController; // inherited from NSObject
+
+	static new(): MDCActionSheetController; // inherited from NSObject
+
+	actionFont: UIFont;
+
+	actionTextColor: UIColor;
+
+	actionTintColor: UIColor;
+
+	readonly actions: NSArray<MDCActionSheetAction>;
+
+	backgroundColor: UIColor;
+
+	imageRenderingMode: UIImageRenderingMode;
+
+	inkColor: UIColor;
+
+	mdc_adjustsFontForContentSizeCategory: boolean;
+
+	message: string;
+
+	messageFont: UIFont;
+
+	messageTextColor: UIColor;
+
+	titleFont: UIFont;
+
+	titleTextColor: UIColor;
+
+	readonly transitionController: MDCBottomSheetTransitionController;
+
+	addAction(action: MDCActionSheetAction): void;
+
+	applyThemeWithScheme(scheme: MDCContainerScheming): void;
 }
 
 declare class MDCActivityIndicator extends UIView {
@@ -17,11 +112,11 @@ declare class MDCActivityIndicator extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCActivityIndicator; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCActivityIndicator; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCActivityIndicator; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCActivityIndicator; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCActivityIndicator; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCActivityIndicator; // inherited from UIAppearance
 
 	static new(): MDCActivityIndicator; // inherited from NSObject
 
@@ -174,6 +269,8 @@ declare class MDCAlertController extends UIViewController {
 
 	readonly actions: NSArray<MDCAlertAction>;
 
+	backgroundColor: UIColor;
+
 	buttonFont: UIFont;
 
 	buttonInkColor: UIColor;
@@ -206,6 +303,8 @@ declare class MDCAlertController extends UIViewController {
 
 	addAction(action: MDCAlertAction): void;
 
+	applyThemeWithScheme(scheme: MDCContainerScheming): void;
+
 	buttonForAction(action: MDCAlertAction): MDCButton;
 }
 
@@ -228,11 +327,11 @@ declare class MDCAlertControllerView extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCAlertControllerView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCAlertControllerView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCAlertControllerView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCAlertControllerView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCAlertControllerView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCAlertControllerView; // inherited from UIAppearance
 
 	static new(): MDCAlertControllerView; // inherited from NSObject
 
@@ -401,6 +500,8 @@ declare class MDCAppBarNavigationController extends UINavigationController {
 
 interface MDCAppBarNavigationControllerDelegate extends UINavigationControllerDelegate {
 
+	appBarNavigationControllerTrackingScrollViewForViewControllerSuggestedTrackingScrollView?(navigationController: MDCAppBarNavigationController, viewController: UIViewController, scrollView: UIScrollView): UIScrollView;
+
 	appBarNavigationControllerWillAddAppBarAsChildOfViewController?(navigationController: MDCAppBarNavigationController, appBar: MDCAppBar, viewController: UIViewController): void;
 
 	appBarNavigationControllerWillAddAppBarViewControllerAsChildOfViewController?(navigationController: MDCAppBarNavigationController, appBarViewController: MDCAppBarViewController, viewController: UIViewController): void;
@@ -430,6 +531,10 @@ declare class MDCAppBarViewController extends MDCFlexibleHeaderViewController {
 	headerStackView: MDCHeaderStackView;
 
 	navigationBar: MDCNavigationBar;
+
+	applyPrimaryThemeWithScheme(containerScheme: MDCContainerScheming): void;
+
+	applySurfaceThemeWithScheme(containerScheme: MDCContainerScheming): void;
 }
 
 declare const enum MDCBarButtonItemLayoutHints {
@@ -451,11 +556,11 @@ declare class MDCBaseCell extends UICollectionViewCell {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCBaseCell; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCBaseCell; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBaseCell; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCBaseCell; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCBaseCell; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBaseCell; // inherited from UIAppearance
 
 	static new(): MDCBaseCell; // inherited from NSObject
 
@@ -639,11 +744,11 @@ declare class MDCBottomAppBarView extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCBottomAppBarView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCBottomAppBarView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBottomAppBarView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCBottomAppBarView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCBottomAppBarView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBottomAppBarView; // inherited from UIAppearance
 
 	static new(): MDCBottomAppBarView; // inherited from NSObject
 
@@ -704,6 +809,8 @@ declare class MDCBottomDrawerPresentationController extends UIPresentationContro
 
 	delegate: MDCBottomDrawerPresentationControllerDelegate;
 
+	maximumInitialDrawerHeight: number;
+
 	scrimColor: UIColor;
 
 	topHandleColor: UIColor;
@@ -711,6 +818,8 @@ declare class MDCBottomDrawerPresentationController extends UIPresentationContro
 	topHandleHidden: boolean;
 
 	trackingScrollView: UIScrollView;
+
+	expandToFullscreenWithDurationCompletion(duration: number, completion: (p1: boolean) => void): void;
 
 	setContentOffsetYAnimated(contentOffsetY: number, animated: boolean): void;
 }
@@ -810,6 +919,8 @@ declare class MDCBottomDrawerViewController extends UIViewController implements 
 
 	headerViewController: UIViewController;
 
+	maximumInitialDrawerHeight: number;
+
 	scrimColor: UIColor;
 
 	topHandleColor: UIColor;
@@ -841,6 +952,8 @@ declare class MDCBottomDrawerViewController extends UIViewController implements 
 	class(): typeof NSObject;
 
 	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+
+	expandToFullscreenWithDurationCompletion(duration: number, completion: (p1: boolean) => void): void;
 
 	isEqual(object: any): boolean;
 
@@ -890,15 +1003,21 @@ declare class MDCBottomNavigationBar extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCBottomNavigationBar; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCBottomNavigationBar; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBottomNavigationBar; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCBottomNavigationBar; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCBottomNavigationBar; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBottomNavigationBar; // inherited from UIAppearance
 
 	static new(): MDCBottomNavigationBar; // inherited from NSObject
 
 	alignment: MDCBottomNavigationBarAlignment;
+
+	backgroundBlurEffectStyle: UIBlurEffectStyle;
+
+	backgroundBlurEnabled: boolean;
+
+	readonly barItemsBottomAnchor: NSLayoutYAxisAnchor;
 
 	barTintColor: UIColor;
 
@@ -912,8 +1031,6 @@ declare class MDCBottomNavigationBar extends UIView {
 
 	itemsContentHorizontalMargin: number;
 
-	itemsContentInsets: UIEdgeInsets;
-
 	itemsContentVerticalMargin: number;
 
 	selectedItem: UITabBarItem;
@@ -922,7 +1039,13 @@ declare class MDCBottomNavigationBar extends UIView {
 
 	selectedItemTitleColor: UIColor;
 
+	sizeThatFitsIncludesSafeArea: boolean;
+
 	titleVisibility: MDCBottomNavigationBarTitleVisibility;
+
+	titlesNumberOfLines: number;
+
+	truncatesLongTitles: boolean;
 
 	unselectedItemTintColor: UIColor;
 
@@ -998,6 +1121,10 @@ declare class MDCBottomSheetController extends UIViewController {
 
 	scrimAccessibilityTraits: number;
 
+	scrimColor: UIColor;
+
+	shouldFlashScrollIndicatorsOnAppearance: boolean;
+
 	readonly state: MDCSheetState;
 
 	trackingScrollView: UIScrollView;
@@ -1013,7 +1140,11 @@ declare class MDCBottomSheetController extends UIViewController {
 
 interface MDCBottomSheetControllerDelegate extends NSObjectProtocol {
 
-	bottomSheetControllerDidDismissBottomSheet(controller: MDCBottomSheetController): void;
+	bottomSheetControllerDidChangeYOffsetYOffset?(controller: MDCBottomSheetController, yOffset: number): void;
+
+	bottomSheetControllerDidDismissBottomSheet?(controller: MDCBottomSheetController): void;
+
+	bottomSheetControllerStateChangedState?(controller: MDCBottomSheetController, state: MDCSheetState): void;
 }
 declare var MDCBottomSheetControllerDelegate: {
 
@@ -1049,10 +1180,14 @@ declare class MDCBottomSheetPresentationController extends UIPresentationControl
 
 	scrimAccessibilityTraits: number;
 
+	scrimColor: UIColor;
+
 	trackingScrollView: UIScrollView;
 }
 
 interface MDCBottomSheetPresentationControllerDelegate extends UIAdaptivePresentationControllerDelegate {
+
+	bottomSheetDidChangeYOffsetYOffset?(bottomSheet: MDCBottomSheetPresentationController, yOffset: number): void;
 
 	bottomSheetPresentationControllerDidDismissBottomSheet?(bottomSheet: MDCBottomSheetPresentationController): void;
 
@@ -1082,6 +1217,8 @@ declare class MDCBottomSheetTransitionController extends NSObject implements UIV
 	scrimAccessibilityLabel: string;
 
 	scrimAccessibilityTraits: number;
+
+	scrimColor: UIColor;
 
 	trackingScrollView: UIScrollView;
 
@@ -1148,19 +1285,23 @@ declare class MDCButton extends UIButton {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCButton; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCButton; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCButton; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCButton; // inherited from UIAppearance
 
 	static buttonWithType(buttonType: UIButtonType): MDCButton; // inherited from UIButton
 
 	static new(): MDCButton; // inherited from NSObject
 
+	accessibilityTraitsIncludesButton: boolean;
+
 	customTitleColor: UIColor;
 
 	disabledAlpha: number;
+
+	enableRippleBehavior: boolean;
 
 	hitAreaInsets: UIEdgeInsets;
 
@@ -1173,6 +1314,8 @@ declare class MDCButton extends UIButton {
 	maximumSize: CGSize;
 
 	mdc_adjustsFontForContentSizeCategory: boolean;
+
+	mdc_legacyFontScaling: boolean;
 
 	minimumSize: CGSize;
 
@@ -1187,6 +1330,12 @@ declare class MDCButton extends UIButton {
 	underlyingColorHint: UIColor;
 
 	uppercaseTitle: boolean;
+
+	applyContainedThemeWithScheme(scheme: MDCContainerScheming): void;
+
+	applyOutlinedThemeWithScheme(scheme: MDCContainerScheming): void;
+
+	applyTextThemeWithScheme(scheme: MDCContainerScheming): void;
 
 	backgroundColorForState(state: UIControlState): UIColor;
 
@@ -1231,11 +1380,11 @@ declare class MDCButtonBar extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCButtonBar; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCButtonBar; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCButtonBar; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCButtonBar; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCButtonBar; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCButtonBar; // inherited from UIAppearance
 
 	static new(): MDCButtonBar; // inherited from NSObject
 
@@ -1270,11 +1419,11 @@ declare class MDCButtonBarButton extends MDCFlatButton {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCButtonBarButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCButtonBarButton; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCButtonBarButton; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCButtonBarButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCButtonBarButton; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCButtonBarButton; // inherited from UIAppearance
 
 	static buttonWithType(buttonType: UIButtonType): MDCButtonBarButton; // inherited from UIButton
 
@@ -1413,21 +1562,29 @@ declare class MDCCard extends UIControl {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCCard; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCCard; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCard; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCCard; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCCard; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCard; // inherited from UIAppearance
 
 	static new(): MDCCard; // inherited from NSObject
 
 	cornerRadius: number;
 
+	enableRippleBehavior: boolean;
+
 	readonly inkView: MDCInkView;
 
 	interactable: boolean;
 
+	readonly rippleView: MDCStatefulRippleView;
+
 	shapeGenerator: MDCShapeGenerating;
+
+	applyOutlinedThemeWithScheme(scheme: MDCContainerScheming): void;
+
+	applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
 	borderColorForState(state: UIControlState): UIColor;
 
@@ -1461,7 +1618,9 @@ declare const enum MDCCardCellState {
 
 	Highlighted = 1,
 
-	Selected = 2
+	Selected = 2,
+
+	Dragged = 3
 }
 
 declare const enum MDCCardCellVerticalImageAlignment {
@@ -1483,25 +1642,35 @@ declare class MDCCardCollectionCell extends UICollectionViewCell {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCCardCollectionCell; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCCardCollectionCell; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCardCollectionCell; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCCardCollectionCell; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCCardCollectionCell; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCardCollectionCell; // inherited from UIAppearance
 
 	static new(): MDCCardCollectionCell; // inherited from NSObject
 
 	cornerRadius: number;
 
+	dragged: boolean;
+
+	enableRippleBehavior: boolean;
+
 	readonly inkView: MDCInkView;
 
 	interactable: boolean;
+
+	readonly rippleView: MDCStatefulRippleView;
 
 	selectable: boolean;
 
 	shapeGenerator: MDCShapeGenerating;
 
 	readonly state: MDCCardCellState;
+
+	applyOutlinedThemeWithScheme(scheme: MDCContainerScheming): void;
+
+	applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
 	borderColorForState(state: MDCCardCellState): UIColor;
 
@@ -1617,11 +1786,11 @@ declare class MDCChipCollectionViewCell extends UICollectionViewCell {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCChipCollectionViewCell; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCChipCollectionViewCell; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCChipCollectionViewCell; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCChipCollectionViewCell; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCChipCollectionViewCell; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCChipCollectionViewCell; // inherited from UIAppearance
 
 	static new(): MDCChipCollectionViewCell; // inherited from NSObject
 
@@ -1649,11 +1818,11 @@ declare class MDCChipField extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCChipField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCChipField; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCChipField; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCChipField; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCChipField; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCChipField; // inherited from UIAppearance
 
 	static new(): MDCChipField; // inherited from NSObject
 
@@ -1746,11 +1915,11 @@ declare class MDCChipView extends UIControl {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCChipView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCChipView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCChipView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCChipView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCChipView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCChipView; // inherited from UIAppearance
 
 	static new(): MDCChipView; // inherited from NSObject
 
@@ -1759,6 +1928,8 @@ declare class MDCChipView extends UIControl {
 	accessoryView: UIView;
 
 	contentPadding: UIEdgeInsets;
+
+	enableRippleBehavior: boolean;
 
 	hitAreaInsets: UIEdgeInsets;
 
@@ -1781,6 +1952,10 @@ declare class MDCChipView extends UIControl {
 	readonly titleLabel: UILabel;
 
 	titlePadding: UIEdgeInsets;
+
+	applyOutlinedThemeWithScheme(scheme: MDCContainerScheming): void;
+
+	applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
 	backgroundColorForState(state: UIControlState): UIColor;
 
@@ -1898,11 +2073,11 @@ declare class MDCCollectionViewCell extends UICollectionViewCell {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCCollectionViewCell; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCCollectionViewCell; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCollectionViewCell; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCCollectionViewCell; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCCollectionViewCell; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCollectionViewCell; // inherited from UIAppearance
 
 	static new(): MDCCollectionViewCell; // inherited from NSObject
 
@@ -2004,6 +2179,8 @@ declare class MDCCollectionViewController extends UICollectionViewController imp
 
 	collectionViewCanSelectItemDuringEditingAtIndexPath(collectionView: UICollectionView, indexPath: NSIndexPath): boolean;
 
+	collectionViewCanSwipeInDirectionToDismissItemAtIndexPath(collectionView: UICollectionView, swipeDirection: UISwipeGestureRecognizerDirection, indexPath: NSIndexPath): boolean;
+
 	collectionViewCanSwipeToDismissItemAtIndexPath(collectionView: UICollectionView, indexPath: NSIndexPath): boolean;
 
 	collectionViewCanSwipeToDismissSection(collectionView: UICollectionView, section: number): boolean;
@@ -2014,7 +2191,7 @@ declare class MDCCollectionViewController extends UICollectionViewController imp
 
 	collectionViewCellStyleForSection(collectionView: UICollectionView, section: number): MDCCollectionViewCellStyle;
 
-	collectionViewDidApplyInlayToItemAtIndexPaths(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath>): void;
+	collectionViewDidApplyInlayToItemAtIndexPaths(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath> | NSIndexPath[]): void;
 
 	collectionViewDidBeginEditing(collectionView: UICollectionView): void;
 
@@ -2022,7 +2199,7 @@ declare class MDCCollectionViewController extends UICollectionViewController imp
 
 	collectionViewDidCancelSwipeToDismissSection(collectionView: UICollectionView, section: number): void;
 
-	collectionViewDidDeleteItemsAtIndexPaths(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath>): void;
+	collectionViewDidDeleteItemsAtIndexPaths(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath> | NSIndexPath[]): void;
 
 	collectionViewDidDeleteSections(collectionView: UICollectionView, sections: NSIndexSet): void;
 
@@ -2044,7 +2221,7 @@ declare class MDCCollectionViewController extends UICollectionViewController imp
 
 	collectionViewDidMoveItemAtIndexPathToIndexPath(collectionView: UICollectionView, indexPath: NSIndexPath, newIndexPath: NSIndexPath): void;
 
-	collectionViewDidRemoveInlayFromItemAtIndexPaths(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath>): void;
+	collectionViewDidRemoveInlayFromItemAtIndexPaths(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath> | NSIndexPath[]): void;
 
 	collectionViewDidSelectItemAtIndexPath(collectionView: UICollectionView, indexPath: NSIndexPath): void;
 
@@ -2110,7 +2287,7 @@ declare class MDCCollectionViewController extends UICollectionViewController imp
 
 	collectionViewWillBeginSwipeToDismissSection(collectionView: UICollectionView, section: number): void;
 
-	collectionViewWillDeleteItemsAtIndexPaths(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath>): void;
+	collectionViewWillDeleteItemsAtIndexPaths(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath> | NSIndexPath[]): void;
 
 	collectionViewWillDeleteSections(collectionView: UICollectionView, sections: NSIndexSet): void;
 
@@ -2185,6 +2362,8 @@ interface MDCCollectionViewEditing extends NSObjectProtocol {
 
 	editing: boolean;
 
+	minimumPressDuration: number;
+
 	reorderingCellIndexPath: NSIndexPath;
 
 	setEditingAnimated(editing: boolean, animated: boolean): void;
@@ -2214,6 +2393,8 @@ interface MDCCollectionViewEditingDelegate extends NSObjectProtocol {
 
 	collectionViewCanSelectItemDuringEditingAtIndexPath?(collectionView: UICollectionView, indexPath: NSIndexPath): boolean;
 
+	collectionViewCanSwipeInDirectionToDismissItemAtIndexPath?(collectionView: UICollectionView, swipeDirection: UISwipeGestureRecognizerDirection, indexPath: NSIndexPath): boolean;
+
 	collectionViewCanSwipeToDismissItemAtIndexPath?(collectionView: UICollectionView, indexPath: NSIndexPath): boolean;
 
 	collectionViewCanSwipeToDismissSection?(collectionView: UICollectionView, section: number): boolean;
@@ -2224,7 +2405,7 @@ interface MDCCollectionViewEditingDelegate extends NSObjectProtocol {
 
 	collectionViewDidCancelSwipeToDismissSection?(collectionView: UICollectionView, section: number): void;
 
-	collectionViewDidDeleteItemsAtIndexPaths?(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath>): void;
+	collectionViewDidDeleteItemsAtIndexPaths?(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath> | NSIndexPath[]): void;
 
 	collectionViewDidDeleteSections?(collectionView: UICollectionView, sections: NSIndexSet): void;
 
@@ -2246,7 +2427,7 @@ interface MDCCollectionViewEditingDelegate extends NSObjectProtocol {
 
 	collectionViewWillBeginSwipeToDismissSection?(collectionView: UICollectionView, section: number): void;
 
-	collectionViewWillDeleteItemsAtIndexPaths?(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath>): void;
+	collectionViewWillDeleteItemsAtIndexPaths?(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath> | NSIndexPath[]): void;
 
 	collectionViewWillDeleteSections?(collectionView: UICollectionView, sections: NSIndexSet): void;
 
@@ -2407,9 +2588,9 @@ interface MDCCollectionViewStylingDelegate extends NSObjectProtocol {
 
 	collectionViewCellStyleForSection?(collectionView: UICollectionView, section: number): MDCCollectionViewCellStyle;
 
-	collectionViewDidApplyInlayToItemAtIndexPaths?(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath>): void;
+	collectionViewDidApplyInlayToItemAtIndexPaths?(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath> | NSIndexPath[]): void;
 
-	collectionViewDidRemoveInlayFromItemAtIndexPaths?(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath>): void;
+	collectionViewDidRemoveInlayFromItemAtIndexPaths?(collectionView: UICollectionView, indexPaths: NSArray<NSIndexPath> | NSIndexPath[]): void;
 
 	collectionViewHidesInkViewAtIndexPath?(collectionView: UICollectionView, indexPath: NSIndexPath): boolean;
 
@@ -2444,11 +2625,11 @@ declare class MDCCollectionViewTextCell extends MDCCollectionViewCell {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCCollectionViewTextCell; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCCollectionViewTextCell; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCollectionViewTextCell; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCCollectionViewTextCell; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCCollectionViewTextCell; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCollectionViewTextCell; // inherited from UIAppearance
 
 	static new(): MDCCollectionViewTextCell; // inherited from NSObject
 
@@ -2527,6 +2708,32 @@ declare class MDCContainedButtonThemer extends NSObject {
 
 	static new(): MDCContainedButtonThemer; // inherited from NSObject
 }
+
+declare class MDCContainerScheme extends NSObject implements MDCContainerScheming {
+
+	static alloc(): MDCContainerScheme; // inherited from NSObject
+
+	static new(): MDCContainerScheme; // inherited from NSObject
+
+	colorScheme: MDCSemanticColorScheme;
+
+	shapeScheme: MDCShapeScheme;
+
+	typographyScheme: MDCTypographyScheme;
+}
+
+interface MDCContainerScheming {
+
+	colorScheme: MDCColorScheming;
+
+	shapeScheme: MDCShapeScheming;
+
+	typographyScheme: MDCTypographyScheming;
+}
+declare var MDCContainerScheming: {
+
+	prototype: MDCContainerScheming;
+};
 
 declare class MDCCornerTreatment extends NSObject implements NSCopying {
 
@@ -2617,12 +2824,25 @@ declare class MDCDialogPresentationController extends UIPresentationController {
 
 	dialogElevation: number;
 
+	dialogPresentationControllerDelegate: MDCDialogPresentationControllerDelegate;
+
 	dismissOnBackgroundTap: boolean;
 
 	scrimColor: UIColor;
 
+	applyThemeWithScheme(scheme: MDCContainerScheming): void;
+
 	// frameOfPresentedViewInContainerView(): CGRect;
 }
+
+interface MDCDialogPresentationControllerDelegate extends NSObjectProtocol {
+
+	dialogPresentationControllerDidDismiss?(dialogPresentationController: MDCDialogPresentationController): void;
+}
+declare var MDCDialogPresentationControllerDelegate: {
+
+	prototype: MDCDialogPresentationControllerDelegate;
+};
 
 declare class MDCDialogTransitionController extends NSObject implements UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
 
@@ -2742,11 +2962,11 @@ declare class MDCFeatureHighlightView extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCFeatureHighlightView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCFeatureHighlightView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFeatureHighlightView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCFeatureHighlightView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCFeatureHighlightView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFeatureHighlightView; // inherited from UIAppearance
 
 	static new(): MDCFeatureHighlightView; // inherited from NSObject
 
@@ -2757,6 +2977,8 @@ declare class MDCFeatureHighlightView extends UIView {
 	innerHighlightColor: UIColor;
 
 	mdc_adjustsFontForContentSizeCategory: boolean;
+
+	mdc_legacyFontScaling: boolean;
 
 	outerHighlightColor: UIColor;
 
@@ -2780,6 +3002,8 @@ declare class MDCFeatureHighlightViewController extends UIViewController {
 	innerHighlightColor: UIColor;
 
 	mdc_adjustsFontForContentSizeCategory: boolean;
+
+	mdc_legacyFontScaling: boolean;
 
 	outerHighlightColor: UIColor;
 
@@ -2821,11 +3045,11 @@ declare class MDCFlatButton extends MDCButton {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCFlatButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCFlatButton; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFlatButton; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCFlatButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCFlatButton; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFlatButton; // inherited from UIAppearance
 
 	static buttonWithType(buttonType: UIButtonType): MDCFlatButton; // inherited from UIButton
 
@@ -2873,6 +3097,15 @@ declare const enum MDCFlexibleHeaderContentImportance {
 	High = 1
 }
 
+interface MDCFlexibleHeaderSafeAreaDelegate {
+
+	flexibleHeaderViewControllerTopSafeAreaInsetViewController(flexibleHeaderViewController: MDCFlexibleHeaderViewController): UIViewController;
+}
+declare var MDCFlexibleHeaderSafeAreaDelegate: {
+
+	prototype: MDCFlexibleHeaderSafeAreaDelegate;
+};
+
 declare const enum MDCFlexibleHeaderScrollPhase {
 
 	Shifting = 0,
@@ -2901,11 +3134,11 @@ declare class MDCFlexibleHeaderView extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCFlexibleHeaderView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCFlexibleHeaderView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFlexibleHeaderView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCFlexibleHeaderView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCFlexibleHeaderView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFlexibleHeaderView; // inherited from UIAppearance
 
 	static new(): MDCFlexibleHeaderView; // inherited from NSObject
 
@@ -2983,6 +3216,8 @@ declare class MDCFlexibleHeaderView extends UIView {
 
 	stopHidingViewWhenShifted(view: UIView): void;
 
+	trackingScrollViewDidChangeAdjustedContentInset(trackingScrollView: UIScrollView): void;
+
 	trackingScrollViewDidEndDecelerating(): void;
 
 	trackingScrollViewDidEndDraggingWillDecelerate(willDecelerate: boolean): void;
@@ -3011,6 +3246,8 @@ declare class MDCFlexibleHeaderViewController extends UIViewController implement
 	layoutDelegate: MDCFlexibleHeaderViewLayoutDelegate;
 
 	preferredStatusBarStyle: UIStatusBarStyle;
+
+	safeAreaDelegate: MDCFlexibleHeaderSafeAreaDelegate;
 
 	topLayoutGuideAdjustmentEnabled: boolean;
 
@@ -3206,11 +3443,11 @@ declare class MDCFloatingButton extends MDCButton {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCFloatingButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCFloatingButton; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFloatingButton; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCFloatingButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCFloatingButton; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFloatingButton; // inherited from UIAppearance
 
 	static buttonWithShape(shape: MDCFloatingButtonShape): MDCFloatingButton;
 
@@ -3231,6 +3468,8 @@ declare class MDCFloatingButton extends MDCButton {
 	mode: MDCFloatingButtonMode;
 
 	constructor(o: { frame: CGRect; shape: MDCFloatingButtonShape; });
+
+	applySecondaryThemeWithScheme(scheme: MDCContainerScheming): void;
 
 	collapseCompletion(animated: boolean, completion: () => void): void;
 
@@ -3284,6 +3523,23 @@ declare class MDCFloatingButtonShapeThemer extends NSObject {
 	static applyShapeSchemeToButton(shapeScheme: MDCShapeScheming, button: MDCFloatingButton): void;
 
 	static new(): MDCFloatingButtonShapeThemer; // inherited from NSObject
+}
+
+declare class MDCFontScaler extends NSObject {
+
+	static alloc(): MDCFontScaler; // inherited from NSObject
+
+	static new(): MDCFontScaler; // inherited from NSObject
+
+	static scalerForMaterialTextStyle(textStyle: string): MDCFontScaler;
+
+	constructor(o: { forMaterialTextStyle: string; });
+
+	initForMaterialTextStyle(textStyle: string): this;
+
+	scaledFontWithFont(font: UIFont): UIFont;
+
+	scaledValueForValue(value: number): number;
 }
 
 interface MDCFontScheme extends NSObjectProtocol {
@@ -3354,11 +3610,11 @@ declare class MDCHeaderStackView extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCHeaderStackView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCHeaderStackView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCHeaderStackView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCHeaderStackView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCHeaderStackView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCHeaderStackView; // inherited from UIAppearance
 
 	static new(): MDCHeaderStackView; // inherited from NSObject
 
@@ -3570,11 +3826,11 @@ declare class MDCInkView extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCInkView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCInkView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCInkView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCInkView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCInkView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCInkView; // inherited from UIAppearance
 
 	static injectedInkViewForView(view: UIView): MDCInkView;
 
@@ -3628,11 +3884,11 @@ declare class MDCIntrinsicHeightTextView extends UITextView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCIntrinsicHeightTextView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCIntrinsicHeightTextView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCIntrinsicHeightTextView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCIntrinsicHeightTextView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCIntrinsicHeightTextView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCIntrinsicHeightTextView; // inherited from UIAppearance
 
 	static new(): MDCIntrinsicHeightTextView; // inherited from NSObject
 }
@@ -3802,11 +4058,11 @@ declare class MDCMultilineTextField extends UIView implements MDCMultilineTextIn
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCMultilineTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCMultilineTextField; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCMultilineTextField; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCMultilineTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCMultilineTextField; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCMultilineTextField; // inherited from UIAppearance
 
 	static new(): MDCMultilineTextField; // inherited from NSObject
 
@@ -3843,6 +4099,8 @@ declare class MDCMultilineTextField extends UIView implements MDCMultilineTextIn
 	expandsOnOverflow: boolean; // inherited from MDCMultilineTextInput
 
 	font: UIFont; // inherited from MDCTextInput
+
+	readonly hasTextContent: boolean; // inherited from MDCTextInput
 
 	readonly hash: number; // inherited from NSObjectProtocol
 
@@ -3883,6 +4141,8 @@ declare class MDCMultilineTextField extends UIView implements MDCMultilineTextIn
 	readonly  // inherited from NSObjectProtocol
 
 	class(): typeof NSObject;
+
+	clearText(): void;
 
 	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
@@ -3944,11 +4204,11 @@ declare class MDCNavigationBar extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCNavigationBar; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCNavigationBar; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCNavigationBar; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCNavigationBar; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCNavigationBar; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCNavigationBar; // inherited from UIAppearance
 
 	static new(): MDCNavigationBar; // inherited from NSObject
 
@@ -3985,6 +4245,8 @@ declare class MDCNavigationBar extends UIView {
 	titleAlignment: MDCNavigationBarTitleAlignment;
 
 	titleFont: UIFont;
+
+	titleInsets: UIEdgeInsets;
 
 	titleTextAttributes: NSDictionary<string, any>;
 
@@ -4070,11 +4332,11 @@ declare class MDCNumericValueLabel extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCNumericValueLabel; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCNumericValueLabel; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCNumericValueLabel; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCNumericValueLabel; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCNumericValueLabel; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCNumericValueLabel; // inherited from UIAppearance
 
 	static new(): MDCNumericValueLabel; // inherited from NSObject
 
@@ -4171,11 +4433,11 @@ declare class MDCOverlayWindow extends UIWindow {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCOverlayWindow; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCOverlayWindow; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCOverlayWindow; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCOverlayWindow; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCOverlayWindow; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCOverlayWindow; // inherited from UIAppearance
 
 	static new(): MDCOverlayWindow; // inherited from NSObject
 
@@ -4194,11 +4456,11 @@ declare class MDCPageControl extends UIControl implements UIScrollViewDelegate {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCPageControl; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCPageControl; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCPageControl; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCPageControl; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCPageControl; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCPageControl; // inherited from UIAppearance
 
 	static new(): MDCPageControl; // inherited from NSObject
 
@@ -4451,11 +4713,11 @@ declare class MDCProgressView extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCProgressView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCProgressView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCProgressView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCProgressView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCProgressView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCProgressView; // inherited from UIAppearance
 
 	static new(): MDCProgressView; // inherited from NSObject
 
@@ -4498,11 +4760,11 @@ declare class MDCRaisedButton extends MDCButton {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCRaisedButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCRaisedButton; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRaisedButton; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCRaisedButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCRaisedButton; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRaisedButton; // inherited from UIAppearance
 
 	static buttonWithType(buttonType: UIButtonType): MDCRaisedButton; // inherited from UIButton
 
@@ -4548,6 +4810,158 @@ declare class MDCRectangleShapeGenerator extends NSObject implements MDCShapeGen
 	setEdges(edgeShape: MDCEdgeTreatment): void;
 }
 
+declare const enum MDCRippleState {
+
+	Normal = 0,
+
+	Highlighted = 1,
+
+	Selected = 2,
+
+	Dragged = 4
+}
+
+declare const enum MDCRippleStyle {
+
+	Bounded = 0,
+
+	Unbounded = 1
+}
+
+declare class MDCRippleTouchController extends NSObject implements UIGestureRecognizerDelegate {
+
+	static alloc(): MDCRippleTouchController; // inherited from NSObject
+
+	static new(): MDCRippleTouchController; // inherited from NSObject
+
+	delegate: MDCRippleTouchControllerDelegate;
+
+	readonly gestureRecognizer: UILongPressGestureRecognizer;
+
+	readonly rippleView: MDCRippleView;
+
+	shouldProcessRippleWithScrollViewGestures: boolean;
+
+	readonly view: UIView;
+
+	readonly debugDescription: string; // inherited from NSObjectProtocol
+
+	readonly description: string; // inherited from NSObjectProtocol
+
+	readonly hash: number; // inherited from NSObjectProtocol
+
+	readonly isProxy: boolean; // inherited from NSObjectProtocol
+
+	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+
+	readonly  // inherited from NSObjectProtocol
+
+	constructor(o: { view: UIView; });
+
+	addRippleToView(view: UIView): void;
+
+	class(): typeof NSObject;
+
+	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+
+	gestureRecognizerShouldBeRequiredToFailByGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
+
+	gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer): boolean;
+
+	gestureRecognizerShouldReceivePress(gestureRecognizer: UIGestureRecognizer, press: UIPress): boolean;
+
+	gestureRecognizerShouldReceiveTouch(gestureRecognizer: UIGestureRecognizer, touch: UITouch): boolean;
+
+	gestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
+
+	gestureRecognizerShouldRequireFailureOfGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
+
+	initWithView(view: UIView): this;
+
+	isEqual(object: any): boolean;
+
+	isKindOfClass(aClass: typeof NSObject): boolean;
+
+	isMemberOfClass(aClass: typeof NSObject): boolean;
+
+	performSelector(aSelector: string): any;
+
+	performSelectorWithObject(aSelector: string, object: any): any;
+
+	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+
+	respondsToSelector(aSelector: string): boolean;
+
+	retainCount(): number;
+
+	self(): this;
+}
+
+interface MDCRippleTouchControllerDelegate extends NSObjectProtocol {
+
+	rippleTouchControllerDidProcessRippleViewAtTouchLocation?(rippleTouchController: MDCRippleTouchController, rippleView: MDCRippleView, location: CGPoint): void;
+
+	rippleTouchControllerInsertRippleViewIntoView?(rippleTouchController: MDCRippleTouchController, rippleView: MDCRippleView, view: UIView): void;
+
+	rippleTouchControllerShouldProcessRippleTouchesAtTouchLocation?(rippleTouchController: MDCRippleTouchController, location: CGPoint): boolean;
+}
+declare var MDCRippleTouchControllerDelegate: {
+
+	prototype: MDCRippleTouchControllerDelegate;
+};
+
+declare class MDCRippleView extends UIView {
+
+	static alloc(): MDCRippleView; // inherited from NSObject
+
+	static appearance(): MDCRippleView; // inherited from UIAppearance
+
+	static appearanceForTraitCollection(trait: UITraitCollection): MDCRippleView; // inherited from UIAppearance
+
+	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCRippleView; // inherited from UIAppearance
+
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRippleView; // inherited from UIAppearance
+
+	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCRippleView; // inherited from UIAppearance
+
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRippleView; // inherited from UIAppearance
+
+	static new(): MDCRippleView; // inherited from NSObject
+
+	rippleColor: UIColor;
+
+	rippleStyle: MDCRippleStyle;
+
+	rippleViewDelegate: MDCRippleViewDelegate;
+
+	beginRippleTouchDownAtPointAnimatedCompletion(point: CGPoint, animated: boolean, completion: () => void): void;
+
+	beginRippleTouchUpAnimatedCompletion(animated: boolean, completion: () => void): void;
+
+	cancelAllRipplesAnimatedCompletion(animated: boolean, completion: () => void): void;
+
+	fadeInRippleAnimatedCompletion(animated: boolean, completion: () => void): void;
+
+	fadeOutRippleAnimatedCompletion(animated: boolean, completion: () => void): void;
+
+	setActiveRippleColor(rippleColor: UIColor): void;
+}
+
+interface MDCRippleViewDelegate extends NSObjectProtocol {
+
+	rippleTouchDownAnimationDidBegin?(rippleView: MDCRippleView): void;
+
+	rippleTouchDownAnimationDidEnd?(rippleView: MDCRippleView): void;
+
+	rippleTouchUpAnimationDidBegin?(rippleView: MDCRippleView): void;
+
+	rippleTouchUpAnimationDidEnd?(rippleView: MDCRippleView): void;
+}
+declare var MDCRippleViewDelegate: {
+
+	prototype: MDCRippleViewDelegate;
+};
+
 declare class MDCRoundedCornerTreatment extends MDCCornerTreatment {
 
 	static alloc(): MDCRoundedCornerTreatment; // inherited from NSObject
@@ -4571,11 +4985,11 @@ declare class MDCSelfSizingStereoCell extends MDCBaseCell {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCSelfSizingStereoCell; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCSelfSizingStereoCell; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSelfSizingStereoCell; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCSelfSizingStereoCell; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCSelfSizingStereoCell; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSelfSizingStereoCell; // inherited from UIAppearance
 
 	static new(): MDCSelfSizingStereoCell; // inherited from NSObject
 
@@ -4590,7 +5004,7 @@ declare class MDCSelfSizingStereoCell extends MDCBaseCell {
 	readonly trailingImageView: UIImageView;
 }
 
-declare class MDCSemanticColorScheme extends NSObject implements MDCColorScheming {
+declare class MDCSemanticColorScheme extends NSObject implements MDCColorScheming, NSCopying {
 
 	static alloc(): MDCSemanticColorScheme; // inherited from NSObject
 
@@ -4619,6 +5033,8 @@ declare class MDCSemanticColorScheme extends NSObject implements MDCColorSchemin
 	surfaceColor: UIColor;
 
 	constructor(o: { defaults: MDCColorSchemeDefaults; });
+
+	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
 	initWithDefaults(defaults: MDCColorSchemeDefaults): this;
 }
@@ -4749,7 +5165,7 @@ declare class MDCShadowMetrics extends NSObject {
 	readonly topShadowRadius: number;
 }
 
-declare class MDCShapeCategory extends NSObject {
+declare class MDCShapeCategory extends NSObject implements NSCopying {
 
 	static alloc(): MDCShapeCategory; // inherited from NSObject
 
@@ -4764,6 +5180,8 @@ declare class MDCShapeCategory extends NSObject {
 	topRightCorner: MDCCornerTreatment;
 
 	constructor(o: { cornersWithFamily: MDCShapeCornerFamily; andSize: number; });
+
+	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
 	initCornersWithFamilyAndSize(cornerFamily: MDCShapeCornerFamily, cornerSize: number): this;
 }
@@ -4850,11 +5268,11 @@ declare class MDCShapedView extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCShapedView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCShapedView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCShapedView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCShapedView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCShapedView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCShapedView; // inherited from UIAppearance
 
 	static new(): MDCShapedView; // inherited from NSObject
 
@@ -4899,11 +5317,11 @@ declare class MDCSlider extends UIControl {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCSlider; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCSlider; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSlider; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCSlider; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCSlider; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSlider; // inherited from UIAppearance
 
 	static new(): MDCSlider; // inherited from NSObject
 
@@ -5251,11 +5669,11 @@ declare class MDCSnackbarMessageView extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCSnackbarMessageView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCSnackbarMessageView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSnackbarMessageView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCSnackbarMessageView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCSnackbarMessageView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSnackbarMessageView; // inherited from UIAppearance
 
 	static new(): MDCSnackbarMessageView; // inherited from NSObject
 
@@ -5294,6 +5712,37 @@ declare class MDCSnackbarTypographyThemer extends NSObject {
 	static applyTypographyScheme(typographyScheme: MDCTypographyScheming): void;
 
 	static new(): MDCSnackbarTypographyThemer; // inherited from NSObject
+}
+
+declare class MDCStatefulRippleView extends MDCRippleView {
+
+	static alloc(): MDCStatefulRippleView; // inherited from NSObject
+
+	static appearance(): MDCStatefulRippleView; // inherited from UIAppearance
+
+	static appearanceForTraitCollection(trait: UITraitCollection): MDCStatefulRippleView; // inherited from UIAppearance
+
+	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCStatefulRippleView; // inherited from UIAppearance
+
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCStatefulRippleView; // inherited from UIAppearance
+
+	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCStatefulRippleView; // inherited from UIAppearance
+
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCStatefulRippleView; // inherited from UIAppearance
+
+	static new(): MDCStatefulRippleView; // inherited from NSObject
+
+	allowsSelection: boolean;
+
+	dragged: boolean;
+
+	rippleHighlighted: boolean;
+
+	selected: boolean;
+
+	rippleColorForState(state: MDCRippleState): UIColor;
+
+	setRippleColorForState(rippleColor: UIColor, state: MDCRippleState): void;
 }
 
 declare class MDCSystemFontLoader extends NSObject implements MDCTypographyFontLoading {
@@ -5365,11 +5814,11 @@ declare class MDCTabBar extends UIView implements UIBarPositioning {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTabBar; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCTabBar; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBar; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTabBar; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCTabBar; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBar; // inherited from UIAppearance
 
 	static defaultHeightForBarPositionItemAppearance(position: UIBarPosition, appearance: MDCTabBarItemAppearance): number;
 
@@ -5422,6 +5871,10 @@ declare class MDCTabBar extends UIView implements UIBarPositioning {
 	readonly  // inherited from NSObjectProtocol
 
 	accessibilityElementForItem(item: UITabBarItem): any;
+
+	applyPrimaryThemeWithScheme(scheme: MDCContainerScheming): void;
+
+	applySurfaceThemeWithScheme(scheme: MDCContainerScheming): void;
 
 	class(): typeof NSObject;
 
@@ -5716,11 +6169,11 @@ declare class MDCTextField extends UITextField implements MDCLeadingViewTextInpu
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCTextField; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextField; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCTextField; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextField; // inherited from UIAppearance
 
 	static new(): MDCTextField; // inherited from NSObject
 
@@ -5749,6 +6202,8 @@ declare class MDCTextField extends UITextField implements MDCLeadingViewTextInpu
 	enabled: boolean; // inherited from MDCTextInput
 
 	font: UIFont; // inherited from MDCTextInput
+
+	readonly hasTextContent: boolean; // inherited from MDCTextInput
 
 	readonly hash: number; // inherited from NSObjectProtocol
 
@@ -5791,6 +6246,8 @@ declare class MDCTextField extends UITextField implements MDCLeadingViewTextInpu
 	readonly  // inherited from NSObjectProtocol
 
 	class(): typeof NSObject;
+
+	clearText(): void;
 
 	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
@@ -5880,6 +6337,8 @@ interface MDCTextInput extends NSObjectProtocol {
 
 	font: UIFont;
 
+	hasTextContent: boolean;
+
 	hidesPlaceholderOnInput: boolean;
 
 	leadingUnderlineLabel: UILabel;
@@ -5907,6 +6366,8 @@ interface MDCTextInput extends NSObjectProtocol {
 	trailingViewMode: UITextFieldViewMode;
 
 	underline: MDCTextInputUnderlineView;
+
+	clearText(): void;
 }
 declare var MDCTextInput: {
 
@@ -5966,11 +6427,11 @@ declare class MDCTextInputBorderView extends UIView implements NSCopying {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTextInputBorderView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCTextInputBorderView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextInputBorderView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTextInputBorderView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCTextInputBorderView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextInputBorderView; // inherited from UIAppearance
 
 	static new(): MDCTextInputBorderView; // inherited from NSObject
 
@@ -6235,6 +6696,8 @@ declare class MDCTextInputControllerFilled extends MDCTextInputControllerBase {
 	static alloc(): MDCTextInputControllerFilled; // inherited from NSObject
 
 	static new(): MDCTextInputControllerFilled; // inherited from NSObject
+
+	applyThemeWithScheme(scheme: MDCContainerScheming): void;
 }
 
 interface MDCTextInputControllerFloatingPlaceholder extends MDCTextInputController {
@@ -6426,6 +6889,8 @@ declare class MDCTextInputControllerOutlined extends MDCTextInputControllerBase 
 	static alloc(): MDCTextInputControllerOutlined; // inherited from NSObject
 
 	static new(): MDCTextInputControllerOutlined; // inherited from NSObject
+
+	applyThemeWithScheme(scheme: MDCContainerScheming): void;
 }
 
 declare class MDCTextInputControllerOutlinedTextArea extends MDCTextInputControllerBase {
@@ -6486,11 +6951,11 @@ declare class MDCTextInputUnderlineView extends UIView implements NSCopying {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTextInputUnderlineView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCTextInputUnderlineView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextInputUnderlineView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTextInputUnderlineView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCTextInputUnderlineView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextInputUnderlineView; // inherited from UIAppearance
 
 	static new(): MDCTextInputUnderlineView; // inherited from NSObject
 
@@ -6505,6 +6970,32 @@ declare class MDCTextInputUnderlineView extends UIView implements NSCopying {
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 }
 
+declare var MDCTextStyleBody1: string;
+
+declare var MDCTextStyleBody2: string;
+
+declare var MDCTextStyleButton: string;
+
+declare var MDCTextStyleCaption: string;
+
+declare var MDCTextStyleHeadline1: string;
+
+declare var MDCTextStyleHeadline2: string;
+
+declare var MDCTextStyleHeadline3: string;
+
+declare var MDCTextStyleHeadline4: string;
+
+declare var MDCTextStyleHeadline5: string;
+
+declare var MDCTextStyleHeadline6: string;
+
+declare var MDCTextStyleOverline: string;
+
+declare var MDCTextStyleSubtitle1: string;
+
+declare var MDCTextStyleSubtitle2: string;
+
 declare class MDCThumbTrack extends UIControl {
 
 	static alloc(): MDCThumbTrack; // inherited from NSObject
@@ -6515,11 +7006,11 @@ declare class MDCThumbTrack extends UIControl {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCThumbTrack; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCThumbTrack; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCThumbTrack; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCThumbTrack; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCThumbTrack; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCThumbTrack; // inherited from UIAppearance
 
 	static new(): MDCThumbTrack; // inherited from NSObject
 
@@ -6633,11 +7124,11 @@ declare class MDCThumbView extends UIView {
 
 	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCThumbView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject>): MDCThumbView; // inherited from UIAppearance
+	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCThumbView; // inherited from UIAppearance
 
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCThumbView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject>): MDCThumbView; // inherited from UIAppearance
+	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCThumbView; // inherited from UIAppearance
 
 	static new(): MDCThumbView; // inherited from NSObject
 
@@ -6735,11 +7226,11 @@ declare class MDCTonalPalette extends NSObject implements NSCopying {
 
 	readonly mainColorIndex: number;
 
-	constructor(o: { colors: NSArray<UIColor>; mainColorIndex: number; lightColorIndex: number; darkColorIndex: number; });
+	constructor(o: { colors: NSArray<UIColor> | UIColor[]; mainColorIndex: number; lightColorIndex: number; darkColorIndex: number; });
 
 	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	initWithColorsMainColorIndexLightColorIndexDarkColorIndex(colors: NSArray<UIColor>, mainColorIndex: number, lightColorIndex: number, darkColorIndex: number): this;
+	initWithColorsMainColorIndexLightColorIndexDarkColorIndex(colors: NSArray<UIColor> | UIColor[], mainColorIndex: number, lightColorIndex: number, darkColorIndex: number): this;
 }
 
 declare const enum MDCTriangleEdgeStyle {
@@ -6850,7 +7341,7 @@ declare var MDCTypographyFontLoading: {
 	prototype: MDCTypographyFontLoading;
 };
 
-declare class MDCTypographyScheme extends NSObject implements MDCTypographyScheming {
+declare class MDCTypographyScheme extends NSObject implements MDCTypographyScheming, NSCopying {
 
 	static alloc(): MDCTypographyScheme; // inherited from NSObject
 
@@ -6876,6 +7367,8 @@ declare class MDCTypographyScheme extends NSObject implements MDCTypographySchem
 
 	headline6: UIFont;
 
+	mdc_adjustsFontForContentSizeCategory: boolean;
+
 	overline: UIFont;
 
 	subtitle1: UIFont;
@@ -6884,12 +7377,16 @@ declare class MDCTypographyScheme extends NSObject implements MDCTypographySchem
 
 	constructor(o: { defaults: MDCTypographySchemeDefaults; });
 
+	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+
 	initWithDefaults(defaults: MDCTypographySchemeDefaults): this;
 }
 
 declare const enum MDCTypographySchemeDefaults {
 
-	Material201804 = 0
+	Material201804 = 0,
+
+	Material201902 = 1
 }
 
 interface MDCTypographyScheming {
@@ -6913,6 +7410,8 @@ interface MDCTypographyScheming {
 	headline5: UIFont;
 
 	headline6: UIFont;
+
+	mdc_adjustsFontForContentSizeCategory: boolean;
 
 	overline: UIFont;
 
