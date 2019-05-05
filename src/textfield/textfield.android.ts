@@ -1,8 +1,8 @@
 import { TextFieldBase } from './textfield.common';
-import { hintProperty, maxLengthProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
+import { hintProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
 
 import * as application from 'application';
-import { errorColorProperty, errorProperty, floatingProperty, helperProperty, highlightColorProperty } from './textfield_cssproperties';
+import { errorColorProperty, errorProperty, floatingProperty, helperProperty, highlightColorProperty, maxLengthProperty } from './textfield_cssproperties';
 import { Color } from 'tns-core-modules/color';
 import { ad } from 'tns-core-modules/utils/utils';
 import { getFocusedColorStateList, handleClearFocus } from 'nativescript-material-core/android/utils';
