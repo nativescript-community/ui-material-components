@@ -1,4 +1,4 @@
-import { themer } from 'nativescript-material-core';
+import { themer } from 'nativescript-material-core/core';
 import { TextField } from 'nativescript-material-textfield';
 import { getRootView } from 'tns-core-modules/application';
 import { fromObject } from 'tns-core-modules/data/observable/observable';
@@ -445,7 +445,7 @@ export function prompt(arg: any): Promise<PromptResult> {
     });
 }
 
-export function login(): Promise<LoginResult> {
+export function login(arg: any): Promise<LoginResult> {
     let options: LoginOptions & MDCAlertControlerOptions;
 
     const defaultOptions = {
