@@ -1,5 +1,5 @@
 import { Color } from 'tns-core-modules/color';
-import { TypographyOptions } from './material';
+import { TypographyOptions } from './core';
 import { View } from 'tns-core-modules/ui/core/view/view';
 import { layout } from 'tns-core-modules/utils/utils';
 
@@ -7,7 +7,7 @@ import { cssProperty, elevationHighlightedProperty, elevationProperty, rippleCol
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { ControlStateChangeListener } from 'tns-core-modules/ui/core/control-state-change';
 import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
-import { applyMixins } from './material.common';
+import { applyMixins } from './core.common';
 import { GestureTypes, TouchAction, TouchGestureEventData } from 'tns-core-modules/ui/gestures';
 export { applyMixins };
 

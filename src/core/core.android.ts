@@ -1,6 +1,5 @@
-// export * from './material.common';
 import { Color } from 'tns-core-modules/color';
-import { applyMixins } from './material.common';
+import { applyMixins } from './core.common';
 export { applyMixins };
 
 // stub class as we don't use this on android
