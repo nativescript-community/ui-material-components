@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-activityindicator",
-    "version": "2.2.6",
+    "version": "2.2.7",
     "description": "Material ActivityIndicator component",
     "main": "./activityindicator",
     "typings": "./activityindicator.d.ts",
@@ -31,7 +31,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^2.2.6"
+        "nativescript-material-core": "^2.2.7"
     },
     "gitHead": "e62190fa75ac5ca06904f8ccc46b6ac62f129c15"
 }
