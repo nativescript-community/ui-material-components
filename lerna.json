@@ -1,12 +1,9 @@
 {
-    "packages": [
-        "packages/*"
-    ],
+    "packages": ["packages/*"],
     "command": {
         "publish": {
-            "ignoreChanges": [
-                "*.md"
-            ],
+            "conventionalCommits": true,
+            "ignoreChanges": ["*.md"],
             "message": "chore(release): publish"
         }
     },
