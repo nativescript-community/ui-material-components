@@ -13,7 +13,11 @@ export abstract class ButtonBase extends Button {
 
     constructor() {
         super();
-        this.style.margin = 5;
+        // we need to set the default through css or user would not be able to overload it through css...
+        this.style['css:margin-left'] = 10;
+        this.style['css:margin-right'] = 10;
+        this.style['css:margin-top'] = 6;
+        this.style['css:margin-bottom'] = 12;
     }
 }
 

@@ -14,9 +14,14 @@ export const srcProperty = new Property<FloatingActionButtonBase, any>({
 @CSSType('MDFloatingActionButton')
 export abstract class FloatingActionButtonBase extends View {
     constructor() {
-        super();
-        this.style.width = this.style.height = 56;
-        this.style.margin = 5;
+        super();        
+        // we need to set the default through css or user would not be able to overload it through css...
+        this.style['css:width'] = 56;
+        this.style['css:height'] = 56;
+        this.style['css:margin-left'] = 4;
+        this.style['css:margin-right'] = 4;
+        this.style['css:margin-top'] = 11;
+        this.style['css:margin-bottom'] = 16;
     }
     @cssProperty elevation: number;
 
