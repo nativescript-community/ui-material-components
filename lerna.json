@@ -3,8 +3,7 @@
     "command": {
         "publish": {
             "conventionalCommits": true,
-            "ignoreChanges": ["*.md"],
-            "message": "chore(release): publish"
+            "ignoreChanges": ["*.md"]
         }
     },
     "version": "2.2.5"
