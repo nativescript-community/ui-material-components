@@ -1,9 +1,10 @@
-import { CSSType, View } from 'tns-core-modules/ui/core/view/view';
+import { CSSType } from 'tns-core-modules/ui/core/view/view';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
+import { ContentView } from 'tns-core-modules/ui/page/page';
 
 @CSSType('MDCardView')
-export abstract class CardViewBase extends View {
+export abstract class CardViewBase extends ContentView {
     // protected _borderRadius: number;
     // protected _borderColor: Color;
     // protected _borderWidth: number;
