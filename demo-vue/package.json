@@ -24,28 +24,29 @@
     "nativescript-material-slider": "../packages/nativescript-material-slider",
     "nativescript-material-textfield": "../packages/nativescript-material-textfield",
     "nativescript-theme-core": "~1.0.4",
-    "nativescript-vue": "~2.0.2",
-    "tns-core-modules": "^5.2.2",
+    "akylas-nativescript-vue": "~2.1.14",
+    "tns-core-modules": "^5.3.2",
     "tslib": "^1.9.3",
-    "vue-class-component": "^7.0.1"
+    "vue-class-component": "^7.0.2"
   },
   "devDependencies": {
-    "@babel/core": "~7.3.4",
-    "@babel/preset-env": "~7.3.4",
+    "@babel/core": "~7.4.4",
+    "@babel/preset-env": "~7.4.4",
     "babel-loader": "~8.0.5",
     "babel-traverse": "6.26.0",
     "babel-types": "6.26.0",
     "babylon": "6.18.0",
     "lazy": "1.0.11",
-    "nativescript-dev-typescript": "~0.8.0",
-    "nativescript-dev-webpack": "~0.20.2",
-    "nativescript-vue-template-compiler": "~2.0.2",
-    "tns-platform-declarations": "^5.2.2",
+    "nativescript-dev-typescript": "~0.9.0",
+    "nativescript-dev-webpack": "~0.21.2",
+    "akylas-nativescript-vue-template-compiler": "~2.1.14",
+    "node-sass": "^4.12.0",
     "shelljs": "^0.8.3",
-    "vue": "~2.5.17",
+    "tns-platform-declarations": "^5.3.2",
+    "vue": "~2.6.10",
+    "vue-class-component": "~7.0.2",
     "vue-loader": "~15.7.0",
-    "vue-property-decorator": "~7.3.0",
-    "vue-class-component": "~6.3.2"
+    "vue-property-decorator": "~8.1.0"
   },
   "scripts": {
     "tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'"

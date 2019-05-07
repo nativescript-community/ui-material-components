@@ -7,13 +7,13 @@ export default {
       <ActionBar title="Material Vue">
       </ActionBar>
       <ListView ref="listView"
+          rowHeight="50"
           for="example in examples"
           separatorColor="transparent"
           @itemTap="goToExample">
         <v-template>
-          <StackLayout class="item" orientation="vertical">
-            <Label :text="example.title" class="title"></Label>
-            <StackLayout height="1" backgroundColor="#EEEEEE"></StackLayout>
+          <StackLayout class="item" orientation="horizontal">
+            <Label :text="example.title" class="title" verticalAlignment="center"/>
           </StackLayout>
         </v-template>
       </ListView>
