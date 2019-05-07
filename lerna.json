@@ -1,10 +1,14 @@
 {
-    "packages": ["packages/*"],
+    "packages": [
+        "packages/*"
+    ],
     "command": {
         "publish": {
             "conventionalCommits": true,
-            "ignoreChanges": ["*.md"]
+            "ignoreChanges": [
+                "*.md"
+            ]
         }
     },
-    "version": "2.2.5"
+    "version": "2.2.6"
 }
