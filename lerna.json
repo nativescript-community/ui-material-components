@@ -2,13 +2,13 @@
     "packages": [
         "packages/*"
     ],
-    "version": "independent",
-        "command": {
+    "command": {
         "publish": {
             "conventionalCommits": true,
             "ignoreChanges": [
                 "*.md"
             ]
         }
-    }
+    },
+    "version": "2.2.7"
 }
