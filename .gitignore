@@ -69,3 +69,4 @@ packages/**/*.ngsummary.json
 *.tgz
 package-lock.json
 *.aar
+/package-lock.json
