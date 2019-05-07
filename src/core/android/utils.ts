@@ -196,7 +196,7 @@ export function createStateListAnimator(view: ViewBase, nativeView: android.view
     const translationZ = android.support.v4.view.ViewCompat.getTranslationZ(nativeView);
     const elevationSelected = view.style['elevationHighlighted'] !== undefined ? view.style['elevationHighlighted'] : elevation * 2;
     // compute translationSelectedZ base on elevationSelected
-    const translationSelectedZ = translationZ + (6 * elevationSelected) / elevation / 2;
+    const translationSelectedZ = elevation > 0 ? translationZ + (6 * elevationSelected) / elevation / 2 : 0;
     const animationDuration = 100;
     const listAnimator = new android.animation.StateListAnimator();
     let animators = new java.util.ArrayList<android.animation.Animator>();

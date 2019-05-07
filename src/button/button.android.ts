@@ -51,7 +51,11 @@ export class Button extends ButtonBase {
     }
 
     [elevationProperty.setNative](value: number) {
-        android.support.v4.view.ViewCompat.setElevation(this.nativeViewProtected, value);
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            createStateListAnimator(this, this.nativeViewProtected);
+        } else {
+            this.nativeViewProtected.setElevation(value);
+        }
     }
     [elevationHighlightedProperty.setNative](value: number) {
         if (!this.nativeViewProtected) {
