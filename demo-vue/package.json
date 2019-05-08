@@ -18,6 +18,7 @@
     "nativescript-material-button": "../packages/nativescript-material-button",
     "nativescript-material-cardview": "../packages/nativescript-material-cardview",
     "nativescript-material-core": "../packages/nativescript-material-core",
+    "nativescript-material-dialogs": "../packages/nativescript-material-dialogs",
     "nativescript-material-floatingactionbutton": "../packages/nativescript-material-floatingactionbutton",
     "nativescript-material-progress": "../packages/nativescript-material-progress",
     "nativescript-material-ripple": "../packages/nativescript-material-ripple",

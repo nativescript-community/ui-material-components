@@ -5,21 +5,20 @@
         </ActionBar>
         <ScrollView>
             <StackLayout>
-                <StackLayout margin="10">
-                    <MDFloatingActionButton id="fab" src="res://ic_action_add" backgroundColor="blue" @tap="onTap" />
-                </StackLayout>
+                <MDFloatingActionButton id="fab" src="res://ic_action_add" backgroundColor="blue" @tap="onTap" />
                 <StackLayout margin="10">
                     <MDButton id="button0" text="default button" @tap="onTap" />
                 </StackLayout>
-                <MDButton id="button1" elevation="5" borderRadius="10" fontSize="20" text="raised button" @tap="onTap" />
+                <MDButton id="button1" elevation="2" borderRadius="10" fontSize="20" text="raised button" @tap="onTap" />
                 <MDButton id="button2" class="bg-red" borderRadius="10" color="red" text="text button" variant="text" @tap="onTap">
                     <FormattedString>
                         <Span text="Words " color="#00ff00"></Span>
                         <Span text="with " color="#ff0000" fontAttributes="Bold"></Span>
                     </FormattedString>
                 </MDButton>
+                <MDButton id="button3" text="disabled button"  isEnabled="false" @tap="onTap" />
                 <MDButton id="button3" text="flat button \n test" variant="flat" class="bg-blue" @tap="onTap" />
-                <MDButton id="button4" text="flat disabled button" isEnabled="false" backgroundColor="yellow" @tap="onTap" />
+                <MDButton id="button4" text="flat disabled button" variant="flat" isEnabled="false" backgroundColor="yellow" @tap="onTap" />
                 <MDButton id="button5" text="outline button" color="black" width="200" variant="outline" @tap="onTap" />
                 <MDButton id="button6" text="disabled outline button" isEnabled="false" width="200" variant="outline" @tap="onTap" />
                 <MDButton id="button7" text="text button" width="200" color="blue" variant="text" @tap="onTap" />
