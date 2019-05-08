@@ -5,7 +5,7 @@ import { Background } from 'tns-core-modules/ui/styling/background';
 
 import { backgroundColorProperty, backgroundInternalProperty, fontInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Font } from 'tns-core-modules/ui/styling/font';
-import { elevationHighlightedProperty, elevationProperty, rippleColorProperty, translationZHighlightedroperty } from 'nativescript-material-core/cssproperties';
+import { elevationHighlightedProperty, elevationProperty, rippleColorProperty, translationZHighlightedProperty } from 'nativescript-material-core/cssproperties';
 import { getRippleColor } from 'nativescript-material-core/core';
 import { Color } from 'tns-core-modules/color';
 
@@ -85,7 +85,7 @@ export class Button extends ButtonBase {
         }
     }
 
-    [translationZHighlightedroperty.setNative](value: number) {
+    [translationZHighlightedProperty.setNative](value: number) {
         this.nativeViewProtected.setElevationForState(value, UIControlState.Highlighted);
     }
     [elevationHighlightedProperty.setNative](value: number) {

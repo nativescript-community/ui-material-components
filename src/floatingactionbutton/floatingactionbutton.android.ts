@@ -1,7 +1,7 @@
 import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
 
 import { ImageSource } from 'tns-core-modules/image-source';
-import { elevationProperty, translationZProperty } from 'nativescript-material-core/cssproperties';
+import { elevationProperty, translationZHighlightedProperty } from 'nativescript-material-core/cssproperties';
 import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 
@@ -45,7 +45,7 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         this.nativeViewProtected.setCompatElevation(value);
     }
 
-    [translationZProperty.setNative](value: number) {
+    [translationZHighlightedProperty.setNative](value: number) {
         this.nativeViewProtected.setTranslationZ(value);
     }
 

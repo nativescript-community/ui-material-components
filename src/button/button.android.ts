@@ -2,7 +2,7 @@ import { ButtonBase } from './button-common';
 import { getRippleColor } from 'nativescript-material-core/core';
 
 import * as utils from 'tns-core-modules/utils/utils';
-import { elevationHighlightedProperty, elevationProperty, rippleColorProperty, translationZHighlightedroperty } from 'nativescript-material-core/cssproperties';
+import { elevationHighlightedProperty, elevationProperty, rippleColorProperty, translationZHighlightedProperty } from 'nativescript-material-core/cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { getEnabledColorStateList, getRippleColorStateList } from 'nativescript-material-core/android/utils';
 import { createStateListAnimator } from 'nativescript-material-core/android/utils';
@@ -72,7 +72,7 @@ export class Button extends ButtonBase {
             this.nativeViewProtected.setElevation(value);
         }
     }
-    [translationZHighlightedroperty.setNative](value: number) {
+    [translationZHighlightedProperty.setNative](value: number) {
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
