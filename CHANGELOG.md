@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.9](https://github.com/Akylas/nativescript-material-components/compare/v2.2.8...v2.2.9) (2019-05-08)
+
+
+### Bug Fixes
+
+* typo fix ([2e88f97](https://github.com/Akylas/nativescript-material-components/commit/2e88f97))
+* working on better buttons elevation / margin ([b860580](https://github.com/Akylas/nativescript-material-components/commit/b860580))
+
+
+
+
+
 ## [2.2.8](https://github.com/Akylas/nativescript-material-components/compare/v2.2.7...v2.2.8) (2019-05-07)
 
 
