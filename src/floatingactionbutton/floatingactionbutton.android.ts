@@ -1,7 +1,7 @@
 import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
 
 import { ImageSource } from 'tns-core-modules/image-source';
-import { elevationProperty } from 'nativescript-material-core/cssproperties';
+import { elevationProperty, translationZProperty } from 'nativescript-material-core/cssproperties';
 import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 
@@ -18,6 +18,7 @@ export class FloatingActionButton extends FloatingActionButtonBase {
             MDCFabButton = android.support.design.widget.FloatingActionButton;
         }
         const view = new MDCFabButton(this._context);
+        console.log('test elevation2', view.getElevation(), view.getTranslationZ());
         return view;
     }
 
@@ -42,6 +43,10 @@ export class FloatingActionButton extends FloatingActionButtonBase {
 
     [elevationProperty.setNative](value: number) {
         this.nativeViewProtected.setCompatElevation(value);
+    }
+
+    [translationZProperty.setNative](value: number) {
+        this.nativeViewProtected.setTranslationZ(value);
     }
 
     get size(): string {

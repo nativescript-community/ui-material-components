@@ -2,7 +2,7 @@ import { ButtonBase } from './button-common';
 import { getRippleColor } from 'nativescript-material-core/core';
 
 import * as utils from 'tns-core-modules/utils/utils';
-import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { elevationHighlightedProperty, elevationProperty, rippleColorProperty, translationZHighlightedroperty } from 'nativescript-material-core/cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { getEnabledColorStateList, getRippleColorStateList } from 'nativescript-material-core/android/utils';
 import { createStateListAnimator } from 'nativescript-material-core/android/utils';
@@ -34,8 +34,23 @@ export class Button extends ButtonBase {
             style = 'AppThemeTextMaterialButton';
         } else if (this.variant === 'flat') {
             style = 'AppThemeFlatMaterialButton';
+        } else {
+            // we need to set the default through css or user would not be able to overload it through css...
+            this.style['css:margin-left'] = 10;
+            this.style['css:margin-right'] = 10;
+            this.style['css:margin-top'] = 12;
+            this.style['css:margin-bottom'] = 12;
         }
         const view = new android.support.design.button.MaterialButton(new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)));
+        // view.setElevation(3);
+        // view.setTranslationZ(0);
+        console.log('test elevation', this.variant, this.text, view.getElevation(), view.getTranslationZ());
+        if (!this.variant) {
+            if (android.os.Build.VERSION.SDK_INT >= 21) {
+                createStateListAnimator(this, view);
+            }
+        }
+
         if (this.variant === 'outline') {
             view.setStrokeWidth(1);
             view.setStrokeColor(android.content.res.ColorStateList.valueOf(new Color('gray').android));
@@ -57,10 +72,15 @@ export class Button extends ButtonBase {
             this.nativeViewProtected.setElevation(value);
         }
     }
-    [elevationHighlightedProperty.setNative](value: number) {
-        if (!this.nativeViewProtected) {
-            return;
+    [translationZHighlightedroperty.setNative](value: number) {
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            createStateListAnimator(this, this.nativeViewProtected);
+        } else {
+            this.nativeViewProtected.setTranslationZ(value);
         }
+    }
+    [elevationHighlightedProperty.setNative](value: number) {
+        console.log('elevationHighlightedProperty', value);
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             createStateListAnimator(this, this.nativeViewProtected);
         }

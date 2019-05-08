@@ -5,7 +5,7 @@ import { Background } from 'tns-core-modules/ui/styling/background';
 
 import { backgroundColorProperty, backgroundInternalProperty, fontInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Font } from 'tns-core-modules/ui/styling/font';
-import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { elevationHighlightedProperty, elevationProperty, rippleColorProperty, translationZHighlightedroperty } from 'nativescript-material-core/cssproperties';
 import { getRippleColor } from 'nativescript-material-core/core';
 import { Color } from 'tns-core-modules/color';
 
@@ -63,6 +63,11 @@ export class Button extends ButtonBase {
             if (colorScheme) {
                 MDCContainedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
             }
+            // we need to set the default through css or user would not be able to overload it through css...
+            this.style['css:margin-left'] = 10;
+            this.style['css:margin-right'] = 10;
+            this.style['css:margin-top'] = 12;
+            this.style['css:margin-bottom'] = 12;
         }
 
         // view.addTargetActionForControlEvents(this['_tapHandler'], 'tap', UIControlEvents.TouchUpInside);
@@ -76,8 +81,12 @@ export class Button extends ButtonBase {
     [elevationProperty.setNative](value: number) {
         this.nativeViewProtected.setElevationForState(value, UIControlState.Normal);
         if (this.elevationHighlighted === undefined) {
-            this.nativeViewProtected.setElevationForState(value * 2, UIControlState.Highlighted);
+            this.nativeViewProtected.setElevationForState(this.style['translationZHighlighted'] ? this.style['translationZHighlighted'] : value * 4, UIControlState.Highlighted);
         }
+    }
+
+    [translationZHighlightedroperty.setNative](value: number) {
+        this.nativeViewProtected.setElevationForState(value, UIControlState.Highlighted);
     }
     [elevationHighlightedProperty.setNative](value: number) {
         this.nativeViewProtected.setElevationForState(value, UIControlState.Highlighted);

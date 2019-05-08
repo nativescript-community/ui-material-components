@@ -192,11 +192,11 @@ export function getFocusedColorStateList(color: number, variant: string) {
 }
 
 export function createStateListAnimator(view: ViewBase, nativeView: android.view.View) {
-    const elevation = android.support.v4.view.ViewCompat.getElevation(nativeView);
-    const translationZ = android.support.v4.view.ViewCompat.getTranslationZ(nativeView);
-    const elevationSelected = view.style['elevationHighlighted'] !== undefined ? view.style['elevationHighlighted'] : elevation * 2;
+    const elevation = view.style['elevation'] !== undefined ? view.style['elevation'] : 2;
+    const translationZ = view.style['translationZ'] !== undefined ? view.style['translationZ'] : 0;
+    const elevationSelected = view.style['elevationHighlighted'] !== undefined ? view.style['elevationHighlighted'] : 3 * elevation;
     // compute translationSelectedZ base on elevationSelected
-    const translationSelectedZ = elevation > 0 ? translationZ + (6 * elevationSelected) / elevation / 2 : 0;
+    const translationSelectedZ = view.style['translationZHighlighted'] ? view.style['translationZHighlighted'] : translationZ + elevationSelected;
     const animationDuration = 100;
     const listAnimator = new android.animation.StateListAnimator();
     let animators = new java.util.ArrayList<android.animation.Animator>();
@@ -235,6 +235,20 @@ export function createStateListAnimator(view: ViewBase, nativeView: android.view
     set.setDuration(animationDuration);
     set.setStartDelay(animationDuration);
     listAnimator.addState(stateSets.BACKGROUND_DEFAULT_STATE_2, set);
+
+    animators.clear();
+    set = new android.animation.AnimatorSet();
+    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'translationZ', [0]);
+    // animator.setDuration(animationDuration)
+    // animator.setStartDelay(animationDuration)
+    animators.add(animator);
+    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'elevation', [0]);
+    // animator.setDuration(0)
+    animators.add(animator);
+    set.playTogether(animators);
+    set.setDuration(animationDuration);
+    set.setStartDelay(animationDuration);
+    listAnimator.addState(stateSets.BACKGROUND_DISABLED_STATE, set);
 
     animators.clear();
     set = new android.animation.AnimatorSet();
