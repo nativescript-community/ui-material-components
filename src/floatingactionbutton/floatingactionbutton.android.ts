@@ -18,7 +18,6 @@ export class FloatingActionButton extends FloatingActionButtonBase {
             MDCFabButton = android.support.design.widget.FloatingActionButton;
         }
         const view = new MDCFabButton(this._context);
-        console.log('test elevation2', view.getElevation(), view.getTranslationZ());
         return view;
     }
 

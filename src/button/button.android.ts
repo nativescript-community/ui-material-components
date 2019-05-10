@@ -44,7 +44,6 @@ export class Button extends ButtonBase {
         const view = new android.support.design.button.MaterialButton(new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)));
         // view.setElevation(3);
         // view.setTranslationZ(0);
-        console.log('test elevation', this.variant, this.text, view.getElevation(), view.getTranslationZ());
         if (!this.variant) {
             if (android.os.Build.VERSION.SDK_INT >= 21) {
                 createStateListAnimator(this, view);
