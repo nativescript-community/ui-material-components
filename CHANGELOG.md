@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.10](https://github.com/Akylas/nativescript-material-components/compare/v2.2.9...v2.2.10) (2019-05-14)
+
+
+### Bug Fixes
+
+* remove unwanted logs ([f5caf72](https://github.com/Akylas/nativescript-material-components/commit/f5caf72))
+
+
+### Features
+
+* allow to change border color, radius, width for buttons ([45cfa57](https://github.com/Akylas/nativescript-material-components/commit/45cfa57))
+* support borderRadius for ripple ([6ab9ee3](https://github.com/Akylas/nativescript-material-components/commit/6ab9ee3))
+
+
+
+
+
 ## [2.2.9](https://github.com/Akylas/nativescript-material-components/compare/v2.2.8...v2.2.9) (2019-05-08)
 
 
