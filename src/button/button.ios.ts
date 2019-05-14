@@ -8,6 +8,7 @@ import { Font } from 'tns-core-modules/ui/styling/font';
 import { elevationHighlightedProperty, elevationProperty, rippleColorProperty, translationZHighlightedProperty } from 'nativescript-material-core/cssproperties';
 import { getRippleColor } from 'nativescript-material-core/core';
 import { Color } from 'tns-core-modules/color';
+import { screen } from 'tns-core-modules/platform/platform';
 
 let buttonScheme: MDCButtonScheme;
 function getButtonScheme() {
@@ -100,7 +101,15 @@ export class Button extends ButtonBase {
         }
     }
 
-    [backgroundInternalProperty.setNative](value: Background) {}
+    [backgroundInternalProperty.setNative](value: Background) {
+        if (this.nativeViewProtected) {
+            const scale = screen.mainScreen.scale;
+            this.nativeViewProtected.backgroundColor = value.color ? value.color.ios : null;
+            this.nativeViewProtected.setBorderWidthForState(value.borderLeftWidth / scale, UIControlState.Normal);
+            this.nativeViewProtected.setBorderColorForState(value.borderTopColor ? value.borderTopColor.ios : null, UIControlState.Normal);
+            this.nativeViewProtected.layer.cornerRadius = value.borderTopLeftRadius / scale;
+        }
+    }
 
     shapeScheme: MDCShapeScheme;
     private getShapeScheme() {

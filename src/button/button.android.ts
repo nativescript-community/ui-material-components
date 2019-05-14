@@ -89,6 +89,10 @@ export class Button extends ButtonBase {
         const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
         this.nativeViewProtected.setCornerRadius(newValue);
     }
+    setStrokeWidth(value) {
+        const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+        this.nativeViewProtected.setStrokeWidth(newValue);
+    }
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
         if (this.nativeViewProtected) {
             if (value instanceof android.graphics.drawable.Drawable) {
@@ -98,6 +102,10 @@ export class Button extends ButtonBase {
                     this.nativeViewProtected.setBackgroundTintList(getEnabledColorStateList(value.color.android, this.variant));
                 }
                 this.setCornerRadius(value.borderTopLeftRadius);
+                this.nativeViewProtected.setStrokeWidth(value.borderTopWidth);
+                if (value.borderTopColor) {
+                    this.nativeViewProtected.setStrokeColor(android.content.res.ColorStateList.valueOf(value.borderTopColor.android));
+                }
             }
         }
     }
