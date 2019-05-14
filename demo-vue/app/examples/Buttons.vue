@@ -20,7 +20,7 @@
                 <MDButton id="button3" text="flat button \n test" variant="flat" class="bg-blue" @tap="onTap" />
                 <MDButton id="button4" text="flat disabled button" variant="flat" isEnabled="false" backgroundColor="yellow" @tap="onTap" />
                 <MDButton id="button5" text="outline button" color="black" width="200" variant="outline" @tap="onTap" />
-                <MDButton id="button6" text="disabled outline button" isEnabled="false" width="200" variant="outline" @tap="onTap" />
+                <MDButton id="button6" text="disabled outline button" borderColor="red" borderRadius="2" borderWidth="2" isEnabled="false" width="200" variant="outline" @tap="onTap" />
                 <MDButton id="button7" text="text button" width="200" color="blue" variant="text" @tap="onTap" />
                 <MDButton id="button8" text="disabled text button" isEnabled="false" width="200" variant="text" @tap="onTap" />
                 <MDButton id="button9" class="falseFAb bg-green" text="+" color="white" verticalAlign="center" backgroundColor="#53ba82" @tap="onTap" />

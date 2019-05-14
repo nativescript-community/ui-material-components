@@ -5,7 +5,7 @@
         </ActionBar>
         <StackLayout class="bg-green">
             <ScrollView>
-                <MDCardView margin="20" width="200" height="100" rippleColor="blue">
+                <MDCardView margin="20" width="200" height="100" rippleColor="blue" borderRadius="10">
                     <Label text="Hello world" class="title"></Label>
                 </MDCardView>
             </ScrollView>
