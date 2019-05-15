@@ -207,6 +207,11 @@ function raiseCallback(callback, result) {
 
 function createAlertController(options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
     const alertController = (MDCAlertControllerImpl as any).new() as MDCAlertControllerImpl;
+    const buttonColor = getButtonColors().color;
+    if (buttonColor) {
+        alertController.view.tintColor = buttonColor.ios;
+    }
+    const lblColor = getLabelColor();
 
     if (options.title) {
         alertController.title = options.title;
@@ -234,12 +239,16 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
     if (options.titleColor) {
         alertController.titleColor = options.titleColor.ios;
+    } else if (lblColor) {
+        alertController.titleColor = lblColor.ios;
     }
     if (options.titleIconTintColor) {
         alertController.titleIconTintColor = options.titleIconTintColor.ios;
     }
     if (options.messageColor) {
         alertController.messageColor = options.messageColor.ios;
+    } else if (lblColor) {
+        alertController.messageColor = lblColor.ios;
     }
     if (options.elevation) {
         alertController.elevation = options.elevation;
@@ -268,7 +277,6 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
 
     if (options.view) {
-        console.log('createAlertController', 'custom view', options.view);
         const view =
             options.view instanceof View
                 ? (options.view as View)
@@ -569,26 +577,6 @@ function showUIAlertController(alertController: MDCAlertController) {
                 alertController.popoverPresentationController.permittedArrowDirections = 0;
             }
 
-            const color = getButtonColors().color;
-            if (color) {
-                alertController.view.tintColor = color.ios;
-            }
-
-            const lblColor = getLabelColor();
-            if (lblColor) {
-                if (alertController.title) {
-                    const title = NSAttributedString.alloc().initWithStringAttributes(alertController.title, {
-                        [NSForegroundColorAttributeName]: lblColor.ios
-                    } as any);
-                    alertController.setValueForKey(title, 'attributedTitle');
-                }
-                if (alertController.message) {
-                    const message = NSAttributedString.alloc().initWithStringAttributes(alertController.message, {
-                        [NSForegroundColorAttributeName]: lblColor.ios
-                    } as any);
-                    alertController.setValueForKey(message, 'attributedMessage');
-                }
-            }
             viewController.presentModalViewControllerAnimated(alertController, true);
         }
     }
