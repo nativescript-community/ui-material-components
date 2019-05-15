@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.11](https://github.com/Akylas/nativescript-material-components/compare/v2.2.10...v2.2.11) (2019-05-15)
+
+
+### Bug Fixes
+
+* crash in ios dialogs ([8ac44bd](https://github.com/Akylas/nativescript-material-components/commit/8ac44bd))
+
+
+
+
+
 ## [2.2.10](https://github.com/Akylas/nativescript-material-components/compare/v2.2.9...v2.2.10) (2019-05-14)
 
 
