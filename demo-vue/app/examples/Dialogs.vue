@@ -63,7 +63,13 @@ export default Vue.extend({
                         message: 'this is test Prompt!',
                         okButtonText: 'OK',
                         cancelButtonText: 'Cancel',
-                        title: 'title?'
+                        title: 'title?',
+                        textFieldProperties: {
+                            marginLeft: 20,
+                            marginRight: 50,
+                            hint:'test hint text'
+                        },
+                        autoFocus:true
                     }).then(result => console.log('prompt result', result));
                     break;
                 }
