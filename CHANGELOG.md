@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.12](https://github.com/Akylas/nativescript-material-components/compare/v2.2.11...v2.2.12) (2019-05-16)
+
+
+### Features
+
+* requestFocus now also show the keyboard ([ad75606](https://github.com/Akylas/nativescript-material-components/commit/ad75606))
+* rewrite dialogs prompt and login allow a lot more options ([65dc0a2](https://github.com/Akylas/nativescript-material-components/commit/65dc0a2))
+
+
+
+
+
 ## [2.2.11](https://github.com/Akylas/nativescript-material-components/compare/v2.2.10...v2.2.11) (2019-05-15)
 
 
