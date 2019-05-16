@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.13](https://github.com/Akylas/nativescript-material-components/compare/v2.2.12...v2.2.13) (2019-05-16)
+
+
+### Bug Fixes
+
+* wrong typings for material dialogs ([cf8a2b5](https://github.com/Akylas/nativescript-material-components/commit/cf8a2b5))
+
+
+
+
+
 ## [2.2.12](https://github.com/Akylas/nativescript-material-components/compare/v2.2.11...v2.2.12) (2019-05-16)
 
 
