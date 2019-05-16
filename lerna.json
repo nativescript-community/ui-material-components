@@ -1,13 +1,14 @@
 {
-    "packages": [
-        "packages/*"
-    ],
+    "packages": ["packages/*"],
+    "npmClient": "npm",
     "command": {
         "publish": {
             "conventionalCommits": true,
-            "ignoreChanges": [
-                "*.md"
-            ]
+            "ignoreChanges": ["ignored-file", "*.md"],
+            "message": "chore(release): publish"
+        },
+        "bootstrap": {
+            "npmClientArgs": ["--no-package-lock"]
         }
     },
     "version": "2.2.11"
