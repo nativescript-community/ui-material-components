@@ -8,6 +8,7 @@ export abstract class TextFieldBase extends NTextField {
     constructor() {
         super();
     }
+    abstract requestFocus();
     abstract clearFocus();
 
     @cssProperty helper: string;

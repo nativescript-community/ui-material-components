@@ -81,6 +81,10 @@ export class TextField extends TextFieldBase {
         this.dismissSoftInput();
     }
 
+    public requestFocus() {
+        this.focus();
+    }
+
     _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
         const scale = 1;
 

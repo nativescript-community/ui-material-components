@@ -134,6 +134,8 @@ export class TextField extends TextFieldBase {
             this.layoutView.requestFocus();
             setTimeout(() => {
                 this.layoutView.setDescendantFocusability(oldDesc);
+                ad.showSoftInput(this.nativeTextViewProtected);
+                // this.focus();
             }, 0);
         }
 
