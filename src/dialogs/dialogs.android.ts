@@ -27,7 +27,8 @@ import {
     PromptResult
 } from 'tns-core-modules/ui/dialogs';
 import { MDCAlertControlerOptions } from './dialogs';
-import { initTextInputEditText } from 'nativescript-material-textfield';
+import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
+import { TextField } from 'nativescript-material-textfield';
 
 declare module 'tns-core-modules/ui/core/view/view' {
     interface View {
@@ -290,12 +291,8 @@ export function confirm(arg: any): Promise<boolean> {
     });
 }
 
-function getLayout(id: string) {
-    const context: android.content.Context = androidApp.context;
-    return context.getResources().getIdentifier(id, 'layout', context.getPackageName());
-}
 export function prompt(arg: any): Promise<PromptResult> {
-    let options: PromptOptions;
+    let options: PromptOptions & MDCAlertControlerOptions;
 
     const defaultOptions = {
         title: PROMPT,
@@ -321,47 +318,60 @@ export function prompt(arg: any): Promise<PromptResult> {
 
     return new Promise<PromptResult>((resolve, reject) => {
         try {
-            const alert = createAlertDialog(options);
-            initTextInputEditText();
-            const layout = android.view.LayoutInflater.from(androidApp.foregroundActivity).inflate(getLayout('material_text_field'), null, false) as android.support.design.widget.TextInputLayout;
-            const input = (layout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText;
-
+            const stackLayout = new StackLayout();
+            stackLayout.padding = 4;
+            const textField = new TextField();
+            textField.hint = options.hintText;
             if (options) {
+                if (options.textFieldProperties) {
+                    Object.assign(textField, options.textFieldProperties);
+                }
+                if (options.defaultText) {
+                    textField.text = options.defaultText;
+                }
+                if (options.defaultText) {
+                    textField.hint = options.hintText;
+                }
+                if (options.helperText) {
+                    textField.helper = options.helperText;
+                }
                 if (options.inputType === inputType.password) {
-                    input.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    textField.secure = true;
                 } else if (options.inputType === inputType.email) {
-                    input.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+                    textField.keyboardType = 'email';
+                } else if (options.inputType === inputType.number) {
+                    textField.keyboardType = 'number';
+                } else if (options.inputType === inputType.phone) {
+                    textField.keyboardType = 'phone';
                 }
 
                 switch (options.capitalizationType) {
                     case capitalizationType.all: {
-                        input.setInputType(input.getInputType() | android.text.InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        textField.autocapitalizationType = 'allcharacters';
                         break;
                     }
                     case capitalizationType.sentences: {
-                        input.setInputType(input.getInputType() | android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+                        textField.autocapitalizationType = 'sentences';
                         break;
                     }
                     case capitalizationType.words: {
-                        input.setInputType(input.getInputType() | android.text.InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+                        textField.autocapitalizationType = 'words';
                         break;
                     }
                 }
             }
-
-            input.setText((options && options.defaultText) || '');
-
-            alert.setView(layout);
-
-            const getText = function() {
-                return input.getText().toString();
-            };
+            stackLayout.addChild(textField);
+            options.view = stackLayout;
+            const alert = createAlertDialog(options);
 
             addButtonsToAlertDialog(alert, options, function(r) {
-                resolve({ result: r, text: getText() });
+                resolve({ result: r, text: textField.text });
             });
 
             showDialog(alert, options);
+            if (!!options.autoFocus) {
+                textField.requestFocus();
+            }
         } catch (ex) {
             console.error(ex);
             reject(ex);
@@ -370,7 +380,7 @@ export function prompt(arg: any): Promise<PromptResult> {
 }
 
 export function login(arg: any): Promise<LoginResult> {
-    let options: LoginOptions;
+    let options: LoginOptions & MDCAlertControlerOptions;
     const defaultOptions = {
         title: LOGIN,
         okButtonText: OK,
@@ -402,43 +412,40 @@ export function login(arg: any): Promise<LoginResult> {
     return new Promise<LoginResult>((resolve, reject) => {
         try {
             const context = androidApp.foregroundActivity;
+            const stackLayout = new StackLayout();
+            stackLayout.padding = 4;
+            const userNameTextField = new TextField();
+            const passwordTextField = new TextField();
+            userNameTextField.hint = 'Login';
+            userNameTextField.text = options.userName;
+            userNameTextField.hint = 'Password';
+            passwordTextField.text = options.password;
+            passwordTextField.secure = true;
+
+            if (options.usernameTextFieldProperties) {
+                Object.assign(userNameTextField, options.usernameTextFieldProperties);
+            }
+            if (options.passwordTextFieldProperties) {
+                Object.assign(passwordTextField, options.passwordTextFieldProperties);
+            }
+
+            stackLayout.addChild(userNameTextField);
+            stackLayout.addChild(passwordTextField);
+            options.view = stackLayout;
 
             const alert = createAlertDialog(options);
-
-            initTextInputEditText();
-            const userNameLayout = android.view.LayoutInflater.from(androidApp.foregroundActivity).inflate(
-                getLayout('material_text_field'),
-                null,
-                false
-            ) as android.support.design.widget.TextInputLayout;
-            const userNameInput = (userNameLayout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText;
-            userNameInput.setText(options.userName ? options.userName : '');
-
-            const passwordLayout = android.view.LayoutInflater.from(androidApp.foregroundActivity).inflate(
-                getLayout('material_text_field'),
-                null,
-                false
-            ) as android.support.design.widget.TextInputLayout;
-            const passwordInput = (passwordLayout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as android.support.design.widget.TextInputEditText;
-            passwordInput.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            passwordInput.setText(options.password ? options.password : '');
-
-            const layout = new android.widget.LinearLayout(context);
-            layout.setOrientation(1);
-            layout.addView(userNameLayout);
-            layout.addView(passwordLayout);
-
-            alert.setView(layout);
-
             addButtonsToAlertDialog(alert, options, function(r) {
                 resolve({
                     result: r,
-                    userName: userNameInput.getText().toString(),
-                    password: passwordInput.getText().toString()
+                    userName: userNameTextField.text,
+                    password: passwordTextField.text
                 });
             });
 
-            showDialog(alert, options);
+            const dlg = showDialog(alert, options);
+            if (!!options.autoFocus) {
+                userNameTextField.requestFocus();
+            }
         } catch (ex) {
             console.error(ex);
             reject(ex);

@@ -34,6 +34,8 @@ export class TextField extends NTextField {
 
     focus();
     blur();
+    requestFocus();
+    clearFocus();
 }
 
 export function initTextInputEditText(); // android only

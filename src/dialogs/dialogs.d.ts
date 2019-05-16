@@ -5,6 +5,7 @@ import { TextAlignment } from 'tns-core-modules/ui/text-base/text-base';
 import { View } from 'tns-core-modules/ui/core/view/view';
 import { ImageSource } from 'tns-core-modules/image-source/image-source';
 import { Page } from 'tns-core-modules/ui/page/page';
+import { MDCAlertControlerOptions } from './dialogs-common';
 
 
 declare module 'tns-core-modules/ui/dialogs' {
@@ -25,26 +26,7 @@ declare module 'tns-core-modules/ui/dialogs' {
 
 export * from 'tns-core-modules/ui/dialogs';
 
-
-export interface MDCAlertControlerOptions {
-    buttonFont?: Font;
-    buttonInkColor?: Color;
-    buttonTitleColor?: Color;
-    cornerRadius?: number;
-    elevation?: number;
-    messageColor?: Color;
-    messageFont?: Font;
-    scrimColor?: Color;
-    titleAlignment?: TextAlignment;
-    titleColor?: Color;
-    titleFont?: Font;
-    titleIcon?: ImageSource;
-    titleIconTintColor?: Color;
-    customTitleView?: View;
-    view?: View | string;
-    context?: any;
-    closeCallback?: Function;
-}
+export { MDCAlertControlerOptions }
 
 /**
  * The alert() method displays an alert box with a specified message.

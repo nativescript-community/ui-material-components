@@ -404,8 +404,20 @@ export function prompt(arg: any): Promise<PromptResult> {
             const stackLayout = new StackLayout();
             stackLayout.padding = 4;
             const textField = new TextField();
-            textField.text = options.defaultText;
+            textField.hint = options.hintText;
             if (options) {
+                if (options.textFieldProperties) {
+                    Object.assign(textField, options.textFieldProperties);
+                }
+                if (options.defaultText) {
+                    textField.text = options.defaultText;
+                }
+                if (options.defaultText) {
+                    textField.hint = options.hintText;
+                }
+                if (options.helperText) {
+                    textField.helper = options.helperText;
+                }
                 if (options.inputType === inputType.password) {
                     textField.secure = true;
                     // textField.keyboardType = 'text';
@@ -447,6 +459,9 @@ export function prompt(arg: any): Promise<PromptResult> {
             });
 
             showUIAlertController(alertController);
+            if (!!options.autoFocus) {
+                textField.requestFocus();
+            }
         } catch (ex) {
             reject(ex);
         }
@@ -496,12 +511,19 @@ export function login(arg: any): Promise<LoginResult> {
             passwordTextField.text = options.password;
             passwordTextField.secure = true;
 
+            if (options.usernameTextFieldProperties) {
+                Object.assign(userNameTextField, options.usernameTextFieldProperties);
+            }
+            if (options.passwordTextFieldProperties) {
+                Object.assign(passwordTextField, options.passwordTextFieldProperties);
+            }
+
             stackLayout.addChild(userNameTextField);
             stackLayout.addChild(passwordTextField);
             options.view = stackLayout;
             const alertController = createAlertController(options);
 
-            const textFieldColor = getTextFieldColor();
+            // const textFieldColor = getTextFieldColor();
 
             // alertController.addTextFieldWithConfigurationHandler(
             //     (arg: UITextField) => {
@@ -542,6 +564,9 @@ export function login(arg: any): Promise<LoginResult> {
             });
 
             showUIAlertController(alertController);
+            if (!!options.autoFocus) {
+                userNameTextField.requestFocus();
+            }
         } catch (ex) {
             reject(ex);
         }
