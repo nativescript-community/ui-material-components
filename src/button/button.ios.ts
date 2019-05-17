@@ -92,19 +92,26 @@ export class Button extends ButtonBase {
     [elevationHighlightedProperty.setNative](value: number) {
         this.nativeViewProtected.setElevationForState(value, UIControlState.Highlighted);
     }
-    [backgroundColorProperty.setNative](value: Color) {
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.setBackgroundColorForState(value.ios, UIControlState.Normal);
-            if (this.variant === 'outline') {
-                this.nativeViewProtected.setBackgroundColorForState(new Color('transparent').ios, UIControlState.Disabled);
-            }
-        }
-    }
+    // [backgroundColorProperty.setNative](value: Color) {
+    //     if (this.nativeViewProtected) {
+    //         this.nativeViewProtected.setBackgroundColorForState(value ? value.ios : null, UIControlState.Normal);
+    //         if (this.variant === 'outline') {
+    //             this.nativeViewProtected.setBackgroundColorForState(new Color('transparent').ios, UIControlState.Disabled);
+    //         }
+    //     }
+    // }
 
     [backgroundInternalProperty.setNative](value: Background) {
         if (this.nativeViewProtected) {
             const scale = screen.mainScreen.scale;
-            this.nativeViewProtected.backgroundColor = value.color ? value.color.ios : null;
+            // this.nativeViewProtected.backgroundColor = value.color ? value.color.ios : null;
+            if (value.color) {
+                this.nativeViewProtected.setBackgroundColorForState(value.color ? value.color.ios : null, UIControlState.Normal);
+                if (this.variant === 'outline') {
+                    this.nativeViewProtected.setBackgroundColorForState(new Color('transparent').ios, UIControlState.Disabled);
+                }
+            }
+            
             this.nativeViewProtected.setBorderWidthForState(value.borderLeftWidth / scale, UIControlState.Normal);
             this.nativeViewProtected.setBorderColorForState(value.borderTopColor ? value.borderTopColor.ios : null, UIControlState.Normal);
             this.nativeViewProtected.layer.cornerRadius = value.borderTopLeftRadius / scale;
