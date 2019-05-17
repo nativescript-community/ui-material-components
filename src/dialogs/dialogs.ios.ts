@@ -20,16 +20,14 @@ import {
     inputType,
     isDialogOptions,
     LOGIN,
-    LoginOptions,
     LoginResult,
     OK,
     PROMPT,
-    PromptOptions,
     PromptResult
 } from 'tns-core-modules/ui/dialogs';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
 import { isDefined, isFunction, isString } from 'tns-core-modules/utils/types';
-import { MDCAlertControlerOptions } from './dialogs';
+import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 
 const UNSPECIFIED = layout.makeMeasureSpec(0, layout.UNSPECIFIED);
 

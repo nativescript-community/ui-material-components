@@ -19,14 +19,12 @@ import {
     inputType,
     isDialogOptions,
     LOGIN,
-    LoginOptions,
     LoginResult,
     OK,
     PROMPT,
-    PromptOptions,
     PromptResult
 } from 'tns-core-modules/ui/dialogs';
-import { MDCAlertControlerOptions } from './dialogs';
+import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
 import { TextField } from 'nativescript-material-textfield';
 
