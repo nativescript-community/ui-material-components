@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.14](https://github.com/Akylas/nativescript-material-components/compare/v2.2.13...v2.2.14) (2019-05-17)
+
+
+### Bug Fixes
+
+* button background color being set to transparent ([239a5eb](https://github.com/Akylas/nativescript-material-components/commit/239a5eb))
+
+
+
+
+
 ## [2.2.13](https://github.com/Akylas/nativescript-material-components/compare/v2.2.12...v2.2.13) (2019-05-16)
 
 
