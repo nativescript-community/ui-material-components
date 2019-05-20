@@ -4,8 +4,8 @@
 
 import { android as androidApp } from 'tns-core-modules/application';
 import { fromObject } from 'tns-core-modules/data/observable';
-import { createViewFromEntry } from 'tns-core-modules/ui/builder/builder';
-import { View } from 'tns-core-modules/ui/core/view/view';
+import { createViewFromEntry } from 'tns-core-modules/ui/builder';
+import { View } from 'tns-core-modules/ui/core/view';
 import {
     ActionOptions,
     ALERT,
@@ -25,7 +25,8 @@ import {
     PromptResult
 } from 'tns-core-modules/ui/dialogs';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
-import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
+import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
+import { ad } from 'tns-core-modules/utils/utils';
 import { TextField } from 'nativescript-material-textfield';
 
 declare module 'tns-core-modules/ui/core/view/view' {
@@ -142,18 +143,32 @@ function showDialog(builder: android.support.v7.app.AlertDialog.Builder, options
     return dlg;
 }
 
-function addButtonsToAlertDialog(alert: android.support.v7.app.AlertDialog.Builder, options: ConfirmOptions, callback: Function): void {
+function addButtonsToAlertDialog(alert: android.support.v7.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback: Function): void {
     if (!options) {
         return;
     }
+    // onDismiss will always be called. Prevent calling callback multiple times
+    let onDoneCalled = false;
+    const onDone = function(result: boolean, dialog?: android.content.DialogInterface) {
+        if (onDoneCalled) {
+            return;
+        }
+        onDoneCalled = true;
+        if (options.view instanceof View) {
+            ad.dismissSoftInput(options.view.nativeView);
+        }
+        if (dialog) {
+            dialog.cancel();
+        }
+        callback(result);
+    };
 
     if (options.okButtonText) {
         alert.setPositiveButton(
             options.okButtonText,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function(dialog: android.content.DialogInterface, id: number) {
-                    dialog.cancel();
-                    callback(true);
+                    onDone(true, dialog);
                 }
             })
         );
@@ -164,8 +179,7 @@ function addButtonsToAlertDialog(alert: android.support.v7.app.AlertDialog.Build
             options.cancelButtonText,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function(dialog: android.content.DialogInterface, id: number) {
-                    dialog.cancel();
-                    callback(false);
+                    onDone(false, dialog);
                 }
             })
         );
@@ -176,8 +190,7 @@ function addButtonsToAlertDialog(alert: android.support.v7.app.AlertDialog.Build
             options.neutralButtonText,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function(dialog: android.content.DialogInterface, id: number) {
-                    dialog.cancel();
-                    callback(undefined);
+                    onDone(undefined, dialog);
                 }
             })
         );
@@ -185,7 +198,7 @@ function addButtonsToAlertDialog(alert: android.support.v7.app.AlertDialog.Build
     alert.setOnDismissListener(
         new android.content.DialogInterface.OnDismissListener({
             onDismiss: function() {
-                callback(false);
+                onDone(false);
             }
         })
     );
