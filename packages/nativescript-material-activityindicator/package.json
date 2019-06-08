@@ -5,6 +5,7 @@
     "main": "./activityindicator",
     "typings": "./activityindicator.d.ts",
     "scripts": {
+        "tsc-win": "tsc && copy ..\\..\\src\\activityindicator\\activityindicator.d.ts .\\",
         "tsc": "tsc && cp ../../src/activityindicator/activityindicator.d.ts ./",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },

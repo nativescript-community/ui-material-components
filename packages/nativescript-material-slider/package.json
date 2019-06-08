@@ -5,6 +5,7 @@
     "main": "./slider",
     "typings": "./slider.d.ts",
     "scripts": {
+        "tsc-win": "tsc && copy ..\\..\\src\\slider\\slider.d.ts .\\",
         "tsc": "tsc && cp ../../src/slider/slider.d.ts ./",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },

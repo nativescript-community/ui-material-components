@@ -5,6 +5,7 @@
     "main": "./button",
     "typings": "./button.d.ts",
     "scripts": {
+        "tsc-win": "tsc && copy ..\\..\\src\\button\\button.d.ts .\\",
         "tsc": "tsc && cp ../../src/button/button.d.ts ./",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },

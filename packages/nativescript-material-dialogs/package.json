@@ -5,6 +5,7 @@
     "main": "./dialogs",
     "typings": "./dialogs.d.ts",
     "scripts": {
+        "tsc-win": "tsc && copy ..\\..\\src\\dialogs\\dialogs.d.ts .\\",
         "tsc": "tsc && cp ../../src/dialogs/dialogs.d.ts ./",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },

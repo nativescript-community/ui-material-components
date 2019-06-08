@@ -5,6 +5,7 @@
     "main": "./ripple",
     "typings": "./ripple.d.ts",
     "scripts": {
+        "tsc-win": "tsc && copy ..\\..\\src\\ripple\\ripple.d.ts .\\",
         "tsc": "tsc && cp ../../src/ripple/ripple.d.ts ./",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
