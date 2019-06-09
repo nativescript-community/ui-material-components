@@ -5,6 +5,7 @@
     "main": "./core",
     "typings": "./core.d.ts",
     "scripts": {
+        "tsc-win": "tsc && copy ..\\..\\src\\core\\core.d.ts .\\",
         "tsc": "tsc && cp ../../src/core/core.d.ts ./",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
     },
