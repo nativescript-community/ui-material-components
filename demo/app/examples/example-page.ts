@@ -2,7 +2,7 @@ import { NavigationButton } from 'tns-core-modules/ui/action-bar/action-bar';
 import { EventData, Frame, View } from 'tns-core-modules/ui/frame/frame';
 import { alert, AlertDialog, login, prompt } from 'nativescript-material-dialogs';
 import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
-const builder = require('ui/builder');
+const builder = require('tns-core-modules/ui/builder');
 // importing adds the View augmentation
 import { BottomSheetOptions } from 'nativescript-material-bottomsheet';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';

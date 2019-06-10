@@ -1,0 +1,71 @@
+<ActionBar title="MDButtons"></ActionBar>
+<ScrollView>
+    <StackLayout horizontalAlignment="center">
+        <Label
+            text="Variant: Contained"
+            class="section-title"
+        ></Label>
+        <MDButton
+            class="material-button"
+            text="Button"
+            (tap)="onTap($event)"
+        ></MDButton>
+        <MDButton
+            class="material-button"
+            text="Button (Disabled)"
+            isEnabled="false"
+            (tap)="onTap($event)"
+        ></MDButton>
+        <Label
+            text="Variant: Flat"
+            class="section-title"
+        ></Label>
+        <MDButton
+            class="material-button"
+            text="Button"
+            variant="flat"
+            (tap)="onTap($event)"
+        ></MDButton>
+        <MDButton
+            class="material-button"
+            text="Button (Disabled)"
+            isEnabled="false"
+            variant="flat"
+            (tap)="onTap($event)"
+        ></MDButton>
+        <Label
+            text="Variant: Outlined"
+            class="section-title"
+        ></Label>
+        <MDButton
+            class="material-button"
+            text="Button"
+            variant="outline"
+            (tap)="onTap($event)"
+        ></MDButton>
+        <MDButton
+            class="material-button"
+            text="Button (Disabled)"
+            variant="outline"
+            isEnabled="false"
+            (tap)="onTap($event)"
+        ></MDButton>
+        <Label
+            text="Variant: Text"
+            class="section-title"
+        ></Label>
+        <MDButton
+            class="material-button"
+            text="Button"
+            variant="text"
+            (tap)="onTap($event)"
+        ></MDButton>
+        <MDButton
+            class="material-button"
+            text="Button (Disabled)"
+            isEnabled="false"
+            variant="text"
+            (tap)="onTap($event)"
+        ></MDButton>
+    </StackLayout>
+</ScrollView>
