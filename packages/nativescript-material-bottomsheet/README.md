@@ -48,7 +48,7 @@ export function openBottomSheet(args) {
         view: modalViewModulets,
         context,
         closeCallback: (username, password) => {
-            // Receive data from the bottomsheet view. e.g. username & password
+            bottom-sheet
             alert(`Username: ${username} : Password: ${password}`);
         },
         fullscreen
