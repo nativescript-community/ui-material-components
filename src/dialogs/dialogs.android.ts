@@ -143,7 +143,7 @@ function showDialog(builder: android.support.v7.app.AlertDialog.Builder, options
     return dlg;
 }
 
-function addButtonsToAlertDialog(alert: android.support.v7.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback: Function): void {
+function addButtonsToAlertDialog(alert: android.support.v7.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function): void {
     if (!options) {
         return;
     }
@@ -195,10 +195,18 @@ function addButtonsToAlertDialog(alert: android.support.v7.app.AlertDialog.Build
             })
         );
     }
+    const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
     alert.setOnDismissListener(
         new android.content.DialogInterface.OnDismissListener({
             onDismiss: function() {
                 onDone(false);
+                if ((activity as any)._currentModalCustomView) {
+                    const view = (activity as any)._currentModalCustomView;
+                    view.callUnloaded();
+                    view._tearDownUI(true);
+                    view._isAddedToNativeVisualTree = false;
+                    (activity as any)._currentModalCustomView = null;
+                }
             }
         })
     );
@@ -211,30 +219,7 @@ export function alert(arg: any): Promise<void> {
 
             const alert = createAlertDialog(options);
 
-            alert.setPositiveButton(
-                options.okButtonText,
-                new android.content.DialogInterface.OnClickListener({
-                    onClick: function(dialog: android.content.DialogInterface, id: number) {
-                        dialog.cancel();
-                        resolve();
-                    }
-                })
-            );
-            const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
-            alert.setOnDismissListener(
-                new android.content.DialogInterface.OnDismissListener({
-                    onDismiss: function() {
-                        resolve();
-                        if ((activity as any)._currentModalCustomView) {
-                            const view = (activity as any)._currentModalCustomView;
-                            view.callUnloaded();
-                            view._tearDownUI(true);
-                            view._isAddedToNativeVisualTree = false;
-                            (activity as any)._currentModalCustomView = null;
-                        }
-                    }
-                })
-            );
+            addButtonsToAlertDialog(alert, options);
 
             showDialog(alert, options, resolve);
         } catch (ex) {
