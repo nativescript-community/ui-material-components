@@ -127,10 +127,9 @@ export class TextField extends TextFieldBase {
         return view;
     }
 
-
     // TODO: check why i was checking for isFirstResponder
     // with it the blur event is not fired anymore
-    
+
     // public dismissSoftInput() {
     //     if (this.nativeViewProtected.isFirstResponder) {
     //         super.dismissSoftInput();
