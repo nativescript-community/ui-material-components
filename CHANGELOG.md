@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.17](https://github.com/Akylas/nativescript-material-components/compare/v2.2.16...v2.2.17) (2019-06-11)
+
+
+### Bug Fixes
+
+* install was not exported ([589c926](https://github.com/Akylas/nativescript-material-components/commit/589c926))
+
+
+
+
+
 ## [2.2.16](https://github.com/Akylas/nativescript-material-components/compare/v2.2.15...v2.2.16) (2019-06-11)
 
 
