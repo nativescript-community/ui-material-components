@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.16](https://github.com/Akylas/nativescript-material-components/compare/v2.2.15...v2.2.16) (2019-06-11)
+
+**Note:** Version bump only for package nativescript-material-bottomsheet
+
+
+
+
+
 ## [2.2.15](https://github.com/Akylas/nativescript-material-components/compare/v2.2.14...v2.2.15) (2019-05-20)
 
 **Note:** Version bump only for package nativescript-material-bottomsheet

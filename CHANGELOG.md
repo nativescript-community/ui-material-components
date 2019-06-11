@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.16](https://github.com/Akylas/nativescript-material-components/compare/v2.2.15...v2.2.16) (2019-06-11)
+
+
+### Bug Fixes
+
+* blur event not being fired on iOS for textfields ([54715e1](https://github.com/Akylas/nativescript-material-components/commit/54715e1))
+* correct cleanup on dialog dismissal ([1998b62](https://github.com/Akylas/nativescript-material-components/commit/1998b62))
+* dont try and install bottom sheet from core ([3ca833c](https://github.com/Akylas/nativescript-material-components/commit/3ca833c))
+* test for callback to prevent error ([c820771](https://github.com/Akylas/nativescript-material-components/commit/c820771))
+
+
+
+
+
 ## [2.2.15](https://github.com/Akylas/nativescript-material-components/compare/v2.2.14...v2.2.15) (2019-05-20)
 
 
