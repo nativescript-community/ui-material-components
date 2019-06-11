@@ -160,7 +160,7 @@ function addButtonsToAlertDialog(alert: android.support.v7.app.AlertDialog.Build
         if (dialog) {
             dialog.cancel();
         }
-        callback(result);
+        callback && callback(result);
     };
 
     if (options.okButtonText) {
