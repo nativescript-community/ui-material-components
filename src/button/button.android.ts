@@ -1,8 +1,8 @@
 import { ButtonBase } from './button-common';
-import { getRippleColor } from 'nativescript-material-core';
+import { getRippleColor } from 'nativescript-material-core/core';
 
 import * as utils from 'tns-core-modules/utils/utils';
-import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { elevationHighlightedProperty, elevationProperty, rippleColorProperty, translationZHighlightedProperty } from 'nativescript-material-core/cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { getEnabledColorStateList, getRippleColorStateList } from 'nativescript-material-core/android/utils';
 import { createStateListAnimator } from 'nativescript-material-core/android/utils';
@@ -34,8 +34,22 @@ export class Button extends ButtonBase {
             style = 'AppThemeTextMaterialButton';
         } else if (this.variant === 'flat') {
             style = 'AppThemeFlatMaterialButton';
+        } else {
+            // we need to set the default through css or user would not be able to overload it through css...
+            this.style['css:margin-left'] = 10;
+            this.style['css:margin-right'] = 10;
+            this.style['css:margin-top'] = 12;
+            this.style['css:margin-bottom'] = 12;
         }
         const view = new com.google.android.material.button.MaterialButton(new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)));
+        // view.setElevation(3);
+        // view.setTranslationZ(0);
+        if (!this.variant) {
+            if (android.os.Build.VERSION.SDK_INT >= 21) {
+                createStateListAnimator(this, view);
+            }
+        }
+
         if (this.variant === 'outline') {
             view.setStrokeWidth(1);
             view.setStrokeColor(android.content.res.ColorStateList.valueOf(new Color('gray').android));
@@ -51,12 +65,21 @@ export class Button extends ButtonBase {
     }
 
     [elevationProperty.setNative](value: number) {
-        androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, value);
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            createStateListAnimator(this, this.nativeViewProtected);
+        } else {
+            this.nativeViewProtected.setElevation(value);
+        }
+    }
+    [translationZHighlightedProperty.setNative](value: number) {
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            createStateListAnimator(this, this.nativeViewProtected);
+        } else {
+            this.nativeViewProtected.setTranslationZ(value);
+        }
     }
     [elevationHighlightedProperty.setNative](value: number) {
-        if (!this.nativeViewProtected) {
-            return;
-        }
+        console.log('elevationHighlightedProperty', value);
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             createStateListAnimator(this, this.nativeViewProtected);
         }
@@ -65,6 +88,10 @@ export class Button extends ButtonBase {
     setCornerRadius(value) {
         const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
         this.nativeViewProtected.setCornerRadius(newValue);
+    }
+    setStrokeWidth(value) {
+        const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+        this.nativeViewProtected.setStrokeWidth(newValue);
     }
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
         if (this.nativeViewProtected) {
@@ -75,6 +102,10 @@ export class Button extends ButtonBase {
                     this.nativeViewProtected.setBackgroundTintList(getEnabledColorStateList(value.color.android, this.variant));
                 }
                 this.setCornerRadius(value.borderTopLeftRadius);
+                this.nativeViewProtected.setStrokeWidth(value.borderTopWidth);
+                if (value.borderTopColor) {
+                    this.nativeViewProtected.setStrokeColor(android.content.res.ColorStateList.valueOf(value.borderTopColor.android));
+                }
             }
         }
     }

@@ -52,25 +52,25 @@ export const stateSets = {
         if (!this._PRESSED_STATE_SET) {
             this._PRESSED_STATE_SET = createNativeArray(state.pressed);
         }
-        return this._PRESSED_STATE_SET as number[];
+        return this._PRESSED_STATE_SET as native.Array<number>;
     },
     get HOVERED_FOCUSED_STATE_SET() {
         if (!this._HOVERED_FOCUSED_STATE_SET) {
             this._HOVERED_FOCUSED_STATE_SET = createNativeArray(state.hovered, state.focused);
         }
-        return this._PRESSED_STATE_SET as number[];
+        return this._PRESSED_STATE_SET as native.Array<number>;
     },
     get FOCUSED_STATE_SET() {
         if (!this._FOCUSED_STATE_SET) {
             this._FOCUSED_STATE_SET = createNativeArray(state.focused);
         }
-        return this._FOCUSED_STATE_SET as number[];
+        return this._FOCUSED_STATE_SET as native.Array<number>;
     },
     get HOVERED_STATE_SET() {
         if (!this._HOVERED_STATE_SET) {
             this._HOVERED_STATE_SET = createNativeArray(state.hovered);
         }
-        return this._HOVERED_STATE_SET as number[];
+        return this._HOVERED_STATE_SET as native.Array<number>;
     },
     get SELECTED_PRESSED_STATE_SET() {
         if (!this._SELECTED_PRESSED_STATE_SET) {
@@ -82,25 +82,25 @@ export const stateSets = {
         if (!this._SELECTED_HOVERED_FOCUSED_STATE_SET) {
             this._SELECTED_HOVERED_FOCUSED_STATE_SET = createNativeArray(state.selected, state.hovered, state.focused);
         }
-        return this._SELECTED_HOVERED_FOCUSED_STATE_SET as number[];
+        return this._SELECTED_HOVERED_FOCUSED_STATE_SET as native.Array<number>;
     },
     get SELECTED_FOCUSED_STATE_SET() {
         if (!this._SELECTED_FOCUSED_STATE_SET) {
             this._SELECTED_FOCUSED_STATE_SET = createNativeArray(state.selected, state.focused);
         }
-        return this._SELECTED_FOCUSED_STATE_SET as number[];
+        return this._SELECTED_FOCUSED_STATE_SET as native.Array<number>;
     },
     get SELECTED_HOVERED_STATE_SET() {
         if (!this._SELECTED_HOVERED_STATE_SET) {
             this._SELECTED_HOVERED_STATE_SET = createNativeArray(state.selected, state.hovered);
         }
-        return this._SELECTED_HOVERED_STATE_SET as number[];
+        return this._SELECTED_HOVERED_STATE_SET as native.Array<number>;
     },
     get SELECTED_STATE_SET() {
         if (!this._SELECTED_STATE_SET) {
             this._SELECTED_STATE_SET = createNativeArray(state.selected);
         }
-        return this._SELECTED_STATE_SET as number[];
+        return this._SELECTED_STATE_SET as native.Array<number>;
     },
     get BACKGROUND_DEFAULT_STATE_1() {
         if (!this._BACKGROUND_DEFAULT_STATE_1) {
@@ -112,31 +112,31 @@ export const stateSets = {
         if (!this._BACKGROUND_DEFAULT_STATE_1_SET) {
             this._BACKGROUND_DEFAULT_STATE_1_SET = createNativeArray(state.enabled);
         }
-        return this._BACKGROUND_DEFAULT_STATE_1_SET as number[];
+        return this._BACKGROUND_DEFAULT_STATE_1_SET as native.Array<number>;
     },
     get BACKGROUND_SELECTED_STATE() {
         if (!this._BACKGROUND_SELECTED_STATE) {
             this._BACKGROUND_SELECTED_STATE = createNativeArray(state.window_focused, state.enabled, state.pressed);
         }
-        return this._BACKGROUND_SELECTED_STATE as number[];
+        return this._BACKGROUND_SELECTED_STATE as native.Array<number>;
     },
     get BACKGROUND_CHECKED_STATE() {
         if (!this._BACKGROUND_CHECKED_STATE) {
             this._BACKGROUND_CHECKED_STATE = createNativeArray(state.window_focused, state.enabled, state.checked);
         }
-        return this._BACKGROUND_CHECKED_STATE as number[];
+        return this._BACKGROUND_CHECKED_STATE as native.Array<number>;
     },
     get BACKGROUND_FOCUSED_STATE() {
         if (!this._BACKGROUND_FOCUSED_STATE) {
             this._BACKGROUND_FOCUSED_STATE = createNativeArray(state.focused, state.window_focused, state.enabled);
         }
-        return this._BACKGROUND_FOCUSED_STATE as number[];
+        return this._BACKGROUND_FOCUSED_STATE as native.Array<number>;
     },
     get BACKGROUND_DISABLED_STATE() {
         if (!this._BACKGROUND_DISABLED_STATE) {
             this._BACKGROUND_DISABLED_STATE = createNativeArray(-state.enabled);
         }
-        return this._BACKGROUND_DISABLED_STATE as number[];
+        return this._BACKGROUND_DISABLED_STATE as native.Array<number>;
     }
 };
 
@@ -172,13 +172,31 @@ export function getEnabledColorStateList(color: number, variant: string) {
     colors[1] = color;
     return new android.content.res.ColorStateList(states, colors);
 }
+export function getFocusedColorStateList(color: number, variant: string) {
+    const states = Array.create('[I', 3);
+
+    states[0] = Array.create('int', 1);
+    states[0][0] = state.pressed;
+    states[1] = Array.create('int', 2);
+    states[1][0] = state.enabled;
+    states[1][1] = state.focused;
+    // states[2] = Array.create('int', 1);
+    // states[2][0] = state.selected;
+    states[2] = android.util.StateSet.NOTHING;
+    const colors = Array.create('int', 4);
+    colors[0] = color;
+    colors[1] = color;
+    colors[2] = color;
+    colors[2] = variant === 'text' || variant === 'outline' ? 0 : new Color(255, 160, 160, 160).android;
+    return new android.content.res.ColorStateList(states, colors);
+}
 
 export function createStateListAnimator(view: ViewBase, nativeView: android.view.View) {
-    const elevation = androidx.core.view.ViewCompat.getElevation(nativeView);
-    const translationZ = androidx.core.view.ViewCompat.getTranslationZ(nativeView);
-    const elevationSelected = view.style['elevationHighlighted'] !== undefined ? view.style['elevationHighlighted'] : elevation * 2;
+    const elevation = view.style['elevation'] !== undefined ? view.style['elevation'] : 2;
+    const translationZ = view.style['translationZ'] !== undefined ? view.style['translationZ'] : 0;
+    const elevationSelected = view.style['elevationHighlighted'] !== undefined ? view.style['elevationHighlighted'] : 3 * elevation;
     // compute translationSelectedZ base on elevationSelected
-    const translationSelectedZ = translationZ + (6 * elevationSelected) / elevation / 2;
+    const translationSelectedZ = view.style['translationZHighlighted'] ? view.style['translationZHighlighted'] : translationZ + elevationSelected;
     const animationDuration = 100;
     const listAnimator = new android.animation.StateListAnimator();
     let animators = new java.util.ArrayList<android.animation.Animator>();
@@ -217,6 +235,20 @@ export function createStateListAnimator(view: ViewBase, nativeView: android.view
     set.setDuration(animationDuration);
     set.setStartDelay(animationDuration);
     listAnimator.addState(stateSets.BACKGROUND_DEFAULT_STATE_2, set);
+
+    animators.clear();
+    set = new android.animation.AnimatorSet();
+    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'translationZ', [0]);
+    // animator.setDuration(animationDuration)
+    // animator.setStartDelay(animationDuration)
+    animators.add(animator);
+    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'elevation', [0]);
+    // animator.setDuration(0)
+    animators.add(animator);
+    set.playTogether(animators);
+    set.setDuration(animationDuration);
+    set.setStartDelay(animationDuration);
+    listAnimator.addState(stateSets.BACKGROUND_DISABLED_STATE, set);
 
     animators.clear();
     set = new android.animation.AnimatorSet();
@@ -265,4 +297,33 @@ export function createRippleDrawable(view: android.view.View, rippleColor: numbe
     // some classes might need this
     (rippleDrawable as any).rippleShape = rippleShape;
     return rippleDrawable;
+}
+
+export function handleClearFocus(view: android.view.View) {
+    const root = view.getRootView();
+    let oldValue = true;
+    let oldDesc = android.view.ViewGroup.FOCUS_BEFORE_DESCENDANTS;
+
+    if (root != null) {
+        if (root instanceof android.view.ViewGroup) {
+            oldDesc = root.getDescendantFocusability();
+            root.setDescendantFocusability(android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS);
+        }
+        oldValue = root.isFocusable();
+        setFocusable(root, false);
+    }
+    view.clearFocus();
+    if (root != null) {
+        setFocusable(root, oldValue);
+        if (root instanceof android.view.ViewGroup) {
+            root.setDescendantFocusability(oldDesc);
+        }
+    }
+}
+
+export function setFocusable(view: android.view.View, focusable: boolean) {
+    view.setFocusable(focusable);
+    // so dumb setFocusable to false set setFocusableInTouchMode
+    // but not when using true :s so we have to do it
+    view.setFocusableInTouchMode(focusable);
 }

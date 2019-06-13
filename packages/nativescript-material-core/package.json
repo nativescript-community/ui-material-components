@@ -1,11 +1,12 @@
 {
     "name": "nativescript-material-core",
-    "version": "2.2.3",
+    "version": "2.2.17",
     "description": "Material Core component",
-    "main": "./material",
-    "typings": "./material.d.ts",
+    "main": "./core",
+    "typings": "./core.d.ts",
     "scripts": {
-        "tsc": "tsc && cp ../../src/core/material.d.ts ./",
+        "tsc-win": "tsc && copy ..\\..\\src\\core\\core.d.ts .\\",
+        "tsc": "tsc && cp ../../src/core/core.d.ts ./",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
     },
     "nativescript": {
@@ -30,5 +31,5 @@
     "license": "Apache-2.0",
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
-    "gitHead": "ed19b977ca854c03cc8889e006d81259c4bbe6c1"
+    "gitHead": "e62190fa75ac5ca06904f8ccc46b6ac62f129c15"
 }

@@ -1,10 +1,12 @@
-import { ActionOptions, AlertOptions, ConfirmOptions, LoginOptions, LoginResult, PromptOptions, PromptResult } from 'tns-core-modules/ui/dialogs';
+import { ActionOptions, AlertOptions, ConfirmOptions, LoginOptions as TNSLoginOptions, LoginResult, PromptOptions as TNSPromptOptions, PromptResult } from 'tns-core-modules/ui/dialogs';
 import { Font } from 'tns-core-modules/ui/styling/font';
 import { Color } from 'tns-core-modules/color';
 import { TextAlignment } from 'tns-core-modules/ui/text-base/text-base';
 import { View } from 'tns-core-modules/ui/core/view/view';
 import { ImageSource } from 'tns-core-modules/image-source/image-source';
 import { Page } from 'tns-core-modules/ui/page/page';
+import { MDCAlertControlerOptions } from './dialogs-common';
+import { TextFieldProperties } from 'nativescript-material-textfield';
 
 
 declare module 'tns-core-modules/ui/dialogs' {
@@ -25,26 +27,49 @@ declare module 'tns-core-modules/ui/dialogs' {
 
 export * from 'tns-core-modules/ui/dialogs';
 
+export interface PromptOptions extends TNSPromptOptions {
 
-export interface MDCAlertControlerOptions {
-    buttonFont?: Font;
-    buttonInkColor?: Color;
-    buttonTitleColor?: Color;
-    cornerRadius?: number;
-    elevation?: number;
-    messageColor?: Color;
-    messageFont?: Font;
-    scrimColor?: Color;
-    titleAlignment?: TextAlignment;
-    titleColor?: Color;
-    titleFont?: Font;
-    titleIcon?: ImageSource;
-    titleIconTintColor?: Color;
-    customTitleView?: View;
-    view?: View | string;
-    context?: any;
-    closeCallback?: Function;
+    autoFocus?: boolean;
+
+    /**
+     * Gets or sets the hint text to display in the input box.
+     */
+    hintText?: string;
+    /**
+     * Gets or sets the helper text to display in the input box.
+     */
+    helperText?: string;
+    /**
+     * Optional object to set any property to the textfield!
+     */
+    textFieldProperties?: Partial<TextFieldProperties>
 }
+
+export interface LoginOptions extends TNSLoginOptions {
+
+    autoFocus?: boolean;
+    /**
+     * Gets or sets the default text to display as hint in the user name input box.
+     */
+    userNameHint?: string;
+    
+    /**
+     * Gets or sets the default text to display as hint in the password input box.
+     */
+    passwordHint?: string;
+
+    /**
+     * Optional object to set any property to the username textfield!
+     */
+    usernameTextFieldProperties?: Partial<TextFieldProperties>
+
+    /**
+     * Optional object to set any property to the username textfield!
+     */
+    passwordTextFieldProperties?: Partial<TextFieldProperties>
+}
+
+export { MDCAlertControlerOptions }
 
 /**
  * The alert() method displays an alert box with a specified message.

@@ -4,8 +4,8 @@
 
 import { android as androidApp } from 'tns-core-modules/application';
 import { fromObject } from 'tns-core-modules/data/observable';
-import { createViewFromEntry } from 'tns-core-modules/ui/builder/builder';
-import { View } from 'tns-core-modules/ui/core/view/view';
+import { createViewFromEntry } from 'tns-core-modules/ui/builder';
+import { View } from 'tns-core-modules/ui/core/view';
 import {
     ActionOptions,
     ALERT,
@@ -19,14 +19,15 @@ import {
     inputType,
     isDialogOptions,
     LOGIN,
-    LoginOptions,
     LoginResult,
     OK,
     PROMPT,
-    PromptOptions,
     PromptResult
 } from 'tns-core-modules/ui/dialogs';
-import { MDCAlertControlerOptions } from './dialogs';
+import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
+import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
+import { ad } from 'tns-core-modules/utils/utils';
+import { TextField } from 'nativescript-material-textfield';
 
 declare module 'tns-core-modules/ui/core/view/view' {
     interface View {
@@ -142,18 +143,32 @@ function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options
     return dlg;
 }
 
-function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions, callback: Function): void {
+function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function): void {
     if (!options) {
         return;
     }
+    // onDismiss will always be called. Prevent calling callback multiple times
+    let onDoneCalled = false;
+    const onDone = function(result: boolean, dialog?: android.content.DialogInterface) {
+        if (onDoneCalled) {
+            return;
+        }
+        onDoneCalled = true;
+        if (options.view instanceof View) {
+            ad.dismissSoftInput(options.view.nativeView);
+        }
+        if (dialog) {
+            dialog.cancel();
+        }
+        callback && callback(result);
+    };
 
     if (options.okButtonText) {
         alert.setPositiveButton(
             options.okButtonText,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function(dialog: android.content.DialogInterface, id: number) {
-                    dialog.cancel();
-                    callback(true);
+                    onDone(true, dialog);
                 }
             })
         );
@@ -164,8 +179,7 @@ function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Build
             options.cancelButtonText,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function(dialog: android.content.DialogInterface, id: number) {
-                    dialog.cancel();
-                    callback(false);
+                    onDone(false, dialog);
                 }
             })
         );
@@ -176,16 +190,23 @@ function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Build
             options.neutralButtonText,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function(dialog: android.content.DialogInterface, id: number) {
-                    dialog.cancel();
-                    callback(undefined);
+                    onDone(undefined, dialog);
                 }
             })
         );
     }
+    const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
     alert.setOnDismissListener(
         new android.content.DialogInterface.OnDismissListener({
             onDismiss: function() {
-                callback(false);
+                onDone(false);
+                if ((activity as any)._currentModalCustomView) {
+                    const view = (activity as any)._currentModalCustomView;
+                    view.callUnloaded();
+                    view._tearDownUI(true);
+                    view._isAddedToNativeVisualTree = false;
+                    (activity as any)._currentModalCustomView = null;
+                }
             }
         })
     );
@@ -198,33 +219,11 @@ export function alert(arg: any): Promise<void> {
 
             const alert = createAlertDialog(options);
 
-            alert.setPositiveButton(
-                options.okButtonText,
-                new android.content.DialogInterface.OnClickListener({
-                    onClick: function(dialog: android.content.DialogInterface, id: number) {
-                        dialog.cancel();
-                        resolve();
-                    }
-                })
-            );
-            const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
-            alert.setOnDismissListener(
-                new android.content.DialogInterface.OnDismissListener({
-                    onDismiss: function() {
-                        resolve();
-                        if ((activity as any)._currentModalCustomView) {
-                            const view = (activity as any)._currentModalCustomView;
-                            view.callUnloaded();
-                            view._tearDownUI(true);
-                            view._isAddedToNativeVisualTree = false;
-                            (activity as any)._currentModalCustomView = null;
-                        }
-                    }
-                })
-            );
+            addButtonsToAlertDialog(alert, options);
 
             showDialog(alert, options, resolve);
         } catch (ex) {
+            console.error(ex);
             reject(ex);
         }
     });
@@ -282,17 +281,14 @@ export function confirm(arg: any): Promise<boolean> {
 
             showDialog(alert, options);
         } catch (ex) {
+            console.error(ex);
             reject(ex);
         }
     });
 }
 
-function getLayout(id: string) {
-    const context: android.content.Context = androidApp.context;
-    return context.getResources().getIdentifier(id, 'layout', context.getPackageName());
-}
 export function prompt(arg: any): Promise<PromptResult> {
-    let options: PromptOptions;
+    let options: PromptOptions & MDCAlertControlerOptions;
 
     const defaultOptions = {
         title: PROMPT,
@@ -318,55 +314,69 @@ export function prompt(arg: any): Promise<PromptResult> {
 
     return new Promise<PromptResult>((resolve, reject) => {
         try {
-            const alert = createAlertDialog(options);
-
-            const layout = android.view.LayoutInflater.from(androidApp.foregroundActivity).inflate(getLayout('material_text_field'), null, false) as com.google.android.material.textfield.TextInputLayout;
-            const input = (layout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as com.google.android.material.textfield.TextInputEditText;
-
+            const stackLayout = new StackLayout();
+            stackLayout.padding = 4;
+            const textField = new TextField();
+            textField.hint = options.hintText;
             if (options) {
+                if (options.textFieldProperties) {
+                    Object.assign(textField, options.textFieldProperties);
+                }
+                if (options.defaultText) {
+                    textField.text = options.defaultText;
+                }
+                if (options.defaultText) {
+                    textField.hint = options.hintText;
+                }
+                if (options.helperText) {
+                    textField.helper = options.helperText;
+                }
                 if (options.inputType === inputType.password) {
-                    input.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    textField.secure = true;
                 } else if (options.inputType === inputType.email) {
-                    input.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+                    textField.keyboardType = 'email';
+                } else if (options.inputType === inputType.number) {
+                    textField.keyboardType = 'number';
+                } else if (options.inputType === inputType.phone) {
+                    textField.keyboardType = 'phone';
                 }
 
                 switch (options.capitalizationType) {
                     case capitalizationType.all: {
-                        input.setInputType(input.getInputType() | android.text.InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        textField.autocapitalizationType = 'allcharacters';
                         break;
                     }
                     case capitalizationType.sentences: {
-                        input.setInputType(input.getInputType() | android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+                        textField.autocapitalizationType = 'sentences';
                         break;
                     }
                     case capitalizationType.words: {
-                        input.setInputType(input.getInputType() | android.text.InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+                        textField.autocapitalizationType = 'words';
                         break;
                     }
                 }
             }
-
-            input.setText((options && options.defaultText) || '');
-
-            alert.setView(layout);
-
-            const getText = function() {
-                return input.getText().toString();
-            };
+            stackLayout.addChild(textField);
+            options.view = stackLayout;
+            const alert = createAlertDialog(options);
 
             addButtonsToAlertDialog(alert, options, function(r) {
-                resolve({ result: r, text: getText() });
+                resolve({ result: r, text: textField.text });
             });
 
             showDialog(alert, options);
+            if (!!options.autoFocus) {
+                textField.requestFocus();
+            }
         } catch (ex) {
+            console.error(ex);
             reject(ex);
         }
     });
 }
 
 export function login(arg: any): Promise<LoginResult> {
-    let options: LoginOptions;
+    let options: LoginOptions & MDCAlertControlerOptions;
     const defaultOptions = {
         title: LOGIN,
         okButtonText: OK,
@@ -398,43 +408,42 @@ export function login(arg: any): Promise<LoginResult> {
     return new Promise<LoginResult>((resolve, reject) => {
         try {
             const context = androidApp.foregroundActivity;
+            const stackLayout = new StackLayout();
+            stackLayout.padding = 4;
+            const userNameTextField = new TextField();
+            const passwordTextField = new TextField();
+            userNameTextField.hint = 'Login';
+            userNameTextField.text = options.userName;
+            userNameTextField.hint = 'Password';
+            passwordTextField.text = options.password;
+            passwordTextField.secure = true;
+
+            if (options.usernameTextFieldProperties) {
+                Object.assign(userNameTextField, options.usernameTextFieldProperties);
+            }
+            if (options.passwordTextFieldProperties) {
+                Object.assign(passwordTextField, options.passwordTextFieldProperties);
+            }
+
+            stackLayout.addChild(userNameTextField);
+            stackLayout.addChild(passwordTextField);
+            options.view = stackLayout;
 
             const alert = createAlertDialog(options);
-
-            const userNameLayout = android.view.LayoutInflater.from(androidApp.foregroundActivity).inflate(
-                getLayout('material_text_field'),
-                null,
-                false
-            ) as com.google.android.material.textfield.TextInputLayout;
-            const userNameInput = (userNameLayout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as com.google.android.material.textfield.TextInputEditText;
-            userNameInput.setText(options.userName ? options.userName : '');
-
-            const passwordLayout = android.view.LayoutInflater.from(androidApp.foregroundActivity).inflate(
-                getLayout('material_text_field'),
-                null,
-                false
-            ) as com.google.android.material.textfield.TextInputLayout;
-            const passwordInput = (passwordLayout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as com.google.android.material.textfield.TextInputEditText;
-            passwordInput.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            passwordInput.setText(options.password ? options.password : '');
-
-            const layout = new android.widget.LinearLayout(context);
-            layout.setOrientation(1);
-            layout.addView(userNameLayout);
-            layout.addView(passwordLayout);
-
-            alert.setView(layout);
-
             addButtonsToAlertDialog(alert, options, function(r) {
                 resolve({
                     result: r,
-                    userName: userNameInput.getText().toString(),
-                    password: passwordInput.getText().toString()
+                    userName: userNameTextField.text,
+                    password: passwordTextField.text
                 });
             });
 
-            showDialog(alert, options);
+            const dlg = showDialog(alert, options);
+            if (!!options.autoFocus) {
+                userNameTextField.requestFocus();
+            }
         } catch (ex) {
+            console.error(ex);
             reject(ex);
         }
     });
@@ -523,6 +532,7 @@ export function action(arg: any): Promise<string> {
 
             showDialog(alert, options);
         } catch (ex) {
+            console.error(ex);
             reject(ex);
         }
     });

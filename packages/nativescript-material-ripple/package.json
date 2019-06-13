@@ -1,10 +1,11 @@
 {
     "name": "nativescript-material-ripple",
-    "version": "2.2.3",
+    "version": "2.2.17",
     "description": "Material ripple component",
     "main": "./ripple",
     "typings": "./ripple.d.ts",
     "scripts": {
+        "tsc-win": "tsc && copy ..\\..\\src\\ripple\\ripple.d.ts .\\",
         "tsc": "tsc && cp ../../src/ripple/ripple.d.ts ./",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
@@ -31,7 +32,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^2.2.3"
+        "nativescript-material-core": "^2.2.17"
     },
-    "gitHead": "ed19b977ca854c03cc8889e006d81259c4bbe6c1"
+    "gitHead": "e62190fa75ac5ca06904f8ccc46b6ac62f129c15"
 }

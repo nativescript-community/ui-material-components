@@ -1,8 +1,10 @@
 import { RippleBase } from './ripple-common';
 import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
-import { getRippleColor } from 'nativescript-material-core';
+import { getRippleColor } from 'nativescript-material-core/core';
 import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
+import { backgroundInternalProperty } from 'tns-core-modules/ui/page/page';
+import { Background } from 'tns-core-modules/ui/styling/background';
 
 let MDStackLayout: typeof org.nativescript.widgets.StackLayout;
 
@@ -211,9 +213,12 @@ export class Ripple extends RippleBase {
     getRippleColor() {
         return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight')));
     }
-    setRippleDrawable(view: android.view.View) {
+    getCornerRadius() {
+        return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight')));
+    }
+    setRippleDrawable(view: android.view.View, radius = 0) {
         if (!this.rippleDrawable) {
-            this.rippleDrawable = createRippleDrawable(view, this.getRippleColor());
+            this.rippleDrawable = createRippleDrawable(view, this.getRippleColor(), radius);
             view.setForeground(this.rippleDrawable);
         }
     }
@@ -226,5 +231,16 @@ export class Ripple extends RippleBase {
             (this.rippleDrawable as any).rippleShape.getPaint().setColor(rippleColor);
         }
         // }
+    }
+
+    [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
+        super[backgroundInternalProperty.setNative](value);
+        if (this.nativeViewProtected) {
+            if (value instanceof android.graphics.drawable.Drawable) {
+            } else {
+                this.rippleDrawable = null;
+                this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius);
+            }
+        }
     }
 }

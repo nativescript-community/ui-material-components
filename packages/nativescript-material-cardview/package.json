@@ -1,10 +1,11 @@
 {
     "name": "nativescript-material-cardview",
-    "version": "2.2.3",
+    "version": "2.2.17",
     "description": "Material cardview component",
     "main": "./cardview",
     "typings": "./cardview.d.ts",
     "scripts": {
+        "tsc-win": "tsc && copy ..\\..\\src\\cardview\\cardview.d.ts .\\",
         "tsc": "tsc && cp ../../src/cardview/cardview.d.ts ./",
         "ngc": "node --max-old-space-size=8192 ../../node_modules/.bin/ngc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
@@ -32,7 +33,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^2.2.3"
+        "nativescript-material-core": "^2.2.17"
     },
-    "gitHead": "ed19b977ca854c03cc8889e006d81259c4bbe6c1"
+    "gitHead": "e62190fa75ac5ca06904f8ccc46b6ac62f129c15"
 }

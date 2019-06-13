@@ -4,7 +4,7 @@ import { Frame } from 'tns-core-modules/ui/frame/frame';
 import { EventData } from 'tns-core-modules/data/observable';
 import { eachDescendant, ViewBase } from 'tns-core-modules/ui/core/view-base';
 
-declare module 'tns-core-modules/ui/core/view' {
+declare module 'tns-core-modules/ui/core/view/view' {
     interface View {
         showBottomSheet(options: BottomSheetOptions): ViewBase;
         _setupAsRootView(context: any): void;

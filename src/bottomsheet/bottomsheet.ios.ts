@@ -4,7 +4,7 @@ import { ViewBase } from 'tns-core-modules/ui/core/view-base';
 import { ios as iosUtils, layout } from 'tns-core-modules/utils/utils';
 import { BottomSheetOptions } from './bottomsheet';
 import { fromObject } from 'tns-core-modules/data/observable';
-import { applyMixins } from 'nativescript-material-core';
+import { applyMixins } from 'nativescript-material-core/core';
 
 class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottomSheetControllerDelegate {
     public static ObjCProtocols = [MDCBottomSheetControllerDelegate];

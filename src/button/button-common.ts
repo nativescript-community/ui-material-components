@@ -13,7 +13,6 @@ export abstract class ButtonBase extends Button {
 
     constructor() {
         super();
-        this.style.margin = 5;
     }
 }
 

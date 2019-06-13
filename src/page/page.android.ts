@@ -1,7 +1,7 @@
 import { Page as INSPage, View } from 'tns-core-modules/ui/page/page';
 import { ActionBar } from 'tns-core-modules/ui/action-bar/action-bar';
 import * as application from 'application';
-import { applyMixins } from 'nativescript-material-core';
+import { applyMixins } from 'nativescript-material-core/core';
 
 function getLayout(id: string) {
     const context: android.content.Context = application.android.context;

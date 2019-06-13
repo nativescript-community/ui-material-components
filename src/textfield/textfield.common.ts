@@ -8,7 +8,8 @@ export abstract class TextFieldBase extends NTextField {
     constructor() {
         super();
     }
-    abstract blur();
+    abstract requestFocus();
+    abstract clearFocus();
 
     @cssProperty helper: string;
     @cssProperty maxLength: number;
@@ -17,4 +18,5 @@ export abstract class TextFieldBase extends NTextField {
     @cssProperty placeholderColor: Color;
     @cssProperty variant: string;
     @cssProperty error: string;
+    @cssProperty highlightColor: Color;
 }

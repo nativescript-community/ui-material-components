@@ -1,4 +1,4 @@
-import { themer } from 'nativescript-material-core';
+import { themer } from 'nativescript-material-core/core';
 import { TextField } from 'nativescript-material-textfield';
 import { getRootView } from 'tns-core-modules/application';
 import { fromObject } from 'tns-core-modules/data/observable/observable';
@@ -20,16 +20,14 @@ import {
     inputType,
     isDialogOptions,
     LOGIN,
-    LoginOptions,
     LoginResult,
     OK,
     PROMPT,
-    PromptOptions,
     PromptResult
 } from 'tns-core-modules/ui/dialogs';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
 import { isDefined, isFunction, isString } from 'tns-core-modules/utils/types';
-import { MDCAlertControlerOptions } from './dialogs';
+import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 
 const UNSPECIFIED = layout.makeMeasureSpec(0, layout.UNSPECIFIED);
 
@@ -62,9 +60,9 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
         get contentScrollView() {
             const alertView = this.super.view as MDCAlertControllerView;
             if (alertView) {
-                alertView.backgroundColor = UIColor.blueColor;
+                // alertView.backgroundColor = UIColor.blueColor;
                 const contentScrollView = alertView.subviews[0] as UIScrollView;
-                contentScrollView.backgroundColor = UIColor.greenColor;
+                // contentScrollView.backgroundColor = UIColor.greenColor;
                 return contentScrollView;
             }
             return null;
@@ -207,6 +205,11 @@ function raiseCallback(callback, result) {
 
 function createAlertController(options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
     const alertController = (MDCAlertControllerImpl as any).new() as MDCAlertControllerImpl;
+    const buttonColor = getButtonColors().color;
+    if (buttonColor) {
+        alertController.view.tintColor = buttonColor.ios;
+    }
+    const lblColor = getLabelColor();
 
     if (options.title) {
         alertController.title = options.title;
@@ -234,12 +237,16 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
     if (options.titleColor) {
         alertController.titleColor = options.titleColor.ios;
+    } else if (lblColor) {
+        alertController.titleColor = lblColor.ios;
     }
     if (options.titleIconTintColor) {
         alertController.titleIconTintColor = options.titleIconTintColor.ios;
     }
     if (options.messageColor) {
         alertController.messageColor = options.messageColor.ios;
+    } else if (lblColor) {
+        alertController.messageColor = lblColor.ios;
     }
     if (options.elevation) {
         alertController.elevation = options.elevation;
@@ -268,7 +275,6 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
 
     if (options.view) {
-        console.log('createAlertController', 'custom view', options.view);
         const view =
             options.view instanceof View
                 ? (options.view as View)
@@ -396,8 +402,20 @@ export function prompt(arg: any): Promise<PromptResult> {
             const stackLayout = new StackLayout();
             stackLayout.padding = 4;
             const textField = new TextField();
-            textField.text = options.defaultText;
+            textField.hint = options.hintText;
             if (options) {
+                if (options.textFieldProperties) {
+                    Object.assign(textField, options.textFieldProperties);
+                }
+                if (options.defaultText) {
+                    textField.text = options.defaultText;
+                }
+                if (options.defaultText) {
+                    textField.hint = options.hintText;
+                }
+                if (options.helperText) {
+                    textField.helper = options.helperText;
+                }
                 if (options.inputType === inputType.password) {
                     textField.secure = true;
                     // textField.keyboardType = 'text';
@@ -439,13 +457,16 @@ export function prompt(arg: any): Promise<PromptResult> {
             });
 
             showUIAlertController(alertController);
+            if (!!options.autoFocus) {
+                textField.requestFocus();
+            }
         } catch (ex) {
             reject(ex);
         }
     });
 }
 
-export function login(): Promise<LoginResult> {
+export function login(arg: any): Promise<LoginResult> {
     let options: LoginOptions & MDCAlertControlerOptions;
 
     const defaultOptions = {
@@ -488,12 +509,19 @@ export function login(): Promise<LoginResult> {
             passwordTextField.text = options.password;
             passwordTextField.secure = true;
 
+            if (options.usernameTextFieldProperties) {
+                Object.assign(userNameTextField, options.usernameTextFieldProperties);
+            }
+            if (options.passwordTextFieldProperties) {
+                Object.assign(passwordTextField, options.passwordTextFieldProperties);
+            }
+
             stackLayout.addChild(userNameTextField);
             stackLayout.addChild(passwordTextField);
             options.view = stackLayout;
             const alertController = createAlertController(options);
 
-            const textFieldColor = getTextFieldColor();
+            // const textFieldColor = getTextFieldColor();
 
             // alertController.addTextFieldWithConfigurationHandler(
             //     (arg: UITextField) => {
@@ -534,6 +562,9 @@ export function login(): Promise<LoginResult> {
             });
 
             showUIAlertController(alertController);
+            if (!!options.autoFocus) {
+                userNameTextField.requestFocus();
+            }
         } catch (ex) {
             reject(ex);
         }
@@ -569,26 +600,6 @@ function showUIAlertController(alertController: MDCAlertController) {
                 alertController.popoverPresentationController.permittedArrowDirections = 0;
             }
 
-            const color = getButtonColors().color;
-            if (color) {
-                alertController.view.tintColor = color.ios;
-            }
-
-            const lblColor = getLabelColor();
-            if (lblColor) {
-                if (alertController.title) {
-                    const title = NSAttributedString.alloc().initWithStringAttributes(alertController.title, {
-                        [NSForegroundColorAttributeName]: lblColor.ios
-                    } as any);
-                    alertController.setValueForKey(title, 'attributedTitle');
-                }
-                if (alertController.message) {
-                    const message = NSAttributedString.alloc().initWithStringAttributes(alertController.message, {
-                        [NSForegroundColorAttributeName]: lblColor.ios
-                    } as any);
-                    alertController.setValueForKey(message, 'attributedMessage');
-                }
-            }
             viewController.presentModalViewControllerAnimated(alertController, true);
         }
     }

@@ -34,9 +34,16 @@ export const elevationProperty = new CssProperty<Style, Length>({
     name: 'elevation',
     cssName: 'elevation',
 
-    valueConverter: v => Length.toDevicePixels(Length.parse(v), 0)
+    valueConverter: v => Length.parse(v)
 });
 elevationProperty.register(Style);
+export const translationZHighlightedProperty = new CssProperty<Style, Length>({
+    name: 'translationZHighlighted',
+    cssName: 'translationZ-highlighted',
+
+    valueConverter: v => Length.parse(v)
+});
+translationZHighlightedProperty.register(Style);
 export const elevationHighlightedProperty = new CssProperty<Style, Length>({
     name: 'elevationHighlighted',
     cssName: 'elevation-highlighted',

@@ -1,5 +1,5 @@
 import { ActivityIndicatorBase } from './activityindicator-common';
-import { themer } from 'nativescript-material-core';
+import { themer } from 'nativescript-material-core/core';
 import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Color } from 'tns-core-modules/color';
 import { screen } from 'tns-core-modules/platform';

@@ -22,7 +22,8 @@ export const errorProperty = new CssProperty<Style, string>({
 errorProperty.register(Style);
 export const maxLengthProperty = new CssProperty<Style, number>({
     name: 'maxLength',
-    cssName: 'max-length'
+    cssName: 'max-length',
+    valueConverter: v => parseFloat(v)
 });
 maxLengthProperty.register(Style);
 export const floatingProperty = new CssProperty<Style, boolean>({
@@ -31,3 +32,10 @@ export const floatingProperty = new CssProperty<Style, boolean>({
     valueConverter: booleanConverter
 });
 floatingProperty.register(Style);
+export const highlightColorProperty = new CssProperty<Style, Color>({
+    name: 'highlightColor',
+    cssName: 'highlight-color',
+    equalityComparer: Color.equals,
+    valueConverter: v => new Color(v)
+});
+highlightColorProperty.register(Style);

@@ -2,7 +2,7 @@ import { AppBarBase } from './appbar-common';
 import { ActionBar } from 'tns-core-modules/ui/action-bar/action-bar';
 import { Color } from 'tns-core-modules/color/color';
 import { layout } from 'tns-core-modules/utils/utils';
-import { themer } from 'nativescript-material-core';
+import { themer } from 'nativescript-material-core/core';
 
 declare module 'tns-core-modules/ui/action-bar/action-bar' {
     interface ActionBar {
