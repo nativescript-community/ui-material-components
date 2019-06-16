@@ -75,7 +75,7 @@ export class TextField extends TextFieldBase {
     }
 
     public createNativeView() {
-        let layoutIdName = 'material_text_field';
+        let layoutIdName = 'material _text_field';
         if (this.style['variant'] === 'filled') {
             layoutIdName = 'material_text_field_filled';
         } else if (this.style['variant'] === 'outline') {
@@ -88,7 +88,7 @@ export class TextField extends TextFieldBase {
 
         initTextInputEditText();
         if (layoutId !== 0) {
-            layout = this.layoutView = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) ascom.google.android.material.textfield.TextInputLayout;
+            layout = this.layoutView = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.textfield.TextInputLayout;
             editText = this.editText = (layout.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as TextInputEditText;
         } else {
             layout = this.layoutView = new com.google.android.material.textfield.TextInputLayout(this._context);

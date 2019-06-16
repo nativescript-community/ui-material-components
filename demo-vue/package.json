@@ -5,11 +5,8 @@
   "repository": "http://www.github.com/NativeScript/nativescript-ui-sidedrawer.git",
   "nativescript": {
     "id": "org.nativescript.demovuematerial",
-    "tns-ios": {
-      "version": "5.2.0"
-    },
     "tns-android": {
-      "version": "5.3.1"
+      "version": "6.0.0-2019-06-12-140945-01"
     }
   },
   "dependencies": {
@@ -26,7 +23,7 @@
     "nativescript-material-textfield": "../packages/nativescript-material-textfield",
     "nativescript-theme-core": "~1.0.4",
     "akylas-nativescript-vue": "~2.1.14",
-    "tns-core-modules": "^5.4.0-androidx-2019-03-22-160602-06",
+    "tns-core-modules": "androidx",
     "tslib": "^1.9.3",
     "vue-class-component": "^7.0.2"
   },
@@ -43,7 +40,7 @@
     "akylas-nativescript-vue-template-compiler": "~2.1.14",
     "node-sass": "^4.12.0",
     "shelljs": "^0.8.3",
-    "tns-platform-declarations": "^5.4.0-androidx-2019-03-22-160602-06",
+    "tns-platform-declarations": "androidx",
     "vue": "~2.6.10",
     "vue-class-component": "~7.0.2",
     "vue-loader": "~15.7.0",
