@@ -113,10 +113,6 @@ export abstract class ViewWithBottomSheetBase extends View {
         if (arguments.length === 0) {
             throw new Error('showModal without parameters is deprecated. Please call showModal on a view instance instead.');
         } else {
-            // const fullscreen: boolean = arguments[3];
-            // const animated = arguments[4];
-            // const stretched = arguments[5];
-
             const view = options.view instanceof View ? (options.view as ViewWithBottomSheetBase) : <ViewWithBottomSheetBase>createViewFromEntry({
                           moduleName: options.view as string
                       });
