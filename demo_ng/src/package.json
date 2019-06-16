@@ -4,8 +4,5 @@
     },
     "main": "main.js",
     "name": "com.akylas.nativescript.materialcomponentsdemo",
-    "version": "4.0.1",
-    "devDependencies": {
-        "typescript": "~2.7.2"
-    }
+    "version": "4.0.1"
 }

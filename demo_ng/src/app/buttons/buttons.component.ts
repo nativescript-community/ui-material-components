@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { alert, prompt } from '~/nativescript-material-components/dialog';
+import { alert, prompt } from 'nativescript-material-dialogs';
 import { Color } from 'tns-core-modules/color/color';
 
 @Component({

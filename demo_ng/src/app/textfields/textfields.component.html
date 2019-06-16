@@ -1,0 +1,13 @@
+<GridLayout rows="*" columns="*">
+<MDCardView margin="20" rippleColor="green" borderRadius="10">
+    <StackLayout horizontalAlignment="center">
+        <MDTextField #textField1 helper="help me!" width="250" backgroundColor="orange" placeholderColor="green" keyboardType="datetime"
+            hint="i am an hint" returnKeyType="next" (focus)="onFocus('textfield1',$event)" (blur)="onBlur('textfield1',$event)"
+            (textChange)="onTextChange('textfield1',$event)"></MDTextField>
+        <MDTextField #textField2 maxLength="10" hint="hint me" (returnPress)="returnPress(textField2.text,$event)"></MDTextField>
+        <MDTextField #textField3 variant="outline" hint="outline"></MDTextField>
+        <MDTextField  variant="filled" required email hint="fill this out..." #element></MDTextField>
+    </StackLayout>
+    
+</MDCardView> 
+</GridLayout>

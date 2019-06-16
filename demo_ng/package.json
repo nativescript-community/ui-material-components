@@ -6,39 +6,47 @@
     "nativescript": {
         "id": "com.akylas.nativescript.materialcomponentsdemo",
         "tns-ios": {
-            "version": "4.2.0"
+            "version": "5.4.2"
         },
         "tns-android": {
-            "version": "4.2.0"
+            "version": "5.4.0"
         }
     },
     "dependencies": {
-        "@angular/animations": "~7.1.2",
-        "@angular/common": "~7.1.2",
-        "@angular/compiler": "~7.1.2",
-        "@angular/core": "~7.1.2",
-        "@angular/forms": "~7.1.2",
-        "@angular/http": "~7.1.2",
-        "@angular/platform-browser": "~7.1.2",
-        "@angular/platform-browser-dynamic": "~7.1.2",
-        "@angular/router": "~7.1.2",
-        "nativescript-material-components": "file:../plugin_nosource",
-        "nativescript-angular": "~7.0.3",
-        "nativescript-theme-core": "~1.0.4",
-        "tns-core-modules": "5.0.5",
-        "reflect-metadata": "~0.1.12",
-        "rxjs": "~6.3.3",
-        "zone.js": "~0.8.26"
+        "@angular/animations": "~8.0.1",
+        "@angular/common": "~8.0.1",
+        "@angular/compiler": "~8.0.1",
+        "@angular/core": "~8.0.1",
+        "@angular/forms": "~8.0.1",
+        "@angular/http": "~7.2.15",
+        "@angular/platform-browser": "~8.0.1",
+        "@angular/platform-browser-dynamic": "~8.0.1",
+        "@angular/router": "~8.0.1",
+        "nativescript-material-activityindicator": "file:../packages/nativescript-material-activityindicator",
+        "nativescript-material-bottomsheet": "file:../packages/nativescript-material-bottomsheet",
+        "nativescript-material-button": "file:../packages/nativescript-material-button",
+        "nativescript-material-cardview": "file:../packages/nativescript-material-cardview",
+        "nativescript-material-core": "file:../packages/nativescript-material-core",
+        "nativescript-material-dialogs": "file:../packages/nativescript-material-dialogs",
+        "nativescript-material-floatingactionbutton": "file:../packages/nativescript-material-floatingactionbutton",
+        "nativescript-material-progress": "file:../packages/nativescript-material-progress",
+        "nativescript-material-ripple": "file:../packages/nativescript-material-ripple",
+        "nativescript-material-slider": "file:../packages/nativescript-material-slider",
+        "nativescript-material-snackbar": "file:../packages/nativescript-material-snackbar",
+        "nativescript-material-textfield": "file:../packages/nativescript-material-textfield",
+        "nativescript-angular": "~8.0.0",
+        "nativescript-theme-core": "~1.0.6",
+        "tns-core-modules": "5.4.2",
+        "reflect-metadata": "~0.1.13",
+        "rxjs": "~6.5.2",
+        "zone.js": "~0.9.1"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "0.11.2",
-        "@angular/compiler-cli": "7.1.2",
-        "babel-traverse": "6.26.0",
-        "babel-types": "6.26.0",
-        "babylon": "6.18.0",
-        "lazy": "1.0.11",
-        "nativescript-dev-typescript": "~0.7.2",
-        "tns-platform-declarations": "5.0.5",
-        "typescript": "~2.7.2"
+        "@angular/compiler-cli": "~8.0.1",
+        "@ngtools/webpack": "~8.0.3",
+        "nativescript-dev-typescript": "~0.10.0",
+        "nativescript-dev-webpack": "~0.24.1",
+        "tns-platform-declarations": "^5.4.2",
+        "typescript": "~3.4.5"
     }
 }

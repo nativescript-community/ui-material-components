@@ -1,0 +1,23 @@
+<GridLayout rows="*" columns="*">
+    <MDCardView margin="20" rippleColor="green" borderRadius="10">
+        <StackLayout horizontalAlignment="center">
+            <MDFloatingActionButton src="res://ic_action_add" backgroundColor="blue" (tap)="onTap('fab', $event)">
+            </MDFloatingActionButton>
+            <MDButton elevation="5" borderRadius="10" fontSize="20" text="raised button" (tap)="onTap('mbutton1', $event)"></MDButton>
+            <MDButton borderRadius="10" color="red" text="text button" rippleColor="green" backgroundColor="red" variant="text" (tap)="onTap('mbutton2', $event)">
+                <FormattedString>
+                    <Span text="Words " color="#006600"></Span>
+                    <Span text="with " color="#990000" fontAttributes="Bold"></Span>
+                </FormattedString>
+            </MDButton>
+            <MDButton text="flat button \n test" rippleColor="red" backgroundColor="yellow" variant="flat" (tap)="onTap('mbutton3', $event)"></MDButton>
+            <MDButton text="flat disabled button" isEnabled="false" rippleColor="red" backgroundColor="yellow" (tap)="onTap('mbutton3', $event)"></MDButton>
+            <MDButton text="outline button" color="black" width="200" className="buttonYellow" variant="outline" (tap)="onTap('mbutton4', $event)"></MDButton>
+            <MDButton text="disabled outline button" isEnabled="false" width="200" backgroundColor="yellow" variant="outline" (tap)="onTap('mbutton4', $event)"></MDButton>
+            <MDButton text="text button" width="200" color="blue" variant="text" (tap)="onTap('mbutton4', $event)"></MDButton>
+            <MDButton text="disabled text button" isEnabled="false" width="200" backgroundColor="yellow" variant="text" (tap)="onTap('mbutton4', $event)"></MDButton>
+            <MDButton className="falseFAb" text="+" color="white" verticalAlign="center" backgroundColor="green" (tap)="onTap('mbutton5', $event)"></MDButton>
+        </StackLayout>
+    </MDCardView>
+    
+</GridLayout>

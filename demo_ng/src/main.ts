@@ -6,7 +6,7 @@ import * as trace from 'tns-core-modules/trace';
 trace.addCategories(trace.categories.ViewHierarchy);
 // trace.enable();
 
-import { AppModule } from './app.module';
+import { AppModule } from './app/app.module';
 
 // A traditional NativeScript application starts by initializing global objects, setting up global CSS rules, creating, and navigating to the main page.
 // Angular applications need to take care of their own initialization: modules, components, directives, routes, DI providers.
