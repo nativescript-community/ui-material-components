@@ -27,6 +27,7 @@ export class Progress extends ProgressBase {
     [progressColorProperty.setNative](color: Color) {
         this.nativeViewProtected.progressTintColor = color ? color.ios : null;
     }
+
     [progressBackgroundColorProperty.setNative](color: Color) {
         this.nativeViewProtected.trackTintColor = color ? color.ios : null;
     }
