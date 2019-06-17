@@ -45,9 +45,15 @@ mdctextfield {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
-import { TextField } from 'nativescript-material-textfield';
-registerElement('MDTextField', () => TextField);
+import { NativeScriptMaterialTextFieldModule } from "nativescript-material-textfield/angular";
+
+@NgModule({
+    imports: [
+        NativeScriptMaterialTextFieldModule,
+        ...
+    ],
+    ...
+})
 ```
 
 ```html
