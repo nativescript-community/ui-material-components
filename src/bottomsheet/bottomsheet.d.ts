@@ -8,7 +8,7 @@ declare module 'tns-core-modules/ui/core/view' {
     }
 }
 
-export function install();
+export function install(): void;
 declare module 'tns-core-modules/ui/core/view/view' {
     interface View {
         // _modalContext: any;

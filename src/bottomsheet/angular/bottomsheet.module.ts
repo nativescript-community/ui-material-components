@@ -6,8 +6,14 @@ import { install } from '../bottomsheet';
 
 @NgModule()
 export class NativeScriptMaterialBottomSheetModule {
+    // This flag help us to avoid problems when using the new development workflow
+    private static initialized: boolean = false;
+
     static forRoot(): ModuleWithProviders {
-        install();
+        if (!this.initialized) {
+            install();
+        }
+        this.initialized = true;
         return {
             ngModule: NativeScriptMaterialBottomSheetModule,
             providers: [BottomSheetService]

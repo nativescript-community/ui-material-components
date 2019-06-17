@@ -28,7 +28,7 @@ var material = require("nativescript-material-bottomsheet");
 material.install();
 ```
 
-#### TypeScript
+##### TypeScript
 ```ts
 import { install } from "nativescript-material-bottomsheet";
 install();
@@ -36,7 +36,7 @@ install();
 
 Uses the same kind of API as [Nativescript Modals](https://docs.nativescript.org/ui/modal-view)
 
-### TS
+##### TS
 
 ```typescript
 const modalViewModulets = "ns-ui-category/modal-view/basics/modal-ts-view-page";
@@ -55,4 +55,91 @@ export function openBottomSheet(args) {
     });
 }
 
+```
+### NativeScript + Angular
+First you need to include the `NativeScriptMaterialBottomSheetModule` in your `app.module.ts`
+
+```typescript
+import { NativeScriptMaterialBottomSheetModule} from "nativescript-material-bottomsheet/angular";
+
+@NgModule({
+    imports: [
+        // This will call the install method and inject a global service called BottomSheetService
+        NativeScriptMaterialBottomSheetModule.forRoot()
+    ],
+    ...
+})
+```
+now you can show your custom BottomSheet using the `BottomSheetService`, this service follows the same implementation as the `ModalService`
+
+##### ItemComponent
+```typescript
+import { Component,  ViewContainerRef } from '@angular/core';
+import { BottomSheetOptions, BottomSheetService } from 'nativescript-material-bottomsheet/angular';
+import { ShareOptionsComponent } from './share-options.component';
+
+@Component({
+    selector: 'ns-item',
+    templateUrl: './item.component.html',
+    moduleId: module.id
+})
+export class ItemComponent {
+    constructor(
+        private bottomSheet: BottomSheetService, 
+        private containerRef: ViewContainerRef,
+    ) {}
+
+    showOptions() {
+        const options: BottomSheetOptions = {
+            viewContainerRef: this.containerRef,
+            context: ['Facebook', 'Google', 'Twitter']
+        };
+
+        this.bottomSheet.show(ShareOptionsComponent, options).subscribe(result => {
+            console.log('Option selected:', result);
+        });
+    }
+}
+```
+##### ShareOptionsComponent
+```html
+<ListView
+    [items]="options"
+    (itemTap)="onTap($event)"
+    separatorColor="white"
+    class="list-group"
+    height="200"
+>
+    <ng-template let-option="item">
+        <Label
+            class="list-group-item"
+            [text]="option"
+        ></Label>
+    </ng-template>
+</ListView>
+```
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { BottomSheetParams } from 'nativescript-material-bottomsheet/angular';
+import { ItemEventData } from 'tns-core-modules/ui/list-view';
+
+@Component({
+    selector: 'ns-share-options',
+    templateUrl: 'share-options.component.html'
+})
+export class ShareOptionsComponent implements OnInit {
+    options: string[];
+    
+    // The BottomSheetService injects the BottomSheetParams to the component
+    // so you can get the context and call the closeCallback method from the component displayed in your BottomSheet
+    constructor(private params: BottomSheetParams) {}
+
+    ngOnInit() {
+        this.options = this.params.context;
+    }
+
+    onTap({ index }: ItemEventData) {
+        this.params.closeCallback(this.options[index]);
+    }
+}
 ```

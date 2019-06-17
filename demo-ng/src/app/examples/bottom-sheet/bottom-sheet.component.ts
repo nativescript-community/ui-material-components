@@ -4,7 +4,8 @@ import { LoginOptionsComponent } from './login-options.component';
 
 @Component({
     selector: 'ns-bottom-sheet',
-    templateUrl: './bottom-sheet.component.html'
+    templateUrl: './bottom-sheet.component.html',
+    moduleId: module.id
 })
 export class BottomSheetComponent implements OnInit {
     constructor(private bottomSheet: BottomSheetService, private containerRef: ViewContainerRef) {}
@@ -18,7 +19,7 @@ export class BottomSheetComponent implements OnInit {
         };
 
         this.bottomSheet.show(LoginOptionsComponent, options).subscribe(result => {
-            console.log(`result is: ${result}`);
+            console.log('Option selected:', result);
             // We need to wait until the bottom sheet disappears before show an alert or any dialog
             setTimeout(() => alert(`Option selected: ${result}`), 300);
         });
