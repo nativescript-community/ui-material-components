@@ -1,1 +1,3 @@
-export * from './button.android'
+import { ButtonBase } from './button-common';
+
+export class Button extends ButtonBase {}

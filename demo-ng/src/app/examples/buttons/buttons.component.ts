@@ -4,7 +4,7 @@ import { EventData } from 'tns-core-modules/data/observable';
 @Component({
     selector: 'ns-buttons',
     templateUrl: './buttons.component.html',
-    styleUrls: ['./buttons.component.css']
+    moduleId: module.id
 })
 export class ButtonsComponent implements OnInit {
     ngOnInit() {}

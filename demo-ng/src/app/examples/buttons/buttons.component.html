@@ -1,17 +1,20 @@
 <ActionBar title="MDButtons"></ActionBar>
 <ScrollView>
-    <StackLayout horizontalAlignment="center">
+    <FlexboxLayout
+        flexDirection="column"
+        justifyContent="space-around"
+        alignItems="center"
+        padding="24"
+    >
         <Label
             text="Variant: Contained"
             class="section-title"
         ></Label>
         <MDButton
-            class="material-button"
             text="Button"
             (tap)="onTap($event)"
         ></MDButton>
         <MDButton
-            class="material-button"
             text="Button (Disabled)"
             isEnabled="false"
             (tap)="onTap($event)"
@@ -21,13 +24,11 @@
             class="section-title"
         ></Label>
         <MDButton
-            class="material-button"
             text="Button"
             variant="flat"
             (tap)="onTap($event)"
         ></MDButton>
         <MDButton
-            class="material-button"
             text="Button (Disabled)"
             isEnabled="false"
             variant="flat"
@@ -38,13 +39,11 @@
             class="section-title"
         ></Label>
         <MDButton
-            class="material-button"
             text="Button"
             variant="outline"
             (tap)="onTap($event)"
         ></MDButton>
         <MDButton
-            class="material-button"
             text="Button (Disabled)"
             variant="outline"
             isEnabled="false"
@@ -55,17 +54,15 @@
             class="section-title"
         ></Label>
         <MDButton
-            class="material-button"
             text="Button"
             variant="text"
             (tap)="onTap($event)"
         ></MDButton>
         <MDButton
-            class="material-button"
             text="Button (Disabled)"
             isEnabled="false"
             variant="text"
             (tap)="onTap($event)"
         ></MDButton>
-    </StackLayout>
+    </FlexboxLayout>
 </ScrollView>
