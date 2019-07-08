@@ -75,13 +75,13 @@ export abstract class FloatingActionButtonBase extends View {
                     //     source.fromResource(resPath).then(imageLoaded);
                     // }
                 } else {
-                    if (sync) {
-                        source.loadFromFile(value);
-                        imageLoaded();
-                    } else {
-                        this.imageSource = null;
-                        source.fromFile(value).then(imageLoaded);
-                    }
+                    // if (sync) {
+                    source.loadFromFile(value);
+                    imageLoaded();
+                    // } else {
+                    //     this.imageSource = null;
+                    //     source.fromFile(value).then(imageLoaded);
+                    // }
                 }
             } else {
                 this.imageSource = null;
