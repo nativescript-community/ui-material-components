@@ -4,7 +4,7 @@ import { AppRoutingModule, COMPONENTS } from './app.routing';
 import { AppComponent } from './app.component';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 
-import { MaterialComponentsModule } from './nativescript-material-components/angular/material-components.module';
+import { MaterialComponentsModule } from 'nativescript-material-components/angular/material-components.module';
 
 @NgModule({
     bootstrap: [AppComponent],

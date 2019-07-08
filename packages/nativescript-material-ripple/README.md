@@ -41,9 +41,15 @@ mdcripple {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
-import { Ripple } from 'nativescript-material-ripple';
-registerElement('MDRipple', () => Ripple);
+import { NativeScriptMaterialRippleModule } from "nativescript-material-ripple/angular";
+
+@NgModule({
+    imports: [
+        NativeScriptMaterialRippleModule,
+        ...
+    ],
+    ...
+})
 ```
 
 ```html

@@ -42,9 +42,15 @@ mdprogress {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
-import { Progress } from 'nativescript-material-progress';
-registerElement('MDProgress', () => Progress);
+import { NativeScriptMaterialProgressModule } from "nativescript-material-progress/angular";
+
+@NgModule({
+    imports: [
+        NativeScriptMaterialProgressModule,
+        ...
+    ],
+    ...
+})
 ```
 
 ```html

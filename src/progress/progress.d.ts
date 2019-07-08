@@ -1,1 +1,3 @@
-export * from './progress.android'
+import { ProgressBase } from './progress-common';
+
+export class Progress extends ProgressBase {}

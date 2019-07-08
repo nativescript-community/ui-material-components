@@ -41,9 +41,15 @@ mdcactivityindicator {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
-import { ActivityIndicator } from 'nativescript-material-activityindicator';
-registerElement('MDActivityIndicator', () => ActivityIndicator);
+import { NativeScriptMaterialActivityIndicatorModule } from "nativescript-material-activityindicator/angular";
+
+@NgModule({
+    imports: [
+        NativeScriptMaterialActivityIndicatorModule,
+        ...
+    ],
+    ...
+})
 ```
 
 ```html

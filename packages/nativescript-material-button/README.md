@@ -45,9 +45,15 @@ mdbutton {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
-import { Button } from 'nativescript-material-button';
-registerElement('MDButton', () => Button);
+import { NativeScriptMaterialButtonModule } from "nativescript-material-button/angular";
+
+@NgModule({
+    imports: [
+        NativeScriptMaterialButtonModule,
+        ...
+    ],
+    ...
+})
 ```
 
 ```html
