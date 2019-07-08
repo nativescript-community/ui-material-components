@@ -1,93 +1,123 @@
+import { Color } from 'color';
 import { DismissReasons, SnackBarOptions } from './snackbar-common';
 
 export class SnackBar {
-    private _snackbar: MDCSnackbarMessage = null;
+    private _snackbar: MDCSnackbarManager = null;
     private _isDismissedManual: boolean = false;
 
-    public simple(snackText: string) {
+    private _setBackgroundColor(color) {
+        if (color) {
+            this._snackbar.snackbarMessageViewBackgroundColor = new Color(color).ios;
+        }
+    }
+
+    private _setTextColor(color) {
+        if (color) {
+            this._snackbar.messageTextColor = new Color(color).ios;
+        }
+    }
+
+    public simple(snackText: string, textColor?: string, backgroundColor?: string, maxLines?: number, isRTL?: boolean): Promise<any> {
         return new Promise((resolve, reject) => {
-            const timeout = 3;
+            const timeout = 3; // iOS uses seconds
 
             try {
-                MDCSnackbarManager.messageFont = null;
-                //   MDCSnackbarManager.buttonFont = null;
-                //   [MDCSnackbarManager setButtonTitleColor:null forState:UIControlStateNormal];
-                //   [MDCSnackbarManager setButtonTitleColor:null forState:UIControlStateHighlighted];
-                // MDCSnackbarManager.messageTextColor = nil;
-                // this._snackbar = MDCSnackbarMessage.alloc().init();
-                // this._snackbar.text = snackText;
-                // this._snackbar.duration = timeout;
-                // this._snackbar.action = ()=>{}
-                // this._snackbar = SSSnackbar.snackbarWithMessageActionTextDurationActionBlockDismissalBlock(
-                //     snackText,
-                //     null,
-                //     timeout,
-                //     args => {
-                //         // Action, Do Nothing, just close it
-                //         this._snackbar.dismiss(); // Force close
-                //         resolve({
-                //             command: 'Dismiss',
-                //             reason: DismissReasons.MANUAL,
-                //             event: args
-                //         });
-                //     },
-                //     args => {
-                //         // Dismissal, Do Nothing
-                //         resolve({
-                //             command: 'Dismiss',
-                //             reason: DismissReasons.TIMEOUT,
-                //             event: args
-                //         });
-                //     }
-                // );
+                if (!snackText) {
+                    reject('Snack text is required.');
+                    return;
+                }
 
-                // this._snackbar.show();
+                this._snackbar = MDCSnackbarManager.defaultManager;
+
+                this._snackbar.messageTextColor = null;
+                this._snackbar.snackbarMessageViewBackgroundColor = null;
+
+                const message = MDCSnackbarMessage.alloc().init();
+
+                message.text = snackText;
+                message.duration = timeout;
+                message.completionHandler = () => {
+                    resolve({
+                        action: 'Dismiss',
+                        reason: DismissReasons.TIMEOUT
+                    });
+                };
+
+                if (textColor && Color.isValid(textColor)) {
+                    this._setTextColor(textColor);
+                }
+
+                if (backgroundColor && Color.isValid(backgroundColor)) {
+                    this._setBackgroundColor(backgroundColor);
+                }
+
+                this._snackbar.showMessage(message);
             } catch (ex) {
                 reject(ex);
             }
         });
     }
 
-    public action(options: SnackBarOptions) {
+    public action(options: SnackBarOptions): Promise<any> {
         return new Promise((resolve, reject) => {
             try {
-                if (!options.hideDelay) options.hideDelay = 3000;
+                options.actionText = options.actionText ? options.actionText : 'Close';
+                options.hideDelay = (options.hideDelay ? options.hideDelay : 3000) / 1000; // iOS uses seconds
 
-                // this._snackbar = SSSnackbar.snackbarWithMessageActionTextDurationActionBlockDismissalBlock(
-                //     options.snackText,
-                //     options.actionText,
-                //     options.hideDelay / 1000,
-                //     args => {
-                //         resolve({
-                //             command: 'Action',
-                //             event: args
-                //         });
-                //     },
-                //     args => {
-                //         const reason = this._isDismissedManual ? DismissReasons.MANUAL : DismissReasons.TIMEOUT;
+                /**
+                 * The MDCSnackbarMessageDurationMax set the max duration to 10s.
+                 * Any value above this will crash the app.
+                 * https://github.com/material-components/material-components-web/issues/153#issuecomment-269664203
+                 */
+                if (options.hideDelay > 10) {
+                    options.hideDelay = 10;
+                }
 
-                //         this._isDismissedManual = false; // reset
-                //         resolve({
-                //             command: 'Dismiss',
-                //             reason: reason,
-                //             event: args
-                //         });
-                //     }
-                // );
+                this._snackbar = MDCSnackbarManager.defaultManager;
 
-                // this._snackbar.show();
+                this._snackbar.messageTextColor = null;
+                this._snackbar.snackbarMessageViewBackgroundColor = null;
+
+                const message = MDCSnackbarMessage.alloc().init();
+                const button = MDCSnackbarMessageAction.alloc().init();
+
+                button.title = options.actionText;
+
+                message.text = options.snackText;
+                message.duration = options.hideDelay;
+                message.action = button;
+                message.completionHandler = (userInitiated: boolean) => {
+                    resolve({
+                        action: 'Dismiss',
+                        reason: userInitiated ? DismissReasons.ACTION : DismissReasons.TIMEOUT
+                    });
+                };
+
+                if (options.textColor && Color.isValid(options.textColor)) {
+                    this._setTextColor(options.textColor);
+                }
+
+                if (options.actionTextColor && Color.isValid(options.actionTextColor)) {
+                    message.buttonTextColor = new Color(options.actionTextColor).ios;
+                }
+
+                if (options.backgroundColor && Color.isValid(options.backgroundColor)) {
+                    this._setBackgroundColor(options.backgroundColor);
+                }
+
+                this._snackbar.showMessage(message);
             } catch (ex) {
                 reject(ex);
             }
         });
     }
 
-    public dismiss(options) {
+    public dismiss(): Promise<any> {
         return new Promise((resolve, reject) => {
             if (!!this._snackbar) {
                 try {
                     this._isDismissedManual = true;
-                    // this._snackbar.dismiss();
+                    this._snackbar.dismissAndCallCompletionBlocksWithCategory(null);
 
                     // Return AFTER the item is dismissed, 200ms delay
                     setTimeout(() => {
