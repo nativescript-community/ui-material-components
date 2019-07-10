@@ -2,7 +2,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- theme to use FOR launch screen-->
-    <style name="LaunchScreenThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="LaunchScreenThemeBase" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="toolbarStyle">@style/NativeScriptToolbarStyle</item>
 
         <item name="colorPrimary">@color/ns_primary</item>
@@ -20,7 +20,7 @@
     </style>
 
     <!-- theme to use AFTER launch screen is loaded-->
-    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppThemeBase" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="toolbarStyle">@style/NativeScriptToolbarStyle</item>
 
         <item name="colorPrimary">@color/ns_primary</item>
