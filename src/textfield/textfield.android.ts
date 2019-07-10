@@ -2,10 +2,10 @@ import { TextFieldBase } from './textfield.common';
 import { hintProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
 
 import * as application from 'application';
-import { errorColorProperty, errorProperty, floatingProperty, helperProperty, highlightColorProperty, maxLengthProperty } from './textfield_cssproperties';
+import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, highlightColorProperty, maxLengthProperty } from './textfield_cssproperties';
 import { Color } from 'tns-core-modules/color';
 import { ad } from 'tns-core-modules/utils/utils';
-import { getFocusedColorStateList, handleClearFocus } from 'nativescript-material-core/android/utils';
+import { getFocusedColorStateList, handleClearFocus, stateSets } from 'nativescript-material-core/android/utils';
 import { Background } from 'tns-core-modules/ui/styling/background';
 
 declare module 'tns-core-modules/ui/text-field/text-field' {
@@ -19,7 +19,7 @@ function getLayout(id: string) {
     return context.getResources().getIdentifier(id, 'layout', context.getPackageName());
 }
 
-interface TextInputEditText extends android.support.design.widget.TextInputEditText {
+interface TextInputEditText extends com.google.android.material.textfield.TextInputEditText {
     // tslint:disable-next-line:no-misused-new
     new (context): TextInputEditText;
     owner: WeakRef<TextField>;
@@ -30,8 +30,8 @@ export function initTextInputEditText() {
     if (TextInputEditText) {
         return;
     }
-    @JavaProxy('org.nativescript.widgets.TextInputEditText')
-    class TextInputEditTextImpl extends android.support.design.widget.TextInputEditText {
+    @JavaProxy('org.nativescript.material.TextInputEditText')
+    class TextInputEditTextImpl extends com.google.android.material.textfield.TextInputEditText {
         public owner: WeakRef<TextField>;
         constructor(context: android.content.Context) {
             super(context);
@@ -52,6 +52,16 @@ export function initTextInputEditText() {
         }
     }
     TextInputEditText = TextInputEditTextImpl as any;
+}
+
+export function getDefaultHintTextColorStateList(pressedColor: number, color = 1627389952) {
+    const states = Array.create('[I', 2);
+    states[0] = stateSets.FOCUSED_STATE_SET;
+    states[1] = Array.create('int', 0);
+    const colors = Array.create('int', 2);
+    colors[0] = pressedColor;
+    colors[1] = color;
+    return new android.content.res.ColorStateList(states, colors);
 }
 
 export class TextField extends TextFieldBase {
@@ -122,9 +132,21 @@ export class TextField extends TextFieldBase {
     }
 
     [placeholderColorProperty.setNative](value: Color) {
-        const color = value instanceof Color ? value.android : value;
-        (this.layoutView as any).setDefaultHintTextColor(android.content.res.ColorStateList.valueOf(color));
+        const placeholderColor = value instanceof Color ? value.android : value;
+        const floatingColor = this.floatingColor instanceof Color ? this.floatingColor.android : placeholderColor;
+
+        const colors = this.layoutView.getDefaultHintTextColor();
+        console.log('placeholderColorProperty', colors);
+        this.layoutView.setDefaultHintTextColor(getDefaultHintTextColorStateList(floatingColor, placeholderColor));
     }
+    [floatingColorProperty.setNative](value: Color) {
+        const floatingColor = value instanceof Color ? value.android : value;
+        const placeholderColor = this.placeholderColor instanceof Color ? this.placeholderColor.android : undefined;
+        const colors = this.layoutView.getDefaultHintTextColor();
+        console.log('floatingColorProperty', colors);
+        this.layoutView.setDefaultHintTextColor(getDefaultHintTextColorStateList(floatingColor, placeholderColor));
+    }
+
     public requestFocus() {
         if (this.layoutView) {
             // because of setFocusableInTouchMode fix we need this for focus to work

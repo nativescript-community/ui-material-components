@@ -32,6 +32,13 @@ export const floatingProperty = new CssProperty<Style, boolean>({
     valueConverter: booleanConverter
 });
 floatingProperty.register(Style);
+export const floatingColorProperty = new CssProperty<Style, Color>({
+    name: 'floatingColor',
+    cssName: 'floating-color',
+    equalityComparer: Color.equals,
+    valueConverter: v => new Color(v)
+});
+floatingColorProperty.register(Style);
 export const highlightColorProperty = new CssProperty<Style, Color>({
     name: 'highlightColor',
     cssName: 'highlight-color',

@@ -1,6 +1,6 @@
 import { TextFieldBase } from './textfield.common';
 import { backgroundInternalProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
-import { errorColorProperty, errorProperty, floatingProperty, helperProperty, highlightColorProperty, maxLengthProperty } from './textfield_cssproperties';
+import { errorColorProperty, errorProperty, floatingProperty, helperProperty, highlightColorProperty, maxLengthProperty, floatingColorProperty } from './textfield_cssproperties';
 import { themer } from 'nativescript-material-core/core';
 import { Color } from 'tns-core-modules/color';
 import { Style } from 'tns-core-modules/ui/styling/style';
@@ -143,9 +143,15 @@ export class TextField extends TextFieldBase {
         this.dismissSoftInput();
     }
 
-    [placeholderColorProperty.setNative](value: Color) {
+    [floatingColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.floatingPlaceholderActiveColor = color;
+        // this._controller.inlinePlaceholderColor = color;
+        this._updateAttributedPlaceholder();
+    }
+    [placeholderColorProperty.setNative](value: Color) {
+        const color = value instanceof Color ? value.ios : value;
+        // this._controller.floatingPlaceholderActiveColor = color;
         this._controller.inlinePlaceholderColor = color;
         this._updateAttributedPlaceholder();
     }
