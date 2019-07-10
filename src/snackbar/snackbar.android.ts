@@ -5,7 +5,7 @@ import { View } from 'tns-core-modules/ui/core/view';
 
 export class SnackBar {
     // Use this to get the textview instance inside the snackbar
-    private static SNACKBAR_TEXT_ID = (android.support.design as any).R.id.snackbar_text;
+    private static SNACKBAR_TEXT_ID = (com.google.android.material as any).R.id.snackbar_text;
     private _snackbar: com.google.android.material.snackbar.Snackbar;
 
     constructor() {}
