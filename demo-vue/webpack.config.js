@@ -152,7 +152,10 @@ module.exports = env => {
             '../ripple$': '#/ripple/ripple.' + platform,
 
             'nativescript-material-dialogs$': '#/dialogs/dialogs.' + platform,
-            'nativescript-material-dialogs/dialogs$': '#/dialogs/dialogs.' + platform
+            'nativescript-material-dialogs/dialogs$': '#/dialogs/dialogs.' + platform,
+
+            'nativescript-material-snackbar$': '#/snackbar/snackbar.' + platform,
+            'nativescript-material-snackbar/snackbar$': '#/snackbar/snackbar.' + platform
         });
 
         console.log('alias', aliases);

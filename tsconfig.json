@@ -24,6 +24,8 @@
         "paths": {
             "nativescript-material-dialogs": ["src/dialogs/dialogs"],
             "nativescript-material-dialogs/*": ["src/dialogs/*"],
+            "nativescript-material-snackbar": ["src/snackbar/snackbar"],
+            "nativescript-material-snackbar/*": ["src/snackbar/*"],
             "nativescript-material-button": ["src/button/button"],
             "nativescript-material-button/*": ["src/button/*"],
             "nativescript-material-activityindicator": ["src/activityindicator/activityindicator"],

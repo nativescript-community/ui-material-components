@@ -14,7 +14,7 @@ import { title as textFieldsTitle } from './TextFields.vue';
 import TextFields from './TextFields.vue';
 import { title as dialogsTitle } from './Dialogs.vue';
 import Dialogs from './Dialogs.vue';
-import { title as snackTitle } from './Dialogs.vue';
+import { title as snackTitle } from './SnackBar.vue';
 import SnackBar from './SnackBar.vue';
 
 export const getExamples = () => {

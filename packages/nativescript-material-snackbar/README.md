@@ -31,7 +31,7 @@ export function showSimpleSnackbar() {
 export function showActionSnackbar() {
     snackbar
         .action({
-            snackText: `I'm a snackbar with an action`,
+            message: `I'm a snackbar with an action`,
             actionText: 'Dismiss',
             hideDelay: 2000
         })
@@ -41,7 +41,7 @@ export function showActionSnackbar() {
 export function showColorfulSnackbar() {
     snackbar
         .action({
-            snackText: `I'm a colorful snackbar`,
+            message: `I'm a colorful snackbar`,
             textColor: 'blue',
             actionTextColor: 'yellow',
             backgroundColor: 'green',

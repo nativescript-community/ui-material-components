@@ -17,6 +17,7 @@ import { alert, AlertDialog, login, prompt } from 'nativescript-material-dialogs
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
 import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator/activity-indicator';
 import { Label } from 'tns-core-modules/ui/label/label';
+import { showSnack } from 'nativescript-material-snackbar';
 
 export const title = 'SnackBar sample';
 
@@ -37,7 +38,7 @@ export default Vue.extend({
             console.log('onTap', objId, obj);
             switch (objId) {
                 case 'show_snack': {
-                    alert('this is test Alert!');
+                    showSnack({ message: 'this is test snack!' });
                     break;
                 }
             }

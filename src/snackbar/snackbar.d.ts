@@ -8,7 +8,7 @@ export declare class SnackBar {
      * @param {boolean} - Set RTL for the textview of the snackbar. * Android Only *
      */
     simple(
-      snackText: string,
+      message: string,
       textColor?: string,
       backgroundColor?: string,
       maxLines?: number,
@@ -25,23 +25,25 @@ export declare class SnackBar {
      */
     dismiss(): Promise<any>;
   }
+
+  export function showSnack(options: SnackBarOptions)
   
   export interface SnackBarOptions {
     /**
      * The action button text of the snackbar.
      */
-    actionText: string;
+    actionText?: string;
   
     /**
      * The text of the snackbar.
      */
-    snackText: string;
+    message: string;
   
     /**
      * Delay in ms to hide the snackbar.
      * Note: iOS only allows a maximum of 10s. If the value is more than that for iOS, the hideDelay will be set to 10s
      */
-    hideDelay: number;
+    hideDelay?: number;
   
     /**
      * Action Text Color of the snackbar.
@@ -76,4 +78,9 @@ export declare class SnackBar {
     TIMEOUT = 'Timeout',
     MANUAL = 'Manual',
     CONSECUTIVE = 'Consecutive'
+  }
+
+  export enum SnackBarAction {
+    NONE = 'None',
+    DISMISS = 'Dismiss'
   }
