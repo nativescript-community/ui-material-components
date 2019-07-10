@@ -6,7 +6,7 @@
   "nativescript": {
     "id": "org.nativescript.demovuematerial",
     "tns-android": {
-      "version": "6.0.0-2019-06-12-140945-01"
+      "version": "6.0.0-rc-2019-07-04-174325-01"
     }
   },
   "dependencies": {
@@ -21,30 +21,26 @@
     "nativescript-material-ripple": "../packages/nativescript-material-ripple",
     "nativescript-material-slider": "../packages/nativescript-material-slider",
     "nativescript-material-textfield": "../packages/nativescript-material-textfield",
-    "nativescript-theme-core": "~1.0.4",
+    "nativescript-theme-core": "~1.0.6",
     "akylas-nativescript-vue": "~2.1.14",
-    "tns-core-modules": "androidx",
-    "tslib": "^1.9.3",
-    "vue-class-component": "^7.0.2"
+    "tns-core-modules": "rc",
+    "tslib": "^1.10.0"
   },
   "devDependencies": {
-    "@babel/core": "~7.4.4",
-    "@babel/preset-env": "~7.4.4",
-    "babel-loader": "~8.0.5",
-    "babel-traverse": "6.26.0",
-    "babel-types": "6.26.0",
-    "babylon": "6.18.0",
-    "lazy": "1.0.11",
-    "nativescript-dev-typescript": "~0.9.0",
-    "nativescript-dev-webpack": "~0.21.2",
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "~7.5.4",
     "akylas-nativescript-vue-template-compiler": "~2.1.14",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "nativescript-dev-typescript": "~0.10.0",
+    "nativescript-dev-webpack": "rc",
     "node-sass": "^4.12.0",
     "shelljs": "^0.8.3",
-    "tns-platform-declarations": "androidx",
+    "tns-platform-declarations": "rc",
     "vue": "~2.6.10",
-    "vue-class-component": "~7.0.2",
     "vue-loader": "~15.7.0",
-    "vue-property-decorator": "~8.1.0"
+    "vue-property-decorator": "~8.2.1"
   },
   "scripts": {
     "tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'"
