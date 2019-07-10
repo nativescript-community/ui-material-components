@@ -1,1 +1,3 @@
-export * from './activityindicator.android'
+import { ActivityIndicatorBase } from './activityindicator-common';
+
+export class ActivityIndicator extends ActivityIndicatorBase {}

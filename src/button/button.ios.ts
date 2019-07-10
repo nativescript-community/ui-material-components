@@ -111,7 +111,7 @@ export class Button extends ButtonBase {
                     this.nativeViewProtected.setBackgroundColorForState(new Color('transparent').ios, UIControlState.Disabled);
                 }
             }
-            
+
             this.nativeViewProtected.setBorderWidthForState(value.borderLeftWidth / scale, UIControlState.Normal);
             this.nativeViewProtected.setBorderColorForState(value.borderTopColor ? value.borderTopColor.ios : null, UIControlState.Normal);
             this.nativeViewProtected.layer.cornerRadius = value.borderTopLeftRadius / scale;

@@ -1,1 +1,1 @@
-pod 'SSSnackbar', :git => 'https://github.com/EddyVerbruggen/SSSnackbar.git', :tag => '0.1.2.4'
+pod 'MaterialComponents/Snackbar'

@@ -3,7 +3,6 @@ import { fromObject } from 'tns-core-modules/data/observable';
 import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
 import { applyMixins } from 'nativescript-material-core/core';
 
-export { BottomSheetOptions };
 interface BottomSheetDataOptions {
     owner: View;
     options: BottomSheetOptions;
@@ -148,6 +147,7 @@ function initializeBottomSheetDialogFragment() {
 }
 
 export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
+    _bottomSheetFragment: android.support.design.widget.BottomSheetDialogFragment;
     protected _hideNativeBottomSheet(parent: View, whenClosedCallback: () => void) {
         const manager = this._bottomSheetFragment.getFragmentManager();
         if (manager) {

@@ -1,0 +1,19 @@
+<ActionBar
+    title="Examples"
+    class="action-bar"
+></ActionBar>
+
+<GridLayout class="page">
+    <ListView
+        [items]="examples"
+        (itemTap)="goToExample($event)"
+        class="list-group"
+    >
+        <ng-template let-example="item">
+            <Label
+                [text]="example"
+                class="list-group-item"
+            ></Label>
+        </ng-template>
+    </ListView>
+</GridLayout>

@@ -1,1 +1,3 @@
-export * from './slider.android'
+import { SliderBase } from './slider-common';
+
+export class Slider extends SliderBase {}

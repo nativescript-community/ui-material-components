@@ -42,9 +42,15 @@ mdslider {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
-import { Slider } from 'nativescript-material-slider';
-registerElement('MDSlider', () => Slider);
+import { NativeScriptMaterialSliderModule } from "nativescript-material-slider/angular";
+
+@NgModule({
+    imports: [
+        NativeScriptMaterialSliderModule,
+        ...
+    ],
+    ...
+})
 ```
 
 ```html

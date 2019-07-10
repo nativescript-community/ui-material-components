@@ -60,9 +60,9 @@ export const themer = new Themer();
 
 export function install() {
     try {
-        require('nativescript-material-bottomsheet').install();
+        require('nativescript-material-bottom-sheet').install();
     } catch (e) {
-        console.log('error installing bottomsheet', e);
+        console.log('error installing bottom-sheet', e);
     }
 }
 
