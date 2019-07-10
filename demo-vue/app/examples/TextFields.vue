@@ -8,8 +8,8 @@
             <StackLayout backgroundColor="red">
                 <MDTextField id="textField2" hint="hint me" v-model="value" backgroundColor="green" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress"  floating="false" margin="0" padding="20"/>
             </StackLayout>
-
-            <MDTextField id="textField3"  maxLength="10" variant="outline" hint="outline" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" highlightColor="green" padding="10"/>
+            <MDTextField id="textField3"  maxLength="10" variant="outline" hint="outline" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floatingColor="red" highlightColor="green" padding="10"/>
+            <MDTextField id="textField4"  maxLength="10" variant="outline" hint="outline" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floatingColor="red" placeholderColor="blue" highlightColor="green" padding="10"/>
             <MDTextField variant="filled" required="true" email="true" hint="fill this out..." @focus="onFocus" @blur="onBlur" floating="false" @textChange="onTextChange" @returnPress="onReturnPress"  highlightColor="red" padding="10"/>
         </StackLayout>
     </Page>
