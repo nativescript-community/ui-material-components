@@ -147,7 +147,7 @@ function initializeBottomSheetDialogFragment() {
 }
 
 export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
-    _bottomSheetFragment: android.support.design.widget.BottomSheetDialogFragment;
+    _bottomSheetFragment: com.google.android.material.bottomsheet.BottomSheetDialogFragment;
     protected _hideNativeBottomSheet(parent: View, whenClosedCallback: () => void) {
         const manager = this._bottomSheetFragment.getFragmentManager();
         if (manager) {
@@ -194,7 +194,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
 export function overrideBottomSheet() {
     const NSView = require('tns-core-modules/ui/core/view/view').View;
-    console.log('about to override bottom sheet');
     applyMixins(NSView, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
 }
 export function install() {
