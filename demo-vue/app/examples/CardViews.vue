@@ -7,8 +7,10 @@
             <ScrollView>
                 <StackLayout horizontalAlignment="center">
                     <GridLayout columns="auto" rows="auto" backgroundColor='lightgray'>
-                        <MDCardView margin="10" width="200" height="100" rippleColor="red" borderRadius="10">
-                            <Label text="Hello world" class="title"></Label>
+                        <MDCardView margin="10" width="200" height="100" rippleColor="red" borderRadius="30">
+                            <StackLayout>
+                                <Label text="Hello world" class="title"></Label>
+                            </StackLayout>
                         </MDCardView>
                     </GridLayout>
                 </StackLayout>
