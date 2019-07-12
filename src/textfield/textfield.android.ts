@@ -220,7 +220,7 @@ export class TextField extends TextFieldBase {
                     // this.nativeViewProtected.setStrokeColor(value.borderTopColor.android);
                 }
 
-                    // TODO: for now no control over borderRadius because we can't define the default value
+                // TODO: for now no control over borderRadius because we can't define the default value
                 // this.borderTopLeftRadius = value.borderTopLeftRadius;
                 // this.borderTopRightRadius = value.borderTopRightRadius;
                 // this.borderBottomLeftRadius = value.borderBottomLeftRadius;
