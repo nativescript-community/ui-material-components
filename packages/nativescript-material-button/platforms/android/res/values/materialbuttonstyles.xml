@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="UnelevatedButton.Custom" parent="@style/Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:padding">0dp</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+    <style name="TextButton.Custom" parent="@style/Widget.MaterialComponents.Button.TextButton">
+    <item name="android:padding">0dp</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+    <style name="Button.Custom" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:padding">0dp</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+    <!-- <style name="AppThemeMaterialButton" parent="Theme.MaterialComponents.Light">
+        <item name="materialButtonStyle">@style/Button.Custom</item>
+    </style>
+    <style name="AppThemeFlatMaterialButton" parent="Theme.MaterialComponents.Light">
+        <item name="materialButtonStyle">@style/UnelevatedButton.Custom</item>
+    </style>
+    <style name="AppThemeTextMaterialButton" parent="Theme.MaterialComponents.Light">
+        <item name="materialButtonStyle">@style/TextButton.Custom</item>
+    </style> -->
+
+</resources> 

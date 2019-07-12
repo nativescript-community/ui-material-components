@@ -4,7 +4,7 @@ import { getRippleColor } from 'nativescript-material-core/core';
 import * as utils from 'tns-core-modules/utils/utils';
 import { elevationHighlightedProperty, elevationProperty, rippleColorProperty, translationZHighlightedProperty } from 'nativescript-material-core/cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
-import { getEnabledColorStateList, getRippleColorStateList } from 'nativescript-material-core/android/utils';
+import { getEnabledColorStateList, getLayout, getRippleColorStateList } from 'nativescript-material-core/android/utils';
 import { createStateListAnimator } from 'nativescript-material-core/android/utils';
 import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Color } from 'tns-core-modules/color';
@@ -29,11 +29,23 @@ export class Button extends ButtonBase {
     }
 
     public createNativeView() {
-        let style = 'AppThemeMaterialButton';
+        // let style = 'AppThemeMaterialButton';
+        // if (this.variant === 'text' || this.variant === 'outline') {
+        //     style = 'AppThemeTextMaterialButton';
+        // } else if (this.variant === 'flat') {
+        //     style = 'AppThemeFlatMaterialButton';
+        // } else {
+        //     this.style['css:margin-left'] = 10;
+        //     this.style['css:margin-right'] = 10;
+        //     this.style['css:margin-top'] = 12;
+        //     this.style['css:margin-bottom'] = 12;
+        // }
+
+        let layoutIdName = 'material_button';
         if (this.variant === 'text' || this.variant === 'outline') {
-            style = 'AppThemeTextMaterialButton';
+            layoutIdName = 'material_button_text';
         } else if (this.variant === 'flat') {
-            style = 'AppThemeFlatMaterialButton';
+            layoutIdName = 'material_button_flat';
         } else {
             // we need to set the default through css or user would not be able to overload it through css...
             this.style['css:margin-left'] = 10;
@@ -41,7 +53,10 @@ export class Button extends ButtonBase {
             this.style['css:margin-top'] = 12;
             this.style['css:margin-bottom'] = 12;
         }
-        const view = new com.google.android.material.button.MaterialButton(new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)));
+        const layoutId = getLayout(layoutIdName);
+        const view = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.button.MaterialButton;
+        // const view = new com.google.android.material.button.MaterialButton(this._context);
+        // const view = new com.google.android.material.button.MaterialButton(new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)));
         // view.setElevation(3);
         // view.setTranslationZ(0);
         if (!this.variant) {
@@ -79,7 +94,6 @@ export class Button extends ButtonBase {
         }
     }
     [elevationHighlightedProperty.setNative](value: number) {
-        console.log('elevationHighlightedProperty', value);
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             createStateListAnimator(this, this.nativeViewProtected);
         }
