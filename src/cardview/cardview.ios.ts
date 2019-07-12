@@ -9,7 +9,7 @@ import { screen } from 'tns-core-modules/platform/platform';
 
 // use custom class to get the same behavior as android which is
 // highlight even if clicked on subview (which is not a control)
-class Card extends MDCCard {
+class Card extends MDCCardCollectionCell {
     touchesBeganWithEvent(touches, event) {
         super.touchesBeganWithEvent(touches, event);
         if (this.interactable) {
@@ -22,13 +22,13 @@ class Card extends MDCCard {
     }
 }
 export class CardView extends CardViewBase {
-    nativeViewProtected: MDCCard;
+    nativeViewProtected: MDCCardCollectionCell;
 
     public createNativeView() {
         const view = Card.new();
         const colorScheme = themer.getAppColorScheme();
         if (colorScheme) {
-            MDCCardsColorThemer.applySemanticColorSchemeToCard(colorScheme, view);
+            MDCCardsColorThemer.applySemanticColorSchemeToCardCell(colorScheme, view);
         }
         view.interactable = this.isUserInteractionEnabled;
         return view;
@@ -43,20 +43,23 @@ export class CardView extends CardViewBase {
     }
 
     [elevationProperty.setNative](value: number) {
-        this.nativeViewProtected.setShadowElevationForState(value, UIControlState.Normal);
+        this.nativeViewProtected.setShadowElevationForState(value, MDCCardCellState.Normal);
         if (this.elevationHighlighted === undefined) {
-            this.nativeViewProtected.setShadowElevationForState(value * 2, UIControlState.Highlighted);
+            this.nativeViewProtected.setShadowElevationForState(value * 2, MDCCardCellState.Highlighted);
         }
     }
     [elevationHighlightedProperty.setNative](value: number) {
-        this.nativeViewProtected.setShadowElevationForState(value, UIControlState.Highlighted);
+        this.nativeViewProtected.setShadowElevationForState(value, MDCCardCellState.Highlighted);
     }
     [backgroundInternalProperty.setNative](value: Background) {
         if (this.nativeViewProtected) {
             const scale = screen.mainScreen.scale;
-            this.nativeViewProtected.backgroundColor = value.color ? value.color.ios : null;
-            this.nativeViewProtected.setBorderWidthForState(value.borderLeftWidth / scale, UIControlState.Normal);
-            this.nativeViewProtected.setBorderColorForState(value.borderTopColor ? value.borderTopColor.ios : null, UIControlState.Normal);
+            console.log('backgroundInternalProperty', value.color);
+            if (value.color) {
+                this.nativeViewProtected.backgroundColor = value.color ? value.color.ios : null;
+            }
+            this.nativeViewProtected.setBorderWidthForState(value.borderLeftWidth / scale, MDCCardCellState.Normal);
+            this.nativeViewProtected.setBorderColorForState(value.borderTopColor ? value.borderTopColor.ios : null, MDCCardCellState.Normal);
             this.nativeViewProtected.layer.cornerRadius = value.borderTopLeftRadius / scale;
         }
     }
