@@ -1,6 +1,6 @@
 import { TextFieldBase } from './textfield.common';
 import { backgroundInternalProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
-import { errorColorProperty, errorProperty, floatingProperty, helperProperty, highlightColorProperty, maxLengthProperty, floatingColorProperty } from './textfield_cssproperties';
+import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from './textfield_cssproperties';
 import { themer } from 'nativescript-material-core/core';
 import { Color } from 'tns-core-modules/color';
 import { Style } from 'tns-core-modules/ui/styling/style';
@@ -25,6 +25,26 @@ class MDCTextInputControllerUnderlineImpl extends MDCTextInputControllerUnderlin
     private _owner: WeakRef<TextField>;
     public static initWithOwner(owner: WeakRef<TextField>): MDCTextInputControllerUnderlineImpl {
         const handler = <MDCTextInputControllerUnderlineImpl>MDCTextInputControllerUnderlineImpl.new();
+        handler._owner = owner;
+        return handler;
+    }
+
+    textInsets(defaultValue) {
+        let result = super.textInsets(defaultValue);
+        const owner = this._owner ? this._owner.get() : null;
+        if (owner) {
+            result = owner._getTextInsetsForBounds(result);
+        }
+        return result;
+    }
+}
+
+class MDCTextInputControllerImpl extends MDCTextInputControllerBase {
+    private _owner: WeakRef<TextField>;
+    public static initWithOwner(owner: WeakRef<TextField>): MDCTextInputControllerImpl {
+        const handler = <MDCTextInputControllerImpl>MDCTextInputControllerUnderlineImpl.new();
+        handler.underlineHeightActive = 0;
+        handler.underlineHeightNormal = 0;
         handler._owner = owner;
         return handler;
     }
@@ -86,7 +106,7 @@ export class TextField extends TextFieldBase {
     }
 
     _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
-        const scale = 1;
+        const scale = screen.mainScreen.scale;
 
         if (this.variant === 'underline' && this._controller.underlineHeightNormal === 0) {
             // if no underline/custom background, remove all insets like on android
@@ -102,22 +122,22 @@ export class TextField extends TextFieldBase {
         return insets;
     }
 
-    variant = 'underline';
+    // variant = 'underline';
     public createNativeView() {
         // const view = MDCTextFieldImpl.initWithOwner(new WeakRef(this));
         const view = MDCTextField.new();
         const colorScheme = themer.getAppColorScheme();
         const owner = new WeakRef(this);
         if (this.style.variant === 'filled') {
-            this._controller = MDCTextInputControllerFilled.new();
-            this._controller.textInput = view;
+            this._controller = MDCTextInputControllerFilledImpl.initWithOwner(owner);
         } else if (this.style.variant === 'outline') {
-            this._controller = MDCTextInputControllerOutlinedImpl.new();
-            this._controller.textInput = view;
-        } else {
+            this._controller = MDCTextInputControllerOutlinedImpl.initWithOwner(owner);
+        } else if (this.style.variant === 'underline') {
             this._controller = MDCTextInputControllerUnderlineImpl.initWithOwner(owner);
-            this._controller.textInput = view;
+        } else {
+            this._controller = MDCTextInputControllerImpl.initWithOwner(owner);
         }
+        this._controller.textInput = view;
         view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;
 
         if (colorScheme) {
@@ -151,15 +171,17 @@ export class TextField extends TextFieldBase {
     }
     [placeholderColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
-        // this._controller.floatingPlaceholderActiveColor = color;
         this._controller.inlinePlaceholderColor = color;
+        if (!this.floatingColor) {
+            this._controller.floatingPlaceholderActiveColor = color;
+        }
         this._updateAttributedPlaceholder();
     }
     [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.errorColor = color;
     }
-    [highlightColorProperty.setNative](value: Color) {
+    [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.activeColor = color;
     }
@@ -175,18 +197,18 @@ export class TextField extends TextFieldBase {
     [errorProperty.setNative](value: string) {
         this._controller.setErrorTextErrorAccessibilityValue(value, value);
     }
-
     [backgroundInternalProperty.setNative](value: Background) {
-        super[backgroundInternalProperty.setNative](value);
-        if (this.nativeViewProtected) {
-            if (value.color) {
-                // hide the underline like on android
-                this._controller.underlineHeightActive = 0;
-                this._controller.underlineHeightNormal = 0;
-            } else {
-                this._controller.underlineHeightActive = MDCTextInputControllerBase.underlineHeightActiveDefault;
-                this._controller.underlineHeightNormal = MDCTextInputControllerBase.underlineHeightNormalDefault;
-            }
+        if (value.color) {
+            this._controller.borderFillColor = value.color.ios;
         }
+        if (value.borderTopColor) {
+            this._controller.normalColor = value.borderTopColor.ios;
+        }
+
+        this.borderTopLeftRadius = value.borderTopLeftRadius;
+        this.borderTopRightRadius = value.borderTopRightRadius;
+        this.borderBottomLeftRadius = value.borderBottomLeftRadius;
+        this.borderBottomRightRadius = value.borderBottomRightRadius;
+        // TODO: for now no control over corner radius
     }
 }

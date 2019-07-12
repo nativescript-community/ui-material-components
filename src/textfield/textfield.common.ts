@@ -16,8 +16,8 @@ export abstract class TextFieldBase extends NTextField {
     @cssProperty errorColor: Color;
     @cssProperty floating: boolean;
     @cssProperty placeholderColor: Color;
-    @cssProperty variant: string;
+    @cssProperty variant: string = 'filled';
     @cssProperty error: string;
-    @cssProperty highlightColor: Color;
+    @cssProperty strokeColor: Color;
     @cssProperty floatingColor: Color;
 }

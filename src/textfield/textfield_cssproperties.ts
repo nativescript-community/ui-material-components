@@ -39,10 +39,10 @@ export const floatingColorProperty = new CssProperty<Style, Color>({
     valueConverter: v => new Color(v)
 });
 floatingColorProperty.register(Style);
-export const highlightColorProperty = new CssProperty<Style, Color>({
-    name: 'highlightColor',
-    cssName: 'highlight-color',
+export const strokeColorProperty = new CssProperty<Style, Color>({
+    name: 'strokeColor',
+    cssName: 'stroke-color',
     equalityComparer: Color.equals,
     valueConverter: v => new Color(v)
 });
-highlightColorProperty.register(Style);
+strokeColorProperty.register(Style);
