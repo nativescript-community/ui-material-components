@@ -75,7 +75,7 @@ Vue.use(ButtonPlugin);
 
 ## Attributes
 
-Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/button) so it already has all the same attributes
+Inherite from Nativescript [Button](https://docs.nativescript.org/ui/ns-ui-widgets/button) so it already has all the same attributes
 
 ## Attributes
 

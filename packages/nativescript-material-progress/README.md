@@ -71,7 +71,7 @@ Vue.use(ProgressPlugin);
 
 ## Attributes
 
-Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/progress) so it already has all the same attributes
+Inherite from Nativescript [Progress](https://docs.nativescript.org/ui/ns-ui-widgets/progress) so it already has all the same attributes
 
 ## Attributes
 
