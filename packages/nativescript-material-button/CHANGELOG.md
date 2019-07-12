@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/Akylas/nativescript-material-components/compare/v2.2.17...v2.3.0) (2019-07-12)
+
+
+### Bug Fixes
+
+* fixed android button ([401eb1f](https://github.com/Akylas/nativescript-material-components/commit/401eb1f))
+
+
+### Features
+
+* migrate to androidx ([1dc9322](https://github.com/Akylas/nativescript-material-components/commit/1dc9322))
+* **angular-support:** add angular support for buttons ([a685260](https://github.com/Akylas/nativescript-material-components/commit/a685260))
+
+
+
+
+
 ## [2.2.17](https://github.com/Akylas/nativescript-material-components/compare/v2.2.16...v2.2.17) (2019-06-11)
 
 **Note:** Version bump only for package nativescript-material-button
