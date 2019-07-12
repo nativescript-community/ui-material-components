@@ -10,7 +10,7 @@ import { TextFieldComponent } from './text-field/text-field.component';
 import { SliderComponent } from './slider/slider.component';
 import { ProgressComponent } from './progress/progress.component';
 import { ActivityIndicatorComponent } from './activity-indicator/activity-indicator.component';
-import { DialogComponent } from './dialog/dialog.component';
+// import { DialogComponent } from './dialog/dialog.component';
 
 const routes: Routes = [
     {

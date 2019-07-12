@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { Routes } from '@angular/router';
-import { HomeComponent } from '~/app/home/home.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
     {
