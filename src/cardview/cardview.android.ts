@@ -221,9 +221,9 @@ function initializeOutlineProvider() {
 export class CardView extends CardViewBase {
     nativeViewProtected: com.google.android.material.card.MaterialCardView;
 
-    fgDrawable: android.graphics.drawable.GradientDrawable;
-    rippleDrawable: android.graphics.drawable.StateListDrawable | android.graphics.drawable.RippleDrawable;
-    rippleShape: android.graphics.drawable.ShapeDrawable;
+    // fgDrawable: android.graphics.drawable.GradientDrawable;
+    // rippleDrawable: android.graphics.drawable.StateListDrawable | android.graphics.drawable.RippleDrawable;
+    // rippleShape: android.graphics.drawable.ShapeDrawable;
     _strokeWidth = 0;
     _borderRadius = 0;
 
@@ -239,16 +239,16 @@ export class CardView extends CardViewBase {
             createStateListAnimator(this, view);
         }
         view.setClickable(this.isUserInteractionEnabled);
-
+        // view.setUseCompatPadding(true)
         // store the default radius
         this._borderRadius = view.getRadius();
 
         // set the view outline
-        view.setClipToOutline(false);
-        const contentView = view.getChildAt(0) || view;
-        contentView.setClipToOutline(true);
-        contentView.setOutlineProvider(new ViewOutlineProvider(new WeakRef(this)));
-        this.createForegroundDrawable(view, this.style.borderWidth, this.style.borderColor as any);
+        // view.setClipToOutline(false);
+        // const contentView = view.getChildAt(0) || view;
+        // contentView.setClipToOutline(true);
+        // contentView.setOutlineProvider(new ViewOutlineProvider(new WeakRef(this)));
+        // this.createForegroundDrawable(view, this.style.borderWidth, this.style.borderColor as any);
         return view;
     }
 
@@ -256,49 +256,53 @@ export class CardView extends CardViewBase {
         const color = this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight'));
         return color.android;
     }
-    createForegroundDrawable(view: com.google.android.material.card.MaterialCardView, strokeWidth, strokeColor: Color) {
-        this.fgDrawable = new android.graphics.drawable.GradientDrawable();
-        const radius = view.getRadius();
-        this.fgDrawable.setCornerRadius(radius);
+    // createForegroundDrawable(view: com.google.android.material.card.MaterialCardView, strokeWidth, strokeColor: Color) {
+    //     this.fgDrawable = new android.graphics.drawable.GradientDrawable();
+    //     const radius = view.getRadius();
+    //     this.fgDrawable.setCornerRadius(radius);
 
-        // In order to set a stroke, a size and color both need to be set. We default to a zero-width
-        // width size, but won't set a default color. This prevents drawing a stroke that blends in with
-        // the card but that could affect card spacing.
-        if (strokeColor && strokeColor.android !== DEFAULT_STROKE_VALUE) {
-            this.fgDrawable.setStroke(strokeWidth, strokeColor.android);
-        }
+    //     // In order to set a stroke, a size and color both need to be set. We default to a zero-width
+    //     // width size, but won't set a default color. This prevents drawing a stroke that blends in with
+    //     // the card but that could affect card spacing.
+    //     if (strokeColor && strokeColor.android !== DEFAULT_STROKE_VALUE) {
+    //         this.fgDrawable.setStroke(strokeWidth, strokeColor.android);
+    //     }
 
-        this.rippleDrawable = createRippleDrawable(view, this.getCardRippleColor(), radius);
-        this.rippleShape = (this.rippleDrawable as any).rippleShape;
+    //     this.rippleDrawable = createRippleDrawable(view, this.getCardRippleColor(), radius);
+    //     this.rippleShape = (this.rippleDrawable as any).rippleShape;
 
-        const result = Array.create(android.graphics.drawable.Drawable, 2);
-        result[0] = this.rippleDrawable;
-        result[1] = this.fgDrawable;
-        view.setForeground(new android.graphics.drawable.LayerDrawable(result));
-    }
+    //     const result = Array.create(android.graphics.drawable.Drawable, 2);
+    //     result[0] = this.rippleDrawable;
+    //     result[1] = this.fgDrawable;
+    //     view.setForeground(new android.graphics.drawable.LayerDrawable(result));
+    // }
 
-    updateBorderRadius(radius) {
-        this._borderRadius = radius;
-        this.fgDrawable.setCornerRadius(this._borderRadius); // for the foreground drawable
-        const radii = Array.create('float', 8);
-        java.util.Arrays.fill(radii, this._borderRadius);
-        this.rippleShape.setShape(new android.graphics.drawable.shapes.RoundRectShape(radii, null, null)); // for the ripple drawable
-    }
+    // updateBorderRadius(radius) {
+    //     this._borderRadius = radius;
+    //     this.fgDrawable.setCornerRadius(this._borderRadius); // for the foreground drawable
+    //     const radii = Array.create('float', 8);
+    //     java.util.Arrays.fill(radii, this._borderRadius);
+    //     this.rippleShape.setShape(new android.graphics.drawable.shapes.RoundRectShape(radii, null, null)); // for the ripple drawable
+    // }
     [backgroundInternalProperty.setNative](value: any) {
         if (this.nativeViewProtected) {
             if (value instanceof android.graphics.drawable.Drawable) {
                 this.nativeViewProtected.setBackgroundDrawable(value);
             } else {
                 this._strokeWidth = value.borderTopWidth;
+                this.nativeViewProtected.setStrokeWidth(this._strokeWidth);
                 if (value.color) {
                     this.nativeViewProtected.setCardBackgroundColor(value.color.android);
                 }
                 if (value.borderTopColor && value.borderTopColor.android !== DEFAULT_STROKE_VALUE) {
-                    this.fgDrawable.setStroke(this._strokeWidth, value.borderTopColor.android);
+                    this.nativeViewProtected.setStrokeColor(value.borderTopColor.android);
+                    // this.fgDrawable.setStroke(this._strokeWidth, value.borderTopColor.android);
                 }
 
                 if (this._borderRadius !== value.borderTopLeftRadius) {
-                    this.updateBorderRadius(value.borderTopLeftRadius);
+                    this._borderRadius = value.borderTopLeftRadius;
+                    this.nativeViewProtected.setRadius(this._borderRadius);
+                    // this.updateBorderRadius(value.borderTopLeftRadius);
                 }
             }
         }
@@ -323,10 +327,11 @@ export class CardView extends CardViewBase {
     }
     [rippleColorProperty.setNative](color: Color) {
         const rippleColor = color ? color.android : -1;
-        if (isPostLollipopMR1()) {
-            (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(rippleColor));
-        } else {
-            this.rippleShape.getPaint().setColor(rippleColor);
-        }
+        // if (isPostLollipopMR1()) {
+        //     (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(rippleColor));
+        // } else {
+        //     this.rippleShape.getPaint().setColor(rippleColor);
+        // }
+        (this.nativeViewProtected as any).setRippleColor(android.content.res.ColorStateList.valueOf(rippleColor));
     }
 }
