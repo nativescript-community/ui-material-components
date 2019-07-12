@@ -54,7 +54,6 @@ export class CardView extends CardViewBase {
     [backgroundInternalProperty.setNative](value: Background) {
         if (this.nativeViewProtected) {
             const scale = screen.mainScreen.scale;
-            console.log('backgroundInternalProperty', value.color);
             if (value.color) {
                 this.nativeViewProtected.backgroundColor = value.color ? value.color.ios : null;
             }
