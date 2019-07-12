@@ -1,6 +1,7 @@
 import { Color } from 'tns-core-modules/color/color';
 import { ad } from 'tns-core-modules/utils/utils';
 import { ViewBase } from 'tns-core-modules/ui/page/page';
+import * as application from 'application';
 
 let isPostLollipopVar: boolean = undefined;
 export function isPostLollipop() {
@@ -187,7 +188,7 @@ export function getFocusedColorStateList(color: number, variant: string) {
     colors[0] = color;
     colors[1] = color;
     colors[2] = color;
-    colors[2] = variant === 'text' || variant === 'outline' ? 0 : new Color(255, 160, 160, 160).android;
+    colors[2] = new Color(255, 160, 160, 160).android;
     return new android.content.res.ColorStateList(states, colors);
 }
 
@@ -326,4 +327,12 @@ export function setFocusable(view: android.view.View, focusable: boolean) {
     // so dumb setFocusable to false set setFocusableInTouchMode
     // but not when using true :s so we have to do it
     view.setFocusableInTouchMode(focusable);
+}
+
+export function getLayout(id: string) {
+    if (!id) {
+        return 0;
+    }
+    const context: android.content.Context = application.android.context;
+    return context.getResources().getIdentifier(id, 'layout', context.getPackageName());
 }
