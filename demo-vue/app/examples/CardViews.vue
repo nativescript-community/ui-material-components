@@ -5,9 +5,14 @@
         </ActionBar>
         <StackLayout class="bg-green">
             <ScrollView>
-                <MDCardView margin="20" width="200" height="100" rippleColor="blue" borderRadius="10">
-                    <Label text="Hello world" class="title"></Label>
-                </MDCardView>
+                <StackLayout horizontalAlignment="center">
+                    <GridLayout columns="auto" rows="auto" backgroundColor='lightgray'>
+                        <MDCardView margin="10" width="200" height="100" rippleColor="red" borderRadius="10">
+                            <Label text="Hello world" class="title"></Label>
+                        </MDCardView>
+                    </GridLayout>
+                </StackLayout>
+
             </ScrollView>
         </StackLayout>
     </Page>
@@ -18,19 +23,18 @@ import * as frameModule from 'tns-core-modules/ui/frame';
 import Vue from 'vue';
 export const title = 'CardViews sample';
 
-
 export default Vue.extend({
     name: 'CardView',
-    data () {
+    data() {
         return {
             name: 'CardView',
-            title: title,
-        }
+            title: title
+        };
     },
     methods: {
         onNavigationButtonTap() {
             frameModule.topmost().goBack();
         }
-    },
-})
+    }
+});
 </script>

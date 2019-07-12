@@ -7,6 +7,7 @@ import ProgressPlugin from 'nativescript-material-progress/vue';
 import RipplePlugin from 'nativescript-material-ripple/vue';
 import SliderPlugin from 'nativescript-material-slider/vue';
 import TextFieldPlugin from 'nativescript-material-textfield/vue';
+import { isIOS } from 'tns-core-modules/platform';
 // import { install as installBottomSheet } from 'nativescript-material-bottom-sheet';
 
 // installBottomSheet();
@@ -19,6 +20,11 @@ Vue.use(ProgressPlugin);
 Vue.use(RipplePlugin);
 Vue.use(SliderPlugin);
 Vue.use(TextFieldPlugin);
+
+import { themer } from 'nativescript-material-core';
+if (isIOS) {
+    themer.setPrimaryColor('#33B5E5');
+}
 
 // import { getExamples } from './examples';
 import * as views from './views';

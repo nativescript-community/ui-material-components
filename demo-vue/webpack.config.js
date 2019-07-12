@@ -92,7 +92,7 @@ module.exports = env => {
     let aliases = {
         '~': appFullPath,
         '@': appFullPath,
-        'nativescript-vue': 'akylas-nativescript-vue',
+        'nativescript-vue': 'nativescript-akylas-vue',
         vue: 'nativescript-vue'
     };
 

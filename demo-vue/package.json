@@ -7,6 +7,9 @@
     "id": "org.nativescript.demovuematerial",
     "tns-android": {
       "version": "6.0.0-rc-2019-07-04-174325-01"
+    },
+    "tns-ios": {
+      "version": "6.0.0-rc-2019-07-09-191846-02"
     }
   },
   "dependencies": {
@@ -23,7 +26,7 @@
     "nativescript-material-snackbar": "../packages/nativescript-material-snackbar",
     "nativescript-material-textfield": "../packages/nativescript-material-textfield",
     "nativescript-theme-core": "~1.0.6",
-    "akylas-nativescript-vue": "~2.1.14",
+    "nativescript-akylas-vue": "~2.3.0-rc.3",
     "tns-core-modules": "rc",
     "tslib": "^1.10.0"
   },
