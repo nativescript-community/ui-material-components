@@ -8,7 +8,7 @@ import RipplePlugin from 'nativescript-material-ripple/vue';
 import SliderPlugin from 'nativescript-material-slider/vue';
 import TextFieldPlugin from 'nativescript-material-textfield/vue';
 import { isIOS } from 'tns-core-modules/platform';
-// import { install as installBottomSheet } from 'nativescript-material-bottom-sheet';
+// import { install as installBottomSheet } from 'nativescript-material-bottomsheet';
 
 // installBottomSheet();
 

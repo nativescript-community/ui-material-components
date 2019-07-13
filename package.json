@@ -17,10 +17,10 @@
         "tsc-win": "lerna run tsc-win",
         "ngc": "lerna run ngc",
         "clean": "rimraf packages/**/*.d.ts packages/**/*.js packages/**/*.js.map packages/core/android",
-        "demo.android": "cd ./demo && tns run android --syncAllFiles --bundle",
-        "demo.ios": "cd ./demo && tns run ios --syncAllFiles --bundle",
-        "build.demo.android": "cd ./demo && tns build android --bundle",
-        "build.demo.ios": "cd ./demo && tns build ios --bundle",
+        "demo.android": "cd ./demo && tns run android --syncAllFiles",
+        "demo.ios": "cd ./demo && tns run ios --syncAllFiles",
+        "build.demo.android": "cd ./demo && tns build android",
+        "build.demo.ios": "cd ./demo && tns build ios",
         "commitmsg": "commitlint -e $GIT_PARAMS"
     },
     "keywords": [

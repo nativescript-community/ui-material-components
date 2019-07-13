@@ -19,7 +19,8 @@
 ## Contribution
 
 ```bash
-cd demo
-tns run tsc
-tns run ios --bundle --env.development
+npm i
+npm run tsc
+npm run demo.ios
+npm run demo.android
 ```
