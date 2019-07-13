@@ -1,7 +1,8 @@
 ﻿import './bundle-config';
 import * as app from 'tns-core-modules/application';
 
-import { install, installMixins, themer } from 'nativescript-material-core';
+import { installMixins, themer } from 'nativescript-material-core';
+import { install } from 'nativescript-material-bottomsheet';
 
 install();
 installMixins();
