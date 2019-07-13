@@ -224,7 +224,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
     protected _hideNativeBottomSheet(parent: View, whenClosedCallback: () => void) {
         if (!parent || !parent.viewController) {
-            traceError('Trying to hide bottomsheet view but no parent with viewController specified.');
+            traceError('Trying to hide bottom-sheet view but no parent with viewController specified.');
             return;
         }
 

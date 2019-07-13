@@ -42,9 +42,15 @@ mdprogress {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
-import { Progress } from 'nativescript-material-progress';
-registerElement('MDProgress', () => Progress);
+import { NativeScriptMaterialProgressModule } from "nativescript-material-progress/angular";
+
+@NgModule({
+    imports: [
+        NativeScriptMaterialProgressModule,
+        ...
+    ],
+    ...
+})
 ```
 
 ```html
@@ -65,7 +71,7 @@ Vue.use(ProgressPlugin);
 
 ## Attributes
 
-Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/progress) so it already has all the same attributes
+Inherite from Nativescript [Progress](https://docs.nativescript.org/ui/ns-ui-widgets/progress) so it already has all the same attributes
 
 ## Attributes
 

@@ -1,0 +1,14 @@
+<ListView
+    [items]="options"
+    (itemTap)="onTap($event)"
+    separatorColor="white"
+    class="list-group"
+    height="200"
+>
+    <ng-template let-option="item">
+        <Label
+            class="list-group-item"
+            [text]="option"
+        ></Label>
+    </ng-template>
+</ListView>

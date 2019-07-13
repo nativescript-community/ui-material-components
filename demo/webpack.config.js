@@ -60,7 +60,7 @@ module.exports = env => {
             '#':srcFullPath,
             'nativescript-material-core$': '#/core/core.' + platform,
             'nativescript-material-core': '#/core',
-            'nativescript-material-bottomsheet': '#/bottomsheet/bottomsheet.' + platform,
+            'nativescript-material-bottomsheet': '#/bottom-sheet/bottom-sheet.' + platform,
             'nativescript-material-cardview': '#/cardview/cardview.' + platform,
             'nativescript-material-progress': '#/progress/progress.' + platform,
             'nativescript-material-slider': '#/slider/slider.' + platform,

@@ -43,9 +43,15 @@ mdccardview {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
-import { CardView } from 'nativescript-material-cardview';
-registerElement('MDCardView', () => CardView);
+import { NativeScriptMaterialCardViewModule } from "nativescript-material-cardview/angular";
+
+@NgModule({
+    imports: [
+        NativeScriptMaterialCardViewModule,
+        ...
+    ],
+    ...
+})
 ```
 
 ```html

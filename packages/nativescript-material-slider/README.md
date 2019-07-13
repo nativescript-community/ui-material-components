@@ -42,9 +42,15 @@ mdslider {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
-import { Slider } from 'nativescript-material-slider';
-registerElement('MDSlider', () => Slider);
+import { NativeScriptMaterialSliderModule } from "nativescript-material-slider/angular";
+
+@NgModule({
+    imports: [
+        NativeScriptMaterialSliderModule,
+        ...
+    ],
+    ...
+})
 ```
 
 ```html
@@ -71,7 +77,7 @@ Or you can bind the value to some instance data using the `v-model` directive:
 
 ## Attributes
 
-Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/slider) so it already has all the same attributes
+Inherite from Nativescript [Slider](https://docs.nativescript.org/ui/ns-ui-widgets/slider) so it already has all the same attributes
 
 ## Attributes
 

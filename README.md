@@ -14,12 +14,13 @@
 -   [dialogs](./packages/nativescript-material-dialogs/README.md)
 -   [bottomsheets](./packages/nativescript-material-bottomsheet/README.md)
 -   [Ripple View](./packages/nativescript-material-ripple/README.md)
--   [Snackbar](./packages/nativescript-material-snackbar/README.md) (not finished yet on iOS side)
+-   [Snackbar](./packages/nativescript-material-snackbar/README.md)
 
 ## Contribution
 
 ```bash
-cd demo
-tns run tsc
-tns run ios --bundle --env.development
+npm i
+npm run tsc
+npm run demo.ios
+npm run demo.android
 ```

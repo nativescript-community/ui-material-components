@@ -2,8 +2,8 @@ export declare class SnackBar {
     /**
      * Shows a simple SnackBar.
      * @param {string} - The SnackBar text.
-     * @param {string} - The color of the snackbar text.backgroundColor * Android Only *
-     * @param {string} - The background color of the snackbar. * Android Only *
+     * @param {string} - The color of the snackbar text.backgroundColor
+     * @param {string} - The background color of the snackbar.
      * @param {number} - The max lines for the text of the snackbar. * Android Only *
      * @param {boolean} - Set RTL for the textview of the snackbar. * Android Only *
      */
@@ -38,7 +38,8 @@ export declare class SnackBar {
     snackText: string;
   
     /**
-     * Delay to hide the snackbar.
+     * Delay in ms to hide the snackbar.
+     * Note: iOS only allows a maximum of 10s. If the value is more than that for iOS, the hideDelay will be set to 10s
      */
     hideDelay: number;
   

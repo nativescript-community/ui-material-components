@@ -45,9 +45,15 @@ mdbutton {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
-import { Button } from 'nativescript-material-button';
-registerElement('MDButton', () => Button);
+import { NativeScriptMaterialButtonModule } from "nativescript-material-button/angular";
+
+@NgModule({
+    imports: [
+        NativeScriptMaterialButtonModule,
+        ...
+    ],
+    ...
+})
 ```
 
 ```html
@@ -69,7 +75,7 @@ Vue.use(ButtonPlugin);
 
 ## Attributes
 
-Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/button) so it already has all the same attributes
+Inherite from Nativescript [Button](https://docs.nativescript.org/ui/ns-ui-widgets/button) so it already has all the same attributes
 
 ## Attributes
 

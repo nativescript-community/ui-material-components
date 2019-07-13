@@ -45,9 +45,15 @@ mdctextfield {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
-import { TextField } from 'nativescript-material-textfield';
-registerElement('MDTextField', () => TextField);
+import { NativeScriptMaterialTextFieldModule } from "nativescript-material-textfield/angular";
+
+@NgModule({
+    imports: [
+        NativeScriptMaterialTextFieldModule,
+        ...
+    ],
+    ...
+})
 ```
 
 ```html
@@ -79,7 +85,7 @@ Also, you can bind the text to some instance data using the `v-model` directive:
 
 ## Attributes
 
-Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/text-field) so it already has all the same attributes
+Inherite from Nativescript [TextField](https://docs.nativescript.org/ui/ns-ui-widgets/text-field) so it already has all the same attributes
 
 ## Attributes
 

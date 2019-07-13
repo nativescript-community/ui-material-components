@@ -18,11 +18,11 @@ export type TextView = { text: string } & View;
  *
  *  ### Example
  *  ```
- *  <TextField [(ngModel)]="model.test">
+ *  <MDTextField [(ngModel)]="model.test"></MDTextField>
  *  ```
  */
 @Directive({
-    selector: 'MaterialTextField[ngModel],MaterialTextField[formControlName],MaterialTextField[formControl]',
+    selector: 'MDTextField[ngModel],MDTextField[formControlName],MDTextField[formControl]',
     providers: [TEXT_VALUE_ACCESSOR],
     host: {
         '(blur)': 'onTouched()',
