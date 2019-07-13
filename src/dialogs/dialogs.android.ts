@@ -40,9 +40,9 @@ function isString(value): value is string {
     return typeof value === 'string';
 }
 
-function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): android.support.v7.app.AlertDialog.Builder {
+function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): androidx.appcompat.app.AlertDialog.Builder {
     const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
-    const alert = new android.support.v7.app.AlertDialog.Builder(activity);
+    const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
     alert.setTitle(options && isString(options.title) ? options.title : null);
     alert.setMessage(options && isString(options.message) ? options.message : null);
     if (options.titleIcon) {
@@ -77,7 +77,7 @@ function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): 
     return alert;
 }
 
-function showDialog(builder: android.support.v7.app.AlertDialog.Builder, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
+function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
     const dlg = builder.show();
     const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
     if ((activity as any)._currentModalCustomView) {
@@ -143,7 +143,7 @@ function showDialog(builder: android.support.v7.app.AlertDialog.Builder, options
     return dlg;
 }
 
-function addButtonsToAlertDialog(alert: android.support.v7.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function): void {
+function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function): void {
     if (!options) {
         return;
     }
@@ -230,7 +230,7 @@ export function alert(arg: any): Promise<void> {
 }
 
 export class AlertDialog {
-    dialog: android.support.v7.app.AlertDialog;
+    dialog: androidx.appcompat.app.AlertDialog;
     constructor(private options: any) {}
     show() {
         if (!this.dialog) {
@@ -479,7 +479,7 @@ export function action(arg: any): Promise<string> {
     return new Promise<string>((resolve, reject) => {
         try {
             const activity = androidApp.foregroundActivity || androidApp.startActivity;
-            const alert = new android.support.v7.app.AlertDialog.Builder(activity);
+            const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
             const message = options && isString(options.message) ? options.message : '';
             const title = options && isString(options.title) ? options.title : '';
             if (options && options.cancelable === false) {

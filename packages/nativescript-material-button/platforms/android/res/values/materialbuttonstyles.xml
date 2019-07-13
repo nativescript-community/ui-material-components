@@ -28,7 +28,7 @@
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
     </style>
-    <style name="AppThemeMaterialButton" parent="Theme.MaterialComponents.Light">
+    <!-- <style name="AppThemeMaterialButton" parent="Theme.MaterialComponents.Light">
         <item name="materialButtonStyle">@style/Button.Custom</item>
     </style>
     <style name="AppThemeFlatMaterialButton" parent="Theme.MaterialComponents.Light">
@@ -36,6 +36,6 @@
     </style>
     <style name="AppThemeTextMaterialButton" parent="Theme.MaterialComponents.Light">
         <item name="materialButtonStyle">@style/TextButton.Custom</item>
-    </style>
+    </style> -->
 
 </resources> 

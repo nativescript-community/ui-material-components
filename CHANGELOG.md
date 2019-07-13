@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/Akylas/nativescript-material-components/compare/v2.3.0...v2.3.1) (2019-07-12)
+
+
+### Bug Fixes
+
+* prevent the use of com… in typings ([7d64aa5](https://github.com/Akylas/nativescript-material-components/commit/7d64aa5))
+
+
+
+
+
+# [2.3.0](https://github.com/Akylas/nativescript-material-components/compare/v2.2.17...v2.3.0) (2019-07-12)
+
+
+### Bug Fixes
+
+* **bottomsheet:** solve message module android doesn't exist in ios ([a4c4208](https://github.com/Akylas/nativescript-material-components/commit/a4c4208))
+* cardview ios fixes ([3f472fc](https://github.com/Akylas/nativescript-material-components/commit/3f472fc))
+* fixed android button ([401eb1f](https://github.com/Akylas/nativescript-material-components/commit/401eb1f))
+* remove ios deprecated method ([7b314ed](https://github.com/Akylas/nativescript-material-components/commit/7b314ed))
+* update android cardview ([c390d51](https://github.com/Akylas/nativescript-material-components/commit/c390d51))
+* working textfield ([b1edae2](https://github.com/Akylas/nativescript-material-components/commit/b1edae2))
+
+
+### Features
+
+* added floatingColor ([f41030b](https://github.com/Akylas/nativescript-material-components/commit/f41030b))
+* **angular-support:** add angular support for progress ([9898321](https://github.com/Akylas/nativescript-material-components/commit/9898321))
+* full snackbar integration ([e0ec3a5](https://github.com/Akylas/nativescript-material-components/commit/e0ec3a5))
+* **angular-support:** add angular support for buttons ([a685260](https://github.com/Akylas/nativescript-material-components/commit/a685260))
+* migrate to androidx ([1dc9322](https://github.com/Akylas/nativescript-material-components/commit/1dc9322))
+* **angular-support:** add angular support for activity indicator ([1a613b5](https://github.com/Akylas/nativescript-material-components/commit/1a613b5))
+* **angular-support:** add angular support for bottom sheet ([2b25457](https://github.com/Akylas/nativescript-material-components/commit/2b25457))
+* **angular-support:** add angular support for card view ([4da203d](https://github.com/Akylas/nativescript-material-components/commit/4da203d))
+* **angular-support:** add angular support for ripple ([6b4ba87](https://github.com/Akylas/nativescript-material-components/commit/6b4ba87))
+* **angular-support:** add angular support for slider ([736633d](https://github.com/Akylas/nativescript-material-components/commit/736633d))
+* **angular-support:** add angular support for text field ([91c3685](https://github.com/Akylas/nativescript-material-components/commit/91c3685))
+* **angular-support:** add examples for button and cardview ([3b7d7e3](https://github.com/Akylas/nativescript-material-components/commit/3b7d7e3))
+* **angular-support:** complete support for bottom sheet ([1554311](https://github.com/Akylas/nativescript-material-components/commit/1554311))
+* **angular-support:** update examples ([72a7c2d](https://github.com/Akylas/nativescript-material-components/commit/72a7c2d))
+* **snackbar:** implement snackbar for iOS ([415a2e4](https://github.com/Akylas/nativescript-material-components/commit/415a2e4))
+
+
+
+
+
 ## [2.2.17](https://github.com/Akylas/nativescript-material-components/compare/v2.2.16...v2.2.17) (2019-06-11)
 
 

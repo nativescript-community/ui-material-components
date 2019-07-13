@@ -28,21 +28,21 @@ function getBottomSheetOptions(domId: number): BottomSheetDataOptions {
 
 declare module 'tns-core-modules/ui/core/view' {
     interface View {
-        _bottomSheetFragment: android.support.design.widget.BottomSheetDialogFragment;
+        _bottomSheetFragment: com.google.android.material.bottomsheet.BottomSheetDialogFragment;
     }
 }
 
 let BottomSheetDialogFragment: BottomSheetDialogFragment;
 
 interface BottomSheetDialogFragment {
-    new (): android.support.design.widget.BottomSheetDialogFragment;
+    new (): com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 }
 function initializeBottomSheetDialogFragment() {
     if (BottomSheetDialogFragment) {
         return;
     }
 
-    class BottomSheetDialogFragmentImpl extends android.support.design.widget.BottomSheetDialogFragment {
+    class BottomSheetDialogFragmentImpl extends com.google.android.material.bottomsheet.BottomSheetDialogFragment {
         public owner: View;
         private _fullscreen: boolean;
         private _stretched: boolean;
@@ -65,7 +65,7 @@ function initializeBottomSheetDialogFragment() {
             (this.owner as ViewWithBottomSheetBase)._bottomSheetFragment = this;
             // this.setStyle(androidx.fragment.app.DialogFragment.STYLE_NO_TITLE, 0);
 
-            const dialog = super.onCreateDialog(savedInstanceState) as android.support.design.widget.BottomSheetDialog;
+            const dialog = super.onCreateDialog(savedInstanceState) as com.google.android.material.bottomsheet.BottomSheetDialog;
             if (options.options) {
                 const creationOptions = options.options;
                 if (creationOptions.dismissOnBackgroundTap !== undefined) {
@@ -147,7 +147,7 @@ function initializeBottomSheetDialogFragment() {
 }
 
 export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
-    _bottomSheetFragment: android.support.design.widget.BottomSheetDialogFragment;
+    _bottomSheetFragment: com.google.android.material.bottomsheet.BottomSheetDialogFragment;
     protected _hideNativeBottomSheet(parent: View, whenClosedCallback: () => void) {
         const manager = this._bottomSheetFragment.getFragmentManager();
         if (manager) {
@@ -194,7 +194,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
 export function overrideBottomSheet() {
     const NSView = require('tns-core-modules/ui/core/view/view').View;
-    console.log('about to override bottom sheet');
     applyMixins(NSView, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
 }
 export function install() {

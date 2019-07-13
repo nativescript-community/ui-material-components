@@ -5,17 +5,17 @@ import { elevationProperty, translationZHighlightedProperty } from 'nativescript
 import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 
-let MDCFabButton: typeof android.support.design.widget.FloatingActionButton;
+let MDCFabButton: typeof com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 export class FloatingActionButton extends FloatingActionButtonBase {
-    nativeViewProtected: android.support.design.widget.FloatingActionButton;
+    nativeViewProtected: com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-    get android(): android.support.design.widget.FloatingActionButton {
+    get android(): com.google.android.material.floatingactionbutton.FloatingActionButton {
         return this.nativeViewProtected;
     }
     public createNativeView() {
         if (!MDCFabButton) {
-            MDCFabButton = android.support.design.widget.FloatingActionButton;
+            MDCFabButton = com.google.android.material.floatingactionbutton.FloatingActionButton;
         }
         const view = new MDCFabButton(this._context);
         return view;

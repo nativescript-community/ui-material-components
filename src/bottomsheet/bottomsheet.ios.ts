@@ -208,7 +208,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         } else {
             bottomSheet.view.backgroundColor = this.style.backgroundColor.ios;
         }
-        const transitionCoordinator = iosUtils.getter(bottomSheet, bottomSheet.transitionCoordinator);
+        const transitionCoordinator = bottomSheet.transitionCoordinator;
         if (transitionCoordinator) {
             UIViewControllerTransitionCoordinator.prototype.animateAlongsideTransitionCompletion.call(transitionCoordinator, null, () => {
                 (this.bindingContext = fromObject(options.context)), this._raiseShownBottomSheetEvent();

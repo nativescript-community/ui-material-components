@@ -14,16 +14,16 @@ function getId(id: string) {
 }
 
 export class Page extends INSPage {
-    appBarLayout: android.support.design.widget.AppBarLayout;
-    collapsingToolbarLayout: android.support.design.widget.CollapsingToolbarLayout;
-    nativeViewProtected: android.support.design.widget.CoordinatorLayout;
+    appBarLayout: com.google.android.material.appbar.AppBarLayout;
+    collapsingToolbarLayout: com.google.android.material.appbar.CollapsingToolbarLayout;
+    nativeViewProtected: androidx.coordinatorlayout.widget.CoordinatorLayout;
     contentLayout: android.widget.LinearLayout;
 
     createNativeView() {
-        const layout = android.view.LayoutInflater.from(this._context).inflate(getLayout('material_page'), null, false) as android.support.design.widget.CoordinatorLayout;
+        const layout = android.view.LayoutInflater.from(this._context).inflate(getLayout('material_page'), null, false) as androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-        this.appBarLayout = layout.findViewById(getId('appbarLayout')) as android.support.design.widget.AppBarLayout;
-        this.collapsingToolbarLayout = layout.findViewById(getId('collapsingToolbarLayout')) as android.support.design.widget.CollapsingToolbarLayout;
+        this.appBarLayout = layout.findViewById(getId('appbarLayout')) as com.google.android.material.appbar.AppBarLayout;
+        this.collapsingToolbarLayout = layout.findViewById(getId('collapsingToolbarLayout')) as com.google.android.material.appbar.CollapsingToolbarLayout;
         this.contentLayout = layout.findViewById(getId('contentLayout')) as android.widget.LinearLayout;
         return layout;
     }
@@ -32,10 +32,10 @@ export class Page extends INSPage {
 
         if (this.nativeViewProtected && child.nativeViewProtected) {
             if (child instanceof ActionBar) {
-                const params = new android.support.design.widget.AppBarLayout.LayoutParams(-1, -1);
-                // const  params =  (child.nativeViewProtected as android.support.v7.widget.Toolbar).getLayoutParams() as  (android.support.design.widget.AppBarLayout.LayoutParams);
+                const params = new com.google.android.material.appbar.AppBarLayout.LayoutParams(-1, -1);
+                // const  params =  (child.nativeViewProtected as androidx.appcompat.widget.Toolbar).getLayoutParams() as  (com.google.android.material.appbar.AppBarLayout.LayoutParams);
                 params.setScrollFlags(0);
-                // params.setScrollFlags(android.support.design.widget.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | android.support.design.widget.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
+                // params.setScrollFlags(com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
                 child.nativeViewProtected.setLayoutParams(params);
                 this.appBarLayout.addView(child.nativeViewProtected);
             } else {

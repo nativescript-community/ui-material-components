@@ -2,10 +2,7 @@
     "nativescript": {
         "id": "org.nativescript.demo",
         "tns-android": {
-            "version": "5.3.1"
-        },
-        "tns-ios": {
-            "version": "5.4.1"
+            "version": "5.3.0-2019-03-19-143503-02"
         }
     },
     "dependencies": {
@@ -23,7 +20,7 @@
         "nativescript-material-textfield": "file:../packages/nativescript-material-textfield",
         "nativescript-theme-core": "^1.0.4",
         "nativescript-ui-listview": "6.1.0",
-        "tns-core-modules": "^5.3.1"
+        "tns-core-modules": "5.4.0-androidx-2019-03-22-160602-06"
     },
     "devDependencies": {
         "awesome-typescript-loader": "~5.2.1",
@@ -40,7 +37,7 @@
         "node-sass": "^4.11.0",
         "resolve-url-loader": "~3.1.0",
         "sass-loader": "^7.1.0",
-        "tns-platform-declarations": "^5.3.1",
+        "tns-platform-declarations": "5.4.0-androidx-2019-03-22-160602-06",
         "ts-loader": "^5.3.3",
         "tslint": "~5.16.0",
         "typescript": "~3.4.3",
