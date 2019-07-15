@@ -105,10 +105,10 @@ module.exports = env => {
             'nativescript-material-core/android/utils$': '#/core/android/utils',
             'nativescript-material-core/cssproperties$': '#/core/cssproperties',
 
-            'nativescript-material-bottomsheet$': '#/bottom-sheet/bottom-sheet.' + platform,
-            'nativescript-material-bottomsheet/vue$': '#/bottom-sheet/vue/index',
-            'nativescript-material-bottomsheet/bottomsheet$': '#/bottom-sheet/bottom-sheet.' + platform,
-            '../bottomsheet$': '#/bottom-sheet/bottom-sheet.' + platform,
+            'nativescript-material-bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
+            'nativescript-material-bottomsheet/vue$': '#/bottomsheet/vue/index',
+            'nativescript-material-bottomsheet/bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
+            '../bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
 
             'nativescript-material-progress$': '#/progress/progress.' + platform,
             'nativescript-material-progress/vue$': '#/progress/vue/index',
