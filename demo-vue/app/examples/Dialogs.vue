@@ -16,7 +16,7 @@
 <script lang="ts">
 import * as frameModule from 'tns-core-modules/ui/frame';
 import Vue from 'vue';
-import { EventData, View } from 'tns-core-modules/ui/frame';
+import { EventData, View, Color } from 'tns-core-modules/ui/frame';
 import { alert, AlertDialog, login, prompt } from 'nativescript-material-dialogs';
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
 import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator/activity-indicator';
@@ -45,13 +45,20 @@ export default Vue.extend({
                     break;
                 }
                 case 'dialogCustomView': {
+                    const label = new Label();
+                    label.style.padding = 20;
+                    label.style.backgroundColor = new Color(255, 255,0,0);
+                    label.style.fontSize = 11;
+                    label.style.whiteSpace = 'normal';
+                    label.text = 'Un problème technique est survenu. Notre service technique en a été informé et traitera le problème dans les plus brefs délais.';
+
                     alert({
                         okButtonText: 'OK',
                         title: 'custom dialog view',
                         context: {
                             dataItems: this.dataItems
                         },
-                        view: 'examples/bottomsheetinner2-fragment'
+                        view: label
                     }).then(result => {
                         alert(`closed  dialog with customview and result: ${result}`);
                     });
@@ -67,9 +74,9 @@ export default Vue.extend({
                         textFieldProperties: {
                             marginLeft: 20,
                             marginRight: 50,
-                            hint:'test hint text'
+                            hint: 'test hint text'
                         },
-                        autoFocus:true
+                        autoFocus: true
                     }).then(result => console.log('prompt result', result));
                     break;
                 }
