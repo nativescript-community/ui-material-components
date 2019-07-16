@@ -81,7 +81,7 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
         },
 
         addCustomViewToLayout() {
-            const contentScrollView = this.contentScrollView;
+            const contentScrollView = this.contentScrollView as UIView;
             const view = this._customContentView;
             view._setupAsRootView({});
             view._isAddedToNativeVisualTree = true;
@@ -109,7 +109,7 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             }
         },
         measureChild() {
-            const view = this._customContentView as View;
+            // const view = this._customContentView as View;
             const contentSize = this.contentScrollView.contentSize;
             const width = contentSize.width || this.super.preferredContentSize.width;
             const widthSpec = layout.makeMeasureSpec(layout.toDevicePixels(width), layout.EXACTLY);
@@ -131,8 +131,8 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
 
                 const bounds = contentScrollView.frame;
                 const boundsSize = bounds.size;
-                contentSize.height = contentSize.height + measuredHeight;
-                boundsSize.height = boundsSize.height + measuredHeight;
+                contentSize.height = contentSize.height + layout.toDeviceIndependentPixels(measuredHeight);
+                boundsSize.height = boundsSize.height + layout.toDeviceIndependentPixels(measuredHeight);
                 contentScrollView.contentSize = contentSize;
                 bounds.size = boundsSize;
                 contentScrollView.frame = bounds;
