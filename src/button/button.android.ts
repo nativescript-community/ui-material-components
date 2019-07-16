@@ -46,7 +46,7 @@ export class Button extends ButtonBase {
             layoutIdName = 'material_button_text';
         } else if (this.variant === 'flat') {
             layoutIdName = 'material_button_flat';
-        } else {
+        } else { // contained
             // we need to set the default through css or user would not be able to overload it through css...
             this.style['css:margin-left'] = 10;
             this.style['css:margin-right'] = 10;
@@ -59,7 +59,7 @@ export class Button extends ButtonBase {
         // const view = new com.google.android.material.button.MaterialButton(new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)));
         // view.setElevation(3);
         // view.setTranslationZ(0);
-        if (!this.variant) {
+        if (this.variant === 'contained') {
             if (android.os.Build.VERSION.SDK_INT >= 21) {
                 createStateListAnimator(this, view);
             }

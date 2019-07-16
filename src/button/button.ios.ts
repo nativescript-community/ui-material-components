@@ -59,7 +59,7 @@ export class Button extends ButtonBase {
             if (colorScheme) {
                 MDCOutlinedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
             }
-        } else {
+        } else { // contained
             MDCContainedButtonThemer.applySchemeToButton(getButtonScheme(), view);
             if (colorScheme) {
                 MDCContainedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
