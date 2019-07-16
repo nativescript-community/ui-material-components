@@ -6,7 +6,7 @@ import { Property } from 'tns-core-modules/ui/core/properties';
 
 @CSSType('MDButton')
 export abstract class ButtonBase extends Button {
-    public variant: string;
+    public variant: string = 'contained';
     @cssProperty elevation: number;
     @cssProperty elevationHighlighted: number;
     @cssProperty rippleColor: Color | string;
