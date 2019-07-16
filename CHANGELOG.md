@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.3](https://github.com/Akylas/nativescript-material-components/compare/v2.3.2...v2.3.3) (2019-07-16)
+
+
+### Bug Fixes
+
+* button default variant ([eb5db8a](https://github.com/Akylas/nativescript-material-components/commit/eb5db8a))
+* button default variant ([9a1bc13](https://github.com/Akylas/nativescript-material-components/commit/9a1bc13))
+* ios custom dialog view layout fix ([e70b280](https://github.com/Akylas/nativescript-material-components/commit/e70b280))
+
+
+
+
+
 ## [2.3.2](https://github.com/Akylas/nativescript-material-components/compare/v2.3.1...v2.3.2) (2019-07-15)
 
 
