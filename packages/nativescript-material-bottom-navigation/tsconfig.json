@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "../../src/bottom-navigation",
+    "outDir": "./",
+    "paths": {
+      "*": [
+        "node_modules/tns-core-modules/*",
+        "node_modules/*",
+        "packages/*"
+      ]
+    }
+  },
+  "include": [
+    "../../src/bottom-navigation/**/*.ts",
+    "../../references.d.ts",
+    "../../src/references.d.ts"
+  ]
+}

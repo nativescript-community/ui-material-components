@@ -1,0 +1,43 @@
+{
+  "name": "nativescript-material-bottom-navigation",
+  "version": "2.3.2",
+  "description": "Material Bottom Navigation Component.",
+  "main": "material-bottom-navigation",
+  "typings": "index.d.ts",
+  "nativescript": {
+    "platforms": {
+      "android": "5.4.0",
+      "ios": "5.4.0"
+    }
+  },
+  "scripts": {
+    "tsc-win": "tsc && copy ..\\..\\src\\bottom-navigation\\index.d.ts .\\",
+    "tsc": "tsc && cp ../../src/bottom-navigation/index.d.ts ./",
+    "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
+  },
+  "keywords": [
+    "NativeScript",
+    "JavaScript",
+    "Android",
+    "iOS",
+    "Henry Chavez",
+    "Bytpher",
+    "Bottom Navigation",
+    "Material Design",
+    "Material Components",
+    "Tab Navigation"
+  ],
+  "author": {
+    "name": "Henry Chavez",
+    "email": "henry.chavez@bytpher.com"
+  },
+  "bugs": {
+    "url": "https://github.com/Akylas/nativescript-material-components/issues"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/Akylas/nativescript-material-components",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "nativescript-material-core": "^2.3.2"
+  }
+}
