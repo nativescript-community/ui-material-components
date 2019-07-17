@@ -155,7 +155,8 @@ module.exports = env => {
             'nativescript-material-dialogs/dialogs$': '#/dialogs/dialogs.' + platform,
 
             'nativescript-material-snackbar$': '#/snackbar/snackbar.' + platform,
-            'nativescript-material-snackbar/snackbar$': '#/snackbar/snackbar.' + platform
+            'nativescript-material-snackbar/snackbar$': '#/snackbar/snackbar.' + platform,
+            './snackbar$': '#/snackbar/snackbar.' + platform,
         });
 
         console.log('alias', aliases);
