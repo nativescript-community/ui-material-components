@@ -10,8 +10,16 @@ export class Themer {
     // appColorScheme: MDCSemanticColorScheme;
     getOrcreateAppColorScheme();
     getAppColorScheme();
-    setPrimaryColor(value: string);
-    setPrimaryColorVariant(value: string);
+    setPrimaryColor(value: string | Color);
+    getPrimaryColor(): string | Color;
+    setAccentColor(value: string | Color);
+    getAccentColor(): string | Color;
+    setPrimaryColorVariant(value: string | Color);
+    getPrimaryColorVariant(): string | Color;
+    setSurfaceColor(value: string | Color);
+    getSurfaceColor(): string | Color;
+    setOnSurfaceColor(value: string | Color);
+    getOnSurfaceColor(): string | Color;
 }
 
 export var themer: Themer;

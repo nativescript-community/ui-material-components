@@ -14,6 +14,11 @@ export { applyMixins };
 export class Themer {
     appColorScheme: MDCSemanticColorScheme;
     appTypoScheme: MDCTypographyScheme;
+    primaryColor: string | Color;
+    accentColor: string | Color;
+    primaryColorVariant: string | Color;
+    surfaceColor: string | Color;
+    onSurfaceColor: string | Color;
     constructor() {
         // create a default one to prevent multiple creations on widget side
         this.appColorScheme = MDCSemanticColorScheme.new();
@@ -28,14 +33,50 @@ export class Themer {
     getAppColorScheme() {
         return this.appColorScheme;
     }
-    setPrimaryColor(value: string) {
+    setPrimaryColor(value: string | Color) {
+        this.primaryColor = value;
         const colorTheme = this.getOrcreateAppColorScheme();
-        const color = new Color(value);
+        const color = value instanceof Color ? value : new Color(value);
         colorTheme.primaryColor = color.ios;
         colorTheme.primaryColorVariant = new Color(61.2, color.r, color.g, color.b).ios; // default alpha is 0.24
     }
-    setPrimaryColorVariant(value: string) {
-        this.getOrcreateAppColorScheme().primaryColorVariant = new Color(value).ios;
+    getPrimaryColor(): string | Color {
+        return this.primaryColor;
+    }
+
+    setAccentColor(value: string | Color) {
+        this.accentColor = value;
+    }
+    getAccentColor(): string | Color {
+        return this.accentColor;
+    }
+
+    setSurfaceColor(value: string | Color) {
+        this.surfaceColor = value;
+        const colorTheme = this.getOrcreateAppColorScheme();
+        const color = value instanceof Color ? value : new Color(value);
+        colorTheme.surfaceColor = color.ios;
+        colorTheme.onSurfaceColor = color.ios;
+    }
+    getSurfaceColor(): string | Color {
+        return this.surfaceColor;
+    }
+    setOnSurfaceColor(value: string | Color) {
+        this.onSurfaceColor = value;
+        const colorTheme = this.getOrcreateAppColorScheme();
+        const color = value instanceof Color ? value : new Color(value);
+        colorTheme.onSurfaceColor = color.ios;
+    }
+    getOnSurfaceColor(): string | Color {
+        return this.onSurfaceColor;
+    }
+    setPrimaryColorVariant(value: string | Color) {
+        this.primaryColorVariant = value;
+        const color = value instanceof Color ? value : new Color(value);
+        this.getOrcreateAppColorScheme().primaryColorVariant = color.ios;
+    }
+    getPrimaryColorVariant(): string | Color {
+        return this.primaryColorVariant;
     }
 
     getOrcreateAppTypographyScheme() {
@@ -69,6 +110,7 @@ export function install() {
 export function getRippleColor(color: string | Color): UIColor {
     if (color) {
         const temp = typeof color === 'string' ? new Color(color) : color;
+        // return UIColor.colorWithRedGreenBlueAlpha(temp.r / 255, temp.g / 255, temp.b, temp.a !== 255 ? temp.a / 255 : 0.14);
         return new Color(temp.a !== 255 ? temp.a : 36, temp.r, temp.g, temp.b).ios; // default alpha is 0.14
     }
     return null;
