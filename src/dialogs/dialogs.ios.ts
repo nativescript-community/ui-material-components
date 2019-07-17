@@ -136,8 +136,15 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
                 contentScrollView.contentSize = contentSize;
                 bounds.size = boundsSize;
                 contentScrollView.frame = bounds;
+                this.super.viewDidLayoutSubviews();
+                // TODO: for a reload of the preferredContentSize. Find a better solution!
+                this.preferredContentSize = {
+                    width: this.super.preferredContentSize.width,
+                    height: this.super.preferredContentSize.height + 0.0000000001
+                };
+            } else {
+                this.super.viewDidLayoutSubviews();
             }
-            this.super.viewDidLayoutSubviews();
             const hasTitleOrMessage = this.title || this.message;
             if (!hasTitleOrMessage && this._customContentView) {
                 this.preferredContentSize = {
