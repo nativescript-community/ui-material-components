@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.5](https://github.com/Akylas/nativescript-material-components/compare/v2.3.4...v2.3.5) (2019-07-17)
+
+
+### Bug Fixes
+
+* fix ios custom view in dialog layout ([07475fb](https://github.com/Akylas/nativescript-material-components/commit/07475fb))
+* fixes and improvements for snackbar ([5d9f3d1](https://github.com/Akylas/nativescript-material-components/commit/5d9f3d1))
+
+
+
+
+
 ## [2.3.4](https://github.com/Akylas/nativescript-material-components/compare/v2.3.3...v2.3.4) (2019-07-16)
 
 **Note:** Version bump only for package nativescript-material-components
