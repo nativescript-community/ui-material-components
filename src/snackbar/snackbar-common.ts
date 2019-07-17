@@ -1,4 +1,4 @@
-import { View } from 'tns-core-modules/ui/core/view';
+import { Color, View } from 'tns-core-modules/ui/core/view';
 
 export interface SnackBarOptions {
     /**
@@ -19,17 +19,17 @@ export interface SnackBarOptions {
     /**
      * Action Text Color of the snackbar.
      */
-    actionTextColor?: string;
+    actionTextColor?: string | Color;
 
     /**
      * Text Color of the snackbar.
      */
-    textColor?: string;
+    textColor?: string | Color;
 
     /**
      * Background Color of the snackbar.
      */
-    backgroundColor?: string;
+    backgroundColor?: string | Color;
     /**
      * *Android Only*
      * Set the maxLines if you are displaying a long string of text and it will wrap.
@@ -59,6 +59,11 @@ export enum DismissReasons {
     UNKNOWN = 'Unknown'
 }
 
+export enum SnackBarAction {
+    NONE = 'None',
+    DISMISS = 'Dismiss'
+}
+
 export abstract class SnackBarBase {
     _options: SnackBarOptions;
     constructor(options?: SnackBarOptions) {
@@ -84,6 +89,7 @@ export abstract class SnackBarBase {
         // if (!options) {
         //     options = this._options;
         // }
+        console.log('showSnack ', options);
         this._options = options;
         // return new Promise((resolve, reject) => {
         // try {
