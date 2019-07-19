@@ -107,12 +107,6 @@ export class TextField extends TextFieldBase {
             editText.setBackgroundColor(android.graphics.Color.TRANSPARENT);
             // editText.setPadding(0, layout.toDevicePixels(20), 0, layout.toDevicePixels(6));
         }
-        console.log(
-            this.layoutView.getBoxCornerRadiusTopStart(),
-            this.layoutView.getBoxCornerRadiusTopEnd(),
-            this.layoutView.getBoxCornerRadiusBottomStart(),
-            this.layoutView.getBoxCornerRadiusBottomEnd()
-        );
         // this.style.borderTopLeftRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusTopStart() };
         // this.style.borderTopRightRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusTopEnd() };
         // this.style.borderBottomLeftRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusBottomStart() };
@@ -128,7 +122,6 @@ export class TextField extends TextFieldBase {
     }
 
     [borderBottomLeftRadiusProperty.getDefault]() {
-        console.log('borderBottomLeftRadiusProperty.getDefault', this.layoutView.getBoxCornerRadiusTopStart());
         return this.layoutView.getBoxCornerRadiusTopStart();
     }
 

@@ -89,7 +89,6 @@ export abstract class SnackBarBase {
         // if (!options) {
         //     options = this._options;
         // }
-        console.log('showSnack ', options);
         this._options = options;
         // return new Promise((resolve, reject) => {
         // try {
