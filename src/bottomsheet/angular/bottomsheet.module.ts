@@ -10,13 +10,16 @@ export class NativeScriptMaterialBottomSheetModule {
     private static initialized: boolean = false;
 
     static forRoot(): ModuleWithProviders {
-        if (!this.initialized) {
-            install();
-        }
-        this.initialized = true;
         return {
             ngModule: NativeScriptMaterialBottomSheetModule,
             providers: [BottomSheetService]
         };
+    }
+
+    public constructor() {
+        if (!NativeScriptMaterialBottomSheetModule.initialized) {
+            install();
+            NativeScriptMaterialBottomSheetModule.initialized = true;
+        }
     }
 }
