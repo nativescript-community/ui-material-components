@@ -7,6 +7,7 @@
     "scripts": {
         "tsc-win": "tsc && copy ..\\..\\src\\cardview\\cardview.d.ts .\\",
         "tsc": "tsc && cp ../../src/cardview/cardview.d.ts ./",
+        "ngc-win": "ngc",
         "ngc": "node --max-old-space-size=8192 ../../node_modules/.bin/ngc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
