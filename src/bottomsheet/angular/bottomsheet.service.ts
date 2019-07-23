@@ -1,5 +1,5 @@
 import { ComponentFactoryResolver, ComponentRef, Injectable, Injector, Type, ViewContainerRef } from '@angular/core';
-import { DetachedLoader } from 'nativescript-angular';
+import { DetachedLoader } from 'nativescript-angular/common/detached-loader';
 import { AppHostView } from 'nativescript-angular/app-host-view';
 import { once } from 'nativescript-angular/common/utils';
 import { BottomSheetOptions as MaterialBottomSheetOptions } from '../bottomsheet-common';
