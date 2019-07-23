@@ -115,7 +115,7 @@ export class SnackBar extends SnackBarBase {
         }
         const snackbarManager = (this._snackbarManager = MDCSnackbarManager.defaultManager);
         snackbarManager.delegate = MDCSnackbarManagerDelegateImpl.initWithOwner(new WeakRef(this));
-    
+
         const message = (this._message = SnackbarMessage.new());
         if (options.actionText) {
             const button = MDCSnackbarMessageAction.new();
