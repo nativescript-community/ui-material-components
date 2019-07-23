@@ -4,8 +4,8 @@
     "description": "Your awesome NativeScript plugin.",
     "nativescript": {
         "platforms": {
-            "android": "5.0.0",
-            "ios": "5.0.0"
+            "android": "6.0.0",
+            "ios": "6.0.0"
         }
     },
     "scripts": {
