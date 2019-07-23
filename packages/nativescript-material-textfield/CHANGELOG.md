@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.7](https://github.com/Akylas/nativescript-material-components/compare/v2.3.6...v2.3.7) (2019-07-23)
+
+
+### Bug Fixes
+
+* build with aot metadata for angular ([8b1468e](https://github.com/Akylas/nativescript-material-components/commit/8b1468e))
+* ios textfield wrong layout on custom font size ([a3b04b1](https://github.com/Akylas/nativescript-material-components/commit/a3b04b1))
+
+
+
+
+
 ## [2.3.6](https://github.com/Akylas/nativescript-material-components/compare/v2.3.5...v2.3.6) (2019-07-19)
 
 **Note:** Version bump only for package nativescript-material-textfield

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.7](https://github.com/Akylas/nativescript-material-components/compare/v2.3.6...v2.3.7) (2019-07-23)
+
+
+### Bug Fixes
+
+* always return correct bottom sheet result ([f1ac28c](https://github.com/Akylas/nativescript-material-components/commit/f1ac28c))
+* bottom sheet aot compilation ([1691ca0](https://github.com/Akylas/nativescript-material-components/commit/1691ca0))
+* build with aot metadata for angular ([8b1468e](https://github.com/Akylas/nativescript-material-components/commit/8b1468e))
+* ios textfield wrong layout on custom font size ([a3b04b1](https://github.com/Akylas/nativescript-material-components/commit/a3b04b1))
+* snackbar native module name ([e8c4de8](https://github.com/Akylas/nativescript-material-components/commit/e8c4de8))
+
+
+
+
+
 ## [2.3.6](https://github.com/Akylas/nativescript-material-components/compare/v2.3.5...v2.3.6) (2019-07-19)
 
 **Note:** Version bump only for package nativescript-material-components
