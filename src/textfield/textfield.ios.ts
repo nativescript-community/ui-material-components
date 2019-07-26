@@ -83,7 +83,6 @@ declare class TextInputControllerFilled extends MDCTextInputControllerFilled {}
 class TextInputControllerFilledImpl extends TextInputControllerFilled {
     private _owner: WeakRef<TextField>;
     public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerFilledImpl {
-        console.log('MDCTextInputControllerFilledImpl');
         const handler = <TextInputControllerFilledImpl>TextInputControllerFilledImpl.new();
         handler._owner = owner;
         return handler;
