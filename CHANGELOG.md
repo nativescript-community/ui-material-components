@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.10](https://github.com/Akylas/nativescript-material-components/compare/v2.3.9...v2.3.10) (2019-07-29)
+
+
+### Bug Fixes
+
+* android textfield box background color ([ed3883c](https://github.com/Akylas/nativescript-material-components/commit/ed3883c))
+
+
+
+
+
 ## [2.3.9](https://github.com/Akylas/nativescript-material-components/compare/v2.3.8...v2.3.9) (2019-07-26)
 
 
