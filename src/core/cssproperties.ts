@@ -34,23 +34,16 @@ export const elevationProperty = new CssProperty<Style, Length>({
     name: 'elevation',
     cssName: 'elevation',
 
-    valueConverter: v => Length.parse(v)
+    valueConverter: parseFloat
 });
 elevationProperty.register(Style);
-export const translationZHighlightedProperty = new CssProperty<Style, Length>({
-    name: 'translationZHighlighted',
-    cssName: 'translationZ-highlighted',
+export const dynamicElevationOffsetProperty = new CssProperty<Style, Length>({
+    name: 'dynamicElevationOffset',
+    cssName: 'dynamic-elevation-offset',
 
-    valueConverter: v => Length.parse(v)
+    valueConverter: parseFloat
 });
-translationZHighlightedProperty.register(Style);
-export const elevationHighlightedProperty = new CssProperty<Style, Length>({
-    name: 'elevationHighlighted',
-    cssName: 'elevation-highlighted',
-
-    valueConverter: v => Length.toDevicePixels(Length.parse(v), 0)
-});
-elevationHighlightedProperty.register(Style);
+dynamicElevationOffsetProperty.register(Style);
 
 export const variantProperty = new CssProperty<Style, string>({
     name: 'variant',

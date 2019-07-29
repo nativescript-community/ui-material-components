@@ -1,11 +1,18 @@
 import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
 import { ImageSource } from 'tns-core-modules/image-source/image-source';
-import { elevationProperty } from 'nativescript-material-core/cssproperties';
+import { dynamicElevationOffsetProperty, elevationProperty } from 'nativescript-material-core/cssproperties';
 import { themer } from 'nativescript-material-core/core';
 
 export class FloatingActionButton extends FloatingActionButtonBase {
     nativeViewProtected: MDCFloatingButton;
 
+    getDefaultElevation(): number {
+        return 6;
+    }
+
+    getDefaultDynamicElevationOffset() {
+        return 6;
+    }
     public _setNativeImage(nativeImage: UIImage) {
         // this.nativeViewProtected.setImageForState(nativeImage ? nativeImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate) : nativeImage, UIControlState.Normal);
         this.nativeViewProtected.setImageForState(nativeImage, UIControlState.Normal);
@@ -20,7 +27,21 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     }
     [elevationProperty.setNative](value: number) {
         this.nativeViewProtected.setElevationForState(value, UIControlState.Normal);
-        this.nativeViewProtected.setElevationForState(value * 2, UIControlState.Highlighted);
+        let dynamicElevationOffset = this.dynamicElevationOffset;
+        if (typeof dynamicElevationOffset === 'undefined' || dynamicElevationOffset === null) {
+            dynamicElevationOffset = this.getDefaultDynamicElevationOffset();
+        }
+        if (this.elevationHighlighted === undefined) {
+            this.nativeViewProtected.setElevationForState(value + dynamicElevationOffset, UIControlState.Highlighted);
+        }
+    }
+
+    [dynamicElevationOffsetProperty.setNative](value: number) {
+        let elevation = this.elevation;
+        if (typeof elevation === 'undefined' || elevation === null) {
+            elevation = this.getDefaultElevation();
+        }
+        this.nativeViewProtected.setElevationForState(value + elevation, UIControlState.Highlighted);
     }
     [imageSourceProperty.setNative](value: ImageSource) {
         this._setNativeImage(value ? value.ios : null);

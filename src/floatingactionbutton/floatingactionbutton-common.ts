@@ -24,6 +24,7 @@ export abstract class FloatingActionButtonBase extends View {
         this.style['css:margin-bottom'] = 16;
     }
     @cssProperty elevation: number;
+    @cssProperty dynamicElevationOffset: number;
 
     public srcCompat: string;
     public fabSize: string;

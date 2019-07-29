@@ -8,7 +8,7 @@ import { Property } from 'tns-core-modules/ui/core/properties';
 export abstract class ButtonBase extends Button {
     public variant: string = 'contained';
     @cssProperty elevation: number;
-    @cssProperty elevationHighlighted: number;
+    @cssProperty dynamicElevationOffset: number;
     @cssProperty rippleColor: Color | string;
 
     constructor() {

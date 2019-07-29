@@ -35,13 +35,12 @@ export class Themer {
 
     setSurfaceColor(value: string | Color) {
         this.surfaceColor = value;
-
     }
     getSurfaceColor(): string | Color {
         return this.surfaceColor;
     }
     setOnSurfaceColor(value: string | Color) {
-        this.onSurfaceColor = value;;
+        this.onSurfaceColor = value;
     }
     getOnSurfaceColor(): string | Color {
         return this.onSurfaceColor;

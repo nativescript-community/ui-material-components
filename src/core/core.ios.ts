@@ -3,7 +3,7 @@ import { TypographyOptions } from './core';
 import { View } from 'tns-core-modules/ui/core/view/view';
 import { layout } from 'tns-core-modules/utils/utils';
 
-import { cssProperty, elevationHighlightedProperty, elevationProperty, rippleColorProperty } from './cssproperties';
+import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { ControlStateChangeListener } from 'tns-core-modules/ui/core/control-state-change';
 import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
@@ -223,7 +223,7 @@ class ViewWithElevationAndRipple extends View {
             }
         }
     }
-    [elevationHighlightedProperty.setNative](value: number) {
+    [dynamicElevationOffsetProperty.setNative](value: number) {
         this.getOrCreateShadowLayer();
         this.startElevationStateChangeHandler();
         this._shadowElevations['highlighted'] = value;

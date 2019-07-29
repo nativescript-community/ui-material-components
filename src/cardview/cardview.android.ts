@@ -1,5 +1,5 @@
 import { CardViewBase } from './cardview-common';
-import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { createRippleDrawable, createStateListAnimator, getAttrColor, isPostLollipop, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
 import { Color } from 'tns-core-modules/color';
@@ -231,6 +231,21 @@ export class CardView extends CardViewBase {
         return this.nativeView;
     }
 
+    getDefaultElevation(): number {
+        if (isPostLollipop()) {
+            return 1; // 1dp @dimen/mtrl_card_elevation
+        }
+        return 0; // 1dp @dimen/mtrl_card_elevation
+    }
+
+    getDefaultDynamicElevationOffset(): number {
+        if (isPostLollipop()) {
+            return 5; // 5dp @dimen/mtrl_card_dragged_z
+        }
+
+        return 0;
+    }
+
     public createNativeView() {
         initMDCCardView();
         initializeOutlineProvider();
@@ -312,17 +327,20 @@ export class CardView extends CardViewBase {
         if (!this.nativeViewProtected) {
             return;
         }
-        androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, value);
         if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
+        } else {
+            androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, value);
         }
     }
-    [elevationHighlightedProperty.setNative](value: number) {
+    [dynamicElevationOffsetProperty.setNative](value: number) {
         if (!this.nativeViewProtected) {
             return;
         }
         if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
+        } else {
+            androidx.core.view.ViewCompat.setTranslationZ(this.nativeViewProtected, value);
         }
     }
     [rippleColorProperty.setNative](color: Color) {
