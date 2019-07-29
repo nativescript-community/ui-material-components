@@ -51,7 +51,7 @@ export class Button extends ButtonBase {
         // const view = new com.google.android.material.button.MaterialButton(new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)));
         // view.setElevation(3);
         // view.setTranslationZ(0);
-        console.log('created button', this.text, this.elevation);
+        // console.log('created button', this.text, this.elevation);
         // if (this.variant === 'contained') {
         //     if (!isPreLollipop()) {
         //         createStateListAnimator(this, view);

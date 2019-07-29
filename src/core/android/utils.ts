@@ -197,7 +197,6 @@ const shortAnimTime = 17694720; // android.R.integer.config_shortAnimTime
 const statePressed = 16842919; // android.R.attr.state_pressed
 const stateEnabled = 16842910; // android.R.attr.state_enabled
 export function createStateListAnimator(view: ViewBase, nativeView: android.view.View) {
-
     const ObjectAnimator = android.animation.ObjectAnimator;
     const AnimatorSet = android.animation.AnimatorSet;
 

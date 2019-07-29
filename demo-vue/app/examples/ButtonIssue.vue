@@ -14,7 +14,7 @@
                                 <StackLayout>
                                     <StackLayout>
                                         <StackLayout>
-                                                                    <MDButton elevation="5" text="Test me2"  backgroundColor="white"/>
+                                            <MDButton elevation="5" text="Test me2" backgroundColor="white" />
                                             <StackLayout>
                                                 <StackLayout>
                                                     <StackLayout>
@@ -22,18 +22,18 @@
                                                             <StackLayout>
                                                                 <StackLayout>
                                                                     <StackLayout>
-                                                <StackLayout>
-                                                    <StackLayout>
-                                                        <StackLayout>
-                                                            <StackLayout>
-                                                                <StackLayout>
-                                                                    <MDButton elevation="5" text="Test me3"  backgroundColor="white"/>
+                                                                        <StackLayout>
+                                                                            <StackLayout>
+                                                                                <StackLayout>
+                                                                                    <StackLayout>
+                                                                                        <StackLayout>
+                                                                                            <MDButton elevation="5" text="Test me3" backgroundColor="white" />
+                                                                                        </StackLayout>
+                                                                                    </StackLayout>
+                                                                                </StackLayout>
+                                                                            </StackLayout>
+                                                                        </StackLayout>
                                                                     </StackLayout>
-                                                            </StackLayout>
-                                                        </StackLayout>
-                                                    </StackLayout>
-                                                </StackLayout>
-                                            </StackLayout>
                                                                 </StackLayout>
                                                             </StackLayout>
                                                         </StackLayout>
