@@ -7,7 +7,7 @@
       </ActionBar>
       <StackLayout>
         <Label text="Default slider with dynamic value" padding="10" />
-        <MDSlider elevation="3" rippleColor="blue"
+        <MDSlider elevation="3" color="blue"
                   minValue="0" maxValue="100"
                   v-model="value" />
         <Label text="Green slider without hollow at 0" padding="10" />
