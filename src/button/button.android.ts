@@ -1,14 +1,15 @@
-import { ButtonBase } from './button-common';
+import { createStateListAnimator, getEnabledColorStateList, getLayout, getRippleColorStateList, isPostLollipop } from 'nativescript-material-core/android/utils';
 import { getRippleColor } from 'nativescript-material-core/core';
-
-import * as utils from 'tns-core-modules/utils/utils';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { Background } from 'tns-core-modules/ui/styling/background';
-import { getEnabledColorStateList, getLayout, getRippleColorStateList, isPostLollipop } from 'nativescript-material-core/android/utils';
-import { createStateListAnimator } from 'nativescript-material-core/android/utils';
-import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Color } from 'tns-core-modules/color';
-import { Length } from 'tns-core-modules/ui/styling/style-properties';
+import { Background } from 'tns-core-modules/ui/styling/background';
+import { androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, Length } from 'tns-core-modules/ui/styling/style-properties';
+import { ButtonBase } from './button-common';
+
+declare module 'tns-core-modules/ui/styling/style-properties' {
+    const androidElevationProperty;
+    const androidDynamicElevationOffsetProperty;
+}
 
 export class Button extends ButtonBase {
     nativeViewProtected: com.google.android.material.button.MaterialButton;
@@ -20,18 +21,6 @@ export class Button extends ButtonBase {
     }
 
     public createNativeView() {
-        // let style = 'AppThemeMaterialButton';
-        // if (this.variant === 'text' || this.variant === 'outline') {
-        //     style = 'AppThemeTextMaterialButton';
-        // } else if (this.variant === 'flat') {
-        //     style = 'AppThemeFlatMaterialButton';
-        // } else {
-        //     this.style['css:margin-left'] = 10;
-        //     this.style['css:margin-right'] = 10;
-        //     this.style['css:margin-top'] = 12;
-        //     this.style['css:margin-bottom'] = 12;
-        // }
-
         let layoutIdName = 'material_button';
         if (this.variant === 'text' || this.variant === 'outline') {
             layoutIdName = 'material_button_text';
@@ -47,16 +36,6 @@ export class Button extends ButtonBase {
         }
         const layoutId = getLayout(layoutIdName);
         const view = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.button.MaterialButton;
-        // const view = new com.google.android.material.button.MaterialButton(this._context);
-        // const view = new com.google.android.material.button.MaterialButton(new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)));
-        // view.setElevation(3);
-        // view.setTranslationZ(0);
-        // console.log('created button', this.text, this.elevation);
-        // if (this.variant === 'contained') {
-        //     if (!isPreLollipop()) {
-        //         createStateListAnimator(this, view);
-        //     }
-        // }
 
         if (this.variant === 'outline') {
             view.setStrokeWidth(1);
@@ -73,7 +52,6 @@ export class Button extends ButtonBase {
     }
 
     [elevationProperty.setNative](value: number) {
-        console.log('elevationProperty', value);
         if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
@@ -86,6 +64,12 @@ export class Button extends ButtonBase {
         } else {
             this.nativeViewProtected.setTranslationZ(value);
         }
+    }
+    [androidElevationProperty.setNative](value: number) {
+        // override to prevent override of elevation
+    }
+    [androidDynamicElevationOffsetProperty.setNative](value: number) {
+        // override to prevent override of dynamicElevationOffset
     }
 
     setCornerRadius(value) {
