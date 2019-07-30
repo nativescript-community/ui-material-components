@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.13](https://github.com/Akylas/nativescript-material-components/compare/v2.3.12...v2.3.13) (2019-07-30)
+
+
+### Bug Fixes
+
+* fixed call stack exceeded ([9d0242c](https://github.com/Akylas/nativescript-material-components/commit/9d0242c))
+
+
+
+
+
 ## [2.3.12](https://github.com/Akylas/nativescript-material-components/compare/v2.3.11...v2.3.12) (2019-07-30)
 
 
