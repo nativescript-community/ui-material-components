@@ -1,6 +1,10 @@
 import { Color } from 'tns-core-modules/color';
 import { applyMixins } from './core.common';
+import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
+import { backgroundInternalProperty, View } from 'tns-core-modules/ui/core/view';
+import { Background } from 'tns-core-modules/ui/styling/background';
 export { applyMixins };
+import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
 
 // stub class as we don't use this on android
 export class Themer {
@@ -72,4 +76,58 @@ export function getRippleColor(color: string | Color) {
     return null;
 }
 
-export function installMixins() {}
+class ViewWithElevationAndRipple extends View {
+    @cssProperty elevation: number = 0;
+    @cssProperty dynamicElevationOffset: number = 0;
+    @cssProperty rippleColor: Color;
+    rippleDrawable: android.graphics.drawable.Drawable;
+    getRippleColor() {
+        return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight')));
+    }
+    getCornerRadius() {
+        return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight')));
+    }
+    setRippleDrawable(view: android.view.View, radius = 0) {
+        if (!this.rippleDrawable) {
+            this.rippleDrawable = createRippleDrawable(view, this.getRippleColor(), radius);
+            view.setForeground(this.rippleDrawable);
+        }
+    }
+    [rippleColorProperty.setNative](color: Color) {
+        this.setRippleDrawable(this.nativeViewProtected);
+        const rippleColor = getRippleColor(color);
+        if (isPostLollipopMR1()) {
+            (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(rippleColor));
+        } else {
+            (this.rippleDrawable as any).rippleShape.getPaint().setColor(rippleColor);
+        }
+        // }
+    }
+
+    [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
+        super[backgroundInternalProperty.setNative](value);
+        if (this.nativeViewProtected) {
+            if (value instanceof android.graphics.drawable.Drawable) {
+            } else {
+                this.rippleDrawable = null;
+                this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius);
+            }
+        }
+    }
+
+    [elevationProperty.setNative](value: number) {
+        this.style.androidElevation = value;
+    }
+    [dynamicElevationOffsetProperty.setNative](value: number) {
+        this.style.androidDynamicElevationOffset = value;
+    }
+}
+
+export function overrideViewBase() {
+    const NSView = require('tns-core-modules/ui/core/view').View;
+    applyMixins(NSView, [ViewWithElevationAndRipple]);
+}
+
+export function installMixins() {
+    overrideViewBase();
+}
