@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.12](https://github.com/Akylas/nativescript-material-components/compare/v2.3.11...v2.3.12) (2019-07-30)
+
+
+### Bug Fixes
+
+* dont access com.google.android.material.R directly! ([1b33742](https://github.com/Akylas/nativescript-material-components/commit/1b33742))
+* override androidElevation to prevent state list override ([956ed3e](https://github.com/Akylas/nativescript-material-components/commit/956ed3e))
+
+
+### Features
+
+* android view override for elevation and ripple ([928e531](https://github.com/Akylas/nativescript-material-components/commit/928e531))
+
+
+
+
+
 ## [2.3.11](https://github.com/Akylas/nativescript-material-components/compare/v2.3.10...v2.3.11) (2019-07-29)
 
 
