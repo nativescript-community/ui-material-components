@@ -1,14 +1,18 @@
-import { ButtonBase } from './button-common';
-import { themer } from 'nativescript-material-core/core';
-import { borderBottomLeftRadiusProperty, borderBottomRightRadiusProperty, borderTopLeftRadiusProperty, borderTopRightRadiusProperty } from 'tns-core-modules/ui/styling/style-properties';
-import { Background } from 'tns-core-modules/ui/styling/background';
-
-import { backgroundColorProperty, backgroundInternalProperty, fontInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
-import { Font } from 'tns-core-modules/ui/styling/font';
+import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { getRippleColor } from 'nativescript-material-core/core';
 import { Color } from 'tns-core-modules/color';
 import { screen } from 'tns-core-modules/platform/platform';
+import { Background } from 'tns-core-modules/ui/styling/background';
+import { Font } from 'tns-core-modules/ui/styling/font';
+import {
+    backgroundInternalProperty,
+    borderBottomLeftRadiusProperty,
+    borderBottomRightRadiusProperty,
+    borderTopLeftRadiusProperty,
+    borderTopRightRadiusProperty,
+    fontInternalProperty
+} from 'tns-core-modules/ui/styling/style-properties';
+import { ButtonBase } from './button-common';
 
 let buttonScheme: MDCButtonScheme;
 function getButtonScheme() {
@@ -81,7 +85,6 @@ export class Button extends ButtonBase {
             this.style['css:margin-bottom'] = 12;
         }
 
-        // view.addTargetActionForControlEvents(this['_tapHandler'], 'tap', UIControlEvents.TouchUpInside);
         return view;
     }
 
@@ -107,14 +110,6 @@ export class Button extends ButtonBase {
         }
         this.nativeViewProtected.setElevationForState(value + elevation, UIControlState.Highlighted);
     }
-    // [backgroundColorProperty.setNative](value: Color) {
-    //     if (this.nativeViewProtected) {
-    //         this.nativeViewProtected.setBackgroundColorForState(value ? value.ios : null, UIControlState.Normal);
-    //         if (this.variant === 'outline') {
-    //             this.nativeViewProtected.setBackgroundColorForState(new Color('transparent').ios, UIControlState.Disabled);
-    //         }
-    //     }
-    // }
 
     [backgroundInternalProperty.setNative](value: Background) {
         if (this.nativeViewProtected) {
