@@ -1,7 +1,7 @@
 import { Color } from 'tns-core-modules/color';
 import { applyMixins } from './core.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
-import { backgroundInternalProperty, View } from 'tns-core-modules/ui/core/view';
+import { backgroundInternalProperty, View, ViewBase } from 'tns-core-modules/ui/core/view';
 import { Background } from 'tns-core-modules/ui/styling/background';
 export { applyMixins };
 import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
@@ -76,7 +76,7 @@ export function getRippleColor(color: string | Color) {
     return null;
 }
 
-class ViewWithElevationAndRipple extends View {
+class ViewWithElevationAndRipple extends ViewBase {
     @cssProperty elevation: number = 0;
     @cssProperty dynamicElevationOffset: number = 0;
     @cssProperty rippleColor: Color;
@@ -105,7 +105,6 @@ class ViewWithElevationAndRipple extends View {
     }
 
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
-        super[backgroundInternalProperty.setNative](value);
         if (this.nativeViewProtected) {
             if (value instanceof android.graphics.drawable.Drawable) {
             } else {
