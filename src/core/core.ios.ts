@@ -117,8 +117,8 @@ export function getRippleColor(color: string | Color): UIColor {
 }
 
 class ViewWithElevationAndRipple extends View {
-    @cssProperty elevation: number;
-    @cssProperty elevationHighlighted: number;
+    @cssProperty elevation: number = 0;
+    @cssProperty dynamicElevationOffset: number = 0;
     @cssProperty rippleColor: Color;
     inkTouchController: MDCInkTouchController;
     shadowLayer: MDCShadowLayer;
@@ -187,16 +187,6 @@ class ViewWithElevationAndRipple extends View {
         this.inkTouchController.defaultInkView.inkColor = getRippleColor(color);
     }
 
-    [elevationProperty.setNative](value: number) {
-        this.getOrCreateShadowLayer();
-        this._shadowElevations['normal'] = value;
-        this.shadowLayer.elevation = value;
-        this.nativeViewProtected.clipsToBounds = false;
-        if (this.elevationHighlighted === undefined) {
-            this._shadowElevations['highlighted'] = value * 2;
-        }
-    }
-
     startElevationStateChangeHandler() {
         if (!this._elevationStateChangedHandler) {
             if (this.nativeViewProtected instanceof UIControl) {
@@ -223,12 +213,18 @@ class ViewWithElevationAndRipple extends View {
             }
         }
     }
+
+    [elevationProperty.setNative](value: number) {
+        this.getOrCreateShadowLayer();
+        this._shadowElevations['normal'] = value;
+        this.shadowLayer.elevation = value;
+        this.nativeViewProtected.clipsToBounds = false;
+        this._shadowElevations['highlighted'] = value + this.dynamicElevationOffset;
+    }
     [dynamicElevationOffsetProperty.setNative](value: number) {
         this.getOrCreateShadowLayer();
         this.startElevationStateChangeHandler();
-        this._shadowElevations['highlighted'] = value;
-        // this.updateShadowElevation(s);
-        // this.nativeViewProtected.setShadowElevationForState(value, UIControlState.Highlighted);
+        this._shadowElevations['highlighted'] = this.elevation + value;
     }
 
     [backgroundInternalProperty.setNative](value: Background) {
