@@ -44,11 +44,11 @@ export class Button extends ButtonBase {
         return view;
     }
     [rippleColorProperty.setNative](color: Color) {
-        if (isPostLollipop()) {
-            this.nativeViewProtected.setRippleColor(getRippleColorStateList(getRippleColor(color)));
-        } else {
+        // if (isPostLollipop()) {
+            // this.nativeViewProtected.setRippleColor(getRippleColorStateList(getRippleColor(color)));
+        // } else {
             this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
-        }
+        // }
     }
 
     [elevationProperty.setNative](value: number) {

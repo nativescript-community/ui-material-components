@@ -224,11 +224,10 @@ export class Ripple extends RippleBase {
     }
     [rippleColorProperty.setNative](color: Color) {
         this.setRippleDrawable(this.nativeViewProtected);
-        const rippleColor = getRippleColor(color);
         if (isPostLollipopMR1()) {
-            (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(rippleColor));
+            (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(color.android));
         } else {
-            (this.rippleDrawable as any).rippleShape.getPaint().setColor(rippleColor);
+            (this.rippleDrawable as any).rippleShape.getPaint().setColor(getRippleColor(color));
         }
         // }
     }

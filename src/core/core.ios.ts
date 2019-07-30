@@ -111,7 +111,7 @@ export function getRippleColor(color: string | Color): UIColor {
     if (color) {
         const temp = typeof color === 'string' ? new Color(color) : color;
         // return UIColor.colorWithRedGreenBlueAlpha(temp.r / 255, temp.g / 255, temp.b, temp.a !== 255 ? temp.a / 255 : 0.14);
-        return new Color(temp.a !== 255 ? temp.a : 36, temp.r, temp.g, temp.b).ios; // default alpha is 0.14
+        return new Color(temp.a !== 255 ? temp.a : 61.5, temp.r, temp.g, temp.b).ios; // default alpha is 0.24
     }
     return null;
 }
