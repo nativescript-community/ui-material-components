@@ -2,6 +2,7 @@ import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from 'nativescr
 import { Color } from 'tns-core-modules/color';
 import { backgroundInternalProperty, ViewBase } from 'tns-core-modules/ui/core/view';
 import { Background } from 'tns-core-modules/ui/styling/background';
+import * as application from 'tns-core-modules/application';
 import { Length } from 'tns-core-modules/ui/styling/style-properties';
 import { applyMixins } from './core.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
@@ -28,10 +29,17 @@ export class Themer {
         this.primaryColor = value;
     }
     getPrimaryColor(): string | Color {
+        if (!this.primaryColor) {
+            console.log('getPrimaryColor', application.android, application.android.context, application.android.foregroundActivity, application.android.startActivity);
+            this.primaryColor = new Color(getAttrColor(application.android.startActivity, 'colorPrimary'));
+        }
         return this.primaryColor;
     }
 
     setAccentColor(value: string | Color) {
+        if (!this.accentColor) {
+            this.accentColor = new Color(getAttrColor(application.android.startActivity, 'colorAccent'));
+        }
         this.accentColor = value;
     }
     getAccentColor(): string | Color {
@@ -54,6 +62,9 @@ export class Themer {
         this.primaryColorVariant = value;
     }
     getPrimaryColorVariant(): string | Color {
+        if (!this.primaryColorVariant) {
+            this.primaryColorVariant = new Color(getAttrColor(application.android.context, 'colorSecondary'));
+        }
         return this.primaryColorVariant;
     }
 }
