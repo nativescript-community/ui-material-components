@@ -3,6 +3,7 @@ import { Button } from 'tns-core-modules/ui/button/button';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
 import { Property } from 'tns-core-modules/ui/core/properties';
+import { VerticalTextAlignment } from 'nativescript-material-core';
 
 @CSSType('MDButton')
 export abstract class ButtonBase extends Button {
@@ -10,6 +11,7 @@ export abstract class ButtonBase extends Button {
     @cssProperty elevation: number;
     @cssProperty dynamicElevationOffset: number;
     @cssProperty rippleColor: Color | string;
+    @cssProperty verticalTextAlignment: VerticalTextAlignment;
 
     constructor() {
         super();

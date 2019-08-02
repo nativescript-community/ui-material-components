@@ -12,6 +12,7 @@ import {
     borderTopRightRadiusProperty,
     fontInternalProperty
 } from 'tns-core-modules/ui/styling/style-properties';
+import { layout } from 'tns-core-modules/utils/utils';
 import { ButtonBase } from './button-common';
 
 let buttonScheme: MDCButtonScheme;
@@ -22,7 +23,61 @@ function getButtonScheme() {
     return buttonScheme;
 }
 
+class ObserverClass extends NSObject {
+    _owner: WeakRef<Button>;
+    // NOTE: Refactor this - use Typescript property instead of strings....
+    observeValueForKeyPathOfObjectChangeContext(path: string, tv: UITextView) {
+        if (path === 'contentSize') {
+            const owner = this._owner && this._owner.get();
+            if (owner) {
+                const inset = owner.nativeViewProtected.titleEdgeInsets;
+                const top = layout.toDeviceIndependentPixels(owner.effectivePaddingTop + owner.effectiveBorderTopWidth);
+
+                switch (owner.verticalTextAlignment) {
+                    case 'initial': // not supported
+                    case 'top':
+                        owner.nativeViewProtected.titleEdgeInsets = {
+                            top,
+                            left: inset.left,
+                            bottom: inset.bottom,
+                            right: inset.right
+                        };
+                        break;
+
+                    case 'middle': {
+                        const height = tv.sizeThatFits(CGSizeMake(tv.bounds.size.width, 10000)).height;
+                        let topCorrect = (tv.bounds.size.height - height * tv.zoomScale) / 2.0;
+                        topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect;
+                        // tv.contentOffset = CGPointMake(0, -topCorrect);
+                        owner.nativeViewProtected.titleEdgeInsets = {
+                            top: top + topCorrect,
+                            left: inset.left,
+                            bottom: inset.bottom,
+                            right: inset.right
+                        };
+                        break;
+                    }
+
+                    case 'bottom': {
+                        const height = tv.sizeThatFits(CGSizeMake(tv.bounds.size.width, 10000)).height;
+                        let bottomCorrect = tv.bounds.size.height - height * tv.zoomScale;
+                        bottomCorrect = bottomCorrect < 0.0 ? 0.0 : bottomCorrect;
+                        // tv.contentOffset = CGPointMake(0, -bottomCorrect);
+                        owner.nativeViewProtected.titleEdgeInsets = {
+                            top: top + bottomCorrect,
+                            left: inset.left,
+                            bottom: inset.bottom,
+                            right: inset.right
+                        };
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
 export class Button extends ButtonBase {
+    private _observer: NSObject;
     nativeViewProtected: MDCButton;
     _ios: MDCButton;
 
@@ -86,6 +141,19 @@ export class Button extends ButtonBase {
         }
 
         return view;
+    }
+    initNativeView() {
+        super.initNativeView();
+        this._observer = ObserverClass.alloc();
+        this._observer['_owner'] = new WeakRef(this);
+        this.nativeViewProtected.addObserverForKeyPathOptionsContext(this._observer, 'contentSize', NSKeyValueObservingOptions.New, null);
+    }
+    disposeNativeView() {
+        super.disposeNativeView();
+        if (this._observer) {
+            this.nativeViewProtected.removeObserverForKeyPath(this._observer, 'contentSize');
+            this._observer = null;
+        }
     }
 
     [rippleColorProperty.setNative](color: Color) {

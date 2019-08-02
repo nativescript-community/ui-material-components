@@ -1,10 +1,10 @@
-import { createStateListAnimator, getEnabledColorStateList, getLayout, getRippleColorStateList, isPostLollipop } from 'nativescript-material-core/android/utils';
-import { getRippleColor } from 'nativescript-material-core/core';
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { createStateListAnimator, getEnabledColorStateList, getLayout, isPostLollipop } from 'nativescript-material-core/android/utils';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, verticalTextAlignmentProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, Length } from 'tns-core-modules/ui/styling/style-properties';
 import { ButtonBase } from './button-common';
+import { VerticalTextAlignment } from 'nativescript-material-core';
 
 declare module 'tns-core-modules/ui/styling/style-properties' {
     const androidElevationProperty;
@@ -45,9 +45,9 @@ export class Button extends ButtonBase {
     }
     [rippleColorProperty.setNative](color: Color) {
         // if (isPostLollipop()) {
-            // this.nativeViewProtected.setRippleColor(getRippleColorStateList(getRippleColor(color)));
+        // this.nativeViewProtected.setRippleColor(getRippleColorStateList(getRippleColor(color)));
         // } else {
-            this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
+        this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
         // }
     }
 
@@ -94,6 +94,23 @@ export class Button extends ButtonBase {
                     this.nativeViewProtected.setStrokeColor(android.content.res.ColorStateList.valueOf(value.borderTopColor.android));
                 }
             }
+        }
+    }
+
+    [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
+        const horizontalGravity = this.nativeTextViewProtected.getGravity() & android.view.Gravity.HORIZONTAL_GRAVITY_MASK;
+        switch (value) {
+            case 'initial':
+            case 'top':
+                this.nativeTextViewProtected.setGravity(android.view.Gravity.TOP | horizontalGravity);
+                break;
+            case 'middle':
+                this.nativeTextViewProtected.setGravity(android.view.Gravity.CENTER_VERTICAL | horizontalGravity);
+                break;
+
+            case 'bottom':
+                this.nativeTextViewProtected.setGravity(android.view.Gravity.BOTTOM | horizontalGravity);
+                break;
         }
     }
 }
