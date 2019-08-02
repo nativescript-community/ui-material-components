@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.15](https://github.com/Akylas/nativescript-material-components/compare/v2.3.14...v2.3.15) (2019-08-02)
+
+
+### Bug Fixes
+
+* ensure vue comps and mixins are installed only once ([39f05c2](https://github.com/Akylas/nativescript-material-components/commit/39f05c2))
+
+
+### Features
+
+* verticalTextAlignment for button ([89d5010](https://github.com/Akylas/nativescript-material-components/commit/89d5010))
+
+
+
+
+
 ## [2.3.14](https://github.com/Akylas/nativescript-material-components/compare/v2.3.13...v2.3.14) (2019-07-30)
 
 
