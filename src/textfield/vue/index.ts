@@ -1,12 +1,17 @@
 import { TextField } from '../textfield';
+
+let installed = false;
 const TextFieldPlugin = {
     install(Vue) {
-        Vue.registerElement('MDTextField', () => TextField, {
-            model: {
-                prop: 'text',
-                event: 'textChange'
-            }
-        });
+        if (!installed) {
+            installed = true;
+            Vue.registerElement('MDTextField', () => TextField, {
+                model: {
+                    prop: 'text',
+                    event: 'textChange'
+                }
+            });
+        }
     }
 };
 

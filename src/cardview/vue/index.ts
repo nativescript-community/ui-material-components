@@ -1,7 +1,12 @@
 import { CardView } from '../cardview';
+
+let installed = false;
 const CardViewPlugin = {
     install(Vue) {
-        Vue.registerElement('MDCardView', () => CardView, {});
+        if (!installed) {
+            installed = true;
+            Vue.registerElement('MDCardView', () => CardView, {});
+        }
     }
 };
 

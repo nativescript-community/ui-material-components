@@ -1,12 +1,17 @@
 import { Slider } from '../slider';
+
+let installed = false;
 const SliderPlugin = {
     install(Vue) {
-        Vue.registerElement('MDSlider', () => Slider, {
-            model: {
-                prop: 'value',
-                event: 'valueChange'
-            }
-        });
+        if (!installed) {
+            installed = true;
+            Vue.registerElement('MDSlider', () => Slider, {
+                model: {
+                    prop: 'value',
+                    event: 'valueChange'
+                }
+            });
+        }
     }
 };
 

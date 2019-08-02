@@ -29,11 +29,11 @@ export function installMixins();
 export function applyMixins(derivedCtor: any, baseCtors: any[]);
 export function getRippleColor(color: string | Color): any;
 
-
 declare module 'tns-core-modules/ui/core/view' {
     interface View {
-        elevation: Length
-        elevationHighlighted: Length
-        rippleColor: string | Color
+        elevation: Length;
+        elevationHighlighted: Length;
+        rippleColor: string | Color;
     }
 }
+export type VerticalTextAlignment = 'initial' | 'top' | 'middle' | 'bottom';

@@ -1,7 +1,11 @@
 import { ActivityIndicator } from '../activityindicator';
+let installed = false;
 const ActivityIndicatorPlugin = {
     install(Vue) {
-        Vue.registerElement('MDActivityIndicator', () => ActivityIndicator, {});
+        if (!installed) {
+            installed = true;
+            Vue.registerElement('MDActivityIndicator', () => ActivityIndicator, {});
+        }
     }
 };
 

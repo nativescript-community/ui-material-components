@@ -1,10 +1,11 @@
+import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
 import { Color } from 'tns-core-modules/color';
+import { backgroundInternalProperty, ViewBase } from 'tns-core-modules/ui/core/view';
+import { Background } from 'tns-core-modules/ui/styling/background';
+import { Length } from 'tns-core-modules/ui/styling/style-properties';
 import { applyMixins } from './core.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
-import { backgroundInternalProperty, View, ViewBase } from 'tns-core-modules/ui/core/view';
-import { Background } from 'tns-core-modules/ui/styling/background';
 export { applyMixins };
-import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
 
 // stub class as we don't use this on android
 export class Themer {
@@ -94,7 +95,7 @@ class ViewWithElevationAndRipple extends ViewBase {
         }
     }
     [rippleColorProperty.setNative](color: Color) {
-        this.setRippleDrawable(this.nativeViewProtected);
+        this.setRippleDrawable(this.nativeViewProtected, Length.toDevicePixels(this.style.borderTopLeftRadius));
         const rippleColor = getRippleColor(color);
         if (isPostLollipopMR1()) {
             (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(rippleColor));
@@ -108,8 +109,10 @@ class ViewWithElevationAndRipple extends ViewBase {
         if (this.nativeViewProtected) {
             if (value instanceof android.graphics.drawable.Drawable) {
             } else {
-                this.rippleDrawable = null;
-                this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius);
+                if (this.rippleDrawable) {
+                    this.rippleDrawable = null;
+                    this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius);
+                }
             }
         }
     }
@@ -122,11 +125,15 @@ class ViewWithElevationAndRipple extends ViewBase {
     }
 }
 
+let mixinInstalled = false;
 export function overrideViewBase() {
     const NSView = require('tns-core-modules/ui/core/view').View;
     applyMixins(NSView, [ViewWithElevationAndRipple]);
 }
 
 export function installMixins() {
-    overrideViewBase();
+    if (!mixinInstalled) {
+        mixinInstalled = true;
+        overrideViewBase();
+    }
 }

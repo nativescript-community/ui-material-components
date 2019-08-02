@@ -243,6 +243,10 @@ export function overrideViewBase() {
     applyMixins(NSView, [ViewWithElevationAndRipple]);
 }
 
+let mixinInstalled = false;
 export function installMixins() {
-    overrideViewBase();
+    if (!mixinInstalled) {
+        mixinInstalled = true;
+        overrideViewBase();
+    }
 }

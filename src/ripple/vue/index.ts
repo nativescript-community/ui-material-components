@@ -1,7 +1,12 @@
 import { Ripple } from '../ripple';
+
+let installed = false;
 const RipplePlugin = {
     install(Vue) {
-        Vue.registerElement('MDRipple', () => Ripple, {});
+        if (!installed) {
+            installed = true;
+            Vue.registerElement('MDRipple', () => Ripple, {});
+        }
     }
 };
 
