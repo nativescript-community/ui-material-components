@@ -102,7 +102,6 @@ export class TextField extends TextFieldBase {
             layoutView.addView(editText);
         }
         // in com.google.material the default style is boxed!
-        console.log('test');
         // layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
         // layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
         // editText.setBackgroundColor(android.graphics.Color.TRANSPARENT);

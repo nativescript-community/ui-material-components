@@ -30,7 +30,6 @@ export class Themer {
     }
     getPrimaryColor(): string | Color {
         if (!this.primaryColor) {
-            console.log('getPrimaryColor', application.android, application.android.context, application.android.foregroundActivity, application.android.startActivity);
             this.primaryColor = new Color(getAttrColor(application.android.startActivity, 'colorPrimary'));
         }
         return this.primaryColor;
