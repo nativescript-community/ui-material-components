@@ -73,9 +73,9 @@ export class TextField extends TextFieldBase {
 
     drawingBackground = false;
     get nativeViewProtected() {
-        if (this.drawingBackground) {
-            return this.editText;
-        }
+        // if (this.drawingBackground) {
+        // return this.editText;
+        // }
         return this.layoutView;
     }
 
@@ -102,17 +102,16 @@ export class TextField extends TextFieldBase {
             layoutView.addView(editText);
         }
         // in com.google.material the default style is boxed!
+        console.log('test');
+        // layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+        // layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
+        // editText.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+        // editText.setBackground(null);
         if (layoutIdName === 'material_text_field') {
             layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
-            editText.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+            editText.setBackground(null);
             // editText.setPadding(0, layout.toDevicePixels(20), 0, layout.toDevicePixels(6));
         }
-        console.log(
-            this.layoutView.getBoxCornerRadiusTopStart(),
-            this.layoutView.getBoxCornerRadiusTopEnd(),
-            this.layoutView.getBoxCornerRadiusBottomStart(),
-            this.layoutView.getBoxCornerRadiusBottomEnd()
-        );
         // this.style.borderTopLeftRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusTopStart() };
         // this.style.borderTopRightRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusTopEnd() };
         // this.style.borderBottomLeftRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusBottomStart() };
@@ -128,16 +127,15 @@ export class TextField extends TextFieldBase {
     }
 
     [borderBottomLeftRadiusProperty.getDefault]() {
-        console.log('borderBottomLeftRadiusProperty.getDefault', this.layoutView.getBoxCornerRadiusTopStart());
         return this.layoutView.getBoxCornerRadiusTopStart();
     }
 
-    _redrawNativeBackground(value: android.graphics.drawable.Drawable | Background): void {
-        // trick for the background to be applied to the editText so that it removes the border line
-        this.drawingBackground = true;
-        super._redrawNativeBackground(value);
-        this.drawingBackground = false;
-    }
+    // _redrawNativeBackground(value: android.graphics.drawable.Drawable | Background): void {
+    //     // trick for the background to be applied to the editText so that it removes the border line
+    //     this.drawingBackground = true;
+    //     super._redrawNativeBackground(value);
+    //     this.drawingBackground = false;
+    // }
 
     [hintProperty.getDefault](): string {
         return this.layoutView.getHint();
@@ -213,7 +211,15 @@ export class TextField extends TextFieldBase {
                 this.nativeViewProtected.setBackgroundDrawable(value);
             } else {
                 if (value.color) {
-                    this.layoutView.setBoxBackgroundColor(value.color.android);
+                    // this.layoutView.setBackground(null);
+                    const background = this.editText.getBackground();
+                    if (background instanceof com.google.android.material.shape.MaterialShapeDrawable) {
+                        background.setTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                        this.layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
+                        this.layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+                    } else {
+                        this.layoutView.setBoxBackgroundColor(value.color.android);
+                    }
                 }
                 if (value.borderTopColor) {
                     // TODO: for now no control over border color. it is an attr

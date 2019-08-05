@@ -5,6 +5,8 @@
         </ActionBar>
         <StackLayout>
             <MDButton id="show_snack" text="show snack" @tap="onTap" />
+            <MDButton id="show_snack_action" text="show snack action" @tap="onTap" />
+            <MDButton id="show_snack_action_color" text="show snack action color" @tap="onTap" />
         </StackLayout>
     </Page>
 </template>
@@ -39,6 +41,14 @@ export default Vue.extend({
             switch (objId) {
                 case 'show_snack': {
                     showSnack({ message: 'this is test snack!' });
+                    break;
+                }
+                case 'show_snack_action': {
+                    showSnack({ message: 'this is test snack with action!', actionText:'done' });
+                    break;
+                }
+                case 'show_snack_action_color': {
+                    showSnack({ message: 'this is test snack with action colored!', actionText:'delete', actionTextColor:'red' });
                     break;
                 }
             }

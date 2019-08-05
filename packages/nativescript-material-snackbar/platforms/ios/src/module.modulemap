@@ -1,0 +1,5 @@
+module MaterialSnackbar {
+    umbrella header "Snackbar.h"
+    export *
+    module * { export * }
+}

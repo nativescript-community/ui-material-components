@@ -1,11 +1,11 @@
 import { ComponentFactoryResolver, ComponentRef, Injectable, Injector, Type, ViewContainerRef } from '@angular/core';
-import { DetachedLoader } from 'nativescript-angular';
+import { DetachedLoader } from 'nativescript-angular/common/detached-loader';
 import { AppHostView } from 'nativescript-angular/app-host-view';
 import { once } from 'nativescript-angular/common/utils';
 import { BottomSheetOptions as MaterialBottomSheetOptions } from '../bottomsheet-common';
 import { ViewWithBottomSheetBase } from '../bottomsheet-common';
 import { Observable, Subject } from 'rxjs';
-import { filter, first } from 'rxjs/operators';
+import { filter, first, map } from 'rxjs/operators';
 import { ProxyViewContainer } from 'tns-core-modules/ui/proxy-view-container';
 
 export type BaseShowBottomSheetOptions = Pick<MaterialBottomSheetOptions, Exclude<keyof MaterialBottomSheetOptions, 'closeCallback' | 'view'>>;
@@ -30,15 +30,18 @@ export class BottomSheetParams {
 export class BottomSheetService {
     private detachedLoader: ComponentRef<DetachedLoader>;
     private componentView: ViewWithBottomSheetBase;
-    private subject$: Subject<any> = new Subject();
+    private subject$: Subject<{ requestId: number; result: any }> = new Subject();
+    private currentId = 0;
 
     show<T = any>(type: Type<any>, options: BottomSheetOptions): Observable<T> {
         if (!options.viewContainerRef) {
             throw new Error('No viewContainerRef: Make sure you pass viewContainerRef in BottomSheetOptions.');
         }
+        this.currentId++;
+        const requestId = this.currentId;
         const parentView = this.getParentView(options.viewContainerRef);
         const factoryResolver = this.getFactoryResolver(options.viewContainerRef);
-        const bottomSheetParams = this.getBottomSheetParams(options.context);
+        const bottomSheetParams = this.getBottomSheetParams(options.context, requestId);
 
         this.detachedLoader = this.createDetachedLoader(factoryResolver, bottomSheetParams, options.viewContainerRef);
 
@@ -51,7 +54,8 @@ export class BottomSheetService {
         });
 
         return this.subject$.pipe(
-            filter(item => !!item),
+            filter(item => item && item.requestId === requestId),
+            map(item => item.result),
             first()
         );
     }
@@ -91,9 +95,9 @@ export class BottomSheetService {
         });
     }
 
-    private getBottomSheetParams(context: any) {
+    private getBottomSheetParams(context: any, requestId: number) {
         const closeCallback = once(args => {
-            this.subject$.next(args);
+            this.subject$.next({ result: args, requestId });
 
             if (!this.componentView) {
                 return;

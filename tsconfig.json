@@ -51,5 +51,8 @@
     },
     "include": ["src/**/*", "src/**/*.ts", "./references.d.ts", "./src/references.d.ts"],
     "exclude": ["node_modules", "platforms"],
-    "compileOnSave": false
+    "compileOnSave": false,
+    "angularCompilerOptions": { 
+        "skipTemplateCodegen": true
+    }
 }

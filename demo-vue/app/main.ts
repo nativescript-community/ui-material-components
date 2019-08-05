@@ -24,6 +24,8 @@ Vue.use(TextFieldPlugin);
 import { themer } from 'nativescript-material-core';
 if (isIOS) {
     themer.setPrimaryColor('#33B5E5');
+    themer.setPrimaryColorVariant('#33B5E5');
+    themer.setAccentColor('#33B5E5');
 }
 
 // import { getExamples } from './examples';

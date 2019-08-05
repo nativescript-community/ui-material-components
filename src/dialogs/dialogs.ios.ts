@@ -81,7 +81,7 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
         },
 
         addCustomViewToLayout() {
-            const contentScrollView = this.contentScrollView;
+            const contentScrollView = this.contentScrollView as UIView;
             const view = this._customContentView;
             view._setupAsRootView({});
             view._isAddedToNativeVisualTree = true;
@@ -109,7 +109,7 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             }
         },
         measureChild() {
-            const view = this._customContentView as View;
+            // const view = this._customContentView as View;
             const contentSize = this.contentScrollView.contentSize;
             const width = contentSize.width || this.super.preferredContentSize.width;
             const widthSpec = layout.makeMeasureSpec(layout.toDevicePixels(width), layout.EXACTLY);
@@ -131,13 +131,20 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
 
                 const bounds = contentScrollView.frame;
                 const boundsSize = bounds.size;
-                contentSize.height = contentSize.height + measuredHeight;
-                boundsSize.height = boundsSize.height + measuredHeight;
+                contentSize.height = contentSize.height + layout.toDeviceIndependentPixels(measuredHeight);
+                boundsSize.height = boundsSize.height + layout.toDeviceIndependentPixels(measuredHeight);
                 contentScrollView.contentSize = contentSize;
                 bounds.size = boundsSize;
                 contentScrollView.frame = bounds;
+                this.super.viewDidLayoutSubviews();
+                // TODO: for a reload of the preferredContentSize. Find a better solution!
+                this.preferredContentSize = {
+                    width: this.super.preferredContentSize.width,
+                    height: this.super.preferredContentSize.height + 0.0000000001
+                };
+            } else {
+                this.super.viewDidLayoutSubviews();
             }
-            this.super.viewDidLayoutSubviews();
             const hasTitleOrMessage = this.title || this.message;
             if (!hasTitleOrMessage && this._customContentView) {
                 this.preferredContentSize = {
@@ -308,7 +315,11 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
 export function alert(arg: any): Promise<void> {
     return new Promise<void>((resolve, reject) => {
         try {
-            const options = !isDialogOptions(arg) ? { title: ALERT, okButtonText: OK, message: arg + '' } : arg;
+            const defaultOptions = {
+                title: ALERT,
+                okButtonText: OK
+            };
+            const options = !isDialogOptions(arg) ? Object.assign(defaultOptions, { message: arg + '' }) : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
 
             addButtonsToAlertController(alertController, options, result => {
@@ -349,14 +360,16 @@ export class AlertDialog {
 export function confirm(arg: any): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
         try {
+            const defaultOptions = {
+                title: CONFIRM,
+                okButtonText: OK,
+                cancelButtonText: CANCEL
+            };
             const options = !isDialogOptions(arg)
-                ? {
-                      title: CONFIRM,
-                      okButtonText: OK,
-                      cancelButtonText: CANCEL,
+                ? Object.assign(defaultOptions, {
                       message: arg + ''
-                  }
-                : arg;
+                  })
+                : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options);
 
             addButtonsToAlertController(alertController, options, r => {
@@ -385,7 +398,7 @@ export function prompt(arg: any): Promise<PromptResult> {
             options = defaultOptions;
             options.message = arg;
         } else {
-            options = arg;
+            options = Object.assign(defaultOptions, arg);
         }
     } else if (arguments.length === 2) {
         if (isString(arguments[0]) && isString(arguments[1])) {
@@ -480,7 +493,7 @@ export function login(arg: any): Promise<LoginResult> {
             options = defaultOptions;
             options.message = arguments[0];
         } else {
-            options = arguments[0];
+            options = Object.assign(defaultOptions, arguments[0]);
         }
     } else if (arguments.length === 2) {
         if (isString(arguments[0]) && isString(arguments[1])) {
@@ -615,7 +628,7 @@ export function action(): Promise<string> {
             options = defaultOptions;
             options.message = arguments[0];
         } else {
-            options = arguments[0];
+            options = Object.assign(defaultOptions, arguments[0]);
         }
     } else if (arguments.length === 2) {
         if (isString(arguments[0]) && isString(arguments[1])) {

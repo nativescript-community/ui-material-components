@@ -26,7 +26,6 @@ export class AppBar extends AppBarBase {
         if (colorScheme) {
             MDCAppBarColorThemer.applyColorSchemeToAppBarViewController(colorScheme, this._appBarController);
         }
-        console.log('createNativeView AppBar');
         this._addController();
         return null;
     }

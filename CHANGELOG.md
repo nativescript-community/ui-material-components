@@ -3,6 +3,170 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.16](https://github.com/Akylas/nativescript-material-components/compare/v2.3.15...v2.3.16) (2019-08-02)
+
+
+### Bug Fixes
+
+* android default colors ([81a799d](https://github.com/Akylas/nativescript-material-components/commit/81a799d))
+
+
+
+
+
+## [2.3.15](https://github.com/Akylas/nativescript-material-components/compare/v2.3.14...v2.3.15) (2019-08-02)
+
+
+### Bug Fixes
+
+* ensure vue comps and mixins are installed only once ([39f05c2](https://github.com/Akylas/nativescript-material-components/commit/39f05c2))
+
+
+### Features
+
+* verticalTextAlignment for button ([89d5010](https://github.com/Akylas/nativescript-material-components/commit/89d5010))
+
+
+
+
+
+## [2.3.14](https://github.com/Akylas/nativescript-material-components/compare/v2.3.13...v2.3.14) (2019-07-30)
+
+
+### Bug Fixes
+
+* ripple color fixes ([7e26303](https://github.com/Akylas/nativescript-material-components/commit/7e26303))
+* slider fixes ([40f4c02](https://github.com/Akylas/nativescript-material-components/commit/40f4c02))
+
+
+
+
+
+## [2.3.13](https://github.com/Akylas/nativescript-material-components/compare/v2.3.12...v2.3.13) (2019-07-30)
+
+
+### Bug Fixes
+
+* fixed call stack exceeded ([9d0242c](https://github.com/Akylas/nativescript-material-components/commit/9d0242c))
+
+
+
+
+
+## [2.3.12](https://github.com/Akylas/nativescript-material-components/compare/v2.3.11...v2.3.12) (2019-07-30)
+
+
+### Bug Fixes
+
+* dont access com.google.android.material.R directly! ([1b33742](https://github.com/Akylas/nativescript-material-components/commit/1b33742))
+* override androidElevation to prevent state list override ([956ed3e](https://github.com/Akylas/nativescript-material-components/commit/956ed3e))
+
+
+### Features
+
+* android view override for elevation and ripple ([928e531](https://github.com/Akylas/nativescript-material-components/commit/928e531))
+
+
+
+
+
+## [2.3.11](https://github.com/Akylas/nativescript-material-components/compare/v2.3.10...v2.3.11) (2019-07-29)
+
+
+### Bug Fixes
+
+* rewrote elevation handling to match {N}6 ([a609383](https://github.com/Akylas/nativescript-material-components/commit/a609383))
+
+
+
+
+
+## [2.3.10](https://github.com/Akylas/nativescript-material-components/compare/v2.3.9...v2.3.10) (2019-07-29)
+
+
+### Bug Fixes
+
+* android textfield box background color ([ed3883c](https://github.com/Akylas/nativescript-material-components/commit/ed3883c))
+
+
+
+
+
+## [2.3.9](https://github.com/Akylas/nativescript-material-components/compare/v2.3.8...v2.3.9) (2019-07-26)
+
+
+### Bug Fixes
+
+* correctly handle default options for dialogs (needs refactoring!) ([7012841](https://github.com/Akylas/nativescript-material-components/commit/7012841))
+
+
+
+
+
+## [2.3.8](https://github.com/Akylas/nativescript-material-components/compare/v2.3.7...v2.3.8) (2019-07-23)
+
+**Note:** Version bump only for package nativescript-material-components
+
+
+
+
+
+## [2.3.7](https://github.com/Akylas/nativescript-material-components/compare/v2.3.6...v2.3.7) (2019-07-23)
+
+
+### Bug Fixes
+
+* always return correct bottom sheet result ([f1ac28c](https://github.com/Akylas/nativescript-material-components/commit/f1ac28c))
+* bottom sheet aot compilation ([1691ca0](https://github.com/Akylas/nativescript-material-components/commit/1691ca0))
+* build with aot metadata for angular ([8b1468e](https://github.com/Akylas/nativescript-material-components/commit/8b1468e))
+* ios textfield wrong layout on custom font size ([a3b04b1](https://github.com/Akylas/nativescript-material-components/commit/a3b04b1))
+* snackbar native module name ([e8c4de8](https://github.com/Akylas/nativescript-material-components/commit/e8c4de8))
+
+
+
+
+
+## [2.3.6](https://github.com/Akylas/nativescript-material-components/compare/v2.3.5...v2.3.6) (2019-07-19)
+
+**Note:** Version bump only for package nativescript-material-components
+
+
+
+
+
+## [2.3.5](https://github.com/Akylas/nativescript-material-components/compare/v2.3.4...v2.3.5) (2019-07-17)
+
+
+### Bug Fixes
+
+* fix ios custom view in dialog layout ([07475fb](https://github.com/Akylas/nativescript-material-components/commit/07475fb))
+* fixes and improvements for snackbar ([5d9f3d1](https://github.com/Akylas/nativescript-material-components/commit/5d9f3d1))
+
+
+
+
+
+## [2.3.4](https://github.com/Akylas/nativescript-material-components/compare/v2.3.3...v2.3.4) (2019-07-16)
+
+**Note:** Version bump only for package nativescript-material-components
+
+
+
+
+
+## [2.3.3](https://github.com/Akylas/nativescript-material-components/compare/v2.3.2...v2.3.3) (2019-07-16)
+
+
+### Bug Fixes
+
+* button default variant ([eb5db8a](https://github.com/Akylas/nativescript-material-components/commit/eb5db8a))
+* button default variant ([9a1bc13](https://github.com/Akylas/nativescript-material-components/commit/9a1bc13))
+* ios custom dialog view layout fix ([e70b280](https://github.com/Akylas/nativescript-material-components/commit/e70b280))
+
+
+
+
+
 ## [2.3.2](https://github.com/Akylas/nativescript-material-components/compare/v2.3.1...v2.3.2) (2019-07-15)
 
 

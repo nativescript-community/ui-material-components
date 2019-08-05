@@ -1,22 +1,14 @@
-import { ButtonBase } from './button-common';
-import { getRippleColor } from 'nativescript-material-core/core';
-
-import * as utils from 'tns-core-modules/utils/utils';
-import { elevationHighlightedProperty, elevationProperty, rippleColorProperty, translationZHighlightedProperty } from 'nativescript-material-core/cssproperties';
-import { Background } from 'tns-core-modules/ui/styling/background';
-import { getEnabledColorStateList, getLayout, getRippleColorStateList } from 'nativescript-material-core/android/utils';
-import { createStateListAnimator } from 'nativescript-material-core/android/utils';
-import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
+import { createStateListAnimator, getEnabledColorStateList, getLayout, isPostLollipop } from 'nativescript-material-core/android/utils';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, verticalTextAlignmentProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
-import { Length } from 'tns-core-modules/ui/styling/style-properties';
+import { Background } from 'tns-core-modules/ui/styling/background';
+import { androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, Length } from 'tns-core-modules/ui/styling/style-properties';
+import { ButtonBase } from './button-common';
+import { VerticalTextAlignment } from 'nativescript-material-core';
 
-let PRE_LOLLIPOP: boolean = undefined;
-
-function isPreLollipop() {
-    if (PRE_LOLLIPOP === undefined) {
-        PRE_LOLLIPOP = android.os.Build.VERSION.SDK_INT < 21;
-    }
-    return PRE_LOLLIPOP;
+declare module 'tns-core-modules/ui/styling/style-properties' {
+    const androidElevationProperty;
+    const androidDynamicElevationOffsetProperty;
 }
 
 export class Button extends ButtonBase {
@@ -29,24 +21,13 @@ export class Button extends ButtonBase {
     }
 
     public createNativeView() {
-        // let style = 'AppThemeMaterialButton';
-        // if (this.variant === 'text' || this.variant === 'outline') {
-        //     style = 'AppThemeTextMaterialButton';
-        // } else if (this.variant === 'flat') {
-        //     style = 'AppThemeFlatMaterialButton';
-        // } else {
-        //     this.style['css:margin-left'] = 10;
-        //     this.style['css:margin-right'] = 10;
-        //     this.style['css:margin-top'] = 12;
-        //     this.style['css:margin-bottom'] = 12;
-        // }
-
         let layoutIdName = 'material_button';
         if (this.variant === 'text' || this.variant === 'outline') {
             layoutIdName = 'material_button_text';
         } else if (this.variant === 'flat') {
             layoutIdName = 'material_button_flat';
         } else {
+            // contained
             // we need to set the default through css or user would not be able to overload it through css...
             this.style['css:margin-left'] = 10;
             this.style['css:margin-right'] = 10;
@@ -55,15 +36,6 @@ export class Button extends ButtonBase {
         }
         const layoutId = getLayout(layoutIdName);
         const view = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.button.MaterialButton;
-        // const view = new com.google.android.material.button.MaterialButton(this._context);
-        // const view = new com.google.android.material.button.MaterialButton(new android.view.ContextThemeWrapper(this._context, utils.ad.resources.getId(':style/' + style)));
-        // view.setElevation(3);
-        // view.setTranslationZ(0);
-        if (!this.variant) {
-            if (android.os.Build.VERSION.SDK_INT >= 21) {
-                createStateListAnimator(this, view);
-            }
-        }
 
         if (this.variant === 'outline') {
             view.setStrokeWidth(1);
@@ -72,31 +44,32 @@ export class Button extends ButtonBase {
         return view;
     }
     [rippleColorProperty.setNative](color: Color) {
-        if (isPreLollipop()) {
-            this.nativeViewProtected.setRippleColor(getRippleColorStateList(getRippleColor(color)));
-        } else {
-            this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
-        }
+        // if (isPostLollipop()) {
+        // this.nativeViewProtected.setRippleColor(getRippleColorStateList(getRippleColor(color)));
+        // } else {
+        this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
+        // }
     }
 
     [elevationProperty.setNative](value: number) {
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
+        if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
             this.nativeViewProtected.setElevation(value);
         }
     }
-    [translationZHighlightedProperty.setNative](value: number) {
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
+    [dynamicElevationOffsetProperty.setNative](value: number) {
+        if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
             this.nativeViewProtected.setTranslationZ(value);
         }
     }
-    [elevationHighlightedProperty.setNative](value: number) {
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
-            createStateListAnimator(this, this.nativeViewProtected);
-        }
+    [androidElevationProperty.setNative](value: number) {
+        // override to prevent override of elevation
+    }
+    [androidDynamicElevationOffsetProperty.setNative](value: number) {
+        // override to prevent override of dynamicElevationOffset
     }
 
     setCornerRadius(value) {
@@ -121,6 +94,23 @@ export class Button extends ButtonBase {
                     this.nativeViewProtected.setStrokeColor(android.content.res.ColorStateList.valueOf(value.borderTopColor.android));
                 }
             }
+        }
+    }
+
+    [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
+        const horizontalGravity = this.nativeTextViewProtected.getGravity() & android.view.Gravity.HORIZONTAL_GRAVITY_MASK;
+        switch (value) {
+            case 'initial':
+            case 'top':
+                this.nativeTextViewProtected.setGravity(android.view.Gravity.TOP | horizontalGravity);
+                break;
+            case 'middle':
+                this.nativeTextViewProtected.setGravity(android.view.Gravity.CENTER_VERTICAL | horizontalGravity);
+                break;
+
+            case 'bottom':
+                this.nativeTextViewProtected.setGravity(android.view.Gravity.BOTTOM | horizontalGravity);
+                break;
         }
     }
 }

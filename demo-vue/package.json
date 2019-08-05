@@ -6,10 +6,10 @@
   "nativescript": {
     "id": "org.nativescript.demovuematerial",
     "tns-android": {
-      "version": "6.0.0-rc-2019-07-04-174325-01"
+      "version": "6.0.0"
     },
     "tns-ios": {
-      "version": "6.0.0-rc-2019-07-09-191846-02"
+      "version": "6.0.1"
     }
   },
   "dependencies": {
@@ -37,14 +37,14 @@
     "akylas-nativescript-vue-template-compiler": "~2.1.14",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
-    "nativescript-dev-typescript": "~0.10.0",
     "nativescript-dev-webpack": "rc",
     "node-sass": "^4.12.0",
     "shelljs": "^0.8.3",
     "tns-platform-declarations": "rc",
     "vue": "~2.6.10",
     "vue-loader": "~15.7.0",
-    "vue-property-decorator": "~8.2.1"
+    "vue-property-decorator": "~8.2.1",
+    "typescript": "3.4.5"
   },
   "scripts": {
     "tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'"

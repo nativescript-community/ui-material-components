@@ -2,6 +2,7 @@ import { Color } from 'tns-core-modules/color/color';
 import { ad } from 'tns-core-modules/utils/utils';
 import { ViewBase } from 'tns-core-modules/ui/page/page';
 import * as application from 'application';
+import { layout } from 'tns-core-modules/utils/utils';
 
 let isPostLollipopVar: boolean = undefined;
 export function isPostLollipop() {
@@ -192,79 +193,51 @@ export function getFocusedColorStateList(color: number, variant: string) {
     return new android.content.res.ColorStateList(states, colors);
 }
 
+const shortAnimTime = 17694720; // android.R.integer.config_shortAnimTime
+const statePressed = 16842919; // android.R.attr.state_pressed
+const stateEnabled = 16842910; // android.R.attr.state_enabled
 export function createStateListAnimator(view: ViewBase, nativeView: android.view.View) {
-    const elevation = view.style['elevation'] !== undefined ? view.style['elevation'] : 2;
-    const translationZ = view.style['translationZ'] !== undefined ? view.style['translationZ'] : 0;
-    const elevationSelected = view.style['elevationHighlighted'] !== undefined ? view.style['elevationHighlighted'] : 3 * elevation;
-    // compute translationSelectedZ base on elevationSelected
-    const translationSelectedZ = view.style['translationZHighlighted'] ? view.style['translationZHighlighted'] : translationZ + elevationSelected;
-    const animationDuration = 100;
-    const listAnimator = new android.animation.StateListAnimator();
-    let animators = new java.util.ArrayList<android.animation.Animator>();
-    let set = new android.animation.AnimatorSet();
-    let animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'translationZ', [translationSelectedZ]);
-    animators.add(animator);
-    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'elevation', [elevationSelected]);
-    // animator.setDuration(0)
-    animators.add(animator);
-    set.playTogether(animators);
-    set.setDuration(animationDuration);
-    listAnimator.addState(stateSets.BACKGROUND_SELECTED_STATE, set);
+    const ObjectAnimator = android.animation.ObjectAnimator;
+    const AnimatorSet = android.animation.AnimatorSet;
 
-    animators.clear();
-    set = new android.animation.AnimatorSet();
-    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'translationZ', [translationSelectedZ]);
-    // animator.setDuration(animationDuration)
-    animators.add(animator);
-    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'elevation', [elevationSelected]);
-    // animator.setDuration(0)
-    animators.add(animator);
-    set.playTogether(animators);
-    set.setDuration(animationDuration);
-    listAnimator.addState(stateSets.BACKGROUND_FOCUSED_STATE, set);
+    const duration =
+        nativeView
+            .getContext()
+            .getResources()
+            .getInteger(shortAnimTime) / 2;
 
-    animators.clear();
-    set = new android.animation.AnimatorSet();
-    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'translationZ', [translationZ]);
-    // animator.setDuration(animationDuration)
-    // animator.setStartDelay(animationDuration)
-    animators.add(animator);
-    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'elevation', [elevation]);
-    // animator.setDuration(0)
-    animators.add(animator);
-    set.playTogether(animators);
-    set.setDuration(animationDuration);
-    set.setStartDelay(animationDuration);
-    listAnimator.addState(stateSets.BACKGROUND_DEFAULT_STATE_2, set);
+    let elevation = view['elevation'];
+    if (typeof elevation === 'undefined' || elevation === null) {
+        elevation = (view as any).getDefaultElevation();
+    }
+    elevation = layout.toDevicePixels(elevation);
 
-    animators.clear();
-    set = new android.animation.AnimatorSet();
-    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'translationZ', [0]);
-    // animator.setDuration(animationDuration)
-    // animator.setStartDelay(animationDuration)
-    animators.add(animator);
-    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'elevation', [0]);
-    // animator.setDuration(0)
-    animators.add(animator);
-    set.playTogether(animators);
-    set.setDuration(animationDuration);
-    set.setStartDelay(animationDuration);
-    listAnimator.addState(stateSets.BACKGROUND_DISABLED_STATE, set);
+    const z = layout.toDevicePixels(0);
 
-    animators.clear();
-    set = new android.animation.AnimatorSet();
-    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'translationZ', [translationZ]);
-    // animator.setDuration(0)
-    animators.add(animator);
-    animator = android.animation.ObjectAnimator.ofFloat(nativeView, 'elevation', [elevation]);
-    animator.setDuration(0);
-    animators.add(animator);
-    set.playTogether(animators);
-    set.setDuration(animationDuration);
-    set.setStartDelay(animationDuration);
-    listAnimator.addState([], set);
+    let pressedZ = view['dynamicElevationOffset'];
+    if (typeof pressedZ === 'undefined' || pressedZ === null) {
+        pressedZ = (view as any).getDefaultDynamicElevationOffset();
+    }
+    pressedZ = layout.toDevicePixels(pressedZ);
 
-    nativeView.setStateListAnimator(listAnimator);
+    const pressedSet = new AnimatorSet();
+    pressedSet.playTogether(
+        java.util.Arrays.asList([ObjectAnimator.ofFloat(nativeView, 'translationZ', [pressedZ]).setDuration(duration), ObjectAnimator.ofFloat(nativeView, 'elevation', [elevation]).setDuration(0)])
+    );
+
+    const notPressedSet = new AnimatorSet();
+    notPressedSet.playTogether(
+        java.util.Arrays.asList([ObjectAnimator.ofFloat(nativeView, 'translationZ', [z]).setDuration(duration), ObjectAnimator.ofFloat(nativeView, 'elevation', [elevation]).setDuration(0)])
+    );
+
+    const defaultSet = new AnimatorSet();
+    defaultSet.playTogether(java.util.Arrays.asList([ObjectAnimator.ofFloat(nativeView, 'translationZ', [0]).setDuration(0), ObjectAnimator.ofFloat(nativeView, 'elevation', [0]).setDuration(0)]));
+
+    const stateListAnimator = new (<any>android.animation).StateListAnimator();
+    stateListAnimator.addState([statePressed, stateEnabled], pressedSet);
+    stateListAnimator.addState([stateEnabled], notPressedSet);
+    stateListAnimator.addState([], defaultSet);
+    nativeView.setStateListAnimator(stateListAnimator);
 }
 
 export function getAttrColor(context: android.content.Context, name: string) {

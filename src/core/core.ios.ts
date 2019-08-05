@@ -3,7 +3,7 @@ import { TypographyOptions } from './core';
 import { View } from 'tns-core-modules/ui/core/view/view';
 import { layout } from 'tns-core-modules/utils/utils';
 
-import { cssProperty, elevationHighlightedProperty, elevationProperty, rippleColorProperty } from './cssproperties';
+import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { ControlStateChangeListener } from 'tns-core-modules/ui/core/control-state-change';
 import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
@@ -14,6 +14,11 @@ export { applyMixins };
 export class Themer {
     appColorScheme: MDCSemanticColorScheme;
     appTypoScheme: MDCTypographyScheme;
+    primaryColor: string | Color;
+    accentColor: string | Color;
+    primaryColorVariant: string | Color;
+    surfaceColor: string | Color;
+    onSurfaceColor: string | Color;
     constructor() {
         // create a default one to prevent multiple creations on widget side
         this.appColorScheme = MDCSemanticColorScheme.new();
@@ -28,14 +33,50 @@ export class Themer {
     getAppColorScheme() {
         return this.appColorScheme;
     }
-    setPrimaryColor(value: string) {
+    setPrimaryColor(value: string | Color) {
+        this.primaryColor = value;
         const colorTheme = this.getOrcreateAppColorScheme();
-        const color = new Color(value);
+        const color = value instanceof Color ? value : new Color(value);
         colorTheme.primaryColor = color.ios;
         colorTheme.primaryColorVariant = new Color(61.2, color.r, color.g, color.b).ios; // default alpha is 0.24
     }
-    setPrimaryColorVariant(value: string) {
-        this.getOrcreateAppColorScheme().primaryColorVariant = new Color(value).ios;
+    getPrimaryColor(): string | Color {
+        return this.primaryColor;
+    }
+
+    setAccentColor(value: string | Color) {
+        this.accentColor = value;
+    }
+    getAccentColor(): string | Color {
+        return this.accentColor;
+    }
+
+    setSurfaceColor(value: string | Color) {
+        this.surfaceColor = value;
+        const colorTheme = this.getOrcreateAppColorScheme();
+        const color = value instanceof Color ? value : new Color(value);
+        colorTheme.surfaceColor = color.ios;
+        colorTheme.onSurfaceColor = color.ios;
+    }
+    getSurfaceColor(): string | Color {
+        return this.surfaceColor;
+    }
+    setOnSurfaceColor(value: string | Color) {
+        this.onSurfaceColor = value;
+        const colorTheme = this.getOrcreateAppColorScheme();
+        const color = value instanceof Color ? value : new Color(value);
+        colorTheme.onSurfaceColor = color.ios;
+    }
+    getOnSurfaceColor(): string | Color {
+        return this.onSurfaceColor;
+    }
+    setPrimaryColorVariant(value: string | Color) {
+        this.primaryColorVariant = value;
+        const color = value instanceof Color ? value : new Color(value);
+        this.getOrcreateAppColorScheme().primaryColorVariant = color.ios;
+    }
+    getPrimaryColorVariant(): string | Color {
+        return this.primaryColorVariant;
     }
 
     getOrcreateAppTypographyScheme() {
@@ -69,14 +110,15 @@ export function install() {
 export function getRippleColor(color: string | Color): UIColor {
     if (color) {
         const temp = typeof color === 'string' ? new Color(color) : color;
-        return new Color(temp.a !== 255 ? temp.a : 36, temp.r, temp.g, temp.b).ios; // default alpha is 0.14
+        // return UIColor.colorWithRedGreenBlueAlpha(temp.r / 255, temp.g / 255, temp.b, temp.a !== 255 ? temp.a / 255 : 0.14);
+        return new Color(temp.a !== 255 ? temp.a : 61.5, temp.r, temp.g, temp.b).ios; // default alpha is 0.24
     }
     return null;
 }
 
 class ViewWithElevationAndRipple extends View {
-    @cssProperty elevation: number;
-    @cssProperty elevationHighlighted: number;
+    @cssProperty elevation: number = 0;
+    @cssProperty dynamicElevationOffset: number = 0;
     @cssProperty rippleColor: Color;
     inkTouchController: MDCInkTouchController;
     shadowLayer: MDCShadowLayer;
@@ -145,16 +187,6 @@ class ViewWithElevationAndRipple extends View {
         this.inkTouchController.defaultInkView.inkColor = getRippleColor(color);
     }
 
-    [elevationProperty.setNative](value: number) {
-        this.getOrCreateShadowLayer();
-        this._shadowElevations['normal'] = value;
-        this.shadowLayer.elevation = value;
-        this.nativeViewProtected.clipsToBounds = false;
-        if (this.elevationHighlighted === undefined) {
-            this._shadowElevations['highlighted'] = value * 2;
-        }
-    }
-
     startElevationStateChangeHandler() {
         if (!this._elevationStateChangedHandler) {
             if (this.nativeViewProtected instanceof UIControl) {
@@ -181,12 +213,18 @@ class ViewWithElevationAndRipple extends View {
             }
         }
     }
-    [elevationHighlightedProperty.setNative](value: number) {
+
+    [elevationProperty.setNative](value: number) {
+        this.getOrCreateShadowLayer();
+        this._shadowElevations['normal'] = value;
+        this.shadowLayer.elevation = value;
+        this.nativeViewProtected.clipsToBounds = false;
+        this._shadowElevations['highlighted'] = value + this.dynamicElevationOffset;
+    }
+    [dynamicElevationOffsetProperty.setNative](value: number) {
         this.getOrCreateShadowLayer();
         this.startElevationStateChangeHandler();
-        this._shadowElevations['highlighted'] = value;
-        // this.updateShadowElevation(s);
-        // this.nativeViewProtected.setShadowElevationForState(value, UIControlState.Highlighted);
+        this._shadowElevations['highlighted'] = this.elevation + value;
     }
 
     [backgroundInternalProperty.setNative](value: Background) {
@@ -205,6 +243,10 @@ export function overrideViewBase() {
     applyMixins(NSView, [ViewWithElevationAndRipple]);
 }
 
+let mixinInstalled = false;
 export function installMixins() {
-    overrideViewBase();
+    if (!mixinInstalled) {
+        mixinInstalled = true;
+        overrideViewBase();
+    }
 }

@@ -1,7 +1,7 @@
-import { SliderBase, thumbColorProperty, trackFillColorProperty } from './slider-common';
+import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
-import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { trackBackgroundColorProperty } from './cssproperties';
+import { SliderBase, thumbColorProperty, trackFillColorProperty } from './slider-common';
 
 export class Slider extends SliderBase {
     nativeViewProtected: android.widget.SeekBar;
@@ -11,6 +11,9 @@ export class Slider extends SliderBase {
     }
     [thumbColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setThumbTintList(color ? android.content.res.ColorStateList.valueOf(color.android) : null);
+        if (android.os.Build.VERSION.SDK_INT >= 24) {
+            this.nativeViewProtected.setTickMarkTintList(color ? android.content.res.ColorStateList.valueOf(color.android) : null);
+        }
     }
     [trackBackgroundColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setProgressBackgroundTintList(color ? android.content.res.ColorStateList.valueOf(color.android) : null);

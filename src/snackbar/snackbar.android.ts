@@ -1,8 +1,7 @@
 import { Color } from 'tns-core-modules/color';
 import { topmost } from 'tns-core-modules/ui/frame';
-import { DismissReasons, SnackBarBase, SnackBarOptions } from './snackbar-common';
+import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 import { View } from 'tns-core-modules/ui/core/view';
-import { SnackBarAction } from './snackbar';
 
 function _getReason(value: number) {
     switch (value) {
@@ -26,9 +25,22 @@ function _getReason(value: number) {
     }
 }
 
+function getMaterialR(rtype: string, field: string): number {
+    return +java.lang.Class.forName('com.google.android.material.R$' + rtype)
+        .getDeclaredField(field)
+        .get(null);
+}
+
 export class SnackBar extends SnackBarBase {
     // Use this to get the textview instance inside the snackbar
-    private static SNACKBAR_TEXT_ID = (com.google.android.material as any).R.id.snackbar_text;
+    private static SNACKBAR_TEXT_ID;
+
+    get SNACKBAR_TEXT_ID() {
+        if (!SnackBar.SNACKBAR_TEXT_ID) {
+            SnackBar.SNACKBAR_TEXT_ID = getMaterialR('id', 'snackbar_text');
+        }
+        return SnackBar.SNACKBAR_TEXT_ID;
+    }
     private _snackbar: com.google.android.material.snackbar.Snackbar;
     private _snackbarCallback: any;
     constructor(options?: SnackBarOptions) {
@@ -39,7 +51,7 @@ export class SnackBar extends SnackBarBase {
         if (this._snackbar) {
             return;
         }
-        options.actionText = options.actionText ? options.actionText : 'Close';
+        // options.actionText = options.actionText ? options.actionText : 'Close';
         options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
 
         const attachToView = (options.view && options.view.android) || topmost().currentPage.android;
@@ -50,16 +62,21 @@ export class SnackBar extends SnackBarBase {
 
         // set text color of the TextView in the Android SnackBar
         if (options.textColor && Color.isValid(options.textColor)) {
-            this._setTextColor(options.textColor);
+            const color = (options.textColor instanceof Color ? options.textColor : new Color(options.textColor)).android;
+            const mainTextView = this._snackbar.getView().findViewById(SnackBar.SNACKBAR_TEXT_ID) as android.widget.TextView;
+            mainTextView.setTextColor(color);
         }
 
         if (options.actionTextColor && Color.isValid(options.actionTextColor)) {
-            this._snackbar.setActionTextColor(new Color(options.actionTextColor).android);
+            const color = (options.actionTextColor instanceof Color ? options.actionTextColor : new Color(options.actionTextColor)).android;
+            this._snackbar.setActionTextColor(color);
         }
 
         // set background color
         if (options.backgroundColor && Color.isValid(options.backgroundColor)) {
-            this._setBackgroundColor(options.backgroundColor);
+            const color = (options.backgroundColor instanceof Color ? options.backgroundColor : new Color(options.backgroundColor)).android;
+            const sbView = this._snackbar.getView();
+            sbView.setBackgroundColor(new Color(color).android);
         }
 
         // set maxLines for the textview
@@ -145,21 +162,6 @@ export class SnackBar extends SnackBarBase {
                 });
             }
         });
-    }
-
-    private _setBackgroundColor(color) {
-        // set background color
-        if (color) {
-            const sbView = this._snackbar.getView();
-            sbView.setBackgroundColor(new Color(color).android);
-        }
-    }
-
-    private _setTextColor(color) {
-        if (color) {
-            const mainTextView = this._snackbar.getView().findViewById(SnackBar.SNACKBAR_TEXT_ID) as android.widget.TextView;
-            mainTextView.setTextColor(new Color(color).android);
-        }
     }
 }
 

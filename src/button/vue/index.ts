@@ -1,7 +1,12 @@
 import { Button } from '../button';
+
+let installed = false;
 const ButtonPlugin = {
     install(Vue) {
-        Vue.registerElement('MDButton', () => Button, {});
+        if (!installed) {
+            installed = true;
+            Vue.registerElement('MDButton', () => Button, {});
+        }
     }
 };
 

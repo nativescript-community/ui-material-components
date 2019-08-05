@@ -12,7 +12,6 @@ export class AppBarDirective implements AfterViewInit {
     addedToParent = false;
     constructor(route: ActivatedRoute, private page: Page) {
         // page.frame.ios.navBarVisibility = 'never';
-        console.log('AppBarDirective');
         this.createNativeView();
     }
 
@@ -28,7 +27,6 @@ export class AppBarDirective implements AfterViewInit {
         if (colorScheme) {
             MDCAppBarColorThemer.applyColorSchemeToAppBarViewController(colorScheme, this._appBarController);
         }
-        console.log('createNativeView AppBar');
         this._addController();
         return null;
     }

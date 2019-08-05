@@ -10,7 +10,7 @@ export abstract class CardViewBase extends ContentView {
     // protected _borderWidth: number;
 
     @cssProperty elevation: number;
-    @cssProperty elevationHighlighted: number;
+    @cssProperty dynamicElevationOffset: number;
     @cssProperty rippleColor: Color;
 
     // get borderRadius(): string | Length {

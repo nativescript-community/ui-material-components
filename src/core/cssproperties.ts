@@ -1,7 +1,8 @@
-import { CssProperty } from 'tns-core-modules/ui/core/properties';
 import { Color } from 'tns-core-modules/color';
-import { Length } from 'tns-core-modules/ui/styling/style-properties';
+import { CssProperty, InheritedCssProperty, makeParser, makeValidator } from 'tns-core-modules/ui/core/properties';
 import { Style } from 'tns-core-modules/ui/styling/style';
+import { Length } from 'tns-core-modules/ui/styling/style-properties';
+import { VerticalTextAlignment } from 'nativescript-material-core';
 
 function createGetter(key) {
     return function() {
@@ -34,26 +35,28 @@ export const elevationProperty = new CssProperty<Style, Length>({
     name: 'elevation',
     cssName: 'elevation',
 
-    valueConverter: v => Length.parse(v)
+    valueConverter: parseFloat
 });
 elevationProperty.register(Style);
-export const translationZHighlightedProperty = new CssProperty<Style, Length>({
-    name: 'translationZHighlighted',
-    cssName: 'translationZ-highlighted',
+export const dynamicElevationOffsetProperty = new CssProperty<Style, Length>({
+    name: 'dynamicElevationOffset',
+    cssName: 'dynamic-elevation-offset',
 
-    valueConverter: v => Length.parse(v)
+    valueConverter: parseFloat
 });
-translationZHighlightedProperty.register(Style);
-export const elevationHighlightedProperty = new CssProperty<Style, Length>({
-    name: 'elevationHighlighted',
-    cssName: 'elevation-highlighted',
-
-    valueConverter: v => Length.toDevicePixels(Length.parse(v), 0)
-});
-elevationHighlightedProperty.register(Style);
+dynamicElevationOffsetProperty.register(Style);
 
 export const variantProperty = new CssProperty<Style, string>({
     name: 'variant',
     cssName: 'variant'
 });
 variantProperty.register(Style);
+
+const textAlignmentConverter = makeParser<VerticalTextAlignment>(makeValidator<VerticalTextAlignment>('initial', 'top', 'middle', 'bottom'));
+export const verticalTextAlignmentProperty = new InheritedCssProperty<Style, VerticalTextAlignment>({
+    name: 'verticalTextAlignment',
+    cssName: 'vertical-text-align',
+    defaultValue: 'initial',
+    valueConverter: textAlignmentConverter
+});
+verticalTextAlignmentProperty.register(Style);

@@ -1,14 +1,19 @@
-import { ButtonBase } from './button-common';
-import { themer } from 'nativescript-material-core/core';
-import { borderBottomLeftRadiusProperty, borderBottomRightRadiusProperty, borderTopLeftRadiusProperty, borderTopRightRadiusProperty } from 'tns-core-modules/ui/styling/style-properties';
-import { Background } from 'tns-core-modules/ui/styling/background';
-
-import { backgroundColorProperty, backgroundInternalProperty, fontInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
-import { Font } from 'tns-core-modules/ui/styling/font';
-import { elevationHighlightedProperty, elevationProperty, rippleColorProperty, translationZHighlightedProperty } from 'nativescript-material-core/cssproperties';
-import { getRippleColor } from 'nativescript-material-core/core';
+import { getRippleColor, themer } from 'nativescript-material-core/core';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
 import { screen } from 'tns-core-modules/platform/platform';
+import { Background } from 'tns-core-modules/ui/styling/background';
+import { Font } from 'tns-core-modules/ui/styling/font';
+import {
+    backgroundInternalProperty,
+    borderBottomLeftRadiusProperty,
+    borderBottomRightRadiusProperty,
+    borderTopLeftRadiusProperty,
+    borderTopRightRadiusProperty,
+    fontInternalProperty
+} from 'tns-core-modules/ui/styling/style-properties';
+import { layout } from 'tns-core-modules/utils/utils';
+import { ButtonBase } from './button-common';
 
 let buttonScheme: MDCButtonScheme;
 function getButtonScheme() {
@@ -18,9 +23,72 @@ function getButtonScheme() {
     return buttonScheme;
 }
 
+class ObserverClass extends NSObject {
+    _owner: WeakRef<Button>;
+    // NOTE: Refactor this - use Typescript property instead of strings....
+    observeValueForKeyPathOfObjectChangeContext(path: string, tv: UITextView) {
+        if (path === 'contentSize') {
+            const owner = this._owner && this._owner.get();
+            if (owner) {
+                const inset = owner.nativeViewProtected.titleEdgeInsets;
+                const top = layout.toDeviceIndependentPixels(owner.effectivePaddingTop + owner.effectiveBorderTopWidth);
+
+                switch (owner.verticalTextAlignment) {
+                    case 'initial': // not supported
+                    case 'top':
+                        owner.nativeViewProtected.titleEdgeInsets = {
+                            top,
+                            left: inset.left,
+                            bottom: inset.bottom,
+                            right: inset.right
+                        };
+                        break;
+
+                    case 'middle': {
+                        const height = tv.sizeThatFits(CGSizeMake(tv.bounds.size.width, 10000)).height;
+                        let topCorrect = (tv.bounds.size.height - height * tv.zoomScale) / 2.0;
+                        topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect;
+                        // tv.contentOffset = CGPointMake(0, -topCorrect);
+                        owner.nativeViewProtected.titleEdgeInsets = {
+                            top: top + topCorrect,
+                            left: inset.left,
+                            bottom: inset.bottom,
+                            right: inset.right
+                        };
+                        break;
+                    }
+
+                    case 'bottom': {
+                        const height = tv.sizeThatFits(CGSizeMake(tv.bounds.size.width, 10000)).height;
+                        let bottomCorrect = tv.bounds.size.height - height * tv.zoomScale;
+                        bottomCorrect = bottomCorrect < 0.0 ? 0.0 : bottomCorrect;
+                        // tv.contentOffset = CGPointMake(0, -bottomCorrect);
+                        owner.nativeViewProtected.titleEdgeInsets = {
+                            top: top + bottomCorrect,
+                            left: inset.left,
+                            bottom: inset.bottom,
+                            right: inset.right
+                        };
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
 export class Button extends ButtonBase {
+    private _observer: NSObject;
     nativeViewProtected: MDCButton;
     _ios: MDCButton;
+
+    getDefaultElevation(): number {
+        return 2;
+    }
+
+    getDefaultDynamicElevationOffset() {
+        return 6;
+    }
+
     applyShapeScheme() {
         MDCButtonShapeThemer.applyShapeSchemeToButton(this.shapeScheme, this.nativeViewProtected);
     }
@@ -60,6 +128,7 @@ export class Button extends ButtonBase {
                 MDCOutlinedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
             }
         } else {
+            // contained
             MDCContainedButtonThemer.applySchemeToButton(getButtonScheme(), view);
             if (colorScheme) {
                 MDCContainedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
@@ -71,8 +140,20 @@ export class Button extends ButtonBase {
             this.style['css:margin-bottom'] = 12;
         }
 
-        // view.addTargetActionForControlEvents(this['_tapHandler'], 'tap', UIControlEvents.TouchUpInside);
         return view;
+    }
+    initNativeView() {
+        super.initNativeView();
+        this._observer = ObserverClass.alloc();
+        this._observer['_owner'] = new WeakRef(this);
+        this.nativeViewProtected.addObserverForKeyPathOptionsContext(this._observer, 'contentSize', NSKeyValueObservingOptions.New, null);
+    }
+    disposeNativeView() {
+        super.disposeNativeView();
+        if (this._observer) {
+            this.nativeViewProtected.removeObserverForKeyPath(this._observer, 'contentSize');
+            this._observer = null;
+        }
     }
 
     [rippleColorProperty.setNative](color: Color) {
@@ -81,25 +162,22 @@ export class Button extends ButtonBase {
 
     [elevationProperty.setNative](value: number) {
         this.nativeViewProtected.setElevationForState(value, UIControlState.Normal);
+        let dynamicElevationOffset = this.dynamicElevationOffset;
+        if (typeof dynamicElevationOffset === 'undefined' || dynamicElevationOffset === null) {
+            dynamicElevationOffset = this.getDefaultDynamicElevationOffset();
+        }
         if (this.elevationHighlighted === undefined) {
-            this.nativeViewProtected.setElevationForState(this.style['translationZHighlighted'] ? this.style['translationZHighlighted'] : value * 4, UIControlState.Highlighted);
+            this.nativeViewProtected.setElevationForState(value + dynamicElevationOffset, UIControlState.Highlighted);
         }
     }
 
-    [translationZHighlightedProperty.setNative](value: number) {
-        this.nativeViewProtected.setElevationForState(value, UIControlState.Highlighted);
+    [dynamicElevationOffsetProperty.setNative](value: number) {
+        let elevation = this.elevation;
+        if (typeof elevation === 'undefined' || elevation === null) {
+            elevation = this.getDefaultElevation();
+        }
+        this.nativeViewProtected.setElevationForState(value + elevation, UIControlState.Highlighted);
     }
-    [elevationHighlightedProperty.setNative](value: number) {
-        this.nativeViewProtected.setElevationForState(value, UIControlState.Highlighted);
-    }
-    // [backgroundColorProperty.setNative](value: Color) {
-    //     if (this.nativeViewProtected) {
-    //         this.nativeViewProtected.setBackgroundColorForState(value ? value.ios : null, UIControlState.Normal);
-    //         if (this.variant === 'outline') {
-    //             this.nativeViewProtected.setBackgroundColorForState(new Color('transparent').ios, UIControlState.Disabled);
-    //         }
-    //     }
-    // }
 
     [backgroundInternalProperty.setNative](value: Background) {
         if (this.nativeViewProtected) {

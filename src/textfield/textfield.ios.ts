@@ -21,10 +21,11 @@ declare module 'tns-core-modules/ui/text-field/text-field' {
     }
 }
 
-class MDCTextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
+declare class TextInputControllerUnderline extends MDCTextInputControllerUnderline {}
+class TextInputControllerUnderlineImpl extends TextInputControllerUnderline {
     private _owner: WeakRef<TextField>;
-    public static initWithOwner(owner: WeakRef<TextField>): MDCTextInputControllerUnderlineImpl {
-        const handler = <MDCTextInputControllerUnderlineImpl>MDCTextInputControllerUnderlineImpl.new();
+    public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerUnderlineImpl {
+        const handler = <TextInputControllerUnderlineImpl>TextInputControllerUnderlineImpl.new();
         handler._owner = owner;
         return handler;
     }
@@ -39,10 +40,11 @@ class MDCTextInputControllerUnderlineImpl extends MDCTextInputControllerUnderlin
     }
 }
 
-class MDCTextInputControllerImpl extends MDCTextInputControllerBase {
+declare class TextInputControllerBase extends MDCTextInputControllerBase {}
+class TextInputControllerImpl extends TextInputControllerBase {
     private _owner: WeakRef<TextField>;
-    public static initWithOwner(owner: WeakRef<TextField>): MDCTextInputControllerImpl {
-        const handler = <MDCTextInputControllerImpl>MDCTextInputControllerUnderlineImpl.new();
+    public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerImpl {
+        const handler = <TextInputControllerImpl>TextInputControllerImpl.new();
         handler.underlineHeightActive = 0;
         handler.underlineHeightNormal = 0;
         handler._owner = owner;
@@ -59,10 +61,11 @@ class MDCTextInputControllerImpl extends MDCTextInputControllerBase {
     }
 }
 
-class MDCTextInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
+declare class TextInputControllerOutlined extends MDCTextInputControllerOutlined {}
+class TextInputControllerOutlinedImpl extends TextInputControllerOutlined {
     private _owner: WeakRef<TextField>;
-    public static initWithOwner(owner: WeakRef<TextField>): MDCTextInputControllerOutlinedImpl {
-        const handler = <MDCTextInputControllerOutlinedImpl>MDCTextInputControllerOutlinedImpl.new();
+    public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerOutlinedImpl {
+        const handler = <TextInputControllerOutlinedImpl>TextInputControllerOutlinedImpl.new();
         handler._owner = owner;
         return handler;
     }
@@ -75,10 +78,12 @@ class MDCTextInputControllerOutlinedImpl extends MDCTextInputControllerOutlined 
         return result;
     }
 }
-class MDCTextInputControllerFilledImpl extends MDCTextInputControllerFilled {
+
+declare class TextInputControllerFilled extends MDCTextInputControllerFilled {}
+class TextInputControllerFilledImpl extends TextInputControllerFilled {
     private _owner: WeakRef<TextField>;
-    public static initWithOwner(owner: WeakRef<TextField>): MDCTextInputControllerFilledImpl {
-        const handler = <MDCTextInputControllerFilledImpl>MDCTextInputControllerFilledImpl.new();
+    public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerFilledImpl {
+        const handler = <TextInputControllerFilledImpl>TextInputControllerFilledImpl.new();
         handler._owner = owner;
         return handler;
     }
@@ -129,13 +134,13 @@ export class TextField extends TextFieldBase {
         const colorScheme = themer.getAppColorScheme();
         const owner = new WeakRef(this);
         if (this.style.variant === 'filled') {
-            this._controller = MDCTextInputControllerFilledImpl.initWithOwner(owner);
+            this._controller = TextInputControllerFilledImpl.initWithOwner(owner);
         } else if (this.style.variant === 'outline') {
-            this._controller = MDCTextInputControllerOutlinedImpl.initWithOwner(owner);
+            this._controller = TextInputControllerOutlinedImpl.initWithOwner(owner);
         } else if (this.style.variant === 'underline') {
-            this._controller = MDCTextInputControllerUnderlineImpl.initWithOwner(owner);
+            this._controller = TextInputControllerUnderlineImpl.initWithOwner(owner);
         } else {
-            this._controller = MDCTextInputControllerImpl.initWithOwner(owner);
+            this._controller = TextInputControllerImpl.initWithOwner(owner);
         }
         this._controller.textInput = view;
         view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;

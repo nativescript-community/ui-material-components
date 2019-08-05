@@ -1,5 +1,5 @@
 import { CardViewBase } from './cardview-common';
-import { elevationHighlightedProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { isUserInteractionEnabledProperty } from 'tns-core-modules/ui/core/view/view';
 import { Color } from 'tns-core-modules/color';
@@ -37,6 +37,14 @@ export class CardView extends CardViewBase {
         // this.ios.clipsToBounds = true;
     }
 
+    getDefaultElevation(): number {
+        return 1;
+    }
+
+    getDefaultDynamicElevationOffset() {
+        return 5;
+    }
+
     // trick to get the same behavior as android (don't disable all children)
     [isUserInteractionEnabledProperty.setNative](value: boolean) {
         this.nativeViewProtected.interactable = value;
@@ -44,12 +52,21 @@ export class CardView extends CardViewBase {
 
     [elevationProperty.setNative](value: number) {
         this.nativeViewProtected.setShadowElevationForState(value, MDCCardCellState.Normal);
+        let dynamicElevationOffset = this.dynamicElevationOffset;
+        if (typeof dynamicElevationOffset === 'undefined' || dynamicElevationOffset === null) {
+            dynamicElevationOffset = this.getDefaultDynamicElevationOffset();
+        }
         if (this.elevationHighlighted === undefined) {
-            this.nativeViewProtected.setShadowElevationForState(value * 2, MDCCardCellState.Highlighted);
+            this.nativeViewProtected.setShadowElevationForState(value + dynamicElevationOffset, MDCCardCellState.Highlighted);
         }
     }
-    [elevationHighlightedProperty.setNative](value: number) {
-        this.nativeViewProtected.setShadowElevationForState(value, MDCCardCellState.Highlighted);
+
+    [dynamicElevationOffsetProperty.setNative](value: number) {
+        let elevation = this.elevation;
+        if (typeof elevation === 'undefined' || elevation === null) {
+            elevation = this.getDefaultElevation();
+        }
+        this.nativeViewProtected.setShadowElevationForState(value + elevation, MDCCardCellState.Highlighted);
     }
     [backgroundInternalProperty.setNative](value: Background) {
         if (this.nativeViewProtected) {

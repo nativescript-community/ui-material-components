@@ -10,14 +10,24 @@ import { cssProperty, rippleColorProperty } from 'nativescript-material-core/css
 export abstract class SliderBase extends NSSlider {
     @cssProperty rippleColor: Color | string;
     @cssProperty trackBackgroundColor: Color | string;
+    @cssProperty trackFillColor: Color | string;
+    @cssProperty thumbColor: Color | string;
     @cssProperty elevation: number;
     constructor() {
         super();
     }
+
     [colorProperty.setNative](color: Color) {
-        this[rippleColorProperty.setNative](color);
-        this[thumbColorProperty.setNative](color);
-        this[trackFillColorProperty.setNative](color);
+        super[colorProperty.setNative](color);
+        if (!this.trackBackgroundColor) {
+            this.trackBackgroundColor = color;
+        }
+        if (!this.trackFillColor) {
+            this.trackFillColor = color;
+        }
+        if (!this.thumbColor) {
+            this.thumbColor = color;
+        }
     }
 }
 

@@ -3,6 +3,122 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.16](https://github.com/Akylas/nativescript-material-components/compare/v2.3.15...v2.3.16) (2019-08-02)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
+## [2.3.15](https://github.com/Akylas/nativescript-material-components/compare/v2.3.14...v2.3.15) (2019-08-02)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
+## [2.3.14](https://github.com/Akylas/nativescript-material-components/compare/v2.3.13...v2.3.14) (2019-07-30)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
+## [2.3.13](https://github.com/Akylas/nativescript-material-components/compare/v2.3.12...v2.3.13) (2019-07-30)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
+## [2.3.12](https://github.com/Akylas/nativescript-material-components/compare/v2.3.11...v2.3.12) (2019-07-30)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
+## [2.3.11](https://github.com/Akylas/nativescript-material-components/compare/v2.3.10...v2.3.11) (2019-07-29)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
+## [2.3.10](https://github.com/Akylas/nativescript-material-components/compare/v2.3.9...v2.3.10) (2019-07-29)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
+## [2.3.9](https://github.com/Akylas/nativescript-material-components/compare/v2.3.8...v2.3.9) (2019-07-26)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
+## [2.3.8](https://github.com/Akylas/nativescript-material-components/compare/v2.3.7...v2.3.8) (2019-07-23)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
+## [2.3.7](https://github.com/Akylas/nativescript-material-components/compare/v2.3.6...v2.3.7) (2019-07-23)
+
+
+### Bug Fixes
+
+* build with aot metadata for angular ([8b1468e](https://github.com/Akylas/nativescript-material-components/commit/8b1468e))
+* snackbar native module name ([e8c4de8](https://github.com/Akylas/nativescript-material-components/commit/e8c4de8))
+
+
+
+
+
+## [2.3.6](https://github.com/Akylas/nativescript-material-components/compare/v2.3.5...v2.3.6) (2019-07-19)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
+## [2.3.5](https://github.com/Akylas/nativescript-material-components/compare/v2.3.4...v2.3.5) (2019-07-17)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
+## [2.3.4](https://github.com/Akylas/nativescript-material-components/compare/v2.3.3...v2.3.4) (2019-07-16)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
+## [2.3.3](https://github.com/Akylas/nativescript-material-components/compare/v2.3.2...v2.3.3) (2019-07-16)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
 ## [2.3.2](https://github.com/Akylas/nativescript-material-components/compare/v2.3.1...v2.3.2) (2019-07-15)
 
 **Note:** Version bump only for package nativescript-material-snackbar
