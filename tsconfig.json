@@ -1,117 +1,55 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "declaration": true,
-    "removeComments": false,
-    "noLib": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": [
-      "es6",
-      "dom"
-    ],
-    "sourceMap": true,
-    "pretty": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "noEmitHelpers": true,
-    "noEmitOnError": false,
-    "noImplicitAny": false,
-    "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
-    "outDir": "./plugin",
-    "paths": {
-      "nativescript-material-dialogs": [
-        "src/dialogs/dialogs"
-      ],
-      "nativescript-material-dialogs/*": [
-        "src/dialogs/*"
-      ],
-      "nativescript-material-snackbar": [
-        "src/snackbar/snackbar"
-      ],
-      "nativescript-material-snackbar/*": [
-        "src/snackbar/*"
-      ],
-      "nativescript-material-button": [
-        "src/button/button"
-      ],
-      "nativescript-material-button/*": [
-        "src/button/*"
-      ],
-      "nativescript-material-activityindicator": [
-        "src/activityindicator/activityindicator"
-      ],
-      "nativescript-material-activityindicator/*": [
-        "src/activityindicator/*"
-      ],
-      "nativescript-material-ripple": [
-        "src/ripple/ripple"
-      ],
-      "nativescript-material-ripple/*": [
-        "src/ripple/*"
-      ],
-      "nativescript-material-slider": [
-        "src/slider/slider"
-      ],
-      "nativescript-material-slider/*": [
-        "src/slider/*"
-      ],
-      "nativescript-material-progress": [
-        "src/progress/progress"
-      ],
-      "nativescript-material-progress/*": [
-        "src/progress/*"
-      ],
-      "nativescript-material-cardview": [
-        "src/cardview/cardview"
-      ],
-      "nativescript-material-cardview/*": [
-        "src/cardview/*"
-      ],
-      "nativescript-material-floatingactionbutton": [
-        "src/floatingactionbutton/floatingactionbutton"
-      ],
-      "nativescript-material-floatingactionbutton/*": [
-        "src/floatingactionbutton/*"
-      ],
-      "nativescript-material-core": [
-        "src/core/core"
-      ],
-      "nativescript-material-core/*": [
-        "src/core/*"
-      ],
-      "nativescript-material-textfield": [
-        "src/textfield/textfield"
-      ],
-      "nativescript-material-textfield/*": [
-        "src/textfield/*"
-      ],
-      "nativescript-material-bottom-navigation": [
-        "src/bottom-navigation/bottom-navigation"
-      ],
-      "nativescript-material-bottom-navigation/*": [
-        "src/bottom-navigation/*"
-      ],
-      "*": [
-        "node_modules/tns-core-modules/*",
-        "node_modules/*"
-      ]
-    }
-  },
-  "include": [
-    "src/**/*",
-    "src/**/*.ts",
-    "./references.d.ts",
-    "./src/references.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "platforms"
-  ],
-  "compileOnSave": false
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "declaration": true,
+        "removeComments": false,
+        "noLib": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "lib": ["es6", "dom"],
+        "sourceMap": true,
+        "pretty": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "noEmitHelpers": true,
+        "noEmitOnError": false,
+        "noImplicitAny": false,
+        "noImplicitReturns": true,
+        "noImplicitUseStrict": false,
+        "noFallthroughCasesInSwitch": true,
+        "baseUrl": ".",
+        "outDir": "./plugin",
+        "paths": {
+            "nativescript-material-dialogs": ["src/dialogs/dialogs"],
+            "nativescript-material-dialogs/*": ["src/dialogs/*"],
+            "nativescript-material-snackbar": ["src/snackbar/snackbar"],
+            "nativescript-material-snackbar/*": ["src/snackbar/*"],
+            "nativescript-material-button": ["src/button/button"],
+            "nativescript-material-button/*": ["src/button/*"],
+            "nativescript-material-activityindicator": ["src/activityindicator/activityindicator"],
+            "nativescript-material-activityindicator/*": ["src/activityindicator/*"],
+            "nativescript-material-ripple": ["src/ripple/ripple"],
+            "nativescript-material-ripple/*": ["src/ripple/*"],
+            "nativescript-material-slider": ["src/slider/slider"],
+            "nativescript-material-slider/*": ["src/slider/*"],
+            "nativescript-material-progress": ["src/progress/progress"],
+            "nativescript-material-progress/*": ["src/progress/*"],
+            "nativescript-material-cardview": ["src/cardview/cardview"],
+            "nativescript-material-cardview/*": ["src/cardview/*"],
+            "nativescript-material-floatingactionbutton": ["src/floatingactionbutton/floatingactionbutton"],
+            "nativescript-material-floatingactionbutton/*": ["src/floatingactionbutton/*"],
+            "nativescript-material-core": ["src/core/core"],
+            "nativescript-material-core/*": ["src/core/*"],
+            "nativescript-material-textfield": ["src/textfield/textfield"],
+            "nativescript-material-textfield/*": ["src/textfield/*"],
+            "nativescript-material-bottomnavigationbar": ["src/bottom-navigation-bar/bottom-navigation-bar"],
+            "nativescript-material-bottomnavigationbar/*": ["src/bottom-navigation-bar/*"],
+            "*": ["node_modules/tns-core-modules/*", "node_modules/*"]
+        }
+    },
+    "include": ["src/**/*", "src/**/*.ts", "./references.d.ts", "./src/references.d.ts"],
+    "exclude": ["node_modules", "platforms"],
+    "compileOnSave": false
 }
