@@ -22,7 +22,7 @@ export class Themer {
     getOnSurfaceColor(): string | Color;
 }
 
-export var themer: Themer;
+export const themer: Themer;
 
 export function install();
 export function installMixins();

@@ -1,8 +1,13 @@
 import { Color } from 'tns-core-modules/color';
-import { CssProperty, InheritedCssProperty, makeParser, makeValidator } from 'tns-core-modules/ui/core/properties';
+import {
+    CssProperty,
+    InheritedCssProperty,
+    makeParser,
+    makeValidator,
+} from 'tns-core-modules/ui/core/properties';
 import { Style } from 'tns-core-modules/ui/styling/style';
 import { Length } from 'tns-core-modules/ui/styling/style-properties';
-import { VerticalTextAlignment } from 'nativescript-material-core';
+import { VerticalTextAlignment } from './core.common';
 
 function createGetter(key) {
     return function() {
@@ -20,7 +25,7 @@ export const cssProperty = (target: Object, key: string | symbol) => {
         get: createGetter(key),
         set: createSetter(key),
         enumerable: true,
-        configurable: true
+        configurable: true,
     });
 };
 
@@ -28,35 +33,40 @@ export const rippleColorProperty = new CssProperty<Style, Color>({
     name: 'rippleColor',
     cssName: 'ripple-color',
     equalityComparer: Color.equals,
-    valueConverter: v => new Color(v)
+    valueConverter: v => new Color(v),
 });
 rippleColorProperty.register(Style);
 export const elevationProperty = new CssProperty<Style, Length>({
     name: 'elevation',
     cssName: 'elevation',
 
-    valueConverter: parseFloat
+    valueConverter: parseFloat,
 });
 elevationProperty.register(Style);
 export const dynamicElevationOffsetProperty = new CssProperty<Style, Length>({
     name: 'dynamicElevationOffset',
     cssName: 'dynamic-elevation-offset',
 
-    valueConverter: parseFloat
+    valueConverter: parseFloat,
 });
 dynamicElevationOffsetProperty.register(Style);
 
 export const variantProperty = new CssProperty<Style, string>({
     name: 'variant',
-    cssName: 'variant'
+    cssName: 'variant',
 });
 variantProperty.register(Style);
 
-const textAlignmentConverter = makeParser<VerticalTextAlignment>(makeValidator<VerticalTextAlignment>('initial', 'top', 'middle', 'bottom'));
-export const verticalTextAlignmentProperty = new InheritedCssProperty<Style, VerticalTextAlignment>({
+const textAlignmentConverter = makeParser<VerticalTextAlignment>(
+    makeValidator<VerticalTextAlignment>('initial', 'top', 'middle', 'bottom')
+);
+export const verticalTextAlignmentProperty = new InheritedCssProperty<
+    Style,
+    VerticalTextAlignment
+>({
     name: 'verticalTextAlignment',
     cssName: 'vertical-text-align',
     defaultValue: 'initial',
-    valueConverter: textAlignmentConverter
+    valueConverter: textAlignmentConverter,
 });
 verticalTextAlignmentProperty.register(Style);

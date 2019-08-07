@@ -1,12 +1,18 @@
-import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
 import { Color } from 'tns-core-modules/color';
 import { backgroundInternalProperty, ViewBase } from 'tns-core-modules/ui/core/view';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import * as application from 'tns-core-modules/application';
 import { Length } from 'tns-core-modules/ui/styling/style-properties';
-import { applyMixins } from './core.common';
-import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
-export { applyMixins };
+import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from './android/utils';
+import { applyMixins, VerticalTextAlignment } from './core.common';
+import {
+    cssProperty,
+    dynamicElevationOffsetProperty,
+    elevationProperty,
+    rippleColorProperty,
+} from './cssproperties';
+
+export { applyMixins, VerticalTextAlignment };
 
 // stub class as we don't use this on android
 export class Themer {
@@ -30,15 +36,25 @@ export class Themer {
     }
     getPrimaryColor(): string | Color {
         if (!this.primaryColor) {
-            console.log('getPrimaryColor', application.android, application.android.context, application.android.foregroundActivity, application.android.startActivity);
-            this.primaryColor = new Color(getAttrColor(application.android.startActivity, 'colorPrimary'));
+            console.log(
+                'getPrimaryColor',
+                application.android,
+                application.android.context,
+                application.android.foregroundActivity,
+                application.android.startActivity
+            );
+            this.primaryColor = new Color(
+                getAttrColor(application.android.startActivity, 'colorPrimary')
+            );
         }
         return this.primaryColor;
     }
 
     setAccentColor(value: string | Color) {
         if (!this.accentColor) {
-            this.accentColor = new Color(getAttrColor(application.android.startActivity, 'colorAccent'));
+            this.accentColor = new Color(
+                getAttrColor(application.android.startActivity, 'colorAccent')
+            );
         }
         this.accentColor = value;
     }
@@ -63,7 +79,9 @@ export class Themer {
     }
     getPrimaryColorVariant(): string | Color {
         if (!this.primaryColorVariant) {
-            this.primaryColorVariant = new Color(getAttrColor(application.android.context, 'colorSecondary'));
+            this.primaryColorVariant = new Color(
+                getAttrColor(application.android.context, 'colorSecondary')
+            );
         }
         return this.primaryColorVariant;
     }
@@ -94,35 +112,57 @@ class ViewWithElevationAndRipple extends ViewBase {
     @cssProperty rippleColor: Color;
     rippleDrawable: android.graphics.drawable.Drawable;
     getRippleColor() {
-        return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight')));
+        return getRippleColor(
+            this.style['rippleColor']
+                ? this.style['rippleColor']
+                : new Color(getAttrColor(this._context, 'colorControlHighlight'))
+        );
     }
     getCornerRadius() {
-        return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight')));
+        return getRippleColor(
+            this.style['rippleColor']
+                ? this.style['rippleColor']
+                : new Color(getAttrColor(this._context, 'colorControlHighlight'))
+        );
     }
     setRippleDrawable(view: android.view.View, radius = 0) {
         if (!this.rippleDrawable) {
-            this.rippleDrawable = createRippleDrawable(view, this.getRippleColor(), radius);
+            this.rippleDrawable = createRippleDrawable(
+                view,
+                this.getRippleColor(),
+                radius
+            );
             view.setForeground(this.rippleDrawable);
         }
     }
     [rippleColorProperty.setNative](color: Color) {
-        this.setRippleDrawable(this.nativeViewProtected, Length.toDevicePixels(this.style.borderTopLeftRadius));
+        this.setRippleDrawable(
+            this.nativeViewProtected,
+            Length.toDevicePixels(this.style.borderTopLeftRadius)
+        );
         const rippleColor = getRippleColor(color);
         if (isPostLollipopMR1()) {
-            (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(rippleColor));
+            (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(
+                android.content.res.ColorStateList.valueOf(rippleColor)
+            );
         } else {
             (this.rippleDrawable as any).rippleShape.getPaint().setColor(rippleColor);
         }
         // }
     }
 
-    [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
+    [backgroundInternalProperty.setNative](
+        value: android.graphics.drawable.Drawable | Background
+    ) {
         if (this.nativeViewProtected) {
             if (value instanceof android.graphics.drawable.Drawable) {
             } else {
                 if (this.rippleDrawable) {
                     this.rippleDrawable = null;
-                    this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius);
+                    this.setRippleDrawable(
+                        this.nativeViewProtected,
+                        value.borderTopLeftRadius
+                    );
                 }
             }
         }

@@ -1,13 +1,13 @@
-import { EventData, Color } from 'tns-core-modules/ui/core/view';
+import { Color, EventData } from 'tns-core-modules/ui/core/view';
 
 /**
  * CSS Properties
  */
 declare module 'tns-core-modules/ui/styling/style' {
-  interface Style {
-    inactiveColor: Color;
-    activeColor: Color;
-  }
+    interface Style {
+        inactiveColor: Color;
+        activeColor: Color;
+    }
 }
 
 /**
@@ -18,7 +18,7 @@ declare module 'tns-core-modules/ui/styling/style' {
  * @extends {EventData}
  */
 export interface TabPressedEventData extends EventData {
-  index: number;
+    index: number;
 }
 
 /**
@@ -29,8 +29,8 @@ export interface TabPressedEventData extends EventData {
  * @extends {EventData}
  */
 export interface TabSelectedEventData extends EventData {
-  oldIndex: number;
-  newIndex: number;
+    oldIndex: number;
+    newIndex: number;
 }
 
 /**
@@ -41,7 +41,7 @@ export interface TabSelectedEventData extends EventData {
  * @extends {EventData}
  */
 export interface TabReselectedEventData extends EventData {
-  index: number;
+    index: number;
 }
 /**
  * Enum for Title Visibility options
@@ -50,7 +50,7 @@ export interface TabReselectedEventData extends EventData {
  * @enum {number}
  */
 export enum TitleVisibility {
-  Selected = 0,
-  Always = 1,
-  Never = 2,
+    Selected = 0,
+    Always = 1,
+    Never = 2,
 }

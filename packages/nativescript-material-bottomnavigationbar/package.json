@@ -1,18 +1,18 @@
 {
     "name": "nativescript-material-bottomnavigationbar",
-    "version": "2.3.2",
+    "version": "2.3.16",
     "description": "Material Bottom Navigation Bar Component.",
     "main": "bottom-navigation-bar",
     "typings": "index.d.ts",
     "nativescript": {
         "platforms": {
-            "android": "5.4.0",
-            "ios": "5.4.0"
+            "android": "6.0.0",
+            "ios": "6.0.1"
         }
     },
     "scripts": {
-        "tsc-win": "tsc && copy ..\\..\\src\\bottom-navigation\\index.d.ts .\\",
-        "tsc": "tsc && cp ../../src/bottom-navigation/index.d.ts ./",
+        "tsc-win": "tsc && copy ..\\..\\src\\bottom-navigation-bar\\index.d.ts .\\",
+        "tsc": "tsc && cp ../../src/bottom-navigation-bar/index.d.ts ./",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "keywords": [
@@ -38,6 +38,6 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^2.3.2"
+        "nativescript-material-core": "^2.3.16"
     }
 }

@@ -9,10 +9,10 @@ export abstract class ProgressBase extends NSProgress {}
 export const progressColorProperty = new Property<ProgressBase, Color>({
     name: 'progressColor',
     equalityComparer: Color.equals,
-    valueConverter: v => new Color(v)
+    valueConverter: v => new Color(v),
 });
 export const progressBackgroundColorProperty = new Property<ProgressBase, Color>({
     name: 'progressBackgroundColor',
     equalityComparer: Color.equals,
-    valueConverter: v => new Color(v)
+    valueConverter: v => new Color(v),
 });

@@ -2,10 +2,11 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "rootDir": "../../src/activityindicator",
-        "outDir": "./",
-        "paths": {
-            "*": ["node_modules/tns-core-modules/*", "node_modules/*", "packages/*"]
-        }
+        "outDir": "./"
     },
-    "include": ["../../src/activityindicator/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
+    "include": [
+        "../../src/activityindicator/**/*.ts",
+        "../../src/references.d.ts",
+        "../../references.d.ts"
+    ]
 }

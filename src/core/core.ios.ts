@@ -3,13 +3,22 @@ import { TypographyOptions } from './core';
 import { View } from 'tns-core-modules/ui/core/view/view';
 import { layout } from 'tns-core-modules/utils/utils';
 
-import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
+import {
+    cssProperty,
+    dynamicElevationOffsetProperty,
+    elevationProperty,
+    rippleColorProperty,
+} from './cssproperties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { ControlStateChangeListener } from 'tns-core-modules/ui/core/control-state-change';
 import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
-import { applyMixins } from './core.common';
-import { GestureTypes, TouchAction, TouchGestureEventData } from 'tns-core-modules/ui/gestures';
-export { applyMixins };
+import { applyMixins, VerticalTextAlignment } from './core.common';
+import {
+    GestureTypes,
+    TouchAction,
+    TouchGestureEventData,
+} from 'tns-core-modules/ui/gestures';
+export { applyMixins, VerticalTextAlignment };
 
 export class Themer {
     appColorScheme: MDCSemanticColorScheme;
@@ -22,7 +31,9 @@ export class Themer {
     constructor() {
         // create a default one to prevent multiple creations on widget side
         this.appColorScheme = MDCSemanticColorScheme.new();
-        this.appColorScheme.primaryColorVariant = this.appColorScheme.primaryColor.colorWithAlphaComponent(0.24);
+        this.appColorScheme.primaryColorVariant = this.appColorScheme.primaryColor.colorWithAlphaComponent(
+            0.24
+        );
     }
     getOrcreateAppColorScheme() {
         if (!this.appColorScheme) {
@@ -126,12 +137,19 @@ class ViewWithElevationAndRipple extends View {
     getOrCreateRippleController() {
         if (!this.inkTouchController) {
             // create the shadow Layer
-            this.inkTouchController = MDCInkTouchController.alloc().initWithView(this.nativeViewProtected);
+            this.inkTouchController = MDCInkTouchController.alloc().initWithView(
+                this.nativeViewProtected
+            );
             this.inkTouchController.addInkView();
             const colorScheme = themer.getAppColorScheme();
-            MDCInkColorThemer.applyColorSchemeToInkView(colorScheme, this.inkTouchController.defaultInkView);
+            MDCInkColorThemer.applyColorSchemeToInkView(
+                colorScheme,
+                this.inkTouchController.defaultInkView
+            );
             if (this.style.backgroundInternal) {
-                this.inkTouchController.defaultInkView.layer.cornerRadius = layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
+                this.inkTouchController.defaultInkView.layer.cornerRadius = layout.toDeviceIndependentPixels(
+                    this.style.backgroundInternal.borderTopLeftRadius
+                );
             }
         }
         return this.inkTouchController;
@@ -147,7 +165,9 @@ class ViewWithElevationAndRipple extends View {
             // layer.rasterizationScale = screen.mainScreen.scale;
             (this.nativeViewProtected as UIView).layer.addSublayer(this.shadowLayer);
             if (this.style.backgroundInternal) {
-                layer.cornerRadius = layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
+                layer.cornerRadius = layout.toDeviceIndependentPixels(
+                    this.style.backgroundInternal.borderTopLeftRadius
+                );
             }
             if (this.nativeViewProtected instanceof UIControl) {
                 this.startElevationStateChangeHandler();
@@ -192,9 +212,12 @@ class ViewWithElevationAndRipple extends View {
             if (this.nativeViewProtected instanceof UIControl) {
                 this._elevationStateChangedHandler =
                     this._elevationStateChangedHandler ||
-                    new ControlStateChangeListener(this.nativeViewProtected, (s: string) => {
-                        this.updateShadowElevation(s);
-                    });
+                    new ControlStateChangeListener(
+                        this.nativeViewProtected,
+                        (s: string) => {
+                            this.updateShadowElevation(s);
+                        }
+                    );
                 this._elevationStateChangedHandler.start();
             } else {
                 this._elevationStateChangedHandler =
@@ -230,10 +253,14 @@ class ViewWithElevationAndRipple extends View {
     [backgroundInternalProperty.setNative](value: Background) {
         // base impl will be called before
         if (this.shadowLayer) {
-            this.shadowLayer.cornerRadius = layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
+            this.shadowLayer.cornerRadius = layout.toDeviceIndependentPixels(
+                value.borderTopLeftRadius
+            );
         }
         if (this.inkTouchController) {
-            this.inkTouchController.defaultInkView.layer.cornerRadius = layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
+            this.inkTouchController.defaultInkView.layer.cornerRadius = layout.toDeviceIndependentPixels(
+                value.borderTopLeftRadius
+            );
         }
     }
 }

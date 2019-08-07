@@ -4,5 +4,9 @@
         "rootDir": "../../src/core",
         "outDir": "./"
     },
-    "include": ["../../src/core/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
+    "include": [
+        "../../src/core/**/*.ts",
+        "../../src/references.d.ts",
+        "../../references.d.ts"
+    ]
 }

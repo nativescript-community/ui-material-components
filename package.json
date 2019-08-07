@@ -19,8 +19,12 @@
         "clean": "rimraf packages/**/*.d.ts packages/**/*.js packages/**/*.js.map packages/core/android",
         "demo.android": "cd ./demo && tns run android --syncAllFiles",
         "demo.ios": "cd ./demo && tns run ios --syncAllFiles",
+        "demo-ng.android": "cd ./demo-ng && tns run android --syncAllFiles",
+        "demo-ng.ios": "cd ./demo-ng && tns run ios --syncAllFiles",
         "build.demo.android": "cd ./demo && tns build android",
         "build.demo.ios": "cd ./demo && tns build ios",
+        "build.demo-ng.android": "cd ./demo-ng && tns build android",
+        "build.demo-ng.ios": "cd ./demo-ng && tns build ios",
         "commitmsg": "commitlint -e $GIT_PARAMS"
     },
     "keywords": [

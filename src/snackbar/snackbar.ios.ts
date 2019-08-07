@@ -1,6 +1,11 @@
-import { Color } from 'color';
-import { getRippleColor, themer } from 'nativescript-material-core/core';
-import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
+import { Color } from 'tns-core-modules/color';
+import { getRippleColor, themer } from 'nativescript-material-core';
+import {
+    DismissReasons,
+    SnackBarAction,
+    SnackBarBase,
+    SnackBarOptions,
+} from './snackbar-common';
 
 declare class SnackbarMessageView extends MDCSnackbarMessageView {
     message(): SnackbarMessage;
@@ -9,12 +14,15 @@ declare class SnackbarMessage extends MDCSnackbarMessage {
     viewClass(): typeof NSObject;
 }
 
-class MDCSnackbarManagerDelegateImpl extends NSObject implements MDCSnackbarManagerDelegate {
+class MDCSnackbarManagerDelegateImpl extends NSObject
+    implements MDCSnackbarManagerDelegate {
     public static ObjCProtocols = [MDCSnackbarManagerDelegate];
 
     private _owner: WeakRef<SnackBar>;
 
-    public static initWithOwner(owner: WeakRef<SnackBar>): MDCSnackbarManagerDelegateImpl {
+    public static initWithOwner(
+        owner: WeakRef<SnackBar>,
+    ): MDCSnackbarManagerDelegateImpl {
         const impl = <MDCSnackbarManagerDelegateImpl>MDCSnackbarManagerDelegateImpl.new();
         impl._owner = owner;
         return impl;
@@ -28,7 +36,10 @@ class MDCSnackbarManagerDelegateImpl extends NSObject implements MDCSnackbarMana
             const accentColor = themer.getAccentColor();
             if (accentColor) {
                 const buttons = messageView.actionButtons;
-                const color = (accentColor instanceof Color ? accentColor : new Color(accentColor)).ios;
+                const color = (accentColor instanceof Color
+                    ? accentColor
+                    : new Color(accentColor)
+                ).ios;
                 buttons.enumerateObjectsUsingBlock(button => {
                     button.setTitleColorForState(color, UIControlState.Normal);
                     button.setTitleColorForState(color, UIControlState.Highlighted);
@@ -37,15 +48,24 @@ class MDCSnackbarManagerDelegateImpl extends NSObject implements MDCSnackbarMana
             }
             const colorScheme = themer.getAppColorScheme() as MDCColorScheming;
             if (colorScheme) {
-                MDCSnackbarColorThemer.applySemanticColorSchemeToSnackbarManager(colorScheme, owner._snackbarManager);
+                MDCSnackbarColorThemer.applySemanticColorSchemeToSnackbarManager(
+                    colorScheme,
+                    owner._snackbarManager,
+                );
             }
 
             if (options.textColor && Color.isValid(options.textColor)) {
-                messageView.messageTextColor = (options.textColor instanceof Color ? options.textColor : new Color(options.textColor)).ios;
+                messageView.messageTextColor = (options.textColor instanceof Color
+                    ? options.textColor
+                    : new Color(options.textColor)
+                ).ios;
             }
 
             if (options.actionTextColor && Color.isValid(options.actionTextColor)) {
-                const color = (options.actionTextColor instanceof Color ? options.actionTextColor : new Color(options.actionTextColor)).ios;
+                const color = (options.actionTextColor instanceof Color
+                    ? options.actionTextColor
+                    : new Color(options.actionTextColor)
+                ).ios;
                 const buttons = messageView.actionButtons;
                 buttons.enumerateObjectsUsingBlock(button => {
                     button.setTitleColorForState(color, UIControlState.Normal);
@@ -57,7 +77,11 @@ class MDCSnackbarManagerDelegateImpl extends NSObject implements MDCSnackbarMana
             }
 
             if (options.backgroundColor && Color.isValid(options.backgroundColor)) {
-                messageView.snackbarMessageViewBackgroundColor = (options.backgroundColor instanceof Color ? options.backgroundColor : new Color(options.backgroundColor)).ios;
+                messageView.snackbarMessageViewBackgroundColor = (options.backgroundColor instanceof
+                Color
+                    ? options.backgroundColor
+                    : new Color(options.backgroundColor)
+                ).ios;
             }
         }
     }
@@ -113,8 +137,11 @@ export class SnackBar extends SnackBarBase {
         if (options.hideDelay > 10) {
             options.hideDelay = 10;
         }
-        const snackbarManager = (this._snackbarManager = MDCSnackbarManager.defaultManager);
-        snackbarManager.delegate = MDCSnackbarManagerDelegateImpl.initWithOwner(new WeakRef(this));
+        const snackbarManager = (this._snackbarManager =
+            MDCSnackbarManager.defaultManager);
+        snackbarManager.delegate = MDCSnackbarManagerDelegateImpl.initWithOwner(
+            new WeakRef(this),
+        );
 
         const message = (this._message = SnackbarMessage.new());
         if (options.actionText) {
@@ -132,7 +159,7 @@ export class SnackBar extends SnackBarBase {
             this._snackbarManager.delegate = null;
             resolve({
                 action: SnackBarAction.DISMISS,
-                reason: userInitiated ? DismissReasons.ACTION : DismissReasons.TIMEOUT
+                reason: userInitiated ? DismissReasons.ACTION : DismissReasons.TIMEOUT,
             });
         };
     }
@@ -142,7 +169,9 @@ export class SnackBar extends SnackBarBase {
             if (!!this._snackbarManager) {
                 try {
                     this._isDismissedManual = true;
-                    this._snackbarManager.dismissAndCallCompletionBlocksWithCategory(null);
+                    this._snackbarManager.dismissAndCallCompletionBlocksWithCategory(
+                        null,
+                    );
                     this._shown = false;
 
                     // Return AFTER the item is dismissed, 200ms delay
@@ -150,7 +179,7 @@ export class SnackBar extends SnackBarBase {
                         this._snackbarManager.delegate = null;
                         resolve({
                             action: SnackBarAction.DISMISS,
-                            reason: DismissReasons.MANUAL
+                            reason: DismissReasons.MANUAL,
                         });
                     }, 200);
                 } catch (ex) {
@@ -159,7 +188,7 @@ export class SnackBar extends SnackBarBase {
             } else {
                 resolve({
                     action: SnackBarAction.NONE,
-                    message: 'No actionbar to dismiss'
+                    message: 'No actionbar to dismiss',
                 });
             }
         });

@@ -1,5 +1,9 @@
-import { progressBackgroundColorProperty, ProgressBase, progressColorProperty } from './progress-common';
-import { themer } from 'nativescript-material-core/core';
+import {
+    progressBackgroundColorProperty,
+    ProgressBase,
+    progressColorProperty,
+} from './progress-common';
+import { themer } from 'nativescript-material-core';
 import { screen } from 'tns-core-modules/platform';
 import { Color } from 'tns-core-modules/color';
 
@@ -15,7 +19,10 @@ export class Progress extends ProgressBase {
         const result = MDCProgressView.new();
         const colorScheme: MDCSemanticColorScheme = themer.getAppColorScheme();
         if (colorScheme) {
-            MDCProgressViewColorThemer.applyColorSchemeToProgressView(colorScheme, result);
+            MDCProgressViewColorThemer.applyColorSchemeToProgressView(
+                colorScheme,
+                result
+            );
             // light color is not applied
             if (colorScheme.primaryColorVariant) {
                 result.trackTintColor = colorScheme.primaryColorVariant;

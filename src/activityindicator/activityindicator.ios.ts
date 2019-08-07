@@ -1,5 +1,5 @@
 import { ActivityIndicatorBase } from './activityindicator-common';
-import { themer } from 'nativescript-material-core/core';
+import { themer } from 'nativescript-material-core';
 import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Color } from 'tns-core-modules/color';
 import { screen } from 'tns-core-modules/platform';
@@ -20,7 +20,10 @@ export class ActivityIndicator extends ActivityIndicatorBase {
         const view = MDCActivityIndicator.new();
         const colorScheme = this.colorThemer || themer.getAppColorScheme();
         if (colorScheme) {
-            MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(colorScheme, view);
+            MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(
+                colorScheme,
+                view
+            );
         }
         return view;
     }
@@ -92,6 +95,9 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     }
     [colorProperty.setNative](value: UIColor | Color) {
         this.getColorThemer().primaryColor = value instanceof Color ? value.ios : value;
-        MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(this.getColorThemer(), this.nativeViewProtected);
+        MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(
+            this.getColorThemer(),
+            this.nativeViewProtected
+        );
     }
 }

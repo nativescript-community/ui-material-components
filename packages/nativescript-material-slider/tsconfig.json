@@ -2,10 +2,11 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "rootDir": "../../src/slider",
-        "outDir": "./",
-        "paths": {
-            "*": ["node_modules/tns-core-modules/*", "node_modules/*", "packages/*"]
-        }
+        "outDir": "./"
     },
-    "include": ["../../src/slider/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
+    "include": [
+        "../../src/slider/**/*.ts",
+        "../../src/references.d.ts",
+        "../../references.d.ts"
+    ]
 }
