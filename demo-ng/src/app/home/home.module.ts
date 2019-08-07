@@ -5,9 +5,10 @@ import { NativeScriptCommonModule } from 'nativescript-angular/common';
 import { HomeComponent } from './home.component';
 
 @NgModule({
-    imports: [NativeScriptCommonModule, NativeScriptRouterModule],
-    exports: [],
-    declarations: [HomeComponent],
-    providers: []
+    imports: [
+        NativeScriptCommonModule, //
+        NativeScriptRouterModule
+    ],
+    declarations: [HomeComponent]
 })
 export class HomeModule {}

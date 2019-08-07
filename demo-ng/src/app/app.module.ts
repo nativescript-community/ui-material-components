@@ -8,7 +8,12 @@ import { AppComponent } from './app.component';
 
 @NgModule({
     bootstrap: [AppComponent],
-    imports: [NativeScriptModule, AppRoutingModule, HomeModule, ExamplesModule],
+    imports: [
+        NativeScriptModule, //
+        AppRoutingModule,
+        HomeModule,
+        ExamplesModule
+    ],
     declarations: [AppComponent],
     schemas: [NO_ERRORS_SCHEMA]
 })
