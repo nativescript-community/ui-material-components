@@ -202,10 +202,6 @@ export class Ripple extends RippleBase {
     public createNativeView() {
         initMDStackLayout();
         const view = new MDStackLayout(this._context);
-
-        // TODO: this is a bit of an issue
-        // if i dont set clickable the ripple is not drawn.
-        view.setClickable(this.isUserInteractionEnabled);
         this.setRippleDrawable(view); // set default ripple
         return view;
     }
