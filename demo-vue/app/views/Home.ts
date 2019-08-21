@@ -6,16 +6,14 @@ export default {
     <Page>
       <ActionBar title="Material Vue">
       </ActionBar>
-      <ListView ref="listView"
-          rowHeight="50"
-          for="example in examples"
-          separatorColor="transparent"
-          @itemTap="goToExample">
+      <ListView ref="listView" separatorColor="blue" for="example in examples" @itemTap="goToExample">
         <v-template>
-          <StackLayout class="item" orientation="horizontal">
-            <Label :text="example.title" class="title" verticalAlignment="center"/>
+        <MDRipple rippleColor="red">
+          <StackLayout class="item" orientation="horizontal" height="40">
+            <Label paddingLeft="10" :text="example.title" class="title" verticalAlignment="center"/>
           </StackLayout>
-        </v-template>
+          </MDRipple>
+          </v-template>
       </ListView>
     </Page>
     `,
