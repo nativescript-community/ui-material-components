@@ -195,6 +195,13 @@ function initializePreLollipopStackLayout() {
     PreLollipopStackLayout = PreLollipopStackLayoutImpl as any;
 }
 
+declare module 'tns-core-modules/ui/core/view/view' {
+    interface View {
+        hasGestureObservers(): boolean;
+        setOnTouchListener();
+    }
+}
+
 export class Ripple extends RippleBase {
     nativeViewProtected: android.view.View;
     ripple: android.graphics.drawable.RippleDrawable;
@@ -204,6 +211,21 @@ export class Ripple extends RippleBase {
         const view = new MDStackLayout(this._context);
         this.setRippleDrawable(view); // set default ripple
         return view;
+    }
+
+    forceSetOnTouchListener = false;
+    hasGestureObservers() {
+        if (this.forceSetOnTouchListener) {
+            return true;
+        }
+        return super.hasGestureObservers();
+    }
+    initNativeView() {
+        // we need to force the touch listener even i there is no tap gesture.
+        this.forceSetOnTouchListener = true;
+        this.setOnTouchListener();
+        this.forceSetOnTouchListener = false;
+        super.initNativeView();
     }
     rippleDrawable: android.graphics.drawable.Drawable;
     getRippleColor() {
