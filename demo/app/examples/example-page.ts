@@ -130,6 +130,9 @@ class Model {
                 dialog.show();
         }
     }
+    noop() {
+        
+    }
 }
 
 export function onNavigatingTo(args) {

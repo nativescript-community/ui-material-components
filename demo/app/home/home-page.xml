@@ -13,7 +13,7 @@
             <mdr:Ripple class="list-group-item"
                         borderBottomColor="black"
                         borderBottomWidth="0"
-
+                        isUserInteractionEnabled="false"
                         orientation="horizontal">
                 <Label paddingLeft="10"
                        text="{{ title }}"

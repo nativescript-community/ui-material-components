@@ -2,7 +2,7 @@
     "nativescript": {
         "id": "org.nativescript.demo",
         "tns-android": {
-            "version": "5.3.0-2019-03-19-143503-02"
+            "version": "6.0.0"
         }
     },
     "dependencies": {
@@ -19,8 +19,8 @@
         "nativescript-material-snackbar": "file:../packages/nativescript-material-snackbar",
         "nativescript-material-textfield": "file:../packages/nativescript-material-textfield",
         "nativescript-theme-core": "^1.0.4",
-        "nativescript-ui-listview": "6.1.0",
-        "tns-core-modules": "5.4.0-androidx-2019-03-22-160602-06"
+        "nativescript-ui-listview": "7.0.0",
+        "tns-core-modules": "6.0.1"
     },
     "devDependencies": {
         "awesome-typescript-loader": "~5.2.1",
@@ -32,15 +32,14 @@
         "filewalker": "0.1.3",
         "lazy": "1.0.11",
         "nativescript-css-loader": "~0.26.1",
-        "nativescript-dev-typescript": "0.9.0",
-        "nativescript-dev-webpack": "^0.21.0",
+        "nativescript-dev-webpack": "1.0.1",
         "node-sass": "^4.11.0",
         "resolve-url-loader": "~3.1.0",
         "sass-loader": "^7.1.0",
-        "tns-platform-declarations": "5.4.0-androidx-2019-03-22-160602-06",
+        "tns-platform-declarations": "6.0.1",
         "ts-loader": "^5.3.3",
         "tslint": "~5.16.0",
-        "typescript": "~3.4.3",
+        "typescript": "3.4.5",
         "webpack": "~4.30.0",
         "webpack-bundle-analyzer": "^3.3.2",
         "webpack-sources": "~1.3.0"

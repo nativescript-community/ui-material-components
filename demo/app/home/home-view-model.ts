@@ -12,7 +12,7 @@ export class ViewModel {
     public onTap(args: ItemEventData) {
         // var btn = args.object;
         // var item = btn['bindingContext'];
-        // console.log('onTap', btn, );
+        console.log('onTap', args);
         const example = this.examples[args.index];
         const navigationEntry = {
             moduleName: 'examples/example-page',
@@ -24,7 +24,8 @@ export class ViewModel {
         const frame = getFrameById('firstFrame');
         frame.navigate(navigationEntry);
     }
-    onTapInsideTemplate(args) {
+    public onTapInsideTemplate(args) {
+        console.log('onTapInsideTemplate', args);
         let btn = args.object;
         let item = btn.bindingContext;
         const navigationEntry = {
@@ -39,6 +40,20 @@ export class ViewModel {
     }
 }
 
+export function  onTapInsideTemplate(args) {
+    console.log('onTapInsideTemplate', args);
+    let btn = args.object;
+    let item = btn.bindingContext;
+    const navigationEntry = {
+        moduleName: 'examples/example-page',
+        context: {
+            example: item.title
+        },
+        animated: true
+    };
+    const frame = getFrameById('firstFrame');
+    frame.navigate(navigationEntry);
+}
 // export function onTap(args: ItemEventData) {
 //     console.log('onTap', args);
 //     const example = this.examples[args.index];

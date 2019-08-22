@@ -6,7 +6,7 @@ export default {
     <Page>
       <ActionBar title="Material Vue">
       </ActionBar>
-      <ListView ref="listView" separatorColor="blue" for="example in examples" @itemTap="goToExample">
+      <ListView ref="listView" rowHeight="50" for="example in examples" @itemTap="goToExample">
         <v-template>
         <MDRipple rippleColor="red">
           <StackLayout class="item" orientation="horizontal" height="40">
