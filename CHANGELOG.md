@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.19](https://github.com/Akylas/nativescript-material-components/compare/v2.3.18...v2.3.19) (2019-08-22)
+
+
+### Bug Fixes
+
+* fix for android ripple not working due to the behavior of {N} ([4585ff1](https://github.com/Akylas/nativescript-material-components/commit/4585ff1))
+
+
+
+
+
 ## [2.3.18](https://github.com/Akylas/nativescript-material-components/compare/v2.3.17...v2.3.18) (2019-08-21)
 
 
