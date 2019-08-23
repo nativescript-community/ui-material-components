@@ -225,6 +225,7 @@ export class Ripple extends RippleBase {
         this.forceSetOnTouchListener = true;
         this.setOnTouchListener();
         this.forceSetOnTouchListener = false;
+        this.nativeView.setClickable(false);
         super.initNativeView();
     }
     rippleDrawable: android.graphics.drawable.Drawable;
