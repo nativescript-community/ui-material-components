@@ -26,7 +26,15 @@ export var themer: Themer;
 
 export function install();
 export function installMixins();
-export function applyMixins(derivedCtor: any, baseCtors: any[]);
+export function applyMixins(
+    derivedCtor: any,
+    baseCtors: any[],
+    options?: {
+        after?: boolean;
+        override?: boolean;
+        omit?: Array<string | symbol>;
+    }
+);
 export function getRippleColor(color: string | Color): any;
 
 declare module 'tns-core-modules/ui/core/view' {
@@ -37,3 +45,12 @@ declare module 'tns-core-modules/ui/core/view' {
     }
 }
 export type VerticalTextAlignment = 'initial' | 'top' | 'middle' | 'bottom';
+
+
+type Constructor<T = {}> = new (...args: any[]) => T;
+export function mixin<T1 extends Constructor, T2 extends Constructor>(
+    mix1: T1,
+    mix2: T2
+): {
+    new(...args: any[]): (InstanceType<T1> & InstanceType<T2>)
+} & T1 & T2

@@ -1,6 +1,18 @@
-export function applyMixins(derivedCtor: any, baseCtors: any[]) {
+export function applyMixins(
+    derivedCtor: any,
+    baseCtors: any[],
+    options?: {
+        after?: boolean;
+        override?: boolean;
+        omit?: Array<string | symbol>;
+    }
+) {
+    const omits = options && options.omit ? options.omit : [];
     baseCtors.forEach(baseCtor => {
         Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+            if (omits.indexOf(name) !== -1) {
+                return;
+            }
             const descriptor = Object.getOwnPropertyDescriptor(baseCtor.prototype, name);
 
             if (name === 'constructor') return;
@@ -12,20 +24,47 @@ export function applyMixins(derivedCtor: any, baseCtors: any[]) {
                     derivedCtor.prototype[name] = baseCtor.prototype[name];
                 } else {
                     derivedCtor.prototype[name] = function(...args) {
-                        oldImpl.apply(this, args);
-                        baseCtor.prototype[name].apply(this, args);
+                        if (options) {
+                            if (!!options.override) {
+                                baseCtor.prototype[name].apply(this, args);
+                            } else if (!!options.after) {
+                                oldImpl.apply(this, args);
+                                baseCtor.prototype[name].apply(this, args);
+                            } else {
+                                baseCtor.prototype[name].apply(this, args);
+                                oldImpl.apply(this, args);
+                            }
+                        } else {
+                            baseCtor.prototype[name].apply(this, args);
+                            oldImpl.apply(this, args);
+                        }
                     };
                 }
             }
         });
         Object.getOwnPropertySymbols(baseCtor.prototype).forEach(symbol => {
+            if (omits.indexOf(symbol) !== -1) {
+                return;
+            }
             const oldImpl: Function = derivedCtor.prototype[symbol];
             if (!oldImpl) {
                 derivedCtor.prototype[symbol] = baseCtor.prototype[symbol];
             } else {
                 derivedCtor.prototype[symbol] = function(...args) {
-                    oldImpl.apply(this, args);
-                    baseCtor.prototype[symbol].apply(this, args);
+                    if (options) {
+                        if (!!options.override) {
+                            baseCtor.prototype[symbol].apply(this, args);
+                        } else if (!!options.after) {
+                            oldImpl.apply(this, args);
+                            baseCtor.prototype[symbol].apply(this, args);
+                        } else {
+                            baseCtor.prototype[symbol].apply(this, args);
+                            oldImpl.apply(this, args);
+                        }
+                    } else {
+                        baseCtor.prototype[symbol].apply(this, args);
+                        oldImpl.apply(this, args);
+                    }
                 };
             }
         });
