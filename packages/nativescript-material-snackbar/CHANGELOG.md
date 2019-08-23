@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.20](https://github.com/Akylas/nativescript-material-components/compare/v2.3.19...v2.3.20) (2019-08-23)
+
+**Note:** Version bump only for package nativescript-material-snackbar
+
+
+
+
+
 ## [2.3.19](https://github.com/Akylas/nativescript-material-components/compare/v2.3.18...v2.3.19) (2019-08-22)
 
 **Note:** Version bump only for package nativescript-material-snackbar

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.20](https://github.com/Akylas/nativescript-material-components/compare/v2.3.19...v2.3.20) (2019-08-23)
+
+
+### Bug Fixes
+
+* ripple android should not be clickable by default ([84c55bd](https://github.com/Akylas/nativescript-material-components/commit/84c55bd))
+* some floatingactionbutton examples ([df386e5](https://github.com/Akylas/nativescript-material-components/commit/df386e5))
+
+
+### Features
+
+* trying to add support for circular progress. Not finished ([c46efec](https://github.com/Akylas/nativescript-material-components/commit/c46efec))
+
+
+
+
+
 ## [2.3.19](https://github.com/Akylas/nativescript-material-components/compare/v2.3.18...v2.3.19) (2019-08-22)
 
 
