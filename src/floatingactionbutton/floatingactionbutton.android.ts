@@ -1,9 +1,10 @@
-import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
+import { FloatingActionButtonBase, imageSourceProperty, sizeProperty, srcProperty } from './floatingactionbutton-common';
 
 import { ImageSource } from 'tns-core-modules/image-source';
 import { dynamicElevationOffsetProperty, elevationProperty } from 'nativescript-material-core/cssproperties';
-import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
+import { backgroundInternalProperty, colorProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Background } from 'tns-core-modules/ui/styling/background';
+import { Color } from 'tns-core-modules/color/color';
 
 let MDCFabButton: typeof com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -18,6 +19,7 @@ export class FloatingActionButton extends FloatingActionButtonBase {
             MDCFabButton = com.google.android.material.floatingactionbutton.FloatingActionButton;
         }
         const view = new MDCFabButton(this._context);
+        view.setSize(MDCFabButton.SIZE_NORMAL);
         return view;
     }
 
@@ -48,23 +50,17 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         this.nativeViewProtected.setTranslationZ(value);
     }
 
-    get size(): string {
-        return this.style['size'];
-    }
-    set size(value: string) {
-        this.style['size'] = value;
-        if (this.nativeViewProtected) {
-            switch (value) {
-                case 'auto':
-                    this.nativeViewProtected.setSize(MDCFabButton.SIZE_AUTO);
-                    break;
-                case 'mini':
-                    this.nativeViewProtected.setSize(MDCFabButton.SIZE_MINI);
-                    break;
-                default:
-                    this.nativeViewProtected.setSize(MDCFabButton.SIZE_NORMAL);
-                    break;
-            }
+    [sizeProperty.setNative](value: string) {
+        switch (value) {
+            case 'auto':
+                this.nativeViewProtected.setSize(MDCFabButton.SIZE_AUTO);
+                break;
+            case 'mini':
+                this.nativeViewProtected.setSize(MDCFabButton.SIZE_MINI);
+                break;
+            default:
+                this.nativeViewProtected.setSize(MDCFabButton.SIZE_NORMAL);
+                break;
         }
     }
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
@@ -81,5 +77,8 @@ export class FloatingActionButton extends FloatingActionButtonBase {
                 // }
             }
         }
+    }
+    [colorProperty.setNative](value: Color) {
+        this.nativeViewProtected.setSupportImageTintList(android.content.res.ColorStateList.valueOf(value.android));
     }
 }

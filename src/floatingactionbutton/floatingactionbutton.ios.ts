@@ -2,6 +2,8 @@ import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './fl
 import { ImageSource } from 'tns-core-modules/image-source/image-source';
 import { dynamicElevationOffsetProperty, elevationProperty } from 'nativescript-material-core/cssproperties';
 import { themer } from 'nativescript-material-core/core';
+import { Color } from 'tns-core-modules/color/color';
+import { colorProperty } from 'tns-core-modules/ui/page/page';
 
 export class FloatingActionButton extends FloatingActionButtonBase {
     nativeViewProtected: MDCFloatingButton;
@@ -15,6 +17,7 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     }
     public _setNativeImage(nativeImage: UIImage) {
         // this.nativeViewProtected.setImageForState(nativeImage ? nativeImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate) : nativeImage, UIControlState.Normal);
+
         this.nativeViewProtected.setImageForState(nativeImage, UIControlState.Normal);
     }
     public createNativeView() {
@@ -49,5 +52,8 @@ export class FloatingActionButton extends FloatingActionButtonBase {
 
     [srcProperty.setNative](value: any) {
         this._createImageSourceFromSrc(value);
+    }
+    [colorProperty.setNative](value: Color) {
+        this.nativeViewProtected.tintColor = value.ios;
     }
 }

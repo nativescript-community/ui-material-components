@@ -1,4 +1,4 @@
-import { CSSType, View } from 'tns-core-modules/ui/core/view/view';
+import { CSSType, View, Color } from 'tns-core-modules/ui/core/view/view';
 import { ImageAsset } from 'tns-core-modules/image-asset/image-asset';
 import { isDataURI, isFileOrResourcePath, RESOURCE_PREFIX } from 'tns-core-modules/utils/utils';
 import { fromAsset, fromNativeSource, fromUrl, ImageSource } from 'tns-core-modules/image-source';
@@ -11,19 +11,23 @@ export const srcProperty = new Property<FloatingActionButtonBase, any>({
     name: 'src'
 });
 
+export const sizeProperty = new Property<FloatingActionButtonBase, string>({
+    name: 'size',
+    affectsLayout: true
+});
+
 @CSSType('MDFloatingActionButton')
 export abstract class FloatingActionButtonBase extends View {
     constructor() {
         super();
         // we need to set the default through css or user would not be able to overload it through css...
-        this.style['css:width'] = 56;
-        this.style['css:height'] = 56;
         this.style['css:margin-left'] = 4;
         this.style['css:margin-right'] = 4;
         this.style['css:margin-top'] = 11;
         this.style['css:margin-bottom'] = 16;
     }
     @cssProperty elevation: number;
+    @cssProperty color: Color;
     @cssProperty dynamicElevationOffset: number;
 
     public srcCompat: string;
@@ -110,3 +114,4 @@ export abstract class FloatingActionButtonBase extends View {
 }
 imageSourceProperty.register(FloatingActionButtonBase);
 srcProperty.register(FloatingActionButtonBase);
+sizeProperty.register(FloatingActionButtonBase);
