@@ -6,11 +6,12 @@
                         @tap="onNavigationButtonTap"></NavigationButton>
     </ActionBar>
     <StackLayout>
-      <MDActivityIndicator busy="true" class="loading" />
+      <MDActivityIndicator busy class="loading" />
       <MDActivityIndicator color="red" :busy="isBusy" class="loading" />
-      <MDActivityIndicator color="green" :busy="isBusy" class="loading" />
-      <MDActivityIndicator color="orange" :busy="isBusy" class="loading"/>
-      <MDActivityIndicator :busy="isBusy" class="loading"/>
+      <MDActivityIndicator color="green" busy class="loading" />
+      <MDActivityIndicator color="orange" busy class="loading" width="50" height="50"/>
+      <MDActivityIndicator class="loading" backgroundColor="yellow"/>
+      <MDActivityIndicator color="brown" indeterminate="false" progress="0.5" maxValue="1" class="loading" horizontalAlignment="center"/>
     </StackLayout>
   </Page>
 </template>

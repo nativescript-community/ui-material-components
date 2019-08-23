@@ -5,7 +5,7 @@
         </ActionBar>
         <ScrollView>
             <StackLayout>
-                <MDFloatingActionButton id="fab" src="res://ic_action_add" backgroundColor="blue" @tap="onTap" />
+                <MDFloatingActionButton id="fab" src="res://ic_action_add" color="white" backgroundColor="blue" size="mini" @tap="onTap" horizontalAlignment="center" />
                 <StackLayout margin="10">
                     <MDButton id="button0" text="default button" @tap="onTap" />
                 </StackLayout>

@@ -24,7 +24,12 @@ export default {
     },
     methods: {
         goToExample({ item }) {
-            this.$navigateTo(item.component);
+          console.log('goToExample');
+          this.$navigateTo(item.component);
+        },
+        onItemTap(args) {
+          console.log('onItemTap', args);
+            // this.$navigateTo(item.component);
         }
     }
 };

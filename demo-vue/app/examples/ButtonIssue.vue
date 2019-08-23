@@ -6,47 +6,19 @@
         <ScrollView>
 
             <StackLayout>
-                <MDButton elevation="5" text="Test me1" backgroundColor="white" />
-                <StackLayout>
-                    <StackLayout>
-                        <StackLayout>
-                            <StackLayout>
-                                <StackLayout>
-                                    <StackLayout>
-                                        <StackLayout>
-                                            <MDButton elevation="5" text="Test me2" backgroundColor="white" />
-                                            <StackLayout>
-                                                <StackLayout>
-                                                    <StackLayout>
-                                                        <StackLayout>
-                                                            <StackLayout>
-                                                                <StackLayout>
-                                                                    <StackLayout>
-                                                                        <StackLayout>
-                                                                            <StackLayout>
-                                                                                <StackLayout>
-                                                                                    <StackLayout>
-                                                                                        <StackLayout>
-                                                                                            <MDButton elevation="5" text="Test me3" backgroundColor="white" />
-                                                                                        </StackLayout>
-                                                                                    </StackLayout>
-                                                                                </StackLayout>
-                                                                            </StackLayout>
-                                                                        </StackLayout>
-                                                                    </StackLayout>
-                                                                </StackLayout>
-                                                            </StackLayout>
-                                                        </StackLayout>
-                                                    </StackLayout>
-                                                </StackLayout>
-                                            </StackLayout>
-                                        </StackLayout>
-                                    </StackLayout>
-                                </StackLayout>
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
+                <MDButton elevation="2" text="Test me1" backgroundColor="white" />
+                <MDButton elevation="2" text="Test me2" backgroundColor="white" />
+                <MDButton elevation="2" text="Test me3" backgroundColor="white" />
+                <MDButton elevation="2" text="Test me3" backgroundColor="white" />
+                <MDButton elevation="2" text="Test me3" backgroundColor="white" />
+                <MDButton elevation="2" text="Test me3" backgroundColor="white" />
+                <MDButton elevation="2" text="Test me3" backgroundColor="white" />
+                <MDButton elevation="2" text="Test me3" backgroundColor="white" />
+                <MDButton elevation="2" text="Test me3" backgroundColor="white" />
+                <MDButton elevation="2" text="Test me3" backgroundColor="white" />
+                <MDButton elevation="2" text="Test me3" backgroundColor="white" />
+                <MDButton elevation="2" text="Test me3" backgroundColor="white" />
+                <MDButton elevation="2" text="Test me3" backgroundColor="white" />
             </StackLayout>
         </ScrollView>
     </Page>
@@ -56,12 +28,12 @@
 import * as frameModule from 'tns-core-modules/ui/frame';
 import Vue from 'vue';
 
-export const title = 'Buttons sample';
+export const title = 'Buttons Elevation Top Bottom sample';
 
 export default Vue.extend({
     data() {
         return {
-            name: 'Button Issue',
+            name: 'Buttons Elevation Top Bottom Issue',
             title: title
         };
     },
