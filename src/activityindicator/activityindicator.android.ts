@@ -1,4 +1,4 @@
-import { ActivityIndicatorBase } from './activityindicator-common';
+import { ActivityIndicatorBase, indeterminateProperty } from './activityindicator-common';
 
 export class ActivityIndicator extends ActivityIndicatorBase {
     nativeViewProtected: android.widget.ProgressBar;
@@ -8,5 +8,11 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     }
     public stopAnimating() {
         this.busy = false;
+    }
+
+    [indeterminateProperty.setNative](value: boolean) {
+        this.busy = true;
+        // not supported for now with circular progress
+        this.nativeViewProtected.setIndeterminate(value);
     }
 }

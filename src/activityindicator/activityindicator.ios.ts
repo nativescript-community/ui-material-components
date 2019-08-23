@@ -1,8 +1,10 @@
-import { ActivityIndicatorBase } from './activityindicator-common';
+import { ActivityIndicatorBase, indeterminateProperty } from './activityindicator-common';
 import { themer } from 'nativescript-material-core/core';
 import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Color } from 'tns-core-modules/color';
 import { screen } from 'tns-core-modules/platform';
+import { layout } from 'tns-core-modules/utils/utils';
+import { View } from 'tns-core-modules/ui/core/view';
 
 declare module 'tns-core-modules/ui/core/view/view' {
     interface View {
@@ -50,35 +52,31 @@ export class ActivityIndicator extends ActivityIndicatorBase {
         this.nativeViewProtected.radius = radius / scale;
     }
 
-    // public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
+    public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
+        let nativeView = this.nativeViewProtected;
+        if (nativeView) {
+            const width = layout.getMeasureSpecSize(widthMeasureSpec);
+            const widthMode = layout.getMeasureSpecMode(widthMeasureSpec);
+            const height = layout.getMeasureSpecSize(heightMeasureSpec);
+            const heightMode = layout.getMeasureSpecMode(heightMeasureSpec);
 
-    //     let nativeView = this.nativeViewProtected;
-    //     if (nativeView) {
-    //         const width = layout.getMeasureSpecSize(widthMeasureSpec);
-    //         const widthMode = layout.getMeasureSpecMode(widthMeasureSpec);
-    //         const height = layout.getMeasureSpecSize(heightMeasureSpec);
-    //         const heightMode = layout.getMeasureSpecMode(heightMeasureSpec);
+            const horizontalPadding = this.effectivePaddingLeft + this.effectiveBorderLeftWidth + this.effectivePaddingRight + this.effectiveBorderRightWidth;
+            let verticalPadding = this.effectivePaddingTop + this.effectiveBorderTopWidth + this.effectivePaddingBottom + this.effectiveBorderBottomWidth;
 
-    //         const horizontalPadding = this.effectivePaddingLeft + this.effectiveBorderLeftWidth + this.effectivePaddingRight + this.effectiveBorderRightWidth;
-    //         let verticalPadding = this.effectivePaddingTop + this.effectiveBorderTopWidth + this.effectivePaddingBottom + this.effectiveBorderBottomWidth;
+            const desiredSize = layout.measureNativeView(nativeView, width - horizontalPadding, widthMode, height - verticalPadding, heightMode);
 
-    //         const desiredSize = layout.measureNativeView(
-    //             nativeView,
-    //             width - horizontalPadding, widthMode,
-    //             height - verticalPadding, heightMode);
+            desiredSize.width = desiredSize.width + horizontalPadding;
+            desiredSize.height = desiredSize.height + verticalPadding;
 
-    //         desiredSize.width = desiredSize.width + horizontalPadding;
-    //         desiredSize.height = desiredSize.height + verticalPadding;
+            const measureWidth = Math.max(desiredSize.width, this.effectiveMinWidth);
+            const measureHeight = Math.max(desiredSize.height, this.effectiveMinHeight);
 
-    //         const measureWidth = Math.max(desiredSize.width, this.effectiveMinWidth);
-    //         const measureHeight = Math.max(desiredSize.height, this.effectiveMinHeight);
+            const widthAndState = View.resolveSizeAndState(measureWidth, width, widthMode, 0);
+            const heightAndState = View.resolveSizeAndState(measureHeight, height, heightMode, 0);
 
-    //         const widthAndState = View.resolveSizeAndState(measureWidth, width, widthMode, 0);
-    //         const heightAndState = View.resolveSizeAndState(measureHeight, height, heightMode, 0);
-
-    //         this.setMeasuredDimension(widthAndState, heightAndState);
-    //     }
-    // }
+            this.setMeasuredDimension(widthAndState, heightAndState);
+        }
+    }
 
     // public startAnimating() {
     //     this.nativeView.startAnimating();
@@ -93,5 +91,8 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     [colorProperty.setNative](value: UIColor | Color) {
         this.getColorThemer().primaryColor = value instanceof Color ? value.ios : value;
         MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(this.getColorThemer(), this.nativeViewProtected);
+    }
+    [indeterminateProperty.setNative](value: boolean) {
+        this.nativeViewProtected.indicatorMode = !!value ? MDCActivityIndicatorMode.Indeterminate : MDCActivityIndicatorMode.Determinate;
     }
 }

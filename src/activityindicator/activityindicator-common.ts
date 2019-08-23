@@ -1,10 +1,13 @@
 import { CSSType } from 'tns-core-modules/ui/core/view/view';
 import { ActivityIndicator as NSActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
-import { cssProperty } from 'nativescript-material-core/cssproperties';
 import { layout } from 'tns-core-modules/utils/utils';
+import { Progress as NSProgress } from 'tns-core-modules/ui/progress';
+import { applyMixins } from 'nativescript-material-core';
+import { booleanConverter } from 'tns-core-modules/ui/core/view-base';
+import { Property } from 'tns-core-modules/ui/core/properties';
 
 @CSSType('MDActivityIndicator')
-export abstract class ActivityIndicatorBase extends NSActivityIndicator {
+export class ActivityIndicatorBase extends NSActivityIndicator {
     public startAnimating() {
         this.busy = true;
     }
@@ -30,3 +33,11 @@ export abstract class ActivityIndicatorBase extends NSActivityIndicator {
         }
     }
 }
+
+applyMixins(ActivityIndicatorBase, [NSProgress], { omit: ['createNativeView'] });
+
+export const indeterminateProperty = new Property<ActivityIndicatorBase, boolean>({
+    name: 'indeterminate',
+    valueConverter: booleanConverter
+});
+indeterminateProperty.register(ActivityIndicatorBase);
