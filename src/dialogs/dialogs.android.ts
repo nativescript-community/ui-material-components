@@ -285,7 +285,7 @@ export function confirm(arg: any): Promise<boolean> {
                 resolve(result);
             });
 
-            showDialog(alert, options);
+            showDialog(alert, options, resolve);
         } catch (ex) {
             console.error(ex);
             reject(ex);
@@ -370,7 +370,7 @@ export function prompt(arg: any): Promise<PromptResult> {
                 resolve({ result: r, text: textField.text });
             });
 
-            showDialog(alert, options);
+            showDialog(alert, options, resolve);
             if (!!options.autoFocus) {
                 textField.requestFocus();
             }
@@ -444,7 +444,7 @@ export function login(arg: any): Promise<LoginResult> {
                 });
             });
 
-            const dlg = showDialog(alert, options);
+            const dlg = showDialog(alert, options, resolve);
             if (!!options.autoFocus) {
                 userNameTextField.requestFocus();
             }
@@ -536,7 +536,7 @@ export function action(arg: any): Promise<string> {
                 })
             );
 
-            showDialog(alert, options);
+            showDialog(alert, options, resolve);
         } catch (ex) {
             console.error(ex);
             reject(ex);

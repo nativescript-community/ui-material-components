@@ -370,7 +370,7 @@ export function confirm(arg: any): Promise<boolean> {
                       message: arg + ''
                   })
                 : Object.assign(defaultOptions, arg);
-            const alertController = createAlertController(options);
+            const alertController = createAlertController(options, resolve);
 
             addButtonsToAlertController(alertController, options, r => {
                 resolve(r);
@@ -464,7 +464,7 @@ export function prompt(arg: any): Promise<PromptResult> {
             stackLayout.addChild(textField);
             options.view = stackLayout;
 
-            const alertController = createAlertController(options);
+            const alertController = createAlertController(options, resolve);
             addButtonsToAlertController(alertController, options, r => {
                 resolve({ result: r, text: textField.text });
             });
@@ -532,7 +532,7 @@ export function login(arg: any): Promise<LoginResult> {
             stackLayout.addChild(userNameTextField);
             stackLayout.addChild(passwordTextField);
             options.view = stackLayout;
-            const alertController = createAlertController(options);
+            const alertController = createAlertController(options, resolve);
 
             // const textFieldColor = getTextFieldColor();
 
@@ -649,7 +649,7 @@ export function action(): Promise<string> {
         try {
             let i: number;
             let action: string;
-            const alertController = createAlertController(options);
+            const alertController = createAlertController(options, resolve);
 
             if (options.actions) {
                 for (i = 0; i < options.actions.length; i++) {
