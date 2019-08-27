@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.21](https://github.com/Akylas/nativescript-material-components/compare/v2.3.20...v2.3.21) (2019-08-27)
+
+**Note:** Version bump only for package nativescript-material-ripple
+
+
+
+
+
 ## [2.3.20](https://github.com/Akylas/nativescript-material-components/compare/v2.3.19...v2.3.20) (2019-08-23)
 
 **Note:** Version bump only for package nativescript-material-ripple
