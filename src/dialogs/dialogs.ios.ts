@@ -295,7 +295,7 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
             alertController.dismissModalViewControllerAnimated(true);
             (alertController as any)._resolveFunction = null;
             if (resolve) {
-                resolve(originalArgs);
+                resolve.apply(this, originalArgs);
             }
         };
         alertController._customContentViewContext = context;

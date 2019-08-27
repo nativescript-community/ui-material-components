@@ -86,7 +86,7 @@ function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options
         context.closeCallback = function(...originalArgs) {
             dlg.dismiss();
             if (resolve) {
-                resolve(originalArgs);
+                resolve.apply(this, originalArgs);
             }
         };
         view.bindingContext = fromObject(context);
