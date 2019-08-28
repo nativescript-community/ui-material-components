@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.22](https://github.com/Akylas/nativescript-material-components/compare/v2.3.21...v2.3.22) (2019-08-28)
+
+
+### Bug Fixes
+
+* resolve should be called with apply to get the args right ([fe1a6e5](https://github.com/Akylas/nativescript-material-components/commit/fe1a6e5))
+
+
+
+
+
 ## [2.3.21](https://github.com/Akylas/nativescript-material-components/compare/v2.3.20...v2.3.21) (2019-08-27)
 
 
