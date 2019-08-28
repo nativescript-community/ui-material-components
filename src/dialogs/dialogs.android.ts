@@ -143,13 +143,16 @@ function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options
     return dlg;
 }
 
-function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function): void {
+function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validation?: Function): void {
     if (!options) {
         return;
     }
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
     const onDone = function(result: boolean, dialog?: android.content.DialogInterface) {
+        if (validation && !validation(options)) {
+            return;
+        }
         if (onDoneCalled) {
             return;
         }
@@ -443,6 +446,10 @@ export function login(arg: any): Promise<LoginResult> {
                     password: passwordTextField.text
                 });
             });
+
+            if (!!options.beforeShow) {
+                options.beforeShow(options, userNameTextField, passwordTextField);
+            }
 
             const dlg = showDialog(alert, options, resolve);
             if (!!options.autoFocus) {

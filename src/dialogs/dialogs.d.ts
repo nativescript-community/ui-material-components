@@ -6,7 +6,7 @@ import { View } from 'tns-core-modules/ui/core/view/view';
 import { ImageSource } from 'tns-core-modules/image-source/image-source';
 import { Page } from 'tns-core-modules/ui/page/page';
 import { MDCAlertControlerOptions } from './dialogs-common';
-import { TextFieldProperties } from 'nativescript-material-textfield';
+import { TextField, TextFieldProperties } from 'nativescript-material-textfield';
 
 
 declare module 'tns-core-modules/ui/dialogs' {
@@ -67,6 +67,12 @@ export interface LoginOptions extends TNSLoginOptions {
      * Optional object to set any property to the username textfield!
      */
     passwordTextFieldProperties?: Partial<TextFieldProperties>
+
+
+    /**
+     * Optional function to choose if you can validate or not
+     */
+    beforeShow?:(options: LoginOptions & MDCAlertControlerOptions, usernameTextField:TextField, passwordTextField:TextField) => void
 }
 
 export { MDCAlertControlerOptions }

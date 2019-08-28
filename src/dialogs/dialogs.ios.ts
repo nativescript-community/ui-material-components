@@ -174,7 +174,7 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
     }
 );
 
-function addButtonsToAlertController(alertController: MDCAlertController, options: ConfirmOptions, callback?: Function): void {
+function addButtonsToAlertController(alertController: MDCAlertController, options: ConfirmOptions, callback?: Function, validation?: Function): void {
     if (!options) {
         return;
     }
@@ -198,6 +198,9 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
     if (isString(options.okButtonText)) {
         alertController.addAction(
             MDCAlertAction.actionWithTitleEmphasisHandler(options.okButtonText, MDCActionEmphasis.Low, () => {
+                if (validation && !validation(options)) {
+                    return;
+                }
                 raiseCallback(callback, true);
             })
         );
@@ -574,6 +577,9 @@ export function login(arg: any): Promise<LoginResult> {
                 });
             });
 
+            if (!!options.beforeShow) {
+                options.beforeShow(options, userNameTextField, passwordTextField);
+            }
             showUIAlertController(alertController);
             if (!!options.autoFocus) {
                 userNameTextField.requestFocus();
