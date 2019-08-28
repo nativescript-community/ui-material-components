@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.23](https://github.com/Akylas/nativescript-material-components/compare/v2.3.22...v2.3.23) (2019-08-28)
+
+
+### Features
+
+* beforeShow option to add events on textfields ([ee515e7](https://github.com/Akylas/nativescript-material-components/commit/ee515e7))
+
+
+
+
+
 ## [2.3.22](https://github.com/Akylas/nativescript-material-components/compare/v2.3.21...v2.3.22) (2019-08-28)
 
 
