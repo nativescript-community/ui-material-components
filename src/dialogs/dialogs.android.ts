@@ -421,9 +421,9 @@ export function login(arg: any): Promise<LoginResult> {
             stackLayout.padding = 4;
             const userNameTextField = new TextField();
             const passwordTextField = new TextField();
-            userNameTextField.hint = 'Login';
+            userNameTextField.hint = options.userNameHint || 'Username';
             userNameTextField.text = options.userName;
-            userNameTextField.hint = 'Password';
+            passwordTextField.hint = options.passwordHint || 'Password';
             passwordTextField.text = options.password;
             passwordTextField.secure = true;
 
