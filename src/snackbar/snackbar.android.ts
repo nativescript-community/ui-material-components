@@ -152,6 +152,7 @@ export class SnackBar extends SnackBarBase {
                             reason: _getReason(3)
                         });
                     }, 200);
+                    this._snackbar = null;
                 } catch (ex) {
                     reject(ex);
                 }
@@ -186,7 +187,7 @@ function initializeSnackCallback() {
 
         onDismissed(snackbar: com.google.android.material.snackbar.Snackbar, event: number) {
             // if the dismiss was not caused by the action button click listener
-            if (event !== com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_ACTION) {
+            if (event !== com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_ACTION && this.resolve) {
                 this.resolve({
                     command: 'Dismiss',
                     reason: _getReason(event),
