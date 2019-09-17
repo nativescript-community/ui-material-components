@@ -5,6 +5,7 @@
         "removeComments": true,
         "declaration": false,
         "noLib": false,
+        "skipLibCheck": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "noEmitHelpers": true,
