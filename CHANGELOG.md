@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.24](https://github.com/Akylas/nativescript-material-components/compare/v2.3.23...v2.3.24) (2019-09-19)
+
+
+### Bug Fixes
+
+* **dialogs:** show correct hints for login dialog ([15a5ae0](https://github.com/Akylas/nativescript-material-components/commit/15a5ae0))
+* android snackbar not cleaned up correctly on dismiss ([531c82f](https://github.com/Akylas/nativescript-material-components/commit/531c82f))
+* missing from last commits ([396058c](https://github.com/Akylas/nativescript-material-components/commit/396058c))
+* missing register for property ([566af59](https://github.com/Akylas/nativescript-material-components/commit/566af59))
+* prevent crash on android API < 23 ([f1da796](https://github.com/Akylas/nativescript-material-components/commit/f1da796))
+* some slider fixes. Still not enough ([289b3ee](https://github.com/Akylas/nativescript-material-components/commit/289b3ee))
+
+
+
+
+
 ## [2.3.23](https://github.com/Akylas/nativescript-material-components/compare/v2.3.22...v2.3.23) (2019-08-28)
 
 
