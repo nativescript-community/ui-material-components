@@ -75,7 +75,9 @@ class Model {
                     okButtonText: 'OK',
                     cancelButtonText: 'Cancel',
                     title: 'title?',
+                    userNameHint: 'Username hint',
                     userName: 'my username?',
+                    passwordHint: 'Password hint',
                     password: 'my password?'
                 }).then(result => console.log('login result', result));
                 break;
@@ -130,9 +132,7 @@ class Model {
                 dialog.show();
         }
     }
-    noop() {
-        
-    }
+    noop() {}
 }
 
 export function onNavigatingTo(args) {
@@ -157,10 +157,10 @@ export function onNavigatingTo(args) {
     if (global.TNS_WEBPACK) {
         // some-fragment.xml registered via bundle-config.ts, because it's postfixed with "fragment"
         // so it already exist in bundle.js as module
-        console.log('loading xml', `./${exampleTitle}-fragment.xml`)
+        console.log('loading xml', `./${exampleTitle}-fragment.xml`);
         innerComponent = builder.parse(require(`./${exampleTitle}-fragment.xml`) as string, theModule);
     } else {
-        console.log('loading xml', `${__dirname}/${exampleTitle}-fragment.xml`)
+        console.log('loading xml', `${__dirname}/${exampleTitle}-fragment.xml`);
         innerComponent = builder.load(`${__dirname}/${exampleTitle}-fragment.xml`, theModule);
     }
 

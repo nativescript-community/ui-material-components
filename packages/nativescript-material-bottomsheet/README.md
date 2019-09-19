@@ -17,7 +17,7 @@ Use the Material Design Bottom Sheets in your {N} app
 
 ## Usage
 
-### Start-up wiring
+### Start-up wiring (NON ANGULAR)
 We need to do some wiring when your app starts, so open `app.js` and add this before creating any View/App/Frame:
 
 
