@@ -1,4 +1,4 @@
-import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
+import { createRippleDrawable, getAttrColor, isPostLollipopMR1, isPostMarshmallow } from 'nativescript-material-core/android/utils';
 import { Color } from 'tns-core-modules/color';
 import { backgroundInternalProperty, ViewBase } from 'tns-core-modules/ui/core/view';
 import { Background } from 'tns-core-modules/ui/styling/background';
@@ -101,7 +101,9 @@ class ViewWithElevationAndRipple extends ViewBase {
     setRippleDrawable(view: android.view.View, radius = 0) {
         if (!this.rippleDrawable) {
             this.rippleDrawable = createRippleDrawable(view, this.getRippleColor(), radius);
-            view.setForeground(this.rippleDrawable);
+            if (isPostMarshmallow()) {
+                view.setForeground(this.rippleDrawable);
+            }
         }
     }
     [rippleColorProperty.setNative](color: Color) {
