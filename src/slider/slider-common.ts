@@ -1,7 +1,6 @@
 import { CSSType } from 'tns-core-modules/ui/core/view/view';
 import { Color } from 'tns-core-modules/color';
 import { booleanConverter } from 'tns-core-modules/ui/core/view-base';
-import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Property } from 'tns-core-modules/ui/core/properties';
 import { Slider as NSSlider } from 'tns-core-modules/ui/slider';
 import { cssProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
@@ -15,19 +14,6 @@ export abstract class SliderBase extends NSSlider {
     @cssProperty elevation: number;
     constructor() {
         super();
-    }
-
-    [colorProperty.setNative](color: Color) {
-        super[colorProperty.setNative](color);
-        if (!this.trackBackgroundColor) {
-            this.trackBackgroundColor = color;
-        }
-        if (!this.trackFillColor) {
-            this.trackFillColor = color;
-        }
-        if (!this.thumbColor) {
-            this.thumbColor = color;
-        }
     }
 }
 

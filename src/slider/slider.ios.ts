@@ -3,24 +3,42 @@ import { themer } from 'nativescript-material-core/core';
 import { Color } from 'tns-core-modules/color';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { trackBackgroundColorProperty } from './cssproperties';
+import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
 
 export class Slider extends SliderBase {
     nativeViewProtected: MDCSlider;
     constructor() {
         super();
-        this.height = 20;
+        this['css-height'] = 20;
     }
     public createNativeView() {
         const result = MDCSlider.new();
+        // (result.subviews[0] as any).shouldDisplayInk = true;
+        // (result.subviews[0] as any).shouldDisplayRipple = true;
         result.statefulAPIEnabled = true;
+        (result as any).enableRippleBehavior = true;
         const colorScheme = themer.getAppColorScheme();
         if (colorScheme) {
             MDCSliderColorThemer.applySemanticColorSchemeToSlider(colorScheme, result);
         }
         return result;
     }
+    [colorProperty.setNative](color: Color) {
+        super[colorProperty.setNative](color);
+        if (!this.trackBackgroundColor) {
+            this.trackBackgroundColor = new Color(66.3, color.r, color.g, color.b);
+        }
+        if (!this.trackFillColor) {
+            this.trackFillColor = color;
+        }
+        if (!this.thumbColor) {
+            this.thumbColor = color;
+        }
+    }
     [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.inkColor = color ? color.ios : null;
+        // TODO: Why isn't the ripple color showing?
+        console.log('rippleColorProperty.setNative', color);
+        (this.nativeViewProtected as any).rippleColor = color ? color.ios : null;
     }
 
     [thumbColorProperty.setNative](color: Color) {
