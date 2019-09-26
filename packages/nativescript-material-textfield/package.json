@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-textfield",
-    "version": "2.3.24",
+    "version": "2.4.0",
     "description": "Material textfield component",
     "main": "./textfield",
     "typings": "./textfield.d.ts",
@@ -34,7 +34,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^2.3.24"
+        "nativescript-material-core": "^2.4.0"
     },
     "gitHead": "e62190fa75ac5ca06904f8ccc46b6ac62f129c15"
 }

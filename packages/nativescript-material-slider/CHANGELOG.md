@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/Akylas/nativescript-material-components/compare/v2.3.24...v2.4.0) (2019-09-26)
+
+**Note:** Version bump only for package nativescript-material-slider
+
+
+
+
+
 ## [2.3.24](https://github.com/Akylas/nativescript-material-components/compare/v2.3.23...v2.3.24) (2019-09-19)
 
 **Note:** Version bump only for package nativescript-material-slider

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/Akylas/nativescript-material-components/compare/v2.3.24...v2.4.0) (2019-09-26)
+
+
+### Bug Fixes
+
+* bottomsheet fix for iOS: prevent top safe aera ([3bcf789](https://github.com/Akylas/nativescript-material-components/commit/3bcf789))
+* demo-ng styles ([7945294](https://github.com/Akylas/nativescript-material-components/commit/7945294))
+
+
+### Features
+
+* **bottomnavigationbar:** add android and ios implementation ([2333fd8](https://github.com/Akylas/nativescript-material-components/commit/2333fd8))
+
+
+
+
+
 ## [2.3.24](https://github.com/Akylas/nativescript-material-components/compare/v2.3.23...v2.3.24) (2019-09-19)
 
 
