@@ -5,9 +5,9 @@
     "main": "./floatingactionbutton",
     "typings": "./floatingactionbutton.d.ts",
     "scripts": {
-        "tsc-win": "tsc && copy ..\\..\\src\\floatingactionbutton\\floatingactionbutton.d.ts .\\",
-        "tsc": "tsc && cp ../../src/floatingactionbutton/floatingactionbutton.d.ts ./",
-        "ngc-win": "ngc",
+        "tsc-win": "../../node_modules/.bin/tsc && copy ..\\..\\src\\floatingactionbutton\\floatingactionbutton.d.ts .\\",
+        "tsc": "../../node_modules/.bin/tsc && cp ../../src/floatingactionbutton/floatingactionbutton.d.ts ./",
+        "ngc-win": "../../node_modules/.bin/ngc",
         "ngc": "node --max-old-space-size=8192 ../../node_modules/.bin/ngc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
