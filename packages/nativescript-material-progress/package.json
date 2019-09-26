@@ -8,7 +8,7 @@
         "tsc-win": "../../node_modules/.bin/tsc && copy ..\\..\\src\\progress\\progress.d.ts .\\",
         "tsc": "../../node_modules/.bin/tsc && cp ../../src/progress/progress.d.ts ./",
         "ngc-win": "../../node_modules/.bin/ngc",
-        "ngc": "node --max-old-space-size=8192 ../../node_modules/.bin/ngc",
+        "ngc": "../../node_modules/.bin/ngc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {
