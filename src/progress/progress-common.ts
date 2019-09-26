@@ -16,3 +16,5 @@ export const progressBackgroundColorProperty = new Property<ProgressBase, Color>
     equalityComparer: Color.equals,
     valueConverter: v => new Color(v)
 });
+progressColorProperty.register(ProgressBase);
+progressBackgroundColorProperty.register(ProgressBase);

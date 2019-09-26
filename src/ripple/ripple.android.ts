@@ -2,7 +2,7 @@ import { RippleBase } from './ripple-common';
 import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
 import { getRippleColor } from 'nativescript-material-core/core';
-import { createRippleDrawable, getAttrColor, isPostLollipopMR1 } from 'nativescript-material-core/android/utils';
+import { createRippleDrawable, getAttrColor, isPostLollipopMR1, isPostMarshmallow } from 'nativescript-material-core/android/utils';
 import { backgroundInternalProperty } from 'tns-core-modules/ui/page/page';
 import { Background } from 'tns-core-modules/ui/styling/background';
 
@@ -238,7 +238,9 @@ export class Ripple extends RippleBase {
     setRippleDrawable(view: android.view.View, radius = 0) {
         if (!this.rippleDrawable) {
             this.rippleDrawable = createRippleDrawable(view, this.getRippleColor(), radius);
-            view.setForeground(this.rippleDrawable);
+            if (isPostMarshmallow()) {
+                view.setForeground(this.rippleDrawable);
+            }
         }
     }
     [rippleColorProperty.setNative](color: Color) {

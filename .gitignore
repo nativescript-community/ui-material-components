@@ -74,3 +74,4 @@ package-lock.json
 # IDE
 .idea
 /pnpm-lock.yaml
+pnpm-lock.yaml

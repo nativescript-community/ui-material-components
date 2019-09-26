@@ -19,6 +19,13 @@ export function isPostLollipopMR1() {
     }
     return isPostLollipopMR1Var;
 }
+let isPostMarshmallowVar: boolean = undefined;
+export function isPostMarshmallow() {
+    if (isPostMarshmallowVar === undefined) {
+        isPostMarshmallowVar = android.os.Build.VERSION.SDK_INT >= 23;
+    }
+    return isPostMarshmallowVar;
+}
 
 export const state = {
     get selected() {
