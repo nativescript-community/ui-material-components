@@ -8,6 +8,7 @@
     "dependencies": {
         "nativescript-material-activityindicator": "file:../packages/nativescript-material-activityindicator",
         "nativescript-material-bottomsheet": "file:../packages/nativescript-material-bottomsheet",
+        "nativescript-material-bottomnavigationbar": "file:../packages/nativescript-material-bottomnavigationbar",
         "nativescript-material-button": "file:../packages/nativescript-material-button",
         "nativescript-material-cardview": "file:../packages/nativescript-material-cardview",
         "nativescript-material-core": "file:../packages/nativescript-material-core",

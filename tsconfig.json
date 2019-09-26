@@ -28,6 +28,8 @@
             "nativescript-material-snackbar/*": ["src/snackbar/*"],
             "nativescript-material-button": ["src/button/button"],
             "nativescript-material-button/*": ["src/button/*"],
+            "nativescript-material-bottomnavigationbar": ["src/bottomnavigationbar/bottomnavigationbar"],
+            "nativescript-material-bottomnavigationbar/*": ["src/bottomnavigationbar/*"],
             "nativescript-material-activityindicator": ["src/activityindicator/activityindicator"],
             "nativescript-material-activityindicator/*": ["src/activityindicator/*"],
             "nativescript-material-ripple": ["src/ripple/ripple"],
@@ -50,7 +52,7 @@
     "include": ["src/**/*", "src/**/*.ts", "./references.d.ts", "./src/references.d.ts"],
     "exclude": ["node_modules", "platforms"],
     "compileOnSave": false,
-    "angularCompilerOptions": { 
+    "angularCompilerOptions": {
         "skipTemplateCodegen": true
     }
 }
