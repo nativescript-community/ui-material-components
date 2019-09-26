@@ -10,6 +10,7 @@ import { TextFieldComponent } from './text-field/text-field.component';
 import { SliderComponent } from './slider/slider.component';
 import { ProgressComponent } from './progress/progress.component';
 import { ActivityIndicatorComponent } from './activity-indicator/activity-indicator.component';
+import { BottomNavigationBarComponent } from './bottom-navigation-bar/bottom-navigation-bar.component';
 // import { DialogComponent } from './dialog/dialog.component';
 
 const routes: Routes = [
@@ -44,6 +45,10 @@ const routes: Routes = [
     {
         path: 'activity-indicator',
         component: ActivityIndicatorComponent
+    },
+    {
+        path: 'bottom-navigation-bar',
+        component: BottomNavigationBarComponent
     }
 ];
 

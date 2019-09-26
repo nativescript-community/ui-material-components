@@ -1,0 +1,32 @@
+<GridLayout rows="*, auto" backgroundColor="blue"
+    xmlns:mdcb="nativescript-material-bottomnavigationbar">
+    <StackLayout
+      class="page"
+      backgroundColor="blue"
+      row="0"
+    >
+        <!-- <ns-first-tab *ngSwitchDefault></ns-first-tab> -->
+        <!-- <ns-third-tab *ngSwitchCase="2"></ns-third-tab> -->
+    </StackLayout>
+    <mdcb:BottomNavigationBar
+    row="1"
+    id="bottomNavigationBar"
+      class="custom-bottom-navigation-bar"
+      loaded="onbottomNavigationBarLoaded"
+      tabPressed="onBottomNavigationTabPressed"
+      tabSelected="onBottomNavigationTabSelected"
+      tabReselected="onBottomNavigationTabReselected"
+    >
+        <mdcb:BottomNavigationTab
+        title="First"
+        icon="res://ic_home"/>
+        <mdcb:BottomNavigationTab
+        title="Second"
+        icon="res://ic_view_list"
+        isSelectable="false"/>
+        <mdcb:BottomNavigationTab
+        title="Third"
+        icon="res://ic_menu"/>
+    </mdcb:BottomNavigationBar>
+</GridLayout>
+  

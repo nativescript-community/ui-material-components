@@ -8,7 +8,17 @@ import { ItemEventData } from 'tns-core-modules/ui/list-view';
     moduleId: module.id
 })
 export class HomeComponent implements OnInit {
-    examples = ['Buttons', 'Card View', 'Bottom Sheet', 'Ripple', 'Text Field', 'Slider', 'Progress', 'Activity Indicator'];
+    examples = [
+        'Activity Indicator', //
+        'Buttons',
+        'Bottom Sheet',
+        'Bottom Navigation Bar',
+        'Card View',
+        'Ripple',
+        'Text Field',
+        'Slider',
+        'Progress'
+    ];
 
     constructor(private router: RouterExtensions) {}
 

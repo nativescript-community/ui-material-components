@@ -1,6 +1,6 @@
 import { getFrameById } from 'tns-core-modules/ui/frame/frame';
 import { ItemEventData } from 'tns-core-modules/ui/list-view';
-const examples = ['buttons', 'cardview', 'ripple', 'textfields', 'sliders', 'progress', 'activityindicators', 'dialogs', 'bottomsheets', 'mixins', 'snackbar'];
+const examples = ['buttons', 'cardview', 'ripple', 'textfields', 'sliders', 'progress', 'activityindicators', 'dialogs', 'bottomsheets', 'mixins', 'snackbar', 'bottomnavigationbar'];
 
 export class ViewModel {
     public examples = examples.map(t => {
