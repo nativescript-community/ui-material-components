@@ -1,4 +1,9 @@
 <StackLayout xmlns:mdb="nativescript-material-button">
     <mdb:Button id="bottomsheet1" text="bottomsheet" tap="{{ onTap }}"/>
     <mdb:Button id="bottomsheet2" text="bottomsheet listview" tap="{{ onTap }}"/>
+
+    <StackLayout backgroundColor="red" xmlns:mdb="nativescript-material-button"  layoutChanged="onViewTestLayoutChanged">
+        <mdb:Button id="test1" text="test1"/>
+        <mdb:Button id="test2" text="test2"/>
+    </StackLayout>
 </StackLayout>
