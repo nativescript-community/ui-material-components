@@ -31,3 +31,7 @@ export interface MDCAlertControlerOptions {
     context?: any;
     closeCallback?: Function;
 }
+
+export function isDialogOptions(arg) {
+    return typeof arg === 'object';
+}

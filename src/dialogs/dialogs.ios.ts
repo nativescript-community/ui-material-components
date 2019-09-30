@@ -18,7 +18,6 @@ import {
     getLabelColor,
     getTextFieldColor,
     inputType,
-    isDialogOptions,
     LOGIN,
     LoginResult,
     OK,
@@ -28,31 +27,51 @@ import {
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
 import { isDefined, isFunction, isString } from 'tns-core-modules/utils/types';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
+import { isDialogOptions } from './dialogs-common';
 
 const UNSPECIFIED = layout.makeMeasureSpec(0, layout.UNSPECIFIED);
 
+class MDCDialogPresentationControllerDelegateImpl extends NSObject implements MDCDialogPresentationControllerDelegate {
+    public static ObjCProtocols = [MDCDialogPresentationControllerDelegate];
+
+    private _callback: Function;
+
+    public static initWithCallback(callback: Function): MDCDialogPresentationControllerDelegateImpl {
+        const impl = <MDCDialogPresentationControllerDelegateImpl>MDCDialogPresentationControllerDelegateImpl.new();
+        impl._callback = callback;
+        return impl;
+    }
+    dialogPresentationControllerDidDismiss(controller: MDCDialogPresentationController) {
+        const callback = this._callback;
+        if (callback) {
+            callback();
+        }
+    }
+}
+
 interface MDCAlertControllerImpl extends MDCAlertController {
     // new (): MDCAlertControllerImpl;
+    autoFocusTextField?: TextField;
     customContentView?: View;
     _customContentViewContext?: any;
     _resolveFunction?: Function;
+    actions: NSArray<any>;
 }
 const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as any).extend(
     {
         get preferredContentSize() {
             const superResult = this.super.preferredContentSize;
-            if (this._customContentView) {
-                const measuredHeight = this._customContentView.getMeasuredHeight(); // pixels
-                const hasTitleOrMessage = this.title || this.message;
-                let result: CGSize;
-                if (hasTitleOrMessage) {
-                    result = CGSizeMake(superResult.width, superResult.height + layout.toDeviceIndependentPixels(measuredHeight));
-                } else {
-                    result = CGSizeMake(superResult.width, layout.toDeviceIndependentPixels(measuredHeight));
-                }
-                return result;
+            const measuredHeight = this._customContentView ? this._customContentView.getMeasuredHeight() : 0; // pixels
+            const hasTitleOrMessage = this.title || this.message;
+            let result: CGSize;
+            if (hasTitleOrMessage) {
+                result = CGSizeMake(superResult.width, superResult.height + layout.toDeviceIndependentPixels(measuredHeight));
+            } else if (this.actions.count > 0) {
+                result = CGSizeMake(superResult.width, layout.toDeviceIndependentPixels(superResult.height) + layout.toDeviceIndependentPixels(measuredHeight));
+            } else {
+                result = CGSizeMake(superResult.width, layout.toDeviceIndependentPixels(measuredHeight));
             }
-            return superResult;
+            return result;
         },
         set preferredContentSize(x) {
             this.super.preferredContentSize = x;
@@ -60,24 +79,10 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
         get contentScrollView() {
             const alertView = this.super.view as MDCAlertControllerView;
             if (alertView) {
-                // alertView.backgroundColor = UIColor.blueColor;
                 const contentScrollView = alertView.subviews[0] as UIScrollView;
-                // contentScrollView.backgroundColor = UIColor.greenColor;
                 return contentScrollView;
             }
             return null;
-        },
-
-        // viewWillAppear(animated: boolean) {
-        //     super.viewWillAppear(animated);
-
-        // }
-        viewDidDisappear(animated: boolean) {
-            this.super.viewDidDisappear(animated);
-            if (this._resolveFunction) {
-                this._resolveFunction();
-                this._resolveFunction = null;
-            }
         },
 
         addCustomViewToLayout() {
@@ -93,7 +98,7 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             const nativeViewProtected = this._customContentView.nativeViewProtected;
             if (contentScrollView && nativeViewProtected) {
                 contentScrollView.addSubview(nativeViewProtected);
-                this.measureChild(); // ensure custom view is measured for preferredContentSize
+                this.layoutViews(); // ensure custom view is measured for preferredContentSize
             }
         },
         get customContentView() {
@@ -109,13 +114,12 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             }
         },
         measureChild() {
-            // const view = this._customContentView as View;
             const contentSize = this.contentScrollView.contentSize;
             const width = contentSize.width || this.super.preferredContentSize.width;
             const widthSpec = layout.makeMeasureSpec(layout.toDevicePixels(width), layout.EXACTLY);
             View.measureChild(null, this._customContentView, widthSpec, UNSPECIFIED);
         },
-        viewDidLayoutSubviews() {
+        layoutViews() {
             if (this._customContentView) {
                 const view = this._customContentView as View;
                 const hasTitleOrMessage = this.title || this.message;
@@ -133,24 +137,22 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
                 const boundsSize = bounds.size;
                 contentSize.height = contentSize.height + layout.toDeviceIndependentPixels(measuredHeight);
                 boundsSize.height = boundsSize.height + layout.toDeviceIndependentPixels(measuredHeight);
+
                 contentScrollView.contentSize = contentSize;
                 bounds.size = boundsSize;
                 contentScrollView.frame = bounds;
-                this.super.viewDidLayoutSubviews();
                 // TODO: for a reload of the preferredContentSize. Find a better solution!
-                this.preferredContentSize = {
-                    width: this.super.preferredContentSize.width,
-                    height: this.super.preferredContentSize.height + 0.0000000001
-                };
-            } else {
-                this.super.viewDidLayoutSubviews();
+                this.preferredContentSize = CGSizeMake(this.super.preferredContentSize.width, this.super.preferredContentSize.height + 0.0000000001);
             }
-            const hasTitleOrMessage = this.title || this.message;
-            if (!hasTitleOrMessage && this._customContentView) {
-                this.preferredContentSize = {
-                    width: this.super.preferredContentSize.width,
-                    height: layout.toDeviceIndependentPixels(this._customContentView.getMeasuredHeight())
-                };
+        },
+        viewDidLayoutSubviews() {
+            if (this._customContentView) {
+                this.layoutViews();
+            }
+            this.super.viewDidLayoutSubviews();
+            if (this.autoFocusTextField) {
+                this.autoFocusTextField.requestFocus();
+                this.autoFocusTextField = null;
             }
         },
         viewDidLoad() {
@@ -292,18 +294,24 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
                       moduleName: options.view as string
                   });
         alertController.customContentView = view;
-        (alertController as any)._resolveFunction = resolve;
+        alertController._resolveFunction = resolve;
         const context = options.context || {};
         context.closeCallback = function(...originalArgs) {
             alertController.dismissModalViewControllerAnimated(true);
-            (alertController as any)._resolveFunction = null;
-            if (resolve) {
+            if (alertController._resolveFunction && resolve) {
+                alertController._resolveFunction = null;
                 resolve.apply(this, originalArgs);
             }
         };
         alertController._customContentViewContext = context;
         // view.bindingContext = fromObject(context);
     }
+
+    alertController.mdc_dialogPresentationController.dialogPresentationControllerDelegate = MDCDialogPresentationControllerDelegateImpl.initWithCallback(() => {
+        resolve();
+        alertController._resolveFunction = null;
+        alertController.mdc_dialogPresentationController.delegate = null;
+    });
 
     if (options && options.cancelable === false) {
         alertController.mdc_dialogPresentationController.dismissOnBackgroundTap = false;
@@ -312,21 +320,21 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     // const transitionController = MDCDialogTransitionController.alloc().init()
     // alertController.modalPresentationStyle = UIModalPresentationStyle.Custom;
     // alertController.transitioningDelegate = transitionController;
-    return alertController as MDCAlertController;
+    return alertController;
 }
 
 export function alert(arg: any): Promise<void> {
     return new Promise<void>((resolve, reject) => {
         try {
             const defaultOptions = {
-                title: ALERT,
+                // title: ALERT,
                 okButtonText: OK
             };
             const options = !isDialogOptions(arg) ? Object.assign(defaultOptions, { message: arg + '' }) : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
 
             addButtonsToAlertController(alertController, options, result => {
-                (alertController as any)._resolveFunction = null;
+                alertController._resolveFunction = null;
                 resolve(result);
             });
 
@@ -364,7 +372,7 @@ export function confirm(arg: any): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
         try {
             const defaultOptions = {
-                title: CONFIRM,
+                // title: CONFIRM,
                 okButtonText: OK,
                 cancelButtonText: CANCEL
             };
@@ -390,7 +398,7 @@ export function prompt(arg: any): Promise<PromptResult> {
     let options: PromptOptions & MDCAlertControlerOptions;
 
     const defaultOptions = {
-        title: PROMPT,
+        // title: PROMPT,
         okButtonText: OK,
         cancelButtonText: CANCEL,
         inputType: inputType.text
@@ -469,13 +477,14 @@ export function prompt(arg: any): Promise<PromptResult> {
 
             const alertController = createAlertController(options, resolve);
             addButtonsToAlertController(alertController, options, r => {
+                alertController._resolveFunction = null;
                 resolve({ result: r, text: textField.text });
             });
-
-            showUIAlertController(alertController);
             if (!!options.autoFocus) {
-                textField.requestFocus();
+                alertController.autoFocusTextField = textField;
+                // textField.requestFocus();
             }
+            showUIAlertController(alertController);
         } catch (ex) {
             reject(ex);
         }
@@ -486,7 +495,7 @@ export function login(arg: any): Promise<LoginResult> {
     let options: LoginOptions & MDCAlertControlerOptions;
 
     const defaultOptions = {
-        title: LOGIN,
+        // title: LOGIN,
         okButtonText: OK,
         cancelButtonText: CANCEL
     };
@@ -582,7 +591,7 @@ export function login(arg: any): Promise<LoginResult> {
             }
             showUIAlertController(alertController);
             if (!!options.autoFocus) {
-                userNameTextField.requestFocus();
+                alertController.autoFocusTextField = userNameTextField;
             }
         } catch (ex) {
             reject(ex);
@@ -627,7 +636,10 @@ function showUIAlertController(alertController: MDCAlertController) {
 export function action(): Promise<string> {
     let options: ActionOptions;
 
-    const defaultOptions = { title: null, cancelButtonText: CANCEL };
+    const defaultOptions = {
+        // title: null,
+        cancelButtonText: CANCEL
+    };
 
     if (arguments.length === 1) {
         if (isString(arguments[0])) {

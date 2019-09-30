@@ -17,7 +17,6 @@ import {
     getButtonColors,
     getLabelColor,
     inputType,
-    isDialogOptions,
     LOGIN,
     LoginResult,
     OK,
@@ -28,6 +27,7 @@ import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs
 import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 import { ad } from 'tns-core-modules/utils/utils';
 import { TextField } from 'nativescript-material-textfield';
+import { isDialogOptions } from './dialogs-common';
 
 declare module 'tns-core-modules/ui/core/view/view' {
     interface View {
