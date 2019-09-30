@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-snackbar",
-    "version": "2.4.1",
+    "version": "2.4.2",
     "description": "Material snackbar component",
     "main": "./snackbar",
     "typings": "./snackbar.d.ts",
@@ -34,7 +34,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^2.4.1"
+        "nativescript-material-core": "^2.4.2"
     },
     "gitHead": "e62190fa75ac5ca06904f8ccc46b6ac62f129c15"
 }
