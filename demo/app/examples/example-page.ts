@@ -62,10 +62,10 @@ class Model {
             }
             case 'prompt': {
                 prompt({
-                    message: 'this is test Prompt!',
+                    // message: 'this is test Prompt!',
                     okButtonText: 'OK',
                     cancelButtonText: 'Cancel',
-                    title: 'title?'
+                    // title: 'title?'
                 }).then(result => console.log('prompt result', result));
                 break;
             }

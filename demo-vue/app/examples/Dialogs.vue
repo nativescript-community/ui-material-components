@@ -41,7 +41,7 @@ export default Vue.extend({
             console.log('onTap', objId, obj);
             switch (objId) {
                 case 'alert': {
-                    alert('this is test Alert!');
+                    alert('this is test Alert!').then(result => console.log('alert result', result));;
                     break;
                 }
                 case 'dialogCustomView': {
@@ -54,7 +54,7 @@ export default Vue.extend({
 
                     alert({
                         okButtonText: 'OK',
-                        title: 'custom dialog view',
+                        // title: 'custom dialog view',
                         context: {
                             dataItems: this.dataItems
                         },
@@ -67,10 +67,10 @@ export default Vue.extend({
                 case 'prompt': {
                     console.log('about to prompt');
                     prompt({
-                        message: 'this is test Prompt!',
+                        // message: 'this is test Prompt!',
                         okButtonText: 'OK',
                         cancelButtonText: 'Cancel',
-                        title: 'title?',
+                        title: null,
                         textFieldProperties: {
                             marginLeft: 20,
                             marginRight: 50,
