@@ -6,7 +6,7 @@
     "typings": "./core.d.ts",
     "scripts": {
         "tsc-win": "../../node_modules/.bin/tsc && copy ..\\..\\src\\core\\core.d.ts .\\",
-        "tsc": "../../node_modules/.bin/tsc && cp ../../src/core/core.d.ts ./",
+        "tsc": "cp ../../src/core/core.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
     },
     "nativescript": {

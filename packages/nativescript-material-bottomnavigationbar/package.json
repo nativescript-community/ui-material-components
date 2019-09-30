@@ -12,7 +12,7 @@
     },
     "scripts": {
         "tsc-win": "../../node_modules/.bin/tsc && copy ..\\..\\src\\bottomnavigationbar\\bottomnavigationbar.d.ts .\\",
-        "tsc": "../../node_modules/.bin/tsc && cp ../../src/bottomnavigationbar/bottomnavigationbar.d.ts ./",
+        "tsc": "cp ../../src/bottomnavigationbar/bottomnavigationbar.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck",
         "ngc-win": "../../node_modules/.bin/ngc",
         "ngc": "NODE_OPTIONS=--max_old_space_size=8192 ../../node_modules/.bin/ngc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
