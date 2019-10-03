@@ -9,6 +9,12 @@
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
+
+## Android migration to AndroidX
+
+For Material Components to work correctly with {N} 6 and AndroidX you need to update your android app theme.
+inside ```App_ressources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
+
 ---
 
 ##### [Material Design Spec](https://material.io/design/components/cardviews.html)
