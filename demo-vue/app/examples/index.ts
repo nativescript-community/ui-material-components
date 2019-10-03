@@ -8,6 +8,7 @@ import Sliders, { title as slidersTitle } from './Sliders.vue';
 import SnackBar, { title as snackTitle } from './SnackBar.vue';
 import TextFields, { title as textFieldsTitle } from './TextFields.vue';
 import ButtonIssue, { title as buttonIssueTitle } from './ButtonIssue.vue';
+import BottomSheet, { title as bottomsheetTitle } from './BottomSheet.vue';
 
 export const getExamples = () => {
     return [
@@ -50,6 +51,10 @@ export const getExamples = () => {
         {
             title: snackTitle,
             component: SnackBar
+        },
+        {
+            title: bottomsheetTitle,
+            component: BottomSheet
         },
         {
             title: snackTitle,
