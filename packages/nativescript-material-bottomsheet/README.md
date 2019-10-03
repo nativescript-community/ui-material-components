@@ -56,6 +56,25 @@ export function openBottomSheet(args) {
 }
 
 ```
+
+### NativeScript + Vue
+```typescript
+import Vue from 'nativescript-vue';
+import BottomSheetPlugin from 'nativescript-material-bottomsheet/vue';
+
+Vue.use(BottomSheetPlugin);
+```
+Then you can show a Vue component:
+```typescript 
+import MyComponent from 'MyComponent.vue';
+
+//inside another Vue component
+const options: BottomSheetOptions = {
+};
+this.$showBottomSheet(MyComponent, options)
+```
+
+
 ### NativeScript + Angular
 First you need to include the `NativeScriptMaterialBottomSheetModule` in your `app.module.ts`
 
