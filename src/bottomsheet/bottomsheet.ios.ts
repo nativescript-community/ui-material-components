@@ -18,11 +18,24 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottom
         return impl;
     }
     bottomSheetControllerDidDismissBottomSheet(controller: MDCBottomSheetController) {
+        // called when clicked on background
         const owner = this._owner.get();
         if (owner) {
-            owner.closeBottomSheet();
+            owner._whenCloseBottomSheetCallback && owner._whenCloseBottomSheetCallback();
             if (owner && owner.isLoaded) {
                 owner.callUnloaded();
+            }
+        }
+    }
+    bottomSheetControllerStateChangedState(controller: MDCBottomSheetController, state: MDCSheetState) {
+        // called when swiped
+        if (state === MDCSheetState.Closed) {
+            const owner = this._owner.get();
+            if (owner) {
+                owner._whenCloseBottomSheetCallback && owner._whenCloseBottomSheetCallback();
+                if (owner && owner.isLoaded) {
+                    owner.callUnloaded();
+                }
             }
         }
     }
@@ -47,7 +60,6 @@ class BottomSheetUILayoutViewController extends UIViewController {
         controller.owner = owner;
         return controller;
     }
-
 
     public viewDidLayoutSubviews(): void {
         super.viewDidLayoutSubviews();
@@ -127,7 +139,10 @@ class BottomSheetUILayoutViewController extends UIViewController {
 }
 
 export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
+    bottomSheetControllerDelegate: MDCBottomSheetControllerDelegateImpl;
+    bottomSheetController: MDCBottomSheetController;
     protected _showNativeBottomSheet(parent: View, options: BottomSheetOptions) {
+        options.context = options.context || {};
         const parentWithController = ios.getParentWithViewController(parent);
         if (!parentWithController) {
             traceWrite(`Could not find parent with viewController for ${parent} while showing bottom sheet view.`, traceCategories.ViewHierarchy, traceMessageType.error);
@@ -166,8 +181,8 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
         this._raiseShowingBottomSheetEvent();
         // animated = animated === undefined ? true : !!animated;
-        const bottomSheet = MDCBottomSheetController.alloc().initWithContentViewController(controller);
-        bottomSheet.delegate = MDCBottomSheetControllerDelegateImpl.initWithOwner(new WeakRef(this));
+        const bottomSheet = (this.bottomSheetController = MDCBottomSheetController.alloc().initWithContentViewController(controller));
+        this.bottomSheetControllerDelegate = bottomSheet.delegate = MDCBottomSheetControllerDelegateImpl.initWithOwner(new WeakRef(this));
         bottomSheet.isScrimAccessibilityElement = true;
         bottomSheet.scrimAccessibilityLabel = 'close';
         bottomSheet.dismissOnBackgroundTap = options.dismissOnBackgroundTap !== false;
@@ -200,9 +215,16 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         }
     }
 
+    _bottomSheetClosed() {
+        if (this.bottomSheetController) {
+            this.bottomSheetController.delegate = null;
+            this.bottomSheetController = null;
+        }
+        this.bottomSheetControllerDelegate = null;
+    }
     protected _hideNativeBottomSheet(parent: View, whenClosedCallback: () => void) {
         const parentWithController = ios.getParentWithViewController(parent);
-        console.log('_hideNativeBottomSheet', parent, parent.viewController, parentWithController);
+        console.log('_hideNativeBottomSheet', parent, parent.viewController, parentWithController, new Error().stack);
         if (!parent || !parentWithController) {
             traceError('Trying to hide bottom-sheet view but no parent with viewController specified.');
             return;
@@ -210,7 +232,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
         const parentController = parentWithController.viewController;
         const animated = (<any>this.viewController).animated;
-        whenClosedCallback();
+        // whenClosedCallback();
         parentController.dismissViewControllerAnimatedCompletion(animated, whenClosedCallback);
     }
 }

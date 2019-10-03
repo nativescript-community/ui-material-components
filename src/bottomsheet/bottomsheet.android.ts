@@ -180,7 +180,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 this.bindingContext = fromObject(options.context);
                 this._raiseShownBottomSheetEvent();
             },
-            dismissCallback: () => this.closeBottomSheet()
+            dismissCallback: () => this._whenCloseBottomSheetCallback()
         };
 
         saveBottomSheet(bottomSheetOptions);

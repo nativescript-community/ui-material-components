@@ -42,6 +42,7 @@ export interface BottomSheetOptions {
 
 export abstract class ViewWithBottomSheetBase extends View {
     protected _closeBottomSheetCallback: Function;
+    public _whenCloseBottomSheetCallback: Function;
     _bottomSheetFragment: any; // com.google.android.material.bottomsheet.BottomSheetDialogFragment
     protected abstract _hideNativeBottomSheet(parent, whenClosedCallback);
     protected _bottomSheetContext: any;
@@ -56,6 +57,7 @@ export abstract class ViewWithBottomSheetBase extends View {
         this.notify(args);
     }
     public _bottomSheetClosed(): void {
+        this._tearDownUI();
         if (this instanceof Frame) {
             this._removeFromFrameStack();
         }
@@ -66,27 +68,27 @@ export abstract class ViewWithBottomSheetBase extends View {
     }
     protected _showNativeBottomSheet(parent: View, options: BottomSheetOptions) {
         this._bottomSheetContext = options.context;
-        const that = this;
-        this._closeBottomSheetCallback = function(...originalArgs) {
-            if (that._closeBottomSheetCallback) {
-                // const modalIndex = _rootModalViews.indexOf(that);
-                // _rootModalViews.splice(modalIndex);
-                // that._modalParent = null;
-                that._bottomSheetContext = null;
-                that._closeBottomSheetCallback = null;
-                that._bottomSheetClosed();
-                // parent._modal = null;
-
-                const whenClosedCallback = () => {
-                    if (typeof options.closeCallback === 'function') {
-                        options.closeCallback.apply(undefined, originalArgs);
-                    }
-                };
-
-                that._hideNativeBottomSheet(parent, whenClosedCallback);
+        this._whenCloseBottomSheetCallback = (...originalArgs) => {
+            if (!this._whenCloseBottomSheetCallback) {
+                return;
+            }
+            this._whenCloseBottomSheetCallback = null;
+            this._bottomSheetContext = null;
+            this._closeBottomSheetCallback = null;
+            this._bottomSheetClosed();
+            if (typeof options.closeCallback === 'function') {
+                options.closeCallback.apply(undefined, originalArgs);
             }
         };
-        options.context.closeCallback = this._closeBottomSheetCallback;
+        this._closeBottomSheetCallback = (...originalArgs) =>{
+            if (this._closeBottomSheetCallback) {
+                const callback = this._closeBottomSheetCallback;
+                this._closeBottomSheetCallback = null;
+                this._bottomSheetContext.closeCallback = null;
+                this._hideNativeBottomSheet(parent, callback);
+            }
+        };
+        this._bottomSheetContext.closeCallback = this._closeBottomSheetCallback;
     }
     protected _raiseShowingBottomSheetEvent() {
         const args: ShownBottomSheetData = {
@@ -98,6 +100,7 @@ export abstract class ViewWithBottomSheetBase extends View {
         this.notify(args);
     }
     public closeBottomSheet(...args) {
+        console.log('closeBottomSheet');
         let closeCallback = this._closeBottomSheetCallback;
         if (closeCallback) {
             closeCallback.apply(undefined, arguments);
