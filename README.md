@@ -19,6 +19,11 @@ Build beautiful, usable products using Material Components for NativeScript.
 -   [Snackbar](./packages/nativescript-material-snackbar/README.md)
 -   [Bottom Navigation Bar](./packages/nativescript-material-bottomnavigationbar/README.md)
 
+## Android migration to AndroidX
+
+For Material Components to work correctly with {N} 6 and AndroidX you need to update your android app theme.
+inside ```App_ressources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
+
 ## Contribution
 
 ```bash
@@ -27,3 +32,5 @@ npm run tsc
 npm run demo.ios
 npm run demo.android
 ```
+
+
