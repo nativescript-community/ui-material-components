@@ -1,9 +1,9 @@
 import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
-import { ImageSource } from 'tns-core-modules/image-source/image-source';
+import { ImageSource } from 'tns-core-modules/image-source';
 import { dynamicElevationOffsetProperty, elevationProperty } from 'nativescript-material-core/cssproperties';
 import { themer } from 'nativescript-material-core/core';
-import { Color } from 'tns-core-modules/color/color';
-import { colorProperty } from 'tns-core-modules/ui/page/page';
+import { Color } from 'tns-core-modules/color';
+import { colorProperty } from 'tns-core-modules/ui/page';
 
 export class FloatingActionButton extends FloatingActionButtonBase {
     nativeViewProtected: MDCFloatingButton;

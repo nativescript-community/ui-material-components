@@ -1,18 +1,16 @@
-import { TextFieldBase } from './textfield.common';
-import { backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base/editable-text-base';
-
-import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from './textfield_cssproperties';
+import { getLayout, handleClearFocus, stateSets } from 'nativescript-material-core/android/utils';
 import { Color } from 'tns-core-modules/color';
-import { ad } from 'tns-core-modules/utils/utils';
-import { getFocusedColorStateList, getLayout, handleClearFocus, stateSets } from 'nativescript-material-core/android/utils';
+import { backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base';
 import { Background } from 'tns-core-modules/ui/styling/background';
-import { layout } from 'tns-core-modules/utils/utils';
+import { ad } from 'tns-core-modules/utils/utils';
+import { TextFieldBase } from './textfield.common';
+import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from './textfield_cssproperties';
 
-declare module 'tns-core-modules/ui/text-field/text-field' {
-    interface TextField {
-        _redrawNativeBackground(value: android.graphics.drawable.Drawable | Background): void;
-    }
-}
+// declare module 'tns-core-modules/ui/text-field' {
+//     interface TextField {
+//         _redrawNativeBackground(value: android.graphics.drawable.Drawable | Background): void;
+//     }
+// }
 
 interface TextInputEditText extends com.google.android.material.textfield.TextInputEditText {
     // tslint:disable-next-line:no-misused-new

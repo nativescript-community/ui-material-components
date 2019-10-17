@@ -1,7 +1,7 @@
 import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
-import { screen } from 'tns-core-modules/platform/platform';
+import { screen } from 'tns-core-modules/platform';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { Font } from 'tns-core-modules/ui/styling/font';
 import {

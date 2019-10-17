@@ -1,12 +1,12 @@
 import { createRippleDrawable, createStateListAnimator, getAttrColor, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from 'nativescript-material-core/android/utils';
 import * as application from 'tns-core-modules/application';
 import { Color } from 'tns-core-modules/color';
-import { backgroundInternalProperty, View, ViewBase } from 'tns-core-modules/ui/core/view';
+import { Button } from 'tns-core-modules/ui/button';
+import { backgroundInternalProperty, View } from 'tns-core-modules/ui/core/view';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { androidDynamicElevationOffsetProperty, androidElevationProperty, Length } from 'tns-core-modules/ui/styling/style-properties';
 import { applyMixins } from './core.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
-import { Button } from 'tns-core-modules/ui/button';
 export { applyMixins };
 
 // stub class as we don't use this on android

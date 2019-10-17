@@ -1,9 +1,9 @@
-import { CSSType } from 'tns-core-modules/ui/core/view/view';
+import { CSSType } from 'tns-core-modules/ui/core/view';
 import { Color } from 'tns-core-modules/color';
 import { booleanConverter } from 'tns-core-modules/ui/core/view-base';
 import { Property } from 'tns-core-modules/ui/core/properties';
 import { Slider as NSSlider } from 'tns-core-modules/ui/slider';
-import { cssProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { cssProperty } from 'nativescript-material-core/cssproperties';
 
 @CSSType('MDSlider')
 export abstract class SliderBase extends NSSlider {

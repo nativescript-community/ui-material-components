@@ -1,10 +1,9 @@
 import { FloatingActionButtonBase, imageSourceProperty, sizeProperty, srcProperty } from './floatingactionbutton-common';
-
 import { ImageSource } from 'tns-core-modules/image-source';
 import { dynamicElevationOffsetProperty, elevationProperty } from 'nativescript-material-core/cssproperties';
 import { backgroundInternalProperty, colorProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Background } from 'tns-core-modules/ui/styling/background';
-import { Color } from 'tns-core-modules/color/color';
+import { Color } from 'tns-core-modules/color';
 
 let MDCFabButton: typeof com.google.android.material.floatingactionbutton.FloatingActionButton;
 

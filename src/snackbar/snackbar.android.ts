@@ -1,7 +1,6 @@
 import { Color } from 'tns-core-modules/color';
 import { topmost } from 'tns-core-modules/ui/frame';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
-import { View } from 'tns-core-modules/ui/core/view';
 
 function _getReason(value: number) {
     switch (value) {

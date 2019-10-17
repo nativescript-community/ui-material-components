@@ -1,5 +1,5 @@
-import { CSSType } from 'tns-core-modules/ui/core/view/view';
-import { Button } from 'tns-core-modules/ui/button/button';
+import { CSSType } from 'tns-core-modules/ui/core/view';
+import { Button } from 'tns-core-modules/ui/button';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
 import { Property } from 'tns-core-modules/ui/core/properties';

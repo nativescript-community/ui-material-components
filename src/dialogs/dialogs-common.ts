@@ -1,6 +1,6 @@
-import { View } from 'tns-core-modules/ui/page/page';
+import { View } from 'tns-core-modules/ui/core/view';
 import { ImageSource } from 'tns-core-modules/image-source/image-source';
-import { TextAlignment } from 'tns-core-modules/ui/text-base/text-base';
+import { TextAlignment } from 'tns-core-modules/ui/text-base';
 import { Font } from 'tns-core-modules/ui/styling/font';
 import { Color } from 'tns-core-modules/color';
 

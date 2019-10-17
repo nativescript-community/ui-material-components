@@ -3,7 +3,7 @@ import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
 import { getRippleColor } from 'nativescript-material-core/core';
 import { createRippleDrawable, getAttrColor, isPostLollipopMR1, isPostMarshmallow } from 'nativescript-material-core/android/utils';
-import { backgroundInternalProperty } from 'tns-core-modules/ui/page/page';
+import { backgroundInternalProperty } from 'tns-core-modules/ui/page';
 import { Background } from 'tns-core-modules/ui/styling/background';
 
 let MDStackLayout: typeof org.nativescript.widgets.StackLayout;

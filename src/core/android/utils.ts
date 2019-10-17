@@ -1,8 +1,7 @@
-import { Color } from 'tns-core-modules/color/color';
-import { ad } from 'tns-core-modules/utils/utils';
-import { ViewBase } from 'tns-core-modules/ui/page/page';
-import * as application from 'application';
-import { layout } from 'tns-core-modules/utils/utils';
+import * as application from 'tns-core-modules/application';
+import { Color } from 'tns-core-modules/color';
+import { ViewBase } from 'tns-core-modules/ui/page';
+import { ad, layout } from 'tns-core-modules/utils/utils';
 
 let isPostLollipopVar: boolean = undefined;
 export function isPostLollipop() {

@@ -1,6 +1,6 @@
-import { Page as INSPage, View } from 'tns-core-modules/ui/page/page';
-import { ActionBar } from 'tns-core-modules/ui/action-bar/action-bar';
-import * as application from 'application';
+import { Page as INSPage, View } from 'tns-core-modules/ui/page';
+import { ActionBar } from 'tns-core-modules/ui/action-bar';
+import * as application from 'tns-core-modules/application';
 import { applyMixins } from 'nativescript-material-core/core';
 
 function getLayout(id: string) {

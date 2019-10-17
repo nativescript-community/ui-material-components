@@ -1,6 +1,6 @@
-import { View } from 'tns-core-modules/ui/core/view/view';
-import { createViewFromEntry } from 'tns-core-modules/ui/builder/builder';
-import { Frame } from 'tns-core-modules/ui/frame/frame';
+import { View } from 'tns-core-modules/ui/core/view';
+import { createViewFromEntry } from 'tns-core-modules/ui/builder';
+import { Frame } from 'tns-core-modules/ui/frame';
 import { EventData } from 'tns-core-modules/data/observable';
 import { eachDescendant, ViewBase } from 'tns-core-modules/ui/core/view-base';
 

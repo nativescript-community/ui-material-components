@@ -1,30 +1,26 @@
 import { themer } from 'nativescript-material-core/core';
 import { TextField } from 'nativescript-material-textfield';
 import { getRootView } from 'tns-core-modules/application';
-import { fromObject } from 'tns-core-modules/data/observable/observable';
+import { fromObject } from 'tns-core-modules/data/observable';
 import { createViewFromEntry } from 'tns-core-modules/ui/builder/builder';
-import { ios as iosView, View } from 'tns-core-modules/ui/core/view/view';
+import { ios as iosView, View } from 'tns-core-modules/ui/core/view';
 import { layout } from 'tns-core-modules/utils/utils';
 import {
     ActionOptions,
-    ALERT,
     CANCEL,
     capitalizationType,
-    CONFIRM,
     ConfirmOptions,
     DialogOptions,
     getButtonColors,
     getCurrentPage,
     getLabelColor,
-    getTextFieldColor,
     inputType,
     LOGIN,
     LoginResult,
     OK,
-    PROMPT,
     PromptResult
 } from 'tns-core-modules/ui/dialogs';
-import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
+import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
 import { isDefined, isFunction, isString } from 'tns-core-modules/utils/types';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';

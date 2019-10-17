@@ -1,10 +1,10 @@
-import { ActivityIndicatorBase, indeterminateProperty } from './activityindicator-common';
 import { themer } from 'nativescript-material-core/core';
-import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Color } from 'tns-core-modules/color';
 import { screen } from 'tns-core-modules/platform';
-import { layout } from 'tns-core-modules/utils/utils';
 import { View } from 'tns-core-modules/ui/core/view';
+import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
+import { layout } from 'tns-core-modules/utils/utils';
+import { ActivityIndicatorBase, indeterminateProperty } from './activityindicator-common';
 
 declare module 'tns-core-modules/ui/core/view/view' {
     interface View {

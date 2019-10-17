@@ -1,7 +1,3 @@
-/**
- * Android specific dialogs functions implementation.
- */
-
 import { android as androidApp } from 'tns-core-modules/application';
 import { fromObject } from 'tns-core-modules/data/observable';
 import { createViewFromEntry } from 'tns-core-modules/ui/builder';

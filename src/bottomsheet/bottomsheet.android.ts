@@ -1,4 +1,4 @@
-import { View } from 'tns-core-modules/ui/core/view/view';
+import { View } from 'tns-core-modules/ui/core/view';
 import { fromObject } from 'tns-core-modules/data/observable';
 import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
 import { applyMixins } from 'nativescript-material-core/core';

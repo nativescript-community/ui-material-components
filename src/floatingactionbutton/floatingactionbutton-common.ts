@@ -1,5 +1,6 @@
-import { CSSType, View, Color } from 'tns-core-modules/ui/core/view/view';
-import { ImageAsset } from 'tns-core-modules/image-asset/image-asset';
+import { CSSType, View } from 'tns-core-modules/ui/core/view';
+import { Color } from 'tns-core-modules/color';
+import { ImageAsset } from 'tns-core-modules/image-asset';
 import { isDataURI, isFileOrResourcePath, RESOURCE_PREFIX } from 'tns-core-modules/utils/utils';
 import { fromAsset, fromNativeSource, fromUrl, ImageSource } from 'tns-core-modules/image-source';
 import { cssProperty } from 'nativescript-material-core/cssproperties';

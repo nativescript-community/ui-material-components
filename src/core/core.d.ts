@@ -1,6 +1,13 @@
 import { Color } from 'tns-core-modules/color';
 import { Length } from 'tns-core-modules/ui/styling/style-properties';
 
+
+declare module 'tns-core-modules/ui/styling/style-properties' {
+    export const androidElevationProperty;
+    export const androidDynamicElevationOffsetProperty;
+}
+
+
 export interface TypographyOptions {
     fontFamily?: string;
     fontSize?: number;

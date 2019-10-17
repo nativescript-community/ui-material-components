@@ -1,11 +1,11 @@
-import { CardViewBase } from './cardview-common';
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
-import { isUserInteractionEnabledProperty } from 'tns-core-modules/ui/core/view/view';
-import { Color } from 'tns-core-modules/color';
 import { getRippleColor, themer } from 'nativescript-material-core/core';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { Color } from 'tns-core-modules/color';
+import { screen } from 'tns-core-modules/platform';
+import { isUserInteractionEnabledProperty } from 'tns-core-modules/ui/core/view';
 import { Background } from 'tns-core-modules/ui/styling/background';
-import { screen } from 'tns-core-modules/platform/platform';
+import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
+import { CardViewBase } from './cardview-common';
 
 // use custom class to get the same behavior as android which is
 // highlight even if clicked on subview (which is not a control)

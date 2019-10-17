@@ -1,10 +1,10 @@
-import { CSSType } from 'tns-core-modules/ui/core/view/view';
-import { ActivityIndicator as NSActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
-import { layout } from 'tns-core-modules/utils/utils';
-import { Progress as NSProgress } from 'tns-core-modules/ui/progress';
 import { applyMixins } from 'nativescript-material-core';
-import { booleanConverter } from 'tns-core-modules/ui/core/view-base';
+import { ActivityIndicator as NSActivityIndicator } from 'tns-core-modules/ui/activity-indicator';
 import { Property } from 'tns-core-modules/ui/core/properties';
+import { CSSType } from 'tns-core-modules/ui/core/view';
+import { booleanConverter } from 'tns-core-modules/ui/core/view-base';
+import { Progress as NSProgress } from 'tns-core-modules/ui/progress';
+import { layout } from 'tns-core-modules/utils/utils';
 
 @CSSType('MDActivityIndicator')
 export class ActivityIndicatorBase extends NSActivityIndicator {
