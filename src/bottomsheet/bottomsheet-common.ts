@@ -80,7 +80,7 @@ export abstract class ViewWithBottomSheetBase extends View {
                 options.closeCallback.apply(undefined, originalArgs);
             }
         };
-        this._closeBottomSheetCallback = (...originalArgs) =>{
+        this._closeBottomSheetCallback = (...originalArgs) => {
             if (this._closeBottomSheetCallback) {
                 const callback = this._closeBottomSheetCallback;
                 this._closeBottomSheetCallback = null;
