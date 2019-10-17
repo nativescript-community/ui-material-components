@@ -56,7 +56,7 @@ export class CardView extends CardViewBase {
         if (typeof dynamicElevationOffset === 'undefined' || dynamicElevationOffset === null) {
             dynamicElevationOffset = this.getDefaultDynamicElevationOffset();
         }
-        if (this.elevationHighlighted === undefined) {
+        if (dynamicElevationOffset === undefined) {
             this.nativeViewProtected.setShadowElevationForState(value + dynamicElevationOffset, MDCCardCellState.Highlighted);
         }
     }

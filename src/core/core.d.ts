@@ -37,13 +37,12 @@ export function applyMixins(
 );
 export function getRippleColor(color: string | Color): any;
 
-declare module 'tns-core-modules/ui/core/view' {
-    interface View {
-        elevation: Length;
-        elevationHighlighted: Length;
-        rippleColor: string | Color;
-    }
-}
+// declare module 'tns-core-modules/ui/core/view' {
+//     interface View {
+//         elevation: Length;
+//         rippleColor: string | Color;
+//     }
+// }
 export type VerticalTextAlignment = 'initial' | 'top' | 'middle' | 'bottom';
 
 

@@ -34,7 +34,7 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         if (typeof dynamicElevationOffset === 'undefined' || dynamicElevationOffset === null) {
             dynamicElevationOffset = this.getDefaultDynamicElevationOffset();
         }
-        if (this.elevationHighlighted === undefined) {
+        if (this.dynamicElevationOffset === undefined) {
             this.nativeViewProtected.setElevationForState(value + dynamicElevationOffset, UIControlState.Highlighted);
         }
     }
