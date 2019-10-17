@@ -6,11 +6,6 @@ import { androidDynamicElevationOffsetProperty, androidElevationProperty, backgr
 import { ButtonBase } from './button-common';
 import { VerticalTextAlignment } from 'nativescript-material-core';
 
-declare module 'tns-core-modules/ui/styling/style-properties' {
-    const androidElevationProperty;
-    const androidDynamicElevationOffsetProperty;
-}
-
 export class Button extends ButtonBase {
     nativeViewProtected: com.google.android.material.button.MaterialButton;
 
@@ -52,12 +47,10 @@ export class Button extends ButtonBase {
     }
 
     getDefaultElevation(): number {
-        console.log(this.constructor.name, 'getDefaultElevation')
         return 2; // 2dp @dimen/mtrl_btn_elevation
     }
 
     getDefaultDynamicElevationOffset(): number {
-        console.log(this.constructor.name, 'getDefaultDynamicElevationOffset')
         return 6; // 6dp @dimen/mtrl_btn_pressed_z
     }
 
