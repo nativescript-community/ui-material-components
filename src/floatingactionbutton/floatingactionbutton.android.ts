@@ -1,6 +1,6 @@
 import { FloatingActionButtonBase, imageSourceProperty, sizeProperty, srcProperty } from './floatingactionbutton-common';
 import { ImageSource } from 'tns-core-modules/image-source';
-import { dynamicElevationOffsetProperty, elevationProperty } from 'nativescript-material-core/cssproperties';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { backgroundInternalProperty, colorProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { Background } from 'tns-core-modules/ui/styling/background';
 import { Color } from 'tns-core-modules/color';
@@ -80,4 +80,8 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     [colorProperty.setNative](value: Color) {
         this.nativeViewProtected.setSupportImageTintList(android.content.res.ColorStateList.valueOf(value.android));
     }
+    [rippleColorProperty.setNative](color: Color) {
+        this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
+    }
+
 }

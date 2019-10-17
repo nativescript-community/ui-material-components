@@ -1,9 +1,9 @@
-import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
-import { ImageSource } from 'tns-core-modules/image-source';
-import { dynamicElevationOffsetProperty, elevationProperty } from 'nativescript-material-core/cssproperties';
-import { themer } from 'nativescript-material-core/core';
+import { getRippleColor, themer } from 'nativescript-material-core/core';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
+import { ImageSource } from 'tns-core-modules/image-source';
 import { colorProperty } from 'tns-core-modules/ui/page';
+import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
 
 export class FloatingActionButton extends FloatingActionButtonBase {
     nativeViewProtected: MDCFloatingButton;
@@ -55,5 +55,8 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     }
     [colorProperty.setNative](value: Color) {
         this.nativeViewProtected.tintColor = value.ios;
+    }
+    [rippleColorProperty.setNative](color: Color) {
+        this.nativeViewProtected.inkColor = getRippleColor(color);
     }
 }
