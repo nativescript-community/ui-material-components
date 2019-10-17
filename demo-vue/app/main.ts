@@ -54,7 +54,11 @@ Vue.use(BottomSheetPlugin);
 Vue.registerElement('PreviousNextView', () => require('nativescript-iqkeyboardmanager').PreviousNextView);
 Vue.registerElement('TextViewWithHint', () => require('nativescript-iqkeyboardmanager').TextViewWithHint);
 
-import { themer } from 'nativescript-material-core';
+import { installMixins, themer } from 'nativescript-material-core';
+import { install } from 'nativescript-material-bottomsheet';
+
+install();
+installMixins();
 if (isIOS) {
     themer.setPrimaryColor('#33B5E5');
     themer.setPrimaryColorVariant('#33B5E5');
