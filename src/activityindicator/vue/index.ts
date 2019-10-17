@@ -1,6 +1,6 @@
 import { ActivityIndicator } from '../activityindicator';
 let installed = false;
-const ActivityIndicatorPlugin = {
+export default {
     install(Vue) {
         if (!installed) {
             installed = true;
@@ -8,5 +8,3 @@ const ActivityIndicatorPlugin = {
         }
     }
 };
-
-export default ActivityIndicatorPlugin;

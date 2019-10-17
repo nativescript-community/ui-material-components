@@ -1,7 +1,7 @@
 import { FloatingActionButton } from '../floatingactionbutton';
 
 let installed = false;
-const FloatingActionButtonPlugin = {
+export default {
     install(Vue) {
         if (!installed) {
             installed = true;
@@ -9,5 +9,3 @@ const FloatingActionButtonPlugin = {
         }
     }
 };
-
-export default FloatingActionButtonPlugin;
