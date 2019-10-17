@@ -37,7 +37,6 @@ export class Slider extends SliderBase {
     }
     [rippleColorProperty.setNative](color: Color) {
         // TODO: Why isn't the ripple color showing?
-        console.log('rippleColorProperty.setNative', color);
         (this.nativeViewProtected as any).rippleColor = color ? color.ios : null;
     }
 

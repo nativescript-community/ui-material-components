@@ -27,7 +27,6 @@ export class Slider extends SliderBase {
         // TODO: for now it is impossible to change the ripple color on android for now
     }
     [thumbColorProperty.setNative](color: Color) {
-        console.log('thumbColorProperty.setNative', color, this.thumbColor);
         this.nativeViewProtected.setThumbTintList(color ? android.content.res.ColorStateList.valueOf(color.android) : null);
         if (android.os.Build.VERSION.SDK_INT >= 24) {
             this.nativeViewProtected.setTickMarkTintList(color ? android.content.res.ColorStateList.valueOf(color.android) : null);
