@@ -1,8 +1,8 @@
 import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from 'tns-core-modules/color';
-import { trackBackgroundColorProperty } from './cssproperties';
-import { SliderBase, thumbColorProperty, trackFillColorProperty } from './slider-common';
 import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
+import { thumbColorProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
+import { SliderBase } from './slider-common';
 
 export class Slider extends SliderBase {
     nativeViewProtected: android.widget.SeekBar;

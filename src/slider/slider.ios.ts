@@ -1,9 +1,9 @@
-import { SliderBase, thumbColorProperty, thumbHollowAtStartProperty, trackFillColorProperty } from './slider-common';
 import { themer } from 'nativescript-material-core/core';
-import { Color } from 'tns-core-modules/color';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { trackBackgroundColorProperty } from './cssproperties';
+import { Color } from 'tns-core-modules/color';
 import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
+import { thumbColorProperty, thumbHollowAtStartProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
+import { SliderBase } from './slider-common';
 
 export class Slider extends SliderBase {
     nativeViewProtected: MDCSlider;
