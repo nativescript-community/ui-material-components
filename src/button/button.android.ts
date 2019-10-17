@@ -51,6 +51,16 @@ export class Button extends ButtonBase {
         // }
     }
 
+    getDefaultElevation(): number {
+        console.log(this.constructor.name, 'getDefaultElevation')
+        return 2; // 2dp @dimen/mtrl_btn_elevation
+    }
+
+    getDefaultDynamicElevationOffset(): number {
+        console.log(this.constructor.name, 'getDefaultDynamicElevationOffset')
+        return 6; // 6dp @dimen/mtrl_btn_pressed_z
+    }
+
     [elevationProperty.setNative](value: number) {
         if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
