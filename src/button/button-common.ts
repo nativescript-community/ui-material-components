@@ -10,12 +10,8 @@ export abstract class ButtonBase extends Button {
     public variant: string = 'contained';
     @cssProperty elevation: number;
     @cssProperty dynamicElevationOffset: number;
-    @cssProperty rippleColor: Color | string;
+    @cssProperty rippleColor: Color;
     @cssProperty verticalTextAlignment: VerticalTextAlignment;
-
-    constructor() {
-        super();
-    }
 }
 
 export const variantProperty = new Property<ButtonBase, string>({
