@@ -1,7 +1,7 @@
 import { Slider } from '../slider';
 
 let installed = false;
-const SliderPlugin = {
+export default {
     install(Vue) {
         if (!installed) {
             installed = true;
@@ -14,5 +14,3 @@ const SliderPlugin = {
         }
     }
 };
-
-export default SliderPlugin;

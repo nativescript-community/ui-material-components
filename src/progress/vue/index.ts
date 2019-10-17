@@ -1,7 +1,7 @@
 import { Progress } from '../progress';
 
 let installed = false;
-const ProgressPlugin = {
+export default {
     install(Vue) {
         if (!installed) {
             installed = true;
@@ -9,5 +9,3 @@ const ProgressPlugin = {
         }
     }
 };
-
-export default ProgressPlugin;

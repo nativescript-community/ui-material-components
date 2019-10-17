@@ -1,7 +1,7 @@
 import { Ripple } from '../ripple';
 
 let installed = false;
-const RipplePlugin = {
+export default {
     install(Vue) {
         if (!installed) {
             installed = true;
@@ -9,5 +9,3 @@ const RipplePlugin = {
         }
     }
 };
-
-export default RipplePlugin;

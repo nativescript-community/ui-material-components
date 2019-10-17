@@ -1,7 +1,7 @@
 import { CardView } from '../cardview';
 
 let installed = false;
-const CardViewPlugin = {
+export default {
     install(Vue) {
         if (!installed) {
             installed = true;
@@ -9,5 +9,3 @@ const CardViewPlugin = {
         }
     }
 };
-
-export default CardViewPlugin;

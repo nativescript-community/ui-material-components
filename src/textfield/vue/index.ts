@@ -1,7 +1,7 @@
 import { TextField } from '../textfield';
 
 let installed = false;
-const TextFieldPlugin = {
+export default {
     install(Vue) {
         if (!installed) {
             installed = true;
@@ -14,5 +14,3 @@ const TextFieldPlugin = {
         }
     }
 };
-
-export default TextFieldPlugin;

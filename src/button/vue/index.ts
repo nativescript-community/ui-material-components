@@ -1,7 +1,7 @@
 import { Button } from '../button';
 
 let installed = false;
-const ButtonPlugin = {
+export default {
     install(Vue) {
         if (!installed) {
             installed = true;
@@ -9,5 +9,3 @@ const ButtonPlugin = {
         }
     }
 };
-
-export default ButtonPlugin;
