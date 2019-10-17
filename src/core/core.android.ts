@@ -121,6 +121,7 @@ class ViewWithElevationAndRipple extends View {
                 return;
             }
         }
+        this.nativeViewProtected.setClickable(this.isUserInteractionEnabled);
         this.setRippleDrawable(this.nativeViewProtected, Length.toDevicePixels(this.style.borderTopLeftRadius));
         if (isPostLollipopMR1()) {
             (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(rippleColor));
@@ -174,6 +175,7 @@ class ViewWithElevationAndRipple extends View {
         return this.getDefaultDynamicElevationOffset();
     }
     [dynamicElevationOffsetProperty.setNative](value: number) {
+        this.nativeViewProtected.setClickable(this.isUserInteractionEnabled);
         if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
