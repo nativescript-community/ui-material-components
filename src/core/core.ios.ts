@@ -117,11 +117,13 @@ export function getRippleColor(color: string | Color): UIColor {
 }
 
 class ViewWithElevationAndRipple extends View {
-    @cssProperty elevation: number = 0;
-    @cssProperty dynamicElevationOffset: number = 0;
+    @cssProperty elevation: number;
+    @cssProperty dynamicElevationOffset: number;
     @cssProperty rippleColor: Color;
     inkTouchController: MDCInkTouchController;
     shadowLayer: MDCShadowLayer;
+
+    nativeViewProtected: UIView;
 
     getOrCreateRippleController() {
         if (!this.inkTouchController) {
@@ -141,11 +143,11 @@ class ViewWithElevationAndRipple extends View {
             this._shadowElevations = this._shadowElevations || {};
 
             // create the shadow Layer
-            const layer = (this.shadowLayer = MDCShadowLayer.layer());
-            layer.frame = (this.nativeViewProtected as UIView).layer.bounds;
-            // layer.shouldRasterize = true;
-            // layer.rasterizationScale = screen.mainScreen.scale;
-            (this.nativeViewProtected as UIView).layer.addSublayer(this.shadowLayer);
+            const layer = (this.shadowLayer = MDCShadowLayer.alloc().init());
+            layer.shouldRasterize = true;
+            layer.rasterizationScale = UIScreen.mainScreen.scale;
+            layer.bounds = this.nativeViewProtected.layer.bounds;
+            this.nativeViewProtected.layer.addSublayer(this.shadowLayer);
             if (this.style.backgroundInternal) {
                 layer.cornerRadius = layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
             }
@@ -157,7 +159,7 @@ class ViewWithElevationAndRipple extends View {
     }
     _onSizeChanged(): void {
         if (this.nativeViewProtected && this.shadowLayer) {
-            this.shadowLayer.frame = (this.nativeViewProtected as UIView).layer.bounds;
+            this.shadowLayer.frame = this.nativeViewProtected.layer.bounds;
         }
     }
     _setNativeClipToBounds() {
@@ -215,23 +217,24 @@ class ViewWithElevationAndRipple extends View {
     }
 
     [elevationProperty.setNative](value: number) {
+        console.log('elevationProperty', value);
         this.getOrCreateShadowLayer();
         this._shadowElevations['normal'] = value;
+        this._shadowElevations['highlighted'] = value + (this.dynamicElevationOffset || 0);
+        console.log('elevationProperty1', value, this.dynamicElevationOffset);
         this.shadowLayer.elevation = value;
-        this.nativeViewProtected.clipsToBounds = false;
-        this._shadowElevations['highlighted'] = value + this.dynamicElevationOffset;
     }
     [dynamicElevationOffsetProperty.setNative](value: number) {
         this.getOrCreateShadowLayer();
         this.startElevationStateChangeHandler();
-        this._shadowElevations['highlighted'] = this.elevation + value;
+        this._shadowElevations['highlighted'] = (this.elevation || 0) + value;
     }
 
     [backgroundInternalProperty.setNative](value: Background) {
         // base impl will be called before
-        if (this.shadowLayer) {
-            this.shadowLayer.cornerRadius = layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
-        }
+        // if (this.shadowLayer) {
+        //     this.shadowLayer.cornerRadius = layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
+        // }
         if (this.inkTouchController) {
             this.inkTouchController.defaultInkView.layer.cornerRadius = layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
         }
@@ -240,7 +243,11 @@ class ViewWithElevationAndRipple extends View {
 
 export function overrideViewBase() {
     const NSView = require('tns-core-modules/ui/core/view').View;
-    applyMixins(NSView, [ViewWithElevationAndRipple]);
+    // we need mixins to be applied after (run default implementation first) because of _setNativeClipToBounds.
+    // it needs to be applied after for shadows to be drawn correctly
+    applyMixins(NSView, [ViewWithElevationAndRipple], {
+        after: true
+    });
 }
 
 let mixinInstalled = false;
