@@ -1,6 +1,6 @@
 import { Color } from 'tns-core-modules/color';
 import { TypographyOptions } from './core';
-import { View } from 'tns-core-modules/ui/core/view/view';
+import { View } from 'tns-core-modules/ui/core/view';
 import { layout } from 'tns-core-modules/utils/utils';
 
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
@@ -9,6 +9,7 @@ import { ControlStateChangeListener } from 'tns-core-modules/ui/core/control-sta
 import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
 import { applyMixins } from './core.common';
 import { GestureTypes, TouchAction, TouchGestureEventData } from 'tns-core-modules/ui/gestures';
+import { Button } from 'tns-core-modules/ui/button';
 export { applyMixins };
 
 export class Themer {
@@ -216,18 +217,37 @@ class ViewWithElevationAndRipple extends View {
         }
     }
 
+    getDefaultElevation(): number {
+        return this instanceof Button ? 2 : 0;
+    }
+
+    getDefaultDynamicElevationOffset() {
+        return this instanceof Button ? 6 : 0;
+    }
+
     [elevationProperty.setNative](value: number) {
-        console.log('elevationProperty', value);
         this.getOrCreateShadowLayer();
+        let dynamicElevationOffset = this.dynamicElevationOffset;
+        if (typeof dynamicElevationOffset === 'undefined' || dynamicElevationOffset === null) {
+            dynamicElevationOffset = this.getDefaultDynamicElevationOffset();
+        }
+        if (dynamicElevationOffset !== 0) {
+            this.startElevationStateChangeHandler();
+        }
         this._shadowElevations['normal'] = value;
-        this._shadowElevations['highlighted'] = value + (this.dynamicElevationOffset || 0);
-        console.log('elevationProperty1', value, this.dynamicElevationOffset);
+        this._shadowElevations['highlighted'] = value + dynamicElevationOffset;
         this.shadowLayer.elevation = value;
     }
+
     [dynamicElevationOffsetProperty.setNative](value: number) {
         this.getOrCreateShadowLayer();
         this.startElevationStateChangeHandler();
-        this._shadowElevations['highlighted'] = (this.elevation || 0) + value;
+        let elevation = this.elevation;
+        if (typeof elevation === 'undefined' || elevation === null) {
+            elevation = this.getDefaultElevation();
+        }
+        this._shadowElevations['normal'] = elevation;
+        this._shadowElevations['highlighted'] = value + elevation;
     }
 
     [backgroundInternalProperty.setNative](value: Background) {

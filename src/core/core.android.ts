@@ -1,11 +1,12 @@
-import { createRippleDrawable, getAttrColor, isPostLollipopMR1, isPostMarshmallow } from 'nativescript-material-core/android/utils';
-import { Color } from 'tns-core-modules/color';
-import { backgroundInternalProperty, ViewBase } from 'tns-core-modules/ui/core/view';
-import { Background } from 'tns-core-modules/ui/styling/background';
+import { createRippleDrawable, createStateListAnimator, getAttrColor, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from 'nativescript-material-core/android/utils';
 import * as application from 'tns-core-modules/application';
-import { Length } from 'tns-core-modules/ui/styling/style-properties';
+import { Color } from 'tns-core-modules/color';
+import { backgroundInternalProperty, View, ViewBase } from 'tns-core-modules/ui/core/view';
+import { Background } from 'tns-core-modules/ui/styling/background';
+import { androidDynamicElevationOffsetProperty, androidElevationProperty, Length } from 'tns-core-modules/ui/styling/style-properties';
 import { applyMixins } from './core.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
+import { Button } from 'tns-core-modules/ui/button';
 export { applyMixins };
 
 // stub class as we don't use this on android
@@ -87,7 +88,7 @@ export function getRippleColor(color: string | Color) {
     return null;
 }
 
-class ViewWithElevationAndRipple extends ViewBase {
+class ViewWithElevationAndRipple extends View {
     @cssProperty elevation: number = 0;
     @cssProperty dynamicElevationOffset: number = 0;
     @cssProperty rippleColor: Color;
@@ -107,8 +108,20 @@ class ViewWithElevationAndRipple extends ViewBase {
         }
     }
     [rippleColorProperty.setNative](color: Color) {
-        this.setRippleDrawable(this.nativeViewProtected, Length.toDevicePixels(this.style.borderTopLeftRadius));
         const rippleColor = getRippleColor(color);
+        if (this instanceof Button) {
+            const foreground = (this.nativeViewProtected as android.widget.Button).getForeground();
+            if (foreground instanceof android.graphics.drawable.RippleDrawable) {
+                foreground.setColor(android.content.res.ColorStateList.valueOf(rippleColor));
+                return;
+            }
+            const background = (this.nativeViewProtected as android.widget.Button).getBackground();
+            if (background instanceof android.graphics.drawable.RippleDrawable) {
+                background.setColor(android.content.res.ColorStateList.valueOf(rippleColor));
+                return;
+            }
+        }
+        this.setRippleDrawable(this.nativeViewProtected, Length.toDevicePixels(this.style.borderTopLeftRadius));
         if (isPostLollipopMR1()) {
             (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(rippleColor));
         } else {
@@ -121,7 +134,9 @@ class ViewWithElevationAndRipple extends ViewBase {
         if (this.nativeViewProtected) {
             if (value instanceof android.graphics.drawable.Drawable) {
             } else {
-                if (this.rippleDrawable) {
+                // we recreate the ripple drawable if necessary.
+                // native button have on the background. Setting color will remove the ripple!
+                if (this.rippleDrawable || (value.color && this instanceof Button && this.rippleColor)) {
                     this.rippleDrawable = null;
                     this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius);
                 }
@@ -129,11 +144,47 @@ class ViewWithElevationAndRipple extends ViewBase {
         }
     }
 
+    // [elevationProperty.setNative](value: number) {
+    //     this.style.androidElevation = value;
+    // }
+    // [dynamicElevationOffsetProperty.setNative](value: number) {
+    //     this.style.androidDynamicElevationOffset = value;
+    // }
+    getDefaultElevation(): number {
+        const result = this instanceof Button ? 2 : 0;
+        return result;
+    }
+
+    getDefaultDynamicElevationOffset() {
+        const result = this instanceof Button ? 6 : 0;
+        return result;
+    }
+
+    [elevationProperty.getDefault](): number {
+        return this.getDefaultElevation();
+    }
     [elevationProperty.setNative](value: number) {
-        this.style.androidElevation = value;
+        if (isPostLollipop()) {
+            createStateListAnimator(this, this.nativeViewProtected);
+        } else {
+            this.nativeViewProtected.setElevation(value);
+        }
+    }
+    [dynamicElevationOffsetProperty.getDefault](): number {
+        return this.getDefaultDynamicElevationOffset();
     }
     [dynamicElevationOffsetProperty.setNative](value: number) {
-        this.style.androidDynamicElevationOffset = value;
+        if (isPostLollipop()) {
+            createStateListAnimator(this, this.nativeViewProtected);
+        } else {
+            this.nativeViewProtected.setTranslationZ(value);
+        }
+    }
+    [androidElevationProperty.setNative](value: number) {
+        // override to prevent override of elevation
+    }
+    [androidDynamicElevationOffsetProperty.setNative](value: number) {
+        // override to prevent override of dynamicElevationOffset
     }
 }
 

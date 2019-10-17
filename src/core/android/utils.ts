@@ -219,8 +219,6 @@ export function createStateListAnimator(view: ViewBase, nativeView: android.view
     }
     elevation = layout.toDevicePixels(elevation);
 
-    const z = layout.toDevicePixels(0);
-
     let pressedZ = view['dynamicElevationOffset'];
     if (typeof pressedZ === 'undefined' || pressedZ === null) {
         pressedZ = (view as any).getDefaultDynamicElevationOffset();
@@ -234,7 +232,7 @@ export function createStateListAnimator(view: ViewBase, nativeView: android.view
 
     const notPressedSet = new AnimatorSet();
     notPressedSet.playTogether(
-        java.util.Arrays.asList([ObjectAnimator.ofFloat(nativeView, 'translationZ', [z]).setDuration(duration), ObjectAnimator.ofFloat(nativeView, 'elevation', [elevation]).setDuration(0)])
+        java.util.Arrays.asList([ObjectAnimator.ofFloat(nativeView, 'translationZ', [0]).setDuration(duration), ObjectAnimator.ofFloat(nativeView, 'elevation', [elevation]).setDuration(0)])
     );
 
     const defaultSet = new AnimatorSet();
