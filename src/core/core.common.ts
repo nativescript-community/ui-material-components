@@ -26,17 +26,17 @@ export function applyMixins(
                     derivedCtor.prototype[name] = function(...args) {
                         if (options) {
                             if (!!options.override) {
-                                baseCtor.prototype[name].apply(this, args);
+                                return baseCtor.prototype[name].apply(this, args);
                             } else if (!!options.after) {
                                 oldImpl.apply(this, args);
-                                baseCtor.prototype[name].apply(this, args);
+                                return baseCtor.prototype[name].apply(this, args);
                             } else {
                                 baseCtor.prototype[name].apply(this, args);
-                                oldImpl.apply(this, args);
+                                return oldImpl.apply(this, args);
                             }
                         } else {
                             baseCtor.prototype[name].apply(this, args);
-                            oldImpl.apply(this, args);
+                            return oldImpl.apply(this, args);
                         }
                     };
                 }
@@ -53,17 +53,17 @@ export function applyMixins(
                 derivedCtor.prototype[symbol] = function(...args) {
                     if (options) {
                         if (!!options.override) {
-                            baseCtor.prototype[symbol].apply(this, args);
+                            return baseCtor.prototype[symbol].apply(this, args);
                         } else if (!!options.after) {
                             oldImpl.apply(this, args);
-                            baseCtor.prototype[symbol].apply(this, args);
+                            return baseCtor.prototype[symbol].apply(this, args);
                         } else {
                             baseCtor.prototype[symbol].apply(this, args);
-                            oldImpl.apply(this, args);
+                            return oldImpl.apply(this, args);
                         }
                     } else {
                         baseCtor.prototype[symbol].apply(this, args);
-                        oldImpl.apply(this, args);
+                        return oldImpl.apply(this, args);
                     }
                 };
             }
