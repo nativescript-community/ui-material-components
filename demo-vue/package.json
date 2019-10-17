@@ -7,6 +7,9 @@
         "id": "org.nativescript.demovuematerial",
         "tns-ios": {
             "version": "6.1.1"
+        },
+        "tns-android": {
+            "version": "6.2.0-rc-2019-10-16-233628-01"
         }
     },
     "dependencies": {

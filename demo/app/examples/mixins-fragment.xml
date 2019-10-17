@@ -1,6 +1,6 @@
 <StackLayout >
     <Button margin="10" id="button1" elevation="5" rippleColor="red" borderRadius="10" fontSize="20" text="elevated button" tap="{{ onTap }}"/>
     <Label margin="10" horizontalAlignment="center" backgroundColor="yellow" padding="10" elevation="1" borderRadius="20" rippleColor="red"  text="elevated text" />
-    <Label margin="10" horizontalAlignment="center" backgroundColor="yellow" padding="10" elevationHighlighted="3" elevation="1" borderRadius="20" rippleColor="red"  text="elevated text" />
+    <Label margin="10" horizontalAlignment="center" backgroundColor="yellow" padding="10" dynamicElevationOffset="3" elevation="1" borderRadius="20" rippleColor="red"  text="elevated text" />
     
 </StackLayout>
