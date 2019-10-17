@@ -46,7 +46,7 @@
             "nativescript-material-core/*": ["src/core/*"],
             "nativescript-material-textfield": ["src/textfield/textfield"],
             "nativescript-material-textfield/*": ["src/textfield/*"],
-            "*": ["node_modules/tns-core-modules/*", "node_modules/*"]
+            "*": ["node_modules/*"]
         }
     },
     "include": ["src/**/*", "src/**/*.ts", "./references.d.ts", "./src/references.d.ts"],

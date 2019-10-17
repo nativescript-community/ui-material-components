@@ -4,7 +4,7 @@
         "rootDir": "../../src/bottomsheet",
         "outDir": "./",
         "paths": {
-            "*": ["node_modules/tns-core-modules/*", "node_modules/*", "packages/*"]
+            "*": ["node_modules/*", "packages/*"]
         }
     },
     "include": ["../../src/bottomsheet/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
