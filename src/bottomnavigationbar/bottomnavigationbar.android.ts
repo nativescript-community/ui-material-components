@@ -1,17 +1,13 @@
-import { Color } from 'tns-core-modules/color/color';
-import { ImageSource } from 'tns-core-modules/image-source';
-
-import { activeColorCssProperty, BottomNavigationBarBase, BottomNavigationTabBase, inactiveColorCssProperty, tabsProperty, titleVisibilityProperty } from './bottomnavigationbar-common';
-
-import { TitleVisibility } from './internal/internals';
-
-export * from './internal/internals';
-
-// Classes shortcuts
-const { BottomNavigationView } = com.google.android.material.bottomnavigation;
-const { BitmapDrawable } = android.graphics.drawable;
-const { ColorStateList } = android.content.res;
-const { Menu } = android.view;
+import { Color } from 'tns-core-modules/color';
+import {
+    activeColorCssProperty,
+    BottomNavigationBarBase,
+    BottomNavigationTabBase,
+    inactiveColorCssProperty,
+    tabsProperty,
+    TitleVisibility,
+    titleVisibilityProperty
+} from './bottomnavigationbar-common';
 
 // Types shortcuts
 declare type OnNavigationItemSelectedListener = com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
@@ -39,12 +35,13 @@ const getOnTabSelectedlistener = () => {
         }
 
         public onNavigationItemSelected(menuItem: globalAndroid.view.MenuItem): boolean {
-            const bottomNavigationTab = this.owner.items[menuItem.getItemId()];
+            const index = menuItem.getItemId();
+            const bottomNavigationTab = this.owner.items[index];
 
             if (bottomNavigationTab.isSelectable) {
-                this.owner._emitTabSelected(menuItem.getItemId());
+                this.owner._emitTabSelected(index);
             } else {
-                this.owner._emitTabPressed(menuItem.getItemId());
+                this.owner._emitTabPressed(index);
             }
 
             return bottomNavigationTab.isSelectable;
@@ -98,38 +95,37 @@ function createColorStateList(activeColor: Color, inactiveColor: Color) {
     colors[0] = activeColor.android;
     colors[1] = inactiveColor.android;
 
-    return new ColorStateList(states, colors);
+    return new android.content.res.ColorStateList(states, colors);
 }
 
 export class BottomNavigationBar extends BottomNavigationBarBase {
-    nativeView: com.google.android.material.bottomnavigation.BottomNavigationView;
-
-    get android() {
-        return this.nativeView;
-    }
-
+    nativeViewProtected: com.google.android.material.bottomnavigation.BottomNavigationView;
+    _items: BottomNavigationTab[];
+    reselectListener: OnNavigationItemReselectedListener;
+    selectListener: OnNavigationItemSelectedListener;
     createNativeView() {
-        const nativeView = new BottomNavigationView(this._context);
-
-        const OnTabReselectedListener = getOnTabReselectedListener();
-        nativeView.setOnNavigationItemReselectedListener(new OnTabReselectedListener(this));
-        const OnTabSelectedListener = getOnTabSelectedlistener();
-        nativeView.setOnNavigationItemSelectedListener(new OnTabSelectedListener(this));
-
-        return nativeView;
+        return new com.google.android.material.bottomnavigation.BottomNavigationView(this._context);
     }
 
     initNativeView(): void {
         super.initNativeView();
+        const OnTabReselectedListener = getOnTabReselectedListener();
+        const OnTabSelectedListener = getOnTabSelectedlistener();
+        this.reselectListener = new OnTabReselectedListener(this);
+        this.selectListener = new OnTabSelectedListener(this);
+        this.nativeViewProtected.setOnNavigationItemReselectedListener(this.reselectListener);
+        this.nativeViewProtected.setOnNavigationItemSelectedListener(this.selectListener);
         // Create the tabs before setting the default values for each tab
         // We call this method here to create the tabs defined in the xml
         this.createTabs(this._items);
-        // Set default LabelVisibilityMode
-        this.nativeView.setLabelVisibilityMode(this.titleVisibility);
-        // Set default ActiveColor
-        this.setActiveColor(this.style.activeColor);
-        // Set default InactiveColor
-        this.setInactiveColor(this.style.inactiveColor);
+    }
+    disposeNativeView(): void {
+        this.nativeViewProtected.setOnNavigationItemReselectedListener(null);
+        this.nativeViewProtected.setOnNavigationItemSelectedListener(null);
+        this.reselectListener = null;
+        this.selectListener = null;
+        this._items.forEach(item => this._removeView(item));
+        super.disposeNativeView();
     }
 
     showBadge(index: number, value?: number): void {
@@ -146,7 +142,7 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         // removeBadge method is available in v1.1.0-alpha07 of material components
         // but NS team has the .d.ts for version 1
         // that's why we need to cast the nativeView to any to avoid typing errors
-        (this.nativeView as any).removeBadge(index);
+        (this.nativeViewProtected as any).removeBadge(index);
     }
 
     [tabsProperty.setNative](tabs: BottomNavigationTab[]) {
@@ -154,19 +150,23 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
     }
 
     [titleVisibilityProperty.setNative](titleVisibility: TitleVisibility) {
-        this.nativeView.setLabelVisibilityMode(titleVisibility);
+        this.nativeViewProtected.setLabelVisibilityMode(titleVisibility);
     }
 
     [activeColorCssProperty.setNative](activeColor: Color) {
-        this.setActiveColor(activeColor);
+        const colorStateList = createColorStateList(activeColor, this.inactiveColor);
+        this.nativeViewProtected.setItemTextColor(colorStateList);
+        this.nativeViewProtected.setItemIconTintList(colorStateList);
     }
 
     [inactiveColorCssProperty.setNative](inactiveColor: Color) {
-        this.setInactiveColor(inactiveColor);
+        const colorStateList = createColorStateList(this.activeColor, inactiveColor);
+        this.nativeViewProtected.setItemTextColor(colorStateList);
+        this.nativeViewProtected.setItemIconTintList(colorStateList);
     }
 
     protected createTabs(tabs: BottomNavigationTab[] | undefined) {
-        const bottomNavigationTabs = this.nativeView.getMenu();
+        const bottomNavigationTabs = this.nativeViewProtected.getMenu();
 
         if (bottomNavigationTabs.size() > 0) {
             bottomNavigationTabs.clear();
@@ -176,9 +176,12 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
             this._items = tabs;
         }
 
-        this._items.forEach((tab, index) => {
-            const menuItem = bottomNavigationTabs.add(Menu.NONE, index, Menu.NONE, tab.title);
-            menuItem.setIcon(tab.getNativeIcon());
+        this._items.forEach((item, index) => {
+            // the create nativeView will actually add the item to the tab bar
+            item.index = index;
+            this._addView(item);
+            const tab = item.nativeViewProtected;
+            tab.setIcon(item.getNativeIcon());
         });
     }
 
@@ -191,26 +194,45 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
 
         this.nativeView.setSelectedItemId(index);
     }
-
-    private setActiveColor(activeColor: Color) {
-        const colorStateList = createColorStateList(activeColor, this.style.inactiveColor);
-        this.nativeView.setItemTextColor(colorStateList);
-        this.nativeView.setItemIconTintList(colorStateList);
-    }
-
-    private setInactiveColor(inactiveColor: Color) {
-        const colorStateList = createColorStateList(this.style.activeColor, inactiveColor);
-        this.nativeView.setItemTextColor(colorStateList);
-        this.nativeView.setItemIconTintList(colorStateList);
-    }
 }
 
 // Bottom Navigation Tab
 
 export class BottomNavigationTab extends BottomNavigationTabBase {
+    nativeViewProtected: android.view.MenuItem;
+    index: number = android.view.Menu.NONE;
+    _isPaddingRelative = true; // trick because tns-core-modules expect us to be a view
+    createNativeView() {
+        const view = (this.parent as BottomNavigationBar).nativeViewProtected.getMenu().add(android.view.Menu.NONE, this.index, android.view.Menu.NONE, this.title);
+        // trick because tns-core-modules expect us to be a view
+        (view as any).defaultPaddings = { top: 0, left: 0, bottom: 0, right: 0 };
+        return view;
+    }
+    initNativeView() {
+        // override for super not to be called. isClickable does not exist on android.view.MenuItem
+    }
     getNativeIcon(): android.graphics.drawable.BitmapDrawable {
-        // The icon property always will return an ImageSource
-        // but can be setted with a resource string that will be converted
-        return new BitmapDrawable((this.icon as ImageSource).android);
+        return this.icon && new android.graphics.drawable.BitmapDrawable(this.icon.android);
+    }
+
+    showBadge(value?): void {
+        (this.parent as BottomNavigationBar).showBadge(this.index, value);
+    }
+
+    removeBadge(): void {
+        (this.parent as BottomNavigationBar).removeBadge(this.index);
+    }
+    [activeColorCssProperty.setNative](activeColor: Color) {
+        // not working for now
+        // const colorStateList = createColorStateList(activeColor, this.inactiveColor);
+        // this.nativeViewProtected.color(colorStateList); // can we set the text color?
+        // this.nativeViewProtected.setIconTintList(colorStateList);
+    }
+
+    [inactiveColorCssProperty.setNative](inactiveColor: Color) {
+        // not working for now
+        // const colorStateList = createColorStateList(this.activeColor, inactiveColor);
+        // this.nativeViewProtected.setText(colorStateList); // can we set the text color?
+        // this.nativeViewProtected.setIconTintList(colorStateList);
     }
 }

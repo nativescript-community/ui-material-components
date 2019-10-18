@@ -1,9 +1,9 @@
 import { Color, EventData } from 'tns-core-modules/ui/core/view';
 
-import { BottomNavigationBarBase, BottomNavigationTabBase } from './bottomnavigationbar-common';
-import { TabPressedEventData, TabReselectedEventData, TabSelectedEventData, TitleVisibility } from './internal/internals';
+import { BottomNavigationBarBase, BottomNavigationTabBase, TabPressedEventData, TabReselectedEventData, TabSelectedEventData, TitleVisibility } from './bottomnavigationbar-common';
+import { ImageSource } from 'tns-core-modules/image-source';
 
-export * from './internal/internals';
+export { TabPressedEventData, TabReselectedEventData, TabSelectedEventData, TitleVisibility };
 
 export declare class BottomNavigationBar extends BottomNavigationBarBase {
     static tabPressedEvent: string;
@@ -32,7 +32,9 @@ export declare class BottomNavigationBar extends BottomNavigationBarBase {
 
 export declare class BottomNavigationTab extends BottomNavigationTabBase {
     title: string;
-    icon: string;
+    icon: ImageSource;
     isSelectable: boolean;
     getNativeIcon(): any;
+    showBadge(value?: number): void;
+    removeBadge(): void;
 }
