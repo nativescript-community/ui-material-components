@@ -1,0 +1,62 @@
+<template>
+    <Page>
+        <ActionBar :title="title">
+            <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap"/>
+        </ActionBar>
+        <GridLayout rows="*, auto" backgroundColor="blue">
+            <StackLayout class="page" backgroundColor="white" row="0">
+                <!-- <ns-first-tab *ngSwitchDefault></ns-first-tab> -->
+                <!-- <ns-third-tab *ngSwitchCase="2"></ns-third-tab> -->
+            </StackLayout>
+            <MDBottomNavigationBar row="1" activeColor="red">
+                <MDBottomNavigationTab title="First" icon="res://ic_home" activeColor="green"/>
+                <MDBottomNavigationTab title="Second" icon="res://ic_view_list" isSelectable="false" />
+                <MDBottomNavigationTab title="Third" icon="res://ic_menu" inactiveColor="brown"/>
+            </MDBottomNavigationBar>
+        </GridLayout>
+    </Page>
+</template>
+
+<script lang="ts">
+import * as frameModule from 'tns-core-modules/ui/frame';
+import { BottomNavigationBar, TabPressedEventData, TabReselectedEventData, TabSelectedEventData } from 'nativescript-material-bottomnavigationbar';
+import { EventData } from 'tns-core-modules/ui/core/view';
+
+import Vue from 'vue';
+
+export const title = 'BottomNavigationBar sample';
+
+export default Vue.extend({
+    name: 'BottomNavigationBar',
+    data() {
+        return {
+            title: title
+        };
+    },
+    methods: {
+        onNavigationButtonTap() {
+            frameModule.topmost().goBack();
+        },
+        onbottomNavigationBarLoaded(args: EventData): void {
+            const bottomNavigationBar = args.object as BottomNavigationBar;
+            bottomNavigationBar.showBadge(1);
+            bottomNavigationBar.showBadge(2, 4);
+        },
+
+        onBottomNavigationTabPressed(args: TabPressedEventData): void {
+            alert('This tab has isSelectable: false, and should be used to perform actions');
+            console.log(`pressed tab index:  ${args.index}`);
+        },
+
+        onBottomNavigationTabSelected(args: TabSelectedEventData): void {
+            console.log(`old tab index:  ${args.oldIndex}`);
+            console.log(`selected tab index:  ${args.newIndex}`);
+        },
+
+        onBottomNavigationTabReselected(args: TabReselectedEventData): void {
+            alert('Tab Reselected');
+            console.log(`reselected tab index:  ${args.index}`);
+        }
+    }
+});
+</script>

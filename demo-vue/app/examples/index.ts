@@ -1,4 +1,5 @@
 import ActivityIndicators, { title as activityIndicatorsTitle } from './ActivityIndicators.vue';
+import BottomNavigationBar, { title as bottomNavigationBarTitle } from './BottomNavigationBar.vue';
 import Buttons, { title as buttonsTitle } from './Buttons.vue';
 import CardViews, { title as cardViewsTitle } from './CardViews.vue';
 import Dialogs, { title as dialogsTitle } from './Dialogs.vue';
@@ -20,6 +21,10 @@ export const getExamples = () => {
         {
             title: buttonIssueTitle,
             component: ButtonIssue
+        },
+        {
+            title: bottomNavigationBarTitle,
+            component: BottomNavigationBar
         },
         {
             title: cardViewsTitle,

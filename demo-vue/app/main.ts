@@ -38,6 +38,7 @@ import TextFieldPlugin from 'nativescript-material-textfield/vue';
 import { isIOS } from 'tns-core-modules/platform';
 import { install as installBottomSheet } from 'nativescript-material-bottomsheet';
 import BottomSheetPlugin from 'nativescript-material-bottomsheet/vue';
+import BottomNavigationBarlugin from 'nativescript-material-bottomnavigationbar/vue';
 
 installBottomSheet();
 
@@ -50,6 +51,7 @@ Vue.use(RipplePlugin);
 Vue.use(SliderPlugin);
 Vue.use(TextFieldPlugin);
 Vue.use(BottomSheetPlugin);
+Vue.use(BottomNavigationBarlugin);
 
 Vue.registerElement('PreviousNextView', () => require('nativescript-iqkeyboardmanager').PreviousNextView);
 Vue.registerElement('TextViewWithHint', () => require('nativescript-iqkeyboardmanager').TextViewWithHint);

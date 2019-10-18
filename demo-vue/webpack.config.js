@@ -58,6 +58,11 @@ module.exports = env => {
             'nativescript-material-bottomsheet/bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
             '../bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
 
+            'nativescript-material-bottomnavigationbar$': '#/bottomnavigationbar/bottomnavigationbar.' + platform,
+            'nativescript-material-bottomnavigationbar/vue$': '#/bottomnavigationbar/vue/index',
+            'nativescript-material-bottomnavigationbar/bottomnavigationbar$': '#/bottomnavigationbar/bottomnavigationbar.' + platform,
+            '../bottomnavigationbar$': '#/bottomnavigationbar/bottomnavigationbar.' + platform,
+
             'nativescript-material-progress$': '#/progress/progress.' + platform,
             'nativescript-material-progress/vue$': '#/progress/vue/index',
             'nativescript-material-progress/progress$': '#/progress/progress.' + platform,
@@ -113,6 +118,7 @@ module.exports = env => {
         projectRoot: __dirname,
         alias: aliases
     });
+    // config.stats = 'verbose'
 
     return config;
 };
