@@ -147,8 +147,11 @@ class ViewWithElevationAndRipple extends View {
             const layer = (this.shadowLayer = MDCShadowLayer.alloc().init());
             layer.shouldRasterize = true;
             layer.rasterizationScale = UIScreen.mainScreen.scale;
-            layer.bounds = this.nativeViewProtected.layer.bounds;
+            layer.frame = this.nativeViewProtected.layer.bounds;
             this.nativeViewProtected.layer.addSublayer(this.shadowLayer);
+            // we need to set clipToBounds to false. For now it overrides user choice.
+            this['clipToBounds'] = false;
+            this.nativeViewProtected.clipsToBounds = false;
             if (this.style.backgroundInternal) {
                 layer.cornerRadius = layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
             }
@@ -224,7 +227,9 @@ class ViewWithElevationAndRipple extends View {
     getDefaultDynamicElevationOffset() {
         return this instanceof Button ? 6 : 0;
     }
-
+    [elevationProperty.getDefault](): number {
+        return this.getDefaultElevation();
+    }
     [elevationProperty.setNative](value: number) {
         this.getOrCreateShadowLayer();
         let dynamicElevationOffset = this.dynamicElevationOffset;
@@ -239,6 +244,9 @@ class ViewWithElevationAndRipple extends View {
         this.shadowLayer.elevation = value;
     }
 
+    [dynamicElevationOffsetProperty.getDefault](): number {
+        return this.getDefaultDynamicElevationOffset();
+    }
     [dynamicElevationOffsetProperty.setNative](value: number) {
         this.getOrCreateShadowLayer();
         this.startElevationStateChangeHandler();
