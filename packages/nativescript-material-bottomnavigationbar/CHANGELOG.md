@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/Akylas/nativescript-material-components/compare/v2.5.0...v2.5.1) (2019-10-18)
+
+
+### Bug Fixes
+
+* add ColorThemer for Bottom NavigationBar ([c1a87ba](https://github.com/Akylas/nativescript-material-components/commit/c1a87ba397b71e338c8eb8f0793529da44e810c7))
+* cleanup up tsconfigs ([62fad54](https://github.com/Akylas/nativescript-material-components/commit/62fad541436b11e9333475f3a9e0f9382ea920c8))
+* vue rename to MDBottomNavigationBar ([2bee663](https://github.com/Akylas/nativescript-material-components/commit/2bee663cae622bc5e142fb87a0c656cc3f8d9491))
+
+
+
+
+
 # [2.5.0](https://github.com/Akylas/nativescript-material-components/compare/v2.4.2...v2.5.0) (2019-10-03)
 
 **Note:** Version bump only for package nativescript-material-bottomnavigationbar

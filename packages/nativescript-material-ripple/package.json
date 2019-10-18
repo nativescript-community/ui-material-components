@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-ripple",
-    "version": "2.5.0",
+    "version": "2.5.1",
     "description": "Material ripple component",
     "main": "./ripple",
     "typings": "./ripple.d.ts",

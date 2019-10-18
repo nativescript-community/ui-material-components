@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/Akylas/nativescript-material-components/compare/v2.5.0...v2.5.1) (2019-10-18)
+
+
+### Bug Fixes
+
+* add ColorThemer for Bottom NavigationBar ([c1a87ba](https://github.com/Akylas/nativescript-material-components/commit/c1a87ba397b71e338c8eb8f0793529da44e810c7))
+* big rewrite of the bottomnavigationbar, lot of fixes ([7db817e](https://github.com/Akylas/nativescript-material-components/commit/7db817e35f5f2607f58bb3278fea45909f8c9c81))
+* cleanup ([258d353](https://github.com/Akylas/nativescript-material-components/commit/258d353b04a66fb48a63787043cca185d60eb985))
+* cleanup up tsconfigs ([62fad54](https://github.com/Akylas/nativescript-material-components/commit/62fad541436b11e9333475f3a9e0f9382ea920c8))
+* correctly handle mixins for buttons and other types ([5724dfa](https://github.com/Akylas/nativescript-material-components/commit/5724dfae153e3839ee6b5c0c1f36e1d9cd5891a0))
+* default values for the button ([7f16f24](https://github.com/Akylas/nativescript-material-components/commit/7f16f2490edd94b859299898348cbeb83272d67d))
+* dont use elevationHighlighted anymore ([f67ffc5](https://github.com/Akylas/nativescript-material-components/commit/f67ffc54ecd111b86a32ba75571d974baf14b7e9))
+* dont use this.elevationHighlighted ([52fd2ba](https://github.com/Akylas/nativescript-material-components/commit/52fd2bae59c8bcb2024e6cb99ae602c16efa9f0a))
+* fix elevation mixin not working on ios ([8de9a99](https://github.com/Akylas/nativescript-material-components/commit/8de9a99e8372861a86879e759bbf2771026566c3))
+* missing from last commit ([ac00c25](https://github.com/Akylas/nativescript-material-components/commit/ac00c25a0669d3021e17fa16e0ff37999a4edcdd))
+* mixins were not returning value ([9533b5b](https://github.com/Akylas/nativescript-material-components/commit/9533b5ba14f929782b91fe017a2564bd67c55fe1))
+* ripple and dynamicElevationOffset should make the view clickable ([6c969f5](https://github.com/Akylas/nativescript-material-components/commit/6c969f53da65930e1adbf9fd6a14929c1bc074f5))
+* use more css properties ([3acc870](https://github.com/Akylas/nativescript-material-components/commit/3acc8703fad118719c0910a49d359befa61184e6))
+* vue rename to MDBottomNavigationBar ([2bee663](https://github.com/Akylas/nativescript-material-components/commit/2bee663cae622bc5e142fb87a0c656cc3f8d9491))
+
+
+### Features
+
+* rippleColor for fab ([d105bd3](https://github.com/Akylas/nativescript-material-components/commit/d105bd3195e28cbd9fa275911930e97bb946236c))
+
+
+
+
+
 # [2.5.0](https://github.com/Akylas/nativescript-material-components/compare/v2.4.2...v2.5.0) (2019-10-03)
 
 

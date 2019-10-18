@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-snackbar",
-    "version": "2.5.0",
+    "version": "2.5.1",
     "description": "Material snackbar component",
     "main": "./snackbar",
     "typings": "./snackbar.d.ts",
