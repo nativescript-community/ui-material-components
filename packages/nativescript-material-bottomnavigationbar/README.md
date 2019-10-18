@@ -183,11 +183,11 @@ This will install and register `BottomNavigationBar` and `BottomNavigationTab` c
     <StackLayout row="0">
         <label text="content"></label>
     </StackLayout>
-    <BottomNavigationBar activeColor="red" inactiveColor="yellow" backgroundColor="black" @tabSelected="onBottomNavigationTabSelected" row="1">
-        <BottomNavigationTab title="First" icon="ic_home" />
-        <BottomNavigationTab title="Second" icon="ic_view_list" isSelectable="false" />
-        <BottomNavigationTab title="Third" icon="ic_menu" />
-    </BottomNavigationBar>
+    <MDBottomNavigationBar activeColor="red" inactiveColor="yellow" backgroundColor="black" @tabSelected="onBottomNavigationTabSelected" row="1">
+        <MDBottomNavigationTab title="First" icon="ic_home" />
+        <MDBottomNavigationTab title="Second" icon="ic_view_list" isSelectable="false" />
+        <MDBottomNavigationTab title="Third" icon="ic_menu" />
+    </MDBottomNavigationBar>
 </GridLayout>
 ```
 
