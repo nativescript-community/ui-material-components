@@ -2,13 +2,63 @@ import { AddChildFromBuilder, booleanConverter, Color, CssProperty, CSSType, Pro
 
 import { fromFileOrResource, ImageSource } from 'tns-core-modules/image-source';
 
-import { TabPressedEventData, TabReselectedEventData, TabSelectedEventData, TitleVisibility } from './internal/internals';
+import { cssProperty } from 'nativescript-material-core/cssproperties';
+
+import { EventData } from 'tns-core-modules/data/observable';
+
+/**
+ * Event interface for tab pressed event
+ *
+ * @export
+ * @interface TabPressedEventData
+ * @extends {EventData}
+ */
+export interface TabPressedEventData extends EventData {
+    index: number;
+}
+
+/**
+ * Event interface for tab selected event
+ *
+ * @export
+ * @interface TabSelectedEventData
+ * @extends {EventData}
+ */
+export interface TabSelectedEventData extends EventData {
+    oldIndex: number;
+    newIndex: number;
+}
+
+/**
+ * Event interface for tab reselected event
+ *
+ * @export
+ * @interface TabReselectedEventData
+ * @extends {EventData}
+ */
+export interface TabReselectedEventData extends EventData {
+    index: number;
+}
+/**
+ * Enum for Title Visibility options
+ *
+ * @export
+ * @enum {number}
+ */
+export enum TitleVisibility {
+    Selected = 0,
+    Always = 1,
+    Never = 2
+}
 
 @CSSType('BottomNavigationBar')
 export abstract class BottomNavigationBarBase extends View implements AddChildFromBuilder {
     static tabPressedEvent = 'tabPressed';
     static tabSelectedEvent = 'tabSelected';
     static tabReselectedEvent = 'tabReselected';
+
+    @cssProperty activeColor: Color;
+    @cssProperty inactiveColor: Color;
 
     selectedTabIndex: number = 0;
     titleVisibility: TitleVisibility = TitleVisibility.Selected;
@@ -19,28 +69,12 @@ export abstract class BottomNavigationBarBase extends View implements AddChildFr
         return this._items;
     }
 
-    get inactiveColor(): Color {
-        return this.style.inactiveColor;
-    }
-
-    set inactiveColor(color: Color) {
-        this.style.inactiveColor = color;
-    }
-
-    get activeColor(): Color {
-        return this.style.activeColor;
-    }
-
-    set activeColor(color: Color) {
-        this.style.activeColor = color;
-    }
-
-    get backgroundColor(): Color {
-        return this.style.backgroundColor;
-    }
-
-    set backgroundColor(color: Color) {
-        this.style.backgroundColor = color;
+    onLoaded() {
+        super.onLoaded();
+        this._items.forEach(child => {
+            this.loadView(child);
+            return true;
+        });
     }
 
     selectTab(index: number): void {
@@ -91,8 +125,14 @@ export abstract class BottomNavigationBarBase extends View implements AddChildFr
         }
     }
 
-    abstract showBadge(index: number, value?: number): void;
-    abstract removeBadge(index: number): void;
+    showBadge(index: number, value?: number): void {
+        this._items[index] && this._items[index].showBadge(value);
+    }
+
+    removeBadge(index: number): void {
+        this._items[index] && this._items[index].removeBadge();
+    }
+
     protected abstract selectTabNative(index: number): void;
     protected abstract createTabs(tabs: BottomNavigationTabBase[] | undefined): void;
 }
@@ -140,24 +180,30 @@ interface BottomNavigationTabProps {
     isSelectable?: boolean;
 }
 
+@CSSType('BottomNavigationTab')
 export abstract class BottomNavigationTabBase extends View implements BottomNavigationTabProps {
-    title: string;
-    icon: string | ImageSource;
+    @cssProperty title: string;
+    @cssProperty icon: ImageSource;
     isSelectable?: boolean;
 
-    constructor(args?: BottomNavigationTabProps) {
-        super();
-        if (!args) {
-            return;
-        }
-        for (const k in args) {
-            if (args.hasOwnProperty(k)) {
-                this[k] = args[k];
-            }
-        }
-    }
+    @cssProperty activeColor: Color;
+    @cssProperty inactiveColor: Color;
+
+    // constructor(args?: BottomNavigationTabProps) {
+    //     super();
+    //     if (!args) {
+    //         return;
+    //     }
+    //     for (const k in args) {
+    //         if (args.hasOwnProperty(k)) {
+    //             this[k] = args[k];
+    //         }
+    //     }
+    // }
 
     abstract getNativeIcon(): any;
+    abstract showBadge(value?: number): void;
+    abstract removeBadge(): void;
 }
 
 export const isSelectableProperty = new Property<BottomNavigationTabBase, boolean>({
