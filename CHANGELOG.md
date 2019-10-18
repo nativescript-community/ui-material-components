@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/Akylas/nativescript-material-components/compare/v2.5.1...v2.5.2) (2019-10-18)
+
+
+### Bug Fixes
+
+* layouts mixins were not working because of clipToBounds ([3d0a962](https://github.com/Akylas/nativescript-material-components/commit/3d0a962df0802077fc6e6958707f7b18915dc03e))
+
+
+
+
+
 ## [2.5.1](https://github.com/Akylas/nativescript-material-components/compare/v2.5.0...v2.5.1) (2019-10-18)
 
 

@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-dialogs",
-    "version": "2.5.1",
+    "version": "2.5.2",
     "description": "Material Dialogs component",
     "main": "./dialogs",
     "typings": "./dialogs.d.ts",
@@ -32,8 +32,8 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^2.5.0",
-        "nativescript-material-textfield": "^2.5.1"
+        "nativescript-material-core": "^2.5.2",
+        "nativescript-material-textfield": "^2.5.2"
     },
     "gitHead": "e62190fa75ac5ca06904f8ccc46b6ac62f129c15"
 }
