@@ -54,7 +54,7 @@
         "@commitlint/config-conventional": "^8.2.0",
         "husky": "^3.0.9",
         "lerna": "^3.18.1",
-        "nativescript-angular": "~8.2.1",
+        "nativescript-angular": "~8.2.2",
         "nativescript-vue": "~2.4.0",
         "prettier": "^1.18.2",
         "prompt": "^1.0.0",
@@ -66,7 +66,7 @@
         "tslint-config-prettier": "^1.18.0",
         "tslint-config-standard": "^8.0.1",
         "tslint-plugin-prettier": "^2.0.1",
-        "typescript": "~3.6.4",
+        "typescript": "~3.5.3",
         "vue": "^2.6.10"
     },
     "commitlint": {
