@@ -40,7 +40,7 @@ export default Vue.extend({
             console.log('onTap', objId, obj);
             switch (objId) {
                 case 'show_snack': {
-                    showSnack({ message: 'this is test snack!' });
+                    showSnack({ message: 'this is test snack!', textColor:'yellow' });
                     break;
                 }
                 case 'show_snack_action': {
