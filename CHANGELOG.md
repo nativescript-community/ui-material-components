@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.3](https://github.com/Akylas/nativescript-material-components/compare/v2.5.2...v2.5.3) (2019-10-28)
+
+
+### Bug Fixes
+
+* fix setTextColor on snacks ([b57b3cc](https://github.com/Akylas/nativescript-material-components/commit/b57b3ccc2549c26f0bcfa13b71365f15edcec1b5))
+
+
+
+
+
 ## [2.5.2](https://github.com/Akylas/nativescript-material-components/compare/v2.5.1...v2.5.2) (2019-10-18)
 
 
