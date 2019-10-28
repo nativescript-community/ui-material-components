@@ -62,8 +62,16 @@ export class SnackBar extends SnackBarBase {
         // set text color of the TextView in the Android SnackBar
         if (options.textColor && Color.isValid(options.textColor)) {
             const color = (options.textColor instanceof Color ? options.textColor : new Color(options.textColor)).android;
-            const mainTextView = this._snackbar.getView().findViewById(SnackBar.SNACKBAR_TEXT_ID) as android.widget.TextView;
-            mainTextView.setTextColor(color);
+            
+            if ((this._snackbar as any).setTextColor) {
+                (this._snackbar as any).setTextColor(color);
+            } else {
+                const mainTextView = this._snackbar.getView().findViewById(SnackBar.SNACKBAR_TEXT_ID) as android.widget.TextView;
+                if (mainTextView) {
+                    mainTextView.setTextColor(color);
+                }
+            }
+            // this._snackbar.setTextColor(color);
         }
 
         if (options.actionTextColor && Color.isValid(options.actionTextColor)) {
