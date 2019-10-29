@@ -1,7 +1,7 @@
 
 dependencies {
 	def androidxVersion =  project.hasProperty("androidxVersion") ? project.androidxVersion : "1.1.0"
-	def materialVersion =  project.hasProperty("materialVersion") ? project.materialVersion : "1.2.0-alpha01"
+	def materialVersion =  project.hasProperty("materialVersion") ? project.materialVersion : "1.1.0-beta01"
 
 	compile "androidx.appcompat:appcompat:$androidxVersion"
 	compile "com.google.android.material:material:$materialVersion"
