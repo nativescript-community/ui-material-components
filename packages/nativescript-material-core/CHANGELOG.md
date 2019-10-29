@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.4](https://github.com/Akylas/nativescript-material-components/compare/v2.5.3...v2.5.4) (2019-10-29)
+
+
+### Bug Fixes
+
+* revert android lib version because incompatible with ui-chart ([d5d5d92](https://github.com/Akylas/nativescript-material-components/commit/d5d5d920add0c630710ea320d238b77e5c3556b2))
+
+
+
+
+
 ## [2.5.3](https://github.com/Akylas/nativescript-material-components/compare/v2.5.2...v2.5.3) (2019-10-28)
 
 **Note:** Version bump only for package nativescript-material-core
