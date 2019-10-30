@@ -1,8 +1,7 @@
 import { ViewWithBottomSheetBase } from './bottomsheet-common';
 import { ios, traceCategories, traceError, traceMessageType, traceWrite, View } from 'tns-core-modules/ui/core/view/view';
 import { ViewBase } from 'tns-core-modules/ui/core/view-base';
-import { ios as iosUtils, layout } from 'tns-core-modules/utils/utils';
-import * as application from 'tns-core-modules/application';
+import { layout } from 'tns-core-modules/utils/utils';
 import { BottomSheetOptions } from './bottomsheet';
 import { fromObject } from 'tns-core-modules/data/observable';
 import { applyMixins } from 'nativescript-material-core/core';
