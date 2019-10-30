@@ -2,7 +2,12 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "rootDir": "../../src/core",
-        "outDir": "./"
+        "outDir": "./",
+        "paths": {
+            "tns-core-modules": ["./node_modules/@nativescript/core"],
+            "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
+            "*": ["node_modules/*", "packages/*"]
+        }
     },
     "include": ["../../src/core/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
 }

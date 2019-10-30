@@ -25,7 +25,6 @@
             
             "tns-core-modules": ["./node_modules/@nativescript/core"],
             "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
-            "nativescript-vue": ["./node_modules/nativescript-akylas-vue"],
             "nativescript-material-dialogs": ["src/dialogs/dialogs"],
             "nativescript-material-dialogs/*": ["src/dialogs/*"],
             "nativescript-material-snackbar": ["src/snackbar/snackbar"],
