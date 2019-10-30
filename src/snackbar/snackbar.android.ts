@@ -1,5 +1,5 @@
-import { Color } from 'tns-core-modules/color';
-import { topmost } from 'tns-core-modules/ui/frame';
+import { Color } from '@nativescript/core/color';
+import { topmost } from '@nativescript/core/ui/frame';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 
 function _getReason(value: number) {
@@ -204,9 +204,7 @@ function initializeSnackCallback() {
             }
         }
 
-        onShown(snackbar: com.google.android.material.snackbar.Snackbar) {
-            // console.log('callback onShown fired');
-        }
+        onShown(snackbar: com.google.android.material.snackbar.Snackbar) {}
     }
 
     SnackCallback = SnackCallbackImpl;

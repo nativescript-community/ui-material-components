@@ -1,7 +1,7 @@
-import { Color, EventData } from 'tns-core-modules/ui/core/view';
+import { Color, EventData } from '@nativescript/core/ui/core/view';
 
 import { BottomNavigationBarBase, BottomNavigationTabBase, TabPressedEventData, TabReselectedEventData, TabSelectedEventData, TitleVisibility } from './bottomnavigationbar-common';
-import { ImageSource } from 'tns-core-modules/image-source';
+import { ImageSource } from '@nativescript/core/image-source';
 
 export { TabPressedEventData, TabReselectedEventData, TabSelectedEventData, TitleVisibility };
 

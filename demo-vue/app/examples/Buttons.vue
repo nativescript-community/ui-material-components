@@ -5,7 +5,10 @@
         </ActionBar>
         <ScrollView>
             <StackLayout>
+                <MDFloatingActionButton src="res://ic_action_add"  @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton id="fab" src="res://ic_action_add" color="white" backgroundColor="blue" size="mini" @tap="onTap" horizontalAlignment="center" />
+                <MDFloatingActionButton src="res://ic_action_add" text="test expanded" expanded="true" @tap="onTap" horizontalAlignment="center" />
+                <MDFloatingActionButton src="res://ic_action_add" text="test expanded" :expanded="expanded" @tap="expanded = !expanded" horizontalAlignment="center" />
                 <StackLayout margin="10">
                     <MDButton id="button0" text="default button" @tap="onTap" />
                 </StackLayout>
@@ -30,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import * as frameModule from 'tns-core-modules/ui/frame';
+import * as frameModule from '@nativescript/core/ui/frame';
 import Vue from 'vue';
 
 export const title = 'Buttons sample';
@@ -39,7 +42,8 @@ export default Vue.extend({
     data() {
         return {
             name: 'Buttons',
-            title: title
+            title: title,
+            expanded:false
         };
     },
     methods: {

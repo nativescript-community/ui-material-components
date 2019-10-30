@@ -1,10 +1,10 @@
 import { RippleBase } from './ripple-common';
 import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { Color } from 'tns-core-modules/color';
+import { Color } from '@nativescript/core/color';
 import { getRippleColor } from 'nativescript-material-core/core';
 import { createRippleDrawable, getAttrColor, isPostLollipopMR1, isPostMarshmallow } from 'nativescript-material-core/android/utils';
-import { backgroundInternalProperty } from 'tns-core-modules/ui/page';
-import { Background } from 'tns-core-modules/ui/styling/background';
+import { backgroundInternalProperty } from '@nativescript/core/ui/page';
+import { Background } from '@nativescript/core/ui/styling/background';
 
 let MDStackLayout: typeof org.nativescript.widgets.StackLayout;
 
@@ -195,7 +195,7 @@ function initializePreLollipopStackLayout() {
     PreLollipopStackLayout = PreLollipopStackLayoutImpl as any;
 }
 
-declare module 'tns-core-modules/ui/core/view/view' {
+declare module '@nativescript/core/ui/core/view/view' {
     interface View {
         hasGestureObservers(): boolean;
         setOnTouchListener();

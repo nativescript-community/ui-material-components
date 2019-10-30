@@ -1,14 +1,14 @@
-import { NavigationButton } from 'tns-core-modules/ui/action-bar/action-bar';
-import { EventData, Frame, View } from 'tns-core-modules/ui/frame/frame';
+import { NavigationButton } from '@nativescript/core/ui/action-bar/action-bar';
+import { EventData, Frame, View } from '@nativescript/core/ui/frame/frame';
 import { alert, AlertDialog, login, prompt } from 'nativescript-material-dialogs';
-import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
-const builder = require('tns-core-modules/ui/builder');
+import { ObservableArray } from '@nativescript/core/data/observable-array/observable-array';
+const builder = require('@nativescript/core/ui/builder');
 // importing adds the View augmentation
 import { BottomSheetOptions } from 'nativescript-material-bottomsheet';
-import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
+import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout/stack-layout';
 import { ActivityIndicator } from 'nativescript-material-activityindicator';
-import { Label } from 'tns-core-modules/ui/label/label';
-import { Button } from 'tns-core-modules/ui/button/button';
+import { Label } from '@nativescript/core/ui/label/label';
+import { Button } from '@nativescript/core/ui/button/button';
 
 function getObjectClass(obj) {
     if (typeof obj !== 'object' || obj === null) return false;

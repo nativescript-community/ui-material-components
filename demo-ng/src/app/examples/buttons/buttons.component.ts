@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventData } from 'tns-core-modules/data/observable';
+import { EventData } from '@nativescript/core/data/observable';
 
 @Component({
     selector: 'ns-buttons',

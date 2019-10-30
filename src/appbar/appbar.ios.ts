@@ -1,8 +1,8 @@
 import { AppBarBase } from './appbar-common';
-import { layout } from 'tns-core-modules/utils/utils';
+import { layout } from '@nativescript/core/utils/utils';
 import { themer } from 'nativescript-material-core/core';
 
-declare module 'tns-core-modules/ui/action-bar/action-bar' {
+declare module '@nativescript/core/ui/action-bar/action-bar' {
     interface ActionBar {
         _setupUI(context: android.content.Context, atIndex?: number, parentIsLoaded?: boolean);
     }

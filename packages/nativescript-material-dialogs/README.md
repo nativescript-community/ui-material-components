@@ -9,7 +9,11 @@ Use the Material Design Dialogs in your {N} app
 
 ## Installation
 
-`tns plugin add nativescript-material-dialogs`
+If using ```@nativescript``` :
+* `tns plugin add nativescript-material-dialogs`
+
+If using ```tns-core-modules```
+* `tns plugin add nativescript-material-dialogs@2.5.4`
 
 ## [Changelog](./CHANGELOG.md)
 

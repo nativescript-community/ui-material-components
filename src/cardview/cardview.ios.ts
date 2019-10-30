@@ -1,10 +1,10 @@
 import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { Color } from 'tns-core-modules/color';
-import { screen } from 'tns-core-modules/platform';
-import { isUserInteractionEnabledProperty } from 'tns-core-modules/ui/core/view';
-import { Background } from 'tns-core-modules/ui/styling/background';
-import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
+import { Color } from '@nativescript/core/color';
+import { screen } from '@nativescript/core/platform';
+import { isUserInteractionEnabledProperty } from '@nativescript/core/ui/core/view';
+import { Background } from '@nativescript/core/ui/styling/background';
+import { backgroundInternalProperty } from '@nativescript/core/ui/styling/style-properties';
 import { CardViewBase } from './cardview-common';
 
 // use custom class to get the same behavior as android which is

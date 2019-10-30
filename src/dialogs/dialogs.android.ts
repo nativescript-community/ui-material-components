@@ -1,7 +1,7 @@
-import { android as androidApp } from 'tns-core-modules/application';
-import { fromObject } from 'tns-core-modules/data/observable';
-import { createViewFromEntry } from 'tns-core-modules/ui/builder';
-import { View } from 'tns-core-modules/ui/core/view';
+import { android as androidApp } from '@nativescript/core/application';
+import { fromObject } from '@nativescript/core/data/observable';
+import { createViewFromEntry } from '@nativescript/core/ui/builder';
+import { View } from '@nativescript/core/ui/core/view';
 import {
     ActionOptions,
     ALERT,
@@ -18,14 +18,16 @@ import {
     OK,
     PROMPT,
     PromptResult
-} from 'tns-core-modules/ui/dialogs';
+} from '@nativescript/core/ui/dialogs';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
-import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
-import { ad } from 'tns-core-modules/utils/utils';
+import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout';
+import { ad } from '@nativescript/core/utils/utils';
 import { TextField } from 'nativescript-material-textfield';
 import { isDialogOptions } from './dialogs-common';
 
-declare module 'tns-core-modules/ui/core/view/view' {
+export { capitalizationType, inputType };
+
+declare module '@nativescript/core/ui/core/view/view' {
     interface View {
         _setupAsRootView(context: any): void;
         callLoaded(): void;

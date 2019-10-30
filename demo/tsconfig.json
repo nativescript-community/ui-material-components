@@ -1,4 +1,5 @@
 {
+    "extends": "../tsconfig",
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
@@ -23,7 +24,6 @@
         "baseUrl": ".",
         "paths": {
             "*": [
-                "./node_modules/tns-core-modules/*",
                 "./node_modules/*"
             ],
             "~/*": [

@@ -1,10 +1,10 @@
-import { View } from 'tns-core-modules/ui/core/view';
-import { createViewFromEntry } from 'tns-core-modules/ui/builder';
-import { Frame } from 'tns-core-modules/ui/frame';
-import { EventData } from 'tns-core-modules/data/observable';
-import { eachDescendant, ViewBase } from 'tns-core-modules/ui/core/view-base';
+import { View } from '@nativescript/core/ui/core/view';
+import { createViewFromEntry } from '@nativescript/core/ui/builder';
+import { Frame } from '@nativescript/core/ui/frame';
+import { EventData } from '@nativescript/core/data/observable';
+import { eachDescendant, ViewBase } from '@nativescript/core/ui/core/view-base';
 
-declare module 'tns-core-modules/ui/core/view/view' {
+declare module '@nativescript/core/ui/core/view/view' {
     interface View {
         showBottomSheet(options: BottomSheetOptions): ViewBase;
         _setupAsRootView(context: any): void;
@@ -100,7 +100,6 @@ export abstract class ViewWithBottomSheetBase extends View {
         this.notify(args);
     }
     public closeBottomSheet(...args) {
-        console.log('closeBottomSheet');
         let closeCallback = this._closeBottomSheetCallback;
         if (closeCallback) {
             closeCallback.apply(undefined, arguments);

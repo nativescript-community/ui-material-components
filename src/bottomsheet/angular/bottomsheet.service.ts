@@ -6,7 +6,7 @@ import { BottomSheetOptions as MaterialBottomSheetOptions } from '../bottomsheet
 import { ViewWithBottomSheetBase } from '../bottomsheet-common';
 import { Observable, Subject } from 'rxjs';
 import { filter, first, map } from 'rxjs/operators';
-import { ProxyViewContainer } from 'tns-core-modules/ui/proxy-view-container';
+import { ProxyViewContainer } from '@nativescript/core/ui/proxy-view-container';
 
 export type BaseShowBottomSheetOptions = Pick<MaterialBottomSheetOptions, Exclude<keyof MaterialBottomSheetOptions, 'closeCallback' | 'view'>>;
 

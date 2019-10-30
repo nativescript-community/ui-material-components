@@ -1,10 +1,10 @@
 import { themer } from 'nativescript-material-core/core';
 import { TextField } from 'nativescript-material-textfield';
-import { getRootView } from 'tns-core-modules/application';
-import { fromObject } from 'tns-core-modules/data/observable';
-import { createViewFromEntry } from 'tns-core-modules/ui/builder/builder';
-import { ios as iosView, View } from 'tns-core-modules/ui/core/view';
-import { layout } from 'tns-core-modules/utils/utils';
+import { getRootView } from '@nativescript/core/application';
+import { fromObject } from '@nativescript/core/data/observable';
+import { createViewFromEntry } from '@nativescript/core/ui/builder/builder';
+import { ios as iosView, View } from '@nativescript/core/ui/core/view';
+import { layout } from '@nativescript/core/utils/utils';
 import {
     ActionOptions,
     CANCEL,
@@ -19,11 +19,13 @@ import {
     LoginResult,
     OK,
     PromptResult
-} from 'tns-core-modules/ui/dialogs';
-import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout';
-import { isDefined, isFunction, isString } from 'tns-core-modules/utils/types';
+} from '@nativescript/core/ui/dialogs';
+import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout';
+import { isDefined, isFunction, isString } from '@nativescript/core/utils/types';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
+
+export { capitalizationType, inputType };
 
 const UNSPECIFIED = layout.makeMeasureSpec(0, layout.UNSPECIFIED);
 

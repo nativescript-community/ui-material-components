@@ -1,9 +1,9 @@
 import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { Color } from 'tns-core-modules/color';
-import { ImageSource } from 'tns-core-modules/image-source';
-import { colorProperty } from 'tns-core-modules/ui/page';
-import { FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
+import { Color } from '@nativescript/core/color';
+import { ImageSource } from '@nativescript/core/image-source';
+import { colorProperty } from '@nativescript/core/ui/page';
+import { expandedProperty, FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
 
 export class FloatingActionButton extends FloatingActionButtonBase {
     nativeViewProtected: MDCFloatingButton;
@@ -21,7 +21,7 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         this.nativeViewProtected.setImageForState(nativeImage, UIControlState.Normal);
     }
     public createNativeView() {
-        const result = MDCFloatingButton.new();
+        const result = MDCFloatingButton.floatingButtonWithShape(this.size === 'mini' ? MDCFloatingButtonShape.Mini : MDCFloatingButtonShape.Default);
         const colorScheme = themer.getAppColorScheme();
         if (colorScheme) {
             MDCFloatingButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, result);
@@ -58,5 +58,14 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     }
     [rippleColorProperty.setNative](color: Color) {
         this.nativeViewProtected.inkColor = getRippleColor(color);
+    }
+    [expandedProperty.setNative](value: boolean) {
+        // UIView.animateWithDurationAnimations(0.25, () => {
+        this.nativeViewProtected.mode = value ? MDCFloatingButtonMode.Expanded : MDCFloatingButtonMode.Normal;
+        this.nativeViewProtected.setTitleForState(value ? this.text : null, UIControlState.Normal);
+        this.nativeViewProtected.sizeToFit();
+        // });
+
+        // this.nativeViewProtected.titleForState = value ? MDCFloatingButtonMode.Expanded : MDCFloatingButtonMode.Normal;
     }
 }

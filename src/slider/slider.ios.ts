@@ -1,7 +1,7 @@
 import { themer } from 'nativescript-material-core/core';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { Color } from 'tns-core-modules/color';
-import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
+import { Color } from '@nativescript/core/color';
+import { colorProperty } from '@nativescript/core/ui/styling/style-properties';
 import { thumbColorProperty, thumbHollowAtStartProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
 import { SliderBase } from './slider-common';
 
@@ -9,7 +9,7 @@ export class Slider extends SliderBase {
     nativeViewProtected: MDCSlider;
     constructor() {
         super();
-        this['css-height'] = 20;
+        // this['css-height'] = 20;
     }
     public createNativeView() {
         const result = MDCSlider.new();
@@ -24,7 +24,7 @@ export class Slider extends SliderBase {
         return result;
     }
     [colorProperty.setNative](color: Color) {
-        super[colorProperty.setNative](color);
+        // super[colorProperty.setNative](color);
         if (!this.trackBackgroundColor) {
             this.trackBackgroundColor = new Color(66.3, color.r, color.g, color.b);
         }

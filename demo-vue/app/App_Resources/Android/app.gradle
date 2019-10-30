@@ -5,6 +5,8 @@
 //	compile 'com.android.support:recyclerview-v7:+'
 //}
 
+project.setProperty('androidXMaterial', "1.2.0-alpha01")
+
 android {
   defaultConfig {
     generatedDensities = []

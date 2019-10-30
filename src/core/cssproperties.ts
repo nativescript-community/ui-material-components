@@ -1,7 +1,7 @@
-import { Color } from 'tns-core-modules/color';
-import { CssProperty, InheritedCssProperty, makeParser, makeValidator } from 'tns-core-modules/ui/core/properties';
-import { Style } from 'tns-core-modules/ui/styling/style';
-import { Length } from 'tns-core-modules/ui/styling/style-properties';
+import { Color } from '@nativescript/core/color';
+import { CssProperty, InheritedCssProperty, makeParser, makeValidator } from '@nativescript/core/ui/core/properties';
+import { Style } from '@nativescript/core/ui/styling/style';
+import { Length } from '@nativescript/core/ui/styling/style-properties';
 import { VerticalTextAlignment } from 'nativescript-material-core';
 
 function createGetter(key) {

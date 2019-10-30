@@ -1,12 +1,12 @@
 import { getLayout, handleClearFocus, stateSets } from 'nativescript-material-core/android/utils';
-import { Color } from 'tns-core-modules/color';
-import { backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base';
-import { Background } from 'tns-core-modules/ui/styling/background';
-import { ad } from 'tns-core-modules/utils/utils';
+import { Color } from '@nativescript/core/color';
+import { backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
+import { Background } from '@nativescript/core/ui/styling/background';
+import { ad } from '@nativescript/core/utils/utils';
 import { TextFieldBase } from './textfield.common';
 import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from './textfield_cssproperties';
 
-// declare module 'tns-core-modules/ui/text-field' {
+// declare module '@nativescript/core/ui/text-field' {
 //     interface TextField {
 //         _redrawNativeBackground(value: android.graphics.drawable.Drawable | Background): void;
 //     }

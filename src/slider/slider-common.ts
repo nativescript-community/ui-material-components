@@ -1,8 +1,8 @@
 import { cssProperty } from 'nativescript-material-core/cssproperties';
-import { Color } from 'tns-core-modules/color';
-import { CssProperty, Style } from 'tns-core-modules/ui/core/properties';
-import { CSSType } from 'tns-core-modules/ui/core/view';
-import { Slider as NSSlider } from 'tns-core-modules/ui/slider';
+import { Color } from '@nativescript/core/color';
+import { CssProperty, Style } from '@nativescript/core/ui/core/properties';
+import { CSSType, View } from '@nativescript/core/ui/core/view';
+import { Slider as NSSlider } from '@nativescript/core/ui/slider';
 
 @CSSType('MDSlider')
 export abstract class SliderBase extends NSSlider {
@@ -11,8 +11,4 @@ export abstract class SliderBase extends NSSlider {
     @cssProperty trackFillColor: Color;
     @cssProperty thumbColor: Color;
     @cssProperty elevation: number;
-    constructor() {
-        super();
-    }
 }
-

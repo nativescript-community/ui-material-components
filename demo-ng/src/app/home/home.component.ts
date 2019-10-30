@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular';
-import { ItemEventData } from 'tns-core-modules/ui/list-view';
+import { ItemEventData } from '@nativescript/core/ui/list-view';
 
 @Component({
     selector: 'ns-home',

@@ -1,12 +1,12 @@
 import { themer } from 'nativescript-material-core/core';
-import { Color } from 'tns-core-modules/color';
-import { screen } from 'tns-core-modules/platform';
-import { View } from 'tns-core-modules/ui/core/view';
-import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
-import { layout } from 'tns-core-modules/utils/utils';
+import { Color } from '@nativescript/core/color';
+import { screen } from '@nativescript/core/platform';
+import { View } from '@nativescript/core/ui/core/view';
+import { colorProperty } from '@nativescript/core/ui/styling/style-properties';
+import { layout } from '@nativescript/core/utils/utils';
 import { ActivityIndicatorBase, indeterminateProperty } from './activityindicator-common';
 
-declare module 'tns-core-modules/ui/core/view/view' {
+declare module '@nativescript/core/ui/core/view/view' {
     interface View {
         _onSizeChanged();
     }

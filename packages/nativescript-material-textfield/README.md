@@ -5,7 +5,11 @@
 
 ## Installation
 
+If using ```@nativescript``` :
 * `tns plugin add nativescript-material-textfield`
+
+If using ```tns-core-modules```
+* `tns plugin add nativescript-material-textfield@2.5.4`
 
 Be sure to run a new build after adding plugins to avoid any issues.
 

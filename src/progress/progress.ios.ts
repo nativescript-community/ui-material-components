@@ -1,7 +1,7 @@
 import { progressBackgroundColorProperty, ProgressBase, progressColorProperty } from './progress-common';
 import { themer } from 'nativescript-material-core/core';
-import { screen } from 'tns-core-modules/platform';
-import { Color } from 'tns-core-modules/color';
+import { screen } from '@nativescript/core/platform';
+import { Color } from '@nativescript/core/color';
 
 export class Progress extends ProgressBase {
     nativeViewProtected: MDCProgressView;

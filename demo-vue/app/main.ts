@@ -1,4 +1,4 @@
-// import { knownFolders } from 'tns-core-modules/file-system';
+// import { knownFolders } from '@nativescript/core/file-system';
 // const currentApp = knownFolders.currentApp();
 // global.process = global.process || {} as any;
 // global.process.cwd = function() {
@@ -35,7 +35,7 @@ import ProgressPlugin from 'nativescript-material-progress/vue';
 import RipplePlugin from 'nativescript-material-ripple/vue';
 import SliderPlugin from 'nativescript-material-slider/vue';
 import TextFieldPlugin from 'nativescript-material-textfield/vue';
-import { isIOS } from 'tns-core-modules/platform';
+import { isIOS } from '@nativescript/core/platform';
 import { install as installBottomSheet } from 'nativescript-material-bottomsheet';
 import BottomSheetPlugin from 'nativescript-material-bottomsheet/vue';
 import BottomNavigationBarlugin from 'nativescript-material-bottomnavigationbar/vue';
@@ -65,6 +65,7 @@ if (isIOS) {
     themer.setPrimaryColor('#33B5E5');
     themer.setPrimaryColorVariant('#33B5E5');
     themer.setAccentColor('#33B5E5');
+    themer.setSecondaryColor('red');
 }
 
 // import { getExamples } from './examples';

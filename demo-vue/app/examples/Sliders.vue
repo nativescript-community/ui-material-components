@@ -9,30 +9,30 @@
         <Label text="Default slider with dynamic value" padding="10" />
         <MDSlider elevation="3" thumbColor="yellow"
                   minValue="0" maxValue="100"
-                  v-model="value" />
+                  :value="value" @valueChange="onValueChanged"/>
         <Label text="Green slider without hollow at 0" padding="10" />
         <MDSlider thumbHollowAtStart="false" color="green"
                   minValue="0" maxValue="100"
-                  v-model="value" />
+                  :value="value" @valueChange="onValueChanged" />
         <Label text="Disabled slider" padding="10" />
         <MDSlider isEnabled="false"
                   minValue="0" maxValue="100"
-                  v-model="value" />
+                  :value="value" @valueChange="onValueChanged" />
         <MDSlider
                   minValue="0" maxValue="100"
                   rippleColor="red"
-                  v-model="value" />
+                  :value="value" @valueChange="onValueChanged" />
         <MDSlider
                   minValue="0" maxValue="100"
                   color="red"
                   thumbColor="blue"
-                  v-model="value" />
+                  :value="value" @valueChange="onValueChanged" />
       </StackLayout>
   </Page>
 </template>
 
 <script lang="ts">
-import * as frameModule from 'tns-core-modules/ui/frame';
+import * as frameModule from '@nativescript/core/ui/frame';
 import Vue from 'vue';
 
 export const title = 'Sliders sample';
@@ -52,7 +52,7 @@ export default Vue.extend({
         },
 
         onValueChanged({ value }) {
-            console.log(`Value changed to ${value}`);
+            this.value = value;
         },
     },
 })

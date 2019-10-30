@@ -1,8 +1,8 @@
-import { CSSType } from 'tns-core-modules/ui/core/view';
-import { Button } from 'tns-core-modules/ui/button';
+import { CSSType } from '@nativescript/core/ui/core/view';
+import { Button } from '@nativescript/core/ui/button';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
-import { Color } from 'tns-core-modules/color';
-import { Property } from 'tns-core-modules/ui/core/properties';
+import { Color } from '@nativescript/core/color';
+import { Property } from '@nativescript/core/ui/core/properties';
 import { VerticalTextAlignment } from 'nativescript-material-core';
 
 @CSSType('MDButton')

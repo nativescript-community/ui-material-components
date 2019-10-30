@@ -11,12 +11,12 @@
 </template>
 
 <script lang="ts">
-import * as frameModule from 'tns-core-modules/ui/frame';
+import * as frameModule from '@nativescript/core/ui/frame';
 import Vue from 'vue';
-import { EventData, View, Color } from 'tns-core-modules/ui/frame';
-import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
-import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator/activity-indicator';
-import { Label } from 'tns-core-modules/ui/label/label';
+import { EventData, View, Color } from '@nativescript/core/ui/frame';
+import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout/stack-layout';
+import { ActivityIndicator } from '@nativescript/core/ui/activity-indicator/activity-indicator';
+import { Label } from '@nativescript/core/ui/label/label';
 import BottomSheetInner  from './BottomSheetInner.vue';
 import BottomSheetInnerKeyboard  from './BottomSheetInnerKeyboard.vue';
 import { NativeScriptVue } from 'nativescript-vue';

@@ -1,5 +1,5 @@
-import { TextField as NTextField } from 'tns-core-modules/ui/text-field/text-field';
-import { Color } from 'tns-core-modules/color/color';
+import { TextField as NTextField } from '@nativescript/core/ui/text-field/text-field';
+import { Color } from '@nativescript/core/color/color';
 import {
     AutocapitalizationType,
     FormattedString,
@@ -11,7 +11,7 @@ import {
     TextTransform,
     UpdateTextTrigger,
     WhiteSpace
-} from 'tns-core-modules/ui/editable-text-base/editable-text-base';
+} from '@nativescript/core/ui/editable-text-base/editable-text-base';
 
 type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 

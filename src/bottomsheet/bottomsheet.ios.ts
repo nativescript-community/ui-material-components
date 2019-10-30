@@ -1,9 +1,9 @@
 import { ViewWithBottomSheetBase } from './bottomsheet-common';
-import { ios, traceCategories, traceError, traceMessageType, traceWrite, View } from 'tns-core-modules/ui/core/view';
-import { ViewBase } from 'tns-core-modules/ui/core/view-base';
-import { layout } from 'tns-core-modules/utils/utils';
+import { ios, traceCategories, traceError, traceMessageType, traceWrite, View } from '@nativescript/core/ui/core/view';
+import { ViewBase } from '@nativescript/core/ui/core/view-base';
+import { layout } from '@nativescript/core/utils/utils';
 import { BottomSheetOptions } from './bottomsheet';
-import { fromObject } from 'tns-core-modules/data/observable';
+import { fromObject } from '@nativescript/core/data/observable';
 import { applyMixins } from 'nativescript-material-core/core';
 
 class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottomSheetControllerDelegate {
@@ -40,7 +40,7 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottom
     }
 }
 
-declare module 'tns-core-modules/ui/core/view/view' {
+declare module '@nativescript/core/ui/core/view/view' {
     interface View {
         _setLayoutFlags(left: number, top: number, right: number, bottom: number);
     }
@@ -235,7 +235,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 }
 
 export function overrideBottomSheet() {
-    const NSView = require('tns-core-modules/ui/core/view').View;
+    const NSView = require('@nativescript/core/ui/core/view').View;
     applyMixins(NSView, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
 }
 export function install() {

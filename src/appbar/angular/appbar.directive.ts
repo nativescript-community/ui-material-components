@@ -1,7 +1,7 @@
 import { AfterViewInit, Directive } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Page } from 'tns-core-modules/ui/page/page';
-import { addCss, ios as iosApp } from 'tns-core-modules/application';
+import { Page } from '@nativescript/core/ui/page/page';
+import { addCss, ios as iosApp } from '@nativescript/core/application';
 import { themer } from 'nativescript-material-core/core';
 
 @Directive({
@@ -53,13 +53,6 @@ export class AppBarDirective implements AfterViewInit {
             }
         }
     }
-    // public onLoaded() {
-    //     super.onLoaded();
-    //     console.log('onLoaded');
-
-    //     // }, 1000);
-    // }
-
     ngAfterViewInit() {
         this._addController();
         const viewController = this.page.ios as UIViewController;

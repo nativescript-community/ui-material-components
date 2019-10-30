@@ -1,7 +1,7 @@
-import { CssProperty } from 'tns-core-modules/ui/core/properties';
-import { Color } from 'tns-core-modules/color';
-import { Style } from 'tns-core-modules/ui/styling/style';
-import { booleanConverter } from 'tns-core-modules/ui/core/view-base';
+import { CssProperty } from '@nativescript/core/ui/core/properties';
+import { Color } from '@nativescript/core/color';
+import { Style } from '@nativescript/core/ui/styling/style';
+import { booleanConverter } from '@nativescript/core/ui/core/view-base';
 
 export const errorColorProperty = new CssProperty<Style, Color>({
     name: 'errorColor',

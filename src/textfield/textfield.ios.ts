@@ -1,11 +1,11 @@
 import { TextFieldBase } from './textfield.common';
-import { backgroundInternalProperty, placeholderColorProperty } from 'tns-core-modules/ui/editable-text-base';
+import { backgroundInternalProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
 import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from './textfield_cssproperties';
 import { themer } from 'nativescript-material-core/core';
-import { Color } from 'tns-core-modules/color';
-import { Style } from 'tns-core-modules/ui/styling/style';
-import { Background } from 'tns-core-modules/ui/styling/background';
-import { screen } from 'tns-core-modules/platform/platform';
+import { Color } from '@nativescript/core/color';
+import { Style } from '@nativescript/core/ui/styling/style';
+import { Background } from '@nativescript/core/ui/styling/background';
+import { screen } from '@nativescript/core/platform/platform';
 
 let colorScheme: MDCSemanticColorScheme;
 function getColorScheme() {
@@ -15,7 +15,7 @@ function getColorScheme() {
     return colorScheme;
 }
 
-declare module 'tns-core-modules/ui/text-field/text-field' {
+declare module '@nativescript/core/ui/text-field/text-field' {
     interface TextField {
         _updateAttributedPlaceholder();
     }

@@ -1,5 +1,5 @@
 import { progressBackgroundColorProperty, ProgressBase, progressColorProperty } from './progress-common';
-import { Color } from 'tns-core-modules/color';
+import { Color } from '@nativescript/core/color';
 
 export class Progress extends ProgressBase {
     nativeViewProtected: android.widget.ProgressBar;

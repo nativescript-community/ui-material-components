@@ -1,4 +1,4 @@
-import { Observable, Page, PropertyChangeData } from 'tns-core-modules/ui/page/page';
+import { Observable, Page, PropertyChangeData } from '@nativescript/core/ui/page/page';
 import { Progress } from 'nativescript-material-progress';
 
 export function onNavigatingTo(args) {

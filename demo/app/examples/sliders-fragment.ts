@@ -1,5 +1,5 @@
-import { Observable, PropertyChangeData } from 'tns-core-modules/ui/core/view';
-import { Page } from 'tns-core-modules/ui/page/page';
+import { Observable, PropertyChangeData } from '@nativescript/core/ui/core/view';
+import { Page } from '@nativescript/core/ui/page/page';
 import { Slider } from 'nativescript-material-slider';
 
 export function onNavigatingTo(args) {

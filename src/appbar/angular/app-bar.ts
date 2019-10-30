@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActionBarComponent } from 'nativescript-angular/directives/action-bar';
-import { ActionBar, ActionItem, ActionItems, NavigationButton } from 'tns-core-modules/ui/action-bar/action-bar';
+import { ActionBar, ActionItem, ActionItems, NavigationButton } from '@nativescript/core/ui/action-bar/action-bar';
 import { isInvisibleNode, isView, NgView, ViewClassMeta, ViewExtensions } from 'nativescript-angular/element-registry';
 
 export function isActionItem(view: any): view is ActionItem {

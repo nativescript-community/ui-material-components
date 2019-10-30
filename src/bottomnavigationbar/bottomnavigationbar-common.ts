@@ -1,10 +1,10 @@
-import { AddChildFromBuilder, booleanConverter, Color, CssProperty, CSSType, Property, Style, View } from 'tns-core-modules/ui/core/view';
+import { AddChildFromBuilder, booleanConverter, Color, CssProperty, CSSType, Property, Style, View } from '@nativescript/core/ui/core/view';
 
-import { fromFileOrResource, ImageSource } from 'tns-core-modules/image-source';
+import { fromFileOrResource, ImageSource } from '@nativescript/core/image-source';
 
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 
-import { EventData } from 'tns-core-modules/data/observable';
+import { EventData } from '@nativescript/core/data/observable';
 
 /**
  * Event interface for tab pressed event

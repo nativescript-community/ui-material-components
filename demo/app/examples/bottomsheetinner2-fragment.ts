@@ -1,5 +1,5 @@
-import { EventData, View } from 'tns-core-modules/ui/core/view';
-import { ItemEventData } from 'tns-core-modules/ui/list-view/list-view';
+import { EventData, View } from '@nativescript/core/ui/core/view';
+import { ItemEventData } from '@nativescript/core/ui/list-view/list-view';
 
 export function onTap(args: ItemEventData) {
     const bindingContext = (args.object as View).bindingContext;

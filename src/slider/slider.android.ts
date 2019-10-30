@@ -1,6 +1,6 @@
 import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { Color } from 'tns-core-modules/color';
-import { colorProperty } from 'tns-core-modules/ui/styling/style-properties';
+import { Color } from '@nativescript/core/color';
+import { colorProperty } from '@nativescript/core/ui/styling/style-properties';
 import { thumbColorProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
 import { SliderBase } from './slider-common';
 
@@ -9,7 +9,6 @@ export class Slider extends SliderBase {
 
     [colorProperty.setNative](color: Color) {
         super[colorProperty.setNative](color);
-        console.log('colorProperty.setNative', color, this.thumbColor);
         if (!this.trackBackgroundColor) {
             this.trackBackgroundColor = color;
         }

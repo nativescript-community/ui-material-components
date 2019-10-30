@@ -1,10 +1,11 @@
-import { CSSType, View } from 'tns-core-modules/ui/core/view';
-import { Color } from 'tns-core-modules/color';
-import { ImageAsset } from 'tns-core-modules/image-asset';
-import { isDataURI, isFileOrResourcePath, RESOURCE_PREFIX } from 'tns-core-modules/utils/utils';
-import { fromAsset, fromNativeSource, fromUrl, ImageSource } from 'tns-core-modules/image-source';
+import { CSSType, View } from '@nativescript/core/ui/core/view';
+import { Button as NSButton } from '@nativescript/core/ui/button';
+import { Color } from '@nativescript/core/color';
+import { ImageAsset } from '@nativescript/core/image-asset';
+import { isDataURI, isFileOrResourcePath, RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
+import { fromAsset, fromNativeSource, fromUrl, ImageSource } from '@nativescript/core/image-source';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
-import { Property } from 'tns-core-modules/ui/core/properties';
+import { Property } from '@nativescript/core/ui/core/properties';
 
 export const imageSourceProperty = new Property<FloatingActionButtonBase, ImageSource>({ name: 'imageSource' });
 
@@ -17,8 +18,13 @@ export const sizeProperty = new Property<FloatingActionButtonBase, string>({
     affectsLayout: true
 });
 
+export const expandedProperty = new Property<FloatingActionButtonBase, boolean>({
+    name: 'expanded',
+    affectsLayout: true
+});
+
 @CSSType('MDFloatingActionButton')
-export abstract class FloatingActionButtonBase extends View {
+export abstract class FloatingActionButtonBase extends NSButton {
     constructor() {
         super();
         // we need to set the default through css or user would not be able to overload it through css...
@@ -37,6 +43,7 @@ export abstract class FloatingActionButtonBase extends View {
     public imageSource: ImageSource;
     public src: string | ImageSource;
     public isLoading: boolean;
+    public size: 'mini' | 'auto' | 'normal';
 
     /**
      * @internal //copied from image common
@@ -116,3 +123,4 @@ export abstract class FloatingActionButtonBase extends View {
 imageSourceProperty.register(FloatingActionButtonBase);
 srcProperty.register(FloatingActionButtonBase);
 sizeProperty.register(FloatingActionButtonBase);
+expandedProperty.register(FloatingActionButtonBase);

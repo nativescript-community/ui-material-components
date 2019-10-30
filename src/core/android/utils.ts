@@ -1,7 +1,7 @@
-import * as application from 'tns-core-modules/application';
-import { Color } from 'tns-core-modules/color';
-import { ViewBase } from 'tns-core-modules/ui/page';
-import { ad, layout } from 'tns-core-modules/utils/utils';
+import * as application from '@nativescript/core/application';
+import { Color } from '@nativescript/core/color';
+import { ViewBase } from '@nativescript/core/ui/page';
+import { ad, layout } from '@nativescript/core/utils/utils';
 
 let isPostLollipopVar: boolean = undefined;
 export function isPostLollipop() {

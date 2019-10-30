@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import * as frameModule from 'tns-core-modules/ui/frame';
+import * as frameModule from '@nativescript/core/ui/frame';
 import Vue from 'vue';
 
 export const title = 'Text fields sample';

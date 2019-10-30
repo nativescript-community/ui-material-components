@@ -1,6 +1,6 @@
-import { Page as INSPage, View } from 'tns-core-modules/ui/page';
-import { ActionBar } from 'tns-core-modules/ui/action-bar';
-import * as application from 'tns-core-modules/application';
+import { Page as INSPage, View } from '@nativescript/core/ui/page';
+import { ActionBar } from '@nativescript/core/ui/action-bar';
+import * as application from '@nativescript/core/application';
 import { applyMixins } from 'nativescript-material-core/core';
 
 function getLayout(id: string) {
@@ -52,7 +52,7 @@ export class Page extends INSPage {
 }
 
 export function overridePage() {
-    const NSPage = require('tns-core-modules/ui/page/page').Page;
+    const NSPage = require('@nativescript/core/ui/page/page').Page;
     applyMixins(NSPage, [Page]);
 }
 export function install() {

@@ -1,5 +1,5 @@
-import { View } from 'tns-core-modules/ui/core/view';
-import { fromObject } from 'tns-core-modules/data/observable';
+import { View } from '@nativescript/core/ui/core/view';
+import { fromObject } from '@nativescript/core/data/observable';
 import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
 import { applyMixins } from 'nativescript-material-core/core';
 
@@ -26,7 +26,7 @@ function getBottomSheetOptions(domId: number): BottomSheetDataOptions {
     return bottomSheetMap.get(domId);
 }
 
-declare module 'tns-core-modules/ui/core/view' {
+declare module '@nativescript/core/ui/core/view' {
     interface View {
         _bottomSheetFragment: com.google.android.material.bottomsheet.BottomSheetDialogFragment;
     }
@@ -193,7 +193,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 }
 
 export function overrideBottomSheet() {
-    const NSView = require('tns-core-modules/ui/core/view/view').View;
+    const NSView = require('@nativescript/core/ui/core/view/view').View;
     applyMixins(NSView, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
 }
 export function install() {

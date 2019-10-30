@@ -1,6 +1,6 @@
 import { Directive, ElementRef, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { View } from 'tns-core-modules/ui/core/view';
+import { View } from '@nativescript/core/ui/core/view';
 
 import { BaseValueAccessor } from 'nativescript-angular/forms/value-accessors/base-value-accessor';
 

@@ -1,11 +1,11 @@
-import { Color } from 'tns-core-modules/color';
-import { Button } from 'tns-core-modules/ui/button';
-import { ControlStateChangeListener } from 'tns-core-modules/ui/core/control-state-change';
-import { View } from 'tns-core-modules/ui/core/view';
-import { GestureTypes, TouchAction, TouchGestureEventData } from 'tns-core-modules/ui/gestures';
-import { Background } from 'tns-core-modules/ui/styling/background';
-import { backgroundInternalProperty } from 'tns-core-modules/ui/styling/style-properties';
-import { layout } from 'tns-core-modules/utils/utils';
+import { Color } from '@nativescript/core/color';
+import { Button } from '@nativescript/core/ui/button';
+import { ControlStateChangeListener } from '@nativescript/core/ui/core/control-state-change';
+import { View } from '@nativescript/core/ui/core/view';
+import { GestureTypes, TouchAction, TouchGestureEventData } from '@nativescript/core/ui/gestures';
+import { Background } from '@nativescript/core/ui/styling/background';
+import { backgroundInternalProperty } from '@nativescript/core/ui/styling/style-properties';
+import { layout } from '@nativescript/core/utils/utils';
 import { TypographyOptions } from './core';
 import { applyMixins } from './core.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
@@ -16,6 +16,7 @@ export class Themer {
     appColorScheme: MDCSemanticColorScheme;
     appTypoScheme: MDCTypographyScheme;
     primaryColor: string | Color;
+    secondaryColor: string | Color;
     accentColor: string | Color;
     primaryColorVariant: string | Color;
     surfaceColor: string | Color;
@@ -43,6 +44,15 @@ export class Themer {
     }
     getPrimaryColor(): string | Color {
         return this.primaryColor;
+    }
+    setSecondaryColor(value: string | Color) {
+        this.secondaryColor = value;
+        const colorTheme = this.getOrcreateAppColorScheme();
+        const color = value instanceof Color ? value : new Color(value);
+        colorTheme.secondaryColor = color.ios;
+    }
+    getSecondaryColor(): string | Color {
+        return this.secondaryColor;
     }
 
     setAccentColor(value: string | Color) {
@@ -270,7 +280,7 @@ class ViewWithElevationAndRipple extends View {
 }
 
 export function overrideViewBase() {
-    const NSView = require('tns-core-modules/ui/core/view').View;
+    const NSView = require('@nativescript/core/ui/core/view').View;
     // we need mixins to be applied after (run default implementation first) because of _setNativeClipToBounds.
     // it needs to be applied after for shadows to be drawn correctly
     applyMixins(NSView, [ViewWithElevationAndRipple], {

@@ -1,4 +1,4 @@
-import { EventData, View } from 'tns-core-modules/ui/core/view';
+import { EventData, View } from '@nativescript/core/ui/core/view';
 
 // let closeCallback
 

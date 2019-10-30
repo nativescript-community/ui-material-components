@@ -1,9 +1,9 @@
 import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { Color } from 'tns-core-modules/color';
-import { screen } from 'tns-core-modules/platform';
-import { Background } from 'tns-core-modules/ui/styling/background';
-import { Font } from 'tns-core-modules/ui/styling/font';
+import { Color } from '@nativescript/core/color';
+import { screen } from '@nativescript/core/platform';
+import { Background } from '@nativescript/core/ui/styling/background';
+import { Font } from '@nativescript/core/ui/styling/font';
 import {
     backgroundInternalProperty,
     borderBottomLeftRadiusProperty,
@@ -11,8 +11,8 @@ import {
     borderTopLeftRadiusProperty,
     borderTopRightRadiusProperty,
     fontInternalProperty
-} from 'tns-core-modules/ui/styling/style-properties';
-import { layout } from 'tns-core-modules/utils/utils';
+} from '@nativescript/core/ui/styling/style-properties';
+import { layout } from '@nativescript/core/utils/utils';
 import { ButtonBase } from './button-common';
 
 let buttonScheme: MDCButtonScheme;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BottomSheetParams } from 'nativescript-material-bottomsheet/angular';
-import { ItemEventData } from 'tns-core-modules/ui/list-view';
+import { ItemEventData } from '@nativescript/core/ui/list-view';
 
 @Component({
     selector: 'ns-login-options',

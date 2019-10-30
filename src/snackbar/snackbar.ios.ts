@@ -1,4 +1,4 @@
-import { Color } from 'tns-core-modules/color';
+import { Color } from '@nativescript/core/color';
 import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 
@@ -23,7 +23,6 @@ class MDCSnackbarManagerDelegateImpl extends NSObject implements MDCSnackbarMana
         const owner = this._owner.get();
         if (owner) {
             const options = owner._options;
-            // console.log('willPresentSnackbarWithMessageView', messageView, messageView.message, options);
 
             const accentColor = themer.getAccentColor();
             if (accentColor) {

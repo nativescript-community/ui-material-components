@@ -11,7 +11,11 @@ Use the Material Design Bottom Sheets in your {N} app
 
 ## Installation
 
-`tns plugin add nativescript-material-bottomsheet`
+If using ```@nativescript``` :
+* `tns plugin add nativescript-material-bottomsheet`
+
+If using ```tns-core-modules```
+* `tns plugin add nativescript-material-bottomsheet@2.5.4`
 
 ## [Changelog](./CHANGELOG.md)
 
@@ -140,7 +144,7 @@ export class ItemComponent {
 ```typescript
 import { Component, OnInit } from '@angular/core';
 import { BottomSheetParams } from 'nativescript-material-bottomsheet/angular';
-import { ItemEventData } from 'tns-core-modules/ui/list-view';
+import { ItemEventData } from '@nativescript/core/ui/list-view';
 
 @Component({
     selector: 'ns-share-options',

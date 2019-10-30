@@ -1,10 +1,10 @@
-import { View } from 'tns-core-modules/ui/core/view';
-import { ImageSource } from 'tns-core-modules/image-source/image-source';
-import { TextAlignment } from 'tns-core-modules/ui/text-base';
-import { Font } from 'tns-core-modules/ui/styling/font';
-import { Color } from 'tns-core-modules/color';
+import { View } from '@nativescript/core/ui/core/view';
+import { ImageSource } from '@nativescript/core/image-source/image-source';
+import { TextAlignment } from '@nativescript/core/ui/text-base';
+import { Font } from '@nativescript/core/ui/styling/font';
+import { Color } from '@nativescript/core/color';
 
-declare module 'tns-core-modules/ui/core/view' {
+declare module '@nativescript/core/ui/core/view' {
     interface View {
         _setupAsRootView(context: any): void;
         callLoaded(): void;

@@ -6,6 +6,7 @@
         <StackLayout>
             <MDButton id="alert" text="alert" @tap="onTap" />
             <MDButton id="prompt" text="prompt" @tap="onTap" />
+            <MDButton id="password" text="password" @tap="onTap" />
             <MDButton id="login" text="login" @tap="onTap" />
             <MDButton id="dialogCustomView" text="customView" @tap="onTap" />
             <MDButton id="alertdialog" text="alertdialog" @tap="onTap" />
@@ -14,13 +15,13 @@
 </template>
 
 <script lang="ts">
-import * as frameModule from 'tns-core-modules/ui/frame';
+import * as frameModule from '@nativescript/core/ui/frame';
 import Vue from 'vue';
-import { EventData, View, Color } from 'tns-core-modules/ui/frame';
-import { alert, AlertDialog, login, prompt } from 'nativescript-material-dialogs';
-import { StackLayout } from 'tns-core-modules/ui/layouts/stack-layout/stack-layout';
-import { ActivityIndicator } from 'tns-core-modules/ui/activity-indicator/activity-indicator';
-import { Label } from 'tns-core-modules/ui/label/label';
+import { EventData, View, Color } from '@nativescript/core/ui/frame';
+import { alert, AlertDialog, login, prompt, inputType } from 'nativescript-material-dialogs';
+import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout/stack-layout';
+import { ActivityIndicator } from '@nativescript/core/ui/activity-indicator/activity-indicator';
+import { Label } from '@nativescript/core/ui/label/label';
 
 export const title = 'Dialogs sample';
 
@@ -77,6 +78,17 @@ export default Vue.extend({
                             hint: 'test hint text'
                         },
                         autoFocus: true
+                    }).then(result => console.log('prompt result', result));
+                    break;
+                }
+                case 'password': {
+                    console.log('about to prompt');
+                    prompt({
+                        title: 'Enter password',
+                        defaultText: '',
+                        okButtonText: 'OK',
+                        cancelButtonText: 'Cancel',
+                        inputType:inputType.password,
                     }).then(result => console.log('prompt result', result));
                     break;
                 }

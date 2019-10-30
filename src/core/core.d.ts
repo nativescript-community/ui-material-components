@@ -1,8 +1,8 @@
-import { Color } from 'tns-core-modules/color';
-import { Length } from 'tns-core-modules/ui/styling/style-properties';
+import { Color } from '@nativescript/core/color';
+import { Length } from '@nativescript/core/ui/styling/style-properties';
 
 
-declare module 'tns-core-modules/ui/styling/style-properties' {
+declare module '@nativescript/core/ui/styling/style-properties' {
     export const androidElevationProperty;
     export const androidDynamicElevationOffsetProperty;
 }
@@ -19,6 +19,8 @@ export class Themer {
     getAppColorScheme();
     setPrimaryColor(value: string | Color);
     getPrimaryColor(): string | Color;
+    getSecondaryColor(): string | Color;
+    setSecondaryColor(value: string | Color);
     setAccentColor(value: string | Color);
     getAccentColor(): string | Color;
     setPrimaryColorVariant(value: string | Color);
@@ -44,7 +46,7 @@ export function applyMixins(
 );
 export function getRippleColor(color: string | Color): any;
 
-// declare module 'tns-core-modules/ui/core/view' {
+// declare module '@nativescript/core/ui/core/view' {
 //     interface View {
 //         elevation: Length;
 //         rippleColor: string | Color;

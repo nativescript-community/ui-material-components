@@ -11,7 +11,11 @@ Use the Material Design Snackbars in your {N} app
 
 ## Installation
 
-`tns plugin add nativescript-material-snackbar`
+If using ```@nativescript``` :
+* `tns plugin add nativescript-material-snackbar`
+
+If using ```tns-core-modules```
+* `tns plugin add nativescript-material-snackbar@2.5.4`
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
