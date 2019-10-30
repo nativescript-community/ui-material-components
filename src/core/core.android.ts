@@ -1,4 +1,4 @@
-import { createRippleDrawable, createStateListAnimator, getAttrColor, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from 'nativescript-material-core/android/utils';
+import { createRippleDrawable, createStateListAnimator, getAttrColor, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from './android/utils';
 import * as application from '@nativescript/core/application';
 import { Color } from '@nativescript/core/color';
 import { Button } from '@nativescript/core/ui/button';
