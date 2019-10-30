@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NativeScriptCommonModule } from 'nativescript-angular/common';
+import { NativeScriptCommonModule } from '@nativescript/angular/common';
 import { NativeScriptMaterialBottomSheetModule } from 'nativescript-material-bottomsheet/angular';
 
 import { LoginOptionsComponent } from './login-options.component';

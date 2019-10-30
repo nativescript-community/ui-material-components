@@ -1,5 +1,5 @@
 import { Directive, NgModule } from '@angular/core';
-import { registerElement } from 'nativescript-angular/element-registry';
+import { registerElement } from '@nativescript/angular/element-registry';
 
 @Directive({ selector: 'MDRipple' })
 export class MaterialRippleDirective {}

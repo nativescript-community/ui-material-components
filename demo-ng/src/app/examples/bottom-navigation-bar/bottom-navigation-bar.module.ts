@@ -1,5 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { NativeScriptCommonModule } from 'nativescript-angular/common';
+import { NativeScriptCommonModule } from '@nativescript/angular/common';
 import { NativeScriptMaterialBottomNavigationBarModule } from 'nativescript-material-bottomnavigationbar/angular';
 
 import { BottomNavigationBarComponent } from './bottom-navigation-bar.component';

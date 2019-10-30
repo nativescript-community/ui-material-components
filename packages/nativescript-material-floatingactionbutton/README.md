@@ -47,7 +47,7 @@ mdcfloatingactionbutton {
 ## NativeScript + Angular
 
 ```typescript
-import { registerElement } from 'nativescript-angular/element-registry';
+import { registerElement } from '@nativescript/angular/element-registry';
 import { FloatingActionButton } from 'nativescript-material-floatingactionbutton';
 registerElement('MDFloatingActionButton', () => FloatingActionButton);
 ```

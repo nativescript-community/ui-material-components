@@ -2,10 +2,7 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "rootDir": "../../src/bottomsheet",
-        "outDir": "./",
-        "paths": {
-            "*": ["node_modules/*", "packages/*"]
-        }
+        "outDir": "./"
     },
     "include": ["../../src/bottomsheet/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
 }

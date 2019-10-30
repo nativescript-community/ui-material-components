@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterExtensions } from 'nativescript-angular';
+import { RouterExtensions } from '@nativescript/angular';
 import { ItemEventData } from '@nativescript/core/ui/list-view';
 
 @Component({
