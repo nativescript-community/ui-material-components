@@ -13,8 +13,8 @@
     },
     "nativescript": {
         "platforms": {
-            "android": "5.0.0",
-            "ios": "5.0.0"
+            "android": "6.2.0",
+            "ios": "6.2.0"
         }
     },
     "keywords": [
