@@ -6,7 +6,7 @@
         <ScrollView>
         <GridLayout rows="auto,auto,auto,auto,auto,auto,auto">
             <StackLayout row="0" backgroundColor="red" horizontalAlignment="center">
-                <MDTextField id="textField1"  verticalAlignment="center" variant="none" helper="help me!" width="250" placeholderColor="green" keyboardType="datetime" hint="i am an hint" returnKeyType="next" v-model="value"  @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" />
+                <MDTextField id="textField1"  verticalAlignment="center" variant="none" width="250" placeholderColor="green" keyboardType="datetime" hint="i am an hint" returnKeyType="next" v-model="value"  @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" />
             </StackLayout>
             <GridLayout row="1" backgroundColor="red" rows="auto" padding="20">
                 <MDTextField id="textField2" variant="filled" hint="hint me" v-model="value" backgroundColor="green" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floating="false" />

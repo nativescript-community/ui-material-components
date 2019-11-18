@@ -5,7 +5,7 @@
 //	compile 'com.android.support:recyclerview-v7:+'
 //}
 
-project.setProperty('androidXMaterial', "1.2.0-alpha01")
+project.ext.androidXMaterial = "1.1.0-beta01"
 
 android {
   defaultConfig {
