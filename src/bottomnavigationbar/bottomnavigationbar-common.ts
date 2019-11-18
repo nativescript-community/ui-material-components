@@ -189,17 +189,17 @@ export abstract class BottomNavigationTabBase extends View implements BottomNavi
     @cssProperty activeColor: Color;
     @cssProperty inactiveColor: Color;
 
-    // constructor(args?: BottomNavigationTabProps) {
-    //     super();
-    //     if (!args) {
-    //         return;
-    //     }
-    //     for (const k in args) {
-    //         if (args.hasOwnProperty(k)) {
-    //             this[k] = args[k];
-    //         }
-    //     }
-    // }
+    constructor(args?: BottomNavigationTabProps) {
+        super();
+        if (!args) {
+            return;
+        }
+        for (const k in args) {
+            if (args.hasOwnProperty(k)) {
+                this[k] = args[k];
+            }
+        }
+    }
 
     abstract getNativeIcon(): any;
     abstract showBadge(value?: number): void;
