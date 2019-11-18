@@ -67,7 +67,7 @@ export abstract class ViewWithBottomSheetBase extends View {
         });
     }
     protected _showNativeBottomSheet(parent: View, options: BottomSheetOptions) {
-        this._bottomSheetContext = options.context;
+        this._bottomSheetContext = options.context || {};
         this._whenCloseBottomSheetCallback = (...originalArgs) => {
             if (!this._whenCloseBottomSheetCallback) {
                 return;
