@@ -8,6 +8,7 @@ import { layout } from '@nativescript/core/utils/utils';
 
 @CSSType('MDActivityIndicator')
 export class ActivityIndicatorBase extends NSActivityIndicator {
+    public indeterminate: boolean;
     public startAnimating() {
         this.busy = true;
     }
