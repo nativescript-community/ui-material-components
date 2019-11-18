@@ -138,8 +138,15 @@ function initializeBottomSheetDialogFragment() {
         public onDestroy(): void {
             super.onDestroy();
             const owner = this.owner;
-            owner._isAddedToNativeVisualTree = false;
-            owner._tearDownUI(true);
+            if (owner) {
+                // Android calls onDestroy before onDismiss. 
+                // Make sure we unload first and then call _tearDownUI.
+                if (owner.isLoaded) {
+                    owner.callUnloaded();
+                }
+                owner._isAddedToNativeVisualTree = false;
+                owner._tearDownUI(true);
+            }
         }
     }
 
