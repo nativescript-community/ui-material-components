@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/Akylas/nativescript-material-components/compare/v2.5.4...v3.0.0) (2019-11-19)
+
+
+### Bug Fixes
+
+* bring back documented constructor ([d91c36e](https://github.com/Akylas/nativescript-material-components/commit/d91c36ebcc5f1e14dade7bc5b77ac51303da43ef))
+* ensure _bottomSheetContext is not undefined ([e1a5d5f](https://github.com/Akylas/nativescript-material-components/commit/e1a5d5f3a725a357f1e450f3a6307ab44d97fc27))
+* indeterminate prop ([bcbbf73](https://github.com/Akylas/nativescript-material-components/commit/bcbbf738731b0fbc2c49ad13686d73d1a7ea6854))
+* try to fix an error for some users on android ([5a074a3](https://github.com/Akylas/nativescript-material-components/commit/5a074a3ba883c254c4920349afdab8333a31927e))
+
+
+
+
+
 ## [2.5.4](https://github.com/Akylas/nativescript-material-components/compare/v2.5.3...v2.5.4) (2019-10-29)
 
 
