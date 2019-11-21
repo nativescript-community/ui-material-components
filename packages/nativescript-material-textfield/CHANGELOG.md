@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/Akylas/nativescript-material-components/compare/v3.0.0...v3.0.1) (2019-11-21)
+
+
+### Bug Fixes
+
+* revert missing gradle ([aab4cab](https://github.com/Akylas/nativescript-material-components/commit/aab4cab46cd0f7ae14ad2e65cfa5eaf2b11e4b19))
+
+
+
+
+
 # [3.0.0](https://github.com/Akylas/nativescript-material-components/compare/v2.5.4...v3.0.0) (2019-11-19)
 
 **Note:** Version bump only for package nativescript-material-textfield
