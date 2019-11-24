@@ -203,10 +203,24 @@ export class TextField extends TextFieldBase {
         // this.editText.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
     }
     [backgroundInternalProperty.setNative](value: Background) {
-        if (this.nativeViewProtected) {
-            if (value instanceof android.graphics.drawable.Drawable) {
-                this.nativeViewProtected.setBackgroundDrawable(value);
-            } else {
+        switch (this.variant) {
+            case 'none':
+            case 'filled':
+                super[backgroundInternalProperty.setNative](value);
+                if (value.color) {
+                    // this.layoutView.setBackground(null);
+                    const background = this.editText.getBackground();
+                    if (background instanceof com.google.android.material.shape.MaterialShapeDrawable) {
+                        background.setTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                        this.layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
+                        this.layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+                    } else {
+                        this.layoutView.setBoxBackgroundColor(value.color.android);
+                    }
+                }
+                break;
+            case 'outline':
+            case 'underline': {
                 if (value.color) {
                     // this.layoutView.setBackground(null);
                     const background = this.editText.getBackground();
@@ -222,15 +236,23 @@ export class TextField extends TextFieldBase {
                     // TODO: for now no control over border color. it is an attr
                     // this.nativeViewProtected.setStrokeColor(value.borderTopColor.android);
                 }
-
-                // TODO: for now no control over borderRadius because we can't define the default value
-                // this.borderTopLeftRadius = value.borderTopLeftRadius;
-                // this.borderTopRightRadius = value.borderTopRightRadius;
-                // this.borderBottomLeftRadius = value.borderBottomLeftRadius;
-                // this.borderBottomRightRadius = value.borderBottomRightRadius;
-                // this.layoutView.setBoxCornerRadii(this.borderTopLeftRadius, this.borderTopRightRadius, this.borderBottomLeftRadius, this.borderBottomRightRadius);
+                break;
             }
         }
+        // if (this.nativeViewProtected) {
+        //     if (value instanceof android.graphics.drawable.Drawable) {
+        //         this.nativeViewProtected.setBackgroundDrawable(value);
+        //     } else {
+                
+
+        //         // TODO: for now no control over borderRadius because we can't define the default value
+        //         // this.borderTopLeftRadius = value.borderTopLeftRadius;
+        //         // this.borderTopRightRadius = value.borderTopRightRadius;
+        //         // this.borderBottomLeftRadius = value.borderBottomLeftRadius;
+        //         // this.borderBottomRightRadius = value.borderBottomRightRadius;
+        //         // this.layoutView.setBoxCornerRadii(this.borderTopLeftRadius, this.borderTopRightRadius, this.borderBottomLeftRadius, this.borderBottomRightRadius);
+        //     }
+        // }
     }
 }
 //

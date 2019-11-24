@@ -203,17 +203,21 @@ export class TextField extends TextFieldBase {
         this._controller.setErrorTextErrorAccessibilityValue(value, value);
     }
     [backgroundInternalProperty.setNative](value: Background) {
-        if (value.color) {
-            this._controller.borderFillColor = value.color.ios;
+        switch (this.variant) {
+            case 'none':
+            case 'filled':
+                super[backgroundInternalProperty.setNative](value);
+                break;
+            case 'outline':
+            case 'underline': {
+                if (value.color) {
+                    this._controller.borderFillColor = value.color.ios;
+                }
+                if (value.borderTopColor) {
+                    this._controller.normalColor = value.borderTopColor.ios;
+                }
+                break;
+            }
         }
-        if (value.borderTopColor) {
-            this._controller.normalColor = value.borderTopColor.ios;
-        }
-
-        this.borderTopLeftRadius = value.borderTopLeftRadius;
-        this.borderTopRightRadius = value.borderTopRightRadius;
-        this.borderBottomLeftRadius = value.borderBottomLeftRadius;
-        this.borderBottomRightRadius = value.borderBottomRightRadius;
-        // TODO: for now no control over corner radius
     }
 }
