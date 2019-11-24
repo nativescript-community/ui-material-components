@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/Akylas/nativescript-material-components/compare/v3.0.1...v3.0.2) (2019-11-24)
+
+
+### Bug Fixes
+
+* background props should be handled ([fe65335](https://github.com/Akylas/nativescript-material-components/commit/fe653358580cc7411b72ca5b71d0f4786b19f3bc))
+* options.context should not be undefined ([171dd76](https://github.com/Akylas/nativescript-material-components/commit/171dd76b6b32ceff56ed1c394bddbfb4aafd9d35))
+
+
+
+
+
 ## [3.0.1](https://github.com/Akylas/nativescript-material-components/compare/v3.0.0...v3.0.1) (2019-11-21)
 
 
