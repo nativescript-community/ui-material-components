@@ -3,10 +3,13 @@
         "id": "org.nativescript.demo",
         "tns-android": {
             "version": "6.0.0"
+        },
+        "tns-ios": {
+            "version": "6.2.0"
         }
     },
     "dependencies": {
-        "@nativescript/core":"rc",
+        "@nativescript/core": "rc",
         "nativescript-material-activityindicator": "file:../packages/nativescript-material-activityindicator",
         "nativescript-material-bottomsheet": "file:../packages/nativescript-material-bottomsheet",
         "nativescript-material-bottomnavigationbar": "file:../packages/nativescript-material-bottomnavigationbar",

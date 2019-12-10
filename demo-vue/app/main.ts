@@ -62,10 +62,10 @@ import { install } from 'nativescript-material-bottomsheet';
 install();
 installMixins();
 if (isIOS) {
-    themer.setPrimaryColor('#33B5E5');
+    themer.setPrimaryColor('#bff937');
     themer.setPrimaryColorVariant('#33B5E5');
-    themer.setAccentColor('#33B5E5');
-    themer.setSecondaryColor('red');
+    themer.setAccentColor('#ff8a39');
+    themer.setSecondaryColor('#a830d7');
 }
 
 // import { getExamples } from './examples';
