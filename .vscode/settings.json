@@ -3,7 +3,8 @@
         "schema": true
     },
     "search.exclude": {
-        "**/platforms": true
+        "**/platforms": false,
+        "packages/**/platforms": false
     },
     "xml.fileAssociations": [
         {
