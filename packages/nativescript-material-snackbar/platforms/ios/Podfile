@@ -1,2 +1,1 @@
-pod 'MaterialComponents/Snackbar'
 pod 'MaterialComponents/Snackbar+ColorThemer'

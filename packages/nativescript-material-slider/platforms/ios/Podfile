@@ -1,2 +1,1 @@
-pod 'MaterialComponents/Slider'
 pod 'MaterialComponents/Slider+ColorThemer'

@@ -1,2 +1,1 @@
-pod 'MaterialComponents/ActivityIndicator'
 pod 'MaterialComponents/ActivityIndicator+ColorThemer'

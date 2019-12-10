@@ -1,3 +1,1 @@
-pod 'MaterialComponents/Dialogs'
-pod 'MaterialComponents/Dialogs+DialogThemer'
-pod 'MaterialComponents/Dialogs+TypographyThemer'
+pod 'MaterialComponents/Dialogs+Theming'
