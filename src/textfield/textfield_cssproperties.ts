@@ -46,3 +46,10 @@ export const strokeColorProperty = new CssProperty<Style, Color>({
     valueConverter: v => new Color(v)
 });
 strokeColorProperty.register(Style);
+export const buttonColorProperty = new CssProperty<Style, Color>({
+    name: 'buttonColor',
+    cssName: 'button-color',
+    equalityComparer: Color.equals,
+    valueConverter: v => new Color(v)
+});
+buttonColorProperty.register(Style);

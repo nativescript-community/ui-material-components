@@ -20,4 +20,5 @@ export abstract class TextFieldBase extends NTextField {
     @cssProperty error: string;
     @cssProperty strokeColor: Color;
     @cssProperty floatingColor: Color;
+    @cssProperty buttonColor: Color;
 }

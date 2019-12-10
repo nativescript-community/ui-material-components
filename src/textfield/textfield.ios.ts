@@ -1,6 +1,6 @@
 import { TextFieldBase } from './textfield.common';
 import { backgroundInternalProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
-import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from './textfield_cssproperties';
+import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty, buttonColorProperty } from './textfield_cssproperties';
 import { themer } from 'nativescript-material-core/core';
 import { Color } from '@nativescript/core/color';
 import { Style } from '@nativescript/core/ui/styling/style';
@@ -131,6 +131,9 @@ export class TextField extends TextFieldBase {
     public createNativeView() {
         // const view = MDCTextFieldImpl.initWithOwner(new WeakRef(this));
         const view = MDCTextField.new();
+
+        // disable it for now
+        view.clearButtonMode = UITextFieldViewMode.Never;
         const colorScheme = themer.getAppColorScheme();
         const owner = new WeakRef(this);
         if (this.style.variant === 'filled') {
@@ -171,6 +174,7 @@ export class TextField extends TextFieldBase {
     [floatingColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.floatingPlaceholderActiveColor = color;
+        this._controller.floatingPlaceholderNormalColor = color;
         // this._controller.inlinePlaceholderColor = color;
         this._updateAttributedPlaceholder();
     }
@@ -189,6 +193,10 @@ export class TextField extends TextFieldBase {
     [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.activeColor = color;
+    }
+    [buttonColorProperty.setNative](value: Color) {
+        const color = value instanceof Color ? value.ios : value;
+        this._controller.textInputClearButtonTintColor = color;
     }
     [helperProperty.setNative](value: string) {
         this._controller.helperText = value;
