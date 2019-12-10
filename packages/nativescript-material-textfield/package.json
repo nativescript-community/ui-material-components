@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-textfield",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "description": "Material textfield component",
     "main": "./textfield",
     "typings": "./textfield.d.ts",

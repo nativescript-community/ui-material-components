@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/Akylas/nativescript-material-components/compare/v3.0.2...v3.0.3) (2019-12-10)
+
+
+### Bug Fixes
+
+* rollback for now as stuck with 92 ([b9a1a9e](https://github.com/Akylas/nativescript-material-components/commit/b9a1a9e070d4920f2e88d418bc99a6d320180e84))
+* some textfield improvements ([0eb8fef](https://github.com/Akylas/nativescript-material-components/commit/0eb8fef651b3d2b68b1454a3b7c5ef6cf0a62cd2))
+
+
+
+
+
 ## [3.0.2](https://github.com/Akylas/nativescript-material-components/compare/v3.0.1...v3.0.2) (2019-11-24)
 
 

@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-cardview",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "description": "Material cardview component",
     "main": "./cardview",
     "typings": "./cardview.d.ts",
