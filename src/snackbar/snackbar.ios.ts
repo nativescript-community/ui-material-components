@@ -7,6 +7,8 @@ declare class SnackbarMessageView extends MDCSnackbarMessageView {
 }
 declare class SnackbarMessage extends MDCSnackbarMessage {
     viewClass(): typeof NSObject;
+
+    snackbarMessageWillPresentBlock?: (message: this, view: SnackbarMessageView) => void;
 }
 
 class MDCSnackbarManagerDelegateImpl extends NSObject implements MDCSnackbarManagerDelegate {
@@ -22,52 +24,27 @@ class MDCSnackbarManagerDelegateImpl extends NSObject implements MDCSnackbarMana
     willPresentSnackbarWithMessageView(messageView: SnackbarMessageView) {
         const owner = this._owner.get();
         if (owner) {
-            const options = owner._options;
-
-            const accentColor = themer.getAccentColor();
-            if (accentColor) {
-                const buttons = messageView.actionButtons;
-                const color = (accentColor instanceof Color ? accentColor : new Color(accentColor)).ios;
-                buttons.enumerateObjectsUsingBlock(button => {
-                    button.setTitleColorForState(color, UIControlState.Normal);
-                    button.setTitleColorForState(color, UIControlState.Highlighted);
-                    button.inkColor = getRippleColor(accentColor);
-                });
-            }
-            const colorScheme = themer.getAppColorScheme() as MDCColorScheming;
-            if (colorScheme) {
-                MDCSnackbarColorThemer.applySemanticColorSchemeToSnackbarManager(colorScheme, owner._snackbarManager);
-            }
-
-            if (options.textColor && Color.isValid(options.textColor)) {
-                messageView.messageTextColor = (options.textColor instanceof Color ? options.textColor : new Color(options.textColor)).ios;
-            }
-
-            if (options.actionTextColor && Color.isValid(options.actionTextColor)) {
-                const color = (options.actionTextColor instanceof Color ? options.actionTextColor : new Color(options.actionTextColor)).ios;
-                const buttons = messageView.actionButtons;
-                buttons.enumerateObjectsUsingBlock(button => {
-                    button.setTitleColorForState(color, UIControlState.Normal);
-                    button.setTitleColorForState(color, UIControlState.Highlighted);
-                    button.inkColor = getRippleColor(options.actionTextColor);
-                });
-
-                // message.buttonTextColor =
-            }
-
-            if (options.backgroundColor && Color.isValid(options.backgroundColor)) {
-                messageView.snackbarMessageViewBackgroundColor = (options.backgroundColor instanceof Color ? options.backgroundColor : new Color(options.backgroundColor)).ios;
-            }
+            owner.prepareView(null, messageView);
         }
     }
 }
 
 export class SnackBar extends SnackBarBase {
-    public _snackbarManager: MDCSnackbarManager = null;
+    static _snackbarManager: MDCSnackbarManager = null;
+    static _snackbarManagerDelegate: MDCSnackbarManagerDelegateImpl = null;
+    static _messages;
     private _isDismissedManual: boolean = false;
 
     constructor(options?: SnackBarOptions) {
         super(options);
+    }
+
+    getSnackbarManager() {
+        if (!SnackBar._snackbarManager) {
+            SnackBar._snackbarManager = MDCSnackbarManager.defaultManager;
+            // SnackBar._snackbarManagerDelegate = SnackBar._snackbarManager.delegate = MDCSnackbarManagerDelegateImpl.initWithOwner(new WeakRef(this));
+        }
+        return SnackBar._snackbarManager;
     }
 
     // get snackbarManager() {
@@ -87,7 +64,7 @@ export class SnackBar extends SnackBarBase {
                 this.initSnack(this._options, resolve);
                 // }
                 if (!this._shown) {
-                    this._snackbarManager.showMessage(this._message);
+                    this.getSnackbarManager().showMessage(this._message);
                     this._shown = true;
                 }
             } catch (ex) {
@@ -98,6 +75,45 @@ export class SnackBar extends SnackBarBase {
         //     this._snackbarManager.showMessage(this._message);
         //     this._shown = true;
         // }
+    }
+
+    prepareView(message: SnackbarMessage, messageView: SnackbarMessageView) {
+        console.log('prepareView', message, messageView);
+        const options = this._options;
+        const accentColor = themer.getAccentColor();
+        if (accentColor) {
+            const buttons = messageView.actionButtons;
+            const color = (accentColor instanceof Color ? accentColor : new Color(accentColor)).ios;
+            buttons.enumerateObjectsUsingBlock(button => {
+                button.setTitleColorForState(color, UIControlState.Normal);
+                button.setTitleColorForState(color, UIControlState.Highlighted);
+                button.inkColor = getRippleColor(accentColor);
+            });
+        }
+        const colorScheme = themer.getAppColorScheme() as MDCColorScheming;
+        if (colorScheme) {
+            MDCSnackbarColorThemer.applySemanticColorSchemeToSnackbarManager(colorScheme, SnackBar._snackbarManager);
+        }
+
+        if (options.textColor && Color.isValid(options.textColor)) {
+            messageView.messageTextColor = (options.textColor instanceof Color ? options.textColor : new Color(options.textColor)).ios;
+        }
+
+        if (options.actionTextColor && Color.isValid(options.actionTextColor)) {
+            const color = (options.actionTextColor instanceof Color ? options.actionTextColor : new Color(options.actionTextColor)).ios;
+            const buttons = messageView.actionButtons;
+            buttons.enumerateObjectsUsingBlock(button => {
+                button.setTitleColorForState(color, UIControlState.Normal);
+                button.setTitleColorForState(color, UIControlState.Highlighted);
+                button.inkColor = getRippleColor(options.actionTextColor);
+            });
+
+            // message.buttonTextColor =
+        }
+
+        if (options.backgroundColor && Color.isValid(options.backgroundColor)) {
+            messageView.snackbarMessageViewBackgroundColor = (options.backgroundColor instanceof Color ? options.backgroundColor : new Color(options.backgroundColor)).ios;
+        }
     }
 
     public initSnack(options: SnackBarOptions, resolve?: Function) {
@@ -112,10 +128,10 @@ export class SnackBar extends SnackBarBase {
         if (options.hideDelay > 10) {
             options.hideDelay = 10;
         }
-        const snackbarManager = (this._snackbarManager = MDCSnackbarManager.defaultManager);
-        snackbarManager.delegate = MDCSnackbarManagerDelegateImpl.initWithOwner(new WeakRef(this));
-
-        const message = (this._message = SnackbarMessage.new());
+        // TODO: until we can use version 94 we need to use the delegate
+        this.getSnackbarManager().delegate = MDCSnackbarManagerDelegateImpl.initWithOwner(new WeakRef(this));
+        const message = (this._message = SnackbarMessage.new()) as SnackbarMessage;
+        // message.snackbarMessageWillPresentBlock = this.prepareView;
         if (options.actionText) {
             const button = MDCSnackbarMessageAction.new();
             button.title = options.actionText;
@@ -128,7 +144,7 @@ export class SnackBar extends SnackBarBase {
         message.duration = options.hideDelay;
         message.completionHandler = (userInitiated: boolean) => {
             this._shown = false;
-            this._snackbarManager.delegate = null;
+            // this._snackbarManager.delegate = null;
             resolve({
                 action: SnackBarAction.DISMISS,
                 reason: userInitiated ? DismissReasons.ACTION : DismissReasons.TIMEOUT
@@ -138,15 +154,15 @@ export class SnackBar extends SnackBarBase {
 
     public dismiss(): Promise<any> {
         return new Promise((resolve, reject) => {
-            if (!!this._snackbarManager) {
+            if (!!SnackBar._snackbarManager) {
                 try {
                     this._isDismissedManual = true;
-                    this._snackbarManager.dismissAndCallCompletionBlocksWithCategory(null);
+                    this.getSnackbarManager().dismissAndCallCompletionBlocksWithCategory(null);
                     this._shown = false;
 
                     // Return AFTER the item is dismissed, 200ms delay
                     setTimeout(() => {
-                        this._snackbarManager.delegate = null;
+                        // this._snackbarManager.delegate = null;
                         resolve({
                             action: SnackBarAction.DISMISS,
                             reason: DismissReasons.MANUAL
