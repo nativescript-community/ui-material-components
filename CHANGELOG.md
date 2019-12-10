@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/Akylas/nativescript-material-components/compare/v3.0.3...v3.0.4) (2019-12-10)
+
+
+### Bug Fixes
+
+* some pods fix ([c7ab3d4](https://github.com/Akylas/nativescript-material-components/commit/c7ab3d4e05ff9d84f59c295a9c48687c59b91536))
+
+
+
+
+
 ## [3.0.3](https://github.com/Akylas/nativescript-material-components/compare/v3.0.2...v3.0.3) (2019-12-10)
 
 
