@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.6](https://github.com/Akylas/nativescript-material-components/compare/v3.0.5...v3.0.6) (2019-12-16)
+
+
+### Bug Fixes
+
+* dialogs call dismiss on the correct controller ([83f24e4](https://github.com/Akylas/nativescript-material-components/commit/83f24e47163091c717577a95df0216cf891f2478))
+
+
+
+
+
 ## [3.0.5](https://github.com/Akylas/nativescript-material-components/compare/v3.0.4...v3.0.5) (2019-12-16)
 
 
