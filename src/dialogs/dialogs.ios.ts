@@ -345,6 +345,7 @@ export function alert(arg: any): Promise<void> {
 
 export class AlertDialog {
     alertController: MDCAlertController;
+    presentingController: UIViewController;
     constructor(private options: any) {}
     show() {
         if (!this.alertController) {
@@ -355,12 +356,12 @@ export class AlertDialog {
             //     resolve(result);
             // });
 
-            showUIAlertController(this.alertController);
+            this.presentingController = showUIAlertController(this.alertController);
         }
     }
     hide() {
-        if (this.alertController) {
-            this.alertController.dismissModalViewControllerAnimated(true);
+        if (this.presentingController) {
+            this.presentingController.dismissViewControllerAnimatedCompletion(true, null);
             this.alertController = null;
         }
     }
@@ -626,9 +627,11 @@ function showUIAlertController(alertController: MDCAlertController) {
                 alertController.popoverPresentationController.permittedArrowDirections = 0;
             }
 
-            viewController.presentModalViewControllerAnimated(alertController, true);
+            viewController.presentViewControllerAnimatedCompletion(alertController, true, null);
         }
+        return viewController;
     }
+    return null;
 }
 
 export function action(): Promise<string> {
