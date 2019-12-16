@@ -1,1 +1,2 @@
 pod 'MaterialComponents/schemes/Color'
+pod 'MaterialComponents/Ink+ColorThemer'
