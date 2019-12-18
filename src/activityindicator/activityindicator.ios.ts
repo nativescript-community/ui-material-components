@@ -20,19 +20,21 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     }
     public createNativeView() {
         const view = MDCActivityIndicator.new();
-        const colorScheme = this.colorThemer || themer.getAppColorScheme();
-        if (colorScheme) {
-            MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(colorScheme, view);
-        }
+        const color = (themer.getAppColorScheme() as MDCSemanticColorScheme).primaryColor;
+        view.cycleColors  = color ? NSArray.arrayWithObject(color) : null;
+        // const colorScheme = this.colorThemer || themer.getAppColorScheme();
+        // if (colorScheme) {
+        //     MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(colorScheme, view);
+        // }
         return view;
     }
-    colorThemer: MDCSemanticColorScheme;
-    getColorThemer() {
-        if (!this.colorThemer) {
-            this.colorThemer = MDCSemanticColorScheme.new();
-        }
-        return this.colorThemer;
-    }
+    // colorThemer: MDCSemanticColorScheme;
+    // getColorThemer() {
+    //     if (!this.colorThemer) {
+    //         this.colorThemer = MDCSemanticColorScheme.new();
+    //     }
+    //     return this.colorThemer;
+    // }
 
     _onSizeChanged(): void {
         if (this.autoSize) {
@@ -89,8 +91,10 @@ export class ActivityIndicator extends ActivityIndicatorBase {
         return null;
     }
     [colorProperty.setNative](value: UIColor | Color) {
-        this.getColorThemer().primaryColor = value instanceof Color ? value.ios : value;
-        MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(this.getColorThemer(), this.nativeViewProtected);
+        const color = value instanceof Color ? value.ios : value;;
+        this.nativeViewProtected.cycleColors  = color ? NSArray.arrayWithObject(color) : null;
+        // this.getColorThemer().primaryColor = value instanceof Color ? value.ios : value;
+        // MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(this.getColorThemer(), this.nativeViewProtected);
     }
     [indeterminateProperty.setNative](value: boolean) {
         this.nativeViewProtected.indicatorMode = !!value ? MDCActivityIndicatorMode.Indeterminate : MDCActivityIndicatorMode.Determinate;
