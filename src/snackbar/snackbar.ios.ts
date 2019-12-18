@@ -8,7 +8,7 @@ declare class SnackbarMessageView extends MDCSnackbarMessageView {
 declare class SnackbarMessage extends MDCSnackbarMessage {
     viewClass(): typeof NSObject;
 
-    snackbarMessageWillPresentBlock?: (message: this, view: SnackbarMessageView) => void;
+    // snackbarMessageWillPresentBlock?: (message: this, view: SnackbarMessageView) => void;
 }
 
 class MDCSnackbarManagerDelegateImpl extends NSObject implements MDCSnackbarManagerDelegate {
@@ -129,9 +129,9 @@ export class SnackBar extends SnackBarBase {
             options.hideDelay = 10;
         }
         // TODO: until we can use version 94 we need to use the delegate
-        this.getSnackbarManager().delegate = MDCSnackbarManagerDelegateImpl.initWithOwner(new WeakRef(this));
+        // this.getSnackbarManager().delegate = MDCSnackbarManagerDelegateImpl.initWithOwner(new WeakRef(this));
         const message = (this._message = SnackbarMessage.new()) as SnackbarMessage;
-        // message.snackbarMessageWillPresentBlock = this.prepareView;
+        message.snackbarMessageWillPresentBlock = this.prepareView;
         if (options.actionText) {
             const button = MDCSnackbarMessageAction.new();
             button.title = options.actionText;
