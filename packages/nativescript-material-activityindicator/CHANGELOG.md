@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.7](https://github.com/Akylas/nativescript-material-components/compare/v3.0.6...v3.0.7) (2019-12-18)
+
+
+### Bug Fixes
+
+* snackbar > 94 ([57ebea9](https://github.com/Akylas/nativescript-material-components/commit/57ebea95246f5177ba497518fa9a67f22aff06f0))
+* update for 94.5 and changes ([20db180](https://github.com/Akylas/nativescript-material-components/commit/20db1801b47e388f2460c23a4c9fbd40beccc6ad))
+
+
+
+
+
 ## [3.0.6](https://github.com/Akylas/nativescript-material-components/compare/v3.0.5...v3.0.6) (2019-12-16)
 
 **Note:** Version bump only for package nativescript-material-activityindicator
