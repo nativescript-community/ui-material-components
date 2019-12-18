@@ -604,8 +604,8 @@ function showUIAlertController(alertController: MDCAlertController) {
     const colorScheme: MDCSemanticColorScheme = themer.getAppColorScheme();
     if (colorScheme) {
         MDCAlertColorThemer.applySemanticColorSchemeToAlertController(colorScheme, alertController);
-    } else {
-        MDCAlertControllerThemer.applySchemeToAlertController(MDCAlertScheme.alloc().init(), alertController);
+    // } else {
+        // MDCAlertControllerThemer.applySchemeToAlertController(MDCAlertScheme.alloc().init(), alertController);
     }
 
     let currentView = getCurrentPage() || getRootView();
