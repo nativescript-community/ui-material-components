@@ -1,0 +1,13 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "../../src/textview",
+        "outDir": "./",
+        "paths": {
+            "tns-core-modules": ["./node_modules/@nativescript/core"],
+            "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
+            "*": ["node_modules/*", "packages/*"]
+        }
+    },
+    "include": ["../../src/textview/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
+}

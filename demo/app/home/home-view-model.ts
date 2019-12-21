@@ -1,6 +1,6 @@
 import { getFrameById } from '@nativescript/core/ui/frame/frame';
 import { ItemEventData } from '@nativescript/core/ui/list-view';
-const examples = ['buttons', 'cardview', 'ripple', 'textfields', 'sliders', 'progress', 'activityindicators', 'dialogs', 'bottomsheets', 'mixins', 'snackbar', 'bottomnavigationbar'];
+const examples = ['buttons', 'cardview', 'ripple', 'textfields', 'textviews', 'sliders', 'progress', 'activityindicators', 'dialogs', 'bottomsheets', 'mixins', 'snackbar', 'bottomnavigationbar'];
 
 export class ViewModel {
     public examples = examples.map(t => {
