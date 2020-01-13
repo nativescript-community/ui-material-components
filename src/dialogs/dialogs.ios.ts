@@ -63,11 +63,11 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             const hasTitleOrMessage = this.title || this.message;
             let result: CGSize;
             if (hasTitleOrMessage) {
-                result = CGSizeMake(superResult.width, superResult.height + layout.toDeviceIndependentPixels(measuredHeight));
+                result = CGSizeMake(superResult.width, Math.round(superResult.height + layout.toDeviceIndependentPixels(measuredHeight)));
             } else if (this.actions.count > 0) {
-                result = CGSizeMake(superResult.width, layout.toDeviceIndependentPixels(superResult.height) + layout.toDeviceIndependentPixels(measuredHeight));
+                result = CGSizeMake(superResult.width, Math.round(layout.toDeviceIndependentPixels(superResult.height) + layout.toDeviceIndependentPixels(measuredHeight)));
             } else {
-                result = CGSizeMake(superResult.width, layout.toDeviceIndependentPixels(measuredHeight));
+                result = CGSizeMake(superResult.width, Math.floor(layout.toDeviceIndependentPixels(measuredHeight)));
             }
             return result;
         },
@@ -77,8 +77,7 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
         get contentScrollView() {
             const alertView = this.super.view as MDCAlertControllerView;
             if (alertView) {
-                const contentScrollView = alertView.subviews[0] as UIScrollView;
-                return contentScrollView;
+                return alertView.subviews[0] as UIScrollView;
             }
             return null;
         },
@@ -96,7 +95,7 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             const nativeViewProtected = this._customContentView.nativeViewProtected;
             if (contentScrollView && nativeViewProtected) {
                 contentScrollView.addSubview(nativeViewProtected);
-                this.layoutViews(); // ensure custom view is measured for preferredContentSize
+
             }
         },
         get customContentView() {
@@ -113,41 +112,76 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
         },
         measureChild() {
             const contentSize = this.contentScrollView.contentSize;
+            if (contentSize.width === 0) {
+                return false;
+            }
             const width = contentSize.width || this.super.preferredContentSize.width;
             const widthSpec = layout.makeMeasureSpec(layout.toDevicePixels(width), layout.EXACTLY);
             View.measureChild(null, this._customContentView, widthSpec, UNSPECIFIED);
+            return true;
         },
-        layoutViews() {
-            if (this._customContentView) {
-                const view = this._customContentView as View;
+        layoutCustomView() {
+            const view = this._customContentView as View;
+            if (view) {
+                if (!this.measureChild()) {
+                    return false;
+                }
                 const hasTitleOrMessage = this.title || this.message;
-                const contentScrollView = this.contentScrollView as UIScrollView;
-                contentScrollView.clipsToBounds = true;
-                const contentSize = contentScrollView.contentSize;
-                const originY = hasTitleOrMessage ? layout.toDevicePixels(contentSize.height) : 0;
 
-                this.measureChild();
-                const measuredHeight = view.getMeasuredHeight(); // pixels
+                const contentScrollView = this.contentScrollView as UIScrollView;
+                const contentSize = contentScrollView.contentSize;
+                let originY = 0;
+                if (hasTitleOrMessage) {
+                    const index = contentScrollView.subviews.indexOfObject(view.nativeViewProtected);
+                    if (index === -1) {
+                        originY =layout.toDevicePixels(contentSize.height)
+                    } else {
+                        const viewOnTopFrame = contentScrollView.subviews.objectAtIndex(index-1).frame;
+                        // the +24 is MDCDialogContentInsets
+                        originY =layout.toDevicePixels(viewOnTopFrame.origin.y + viewOnTopFrame.size.height + 24)
+
+                    }
+                }
+
                 const measuredWidth = view.getMeasuredWidth(); // pixels
+                const measuredHeight = view.getMeasuredHeight(); // pixels
                 View.layoutChild(null, view, 0, originY, measuredWidth, originY + measuredHeight);
 
-                const bounds = contentScrollView.frame;
-                const boundsSize = bounds.size;
-                contentSize.height = contentSize.height + layout.toDeviceIndependentPixels(measuredHeight);
-                boundsSize.height = boundsSize.height + layout.toDeviceIndependentPixels(measuredHeight);
 
-                contentScrollView.contentSize = contentSize;
-                bounds.size = boundsSize;
-                contentScrollView.frame = bounds;
                 // TODO: for a reload of the preferredContentSize. Find a better solution!
-                this.preferredContentSize = CGSizeMake(this.super.preferredContentSize.width, this.super.preferredContentSize.height + 0.0000000001);
+                const pW = this.super.preferredContentSize.width
+                const pH = this.super.preferredContentSize.height
+                this.preferredContentSize = CGSizeMake(pW, pH + 0.00000000001);
+                this.preferredContentSize = CGSizeMake(pW, pH);
+                return true;
             }
+            return false;
+        },
+        updateContentViewSize() {
+            const view = this._customContentView as View;
+            if (!view) {
+                return;
+            }
+            const contentScrollView = this.contentScrollView as UIScrollView;
+            contentScrollView.clipsToBounds = true;
+            const contentSize = contentScrollView.contentSize;
+            const bounds = contentScrollView.frame;
+            const boundsSize = bounds.size;
+
+            const measuredHeight = view.getMeasuredHeight(); // pixels
+            contentSize.height = contentSize.height + measuredHeight;
+            boundsSize.height = boundsSize.height + measuredHeight;
+
+            contentScrollView.contentSize = contentSize;
+            bounds.size = boundsSize;
+            contentScrollView.frame = bounds;
+        },
+        viewWillLayoutSubviews() {
+            this.super.viewWillLayoutSubviews();
+            const didLayout = this.layoutCustomView();
         },
         viewDidLayoutSubviews() {
-            if (this._customContentView) {
-                this.layoutViews();
-            }
-            this.super.viewDidLayoutSubviews();
+            this.updateContentViewSize();
             if (this.autoFocusTextField) {
                 this.autoFocusTextField.requestFocus();
                 this.autoFocusTextField = null;
@@ -157,6 +191,7 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             this.super.viewDidLoad();
             if (this._customContentView) {
                 this.addCustomViewToLayout();
+                this.view.setNeedsLayout();
             }
         },
         viewDidUnload() {
@@ -285,6 +320,7 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
 
     if (options.view) {
+        console.log('about to apply dialog view');
         const view =
             options.view instanceof View
                 ? (options.view as View)
@@ -306,7 +342,7 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
 
     alertController.mdc_dialogPresentationController.dialogPresentationControllerDelegate = MDCDialogPresentationControllerDelegateImpl.initWithCallback(() => {
-        resolve();
+        resolve && resolve();
         alertController._resolveFunction = null;
         alertController.mdc_dialogPresentationController.delegate = null;
     });
@@ -423,9 +459,10 @@ export function prompt(arg: any): Promise<PromptResult> {
             // let textField: MDCTextField;
 
             const stackLayout = new StackLayout();
-            stackLayout.padding = 4;
             const textField = new TextField();
             textField.hint = options.hintText;
+            textField.marginTop = 2;
+            textField.marginBottom = 2;
             if (options) {
                 if (options.textFieldProperties) {
                     Object.assign(textField, options.textFieldProperties);
@@ -524,9 +561,13 @@ export function login(arg: any): Promise<LoginResult> {
     return new Promise<LoginResult>((resolve, reject) => {
         try {
             const stackLayout = new StackLayout();
-            stackLayout.padding = 4;
+            // stackLayout.margin = 4;
             const userNameTextField = new TextField();
+            userNameTextField.marginTop = 2;
+            userNameTextField.marginBottom = 2;
             const passwordTextField = new TextField();
+            passwordTextField.marginTop = 2;
+            passwordTextField.marginBottom = 2;
             userNameTextField.hint = options.userNameHint || 'Username';
             userNameTextField.text = options.userName;
             passwordTextField.hint = options.passwordHint || 'Password';
@@ -604,7 +645,7 @@ function showUIAlertController(alertController: MDCAlertController) {
     const colorScheme: MDCSemanticColorScheme = themer.getAppColorScheme();
     if (colorScheme) {
         MDCAlertColorThemer.applySemanticColorSchemeToAlertController(colorScheme, alertController);
-    // } else {
+        // } else {
         // MDCAlertControllerThemer.applySchemeToAlertController(MDCAlertScheme.alloc().init(), alertController);
     }
 
