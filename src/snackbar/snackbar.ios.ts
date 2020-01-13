@@ -2,57 +2,13 @@ import { Color } from '@nativescript/core/color';
 import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 
-declare class SnackbarMessageView extends MDCSnackbarMessageView {
-    message(): SnackbarMessage;
-}
-declare class SnackbarMessage extends MDCSnackbarMessage {
-    viewClass(): typeof NSObject;
-
-    // snackbarMessageWillPresentBlock?: (message: this, view: SnackbarMessageView) => void;
-}
-
-class MDCSnackbarManagerDelegateImpl extends NSObject implements MDCSnackbarManagerDelegate {
-    public static ObjCProtocols = [MDCSnackbarManagerDelegate];
-
-    private _owner: WeakRef<SnackBar>;
-
-    public static initWithOwner(owner: WeakRef<SnackBar>): MDCSnackbarManagerDelegateImpl {
-        const impl = <MDCSnackbarManagerDelegateImpl>MDCSnackbarManagerDelegateImpl.new();
-        impl._owner = owner;
-        return impl;
-    }
-    willPresentSnackbarWithMessageView(messageView: SnackbarMessageView) {
-        const owner = this._owner.get();
-        if (owner) {
-            owner.prepareView(null, messageView);
-        }
-    }
-}
-
 export class SnackBar extends SnackBarBase {
-    static _snackbarManager: MDCSnackbarManager = null;
-    static _snackbarManagerDelegate: MDCSnackbarManagerDelegateImpl = null;
+    static _snackbarManager: MDCSnackbarManager = MDCSnackbarManager.defaultManager;
     static _messages;
-    private _isDismissedManual: boolean = false;
 
     constructor(options?: SnackBarOptions) {
         super(options);
     }
-
-    getSnackbarManager() {
-        if (!SnackBar._snackbarManager) {
-            SnackBar._snackbarManager = MDCSnackbarManager.defaultManager;
-            // SnackBar._snackbarManagerDelegate = SnackBar._snackbarManager.delegate = MDCSnackbarManagerDelegateImpl.initWithOwner(new WeakRef(this));
-        }
-        return SnackBar._snackbarManager;
-    }
-
-    // get snackbarManager() {
-    //     if (!SnackBar._snackbarManager) {
-    //         SnackBar._snackbarManager =  MDCSnackbarManager.defaultManager;
-    //         SnackBar._snackbarManager.delegate
-    //     }
-    // }
 
     private _shown = false;
     private _message: MDCSnackbarMessage;
@@ -64,17 +20,13 @@ export class SnackBar extends SnackBarBase {
                 this.initSnack(this._options, resolve);
                 // }
                 if (!this._shown) {
-                    this.getSnackbarManager().showMessage(this._message);
+                    SnackBar._snackbarManager.showMessage(this._message);
                     this._shown = true;
                 }
             } catch (ex) {
                 reject(ex);
             }
         });
-        // if (!this._shown) {
-        //     this._snackbarManager.showMessage(this._message);
-        //     this._shown = true;
-        // }
     }
 
     prepareView(message: SnackbarMessage, messageView: SnackbarMessageView) {
@@ -128,12 +80,11 @@ export class SnackBar extends SnackBarBase {
         if (options.hideDelay > 10) {
             options.hideDelay = 10;
         }
-        // TODO: until we can use version 94 we need to use the delegate
-        // this.getSnackbarManager().delegate = MDCSnackbarManagerDelegateImpl.initWithOwner(new WeakRef(this));
-        const message = (this._message = SnackbarMessage.new()) as SnackbarMessage;
-        message.snackbarMessageWillPresentBlock = this.prepareView;
+
+        const message = (this._message = MDCSnackbarMessage.alloc().init());
+        message.snackbarMessageWillPresentBlock = this.prepareView.bind(this);
         if (options.actionText) {
-            const button = MDCSnackbarMessageAction.new();
+            const button = MDCSnackbarMessageAction.alloc().init();
             button.title = options.actionText;
             message.action = button;
         } else {
@@ -144,7 +95,6 @@ export class SnackBar extends SnackBarBase {
         message.duration = options.hideDelay;
         message.completionHandler = (userInitiated: boolean) => {
             this._shown = false;
-            // this._snackbarManager.delegate = null;
             resolve({
                 action: SnackBarAction.DISMISS,
                 reason: userInitiated ? DismissReasons.ACTION : DismissReasons.TIMEOUT
@@ -156,13 +106,11 @@ export class SnackBar extends SnackBarBase {
         return new Promise((resolve, reject) => {
             if (!!SnackBar._snackbarManager) {
                 try {
-                    this._isDismissedManual = true;
-                    this.getSnackbarManager().dismissAndCallCompletionBlocksWithCategory(null);
+                    SnackBar._snackbarManager.dismissAndCallCompletionBlocksWithCategory(null);
                     this._shown = false;
 
                     // Return AFTER the item is dismissed, 200ms delay
                     setTimeout(() => {
-                        // this._snackbarManager.delegate = null;
                         resolve({
                             action: SnackBarAction.DISMISS,
                             reason: DismissReasons.MANUAL
