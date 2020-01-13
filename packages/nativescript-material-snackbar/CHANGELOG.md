@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.8](https://github.com/Akylas/nativescript-material-components/compare/v3.0.7...v3.0.8) (2020-01-13)
+
+
+### Bug Fixes
+
+* **ios-snackbar:** completionHandler is now called ([8cfed68](https://github.com/Akylas/nativescript-material-components/commit/8cfed68fafb3b156f5e56d7fe325572d2c3b4872))
+
+
+
+
+
 ## [3.0.7](https://github.com/Akylas/nativescript-material-components/compare/v3.0.6...v3.0.7) (2019-12-18)
 
 
