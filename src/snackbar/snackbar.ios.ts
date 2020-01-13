@@ -30,7 +30,6 @@ export class SnackBar extends SnackBarBase {
     }
 
     prepareView(message: SnackbarMessage, messageView: SnackbarMessageView) {
-        console.log('prepareView', message, messageView);
         const options = this._options;
         const accentColor = themer.getAccentColor();
         if (accentColor) {
