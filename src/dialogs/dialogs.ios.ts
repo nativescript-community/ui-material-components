@@ -178,10 +178,13 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
         },
         viewWillLayoutSubviews() {
             this.super.viewWillLayoutSubviews();
-            const didLayout = this.layoutCustomView();
+            this.layoutCustomView();
         },
         viewDidLayoutSubviews() {
             this.updateContentViewSize();
+            
+        },
+        viewDidAppear() {
             if (this.autoFocusTextField) {
                 this.autoFocusTextField.requestFocus();
                 this.autoFocusTextField = null;
@@ -518,7 +521,6 @@ export function prompt(arg: any): Promise<PromptResult> {
             });
             if (!!options.autoFocus) {
                 alertController.autoFocusTextField = textField;
-                // textField.requestFocus();
             }
             showUIAlertController(alertController);
         } catch (ex) {
