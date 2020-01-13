@@ -13,7 +13,7 @@
         }
     },
     "dependencies": {
-        "@nativescript/core": "6.3.1",
+        "@nativescript/core": "6.3.2",
         "akylas-nativescript-vue-template-compiler": "^2.1.14",
         "nativescript-akylas-vue": "~2.3.5",
         "nativescript-iqkeyboardmanager": "^1.5.1",
@@ -35,16 +35,16 @@
     },
     "devDependencies": {
         "nativescript-akylas-webpack-template": "^1.0.11",
-        "nativescript-dev-webpack": "1.4.0",
-        "tns-platform-declarations": "6.3.1",
+        "nativescript-dev-webpack": "1.4.1",
+        "tns-platform-declarations": "6.3.2",
         "tslint": "^5.20.1",
         "tslint-config-prettier": "^1.18.0",
         "tslint-config-standard": "^9.0.0",
-        "typescript": "^3.7.3",
+        "typescript": "^3.7.4",
         "vue": "^2.6.11",
-        "vue-i18n": "^8.15.2",
+        "vue-i18n": "^8.15.3",
         "vue-property-decorator": "^8.3.0",
-        "webpack": "^4.41.3",
+        "webpack": "^4.41.5",
         "webpack-cli": "^3.3.10"
     },
     "scripts": {
