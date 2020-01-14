@@ -47,9 +47,6 @@ export class SnackBar extends SnackBarBase {
     }
 
     public initSnack(options: SnackBarOptions, resolve?: Function) {
-        if (this._snackbar) {
-            return;
-        }
         // options.actionText = options.actionText ? options.actionText : 'Close';
         options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
 

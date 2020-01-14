@@ -6,6 +6,7 @@
         <StackLayout>
             <MDButton id="alert" text="alert" @tap="onTap" />
             <MDButton id="prompt" text="prompt" @tap="onTap" />
+            <MDButton id="confirm" text="confirm" @tap="onTap" />
             <MDButton id="password" text="password" @tap="onTap" />
             <MDButton id="login" text="login" @tap="onTap" />
             <MDButton id="dialogCustomView" text="customView" @tap="onTap" />
@@ -18,7 +19,7 @@
 import * as frameModule from '@nativescript/core/ui/frame';
 import Vue from 'vue';
 import { EventData, View, Color } from '@nativescript/core/ui/frame';
-import { alert, AlertDialog, login, prompt, inputType } from 'nativescript-material-dialogs';
+import { alert, confirm, AlertDialog, login, prompt, inputType } from 'nativescript-material-dialogs';
 import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout/stack-layout';
 import { ActivityIndicator } from '@nativescript/core/ui/activity-indicator/activity-indicator';
 import { Label } from '@nativescript/core/ui/label/label';
@@ -81,6 +82,15 @@ export default Vue.extend({
                     }).then(result => console.log('prompt result', result));
                     break;
                 }
+                case 'confirm': {
+                    console.log('about to prompt');
+                    confirm({
+                        title: 'confirmtest',
+                        okButtonText: 'OK',
+                        cancelButtonText: 'Cancel'
+                    }).then(result => console.log('confirm result', result));
+                    break;
+                }
                 case 'password': {
                     console.log('about to prompt');
                     prompt({
@@ -89,6 +99,9 @@ export default Vue.extend({
                         okButtonText: 'OK',
                         cancelButtonText: 'Cancel',
                         inputType:inputType.password,
+                        textFieldProperties: {
+                            hint: 'password'
+                        },
                     }).then(result => console.log('prompt result', result));
                     break;
                 }
