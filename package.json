@@ -40,6 +40,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "devDependencies": {
+
         "@angular/animations": "~8.2.14",
         "@angular/common": "~8.2.14",
         "@angular/compiler": "~8.2.14",

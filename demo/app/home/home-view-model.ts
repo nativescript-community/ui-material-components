@@ -1,6 +1,6 @@
-import { getFrameById } from '@nativescript/core/ui/frame/frame';
+import { Frame } from '@nativescript/core/ui/frame/frame';
 import { ItemEventData } from '@nativescript/core/ui/list-view';
-const examples = ['buttons', 'cardview', 'ripple', 'textfields', 'sliders', 'progress', 'activityindicators', 'dialogs', 'bottomsheets', 'mixins', 'snackbar', 'bottomnavigationbar'];
+const examples = ['buttons', 'cardview', 'ripple', 'textfields', 'textviews', 'sliders', 'progress', 'activityindicators', 'dialogs', 'bottomsheets', 'mixins', 'snackbar', 'bottomnavigationbar'];
 
 export class ViewModel {
     public examples = examples.map(t => {
@@ -21,7 +21,7 @@ export class ViewModel {
             },
             animated: true
         };
-        const frame = getFrameById('firstFrame');
+        const frame = Frame.getFrameById('firstFrame');
         frame.navigate(navigationEntry);
     }
     public onTapInsideTemplate(args) {
@@ -35,7 +35,7 @@ export class ViewModel {
             },
             animated: true
         };
-        const frame = getFrameById('firstFrame');
+        const frame = Frame.getFrameById('firstFrame');
         frame.navigate(navigationEntry);
     }
 }
@@ -51,7 +51,7 @@ export function  onTapInsideTemplate(args) {
         },
         animated: true
     };
-    const frame = getFrameById('firstFrame');
+    const frame = Frame.getFrameById('firstFrame');
     frame.navigate(navigationEntry);
 }
 // export function onTap(args: ItemEventData) {

@@ -1,5 +1,5 @@
-import { TextFieldBase } from './textfield.common';
-import { backgroundInternalProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
+import { TextViewBase } from './textview.common';
+import { backgroundInternalProperty, editableProperty, hintProperty, placeholderColorProperty, textProperty } from '@nativescript/core/ui/editable-text-base';
 import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty, buttonColorProperty } from '../textbase/cssproperties';
 import { themer } from 'nativescript-material-core/core';
 import { Color } from '@nativescript/core/color';
@@ -15,16 +15,10 @@ function getColorScheme() {
     return colorScheme;
 }
 
-declare module '@nativescript/core/ui/text-field/text-field' {
-    interface TextField {
-        _updateAttributedPlaceholder();
-    }
-}
-
-class TextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
-    private _owner: WeakRef<TextField>;
-    public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerUnderlineImpl {
-        const handler = <TextInputControllerUnderlineImpl>TextInputControllerUnderlineImpl.new();
+class TextViewInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
+    private _owner: WeakRef<TextView>;
+    public static initWithOwner(owner: WeakRef<TextView>): TextViewInputControllerUnderlineImpl {
+        const handler = <TextViewInputControllerUnderlineImpl>TextViewInputControllerUnderlineImpl.new();
         handler._owner = owner;
         return handler;
     }
@@ -39,10 +33,10 @@ class TextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
     }
 }
 
-class TextInputControllerImpl extends MDCTextInputControllerBase {
-    private _owner: WeakRef<TextField>;
-    public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerImpl {
-        const handler = <TextInputControllerImpl>TextInputControllerImpl.new();
+class TextViewInputControllerImpl extends MDCTextInputControllerBase {
+    private _owner: WeakRef<TextView>;
+    public static initWithOwner(owner: WeakRef<TextView>): TextViewInputControllerImpl {
+        const handler = <TextViewInputControllerImpl>TextViewInputControllerImpl.new();
         handler.underlineHeightActive = 0;
         handler.underlineHeightNormal = 0;
         handler._owner = owner;
@@ -59,10 +53,10 @@ class TextInputControllerImpl extends MDCTextInputControllerBase {
     }
 }
 
-class TextInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
-    private _owner: WeakRef<TextField>;
-    public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerOutlinedImpl {
-        const handler = <TextInputControllerOutlinedImpl>TextInputControllerOutlinedImpl.new();
+class TextViewInputControllerOutlinedImpl extends MDCTextInputControllerOutlinedTextArea {
+    private _owner: WeakRef<TextView>;
+    public static initWithOwner(owner: WeakRef<TextView>): TextViewInputControllerOutlinedImpl {
+        const handler = <TextViewInputControllerOutlinedImpl>TextViewInputControllerOutlinedImpl.new();
         handler._owner = owner;
         return handler;
     }
@@ -76,10 +70,10 @@ class TextInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
     }
 }
 
-class TextInputControllerFilledImpl extends MDCTextInputControllerFilled {
-    private _owner: WeakRef<TextField>;
-    public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerFilledImpl {
-        const handler = <TextInputControllerFilledImpl>TextInputControllerFilledImpl.new();
+class TextViewInputControllerFilledImpl extends MDCTextInputControllerFilled {
+    private _owner: WeakRef<TextView>;
+    public static initWithOwner(owner: WeakRef<TextView>): TextViewInputControllerFilledImpl {
+        const handler = <TextViewInputControllerFilledImpl>TextViewInputControllerFilledImpl.new();
         handler._owner = owner;
         return handler;
     }
@@ -93,9 +87,59 @@ class TextInputControllerFilledImpl extends MDCTextInputControllerFilled {
     }
 }
 
-export class TextField extends TextFieldBase {
-    nativeViewProtected: MDCTextField;
+class TextViewDelegateImpl extends NSObject implements UITextViewDelegate {
+    public static ObjCProtocols = [UITextViewDelegate];
+
+    private _owner: WeakRef<TextView>;
+
+    public static initWithOwner(owner: WeakRef<TextView>): TextViewDelegateImpl {
+        const impl = <TextViewDelegateImpl>TextViewDelegateImpl.new();
+        impl._owner = owner;
+
+        return impl;
+    }
+
+    public textViewShouldBeginEditing(textView: UITextView): boolean {
+        const owner = this._owner.get();
+        return true;
+    }
+
+    public textViewDidBeginEditing(textView: UITextView): void {
+        const owner = this._owner.get();
+        if (owner) {
+            owner._isEditing = true;
+            owner.notify({ eventName: TextView.focusEvent, object: owner });
+        }
+    }
+
+    public textViewDidEndEditing(textView: UITextView) {
+        const owner = this._owner.get();
+        if (owner) {
+            if (owner.updateTextTrigger === "focusLost") {
+                textProperty.nativeValueChange(owner, textView.text);
+            }
+
+            owner._isEditing = false;
+            owner.dismissSoftInput();
+        }
+    }
+
+    public textViewDidChange(textView: UITextView) {
+        const owner = this._owner.get();
+        if (owner) {
+            if (owner.updateTextTrigger === 'textChanged') {
+                textProperty.nativeValueChange(owner, textView.text);
+            }
+            owner.requestLayout();
+        }
+    }
+}
+
+export class TextView extends TextViewBase {
+    nativeViewProtected: MDCMultilineTextField;
     private _controller: MDCTextInputControllerBase;
+    public _isEditing: boolean;
+    private _delegate: TextViewDelegateImpl;
     public readonly style: Style & { variant: 'outline' | 'underline' | 'filled' };
 
     public clearFocus() {
@@ -125,32 +169,36 @@ export class TextField extends TextFieldBase {
 
     // variant = 'underline';
     public createNativeView() {
-        console.log('TextField', 'createNativeView');
-        // const view = MDCTextFieldImpl.initWithOwner(new WeakRef(this));
-        const view = MDCTextField.new();
+        const view = MDCMultilineTextField.new();
 
         // disable it for now
         view.clearButtonMode = UITextFieldViewMode.Never;
         const colorScheme = themer.getAppColorScheme();
         const owner = new WeakRef(this);
         if (this.style.variant === 'filled') {
-            this._controller = TextInputControllerFilledImpl.initWithOwner(owner);
+            this._controller = TextViewInputControllerFilledImpl.initWithOwner(owner);
         } else if (this.style.variant === 'outline') {
-            this._controller = TextInputControllerOutlinedImpl.initWithOwner(owner);
+            this._controller = TextViewInputControllerOutlinedImpl.initWithOwner(owner);
         } else if (this.style.variant === 'underline') {
-            this._controller = TextInputControllerUnderlineImpl.initWithOwner(owner);
+            this._controller = TextViewInputControllerUnderlineImpl.initWithOwner(owner);
         } else {
-            this._controller = TextInputControllerImpl.initWithOwner(owner);
+            this._controller = TextViewInputControllerImpl.initWithOwner(owner);
         }
         this._controller.textInput = view;
         view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;
+        this._controller.placeholderText = this.hint;
 
         if (colorScheme) {
             MDCTextFieldColorThemer.applySemanticColorSchemeToTextInput(colorScheme, view);
             MDCTextFieldColorThemer.applySemanticColorSchemeToTextInputController(colorScheme, this._controller);
         }
-        console.log('TextField', 'createNativeView1');
         return view;
+    }
+
+    initNativeView() {
+        super.initNativeView();
+        this._delegate = TextViewDelegateImpl.initWithOwner(new WeakRef(this));
+        this.ios.textView.delegate = this._delegate;
     }
 
     // TODO: check why i was checking for isFirstResponder
@@ -161,7 +209,7 @@ export class TextField extends TextFieldBase {
     //         super.dismissSoftInput();
     //     }
     // }
-    get ios(): MDCTextField {
+    get ios(): MDCMultilineTextField {
         return this.nativeViewProtected;
     }
 
@@ -169,12 +217,22 @@ export class TextField extends TextFieldBase {
         this.dismissSoftInput();
     }
 
+    [hintProperty.getDefault](): string {
+        return '';
+    }
+    [hintProperty.setNative](value: string) {
+        this._controller.placeholderText = value;
+    }
+    [editableProperty.getDefault](): boolean {
+        return this.nativeTextViewProtected.editable;
+    }
+    [editableProperty.setNative](value: boolean) {
+        this.nativeTextViewProtected.editable = value;
+    }
     [floatingColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.floatingPlaceholderActiveColor = color;
         this._controller.floatingPlaceholderNormalColor = color;
-        // this._controller.inlinePlaceholderColor = color;
-        this._updateAttributedPlaceholder();
     }
     [placeholderColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
@@ -182,7 +240,6 @@ export class TextField extends TextFieldBase {
         if (!this.floatingColor) {
             this._controller.floatingPlaceholderActiveColor = color;
         }
-        this._updateAttributedPlaceholder();
     }
     [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;

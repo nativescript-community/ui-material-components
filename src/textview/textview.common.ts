@@ -1,13 +1,12 @@
-import { TextField as NTextField } from '@nativescript/core/ui/text-field';
+import { EditableTextBase } from '@nativescript/core/ui/editable-text-base';
 import { Color } from '@nativescript/core/color';
 import { CSSType } from '@nativescript/core/ui/core/view';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 
-@CSSType('MDTextField')
-export abstract class TextFieldBase extends NTextField {
+@CSSType('MDTextView')
+export abstract class TextViewBase extends EditableTextBase {
     constructor() {
         super();
-        console.log('MDTextField');
     }
     abstract requestFocus();
     abstract clearFocus();

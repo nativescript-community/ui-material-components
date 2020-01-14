@@ -35,6 +35,7 @@ import ProgressPlugin from 'nativescript-material-progress/vue';
 import RipplePlugin from 'nativescript-material-ripple/vue';
 import SliderPlugin from 'nativescript-material-slider/vue';
 import TextFieldPlugin from 'nativescript-material-textfield/vue';
+import TextViewPlugin from 'nativescript-material-textview/vue';
 import { isIOS } from '@nativescript/core/platform';
 import { install as installBottomSheet } from 'nativescript-material-bottomsheet';
 import BottomSheetPlugin from 'nativescript-material-bottomsheet/vue';
@@ -48,7 +49,8 @@ Vue.use(CardViewPlugin);
 Vue.use(FloatingActionButtonPlugin);
 Vue.use(ProgressPlugin);
 Vue.use(RipplePlugin);
-Vue.use(SliderPlugin);
+Vue.use(SliderPlugin); 
+Vue.use(TextViewPlugin);
 Vue.use(TextFieldPlugin);
 Vue.use(BottomSheetPlugin);
 Vue.use(BottomNavigationBarlugin);
@@ -77,7 +79,17 @@ import * as views from './views';
 
 Vue.component(views.Home.name, views.Home);
 
-Vue.config.silent = true;
+Vue.config.silent = false;
+
+Vue.config.errorHandler = (e, vm, info) => {
+  console.log('vue error', e, e.stack);
+
+};
+
+Vue.config.warnHandler = function(msg, vm, trace) {
+  console.warn('[Vue][Warn]', `[${msg}]`);
+  // cwarn(msg, trace);
+};
 
 new Vue({
     template: `

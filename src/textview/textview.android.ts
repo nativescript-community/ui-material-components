@@ -3,19 +3,13 @@ import { Color } from '@nativescript/core/color';
 import { backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
 import { Background } from '@nativescript/core/ui/styling/background';
 import { ad } from '@nativescript/core/utils/utils';
-import { TextFieldBase } from './textfield.common';
+import { TextViewBase } from './textview.common';
 import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from '../textbase/cssproperties';
-
-// declare module '@nativescript/core/ui/text-field' {
-//     interface TextField {
-//         _redrawNativeBackground(value: android.graphics.drawable.Drawable | Background): void;
-//     }
-// }
 
 interface TextInputEditText extends com.google.android.material.textfield.TextInputEditText {
     // tslint:disable-next-line:no-misused-new
     new (context): TextInputEditText;
-    owner: WeakRef<TextField>;
+    owner: WeakRef<TextView>;
 }
 let TextInputEditText: TextInputEditText;
 
@@ -23,9 +17,9 @@ export function initTextInputEditText() {
     if (TextInputEditText) {
         return;
     }
-    @JavaProxy('org.nativescript.material.TextInputEditText')
+    @JavaProxy('org.nativescript.material.TextViewInputEditText')
     class TextInputEditTextImpl extends com.google.android.material.textfield.TextInputEditText {
-        public owner: WeakRef<TextField>;
+        public owner: WeakRef<TextView>;
         constructor(context: android.content.Context) {
             super(context);
             return global.__native(this);
@@ -57,7 +51,7 @@ export function getDefaultHintTextColorStateList(pressedColor: number, color = 1
     return new android.content.res.ColorStateList(states, colors);
 }
 
-export class TextField extends TextFieldBase {
+export class TextView extends TextViewBase {
     editText: com.google.android.material.textfield.TextInputEditText;
     layoutView: com.google.android.material.textfield.TextInputLayout;
 
@@ -152,6 +146,22 @@ export class TextField extends TextFieldBase {
         const floatingColor = value instanceof Color ? value.android : value;
         const placeholderColor = this.placeholderColor instanceof Color ? this.placeholderColor.android : undefined;
         this.layoutView.setDefaultHintTextColor(getDefaultHintTextColorStateList(floatingColor, placeholderColor));
+    }
+
+    public _configureEditText(editText: android.widget.EditText): void {
+        editText.setInputType(
+            android.text.InputType.TYPE_CLASS_TEXT |
+                android.text.InputType.TYPE_TEXT_VARIATION_NORMAL |
+                android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES |
+                android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE |
+                android.text.InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
+        );
+        editText.setGravity(android.view.Gravity.TOP | android.view.Gravity.START);
+    }
+
+    public resetNativeView(): void {
+        super.resetNativeView();
+        this.nativeTextViewProtected.setGravity(android.view.Gravity.TOP | android.view.Gravity.START);
     }
 
     public requestFocus() {
