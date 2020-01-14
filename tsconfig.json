@@ -49,6 +49,8 @@
             "nativescript-material-core/*": ["src/core/*"],
             "nativescript-material-textfield": ["src/textfield/textfield"],
             "nativescript-material-textfield/*": ["src/textfield/*"],
+            "nativescript-material-textview": ["src/textview/textview"],
+            "nativescript-material-textview/*": ["src/textview/*"],
             "*": ["node_modules/*"]
         }
     },
