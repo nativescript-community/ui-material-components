@@ -86,6 +86,9 @@ class BottomSheetUILayoutViewController extends UIViewController {
         // the safe area of the controller is not correct. I think materialcomponents ios is changing the safeArea of the controller
         // let s look at the app root controller to get fulllscreen safe area
         let layoutGuide = controller.view.safeAreaLayoutGuide;
+        if (!layoutGuide) {
+            layoutGuide = this.initLayoutGuide(controller)
+        }
         const fullscreen = controller.view.frame;
         const safeArea = layoutGuide.layoutFrame;
         let position = ios.getPositionFromFrame(safeArea);
@@ -134,6 +137,19 @@ class BottomSheetUILayoutViewController extends UIViewController {
         if (owner && !owner.parent) {
             owner.callUnloaded();
         }
+    }
+
+    initLayoutGuide(controller: UIViewController) {
+        const rootView = controller.view
+        const layoutGuide = UILayoutGuide.alloc().init()
+        rootView.addLayoutGuide(layoutGuide)
+        NSLayoutConstraint.activateConstraints([
+            layoutGuide.topAnchor.constraintEqualToAnchor(controller.topLayoutGuide.bottomAnchor),
+            layoutGuide.bottomAnchor.constraintEqualToAnchor(controller.bottomLayoutGuide.topAnchor),
+            layoutGuide.leadingAnchor.constraintEqualToAnchor(rootView.leadingAnchor),
+            layoutGuide.trailingAnchor.constraintEqualToAnchor(rootView.trailingAnchor)
+        ])
+        return layoutGuide
     }
 }
 
