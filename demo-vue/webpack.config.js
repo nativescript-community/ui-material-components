@@ -1,21 +1,28 @@
 const WebpackTemplate = require('nativescript-akylas-webpack-template');
+const webpack = require('webpack');
 const { resolve } = require('path');
 const NsVueTemplateCompiler = require('akylas-nativescript-vue-template-compiler');
 
 // temporary hack to support v-model using ns-vue-template-compiler
 // See https://github.com/nativescript-vue/nativescript-vue/issues/371
-NsVueTemplateCompiler.registerElement('MDTextField', () => require('~/nativescript-material-components/textfield').TextField, {
-    model: {
-        prop: 'text',
-        event: 'textChange'
-    }
-});
-NsVueTemplateCompiler.registerElement('MDSlider', () => require('~/nativescript-material-components/slider').Slider, {
-    model: {
-        prop: 'value',
-        event: 'valueChange'
-    }
-});
+// NsVueTemplateCompiler.registerElement('MDTextField', () => require('~/nativescript-material-textfield').TextField, {
+//     model: {
+//         prop: 'text',
+//         event: 'textChange'
+//     }
+// });
+// NsVueTemplateCompiler.registerElement('MDTextView', () => require('~/nativescript-material-textview').TextField, {
+//     model: {
+//         prop: 'text',
+//         event: 'textChange'
+//     }
+// });
+// NsVueTemplateCompiler.registerElement('MDSlider', () => require('~/nativescript-material-slider').Slider, {
+//     model: {
+//         prop: 'value',
+//         event: 'valueChange'
+//     }
+// });
 
 
 module.exports = env => {
@@ -83,11 +90,19 @@ module.exports = env => {
             'nativescript-material-button/button$': '#/button/button.' + platform,
             '../button$': '#/button/button.' + platform,
 
-            'nativescript-material-textfield$': '#/textfield/textfield.' + platform,
-            'nativescript-material-textfield/textfield$': '#/textfield/textfield.' + platform,
-            'nativescript-material-textfield/textfield_cssproperties$': '#/textfield/textfield_cssproperties',
-            'nativescript-material-textfield/vue$': '#/textfield/vue/index',
-            '../textfield$': '#/textfield/textfield.' + platform,
+            'nativescript-material-textfield$': '#/textfield/textfield',
+            'nativescript-material-textfield': '#/textfield',
+            // 'nativescript-material-textfield/textfield$': '#/textfield/textfield.' + platform,
+            // 'nativescript-material-textfield/textfield_cssproperties$': '#/textfield/textfield_cssproperties',
+            // 'nativescript-material-textfield/vue$': '#/textfield/vue/index',
+            // '../textfield$': '#/textfield/textfield.' + platform,
+
+            'nativescript-material-textview$': '#/textview/textview',
+            'nativescript-material-textview': '#/textview',
+            // 'nativescript-material-textview/textview$': '#/textview/textview.' + platform,
+            // 'nativescript-material-textview/textview_cssproperties$': '#/textview/textview_cssproperties',
+            // 'nativescript-material-textview/vue$': '#/textview/vue/index',
+            // '../textfield$': '#/textview/textview.' + platform,
 
             'nativescript-material-floatingactionbutton$': '#/floatingactionbutton/floatingactionbutton.' + platform,
             'nativescript-material-floatingactionbutton/vue$': '#/floatingactionbutton/vue/index',
@@ -118,6 +133,12 @@ module.exports = env => {
         projectRoot: __dirname,
         alias: aliases
     });
+    if (development) {
+        Array.prototype.push.apply(config.plugins,[
+            new webpack.ContextReplacementPlugin(/nativescript-material-textfield/, resolve(projectRoot, '..', 'src', 'textfield')),
+            new webpack.ContextReplacementPlugin(/nativescript-material-textview/, resolve(projectRoot, '..', 'src', 'textview'))
+        ]);
+    }
     // config.stats = 'verbose'
 
     return config;

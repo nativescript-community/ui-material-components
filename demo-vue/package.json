@@ -30,6 +30,7 @@
         "nativescript-material-slider": "file:../packages/nativescript-material-slider",
         "nativescript-material-snackbar": "file:../packages/nativescript-material-snackbar",
         "nativescript-material-textfield": "file:../packages/nativescript-material-textfield",
+        "nativescript-material-textview": "file:../packages/nativescript-material-textview",
         "nativescript-theme-core": "~2.0.24",
         "tslib": "^1.10.0"
     },
