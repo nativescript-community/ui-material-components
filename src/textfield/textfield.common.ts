@@ -7,6 +7,7 @@ import { cssProperty } from 'nativescript-material-core/cssproperties';
 export abstract class TextFieldBase extends NTextField {
     constructor() {
         super();
+        console.log('MDTextField');
     }
     abstract requestFocus();
     abstract clearFocus();

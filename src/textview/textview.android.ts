@@ -4,7 +4,7 @@ import { backgroundInternalProperty, borderBottomLeftRadiusProperty, hintPropert
 import { Background } from '@nativescript/core/ui/styling/background';
 import { ad } from '@nativescript/core/utils/utils';
 import { TextViewBase } from './textview.common';
-import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from './textview_cssproperties';
+import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from '../textbase/cssproperties';
 
 interface TextInputEditText extends com.google.android.material.textfield.TextInputEditText {
     // tslint:disable-next-line:no-misused-new

@@ -4,7 +4,7 @@ import { backgroundInternalProperty, borderBottomLeftRadiusProperty, hintPropert
 import { Background } from '@nativescript/core/ui/styling/background';
 import { ad } from '@nativescript/core/utils/utils';
 import { TextFieldBase } from './textfield.common';
-import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from './textfield_cssproperties';
+import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from '../textbase/cssproperties';
 
 // declare module '@nativescript/core/ui/text-field' {
 //     interface TextField {

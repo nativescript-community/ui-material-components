@@ -1,6 +1,6 @@
 import { TextViewBase } from './textview.common';
 import { backgroundInternalProperty, editableProperty, hintProperty, placeholderColorProperty, textProperty } from '@nativescript/core/ui/editable-text-base';
-import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty, buttonColorProperty } from './textview_cssproperties';
+import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty, buttonColorProperty } from '../textbase/cssproperties';
 import { themer } from 'nativescript-material-core/core';
 import { Color } from '@nativescript/core/color';
 import { Style } from '@nativescript/core/ui/styling/style';
@@ -53,7 +53,7 @@ class TextViewInputControllerImpl extends MDCTextInputControllerBase {
     }
 }
 
-class TextViewInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
+class TextViewInputControllerOutlinedImpl extends MDCTextInputControllerOutlinedTextArea {
     private _owner: WeakRef<TextView>;
     public static initWithOwner(owner: WeakRef<TextView>): TextViewInputControllerOutlinedImpl {
         const handler = <TextViewInputControllerOutlinedImpl>TextViewInputControllerOutlinedImpl.new();

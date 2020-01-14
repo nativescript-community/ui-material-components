@@ -1,6 +1,6 @@
 import { TextFieldBase } from './textfield.common';
 import { backgroundInternalProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
-import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty, buttonColorProperty } from './textfield_cssproperties';
+import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty, buttonColorProperty } from '../textbase/cssproperties';
 import { themer } from 'nativescript-material-core/core';
 import { Color } from '@nativescript/core/color';
 import { Style } from '@nativescript/core/ui/styling/style';
@@ -21,8 +21,7 @@ declare module '@nativescript/core/ui/text-field/text-field' {
     }
 }
 
-declare class TextInputControllerUnderline extends MDCTextInputControllerUnderline {}
-class TextInputControllerUnderlineImpl extends TextInputControllerUnderline {
+class TextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
     private _owner: WeakRef<TextField>;
     public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerUnderlineImpl {
         const handler = <TextInputControllerUnderlineImpl>TextInputControllerUnderlineImpl.new();
@@ -40,8 +39,7 @@ class TextInputControllerUnderlineImpl extends TextInputControllerUnderline {
     }
 }
 
-declare class TextInputControllerBase extends MDCTextInputControllerBase {}
-class TextInputControllerImpl extends TextInputControllerBase {
+class TextInputControllerImpl extends MDCTextInputControllerBase {
     private _owner: WeakRef<TextField>;
     public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerImpl {
         const handler = <TextInputControllerImpl>TextInputControllerImpl.new();
@@ -61,8 +59,7 @@ class TextInputControllerImpl extends TextInputControllerBase {
     }
 }
 
-declare class TextInputControllerOutlined extends MDCTextInputControllerOutlined {}
-class TextInputControllerOutlinedImpl extends TextInputControllerOutlined {
+class TextInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
     private _owner: WeakRef<TextField>;
     public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerOutlinedImpl {
         const handler = <TextInputControllerOutlinedImpl>TextInputControllerOutlinedImpl.new();
@@ -79,8 +76,7 @@ class TextInputControllerOutlinedImpl extends TextInputControllerOutlined {
     }
 }
 
-declare class TextInputControllerFilled extends MDCTextInputControllerFilled {}
-class TextInputControllerFilledImpl extends TextInputControllerFilled {
+class TextInputControllerFilledImpl extends MDCTextInputControllerFilled {
     private _owner: WeakRef<TextField>;
     public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerFilledImpl {
         const handler = <TextInputControllerFilledImpl>TextInputControllerFilledImpl.new();
@@ -129,6 +125,7 @@ export class TextField extends TextFieldBase {
 
     // variant = 'underline';
     public createNativeView() {
+        console.log('TextField', 'createNativeView');
         // const view = MDCTextFieldImpl.initWithOwner(new WeakRef(this));
         const view = MDCTextField.new();
 
@@ -152,6 +149,7 @@ export class TextField extends TextFieldBase {
             MDCTextFieldColorThemer.applySemanticColorSchemeToTextInput(colorScheme, view);
             MDCTextFieldColorThemer.applySemanticColorSchemeToTextInputController(colorScheme, this._controller);
         }
+        console.log('TextField', 'createNativeView1');
         return view;
     }
 
