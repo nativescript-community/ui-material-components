@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.9](https://github.com/Akylas/nativescript-material-components/compare/v3.0.8...v3.0.9) (2020-01-13)
+
+**Note:** Version bump only for package nativescript-material-components
+
+
+
+
+
+## [3.0.8](https://github.com/Akylas/nativescript-material-components/compare/v3.0.7...v3.0.8) (2020-01-13)
+
+
+### Bug Fixes
+
+* fixed iOS dialogs on 6.3.2 ([9a9e5a2](https://github.com/Akylas/nativescript-material-components/commit/9a9e5a2aa9ab612a7eaaccb2c9a762417ed00498))
+* **android-snackbar:** use initSnack every time ([775714a](https://github.com/Akylas/nativescript-material-components/commit/775714a6ab2c10925bb6295210245d8f57c00c74))
+* **ios-snackbar:** completionHandler is now called ([8cfed68](https://github.com/Akylas/nativescript-material-components/commit/8cfed68fafb3b156f5e56d7fe325572d2c3b4872))
+
+
+
+
+
 ## [3.0.7](https://github.com/Akylas/nativescript-material-components/compare/v3.0.6...v3.0.7) (2019-12-18)
 
 
