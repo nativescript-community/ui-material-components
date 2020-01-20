@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-core",
-    "version": "3.0.9",
+    "version": "3.1.1",
     "description": "Material Core component",
     "main": "./core",
     "typings": "./core.d.ts",
