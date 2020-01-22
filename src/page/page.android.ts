@@ -50,11 +50,14 @@ export class Page extends INSPage {
         return false;
     }
 }
-
+let mixinInstalled = false;
 export function overridePage() {
     const NSPage = require('@nativescript/core/ui/page/page').Page;
     applyMixins(NSPage, [Page]);
 }
 export function install() {
-    overridePage();
+    if (!mixinInstalled) {
+        mixinInstalled = true;
+        overridePage();
+    }
 }
