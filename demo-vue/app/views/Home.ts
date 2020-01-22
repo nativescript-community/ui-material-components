@@ -6,9 +6,9 @@ export default {
     <Page>
       <ActionBar title="Material Vue">
       </ActionBar>
-      <ListView ref="listView" rowHeight="50" for="example in examples" @itemTap="goToExample">
+      <ListView ref="listView" rowHeight="50" for="example in examples">
         <v-template>
-        <MDRipple rippleColor="red">
+        <MDRipple rippleColor="red" @tap="{goToExample(example)}"  @longPress="{goToModalExample(example)}" >
           <StackLayout class="item" orientation="horizontal" height="40">
             <Label paddingLeft="10" :text="example.title" class="title" verticalAlignment="center"/>
           </StackLayout>
@@ -23,13 +23,13 @@ export default {
         };
     },
     methods: {
-        goToExample({ item }) {
-          console.log('goToExample');
-          this.$navigateTo(item.component);
+        goToExample(item) {
+            console.log('goToExample');
+            this.$navigateTo(item.component);
         },
-        onItemTap(args) {
-          console.log('onItemTap', args);
-            // this.$navigateTo(item.component);
+        goToModalExample(item) {
+            console.log('goToModalExample');
+            this.$showModal(item.component, { fullscreen: true });
         }
     }
 };

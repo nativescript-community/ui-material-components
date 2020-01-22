@@ -5,11 +5,11 @@
     "repository": "http://www.github.com/NativeScript/nativescript-ui-sidedrawer.git",
     "nativescript": {
         "id": "org.nativescript.demovuematerial",
-        "tns-ios": {
-            "version": "6.2.0"
-        },
         "tns-android": {
-            "version": "6.2.0"
+            "version": "6.3.1"
+        },
+        "tns-ios": {
+            "version": "6.3.0"
         }
     },
     "dependencies": {
@@ -35,13 +35,13 @@
         "tslib": "^1.10.0"
     },
     "devDependencies": {
-        "nativescript-akylas-webpack-template": "^1.0.11",
+        "nativescript-akylas-webpack-template": "^1.0.13",
         "nativescript-dev-webpack": "1.4.1",
         "tns-platform-declarations": "6.3.2",
-        "tslint": "^5.20.1",
+        "tslint": "^6.0.0",
         "tslint-config-prettier": "^1.18.0",
         "tslint-config-standard": "^9.0.0",
-        "typescript": "^3.7.4",
+        "typescript": "^3.7.5",
         "vue": "^2.6.11",
         "vue-i18n": "^8.15.3",
         "vue-property-decorator": "^8.3.0",

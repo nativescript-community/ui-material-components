@@ -1,10 +1,18 @@
 <template>
     <Page>
         <ActionBar :title="title">
+            <StackLayout orientation="horizontal" width="100%">
+                <MDButton v-show="isEditing" variant="flat" text="test" @tap="isEditing = !isEditing" />
+                <MDButton variant="flat" text="save" @tap="isEditing = !isEditing" />
+            </StackLayout>
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap"></NavigationButton>
         </ActionBar>
         <ScrollView>
             <StackLayout>
+                <StackLayout v-if="isEditing">
+                        <MDTextField class="session-details-input" :hint="('name')" />
+                        <MDTextField class="session-details-input" :hint="('description')"/>
+                    </StackLayout>
                 <MDFloatingActionButton src="res://ic_action_add"  @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton id="fab" src="res://ic_action_add" color="white" backgroundColor="blue" size="mini" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton src="res://ic_action_add" text="test expanded" expanded="true" @tap="onTap" horizontalAlignment="center" />
@@ -43,6 +51,7 @@ export default Vue.extend({
         return {
             name: 'Buttons',
             title: title,
+            isEditing:false,
             expanded:false
         };
     },
