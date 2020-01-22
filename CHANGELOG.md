@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/Akylas/nativescript-material-components/compare/v3.1.1...v3.1.2) (2020-01-22)
+
+
+### Bug Fixes
+
+* ensure we add mixins once ([be3ce27](https://github.com/Akylas/nativescript-material-components/commit/be3ce277e5f1d47f06ab6681b4377814d2b2f8ef))
+* snackbar and modal [#101](https://github.com/Akylas/nativescript-material-components/issues/101) ([eba265a](https://github.com/Akylas/nativescript-material-components/commit/eba265ab172ab13858e16e53aa0082d1a13201f8))
+
+
+### Features
+
+* added features for bottomsheet ([b3f8795](https://github.com/Akylas/nativescript-material-components/commit/b3f87959430df3efe7018f74701886a7980b6481)), closes [#102](https://github.com/Akylas/nativescript-material-components/issues/102)
+
+
+
+
+
 ## [3.1.1](https://github.com/Akylas/nativescript-material-components/compare/v3.1.0...v3.1.1) (2020-01-20)
 
 **Note:** Version bump only for package nativescript-material-components
