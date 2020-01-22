@@ -1,3 +1,5 @@
+import { View } from "@nativescript/core/ui/page/page";
+
 export declare class SnackBar {
     /**
      * Shows a simple SnackBar.
@@ -70,6 +72,11 @@ export declare class SnackBar {
      * Use RTL for textview of snackbar.
      */
     isRTL?: boolean;
+    /**
+     * *Android Only*
+     * optional View to attach the snack to
+     */
+    view?: View;
   }
   
   export enum DismissReasons {
