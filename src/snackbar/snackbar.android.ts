@@ -1,6 +1,7 @@
 import { Color } from '@nativescript/core/color';
 import { topmost } from '@nativescript/core/ui/frame';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
+import { android as androidApp } from '@nativescript/core/application';
 
 function _getReason(value: number) {
     switch (value) {
@@ -50,8 +51,12 @@ export class SnackBar extends SnackBarBase {
         // options.actionText = options.actionText ? options.actionText : 'Close';
         options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
 
-        const attachToView = (options.view && options.view.android) || topmost().currentPage.android;
-        this._snackbar = com.google.android.material.snackbar.Snackbar.make(attachToView, options.message, options.hideDelay);
+        const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
+        let attachView = options.view || topmost().currentPage;
+        while (attachView['_modal']) {
+            attachView = attachView['_modal']
+        }
+        this._snackbar = com.google.android.material.snackbar.Snackbar.make(attachView.android, options.message, options.hideDelay);
 
         this._snackbar.setText(options.message);
         this._snackbar.setDuration(options.hideDelay);
