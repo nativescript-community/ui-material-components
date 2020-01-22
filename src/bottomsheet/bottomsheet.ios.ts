@@ -53,10 +53,14 @@ declare module '@nativescript/core/ui/core/view/view' {
 
 class BottomSheetUILayoutViewController extends UIViewController {
     public owner: WeakRef<View>;
+    ignoreBottomSafeArea: boolean;
+    ignoreTopSafeArea: boolean;
 
     public static initWithOwner(owner: WeakRef<View>): BottomSheetUILayoutViewController {
         const controller = <BottomSheetUILayoutViewController>BottomSheetUILayoutViewController.new();
         controller.owner = owner;
+        controller.ignoreBottomSafeArea = false;
+        controller.ignoreTopSafeArea = true;
         return controller;
     }
 
@@ -88,12 +92,12 @@ class BottomSheetUILayoutViewController extends UIViewController {
         let layoutGuide = controller.view.safeAreaLayoutGuide;
         const fullscreen = controller.view.frame;
         const safeArea = layoutGuide.layoutFrame;
-        let position = ios.getPositionFromFrame(safeArea);
+        let safeAreaPosition = ios.getPositionFromFrame(safeArea);
         const safeAreaSize = safeArea.size;
 
         const hasChildViewControllers = controller.childViewControllers.count > 0;
         if (hasChildViewControllers) {
-            position = ios.getPositionFromFrame(fullscreen);
+            safeAreaPosition = ios.getPositionFromFrame(fullscreen);
         }
 
         const safeAreaWidth = layout.round(layout.toDevicePixels(safeAreaSize.width));
@@ -103,8 +107,23 @@ class BottomSheetUILayoutViewController extends UIViewController {
         const heightSpec = layout.makeMeasureSpec(safeAreaHeight, layout.UNSPECIFIED);
 
         View.measureChild(null, owner, widthSpec, heightSpec);
-        View.layoutChild(null, owner, position.left, -ios.getPositionFromFrame(safeArea).top, position.right, owner.getMeasuredHeight());
-        this.preferredContentSize = CGSizeMake(layout.toDeviceIndependentPixels(owner.getMeasuredWidth()), layout.toDeviceIndependentPixels(owner.getMeasuredHeight()));
+        const marginTop = owner.effectiveMarginTop;
+        const marginBottom = owner.effectiveMarginBottom;
+        const marginLeft = owner.effectiveMarginLeft + safeAreaPosition.left;
+        const marginRight = owner.effectiveMarginRight;
+        let top = marginTop;
+        const width = owner.getMeasuredWidth();
+        let height = owner.getMeasuredHeight();
+        if (!this.ignoreTopSafeArea) {
+            top += safeAreaPosition.top;
+        }
+        const effectiveWidth = width + marginLeft + marginRight;
+        let effectiveHeight = height + top + marginBottom;
+        if (this.ignoreBottomSafeArea) {
+            effectiveHeight -= ios.getPositionFromFrame(fullscreen).bottom - safeAreaPosition.bottom;
+        }
+        View.layoutChild(null, owner, marginLeft, top, width + marginLeft, height + top);
+        this.preferredContentSize = CGSizeMake(layout.toDeviceIndependentPixels(effectiveWidth), layout.toDeviceIndependentPixels(effectiveHeight));
 
         this.layoutParent(owner.parent);
     }
@@ -161,11 +180,17 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
         this._setupAsRootView({});
 
-        super._showNativeBottomSheet(parentWithController, options);
-        let controller = this.viewController;
+        this._commonShowNativeBottomSheet(parentWithController, options);
+        let controller: BottomSheetUILayoutViewController = this.viewController;
         if (!controller) {
             const nativeView = this.ios || this.nativeViewProtected;
             controller = BottomSheetUILayoutViewController.initWithOwner(new WeakRef(this));
+            if (options.ignoreBottomSafeArea !== undefined) {
+                controller.ignoreBottomSafeArea = options.ignoreBottomSafeArea;
+            }
+            if (options.ignoreTopSafeArea !== undefined) {
+                controller.ignoreTopSafeArea = options.ignoreTopSafeArea;
+            }
             if (nativeView instanceof UIView) {
                 controller.view.addSubview(nativeView);
             }
@@ -175,8 +200,8 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
         controller.modalPresentationStyle = UIModalPresentationStyle.FormSheet;
 
-        this.horizontalAlignment = 'stretch';
-        this.verticalAlignment = 'stretch';
+        // this.horizontalAlignment = 'stretch';
+        // this.verticalAlignment = 'stretch';
 
         this._raiseShowingBottomSheetEvent();
         // animated = animated === undefined ? true : !!animated;
@@ -194,11 +219,13 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         }
         (<any>controller).animated = true;
         parentController.presentViewControllerAnimatedCompletion(bottomSheet, true, null);
-        if (!this.backgroundColor) {
-            this.backgroundColor = 'white';
-            bottomSheet.view.backgroundColor = UIColor.whiteColor;
+        if (options.transparent === true) {
+            bottomSheet.view.backgroundColor = UIColor.clearColor;
+            // for it to be more beautiful let s disable elevation
+            bottomSheet.view['elevation'] = 0;
         } else {
-            bottomSheet.view.backgroundColor = this.style.backgroundColor.ios;
+            // this.backgroundColor = 'white';
+            bottomSheet.view.backgroundColor = UIColor.whiteColor;
         }
         const transitionCoordinator = bottomSheet.transitionCoordinator;
         if (transitionCoordinator) {
@@ -234,10 +261,14 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     }
 }
 
+let mixinInstalled = false;
 export function overrideBottomSheet() {
-    const NSView = require('@nativescript/core/ui/core/view').View;
+    const NSView = require('@nativescript/core/ui/core/view/view').View;
     applyMixins(NSView, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
 }
 export function install() {
-    overrideBottomSheet();
+    if (!mixinInstalled) {
+        mixinInstalled = true;
+        overrideBottomSheet();
+    }
 }

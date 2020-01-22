@@ -1,7 +1,8 @@
-import { View } from '@nativescript/core/ui/core/view';
+import { View, Color } from '@nativescript/core/ui/core/view';
 import { fromObject } from '@nativescript/core/data/observable';
 import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
 import { applyMixins } from 'nativescript-material-core/core';
+import { android as androidApp, AndroidActivityBackPressedEventData } from '@nativescript/core/application';
 
 interface BottomSheetDataOptions {
     owner: View;
@@ -13,6 +14,11 @@ interface BottomSheetDataOptions {
 }
 const DOMID = '_domId';
 const bottomSheetMap = new Map<number, BottomSheetDataOptions>();
+
+function getId(id: string) {
+    const context: android.content.Context = androidApp.context;
+    return context.getResources().getIdentifier(id, 'id', context.getPackageName());
+}
 
 function saveBottomSheet(options: BottomSheetDataOptions) {
     bottomSheetMap.set(options.owner._domId, options);
@@ -42,10 +48,46 @@ function initializeBottomSheetDialogFragment() {
         return;
     }
 
+    class DialogImpl extends com.google.android.material.bottomsheet.BottomSheetDialog {
+        constructor(public fragment: BottomSheetDialogFragmentImpl, context: android.content.Context, themeResId: number) {
+            super(context, themeResId);
+
+            return global.__native(this);
+        }
+
+        public onDetachedFromWindow(): void {
+            super.onDetachedFromWindow();
+            this.fragment = null;
+        }
+
+        public onBackPressed(): void {
+            const view = this.fragment.owner;
+            const args = <AndroidActivityBackPressedEventData>{
+                eventName: 'activityBackPressed',
+                object: view,
+                activity: view._context,
+                cancel: false
+            };
+
+            // Fist fire application.android global event
+            androidApp.notify(args);
+            if (args.cancel) {
+                return;
+            }
+
+            view.notify(args);
+
+            if (!args.cancel && !view.onBackPressed()) {
+                super.onBackPressed();
+            }
+        }
+    }
+
     class BottomSheetDialogFragmentImpl extends com.google.android.material.bottomsheet.BottomSheetDialogFragment {
         public owner: View;
-        private _fullscreen: boolean;
-        private _stretched: boolean;
+        private _transparent: boolean;
+        // private _fullscreen: boolean;
+        // private _stretched: boolean;
         private _shownCallback: () => void;
         private _dismissCallback: () => void;
 
@@ -64,10 +106,17 @@ function initializeBottomSheetDialogFragment() {
             this._shownCallback = options.shownCallback;
             (this.owner as ViewWithBottomSheetBase)._bottomSheetFragment = this;
             // this.setStyle(androidx.fragment.app.DialogFragment.STYLE_NO_TITLE, 0);
+            let theme = this.getTheme();
+            // if (this._fullscreen) {
+            //     // In fullscreen mode, get the application's theme.
+            //     theme = this.getActivity().getApplicationInfo().theme;
+            // }
 
-            const dialog = super.onCreateDialog(savedInstanceState) as com.google.android.material.bottomsheet.BottomSheetDialog;
+            const dialog = new DialogImpl(this, this.getActivity(), theme);
+            // const dialog = super.onCreateDialog(savedInstanceState) as com.google.android.material.bottomsheet.BottomSheetDialog;
             if (options.options) {
                 const creationOptions = options.options;
+                this._transparent = creationOptions.transparent;
                 if (creationOptions.dismissOnBackgroundTap !== undefined) {
                     dialog.setCanceledOnTouchOutside(creationOptions.dismissOnBackgroundTap);
                 }
@@ -75,19 +124,6 @@ function initializeBottomSheetDialogFragment() {
                 //     dialog.setCancelable(creationOptions.cancelable);
                 // }
             }
-            // const dialog = new DialogImpl(this, this.getActivity(), this.getTheme());
-
-            // do not override alignment unless fullscreen modal will be shown;
-            // otherwise we might break component-level layout:
-            // https://github.com/NativeScript/NativeScript/issues/5392
-            // if (!this._fullscreen && !this._stretched) {
-            //     this.owner.horizontalAlignment = "center";
-            //     this.owner.verticalAlignment = "middle";
-            // } else {
-            //     this.owner.horizontalAlignment = "stretch";
-            //     this.owner.verticalAlignment = "stretch";
-            // }
-
             return dialog;
         }
 
@@ -95,25 +131,32 @@ function initializeBottomSheetDialogFragment() {
             const owner = this.owner;
             owner._setupAsRootView(this.getActivity());
             owner._isAddedToNativeVisualTree = true;
-
             return owner.nativeViewProtected;
         }
 
         public onStart(): void {
             super.onStart();
-            if (this._fullscreen) {
-                const window = this.getDialog().getWindow();
-                const length = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-                window.setLayout(length, length);
-                // This removes the default backgroundDrawable so there are no margins.
-                // window.setBackgroundDrawable(
-                //     new android.graphics.drawable.ColorDrawable(
-                //         android.graphics.Color.WHITE
-                //     )
-                // )
+            const owner = this.owner;
+
+            const color = owner.backgroundColor;
+            // const window = this.getDialog().getWindow();
+
+            // if (this._fullscreen) {
+            //     const length = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+            //     window.setLayout(length, length);
+            //     window.setBackgroundDrawable(null);
+            // }
+            if (this._transparent === true) {
+                const contentViewId = getId('design_bottom_sheet');
+                const view = this.getDialog().findViewById(contentViewId);
+                // we need delay it just a bit or it wont work
+                setTimeout(() => {
+                    view.setBackground(null);
+                }, 0);
             }
 
-            const owner = this.owner;
+            
+
             if (owner && !owner.isLoaded) {
                 owner.callLoaded();
             }
@@ -139,7 +182,7 @@ function initializeBottomSheetDialogFragment() {
             super.onDestroy();
             const owner = this.owner;
             if (owner) {
-                // Android calls onDestroy before onDismiss. 
+                // Android calls onDestroy before onDismiss.
                 // Make sure we unload first and then call _tearDownUI.
                 if (owner.isLoaded) {
                     owner.callUnloaded();
@@ -166,7 +209,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     }
 
     protected _showNativeBottomSheet(parent: View, options: BottomSheetOptions) {
-        super._showNativeBottomSheet(parent, options);
+        this._commonShowNativeBottomSheet(parent, options);
         // if (!this.backgroundColor) {
         //     this.backgroundColor = new Color("White");
         // }
@@ -195,15 +238,22 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         this._bottomSheetFragment = df;
         this._raiseShowingBottomSheetEvent();
 
+        // const activity = androidApp.foregroundActivity as androidx.appcompat.app.AppCompatActivity;
+        // this._bottomSheetFragment.show(activity.getSupportFragmentManager(), this._domId.toString());
+
         this._bottomSheetFragment.show((<any>parent)._getRootFragmentManager(), this._domId.toString());
     }
 }
 
+let mixinInstalled = false;
 export function overrideBottomSheet() {
     const NSView = require('@nativescript/core/ui/core/view/view').View;
     applyMixins(NSView, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
 }
 export function install() {
-    // overridePage();
-    overrideBottomSheet();
+    if (!mixinInstalled) {
+        mixinInstalled = true;
+        // overridePage();
+        overrideBottomSheet();
+    }
 }
