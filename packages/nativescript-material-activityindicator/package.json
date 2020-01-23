@@ -5,9 +5,9 @@
     "main": "./activityindicator",
     "typings": "./activityindicator.d.ts",
     "scripts": {
-        "tsc-win": "../../node_modules/.bin/tsc && copy ..\\..\\src\\activityindicator\\activityindicator.d.ts .\\",
+        "tsc-win": "..\\..\\node_modules\\.bin\\tsc && copy ..\\..\\src\\activityindicator\\activityindicator.d.ts .\\",
         "tsc": "cp ../../src/activityindicator/activityindicator.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck",
-        "ngc-win": "../../node_modules/.bin/ngc",
+        "ngc-win": "..\\..\\node_modules\\.bin\\ngc",
         "ngc": "NODE_OPTIONS=--max_old_space_size=8192 ../../node_modules/.bin/ngc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
