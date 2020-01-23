@@ -11,9 +11,9 @@
         }
     },
     "scripts": {
-        "tsc-win": "copy ..\\..\\src\\bottomnavigationbar\\bottomnavigationbar.d.ts .\\ && ../../node_modules/.bin/tsc --skipLibCheck",
+        "tsc-win": "copy ..\\..\\src\\bottomnavigationbar\\bottomnavigationbar.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck",
         "tsc": "cp ../../src/bottomnavigationbar/bottomnavigationbar.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck",
-        "ngc-win": "../../node_modules/.bin/ngc",
+        "ngc-win": "..\\..\\node_modules\\.bin\\ngc",
         "ngc": "NODE_OPTIONS=--max_old_space_size=8192 ../../node_modules/.bin/ngc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
