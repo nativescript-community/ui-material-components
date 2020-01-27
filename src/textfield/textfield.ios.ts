@@ -125,7 +125,6 @@ export class TextField extends TextFieldBase {
 
     // variant = 'underline';
     public createNativeView() {
-        console.log('TextField', 'createNativeView');
         // const view = MDCTextFieldImpl.initWithOwner(new WeakRef(this));
         const view = MDCTextField.new();
 
@@ -149,7 +148,6 @@ export class TextField extends TextFieldBase {
             MDCTextFieldColorThemer.applySemanticColorSchemeToTextInput(colorScheme, view);
             MDCTextFieldColorThemer.applySemanticColorSchemeToTextInputController(colorScheme, this._controller);
         }
-        console.log('TextField', 'createNativeView1');
         return view;
     }
 

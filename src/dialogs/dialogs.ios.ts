@@ -323,7 +323,6 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
 
     if (options.view) {
-        console.log('about to apply dialog view');
         const view =
             options.view instanceof View
                 ? (options.view as View)
