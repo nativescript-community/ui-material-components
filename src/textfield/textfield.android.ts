@@ -6,11 +6,6 @@ import { ad } from '@nativescript/core/utils/utils';
 import { TextFieldBase } from './textfield.common';
 import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from 'nativescript-material-core/textbase/cssproperties';
 
-// declare module '@nativescript/core/ui/text-field' {
-//     interface TextField {
-//         _redrawNativeBackground(value: android.graphics.drawable.Drawable | Background): void;
-//     }
-// }
 
 interface TextInputEditText extends com.google.android.material.textfield.TextInputEditText {
     // tslint:disable-next-line:no-misused-new
@@ -61,7 +56,6 @@ export class TextField extends TextFieldBase {
     editText: com.google.android.material.textfield.TextInputEditText;
     layoutView: com.google.android.material.textfield.TextInputLayout;
 
-    // nativeViewProtected: com.google.android.material.textfield.TextInputLayout;
     constructor() {
         super();
     }
@@ -71,9 +65,6 @@ export class TextField extends TextFieldBase {
 
     drawingBackground = false;
     get nativeViewProtected() {
-        // if (this.drawingBackground) {
-        // return this.editText;
-        // }
         return this.layoutView;
     }
 
@@ -88,7 +79,6 @@ export class TextField extends TextFieldBase {
 
         let layoutView: com.google.android.material.textfield.TextInputLayout;
         let editText: TextInputEditText;
-
         initTextInputEditText();
         if (layoutId !== 0) {
             layoutView = this.layoutView = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.textfield.TextInputLayout;
@@ -99,40 +89,18 @@ export class TextField extends TextFieldBase {
             editText.setLayoutParams(new android.widget.LinearLayout.LayoutParams(android.widget.FrameLayout.LayoutParams.MATCH_PARENT, android.widget.FrameLayout.LayoutParams.WRAP_CONTENT));
             layoutView.addView(editText);
         }
-        // in com.google.material the default style is boxed!
-        // layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
-        // layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
-        // editText.setBackgroundColor(android.graphics.Color.TRANSPARENT);
-        // editText.setBackground(null);
         if (layoutIdName === 'material_text_field') {
             layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
             editText.setBackground(null);
-            // editText.setPadding(0, layout.toDevicePixels(20), 0, layout.toDevicePixels(6));
         }
-        // this.style.borderTopLeftRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusTopStart() };
-        // this.style.borderTopRightRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusTopEnd() };
-        // this.style.borderBottomLeftRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusBottomStart() };
-        // this.style.borderBottomRightRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusBottomEnd() };
         editText.owner = new WeakRef(this);
-        // this.editText.setSupportBackgroundTintList(android.content.res.ColorStateList.valueOf(new Color('orange').android));
         layoutView.setFocusableInTouchMode(true); // to prevent focus on view creation
-        // layout.setFocusable(true);
-        // layout.setAddStatesFromChildren(true);
-        // layout.setDescendantFocusability(android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS);
-        // layout.setDescendantFocusability(android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS);
         return layoutView;
     }
 
     [borderBottomLeftRadiusProperty.getDefault]() {
         return this.layoutView.getBoxCornerRadiusTopStart();
     }
-
-    // _redrawNativeBackground(value: android.graphics.drawable.Drawable | Background): void {
-    //     // trick for the background to be applied to the editText so that it removes the border line
-    //     this.drawingBackground = true;
-    //     super._redrawNativeBackground(value);
-    //     this.drawingBackground = false;
-    // }
 
     [hintProperty.getDefault](): string {
         return this.layoutView.getHint();
@@ -239,20 +207,6 @@ export class TextField extends TextFieldBase {
                 break;
             }
         }
-        // if (this.nativeViewProtected) {
-        //     if (value instanceof android.graphics.drawable.Drawable) {
-        //         this.nativeViewProtected.setBackgroundDrawable(value);
-        //     } else {
-                
-
-        //         // TODO: for now no control over borderRadius because we can't define the default value
-        //         // this.borderTopLeftRadius = value.borderTopLeftRadius;
-        //         // this.borderTopRightRadius = value.borderTopRightRadius;
-        //         // this.borderBottomLeftRadius = value.borderBottomLeftRadius;
-        //         // this.borderBottomRightRadius = value.borderBottomRightRadius;
-        //         // this.layoutView.setBoxCornerRadii(this.borderTopLeftRadius, this.borderTopRightRadius, this.borderBottomLeftRadius, this.borderBottomRightRadius);
-        //     }
-        // }
     }
 }
 //
