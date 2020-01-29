@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.4](https://github.com/Akylas/nativescript-material-components/compare/v3.1.3...v3.1.4) (2020-01-29)
+
+
+### Bug Fixes
+
+* **android:** refactored textview ([c296e72](https://github.com/Akylas/nativescript-material-components/commit/c296e729135815dbe623aa640f62aefbe8557bbc))
+* **android:** rollback to fix latest issues ([100fddf](https://github.com/Akylas/nativescript-material-components/commit/100fddf6f9b6875a08473a4b7103572235356a60))
+
+
+
+
+
 ## [3.1.3](https://github.com/Akylas/nativescript-material-components/compare/v3.1.2...v3.1.3) (2020-01-27)
 
 **Note:** Version bump only for package nativescript-material-textview

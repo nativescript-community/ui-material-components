@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-floatingactionbutton",
-    "version": "3.1.3",
+    "version": "3.1.4",
     "description": "Material floatingactionbutton component",
     "main": "./floatingactionbutton",
     "typings": "./floatingactionbutton.d.ts",
@@ -34,7 +34,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^3.1.3"
+        "nativescript-material-core": "^3.1.4"
     },
     "gitHead": "e62190fa75ac5ca06904f8ccc46b6ac62f129c15"
 }
