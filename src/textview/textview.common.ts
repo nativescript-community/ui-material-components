@@ -5,9 +5,7 @@ import { cssProperty } from 'nativescript-material-core/cssproperties';
 
 @CSSType('MDTextView')
 export abstract class TextViewBase extends EditableTextBase {
-    constructor() {
-        super();
-    }
+
     abstract requestFocus();
     abstract clearFocus();
 

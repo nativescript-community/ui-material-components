@@ -6,19 +6,19 @@ import { ad } from '@nativescript/core/utils/utils';
 import { TextViewBase } from './textview.common';
 import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty } from 'nativescript-material-core/textbase/cssproperties';
 
-interface TextInputEditText extends com.google.android.material.textfield.TextInputEditText {
+interface TextViewInputEditText extends com.google.android.material.textfield.TextInputEditText {
     // tslint:disable-next-line:no-misused-new
-    new (context): TextInputEditText;
+    new (context): TextViewInputEditText;
     owner: WeakRef<TextView>;
 }
-let TextInputEditText: TextInputEditText;
+let TextViewInputEditText: TextViewInputEditText;
 
 export function initTextInputEditText() {
-    if (TextInputEditText) {
+    if (TextViewInputEditText) {
         return;
     }
     @JavaProxy('org.nativescript.material.TextViewInputEditText')
-    class TextInputEditTextImpl extends com.google.android.material.textfield.TextInputEditText {
+    class TextViewInputEditTextImpl extends com.google.android.material.textfield.TextInputEditText {
         public owner: WeakRef<TextView>;
         constructor(context: android.content.Context) {
             super(context);
@@ -38,7 +38,7 @@ export function initTextInputEditText() {
             return super.dispatchKeyEventPreIme(event);
         }
     }
-    TextInputEditText = TextInputEditTextImpl as any;
+    TextViewInputEditText = TextViewInputEditTextImpl as any;
 }
 
 export function getDefaultHintTextColorStateList(pressedColor: number, color = 1627389952) {
@@ -72,61 +72,39 @@ export class TextView extends TextViewBase {
     }
 
     public createNativeView() {
-        let layoutIdName = 'material_text_field';
+        let layoutIdName = 'material_text_view';
         if (this.variant === 'filled') {
-            layoutIdName = 'material_text_field_filled';
+            layoutIdName = 'material_text_view_filled';
         } else if (this.variant === 'outline') {
-            layoutIdName = 'material_text_field_outline';
+            layoutIdName = 'material_text_view_outline';
         }
         const layoutId = getLayout(layoutIdName);
 
         let layoutView: com.google.android.material.textfield.TextInputLayout;
-        let editText: TextInputEditText;
+        let editText: TextViewInputEditText;
 
         initTextInputEditText();
         if (layoutId !== 0) {
             layoutView = this.layoutView = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.textfield.TextInputLayout;
-            editText = this.editText = (layoutView.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as TextInputEditText;
+            editText = this.editText = (layoutView.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as TextViewInputEditText;
         } else {
             layoutView = this.layoutView = new com.google.android.material.textfield.TextInputLayout(this._context);
-            editText = this.editText = new TextInputEditText(layoutView.getContext());
+            editText = this.editText = new TextViewInputEditText(layoutView.getContext());
             editText.setLayoutParams(new android.widget.LinearLayout.LayoutParams(android.widget.FrameLayout.LayoutParams.MATCH_PARENT, android.widget.FrameLayout.LayoutParams.WRAP_CONTENT));
             layoutView.addView(editText);
         }
-        // in com.google.material the default style is boxed!
-        // layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
-        // layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
-        // editText.setBackgroundColor(android.graphics.Color.TRANSPARENT);
-        // editText.setBackground(null);
-        if (layoutIdName === 'material_text_field') {
+        if (layoutIdName === 'material_text_view') {
             layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
             editText.setBackground(null);
-            // editText.setPadding(0, layout.toDevicePixels(20), 0, layout.toDevicePixels(6));
         }
-        // this.style.borderTopLeftRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusTopStart() };
-        // this.style.borderTopRightRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusTopEnd() };
-        // this.style.borderBottomLeftRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusBottomStart() };
-        // this.style.borderBottomRightRadius = { unit: 'px', value: this.layoutView.getBoxCornerRadiusBottomEnd() };
         editText.owner = new WeakRef(this);
-        // this.editText.setSupportBackgroundTintList(android.content.res.ColorStateList.valueOf(new Color('orange').android));
         layoutView.setFocusableInTouchMode(true); // to prevent focus on view creation
-        // layout.setFocusable(true);
-        // layout.setAddStatesFromChildren(true);
-        // layout.setDescendantFocusability(android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS);
-        // layout.setDescendantFocusability(android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS);
         return layoutView;
     }
 
     [borderBottomLeftRadiusProperty.getDefault]() {
         return this.layoutView.getBoxCornerRadiusTopStart();
     }
-
-    // _redrawNativeBackground(value: android.graphics.drawable.Drawable | Background): void {
-    //     // trick for the background to be applied to the editText so that it removes the border line
-    //     this.drawingBackground = true;
-    //     super._redrawNativeBackground(value);
-    //     this.drawingBackground = false;
-    // }
 
     [hintProperty.getDefault](): string {
         return this.layoutView.getHint();
