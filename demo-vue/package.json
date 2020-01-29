@@ -14,8 +14,9 @@
     },
     "dependencies": {
         "@nativescript/core": "6.3.2",
-        "akylas-nativescript-vue-template-compiler": "^2.1.14",
-        "nativescript-akylas-vue": "~2.3.5",
+        "nativescript-vue-template-compiler": "^2.1.14",
+        "nativescript-vue": "~2.4.0",
+        "nativescript-akylas-vue": "2.5.0-alpha.10",
         "nativescript-iqkeyboardmanager": "^1.5.1",
         "nativescript-material-activityindicator": "file:../packages/nativescript-material-activityindicator",
         "nativescript-material-bottomnavigationbar": "file:../packages/nativescript-material-bottomnavigationbar",

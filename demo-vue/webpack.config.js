@@ -1,28 +1,28 @@
 const WebpackTemplate = require('nativescript-akylas-webpack-template');
 const webpack = require('webpack');
 const { resolve } = require('path');
-const NsVueTemplateCompiler = require('akylas-nativescript-vue-template-compiler');
+const NsVueTemplateCompiler = require('nativescript-vue-template-compiler');
 
 // temporary hack to support v-model using ns-vue-template-compiler
 // See https://github.com/nativescript-vue/nativescript-vue/issues/371
-// NsVueTemplateCompiler.registerElement('MDTextField', () => require('~/nativescript-material-textfield').TextField, {
-//     model: {
-//         prop: 'text',
-//         event: 'textChange'
-//     }
-// });
-// NsVueTemplateCompiler.registerElement('MDTextView', () => require('~/nativescript-material-textview').TextField, {
-//     model: {
-//         prop: 'text',
-//         event: 'textChange'
-//     }
-// });
-// NsVueTemplateCompiler.registerElement('MDSlider', () => require('~/nativescript-material-slider').Slider, {
-//     model: {
-//         prop: 'value',
-//         event: 'valueChange'
-//     }
-// });
+NsVueTemplateCompiler.registerElement('MDTextField', () => require('~/nativescript-material-textfield').TextField, {
+    model: {
+        prop: 'text',
+        event: 'textChange'
+    }
+});
+NsVueTemplateCompiler.registerElement('MDTextView', () => require('~/nativescript-material-textview').TextField, {
+    model: {
+        prop: 'text',
+        event: 'textChange'
+    }
+});
+NsVueTemplateCompiler.registerElement('MDSlider', () => require('~/nativescript-material-slider').Slider, {
+    model: {
+        prop: 'value',
+        event: 'valueChange'
+    }
+});
 
 
 module.exports = env => {
