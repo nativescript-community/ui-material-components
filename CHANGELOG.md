@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.5](https://github.com/Akylas/nativescript-material-components/compare/v3.1.4...v3.1.5) (2020-02-05)
+
+
+### Bug Fixes
+
+* **ios:** actually better fix for now because of a bug in {N} ([ddc6b6a](https://github.com/Akylas/nativescript-material-components/commit/ddc6b6ad8aa3e4f88c77353d1956e2c180d4ccf5))
+* **ios:** fix alertDialog not closing ([85b24f4](https://github.com/Akylas/nativescript-material-components/commit/85b24f4ce8e06f6f1171e95904f61f6e5f2be839))
+
+
+
+
+
 ## [3.1.4](https://github.com/Akylas/nativescript-material-components/compare/v3.1.3...v3.1.4) (2020-01-29)
 
 
