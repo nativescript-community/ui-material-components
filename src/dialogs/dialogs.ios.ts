@@ -400,6 +400,7 @@ export class AlertDialog {
     hide() {
         if (this.presentingController) {
             this.presentingController.dismissViewControllerAnimatedCompletion(true, null);
+            this.presentingController = null;
             this.alertController = null;
         }
     }
@@ -660,6 +661,12 @@ function showUIAlertController(alertController: MDCAlertController) {
         if (!(currentView.ios instanceof UIViewController)) {
             const parentWithController = iosView.getParentWithViewController(currentView);
             viewController = parentWithController ? parentWithController.viewController : undefined;
+        }
+        if (viewController && viewController.parentViewController) {
+            while(viewController.parentViewController) {
+                viewController = viewController.parentViewController
+                viewController.parentViewController
+            }
         }
 
         if (viewController) {
