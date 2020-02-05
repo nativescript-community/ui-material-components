@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/alexander-mai/nativescript-material-components/compare/v3.1.4...v3.2.0) (2020-02-05)
+
+
+### Features
+
+* added features for bottomsheet ([2749e66](https://github.com/alexander-mai/nativescript-material-components/commit/2749e66f8aa37dd8cccb0aa5d6183ccb6d8a59d7))
+
+
+
+
+
 ## [3.1.4](https://github.com/Akylas/nativescript-material-components/compare/v3.1.3...v3.1.4) (2020-01-29)
 
 **Note:** Version bump only for package nativescript-material-bottomsheet
