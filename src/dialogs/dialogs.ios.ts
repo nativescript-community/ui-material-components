@@ -1,6 +1,6 @@
 import { themer } from 'nativescript-material-core/core';
 import { TextField } from 'nativescript-material-textfield';
-import { getRootView } from '@nativescript/core/application';
+import { getRootView, ios } from '@nativescript/core/application';
 import { fromObject } from '@nativescript/core/data/observable';
 import { createViewFromEntry } from '@nativescript/core/ui/builder/builder';
 import { ios as iosView, View } from '@nativescript/core/ui/core/view';
@@ -656,18 +656,19 @@ function showUIAlertController(alertController: MDCAlertController) {
     if (currentView) {
         currentView = currentView.modal || currentView;
 
-        let viewController: UIViewController = currentView.ios;
+        // let viewController: UIViewController = currentView.ios;
+        let viewController = ios.rootController;
 
-        if (!(currentView.ios instanceof UIViewController)) {
-            const parentWithController = iosView.getParentWithViewController(currentView);
-            viewController = parentWithController ? parentWithController.viewController : undefined;
-        }
-        if (viewController && viewController.parentViewController) {
-            while(viewController.parentViewController) {
-                viewController = viewController.parentViewController
-                viewController.parentViewController
-            }
-        }
+        // if (!(currentView.ios instanceof UIViewController)) {
+        //     const parentWithController = iosView.getParentWithViewController(currentView);
+        //     viewController = parentWithController ? parentWithController.viewController : undefined;
+        // }
+        // if (viewController && viewController.parentViewController) {
+        //     while(viewController.parentViewController) {
+        //         viewController = viewController.parentViewController
+        //         viewController.parentViewController
+        //     }
+        // }
 
         if (viewController) {
             if (alertController.popoverPresentationController) {
