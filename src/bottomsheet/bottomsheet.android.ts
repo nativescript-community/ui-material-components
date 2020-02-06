@@ -86,6 +86,7 @@ function initializeBottomSheetDialogFragment() {
     class BottomSheetDialogFragmentImpl extends com.google.android.material.bottomsheet.BottomSheetDialogFragment {
         public owner: View;
         private _transparent: boolean;
+        private _dismissOnDraggingDownSheet: boolean;
         // private _fullscreen: boolean;
         // private _stretched: boolean;
         private _shownCallback: () => void;
@@ -117,6 +118,7 @@ function initializeBottomSheetDialogFragment() {
             if (options.options) {
                 const creationOptions = options.options;
                 this._transparent = creationOptions.transparent;
+                this._dismissOnDraggingDownSheet = creationOptions.dismissOnDraggingDownSheet;
                 if (creationOptions.dismissOnBackgroundTap !== undefined) {
                     dialog.setCanceledOnTouchOutside(creationOptions.dismissOnBackgroundTap);
                 }
@@ -155,7 +157,18 @@ function initializeBottomSheetDialogFragment() {
                 }, 0);
             }
 
-            
+            if (this._dismissOnDraggingDownSheet !== undefined) {
+                const view = this.getDialog().findViewById(getId('design_bottom_sheet'));
+                const behavior = com.google.android.material.bottomsheet.BottomSheetBehavior.from(view);
+                // prevent hiding the bottom sheet by
+                behavior.setHideable(this._dismissOnDraggingDownSheet);
+                if(!this._dismissOnDraggingDownSheet) {
+                    // directly expand the bottom sheet after start
+                    behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED);
+                    // set to maximum possible value to prevent dragging the sheet between peek and expanded height
+                    behavior.setPeekHeight(java.lang.Integer.MAX_VALUE);
+                }
+            }
 
             if (owner && !owner.isLoaded) {
                 owner.callLoaded();

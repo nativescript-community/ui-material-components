@@ -105,6 +105,19 @@ class Model {
                 });
                 break;
             }
+            case 'bottomsheet3': {
+                obj.showBottomSheet({
+                    view: 'examples/bottomsheetinner2-fragment',
+                    dismissOnDraggingDownSheet: false,
+                    context: {
+                        dataItems: this.dataItems
+                    },
+                    closeCallback: objId => {
+                        alert(`bottomsheet closed ${objId}`);
+                    }
+                });
+                break;
+            }
             case 'alertdialog':
                 const stack = new StackLayout();
                 stack.orientation = 'horizontal';
