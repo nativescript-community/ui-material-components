@@ -46,7 +46,7 @@ export interface SnackBarOptions {
     /**
      * *Android Only*
      * The View to which the snackbar will be attached. Useful with modals.
-     * Default to topmost().currentPage
+     * Default to Frame.topmost().currentPage
      */
     view?: View;
 }
