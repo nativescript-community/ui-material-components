@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.6](https://github.com/Akylas/nativescript-material-components/compare/v3.1.5...v3.1.6) (2020-02-17)
+
+
+### Bug Fixes
+
+* **android:** correctly use androidXAppCompatVersion ([fff455e](https://github.com/Akylas/nativescript-material-components/commit/fff455ea5f775cf94d7f6e30ef707f352e37fcaa))
+* missing typings for closeBottomSheet ([46d4f2c](https://github.com/Akylas/nativescript-material-components/commit/46d4f2c77a70d1d5df3eb9c2ceace9caebe13bd9))
+* **android:** removed deprecated topmost() ([a05d381](https://github.com/Akylas/nativescript-material-components/commit/a05d381fa5a1d7cc620e9880b2b54e7a2bc7ee6f))
+
+
+
+
+
 ## [3.1.5](https://github.com/Akylas/nativescript-material-components/compare/v3.1.4...v3.1.5) (2020-02-05)
 
 
