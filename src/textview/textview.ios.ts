@@ -248,6 +248,7 @@ export class TextView extends TextViewBase {
     [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.activeColor = color;
+        this._controller.normalColor = color;
     }
     [buttonColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;

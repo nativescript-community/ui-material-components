@@ -188,6 +188,7 @@ export class TextField extends TextFieldBase {
     }
     [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
+        this._controller.normalColor = color;
         this._controller.activeColor = color;
     }
     [buttonColorProperty.setNative](value: Color) {
