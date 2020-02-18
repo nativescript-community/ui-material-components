@@ -212,13 +212,14 @@ function initializeBottomSheetDialogFragment() {
 export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     _bottomSheetFragment: com.google.android.material.bottomsheet.BottomSheetDialogFragment;
     protected _hideNativeBottomSheet(parent: View, whenClosedCallback: () => void) {
+        // call whenClosedCallback first because dismiss will call another one (without result)
+        whenClosedCallback();
         const manager = this._bottomSheetFragment.getFragmentManager();
         if (manager) {
             this._bottomSheetFragment.dismissAllowingStateLoss();
         }
 
         this._bottomSheetFragment = null;
-        whenClosedCallback();
     }
 
     protected _showNativeBottomSheet(parent: View, options: BottomSheetOptions) {

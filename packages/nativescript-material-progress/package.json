@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-progress",
-    "version": "3.1.5",
+    "version": "3.1.7",
     "description": "Material progress component",
     "main": "./progress",
     "typings": "./progress.d.ts",
@@ -34,7 +34,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^3.1.5"
+        "nativescript-material-core": "^3.1.7"
     },
     "gitHead": "e62190fa75ac5ca06904f8ccc46b6ac62f129c15"
 }

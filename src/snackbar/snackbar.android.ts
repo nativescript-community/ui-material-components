@@ -1,5 +1,5 @@
 import { Color } from '@nativescript/core/color';
-import { topmost } from '@nativescript/core/ui/frame';
+import { Frame } from '@nativescript/core/ui/frame';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 import { android as androidApp } from '@nativescript/core/application';
 
@@ -52,7 +52,7 @@ export class SnackBar extends SnackBarBase {
         options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
 
         const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
-        let attachView = options.view || topmost().currentPage;
+        let attachView = options.view || Frame.topmost().currentPage;
         while (attachView['_modal']) {
             attachView = attachView['_modal']
         }

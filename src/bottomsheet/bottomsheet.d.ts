@@ -5,6 +5,7 @@ export { BottomSheetOptions };
 declare module '@nativescript/core/ui/core/view' {
     interface View {
         showBottomSheet(options: BottomSheetOptions): ViewBase;
+        closeBottomSheet(...args);
     }
 }
 

@@ -88,10 +88,15 @@ export abstract class ViewWithBottomSheetBase extends View {
         };
         this._closeBottomSheetCallback = (...originalArgs) => {
             if (this._closeBottomSheetCallback) {
-                const callback = this._closeBottomSheetCallback;
+                // const callback = this._closeBottomSheetCallback;
                 this._closeBottomSheetCallback = null;
                 this._bottomSheetContext.closeCallback = null;
-                this._hideNativeBottomSheet(parent, callback);
+                const whenClosedCallback = () => {
+                    if (typeof options.closeCallback === "function") {
+                        options.closeCallback.apply(undefined, originalArgs);
+                    }
+                };
+                this._hideNativeBottomSheet(parent, whenClosedCallback);
             }
         };
         this._bottomSheetContext.closeCallback = this._closeBottomSheetCallback;

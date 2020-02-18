@@ -656,8 +656,10 @@ function showUIAlertController(alertController: MDCAlertController) {
     if (currentView) {
         currentView = currentView.modal || currentView;
 
-        // let viewController: UIViewController = currentView.ios;
+        // for now we need to use the rootController because of a bug in {N}
         let viewController = ios.rootController;
+        
+        // let viewController: UIViewController = currentView.ios;
 
         // if (!(currentView.ios instanceof UIViewController)) {
         //     const parentWithController = iosView.getParentWithViewController(currentView);
