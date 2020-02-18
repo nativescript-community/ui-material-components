@@ -1,6 +1,17 @@
 import { TextFieldBase } from './textfield.common';
 import { backgroundInternalProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
-import { errorColorProperty, errorProperty, floatingColorProperty, floatingProperty, helperProperty, maxLengthProperty, strokeColorProperty, buttonColorProperty } from 'nativescript-material-core/textbase/cssproperties';
+import {
+    buttonColorProperty,
+    errorColorProperty,
+    errorProperty,
+    floatingColorProperty,
+    floatingInactiveColorProperty,
+    floatingProperty,
+    helperProperty,
+    maxLengthProperty,
+    strokeColorProperty,
+    strokeInactiveColorProperty
+} from 'nativescript-material-core/textbase/cssproperties';
 import { themer } from 'nativescript-material-core/core';
 import { Color } from '@nativescript/core/color';
 import { Style } from '@nativescript/core/ui/styling/style';
@@ -170,8 +181,12 @@ export class TextField extends TextFieldBase {
     [floatingColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.floatingPlaceholderActiveColor = color;
+        this._updateAttributedPlaceholder();
+    }
+    [floatingInactiveColorProperty.setNative](value: Color) {
+        const color = value instanceof Color ? value.ios : value;
+        this._controller.inlinePlaceholderColor = color;
         this._controller.floatingPlaceholderNormalColor = color;
-        // this._controller.inlinePlaceholderColor = color;
         this._updateAttributedPlaceholder();
     }
     [placeholderColorProperty.setNative](value: Color) {
@@ -188,8 +203,11 @@ export class TextField extends TextFieldBase {
     }
     [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
-        this._controller.normalColor = color;
         this._controller.activeColor = color;
+    }
+    [strokeInactiveColorProperty.setNative](value: Color) {
+        const color = value instanceof Color ? value.ios : value;
+        this._controller.normalColor = color;
     }
     [buttonColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
