@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.7](https://github.com/Akylas/nativescript-material-components/compare/v3.1.6...v3.1.7) (2020-02-18)
+
+
+### Bug Fixes
+
+* **android:** result not returned on bottomsheet close ([cb887e2](https://github.com/Akylas/nativescript-material-components/commit/cb887e2226ea6a991f31986683ad8db1125ca99d))
+
+
+
+
+
 ## [3.1.6](https://github.com/Akylas/nativescript-material-components/compare/v3.1.5...v3.1.6) (2020-02-17)
 
 
