@@ -17,6 +17,8 @@ export abstract class TextFieldBase extends NTextField {
     @cssProperty variant: 'outline' | 'underline' | 'filled' | 'none' = 'filled';
     @cssProperty error: string;
     @cssProperty strokeColor: Color;
+    @cssProperty strokeInactiveColor: Color;
     @cssProperty floatingColor: Color;
+    @cssProperty floatingInactiveColor: Color;
     @cssProperty buttonColor: Color;
 }
