@@ -1,6 +1,6 @@
 <template>
 <!-- <Page iosOverflowSafeArea="true"> -->
-    <MDCardView @shownInBottomSheet="onShownInBottomSheet" borderRadius="20" elevation="30" backgroundColor="red">
+    <MDCardView @shownInBottomSheet="onShownInBottomSheet" borderRadius="20" elevation="30" backgroundColor="transparent">
         <StackLayout>
             <MDButton id="test1" text="test1" borderRadius="20" margin="20" />
             <MDButton id="test2" text="test2" />
