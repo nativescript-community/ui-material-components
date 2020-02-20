@@ -3,6 +3,7 @@ import { createViewFromEntry } from '@nativescript/core/ui/builder';
 import { Frame } from '@nativescript/core/ui/frame';
 import { EventData } from '@nativescript/core/data/observable';
 import { eachDescendant, ViewBase } from '@nativescript/core/ui/core/view-base';
+import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/core/css/system-classes';
 
 declare module '@nativescript/core/ui/core/view/view' {
     interface View {
@@ -38,9 +39,9 @@ export interface BottomSheetOptions {
     dismissOnBackgroundTap?: boolean; // An optional parameter specifying whether to dismiss the sheet when clicking on background.
     closeCallback?: Function; //  A function that will be called when the view is closed. Any arguments provided when calling shownInBottomSheet.closeCallback will be available here.
     trackingScrollView?: string; // optional id of the scroll view to track
-    transparent?: boolean // optional parameter to make the bottomsheet transparent
-    ignoreTopSafeArea?: boolean // optional ios parameter to top safe area. Default is true
-    ignoreBottomSafeArea?: boolean// optional ios parameter to bottom safe area. Default is false
+    transparent?: boolean; // optional parameter to make the bottomsheet transparent
+    ignoreTopSafeArea?: boolean; // optional ios parameter to top safe area. Default is true
+    ignoreBottomSafeArea?: boolean; // optional ios parameter to bottom safe area. Default is false
 }
 
 export abstract class ViewWithBottomSheetBase extends View {
@@ -91,7 +92,7 @@ export abstract class ViewWithBottomSheetBase extends View {
                 this._closeBottomSheetCallback = null;
                 this._bottomSheetContext.closeCallback = null;
                 const whenClosedCallback = () => {
-                    if (typeof options.closeCallback === "function") {
+                    if (typeof options.closeCallback === 'function') {
                         options.closeCallback.apply(undefined, originalArgs);
                     }
                 };
@@ -128,7 +129,10 @@ export abstract class ViewWithBottomSheetBase extends View {
             const view = options.view instanceof View ? (options.view as ViewWithBottomSheetBase) : <ViewWithBottomSheetBase>createViewFromEntry({
                           moduleName: options.view as string
                       });
-
+            view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
+            const modalRootViewCssClasses = getSystemCssClasses();
+            modalRootViewCssClasses.forEach(c => view.cssClasses.add(c));
+            
             view._showNativeBottomSheet(this, options);
             return view;
         }

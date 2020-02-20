@@ -1,27 +1,14 @@
-import { themer } from 'nativescript-material-core/core';
-import { TextField } from 'nativescript-material-textfield';
 import { getRootView, ios } from '@nativescript/core/application';
+import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/core/css/system-classes';
 import { fromObject } from '@nativescript/core/data/observable';
 import { createViewFromEntry } from '@nativescript/core/ui/builder/builder';
-import { ios as iosView, View } from '@nativescript/core/ui/core/view';
-import { layout } from '@nativescript/core/utils/utils';
-import {
-    ActionOptions,
-    CANCEL,
-    capitalizationType,
-    ConfirmOptions,
-    DialogOptions,
-    getButtonColors,
-    getCurrentPage,
-    getLabelColor,
-    inputType,
-    LOGIN,
-    LoginResult,
-    OK,
-    PromptResult
-} from '@nativescript/core/ui/dialogs';
+import { View } from '@nativescript/core/ui/core/view';
+import { ActionOptions, CANCEL, capitalizationType, ConfirmOptions, DialogOptions, getButtonColors, getCurrentPage, getLabelColor, inputType, LoginResult, OK, PromptResult } from '@nativescript/core/ui/dialogs';
 import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout';
 import { isDefined, isFunction, isString } from '@nativescript/core/utils/types';
+import { layout } from '@nativescript/core/utils/utils';
+import { themer } from 'nativescript-material-core/core';
+import { TextField } from 'nativescript-material-textfield';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
 
@@ -95,7 +82,6 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             const nativeViewProtected = this._customContentView.nativeViewProtected;
             if (contentScrollView && nativeViewProtected) {
                 contentScrollView.addSubview(nativeViewProtected);
-
             }
         },
         get customContentView() {
@@ -134,12 +120,11 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
                 if (hasTitleOrMessage) {
                     const index = contentScrollView.subviews.indexOfObject(view.nativeViewProtected);
                     if (index === -1) {
-                        originY =layout.toDevicePixels(contentSize.height)
+                        originY = layout.toDevicePixels(contentSize.height);
                     } else {
-                        const viewOnTopFrame = contentScrollView.subviews.objectAtIndex(index-1).frame;
+                        const viewOnTopFrame = contentScrollView.subviews.objectAtIndex(index - 1).frame;
                         // the +24 is MDCDialogContentInsets
-                        originY =layout.toDevicePixels(viewOnTopFrame.origin.y + viewOnTopFrame.size.height + 24)
-
+                        originY = layout.toDevicePixels(viewOnTopFrame.origin.y + viewOnTopFrame.size.height + 24);
                     }
                 }
 
@@ -147,10 +132,9 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
                 const measuredHeight = view.getMeasuredHeight(); // pixels
                 View.layoutChild(null, view, 0, originY, measuredWidth, originY + measuredHeight);
 
-
                 // TODO: for a reload of the preferredContentSize. Find a better solution!
-                const pW = this.super.preferredContentSize.width
-                const pH = this.super.preferredContentSize.height
+                const pW = this.super.preferredContentSize.width;
+                const pH = this.super.preferredContentSize.height;
                 this.preferredContentSize = CGSizeMake(pW, pH + 0.00000000001);
                 this.preferredContentSize = CGSizeMake(pW, pH);
                 return true;
@@ -182,7 +166,6 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
         },
         viewDidLayoutSubviews() {
             this.updateContentViewSize();
-            
         },
         viewDidAppear() {
             if (this.autoFocusTextField) {
@@ -329,6 +312,11 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
                 : createViewFromEntry({
                       moduleName: options.view as string
                   });
+
+        view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
+        const modalRootViewCssClasses = getSystemCssClasses();
+        modalRootViewCssClasses.forEach(c => view.cssClasses.add(c));
+
         alertController.customContentView = view;
         alertController._resolveFunction = resolve;
         const context = options.context || {};
@@ -658,7 +646,7 @@ function showUIAlertController(alertController: MDCAlertController) {
 
         // for now we need to use the rootController because of a bug in {N}
         let viewController = ios.rootController;
-        
+
         // let viewController: UIViewController = currentView.ios;
 
         // if (!(currentView.ios instanceof UIViewController)) {
