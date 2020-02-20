@@ -59,6 +59,7 @@ module.exports = env => {
             'nativescript-material-core/core': '#/core/core.' + platform,
             'nativescript-material-core/android/utils$': '#/core/android/utils',
             'nativescript-material-core/cssproperties$': '#/core/cssproperties',
+            'nativescript-material-core/textbase/cssproperties$': '#/core/textbase/cssproperties',
 
             'nativescript-material-bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
             'nativescript-material-bottomsheet/vue$': '#/bottomsheet/vue/index',

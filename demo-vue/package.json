@@ -6,15 +6,15 @@
     "nativescript": {
         "id": "org.nativescript.demovuematerial",
         "tns-android": {
-            "version": "6.3.1"
+            "version": "6.4.1"
         },
         "tns-ios": {
-            "version": "6.3.0"
+            "version": "6.4.1"
         }
     },
     "dependencies": {
-        "@nativescript/core": "6.3.2",
-        "nativescript-vue-template-compiler": "^2.1.14",
+        "@nativescript/core": "6.4.1",
+        "nativescript-vue-template-compiler": "^2.4.0",
         "nativescript-vue": "~2.4.0",
         "nativescript-akylas-vue": "2.5.0-alpha.10",
         "nativescript-iqkeyboardmanager": "^1.5.1",
