@@ -118,7 +118,7 @@ function initializeBottomSheetDialogFragment() {
             if (options.options) {
                 const creationOptions = options.options;
                 this._transparent = creationOptions.transparent;
-                this._dismissOnDraggingDownSheet = creationOptions.dismissOnDraggingDownSheet;
+                this._dismissOnDraggingDownSheet = creationOptions.dismissOnDraggingDownSheet !== false;
                 if (creationOptions.dismissOnBackgroundTap !== undefined) {
                     dialog.setCanceledOnTouchOutside(creationOptions.dismissOnBackgroundTap);
                 }
@@ -157,7 +157,7 @@ function initializeBottomSheetDialogFragment() {
                 }, 0);
             }
 
-            if (this._dismissOnDraggingDownSheet !== undefined) {
+            if (this._dismissOnDraggingDownSheet) {
                 const view = this.getDialog().findViewById(getId('design_bottom_sheet'));
                 const behavior = com.google.android.material.bottomsheet.BottomSheetBehavior.from(view);
                 // prevent hiding the bottom sheet by
