@@ -1,4 +1,6 @@
-﻿mdbutton {
+@import '~@nativescript/theme/index';
+
+mdbutton {
     color: black;
     .ns-dark & {
         color: white;
