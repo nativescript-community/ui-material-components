@@ -71,7 +71,7 @@ if (isIOS) {
 }
 
 // import { getExamples } from './examples';
-import * as views from './views';
+import * as views from './views'; 
 
 // for (let item of getExamples()) {
 //     Vue.component(item.component.name, item.component);
@@ -79,7 +79,7 @@ import * as views from './views';
 
 Vue.component(views.Home.name, views.Home);
 
-Vue.config.silent = false;
+Vue.config.silent = true;
 
 Vue.config.errorHandler = (e, vm, info) => {
   console.log('vue error', e, e.stack);

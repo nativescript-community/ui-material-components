@@ -8,12 +8,10 @@ export default {
       </ActionBar>
       <ListView ref="listView" rowHeight="50" for="example in examples">
         <v-template>
-        <MDRipple rippleColor="red" @tap="{goToExample(example)}"  @longPress="{goToModalExample(example)}" >
-          <StackLayout class="item" orientation="horizontal" height="40">
+          <MDRipple rippleColor="red" @tap="{goToExample(example)}"  @longPress="{goToModalExample(example)}" >
             <Label paddingLeft="10" :text="example.title" class="title" verticalAlignment="center"/>
-          </StackLayout>
           </MDRipple>
-          </v-template>
+        </v-template>
       </ListView>
     </Page>
     `,

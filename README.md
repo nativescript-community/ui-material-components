@@ -8,7 +8,8 @@ Build beautiful, usable products using Material Components for NativeScript.
 
 -   [Button](./packages/nativescript-material-button/README.md)
 -   [Floating Action Button](./packages/nativescript-material-floatingactionbutton/README.md)
--   [Textfield](./packages/nativescript-material-textfield/README.md)
+-   [TextField](./packages/nativescript-material-textfield/README.md)
+-   [TextView](./packages/nativescript-material-textview/README.md)
 -   [CardView](./packages/nativescript-material-cardview/README.md)
 -   [Slider](./packages/nativescript-material-slider/README.md)
 -   [Progress](./packages/nativescript-material-progress/README.md)

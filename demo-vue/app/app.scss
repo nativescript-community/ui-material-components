@@ -1,7 +1,13 @@
-﻿mdbutton {
+@import '~@nativescript/theme/index';
+
+mdbutton {
+    color: black;
+    .ns-dark & {
+        color: white;
+    }
 }
 button {
-    elevation:2
+    elevation: 2;
 }
 
 .falseFAb {

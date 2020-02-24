@@ -1,10 +1,12 @@
 <template>
-    <MDCardView backgroundColor="green" @shownInBottomSheet="onShownInBottomSheet" borderRadius="20" elevation="30">
+<!-- <Page iosOverflowSafeArea="true"> -->
+    <MDCardView @shownInBottomSheet="onShownInBottomSheet" borderRadius="20" elevation="30" backgroundColor="transparent">
         <StackLayout>
             <MDButton id="test1" text="test1" borderRadius="20" margin="20" />
             <MDButton id="test2" text="test2" />
         </StackLayout>
     </MDCardView>
+<!-- </Page> -->
 </template>
 
 <script lang="ts">

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.9](https://github.com/Akylas/nativescript-material-components/compare/v3.1.8...v3.1.9) (2020-02-24)
+
+
+### Bug Fixes
+
+* dark mode support ([2ed3d87](https://github.com/Akylas/nativescript-material-components/commit/2ed3d870bdce10e66fa2bcda4d936da499690f39))
+
+
+
+
+
+## [3.1.8](https://github.com/Akylas/nativescript-material-components/compare/v3.1.7...v3.1.8) (2020-02-20)
+
+
+### Bug Fixes
+
+* **ios:** should fix bottomsheet and safearea ([9d7f21e](https://github.com/Akylas/nativescript-material-components/commit/9d7f21e56f3ecde732155636588c288f8a3bad05))
+
+
+
+
+
 ## [3.1.7](https://github.com/Akylas/nativescript-material-components/compare/v3.1.6...v3.1.7) (2020-02-18)
 
 

@@ -5,6 +5,9 @@
         </ActionBar>
         <StackLayout>
             <MDButton id="bottomsheet" text="bottomsheet" @tap="onTap" />
+            <MDButton id="dont_ignore_top_safe_area" text="dont_ignore_top_safe_area" @tap="onTap" />
+            <MDButton id="ignore_bottom_safe_area" text="ignore_bottom_safe_area" @tap="onTap" />
+            <MDButton id="dont_ignore_top_ignore_bottom_safe_area" text="dont_ignore_top_ignore_bottom_safe_area" @tap="onTap" />
             <MDButton id="bottomsheet-keyboard" text="bottomsheet-keyboard" @tap="onTap" />
         </StackLayout>
     </Page>
@@ -42,6 +45,37 @@ export default Vue.extend({
                 case 'bottomsheet': {
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
                         // transparent:true,
+                        closeCallback: objId => {
+                            console.log('bottom sheet closed');
+                        }
+                    });
+                    break;
+                }
+                case 'dont_ignore_top_safe_area': {
+                    (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
+                        ignoreTopSafeArea:false,
+                        // transparent:true,
+                        closeCallback: objId => {
+                            console.log('bottom sheet closed');
+                        }
+                    });
+                    break;
+                }
+                case 'ignore_bottom_safe_area': {
+                    (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
+                        // transparent:true,
+                        ignoreBottomSafeArea:true,
+                        closeCallback: objId => {
+                            console.log('bottom sheet closed');
+                        }
+                    });
+                    break;
+                }
+                case 'dont_ignore_top_ignore_bottom_safe_area': {
+                    (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
+                        // transparent:true,
+                        ignoreTopSafeArea:false,
+                        ignoreBottomSafeArea:true,
                         closeCallback: objId => {
                             console.log('bottom sheet closed');
                         }

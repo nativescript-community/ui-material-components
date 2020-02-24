@@ -1,28 +1,13 @@
 import { android as androidApp } from '@nativescript/core/application';
+import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/core/css/system-classes';
 import { fromObject } from '@nativescript/core/data/observable';
 import { createViewFromEntry } from '@nativescript/core/ui/builder';
 import { View } from '@nativescript/core/ui/core/view';
-import {
-    ActionOptions,
-    ALERT,
-    CANCEL,
-    capitalizationType,
-    CONFIRM,
-    ConfirmOptions,
-    DialogOptions,
-    getButtonColors,
-    getLabelColor,
-    inputType,
-    LOGIN,
-    LoginResult,
-    OK,
-    PROMPT,
-    PromptResult
-} from '@nativescript/core/ui/dialogs';
-import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
+import { ActionOptions, ALERT, CANCEL, capitalizationType, CONFIRM, ConfirmOptions, DialogOptions, getButtonColors, getLabelColor, inputType, LOGIN, LoginResult, OK, PROMPT, PromptResult } from '@nativescript/core/ui/dialogs';
 import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout';
 import { ad } from '@nativescript/core/utils/utils';
 import { TextField } from 'nativescript-material-textfield';
+import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
 
 export { capitalizationType, inputType };
@@ -62,6 +47,12 @@ function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): 
                 : createViewFromEntry({
                       moduleName: options.view as string
                   });
+
+
+        view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
+        const modalRootViewCssClasses = getSystemCssClasses();
+        modalRootViewCssClasses.forEach(c => view.cssClasses.add(c));
+
         (activity as any)._currentModalCustomView = view;
         view._setupAsRootView(activity);
         view._isAddedToNativeVisualTree = true;
