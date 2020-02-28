@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.10](https://github.com/Akylas/nativescript-material-components/compare/v3.1.9...v3.1.10) (2020-02-28)
+
+
+### Bug Fixes
+
+* **dialogs:** drop default labels, titles, buttons colors ([520f1a6](https://github.com/Akylas/nativescript-material-components/commit/520f1a641c99d396a9fbc737b25e0aa54bbc79fb))
+
+
+
+
+
 ## [3.1.9](https://github.com/Akylas/nativescript-material-components/compare/v3.1.8...v3.1.9) (2020-02-24)
 
 
