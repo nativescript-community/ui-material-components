@@ -1,4 +1,6 @@
 import { ViewWithBottomSheetBase } from './bottomsheet-common';
+import { ios as iosApplication } from "@nativescript/core/application";
+import { screen } from "@nativescript/core/platform";
 import { ios, traceCategories, traceError, traceMessageType, traceWrite, View } from '@nativescript/core/ui/core/view';
 import { ViewBase } from '@nativescript/core/ui/core/view-base';
 import { layout } from '@nativescript/core/utils/utils';
@@ -6,10 +8,8 @@ import { BottomSheetOptions } from './bottomsheet';
 import { fromObject } from '@nativescript/core/data/observable';
 import { applyMixins } from 'nativescript-material-core/core';
 import { ios as iosUtils } from '@nativescript/core/utils/utils';
-import { ios as iosView } from '@nativescript/core/ui/core/view/view-helper';
 import { Page } from '@nativescript/core/ui/page';
 
-const majorVersion = iosUtils.MajorVersion;
 class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottomSheetControllerDelegate {
     public static ObjCProtocols = [MDCBottomSheetControllerDelegate];
 
@@ -44,22 +44,6 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottom
     }
 }
 
-declare module '@nativescript/core/ui/core/view/view' {
-    interface View {
-        _setLayoutFlags(left: number, top: number, right: number, bottom: number);
-    }
-    namespace ios {
-        interface UILayoutViewController extends UIViewController {
-            owner: WeakRef<View>;
-        }
-    }
-}
-declare module '@nativescript/core/ui/core/view-base' {
-    interface ViewBase {
-        _layoutParent();
-    }
-}
-
 function initLayoutGuide(controller: UIViewController) {
     const rootView = controller.view;
     const layoutGuide = UILayoutGuide.alloc().init();
@@ -81,17 +65,8 @@ function layoutView(controller: UILayoutViewController, owner: View): void {
         layoutGuide = initLayoutGuide(controller);
     }
     const safeArea = layoutGuide.layoutFrame;
-    let position = ios.getPositionFromFrame(safeArea);
-    const safeAreaSize = safeArea.size;
-
-    const hasChildViewControllers = controller.childViewControllers.count > 0;
-    if (hasChildViewControllers) {
-        const fullscreen = controller.view.frame;
-        position = ios.getPositionFromFrame(fullscreen);
-    }
-
-    const safeAreaWidth = layout.round(layout.toDevicePixels(safeAreaSize.width));
-    const safeAreaHeight = layout.round(layout.toDevicePixels(safeAreaSize.height));
+    const safeAreaWidth = layout.round(layout.toDevicePixels(safeArea.size.width));
+    const safeAreaHeight = layout.round(layout.toDevicePixels(safeArea.size.height));
 
     const widthSpec = layout.makeMeasureSpec(safeAreaWidth, layout.EXACTLY);
     const heightSpec = layout.makeMeasureSpec(safeAreaHeight, layout.UNSPECIFIED);
@@ -99,103 +74,35 @@ function layoutView(controller: UILayoutViewController, owner: View): void {
     View.measureChild(null, owner, widthSpec, heightSpec);
     const marginTop = owner.effectiveMarginTop;
     const marginBottom = owner.effectiveMarginBottom;
-    const marginLeft = owner.effectiveMarginLeft + position.left;
+    const marginLeft = owner.effectiveMarginLeft;
     const marginRight = owner.effectiveMarginRight;
-    let top = marginTop + position.top;
-    const width = owner.getMeasuredWidth();
-    let height = owner.getMeasuredHeight();
 
-    owner.iosOverflowSafeArea = false;
-
-    View.layoutChild(null, owner, position.left, position.top, position.left + width, position.top + height);
-
-    const effectiveWidth = width + marginLeft + marginRight;
-    let effectiveHeight = height + top + marginBottom;
-    if (controller.ignoreTopSafeArea || controller.ignoreBottomSafeArea) {
-        const frame = owner.nativeViewProtected.frame;
-        const availableSpace = getAvailableSpaceFromParent(owner, frame);
-        // const safeArea = availableSpace.safeArea;
-        // const fullscreen = availableSpace.fullscreen;
-        // const inWindow = availableSpace.inWindow;
-
-        const position = ios.getPositionFromFrame(frame);
-        const fullscreenPosition = ios.getPositionFromFrame(availableSpace.fullscreen);
-        const safeAreaPosition = ios.getPositionFromFrame(availableSpace.safeArea);
-
-        const adjustedPosition = position;
+    let childTop = marginTop;
+    let childHeight = owner.getMeasuredHeight();
+    let width = owner.getMeasuredWidth();
+    const safeAreaInsets = {
+        bottom: layout.toDevicePixels(iosApplication.window.safeAreaInsets.bottom),
+        top: layout.toDevicePixels(iosApplication.window.safeAreaInsets.top),
+        right: layout.toDevicePixels(iosApplication.window.safeAreaInsets.right),
+        left: layout.toDevicePixels(iosApplication.window.safeAreaInsets.left)
+    };
 
         if (controller.ignoreTopSafeArea) {
-            const delta = safeAreaPosition.top - fullscreenPosition.top;
-            effectiveHeight -= delta;
-            adjustedPosition.bottom -= delta;
-            adjustedPosition.top -= delta;
-        }
-        if (controller.ignoreBottomSafeArea) {
-            const delta = fullscreenPosition.bottom -  safeAreaPosition.bottom ;
-            effectiveHeight -= delta;
-            // adjustedPosition.bottom += delta * 2;
-        }
-        owner.nativeViewProtected.frame = CGRectMake(
-            layout.toDeviceIndependentPixels(adjustedPosition.left),
-            layout.toDeviceIndependentPixels(adjustedPosition.top),
-            layout.toDeviceIndependentPixels(adjustedPosition.right - adjustedPosition.left),
-            layout.toDeviceIndependentPixels(adjustedPosition.bottom - adjustedPosition.top)
-        );
-    }
-    controller.preferredContentSize = CGSizeMake(layout.toDeviceIndependentPixels(effectiveWidth), layout.toDeviceIndependentPixels(effectiveHeight));
-
-    if (owner.parent) {
-        owner.parent._layoutParent();
-    }
-}
-function getAvailableSpaceFromParent(view: View, frame: CGRect): { safeArea: CGRect; fullscreen: CGRect; inWindow: CGRect } {
-    if (!view) {
-        return null;
-    }
-
-    let scrollView = null;
-    let viewControllerView = null;
-
-    if (view.viewController) {
-        viewControllerView = view.viewController.view;
+        childTop -= safeAreaInsets.top
     } else {
-        let parent = view.parent as View;
-        while (parent && !parent.viewController && !(parent.nativeViewProtected instanceof UIScrollView)) {
-            parent = parent.parent as View;
+        childHeight += safeAreaInsets.top;
+        }
+    let contentHeight = childHeight + marginBottom;
+        if (controller.ignoreBottomSafeArea) {
+        contentHeight -= safeAreaInsets.bottom;
+    } else {
+        childHeight += safeAreaInsets.bottom;
         }
 
-        if (parent.nativeViewProtected instanceof UIScrollView) {
-            scrollView = parent.nativeViewProtected;
-        } else if (parent.viewController) {
-            viewControllerView = parent.viewController.view;
-        }
+    View.layoutChild(null, owner, marginLeft, childTop, screen.mainScreen.widthPixels - marginRight, childHeight);
+    controller.preferredContentSize = CGSizeMake(screen.mainScreen.widthDIPs, layout.toDeviceIndependentPixels(contentHeight));
     }
 
-    let fullscreen = null;
-    let safeArea = null;
-
-    if (viewControllerView) {
-        safeArea = viewControllerView.safeAreaLayoutGuide.layoutFrame;
-        fullscreen = viewControllerView.frame;
-    } else if (scrollView) {
-        const insets = scrollView.safeAreaInsets;
-        safeArea = CGRectMake(insets.left, insets.top, scrollView.contentSize.width - insets.left - insets.right, scrollView.contentSize.height - insets.top - insets.bottom);
-        fullscreen = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height);
-    }
-
-    const locationInWindow = view.getLocationInWindow();
-    let inWindowLeft = locationInWindow.x;
-    let inWindowTop = locationInWindow.y;
-
-    if (scrollView) {
-        inWindowLeft += scrollView.contentOffset.x;
-        inWindowTop += scrollView.contentOffset.y;
-    }
-
-    const inWindow = CGRectMake(inWindowLeft, inWindowTop, frame.size.width, frame.size.height);
-
-    return { safeArea: safeArea, fullscreen: fullscreen, inWindow: inWindow };
-}
 
 class UILayoutViewController extends UIViewController {
     public owner: WeakRef<View>;
@@ -221,15 +128,17 @@ class UILayoutViewController extends UIViewController {
         super.viewWillLayoutSubviews();
         const owner = this.owner.get();
         if (owner) {
-            iosView.updateConstraints(this, owner);
+            ios.updateConstraints(this, owner);
         }
+        // call layout to calculate the new dimensions before layouting subview
+        layoutView(this,owner);
     }
 
     public viewDidLayoutSubviews(): void {
         super.viewDidLayoutSubviews();
         const owner = this.owner.get();
         if (owner) {
-            if (majorVersion >= 11) {
+            if (iosUtils.MajorVersion >= 11) {
                 // Handle nested UILayoutViewController safe area application.
                 // Currently, UILayoutViewController can be nested only in a TabView.
                 // The TabView itself is handled by the OS, so we check the TabView's parent (usually a Page, but can be a Layout).
@@ -284,7 +193,7 @@ class UILayoutViewController extends UIViewController {
             return;
         }
 
-        iosView.updateAutoAdjustScrollInsets(this, owner);
+        ios.updateAutoAdjustScrollInsets(this, owner);
 
         if (!owner.parent) {
             owner.callLoaded();
@@ -303,7 +212,7 @@ class UILayoutViewController extends UIViewController {
     public traitCollectionDidChange(previousTraitCollection: UITraitCollection): void {
         super.traitCollectionDidChange(previousTraitCollection);
 
-        if (majorVersion >= 13) {
+        if (iosUtils.MajorVersion >= 13) {
             const owner = this.owner.get();
             if (
                 owner &&
@@ -389,7 +298,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             // for it to be more beautiful let s disable elevation
             controller.view['elevation'] = 0;
         } else if (!(this instanceof Page)) {
-            controller.view.backgroundColor = majorVersion <= 12 && !UIColor.systemBackgroundColor ? UIColor.whiteColor : UIColor.systemBackgroundColor;
+            controller.view.backgroundColor = iosUtils.MajorVersion <= 12 && !UIColor.systemBackgroundColor ? UIColor.whiteColor : UIColor.systemBackgroundColor;
         }
         const transitionCoordinator = bottomSheet.transitionCoordinator;
         if (transitionCoordinator) {
