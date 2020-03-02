@@ -236,11 +236,11 @@ function raiseCallback(callback, result) {
 
 function createAlertController(options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
     const alertController = (MDCAlertControllerImpl as any).new() as MDCAlertControllerImpl;
-    const buttonColor = getButtonColors().color;
-    if (buttonColor) {
-        alertController.view.tintColor = buttonColor.ios;
-    }
-    const lblColor = getLabelColor();
+    // const buttonColor = getButtonColors().color;
+    // if (buttonColor) {
+    //     alertController.view.tintColor = buttonColor.ios;
+    // }
+    // const lblColor = getLabelColor();
 
     if (options.title) {
         alertController.title = options.title;
@@ -268,16 +268,16 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
     if (options.titleColor) {
         alertController.titleColor = options.titleColor.ios;
-    } else if (lblColor) {
-        alertController.titleColor = lblColor.ios;
+    // } else if (lblColor) {
+        // alertController.titleColor = lblColor.ios;
     }
     if (options.titleIconTintColor) {
         alertController.titleIconTintColor = options.titleIconTintColor.ios;
     }
     if (options.messageColor) {
         alertController.messageColor = options.messageColor.ios;
-    } else if (lblColor) {
-        alertController.messageColor = lblColor.ios;
+    // } else if (lblColor) {
+        // alertController.messageColor = lblColor.ios;
     }
     if (options.elevation) {
         alertController.elevation = options.elevation;
