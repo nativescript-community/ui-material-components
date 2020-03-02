@@ -374,6 +374,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         bottomSheet.isScrimAccessibilityElement = true;
         bottomSheet.scrimAccessibilityLabel = 'close';
         bottomSheet.dismissOnBackgroundTap = options.dismissOnBackgroundTap !== false;
+        bottomSheet.dismissOnDraggingDownSheet = options.dismissOnDraggingDownSheet !== false;
 
         if (options.trackingScrollView) {
             const scrollView = this.getViewById(options.trackingScrollView);
