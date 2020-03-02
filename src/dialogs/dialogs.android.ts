@@ -3,7 +3,23 @@ import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/co
 import { fromObject } from '@nativescript/core/data/observable';
 import { createViewFromEntry } from '@nativescript/core/ui/builder';
 import { View } from '@nativescript/core/ui/core/view';
-import { ActionOptions, ALERT, CANCEL, capitalizationType, CONFIRM, ConfirmOptions, DialogOptions, getButtonColors, getLabelColor, inputType, LOGIN, LoginResult, OK, PROMPT, PromptResult } from '@nativescript/core/ui/dialogs';
+import {
+    ActionOptions,
+    ALERT,
+    CANCEL,
+    capitalizationType,
+    CONFIRM,
+    ConfirmOptions,
+    DialogOptions,
+    getButtonColors,
+    getLabelColor,
+    inputType,
+    LOGIN,
+    LoginResult,
+    OK,
+    PROMPT,
+    PromptResult
+} from '@nativescript/core/ui/dialogs';
 import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout';
 import { ad } from '@nativescript/core/utils/utils';
 import { TextField } from 'nativescript-material-textfield';
@@ -48,7 +64,6 @@ function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): 
                       moduleName: options.view as string
                   });
 
-
         view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = getSystemCssClasses();
         modalRootViewCssClasses.forEach(c => view.cssClasses.add(c));
@@ -80,9 +95,7 @@ function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options
         };
         view.bindingContext = fromObject(context);
     }
-
-    const labelColor = getLabelColor();
-    if (labelColor) {
+    if (options.titleColor) {
         const textViewId = dlg
             .getContext()
             .getResources()
@@ -90,25 +103,50 @@ function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options
         if (textViewId) {
             const tv = <android.widget.TextView>dlg.findViewById(textViewId);
             if (tv) {
-                tv.setTextColor(labelColor.android);
+                tv.setTextColor(options.titleColor.android);
             }
         }
-
-        const messageTextViewId = dlg
-            .getContext()
-            .getResources()
-            .getIdentifier('android:id/message', null, null);
-        if (messageTextViewId) {
-            const messageTextView = <android.widget.TextView>dlg.findViewById(messageTextViewId);
-            if (messageTextView) {
-                messageTextView.setTextColor(labelColor.android);
+        if (options.messageColor) {
+            const messageTextViewId = dlg
+                .getContext()
+                .getResources()
+                .getIdentifier('android:id/message', null, null);
+            if (messageTextViewId) {
+                const messageTextView = <android.widget.TextView>dlg.findViewById(messageTextViewId);
+                if (messageTextView) {
+                    messageTextView.setTextColor(options.messageColor.android);
+                }
             }
         }
     }
+    // const labelColor = getLabelColor();
+    // if (labelColor) {
+    //     const textViewId = dlg
+    //         .getContext()
+    //         .getResources()
+    //         .getIdentifier('android:id/alertTitle', null, null);
+    //     if (textViewId) {
+    //         const tv = <android.widget.TextView>dlg.findViewById(textViewId);
+    //         if (tv) {
+    //             tv.setTextColor(labelColor.android);
+    //         }
+    //     }
 
-    let { color, backgroundColor } = getButtonColors();
+    //     const messageTextViewId = dlg
+    //         .getContext()
+    //         .getResources()
+    //         .getIdentifier('android:id/message', null, null);
+    //     if (messageTextViewId) {
+    //         const messageTextView = <android.widget.TextView>dlg.findViewById(messageTextViewId);
+    //         if (messageTextView) {
+    //             messageTextView.setTextColor(labelColor.android);
+    //         }
+    //     }
+    // }
 
-    if (color) {
+    // let { color, backgroundColor } = getButtonColors();
+
+    if (options.buttonInkColor || options.buttonTitleColor) {
         let buttons: android.widget.Button[] = [];
         for (let i = 0; i < 3; i++) {
             let id = dlg
@@ -120,12 +158,7 @@ function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options
 
         buttons.forEach(button => {
             if (button) {
-                if (color) {
-                    button.setTextColor(color.android);
-                }
-                if (backgroundColor) {
-                    button.setBackgroundColor(backgroundColor.android);
-                }
+                button.setTextColor((options.buttonInkColor || options.buttonTitleColor).android);
             }
         });
     }
