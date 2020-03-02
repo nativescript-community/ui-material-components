@@ -40,7 +40,7 @@ function isString(value): value is string {
 }
 
 function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): androidx.appcompat.app.AlertDialog.Builder {
-    const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
+    const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
     const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
     alert.setTitle(options && isString(options.title) ? options.title : null);
     alert.setMessage(options && isString(options.message) ? options.message : null);
@@ -83,7 +83,7 @@ function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): 
 
 function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
     const dlg = builder.show();
-    const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
+    const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
     if ((activity as any)._currentModalCustomView) {
         const view = (activity as any)._currentModalCustomView as View;
         const context = options.context || {};
@@ -220,7 +220,7 @@ function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Build
             })
         );
     }
-    const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
+    const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
     alert.setOnDismissListener(
         new android.content.DialogInterface.OnDismissListener({
             onDismiss: function() {
@@ -265,7 +265,7 @@ export class AlertDialog {
         if (!this.dialog) {
             const alert = createAlertDialog(this.options);
 
-            const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
+            const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
             alert.setOnDismissListener(
                 new android.content.DialogInterface.OnDismissListener({
                     onDismiss: function() {
@@ -438,7 +438,6 @@ export function login(arg: any): Promise<LoginResult> {
 
     return new Promise<LoginResult>((resolve, reject) => {
         try {
-            const context = androidApp.foregroundActivity;
             const stackLayout = new StackLayout();
             stackLayout.padding = 4;
             const userNameTextField = new TextField();
@@ -513,7 +512,7 @@ export function action(arg: any): Promise<string> {
 
     return new Promise<string>((resolve, reject) => {
         try {
-            const activity = androidApp.foregroundActivity || androidApp.startActivity;
+            const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
             const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
             const message = options && isString(options.message) ? options.message : '';
             const title = options && isString(options.title) ? options.title : '';
