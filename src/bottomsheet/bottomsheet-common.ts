@@ -1,9 +1,9 @@
 import { View } from '@nativescript/core/ui/core/view';
-import { createViewFromEntry } from '@nativescript/core/ui/builder';
 import { Frame } from '@nativescript/core/ui/frame';
 import { EventData } from '@nativescript/core/data/observable';
 import { eachDescendant, ViewBase } from '@nativescript/core/ui/core/view-base';
 import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/core/css/system-classes';
+import { Builder } from "@nativescript/core";
 
 declare module '@nativescript/core/ui/core/view/view' {
     interface View {
@@ -37,6 +37,7 @@ export interface BottomSheetOptions {
     context?: any; // Any context you want to pass to the view shown in bottom sheet. This same context will be available in the arguments of the shownInBottomSheet event handler.
     animated?: boolean; // An optional parameter specifying whether to show the sheet view with animation.
     dismissOnBackgroundTap?: boolean; // An optional parameter specifying whether to dismiss the sheet when clicking on background.
+    dismissOnDraggingDownSheet?: boolean; // An optional parameter specifying whether to disable dragging the sheet to dismiss.
     closeCallback?: Function; //  A function that will be called when the view is closed. Any arguments provided when calling shownInBottomSheet.closeCallback will be available here.
     trackingScrollView?: string; // optional id of the scroll view to track
     transparent?: boolean; // optional parameter to make the bottomsheet transparent
@@ -126,7 +127,7 @@ export abstract class ViewWithBottomSheetBase extends View {
         if (arguments.length === 0) {
             throw new Error('showModal without parameters is deprecated. Please call showModal on a view instance instead.');
         } else {
-            const view = options.view instanceof View ? (options.view as ViewWithBottomSheetBase) : <ViewWithBottomSheetBase>createViewFromEntry({
+            const view = options.view instanceof View ? (options.view as ViewWithBottomSheetBase) : <ViewWithBottomSheetBase>Builder.createViewFromEntry({
                           moduleName: options.view as string
                       });
             view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
