@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.11](https://github.com/Akylas/nativescript-material-components/compare/v3.1.10...v3.1.11) (2020-03-04)
+
+
+### Bug Fixes
+
+* **android:** use startActivity if used really early ([6a4c76a](https://github.com/Akylas/nativescript-material-components/commit/6a4c76acc300114558e546adba4c963f4c714295))
+* **ios:** crash on latest runtimes ([8c3e362](https://github.com/Akylas/nativescript-material-components/commit/8c3e36284961fbd3a5799c86e8792d62b5b1fd81))
+* fixed pr comments ([740d50f](https://github.com/Akylas/nativescript-material-components/commit/740d50f50711ea437f291ce3b191634b005c28a5))
+
+
+### Features
+
+* added features for bottomsheet ([cde19cc](https://github.com/Akylas/nativescript-material-components/commit/cde19ccf5cc4e84e59e13f1a62eea30e95ce5c62))
+
+
+
+
+
 ## [3.1.10](https://github.com/Akylas/nativescript-material-components/compare/v3.1.9...v3.1.10) (2020-02-28)
 
 

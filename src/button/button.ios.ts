@@ -144,7 +144,7 @@ export class Button extends ButtonBase {
     }
     initNativeView() {
         super.initNativeView();
-        this._observer = ObserverClass.alloc();
+        this._observer = ObserverClass.alloc().init();
         this._observer['_owner'] = new WeakRef(this);
         this.nativeViewProtected.addObserverForKeyPathOptionsContext(this._observer, 'contentSize', NSKeyValueObservingOptions.New, null);
     }

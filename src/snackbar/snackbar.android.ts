@@ -51,7 +51,7 @@ export class SnackBar extends SnackBarBase {
         // options.actionText = options.actionText ? options.actionText : 'Close';
         options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
 
-        const activity = androidApp.foregroundActivity as globalAndroid.app.Activity;
+        const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
         let attachView = options.view || Frame.topmost().currentPage;
         while (attachView['_modal']) {
             attachView = attachView['_modal']
