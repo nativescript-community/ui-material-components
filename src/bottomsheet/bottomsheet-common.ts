@@ -63,13 +63,14 @@ export abstract class ViewWithBottomSheetBase extends View {
     }
     public _bottomSheetClosed(): void {
         this._tearDownUI();
-        if (this instanceof Frame) {
-            this._removeFromFrameStack();
-        }
-        eachDescendant(this, (child: ViewWithBottomSheetBase) => {
-            child._bottomSheetClosed();
-            return true;
-        });
+        // if a frame _removeFromFrameStack will be called from _tearDownUI
+        // if (this instanceof Frame) {
+        //     this._removeFromFrameStack();
+        // }
+        // eachDescendant(this, (child: ViewWithBottomSheetBase) => {
+        //     child._bottomSheetClosed();
+        //     return true;
+        // });
     }
     protected abstract _showNativeBottomSheet(parent: View, options: BottomSheetOptions);
     protected _commonShowNativeBottomSheet(parent: View, options: BottomSheetOptions) {
