@@ -3,7 +3,20 @@ import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/co
 import { fromObject } from '@nativescript/core/data/observable';
 import { createViewFromEntry } from '@nativescript/core/ui/builder/builder';
 import { View } from '@nativescript/core/ui/core/view';
-import { ActionOptions, CANCEL, capitalizationType, ConfirmOptions, DialogOptions, getButtonColors, getCurrentPage, getLabelColor, inputType, LoginResult, OK, PromptResult } from '@nativescript/core/ui/dialogs';
+import {
+    ActionOptions,
+    CANCEL,
+    capitalizationType,
+    ConfirmOptions,
+    DialogOptions,
+    getButtonColors,
+    getCurrentPage,
+    getLabelColor,
+    inputType,
+    LoginResult,
+    OK,
+    PromptResult
+} from '@nativescript/core/ui/dialogs';
 import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout';
 import { isDefined, isFunction, isString } from '@nativescript/core/utils/types';
 import { layout } from '@nativescript/core/utils/utils';
@@ -195,9 +208,22 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
     }
 );
 
-function addButtonsToAlertController(alertController: MDCAlertController, options: ConfirmOptions, callback?: Function, validation?: Function): void {
+function addButtonsToAlertController(alertController: MDCAlertController, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any): void {
     if (!options) {
         return;
+    }
+    let onDoneCalled = false;
+    function raiseCallback(callback, result) {
+        if (options && options.shouldResolveOnAction && !options.shouldResolveOnAction(validationArgs ? validationArgs(result) : result)) {
+            return;
+        }
+        if (onDoneCalled) {
+            return;
+        }
+        onDoneCalled = true;
+        if (isFunction(callback)) {
+            callback(result);
+        }
     }
 
     if (isString(options.cancelButtonText)) {
@@ -219,18 +245,9 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
     if (isString(options.okButtonText)) {
         alertController.addAction(
             MDCAlertAction.actionWithTitleEmphasisHandler(options.okButtonText, MDCActionEmphasis.Low, () => {
-                if (validation && !validation(options)) {
-                    return;
-                }
                 raiseCallback(callback, true);
             })
         );
-    }
-}
-
-function raiseCallback(callback, result) {
-    if (isFunction(callback)) {
-        callback(result);
     }
 }
 
@@ -268,7 +285,7 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
     if (options.titleColor) {
         alertController.titleColor = options.titleColor.ios;
-    // } else if (lblColor) {
+        // } else if (lblColor) {
         // alertController.titleColor = lblColor.ios;
     }
     if (options.titleIconTintColor) {
@@ -276,7 +293,7 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
     if (options.messageColor) {
         alertController.messageColor = options.messageColor.ios;
-    // } else if (lblColor) {
+        // } else if (lblColor) {
         // alertController.messageColor = lblColor.ios;
     }
     if (options.elevation) {
@@ -503,10 +520,17 @@ export function prompt(arg: any): Promise<PromptResult> {
             options.view = stackLayout;
 
             const alertController = createAlertController(options, resolve);
-            addButtonsToAlertController(alertController, options, r => {
-                alertController._resolveFunction = null;
-                resolve({ result: r, text: textField.text });
-            });
+            addButtonsToAlertController(
+                alertController,
+                options,
+                r => {
+                    alertController._resolveFunction = null;
+                    resolve({ result: r, text: textField.text });
+                },
+                r => {
+                    return { result: r, text: textField.text };
+                }
+            );
             if (!!options.autoFocus) {
                 alertController.autoFocusTextField = textField;
             }
@@ -608,13 +632,20 @@ export function login(arg: any): Promise<LoginResult> {
             // userNameTextField = alertController.textFields.firstObject
             // passwordTextField = alertController.textFields.lastObject
 
-            addButtonsToAlertController(alertController, options, r => {
-                resolve({
-                    result: r,
-                    userName: userNameTextField.text,
-                    password: passwordTextField.text
-                });
-            });
+            addButtonsToAlertController(
+                alertController,
+                options,
+                r => {
+                    resolve({
+                        result: r,
+                        userName: userNameTextField.text,
+                        password: passwordTextField.text
+                    });
+                },
+                r => {
+                    return { result: r, userName: userNameTextField.text, password: passwordTextField.text };
+                }
+            );
 
             if (!!options.beforeShow) {
                 options.beforeShow(options, userNameTextField, passwordTextField);

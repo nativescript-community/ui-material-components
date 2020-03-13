@@ -30,6 +30,7 @@ export interface MDCAlertControlerOptions {
     view?: View | string;
     context?: any;
     closeCallback?: Function;
+    shouldResolveOnAction?:(result)=>boolean
 }
 
 export function isDialogOptions(arg) {

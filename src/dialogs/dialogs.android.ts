@@ -40,7 +40,7 @@ function isString(value): value is string {
 }
 
 function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): androidx.appcompat.app.AlertDialog.Builder {
-    const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
+    const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
     const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
     alert.setTitle(options && isString(options.title) ? options.title : null);
     alert.setMessage(options && isString(options.message) ? options.message : null);
@@ -83,7 +83,7 @@ function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): 
 
 function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
     const dlg = builder.show();
-    const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
+    const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
     if ((activity as any)._currentModalCustomView) {
         const view = (activity as any)._currentModalCustomView as View;
         const context = options.context || {};
@@ -165,14 +165,14 @@ function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options
     return dlg;
 }
 
-function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validation?: Function): void {
+function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any): void {
     if (!options) {
         return;
     }
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
     const onDone = function(result: boolean, dialog?: android.content.DialogInterface) {
-        if (validation && !validation(options)) {
+        if (options && options.shouldResolveOnAction && !options.shouldResolveOnAction(validationArgs ? validationArgs(result) : result)) {
             return;
         }
         if (onDoneCalled) {
@@ -220,7 +220,7 @@ function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Build
             })
         );
     }
-    const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
+    const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
     alert.setOnDismissListener(
         new android.content.DialogInterface.OnDismissListener({
             onDismiss: function() {
@@ -265,7 +265,7 @@ export class AlertDialog {
         if (!this.dialog) {
             const alert = createAlertDialog(this.options);
 
-            const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
+            const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
             alert.setOnDismissListener(
                 new android.content.DialogInterface.OnDismissListener({
                     onDismiss: function() {
@@ -391,9 +391,16 @@ export function prompt(arg: any): Promise<PromptResult> {
             options.view = stackLayout;
             const alert = createAlertDialog(options);
 
-            addButtonsToAlertDialog(alert, options, function(r) {
-                resolve({ result: r, text: textField.text });
-            });
+            addButtonsToAlertDialog(
+                alert,
+                options,
+                function(r) {
+                    resolve({ result: r, text: textField.text });
+                },
+                r => {
+                    return { result: r, text: textField.text };
+                }
+            );
 
             showDialog(alert, options, resolve);
             if (!!options.autoFocus) {
@@ -460,13 +467,20 @@ export function login(arg: any): Promise<LoginResult> {
             options.view = stackLayout;
 
             const alert = createAlertDialog(options);
-            addButtonsToAlertDialog(alert, options, function(r) {
-                resolve({
-                    result: r,
-                    userName: userNameTextField.text,
-                    password: passwordTextField.text
-                });
-            });
+            addButtonsToAlertDialog(
+                alert,
+                options,
+                function(r) {
+                    resolve({
+                        result: r,
+                        userName: userNameTextField.text,
+                        password: passwordTextField.text
+                    });
+                },
+                r => {
+                    return { result: r, userName: userNameTextField.text, password: passwordTextField.text };
+                }
+            );
 
             if (!!options.beforeShow) {
                 options.beforeShow(options, userNameTextField, passwordTextField);
@@ -512,7 +526,7 @@ export function action(arg: any): Promise<string> {
 
     return new Promise<string>((resolve, reject) => {
         try {
-            const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
+            const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
             const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
             const message = options && isString(options.message) ? options.message : '';
             const title = options && isString(options.title) ? options.title : '';
