@@ -46,8 +46,12 @@ export interface BottomSheetOptions {
 }
 
 export abstract class ViewWithBottomSheetBase extends View {
+    // used when triggering the closing of the bottomsheet
     protected _closeBottomSheetCallback: Function;
-    public _whenCloseBottomSheetCallback: Function;
+
+    // used when the bottomSheet is dismissed
+    public _onDismissBottomSheetCallback: Function;
+
     _bottomSheetFragment: any; // com.google.android.material.bottomsheet.BottomSheetDialogFragment
     protected abstract _hideNativeBottomSheet(parent, whenClosedCallback);
     protected _bottomSheetContext: any;
@@ -76,11 +80,11 @@ export abstract class ViewWithBottomSheetBase extends View {
     protected _commonShowNativeBottomSheet(parent: View, options: BottomSheetOptions) {
         options.context = options.context || {};
         this._bottomSheetContext = options.context;
-        this._whenCloseBottomSheetCallback = (...originalArgs) => {
-            if (!this._whenCloseBottomSheetCallback) {
+        this._onDismissBottomSheetCallback = (...originalArgs) => {
+            if (!this._onDismissBottomSheetCallback) {
                 return;
             }
-            this._whenCloseBottomSheetCallback = null;
+            this._onDismissBottomSheetCallback = null;
             this._bottomSheetContext = null;
             this._closeBottomSheetCallback = null;
             this._bottomSheetClosed();
@@ -89,17 +93,20 @@ export abstract class ViewWithBottomSheetBase extends View {
             }
         };
         this._closeBottomSheetCallback = (...originalArgs) => {
-            if (this._closeBottomSheetCallback) {
+            if (!this._closeBottomSheetCallback) {
+                return;
+            }
                 // const callback = this._closeBottomSheetCallback;
                 this._closeBottomSheetCallback = null;
-                this._bottomSheetContext.closeCallback = null;
+                if (this._bottomSheetContext) {
+                    this._bottomSheetContext.closeCallback = null;
+                }
                 const whenClosedCallback = () => {
                     if (typeof options.closeCallback === 'function') {
                         options.closeCallback.apply(undefined, originalArgs);
                     }
                 };
                 this._hideNativeBottomSheet(parent, whenClosedCallback);
-            }
         };
         this._bottomSheetContext.closeCallback = this._closeBottomSheetCallback;
     }

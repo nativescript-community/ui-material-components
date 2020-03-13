@@ -244,7 +244,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 this.bindingContext = fromObject(options.context);
                 this._raiseShownBottomSheetEvent();
             },
-            dismissCallback: () => this._whenCloseBottomSheetCallback()
+            dismissCallback: () => this._onDismissBottomSheetCallback()
         };
 
         saveBottomSheet(bottomSheetOptions);
