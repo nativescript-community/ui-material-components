@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.12](https://github.com/Akylas/nativescript-material-components/compare/v3.1.11...v3.1.12) (2020-03-13)
+
+
+### Bug Fixes
+
+* **android:** prevent crash on closing ([0bbc552](https://github.com/Akylas/nativescript-material-components/commit/0bbc552da2be0d98494141935f1b92b5160fd2b2))
+* vue $closeBottomSheet support argiuments ([4337ac0](https://github.com/Akylas/nativescript-material-components/commit/4337ac0cc7d1a40bfb09c9ba5e74d1440a736ac6))
+
+
+### Features
+
+* shouldResolveOnAction ([69c1d0d](https://github.com/Akylas/nativescript-material-components/commit/69c1d0d42127402bf197b2068e546a424d17b866))
+
+
+
+
+
 ## [3.1.11](https://github.com/Akylas/nativescript-material-components/compare/v3.1.10...v3.1.11) (2020-03-04)
 
 
