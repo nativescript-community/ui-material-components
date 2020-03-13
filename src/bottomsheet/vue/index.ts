@@ -1,6 +1,7 @@
 import { NativeScriptVue } from 'nativescript-vue';
 import { BottomSheetOptions } from '../bottomsheet';
 import { Vue } from 'vue/types/vue';
+import { View } from '@nativescript/core';
 
 export interface VueBottomSheetOptions extends Omit<BottomSheetOptions, 'view'> {
     props?: any;
@@ -38,8 +39,8 @@ const BottomSheetPlugin = {
                 })
             );
         };
-        Vue.prototype.$closeBottomSheet = function() {
-            this.nativeView.closeBottomSheet();
+        Vue.prototype.$closeBottomSheet = function(...args) {
+            (this.nativeView as View).closeBottomSheet.apply(this.nativeView, args);
         };
     }
 };
