@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.13](https://github.com/Akylas/nativescript-material-components/compare/v3.1.12...v3.1.13) (2020-03-15)
+
+
+### Bug Fixes
+
+* **android:** wrong button gradle dependencies ([b5b001f](https://github.com/Akylas/nativescript-material-components/commit/b5b001fde85ccb787379c432c3dc60990173d65f))
+
+
+
+
+
 ## [3.1.12](https://github.com/Akylas/nativescript-material-components/compare/v3.1.11...v3.1.12) (2020-03-13)
 
 **Note:** Version bump only for package nativescript-material-button
