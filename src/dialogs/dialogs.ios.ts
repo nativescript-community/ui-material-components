@@ -683,7 +683,6 @@ function showUIAlertController(alertController: MDCAlertController) {
 
     let currentView = getCurrentPage() || getRootView();
 
-    console.log('showUIAlertController', alertController, currentView);
     if (currentView) {
         currentView = currentView.modal || currentView;
 
