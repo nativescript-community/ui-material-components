@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.14](https://github.com/Akylas/nativescript-material-components/compare/v3.1.13...v3.1.14) (2020-03-19)
+
+
+### Bug Fixes
+
+* vue bottomsheet close callback args ([1c05736](https://github.com/Akylas/nativescript-material-components/commit/1c05736d752432986eac08ed12d2b0ce4f8cc865))
+* **ios:** edge case dialog custom view not being layed out ([b975d63](https://github.com/Akylas/nativescript-material-components/commit/b975d63dc53c03ff006c21233c10b1afcaf73b16))
+
+
+
+
+
 ## [3.1.13](https://github.com/Akylas/nativescript-material-components/compare/v3.1.12...v3.1.13) (2020-03-15)
 
 
