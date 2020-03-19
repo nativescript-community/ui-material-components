@@ -24,6 +24,7 @@ import { themer } from 'nativescript-material-core/core';
 import { TextField } from 'nativescript-material-textfield';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
+import { ios as iosView } from '@nativescript/core/ui/core/view/view-helper';
 
 export { capitalizationType, inputType };
 
@@ -125,6 +126,7 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
                 if (!this.measureChild()) {
                     return false;
                 }
+                this.viewLayedOut = true;
                 const hasTitleOrMessage = this.title || this.message;
 
                 const contentScrollView = this.contentScrollView as UIScrollView;
@@ -173,11 +175,20 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
             bounds.size = boundsSize;
             contentScrollView.frame = bounds;
         },
+
         viewWillLayoutSubviews() {
+            this.viewLayedOut = false;
             this.super.viewWillLayoutSubviews();
+            // in some case the the content scrollview is not "layed out when calling layoutCustomView"
+            // so we keep track of that in viewLayedOut
             this.layoutCustomView();
         },
         viewDidLayoutSubviews() {
+            // if the content scrollview was not layed out we need to call setNeedsLayout again...
+            if (!this.viewLayedOut) {
+                this.layoutCustomView();
+                this.view.setNeedsLayout();
+            }
             this.updateContentViewSize();
         },
         viewDidAppear() {
@@ -672,6 +683,7 @@ function showUIAlertController(alertController: MDCAlertController) {
 
     let currentView = getCurrentPage() || getRootView();
 
+    console.log('showUIAlertController', alertController, currentView);
     if (currentView) {
         currentView = currentView.modal || currentView;
 
@@ -702,7 +714,7 @@ function showUIAlertController(alertController: MDCAlertController) {
         }
         return viewController;
     }
-    return null;
+    throw new Error('no_controller_to_show_dialog')
 }
 
 export function action(): Promise<string> {
