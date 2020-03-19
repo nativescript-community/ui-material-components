@@ -16,7 +16,7 @@ declare module 'nativescript-vue' {
 
 const BottomSheetPlugin = {
     install(Vue) {
-        Vue.prototype.$showBottomSheet = function(component, options: VueBottomSheetOptions) {
+        Vue.prototype.$showBottomSheet = function (component, options: VueBottomSheetOptions) {
             let navEntryInstance = new Vue({
                 name: 'BottomSheetEntry',
                 parent: this.$root,
@@ -31,7 +31,7 @@ const BottomSheetPlugin = {
                 Object.assign({}, options, {
                     view: navEntryInstance.nativeView,
                     closeCallback: objId => {
-                        options.closeCallback && options.closeCallback();
+                        options.closeCallback(undefined, [objId]);
                         navEntryInstance.$emit('bottomsheet:close');
                         navEntryInstance.$destroy();
                         navEntryInstance = null;
@@ -39,7 +39,7 @@ const BottomSheetPlugin = {
                 })
             );
         };
-        Vue.prototype.$closeBottomSheet = function(...args) {
+        Vue.prototype.$closeBottomSheet = function (...args) {
             (this.nativeView as View).closeBottomSheet.apply(this.nativeView, args);
         };
     }
