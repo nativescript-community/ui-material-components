@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.15](https://github.com/Akylas/nativescript-material-components/compare/v3.1.14...v3.1.15) (2020-03-24)
+
+
+### Bug Fixes
+
+* prevent closecallback from beeing called twice ([d090ac8](https://github.com/Akylas/nativescript-material-components/commit/d090ac843d6d5a5a4865cf3edd47ef4b23d59692))
+* **ios:** textfield backgroundColor not rendered correctly ([26fbae6](https://github.com/Akylas/nativescript-material-components/commit/26fbae6d20487c26994808ecb957fdf06a857841))
+
+
+
+
+
 ## [3.1.14](https://github.com/Akylas/nativescript-material-components/compare/v3.1.13...v3.1.14) (2020-03-19)
 
 

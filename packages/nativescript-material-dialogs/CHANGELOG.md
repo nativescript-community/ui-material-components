@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.15](https://github.com/Akylas/nativescript-material-components/compare/v3.1.14...v3.1.15) (2020-03-24)
+
+**Note:** Version bump only for package nativescript-material-dialogs
+
+
+
+
+
 ## [3.1.14](https://github.com/Akylas/nativescript-material-components/compare/v3.1.13...v3.1.14) (2020-03-19)
 
 **Note:** Version bump only for package nativescript-material-dialogs
