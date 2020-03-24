@@ -31,10 +31,12 @@ const BottomSheetPlugin = {
                 Object.assign({}, options, {
                     view: navEntryInstance.nativeView,
                     closeCallback: (...args) => {
-                        options.closeCallback && options.closeCallback.apply(undefined, args);
-                        navEntryInstance.$emit('bottomsheet:close');
-                        navEntryInstance.$destroy();
-                        navEntryInstance = null;
+                        if (navEntryInstance && navEntryInstance.nativeView) {
+                            options.closeCallback && options.closeCallback.apply(undefined, args);
+                            navEntryInstance.$emit('bottomsheet:close');
+                            navEntryInstance.$destroy();
+                            navEntryInstance = null;
+                        }
                     }
                 })
             );
