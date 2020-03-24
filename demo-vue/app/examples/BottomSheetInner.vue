@@ -1,12 +1,10 @@
 <template>
-<!-- <Page iosOverflowSafeArea="true"> -->
-    <MDCardView @shownInBottomSheet="onShownInBottomSheet" borderRadius="20" elevation="30" backgroundColor="transparent">
+    <MDCardView @shownInBottomSheet="onShownInBottomSheet" borderRadius="20" elevation="30" backgroundColor="green">
         <StackLayout>
-            <MDButton id="test1" text="test1" borderRadius="20" margin="20" />
-            <MDButton id="test2" text="test2" />
+            <MDButton id="test1" text="test1" borderRadius="20" margin="20"  @tap="onButtonTap"/>
+            <MDButton id="test2" text="test2" @tap="onButtonTap"/>
         </StackLayout>
     </MDCardView>
-<!-- </Page> -->
 </template>
 
 <script lang="ts">
@@ -18,6 +16,9 @@ export default Vue.extend({
         return {};
     },
     methods: {
+        onButtonTap() {
+            this.$closeBottomSheet(true);
+        },
         onShownInBottomSheet(args) {
             console.log('onShownInBottomSheet');
         }
