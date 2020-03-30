@@ -41,7 +41,6 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "devDependencies": {
-
         "@angular/animations": "~8.2.14",
         "@angular/common": "~8.2.14",
         "@angular/compiler": "~8.2.14",
@@ -54,8 +53,8 @@
         "@angular/router": "~8.2.14",
         "@commitlint/cli": "^8.3.4",
         "@commitlint/config-conventional": "^8.3.4",
-        "@nativescript/angular":"8.20.4",
-        "@nativescript/core":"rc",
+        "@nativescript/angular": "8.20.4",
+        "@nativescript/core": "rc",
         "husky": "^4.0.7",
         "lerna": "^3.20.2",
         "nativescript-vue": "2.4.0",

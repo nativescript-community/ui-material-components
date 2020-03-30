@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { BottomSheetOptions, BottomSheetService } from 'nativescript-material-bottomsheet/angular';
+import { BottomSheetOptions, BottomSheetService, BottomSheetDismissEvent } from 'nativescript-material-bottomsheet/angular';
 import { LoginOptionsComponent } from './login-options.component';
 
 @Component({
@@ -18,10 +18,16 @@ export class BottomSheetComponent implements OnInit {
             context: ['Facebook', 'Google', 'Twitter']
         };
 
-        this.bottomSheet.show(LoginOptionsComponent, options).subscribe(result => {
-            console.log('Option selected:', result);
+        this.bottomSheet.show(LoginOptionsComponent, options).subscribe((callback: { event: BottomSheetDismissEvent; result: any }) => {
+            console.log('Option selected:', callback.result);
+
+            //By checking the event type of the callback there is no longer a need for the setTimeout function
+            if (callback.event === BottomSheetDismissEvent.closed) {
+                alert(`Option selected: ${callback.result}`);
+            }
+
             // We need to wait until the bottom sheet disappears before show an alert or any dialog
-            setTimeout(() => alert(`Option selected: ${result}`), 300);
+            //setTimeout(() => alert(`Option selected: ${callback.result}`), 300);
         });
     }
 }

@@ -1,17 +1,20 @@
 import { ComponentFactoryResolver, ComponentRef, Injectable, Injector, Type, ViewContainerRef } from '@angular/core';
 import { DetachedLoader } from '@nativescript/angular/common/detached-loader';
 import { AppHostView } from '@nativescript/angular/app-host-view';
-import { once } from '@nativescript/angular/common/utils';
 import { BottomSheetOptions as MaterialBottomSheetOptions } from '../bottomsheet-common';
 import { ViewWithBottomSheetBase } from '../bottomsheet-common';
 import { Observable, Subject } from 'rxjs';
-import { filter, first, map } from 'rxjs/operators';
+import { filter, first, map, distinctUntilChanged, tap, take } from 'rxjs/operators';
 import { ProxyViewContainer } from '@nativescript/core/ui/proxy-view-container';
 
 export type BaseShowBottomSheetOptions = Pick<MaterialBottomSheetOptions, Exclude<keyof MaterialBottomSheetOptions, 'closeCallback' | 'view'>>;
-
+export enum BottomSheetDismissEvent {
+    'closed',
+    'closing'
+}
 export interface BottomSheetOptions extends BaseShowBottomSheetOptions {
     viewContainerRef?: ViewContainerRef;
+    emitAfterBottomSheetClosed: boolean;
 }
 
 export class BottomSheetParams {
@@ -33,7 +36,7 @@ export class BottomSheetService {
     private subject$: Subject<{ requestId: number; result: any }> = new Subject();
     private currentId = 0;
 
-    show<T = any>(type: Type<any>, options: BottomSheetOptions): Observable<T> {
+    show<T = any>(type: Type<any>, options: BottomSheetOptions): Observable<T | { event?: BottomSheetDismissEvent; result: T }> {
         if (!options.viewContainerRef) {
             throw new Error('No viewContainerRef: Make sure you pass viewContainerRef in BottomSheetOptions.');
         }
@@ -53,11 +56,28 @@ export class BottomSheetService {
             });
         });
 
-        return this.subject$.pipe(
-            filter(item => item && item.requestId === requestId),
-            map(item => item.result),
-            first()
-        );
+        if (options.emitAfterBottomSheetClosed) {
+            let emitCount = 0;
+            let storedResultForSecondEmit: any;
+            return this.subject$.pipe(
+                filter(item => item && item.requestId === requestId),
+                map(item => ({ event: emitCount > 0 ? BottomSheetDismissEvent.closed : BottomSheetDismissEvent.closing, result: item.result ? item.result : storedResultForSecondEmit })),
+                distinctUntilChanged(),
+                tap(item => {
+                    if (item.result) {
+                        storedResultForSecondEmit = item.result;
+                    }
+                    emitCount++;
+                }),
+                take(2)
+            );
+        } else {
+            return this.subject$.pipe(
+                filter(item => item && item.requestId === requestId),
+                map(item => item.result),
+                first()
+            );
+        }
     }
 
     private getParentView(viewContainerRef: ViewContainerRef): ViewWithBottomSheetBase {
@@ -96,7 +116,7 @@ export class BottomSheetService {
     }
 
     private getBottomSheetParams(context: any, requestId: number) {
-        const closeCallback = once(args => {
+        const closeCallback = args => {
             this.subject$.next({ result: args, requestId });
 
             if (!this.componentView) {
@@ -106,7 +126,7 @@ export class BottomSheetService {
             this.componentView.closeBottomSheet();
             this.detachedLoader.instance.detectChanges();
             this.detachedLoader.destroy();
-        });
+        };
 
         return new BottomSheetParams(context, closeCallback);
     }
