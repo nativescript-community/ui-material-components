@@ -14,7 +14,7 @@ export enum BottomSheetDismissEvent {
 }
 export interface BottomSheetOptions extends BaseShowBottomSheetOptions {
     viewContainerRef?: ViewContainerRef;
-    emitAfterBottomSheetClosed: boolean;
+    emitAfterBottomSheetClosed?: boolean;
 }
 
 export class BottomSheetParams {
