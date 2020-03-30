@@ -15,7 +15,10 @@ export class BottomSheetComponent implements OnInit {
     showLoginOptions() {
         const options: BottomSheetOptions = {
             viewContainerRef: this.containerRef,
-            context: ['Facebook', 'Google', 'Twitter']
+            context: ['Facebook', 'Google', 'Twitter'],
+
+            //When set to true the bottomsheet will emit closing and closed event.
+            emitAfterBottomSheetClosed: true
         };
 
         this.bottomSheet.show(LoginOptionsComponent, options).subscribe((callback: { event: BottomSheetDismissEvent; result: any }) => {
