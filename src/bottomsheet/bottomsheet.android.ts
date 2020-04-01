@@ -141,6 +141,10 @@ function initializeBottomSheetDialogFragment() {
             const owner = this.owner;
 
             const color = owner.backgroundColor;
+
+            const contentViewId = getId('design_bottom_sheet');
+            const view = this.getDialog().findViewById(contentViewId);
+
             // const window = this.getDialog().getWindow();
 
             // if (this._fullscreen) {
@@ -149,25 +153,20 @@ function initializeBottomSheetDialogFragment() {
             //     window.setBackgroundDrawable(null);
             // }
             if (this._transparent === true) {
-                const contentViewId = getId('design_bottom_sheet');
-                const view = this.getDialog().findViewById(contentViewId);
                 // we need delay it just a bit or it wont work
                 setTimeout(() => {
                     view.setBackground(null);
                 }, 0);
             }
 
-            if (this._dismissOnDraggingDownSheet) {
-                const view = this.getDialog().findViewById(getId('design_bottom_sheet'));
-                const behavior = com.google.android.material.bottomsheet.BottomSheetBehavior.from(view);
-                // prevent hiding the bottom sheet by
-                behavior.setHideable(this._dismissOnDraggingDownSheet);
-                if(!this._dismissOnDraggingDownSheet) {
-                    // directly expand the bottom sheet after start
-                    behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED);
-                    // set to maximum possible value to prevent dragging the sheet between peek and expanded height
-                    behavior.setPeekHeight(java.lang.Integer.MAX_VALUE);
-                }
+            const behavior = com.google.android.material.bottomsheet.BottomSheetBehavior.from(view);
+            // prevent hiding the bottom sheet by
+            behavior.setHideable(this._dismissOnDraggingDownSheet);
+            if(!this._dismissOnDraggingDownSheet) {
+                // directly expand the bottom sheet after start
+                behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED);
+                // set to maximum possible value to prevent dragging the sheet between peek and expanded height
+                behavior.setPeekHeight(java.lang.Integer.MAX_VALUE);
             }
 
             if (owner && !owner.isLoaded) {
