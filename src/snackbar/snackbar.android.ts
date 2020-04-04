@@ -51,12 +51,12 @@ export class SnackBar extends SnackBarBase {
         // options.actionText = options.actionText ? options.actionText : 'Close';
         options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
 
-        const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
+        // const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
         let attachView = options.view || Frame.topmost().currentPage;
         while (attachView['_modal']) {
-            attachView = attachView['_modal']
+            attachView = attachView['_modal'];
         }
-        this._snackbar = com.google.android.material.snackbar.Snackbar.make(attachView.android, options.message, options.hideDelay);
+        this._snackbar = com.google.android.material.snackbar.Snackbar.make(attachView.nativeViewProtected, options.message, options.hideDelay);
 
         this._snackbar.setText(options.message);
         this._snackbar.setDuration(options.hideDelay);
