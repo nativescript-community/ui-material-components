@@ -10,7 +10,7 @@ export interface VueBottomSheetOptions extends Omit<BottomSheetOptions, 'view'> 
 declare module 'nativescript-vue' {
     interface NativeScriptVue {
         $showBottomSheet(component: typeof Vue, options?: VueBottomSheetOptions);
-        $closeBottomSheet();
+        $closeBottomSheet(...args);
     }
 }
 
