@@ -1,6 +1,6 @@
 import { View } from '@nativescript/core/ui/core/view';
 import { ImageSource } from '@nativescript/core/image-source/image-source';
-import { TextAlignment } from '@nativescript/core/ui/text-base';
+import { TextAlignment, ViewBase } from '@nativescript/core/ui/text-base';
 import { Font } from '@nativescript/core/ui/styling/font';
 import { Color } from '@nativescript/core/color';
 
@@ -27,7 +27,7 @@ export interface MDCAlertControlerOptions {
     titleIcon?: ImageSource;
     titleIconTintColor?: Color;
     customTitleView?: View;
-    view?: View | string;
+    view?: ViewBase | string;
     context?: any;
     closeCallback?: Function;
     shouldResolveOnAction?:(result)=>boolean
