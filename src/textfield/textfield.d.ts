@@ -36,6 +36,7 @@ export class TextField extends NTextField {
     blur();
     requestFocus();
     clearFocus();
+    setSelection(start:number, stop?:number);
 }
 
 export function initTextInputEditText(); // android only

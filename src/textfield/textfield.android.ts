@@ -160,6 +160,14 @@ export class TextField extends TextFieldBase {
         this.dismissSoftInput();
     }
 
+    public setSelection(start:number, stop?:number) {
+        if (stop !== undefined) {
+            this.editText.setSelection(start, stop);
+        } else {
+            this.editText.setSelection(start);
+        }
+    }
+
     [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
         (this.layoutView as any).setErrorTextColor(android.content.res.ColorStateList.valueOf(color));

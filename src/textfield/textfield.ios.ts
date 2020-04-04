@@ -106,6 +106,7 @@ class TextInputControllerFilledImpl extends MDCTextInputControllerFilled {
 
 export class TextField extends TextFieldBase {
     nativeViewProtected: MDCTextField;
+    nativeTextViewProtected: MDCTextField;
     private _controller: MDCTextInputControllerBase;
     public readonly style: Style & { variant: 'outline' | 'underline' | 'filled' };
 
@@ -176,6 +177,18 @@ export class TextField extends TextFieldBase {
 
     blur() {
         this.dismissSoftInput();
+    }
+
+    public setSelection(start:number, stop?:number) {
+        const view = this.nativeTextViewProtected;
+        if (stop !== undefined) {
+            const begin = view.beginningOfDocument;
+            view.selectedTextRange = view.textRangeFromPositionToPosition(view.positionFromPositionOffset(begin, start), view.positionFromPositionOffset(begin, stop));
+        } else {
+            const begin = view.beginningOfDocument;
+            const pos = view.positionFromPositionOffset(begin, start);
+            view.selectedTextRange = view.textRangeFromPositionToPosition(pos, pos);
+        }
     }
 
     [floatingColorProperty.setNative](value: Color) {
