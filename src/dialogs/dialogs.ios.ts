@@ -713,7 +713,7 @@ function showUIAlertController(alertController: MDCAlertController) {
         }
         return viewController;
     }
-    throw new Error('no_controller_to_show_dialog')
+    throw new Error('no_controller_to_show_dialog');
 }
 
 export function action(): Promise<string> {
