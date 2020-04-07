@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.16](https://github.com/Akylas/nativescript-material-components/compare/v3.1.15...v3.1.16) (2020-04-07)
+
+
+### Bug Fixes
+
+* bottomsheet android is now handling dismissOnDraggingDownSheet correcly ([d07719f](https://github.com/Akylas/nativescript-material-components/commit/d07719f7504ce8046fdbc626a1a0989a5b81efed))
+* snackbar cleanup ([5133052](https://github.com/Akylas/nativescript-material-components/commit/5133052e7afb9098eec3900d63e8cb0d241491e1))
+* vue signature fi ([8f8570a](https://github.com/Akylas/nativescript-material-components/commit/8f8570aa581997b239b1a4ab7f798f4cb147d47d))
+
+
+### Features
+
+* new keyboardTypes ([ed71f6a](https://github.com/Akylas/nativescript-material-components/commit/ed71f6addbfc35e82dce2164b78f607ee0d63e39))
+* setSelection on textfield/textview ([bc845b6](https://github.com/Akylas/nativescript-material-components/commit/bc845b615e10b7f7957b4e57436cfa165bfe02ab))
+
+
+
+
+
 ## [3.1.15](https://github.com/Akylas/nativescript-material-components/compare/v3.1.14...v3.1.15) (2020-03-24)
 
 
