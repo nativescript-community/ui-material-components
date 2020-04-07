@@ -1,5 +1,5 @@
-import { TextFieldBase } from './textfield.common';
-import { backgroundInternalProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
+import { KeyboardType, TextFieldBase } from './textfield.common';
+import { backgroundInternalProperty, placeholderColorProperty, keyboardTypeProperty } from '@nativescript/core/ui/editable-text-base';
 import {
     buttonColorProperty,
     errorColorProperty,
@@ -255,5 +255,49 @@ export class TextField extends TextFieldBase {
                 break;
             }
         }
+    }
+
+
+    [keyboardTypeProperty.setNative](value:KeyboardType) {
+        let newKeyboardType: UIKeyboardType;
+        switch (value) {
+            case "datetime":
+                newKeyboardType = UIKeyboardType.NumbersAndPunctuation;
+                break;
+
+            case "phone":
+                newKeyboardType = UIKeyboardType.PhonePad;
+                break;
+
+            case "number":
+            case "numberDecimal":
+            case "numberSigned":
+                newKeyboardType = UIKeyboardType.NumbersAndPunctuation;
+                break;
+
+            case "url":
+                newKeyboardType = UIKeyboardType.URL;
+                break
+                ;
+            case "email":
+                newKeyboardType = UIKeyboardType.EmailAddress;
+                break;
+
+            case "integer":
+            case "numberPassword":
+                newKeyboardType = UIKeyboardType.NumberPad;
+                break;
+
+            default:
+                let kt = +value;
+                if (!isNaN(kt)) {
+                    newKeyboardType = <UIKeyboardType>kt;
+                } else {
+                    newKeyboardType = UIKeyboardType.Default;
+                }
+                break;
+        }
+
+        this.nativeTextViewProtected.keyboardType = newKeyboardType;
     }
 }

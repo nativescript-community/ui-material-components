@@ -3,7 +3,6 @@ import { Color } from '@nativescript/core/color/color';
 import {
     AutocapitalizationType,
     FormattedString,
-    KeyboardType,
     Length,
     ReturnKeyType,
     TextAlignment,
@@ -12,6 +11,7 @@ import {
     UpdateTextTrigger,
     WhiteSpace
 } from '@nativescript/core/ui/editable-text-base/editable-text-base';
+import { KeyboardType } from './textfield.common';
 
 type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 
@@ -31,6 +31,7 @@ export class TextField extends NTextField {
     placeholderColor: Color;
     variant: string;
     error: string;
+    // keyboardType: KeyboardType
 
     focus();
     blur();

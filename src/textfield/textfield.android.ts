@@ -1,9 +1,9 @@
 import { getLayout, handleClearFocus, stateSets } from 'nativescript-material-core/android/utils';
 import { Color } from '@nativescript/core/color';
-import { backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
+import { backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty, keyboardTypeProperty } from '@nativescript/core/ui/editable-text-base';
 import { Background } from '@nativescript/core/ui/styling/background';
 import { ad } from '@nativescript/core/utils/utils';
-import { TextFieldBase } from './textfield.common';
+import { KeyboardType, TextFieldBase } from './textfield.common';
 import {
     errorColorProperty,
     errorProperty,
@@ -15,6 +15,13 @@ import {
     strokeColorProperty,
     strokeInactiveColorProperty
 } from 'nativescript-material-core/textbase/cssproperties';
+
+
+declare module '@nativescript/core/ui/text-field/text-field' {
+    interface TextField {
+        _setInputType(type:number);
+    }
+}
 
 interface TextInputEditText extends com.google.android.material.textfield.TextInputEditText {
     // tslint:disable-next-line:no-misused-new
@@ -253,6 +260,55 @@ export class TextField extends TextFieldBase {
                 break;
             }
         }
+    }
+
+
+    [keyboardTypeProperty.setNative](value: KeyboardType) {
+        let newInputType;
+
+        switch (value) {
+            case "datetime":
+                newInputType = android.text.InputType.TYPE_CLASS_DATETIME | android.text.InputType.TYPE_DATETIME_VARIATION_NORMAL;
+                break;
+
+            case "phone":
+                newInputType = android.text.InputType.TYPE_CLASS_PHONE;
+                break;
+
+            case "number":
+                newInputType = android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_VARIATION_NORMAL | android.text.InputType.TYPE_NUMBER_FLAG_SIGNED | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
+                break;
+
+            case "numberDecimal":
+                newInputType = android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
+                break;
+
+            case "numberPassword":
+                newInputType = android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_VARIATION_PASSWORD;
+                break;
+
+            case "numberSigned":
+                newInputType = android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_SIGNED;
+                break;
+
+            case "url":
+                newInputType = android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_URI;
+                break;
+
+            case "email":
+                newInputType = android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;
+                break;
+
+            case "integer":
+                newInputType = android.text.InputType.TYPE_CLASS_NUMBER;
+                break;
+
+            default:
+                newInputType = value;
+                break;
+        }
+
+        this._setInputType(newInputType);
     }
 }
 //
