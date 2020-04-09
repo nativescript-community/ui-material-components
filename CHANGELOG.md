@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.17](https://github.com/Akylas/nativescript-material-components/compare/v3.1.16...v3.1.17) (2020-04-09)
+
+
+### Bug Fixes
+
+* **ios:** prevent dialogs not showing ([45488a0](https://github.com/Akylas/nativescript-material-components/commit/45488a0c3c1f6e3db3b135110b50d357808059e1))
+* rollback on keyboardType, added digits ([27cfbb5](https://github.com/Akylas/nativescript-material-components/commit/27cfbb5372e99134fd97ef4d392fdb583768007b))
+
+
+
+
+
 ## [3.1.16](https://github.com/Akylas/nativescript-material-components/compare/v3.1.15...v3.1.16) (2020-04-07)
 
 
