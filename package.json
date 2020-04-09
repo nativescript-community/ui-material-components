@@ -68,7 +68,7 @@
         "tslint-config-prettier": "^1.18.0",
         "tslint-config-standard": "^9.0.0",
         "tslint-plugin-prettier": "^2.3.0",
-        "typescript": "~3.8.3",
+        "typescript": "~3.5.3",
         "vue": "^2.6.11"
     },
     "commitlint": {
