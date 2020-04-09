@@ -153,6 +153,8 @@ const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as an
                 this.preferredContentSize = CGSizeMake(pW, pH + 0.00000000001);
                 this.preferredContentSize = CGSizeMake(pW, pH);
                 return true;
+            } else {
+                this.viewLayedOut = true;
             }
             return false;
         },
