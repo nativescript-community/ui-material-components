@@ -3,13 +3,14 @@ import { Color } from '@nativescript/core/color';
 import { CSSType } from '@nativescript/core/ui/core/view';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 
-
-export type KeyboardType = "datetime" | "phone" | "number" | "numberSigned" | "numberPassword" | "numberDecimal" | "url" | "email" | "integer"
 @CSSType('MDTextField')
 export abstract class TextFieldBase extends NTextField {
-
     abstract requestFocus();
     abstract clearFocus();
+
+    // those 2 are not released yet
+    secureWithoutAutofill:boolean
+    closeOnReturn:boolean
 
     @cssProperty helper: string;
     @cssProperty maxLength: number;
@@ -23,4 +24,5 @@ export abstract class TextFieldBase extends NTextField {
     @cssProperty floatingColor: Color;
     @cssProperty floatingInactiveColor: Color;
     @cssProperty buttonColor: Color;
+    @cssProperty digits: string;
 }

@@ -111,7 +111,6 @@ class TextViewDelegateImpl extends NSObject implements UITextViewDelegate {
     }
 
     public textViewShouldBeginEditing(textView: UITextView): boolean {
-        const owner = this._owner.get();
         return true;
     }
 
