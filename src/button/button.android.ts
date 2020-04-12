@@ -5,7 +5,14 @@ import { Background } from '@nativescript/core/ui/styling/background';
 import { androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, Length } from '@nativescript/core/ui/styling/style-properties';
 import { ButtonBase } from './button-common';
 import { VerticalTextAlignment } from 'nativescript-material-core';
+import { profile } from '@nativescript/core/profiling/profiling';
 
+let LayoutInflater: typeof android.view.LayoutInflater;
+
+let textId;
+let containedId;
+let flatId;
+let grayColorStateList: android.content.res.ColorStateList;
 export class Button extends ButtonBase {
     nativeViewProtected: com.google.android.material.button.MaterialButton;
 
@@ -14,14 +21,27 @@ export class Button extends ButtonBase {
     get android(): com.google.android.material.button.MaterialButton {
         return this.nativeView;
     }
-
+    
+    @profile
     public createNativeView() {
-        let layoutIdName = 'material_button';
-        if (this.variant === 'text' || this.variant === 'outline') {
-            layoutIdName = 'material_button_text';
-        } else if (this.variant === 'flat') {
-            layoutIdName = 'material_button_flat';
+        let layoutId;
+        const variant = this.variant;
+        // let layoutIdName = 'material_button';
+        if (variant === 'text' || variant === 'outline') {
+            if (!textId) {
+                textId = getLayout('material_button_text');
+            }
+            layoutId = textId;
+        } else if (variant === 'flat') {
+            if (!flatId) {
+                flatId = getLayout('material_button_flat');
+            }
+            layoutId = flatId;
         } else {
+            if (!containedId) {
+                containedId = getLayout('material_button');
+            }
+            layoutId = containedId;
             // contained
             // we need to set the default through css or user would not be able to overload it through css...
             this.style['css:margin-left'] = 10;
@@ -29,12 +49,18 @@ export class Button extends ButtonBase {
             this.style['css:margin-top'] = 12;
             this.style['css:margin-bottom'] = 12;
         }
-        const layoutId = getLayout(layoutIdName);
+        // const layoutId = getLayout(layoutIdName);
+        if (!LayoutInflater) {
+            LayoutInflater = android.view.LayoutInflater;
+        }
         const view = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.button.MaterialButton;
 
-        if (this.variant === 'outline') {
+        if (variant === 'outline') {
             view.setStrokeWidth(1);
-            view.setStrokeColor(android.content.res.ColorStateList.valueOf(new Color('gray').android));
+            if (!grayColorStateList) {
+                grayColorStateList = android.content.res.ColorStateList.valueOf(new Color('gray').android);
+            }
+            view.setStrokeColor(grayColorStateList);
         }
         return view;
     }
@@ -80,35 +106,37 @@ export class Button extends ButtonBase {
         this.nativeViewProtected.setStrokeWidth(newValue);
     }
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
-        if (this.nativeViewProtected) {
+        const view = this.nativeTextViewProtected;
+        if (view) {
             if (value instanceof android.graphics.drawable.Drawable) {
-                this.nativeViewProtected.setBackgroundDrawable(value);
+                view.setBackgroundDrawable(value);
             } else {
                 if (value.color) {
-                    this.nativeViewProtected.setBackgroundTintList(getEnabledColorStateList(value.color.android, this.variant));
+                    view.setBackgroundTintList(getEnabledColorStateList(value.color.android, this.variant));
                 }
                 this.setCornerRadius(value.borderTopLeftRadius);
-                this.nativeViewProtected.setStrokeWidth(value.borderTopWidth);
+                view.setStrokeWidth(value.borderTopWidth);
                 if (value.borderTopColor) {
-                    this.nativeViewProtected.setStrokeColor(android.content.res.ColorStateList.valueOf(value.borderTopColor.android));
+                    view.setStrokeColor(android.content.res.ColorStateList.valueOf(value.borderTopColor.android));
                 }
             }
         }
     }
 
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
-        const horizontalGravity = this.nativeTextViewProtected.getGravity() & android.view.Gravity.HORIZONTAL_GRAVITY_MASK;
+        const view = this.nativeTextViewProtected;
+        const horizontalGravity = view.getGravity() & android.view.Gravity.HORIZONTAL_GRAVITY_MASK;
         switch (value) {
             case 'initial':
             case 'top':
-                this.nativeTextViewProtected.setGravity(android.view.Gravity.TOP | horizontalGravity);
+                view.setGravity(android.view.Gravity.TOP | horizontalGravity);
                 break;
             case 'middle':
-                this.nativeTextViewProtected.setGravity(android.view.Gravity.CENTER_VERTICAL | horizontalGravity);
+                view.setGravity(android.view.Gravity.CENTER_VERTICAL | horizontalGravity);
                 break;
 
             case 'bottom':
-                this.nativeTextViewProtected.setGravity(android.view.Gravity.BOTTOM | horizontalGravity);
+                view.setGravity(android.view.Gravity.BOTTOM | horizontalGravity);
                 break;
         }
     }

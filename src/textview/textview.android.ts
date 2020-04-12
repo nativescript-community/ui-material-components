@@ -13,43 +13,9 @@ import {
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
-    strokeInactiveColorProperty
+    strokeInactiveColorProperty,
 } from 'nativescript-material-core/textbase/cssproperties';
-
-interface TextViewInputEditText extends com.google.android.material.textfield.TextInputEditText {
-    // tslint:disable-next-line:no-misused-new
-    new (context): TextViewInputEditText;
-    owner: WeakRef<TextView>;
-}
-let TextViewInputEditText: TextViewInputEditText;
-
-export function initTextInputEditText() {
-    if (TextViewInputEditText) {
-        return;
-    }
-    @JavaProxy('org.nativescript.material.TextViewInputEditText')
-    class TextViewInputEditTextImpl extends com.google.android.material.textfield.TextInputEditText {
-        public owner: WeakRef<TextView>;
-        constructor(context: android.content.Context) {
-            super(context);
-            return global.__native(this);
-        }
-        dispatchKeyEventPreIme(event) {
-            const imm = ad.getInputMethodManager();
-
-            if (imm != null && imm.isActive() && event.getAction() === android.view.KeyEvent.ACTION_UP && event.getKeyCode() === android.view.KeyEvent.KEYCODE_BACK) {
-                // when hiding the keyboard with the back button also blur
-                const owner = this.owner && this.owner.get();
-                if (owner) {
-                    owner.clearFocus();
-                    return true;
-                }
-            }
-            return super.dispatchKeyEventPreIme(event);
-        }
-    }
-    TextViewInputEditText = TextViewInputEditTextImpl as any;
-}
+import { profile } from '@nativescript/core/profiling/profiling';
 
 function getColorStateList(activeColor: number, inactiveColor = 1627389952) {
     const states = Array.create('[I', 2);
@@ -61,53 +27,68 @@ function getColorStateList(activeColor: number, inactiveColor = 1627389952) {
     return new android.content.res.ColorStateList(states, colors);
 }
 
+let LayoutInflater: typeof android.view.LayoutInflater;
+let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
+let filledId;
+let outlineId;
+let noneId;
 export class TextView extends TextViewBase {
-    editText: com.google.android.material.textfield.TextInputEditText;
+    editText: com.nativescript.material.textview.TextViewInputEditText;
     layoutView: com.google.android.material.textfield.TextInputLayout;
 
-    // nativeViewProtected: com.google.android.material.textfield.TextInputLayout;
     constructor() {
         super();
     }
     get nativeTextViewProtected() {
-        return this.editText as com.google.android.material.textfield.TextInputEditText;
+        return this.editText;
     }
 
     drawingBackground = false;
     get nativeViewProtected() {
-        // if (this.drawingBackground) {
-        // return this.editText;
-        // }
         return this.layoutView;
     }
 
     public createNativeView() {
-        let layoutIdName = 'material_text_view';
-        if (this.variant === 'filled') {
-            layoutIdName = 'material_text_view_filled';
-        } else if (this.variant === 'outline') {
-            layoutIdName = 'material_text_view_outline';
+        let layoutId;
+        const variant = this.variant;
+        let needsTransparent = false;
+        if (variant === 'filled') {
+            if (!filledId) {
+                filledId = getLayout('material_text_view_filled');
+            }
+            layoutId = filledId;
+        } else if (variant === 'outline') {
+            if (!outlineId) {
+                outlineId = getLayout('material_text_view_outline');
+            }
+            layoutId = outlineId;
+        } else {
+            if (!noneId) {
+                noneId = getLayout('material_text_view');
+            }
+            layoutId = noneId;
+            needsTransparent = true;
         }
-        const layoutId = getLayout(layoutIdName);
 
         let layoutView: com.google.android.material.textfield.TextInputLayout;
-        let editText: TextViewInputEditText;
+        let editText: com.nativescript.material.textview.TextViewInputEditText;
 
-        initTextInputEditText();
         if (layoutId !== 0) {
             layoutView = this.layoutView = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.textfield.TextInputLayout;
-            editText = this.editText = (layoutView.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as TextViewInputEditText;
+            editText = this.editText = (layoutView.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as com.nativescript.material.textview.TextViewInputEditText;
         } else {
             layoutView = this.layoutView = new com.google.android.material.textfield.TextInputLayout(this._context);
-            editText = this.editText = new TextViewInputEditText(layoutView.getContext());
-            editText.setLayoutParams(new android.widget.LinearLayout.LayoutParams(android.widget.FrameLayout.LayoutParams.MATCH_PARENT, android.widget.FrameLayout.LayoutParams.WRAP_CONTENT));
+            editText = this.editText = new com.nativescript.material.textview.TextViewInputEditText(layoutView.getContext());
+            if (!FrameLayoutLayoutParams) {
+                FrameLayoutLayoutParams = android.widget.FrameLayout.LayoutParams;
+            }
+            editText.setLayoutParams(new android.widget.LinearLayout.LayoutParams(FrameLayoutLayoutParams.MATCH_PARENT, FrameLayoutLayoutParams.WRAP_CONTENT));
             layoutView.addView(editText);
         }
-        if (layoutIdName === 'material_text_view') {
-            layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
+        if (needsTransparent) {
+            layoutView.setBoxBackgroundColor(0); // android.graphics.Color.TRANSPARENT
             editText.setBackground(null);
         }
-        editText.owner = new WeakRef(this);
         layoutView.setFocusableInTouchMode(true); // to prevent focus on view creation
         return layoutView;
     }
@@ -177,17 +158,18 @@ export class TextView extends TextViewBase {
         return false;
     }
     public clearFocus() {
-        handleClearFocus(this.nativeViewProtected);
-        this.dismissSoftInput();
+        if (this.nativeTextViewProtected) {
+            this.nativeTextViewProtected.fullClearFocus();
+        }
     }
-    public setSelection(start:number, stop?:number) {
+    public setSelection(start: number, stop?: number) {
         if (stop !== undefined) {
             this.editText.setSelection(start, stop);
         } else {
             this.editText.setSelection(start);
         }
     }
-    
+
     [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
         (this.layoutView as any).setErrorTextColor(android.content.res.ColorStateList.valueOf(color));
@@ -272,20 +254,6 @@ export class TextView extends TextViewBase {
                 break;
             }
         }
-        // if (this.nativeViewProtected) {
-        //     if (value instanceof android.graphics.drawable.Drawable) {
-        //         this.nativeViewProtected.setBackgroundDrawable(value);
-        //     } else {
-                
-
-        //         // TODO: for now no control over borderRadius because we can't define the default value
-        //         // this.borderTopLeftRadius = value.borderTopLeftRadius;
-        //         // this.borderTopRightRadius = value.borderTopRightRadius;
-        //         // this.borderBottomLeftRadius = value.borderBottomLeftRadius;
-        //         // this.borderBottomRightRadius = value.borderBottomRightRadius;
-        //         // this.layoutView.setBoxCornerRadii(this.borderTopLeftRadius, this.borderTopRightRadius, this.borderBottomLeftRadius, this.borderBottomRightRadius);
-        //     }
-        // }
     }
 }
 //
