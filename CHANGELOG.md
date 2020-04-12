@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.18](https://github.com/Akylas/nativescript-material-components/compare/v3.1.17...v3.1.18) (2020-04-12)
+
+
+### Bug Fixes
+
+* native class when possible. Will be faster ([a3e1964](https://github.com/Akylas/nativescript-material-components/commit/a3e1964182af43fd4bedae369d48b4ab67238b9a))
+
+
+
+
+
 ## [3.1.17](https://github.com/Akylas/nativescript-material-components/compare/v3.1.16...v3.1.17) (2020-04-09)
 
 
