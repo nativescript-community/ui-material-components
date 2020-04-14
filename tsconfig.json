@@ -39,6 +39,8 @@
             "nativescript-material-ripple/*": ["src/ripple/*"],
             "nativescript-material-slider": ["src/slider/slider"],
             "nativescript-material-slider/*": ["src/slider/*"],
+            "nativescript-material-tabs": ["src/slider/tabs"],
+            "nativescript-material-tabs/*": ["src/tabs/*"],
             "nativescript-material-progress": ["src/progress/progress"],
             "nativescript-material-progress/*": ["src/progress/*"],
             "nativescript-material-cardview": ["src/cardview/cardview"],
