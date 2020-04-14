@@ -65,7 +65,7 @@ export default Vue.extend({
 </script>
 
 <style>
-Tabs.bottom-nav {
+MDTabs.bottom-nav {
     background-color: orangered;
     color: gold;
     font-size: 18;
@@ -91,7 +91,7 @@ TabContentItem.third-tabcontent {
     background-color: blueviolet;
     color: antiquewhite;
 }
-Tabs TabStrip {
+MDTabs TabStrip {
     highlight-color: red;
 }
 </style>
