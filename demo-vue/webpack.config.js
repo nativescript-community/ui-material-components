@@ -89,7 +89,6 @@ module.exports = env => {
     alias['~'] = appFullPath;
     alias['@'] = appFullPath;
     alias['vue'] = 'nativescript-vue';
-    alias['nativescript-vue'] = 'nativescript-akylas-vue';
 
     if (hasRootLevelScopedModules) {
         coreModulesPackageName = '@nativescript/core';
@@ -135,6 +134,11 @@ module.exports = env => {
             'nativescript-material-button/vue$': '#/button/vue/index',
             'nativescript-material-button/button$': '#/button/button.' + platform,
             '../button$': '#/button/button.' + platform,
+
+            'nativescript-material-tabs$': '#/tabs/tabs.' + platform,
+            'nativescript-material-tabs/vue$': '#/tabs/vue/index',
+            'nativescript-material-tabs/tabs$': '#/tabs/button.' + platform,
+            '../tabs$': '#/tabs/tabs.' + platform,
 
             'nativescript-material-textfield$': '#/textfield/textfield',
             'nativescript-material-textfield': '#/textfield',
@@ -386,9 +390,20 @@ module.exports = env => {
             // Remove all files from the out dir.
             new CleanWebpackPlugin({ verbose: !!verbose, cleanOnceBeforeBuildPatterns: itemsToClean }),
             // Copy assets to out dir. Add your own globs as needed.
-            new CopyWebpackPlugin([{ from: { glob: 'fonts/**' } }, { from: { glob: '**/*.+(jpg|png)' } }, { from: { glob: 'assets/**/*' } }], {
-                ignore: [`${relative(appPath, appResourcesFullPath)}/**`]
-            }),
+            new CopyWebpackPlugin(
+                [
+                    { from: { glob: 'fonts/**' } },
+                    { from: { glob: '**/*.+(jpg|png)' } },
+                    { from: { glob: 'assets/**/*' } },
+                    {
+                        from: resolve(__dirname, 'node_modules', '@mdi/font/fonts/materialdesignicons-webfont.ttf'),
+                        to: 'fonts'
+                    }
+                ],
+                {
+                    ignore: [`${relative(appPath, appResourcesFullPath)}/**`]
+                }
+            ),
             new nsWebpack.GenerateNativeScriptEntryPointsPlugin('bundle'),
             // For instructions on how to set up workers with webpack
             // check out https://github.com/nativescript/worker-loader
