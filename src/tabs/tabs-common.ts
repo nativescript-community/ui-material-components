@@ -44,7 +44,7 @@ export module knownCollections {
     export const items = "items";
 }
 
-@CSSType("Tabs")
+@CSSType("MDTabs")
 export class TabsBase extends TabNavigationBase implements TabsDefinition {
     public swipeEnabled: boolean;
     public offscreenTabLimit: number;
