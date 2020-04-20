@@ -160,9 +160,7 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
 }
 
 function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any) {
-    if (!options) {
-        return;
-    }
+    
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
     const onDone = function (result: boolean, dialog?: android.content.DialogInterface) {
@@ -198,6 +196,9 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
         })
     );
     const dlg = builder.create();
+    if (!options) {
+        return dlg;
+    }
 
     if (options.okButtonText) {
         dlg.setButton(
