@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/Akylas/nativescript-material-components/compare/v3.2.1...v3.2.2) (2020-04-20)
+
+
+### Bug Fixes
+
+* **dialogs:** missing return case ([630fd6d](https://github.com/Akylas/nativescript-material-components/commit/630fd6daa3dd9e3b6406c60ea77cd1139c947964))
+* **textview:** Editable prop now works ([fe05603](https://github.com/Akylas/nativescript-material-components/commit/fe05603eca0786cbfcf5bfc74bdc4985748a5a97))
+
+
+
+
+
 ## [3.2.1](https://github.com/Akylas/nativescript-material-components/compare/v3.2.0...v3.2.1) (2020-04-14)
 
 **Note:** Version bump only for package nativescript-material-components
