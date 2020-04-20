@@ -35,7 +35,7 @@ export default Vue.extend({
     },
     methods: {
         onNavigationButtonTap() {
-            frameModule.topmost().goBack();
+            frameModule.Frame.topmost().goBack();
         },
         onbottomNavigationBarLoaded(args: EventData): void {
             const bottomNavigationBar = args.object as BottomNavigationBar;

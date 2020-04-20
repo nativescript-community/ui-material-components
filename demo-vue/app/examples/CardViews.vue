@@ -42,7 +42,7 @@ export default Vue.extend({
     },
     methods: {
         onNavigationButtonTap() {
-            frameModule.topmost().goBack();
+            frameModule.Frame.topmost().goBack();
         }
     }
 });

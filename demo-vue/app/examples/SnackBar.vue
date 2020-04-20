@@ -32,7 +32,7 @@ export default Vue.extend({
     },
     methods: {
         onNavigationButtonTap() {
-            frameModule.topmost().goBack();
+            frameModule.Frame.topmost().goBack();
         },
         onTap(args: EventData) {
             const obj = args.object as View;
