@@ -132,7 +132,7 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         // showBadge method is available in v1.1.0-alpha07 of material components
         // but NS team has the .d.ts for version 1
         // that's why we need to cast the nativeView to any to avoid typing errors
-        const badge = (this.nativeViewProtected as any).showBadge(index);
+        const badge = (this.nativeViewProtected as any).getOrCreateBadge(index);
         if (value) {
             badge.setNumber(value);
         }
