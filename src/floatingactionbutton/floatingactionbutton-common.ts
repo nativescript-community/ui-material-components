@@ -24,7 +24,7 @@ export const expandedProperty = new Property<FloatingActionButtonBase, boolean>(
 });
 
 @CSSType('MDFloatingActionButton')
-export abstract class FloatingActionButtonBase extends NSButton {
+export abstract class FloatingActionButtonBase extends View {
     constructor() {
         super();
         // we need to set the default through css or user would not be able to overload it through css...
