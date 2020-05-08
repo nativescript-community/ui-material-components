@@ -13,8 +13,8 @@
         }
     },
     "dependencies": {
-        "@mdi/font": "^5.0.45",
-        "@nativescript/core": "6.5.0",
+        "@mdi/font": "4.9.95",
+        "@nativescript/core": "6.5.1",
         "@nativescript/theme": "~2.3.3",
         "nativescript-iqkeyboardmanager": "^1.5.1",
         "nativescript-material-activityindicator": "file:../packages/nativescript-material-activityindicator",
@@ -46,8 +46,10 @@
         "nativescript-vue-template-compiler": "^2.5.0",
         "node-sass": "^4.13.1",
         "sass-loader": "^8.0.2",
-        "tns-platform-declarations": "6.5.0",
-        "tslint": "^6.1.0",
+        "scss-symbols-parser": "^2.0.1",
+        "string-replace-loader": "^2.3.0",
+        "tns-platform-declarations": "6.5.1",
+        "tslint": "^6.1.2",
         "tslint-config-prettier": "^1.18.0",
         "tslint-config-standard": "^9.0.0",
         "typescript": "^3.8.3",

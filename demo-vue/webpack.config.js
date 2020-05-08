@@ -1,4 +1,5 @@
 const { join, relative, resolve, sep } = require('path');
+const { readFileSync } = require('fs');
 
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -199,6 +200,10 @@ module.exports = env => {
         itemsToClean.push(`${join(projectRoot, 'platforms', 'android', 'app', 'build', 'configurations', 'nativescript-android-snapshot')}`);
     }
 
+    const symbolsParser = require('scss-symbols-parser');
+    const mdiSymbols = symbolsParser.parseSymbols(readFileSync(resolve(projectRoot, 'node_modules/@mdi/font/scss/_variables.scss')).toString());
+    const mdiIcons = JSON.parse(`{${mdiSymbols.variables[mdiSymbols.variables.length - 1].value.replace(/" (F|0)(.*?)([,\n]|$)/g, '": "$1$2"$3')}}`);
+
     nsWebpack.processAppComponents(appComponents, platform);
     const config = {
         mode: mode,
@@ -307,6 +312,34 @@ module.exports = env => {
                     ].filter(loader => Boolean(loader))
                 },
                 {
+                    test: /\.vue$/,
+                    loader: 'vue-loader',
+                    options: {
+                        compiler: NsVueTemplateCompiler
+                    }
+                },
+                {
+                    // rules to replace mdi icons and not use nativescript-font-icon
+                    test: /\.(ts|js|css|vue)$/,
+                    exclude: /node_modules/,
+                    use: [
+                        {
+                            loader: 'string-replace-loader',
+                            options: {
+                                search: 'mdi-([a-z-]+)',
+                                replace: (match, p1, offset, string) => {
+                                    if (mdiIcons[p1]) {
+                                        console.log('replace mdi icon', p1, mdiIcons[p1], String.fromCharCode(parseInt(mdiIcons[p1], 16)));
+                                        return String.fromCharCode(parseInt(mdiIcons[p1], 16));
+                                    }
+                                    return match;
+                                },
+                                flags: 'g'
+                            }
+                        }
+                    ]
+                },
+                {
                     test: /[\/|\\]app\.css$/,
                     use: [
                         'nativescript-dev-webpack/style-hot-loader',
@@ -366,13 +399,6 @@ module.exports = env => {
                         compilerOptions: {
                             declaration: false
                         }
-                    }
-                },
-                {
-                    test: /\.vue$/,
-                    loader: 'vue-loader',
-                    options: {
-                        compiler: NsVueTemplateCompiler
                     }
                 }
             ]

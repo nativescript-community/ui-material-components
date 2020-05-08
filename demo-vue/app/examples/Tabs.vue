@@ -7,16 +7,16 @@
             <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
             <TabStrip>
                 <TabStripItem>
-                    <Label text="Home"></Label>
-                    <Image src="font://󰋜" class="mdi"></Image>
+                    <Label text="Home"/>
+                    <Image src="font://mdi-home" class="mdi"/>
                 </TabStripItem>
                 <TabStripItem class="special">
-                    <Label text="Account"></Label>
-                    <Image src="font://󰀄" class="mdi"></Image>
+                    <Label text="Account"/>
+                    <Image src="font://mdi-account" class="mdi"/>
                 </TabStripItem>
                 <TabStripItem class="special">
-                    <Label text="Search"></Label>
-                    <Image src="font://󰜏" class="mdi"></Image>
+                    <Label text="Search"/>
+                    <Image src="font://mdi-magnify" class="mdi"/>
                 </TabStripItem>
             </TabStrip>
 
