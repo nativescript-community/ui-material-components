@@ -62,7 +62,7 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     [expandedProperty.setNative](value: boolean) {
         // UIView.animateWithDurationAnimations(0.25, () => {
         this.nativeViewProtected.mode = value ? MDCFloatingButtonMode.Expanded : MDCFloatingButtonMode.Normal;
-        this.nativeViewProtected.setTitleForState(value ? this.text : null, UIControlState.Normal);
+        // this.nativeViewProtected.setTitleForState(value ? this.text : null, UIControlState.Normal);
         this.nativeViewProtected.sizeToFit();
         // });
 
