@@ -1,7 +1,7 @@
 import { createStateListAnimator, getAttrColor, isPostLollipop } from 'nativescript-material-core/android/utils';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from '@nativescript/core/color';
-import { backgroundInternalProperty } from '@nativescript/core/ui/styling/style-properties';
+import { backgroundInternalProperty, Length } from '@nativescript/core/ui/styling/style-properties';
 import { CardViewBase } from './cardview-common';
 
 let MDCCardView: typeof com.google.android.material.card.MaterialCardView;
@@ -330,7 +330,8 @@ export class CardView extends CardViewBase {
         if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
-            androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, value);
+            const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+            androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, newValue);
         }
     }
     [dynamicElevationOffsetProperty.setNative](value: number) {
@@ -340,7 +341,8 @@ export class CardView extends CardViewBase {
         if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
-            androidx.core.view.ViewCompat.setTranslationZ(this.nativeViewProtected, value);
+            const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+            androidx.core.view.ViewCompat.setTranslationZ(this.nativeViewProtected, newValue);
         }
     }
     [rippleColorProperty.setNative](color: Color) {

@@ -1,7 +1,7 @@
 import { FloatingActionButtonBase, imageSourceProperty, sizeProperty, srcProperty } from './floatingactionbutton-common';
 import { ImageSource } from '@nativescript/core/image-source';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { backgroundInternalProperty, colorProperty } from '@nativescript/core/ui/styling/style-properties';
+import { backgroundInternalProperty, colorProperty, Length } from '@nativescript/core/ui/styling/style-properties';
 import { Background } from '@nativescript/core/ui/styling/background';
 import { Color } from '@nativescript/core/color';
 
@@ -42,10 +42,12 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     }
 
     [elevationProperty.setNative](value: number) {
-        this.nativeViewProtected.setCompatElevation(value);
+        const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+        this.nativeViewProtected.setCompatElevation(newValue);
     }
 
     [dynamicElevationOffsetProperty.setNative](value: number) {
+        const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
         this.nativeViewProtected.setTranslationZ(value);
     }
 

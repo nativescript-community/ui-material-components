@@ -2,6 +2,7 @@ import { createStateListAnimator, getEnabledColorStateList, getLayout, isPostLol
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, verticalTextAlignmentProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from '@nativescript/core/color';
 import { Background } from '@nativescript/core/ui/styling/background';
+import { TextBase } from '@nativescript/core/ui/text-base';
 import { androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, Length } from '@nativescript/core/ui/styling/style-properties';
 import { ButtonBase } from './button-common';
 import { VerticalTextAlignment } from 'nativescript-material-core';
@@ -13,6 +14,7 @@ let textId;
 let containedId;
 let flatId;
 let grayColorStateList: android.content.res.ColorStateList;
+
 export class Button extends ButtonBase {
     nativeViewProtected: com.google.android.material.button.MaterialButton;
 
@@ -21,7 +23,7 @@ export class Button extends ButtonBase {
     get android(): com.google.android.material.button.MaterialButton {
         return this.nativeView;
     }
-    
+
     @profile
     public createNativeView() {
         let layoutId;
@@ -64,11 +66,25 @@ export class Button extends ButtonBase {
         }
         return view;
     }
+
+    // initNativeView() {
+    //     TextBase.prototype.initNativeView.call(this);
+    //     const nativeView = this.nativeViewProtected;
+    //     const clickListener = new android.view.View.OnClickListener({
+    //         onClick:()=>{
+    //             console.log('overriden button onClick');
+    //     this._emit(ButtonBase.tapEvent);
+    //         }
+    //     });
+    //     nativeView.setOnClickListener(clickListener);
+    //     (<any>nativeView).clickListener = clickListener;
+    // }
     [rippleColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
     }
 
     getDefaultElevation(): number {
+        console.log('getDefaultElevation', 2, new Error().stack);
         return 2; // 2dp @dimen/mtrl_btn_elevation
     }
 
@@ -80,14 +96,16 @@ export class Button extends ButtonBase {
         if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
-            this.nativeViewProtected.setElevation(value);
+            const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+            this.nativeViewProtected.setElevation(newValue);
         }
     }
     [dynamicElevationOffsetProperty.setNative](value: number) {
         if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
-            this.nativeViewProtected.setTranslationZ(value);
+            const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+            this.nativeViewProtected.setTranslationZ(newValue);
         }
     }
     [androidElevationProperty.setNative](value: number) {
@@ -98,12 +116,12 @@ export class Button extends ButtonBase {
     }
 
     setCornerRadius(value) {
-        const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
-        this.nativeViewProtected.setCornerRadius(newValue);
+        // const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+        this.nativeViewProtected.setCornerRadius(value);
     }
     setStrokeWidth(value) {
-        const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
-        this.nativeViewProtected.setStrokeWidth(newValue);
+        // const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+        this.nativeViewProtected.setStrokeWidth(value);
     }
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
         const view = this.nativeTextViewProtected;
