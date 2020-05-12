@@ -15,7 +15,7 @@
                             </StackLayout>
                         </MDCardView>
                     </GridLayout>
-                    <MDCardView margin="10" width="200" height="100">
+                    <MDCardView margin="10" width="200" height="100" elevation="6">
                         <StackLayout>
                             <Label text="Hello world2" class="title"></Label>
                         </StackLayout>

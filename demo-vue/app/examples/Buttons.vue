@@ -9,7 +9,7 @@
         </ActionBar>
         <ScrollView>
             <StackLayout>
-                <MDButton id="button1" elevation="2" borderRadius="10" fontSize="20" text="raised button" @tap="onTap" />
+                <MDButton id="button1" borderRadius="10" fontSize="20" text="raised button" @tap="onTap" />
                 <StackLayout v-if="isEditing">
                         <MDTextField class="session-details-input" :hint="('name')" />
                         <MDTextField class="session-details-input" :hint="('description')"/>
