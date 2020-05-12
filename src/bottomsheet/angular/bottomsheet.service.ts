@@ -2,8 +2,7 @@ import { ComponentFactoryResolver, ComponentRef, Injectable, Injector, Type, Vie
 import { DetachedLoader } from '@nativescript/angular/common/detached-loader';
 import { AppHostView } from '@nativescript/angular/app-host-view';
 import { once } from '@nativescript/angular/common/utils';
-import { BottomSheetOptions as MaterialBottomSheetOptions } from '../bottomsheet-common';
-import { ViewWithBottomSheetBase } from '../bottomsheet-common';
+import { BottomSheetOptions as MaterialBottomSheetOptions, ViewWithBottomSheetBase } from '../bottomsheet-common';
 import { Observable, Subject } from 'rxjs';
 import { filter, first, map } from 'rxjs/operators';
 import { ProxyViewContainer } from '@nativescript/core/ui/proxy-view-container';
@@ -34,6 +33,10 @@ export class BottomSheetService {
     private currentId = 0;
 
     show<T = any>(type: Type<any>, options: BottomSheetOptions): Observable<T> {
+        return this.showWithCloseCallback(type, options).observable;
+    }
+
+    showWithCloseCallback<T = any>(type: Type<any>, options: BottomSheetOptions): { observable: Observable<T>, closeCallback: () => void } {
         if (!options.viewContainerRef) {
             throw new Error('No viewContainerRef: Make sure you pass viewContainerRef in BottomSheetOptions.');
         }
@@ -53,11 +56,14 @@ export class BottomSheetService {
             });
         });
 
-        return this.subject$.pipe(
-            filter(item => item && item.requestId === requestId),
-            map(item => item.result),
-            first()
-        );
+        return {
+            observable: this.subject$.pipe(
+                filter(item => item && item.requestId === requestId),
+                map(item => item.result),
+                first()
+            ),
+            closeCallback: bottomSheetParams.closeCallback
+        };
     }
 
     private getParentView(viewContainerRef: ViewContainerRef): ViewWithBottomSheetBase {
