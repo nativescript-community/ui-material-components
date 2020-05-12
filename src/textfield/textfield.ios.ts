@@ -1,7 +1,8 @@
 import { TextFieldBase } from './textfield.common';
-import { backgroundInternalProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
+import { backgroundInternalProperty, placeholderColorProperty, keyboardTypeProperty, textProperty } from '@nativescript/core/ui/editable-text-base';
 import {
     buttonColorProperty,
+    digitsProperty,
     errorColorProperty,
     errorProperty,
     floatingColorProperty,
@@ -10,13 +11,16 @@ import {
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
-    strokeInactiveColorProperty
+    strokeInactiveColorProperty,
 } from 'nativescript-material-core/textbase/cssproperties';
 import { themer } from 'nativescript-material-core/core';
 import { Color } from '@nativescript/core/color';
 import { Style } from '@nativescript/core/ui/styling/style';
 import { Background } from '@nativescript/core/ui/styling/background';
 import { screen } from '@nativescript/core/platform/platform';
+
+// it is exported but not in the typings
+const _updateCharactersInRangeReplacementString = require('@nativescript/core/ui/editable-text-base')._updateCharactersInRangeReplacementString;
 
 let colorScheme: MDCSemanticColorScheme;
 function getColorScheme() {
@@ -104,11 +108,120 @@ class TextInputControllerFilledImpl extends MDCTextInputControllerFilled {
     }
 }
 
+class UITextFieldDelegateImpl extends NSObject implements UITextFieldDelegate {
+    public static ObjCProtocols = [UITextFieldDelegate];
+
+    private _owner: WeakRef<TextField>;
+    private firstEdit: boolean;
+
+    public static initWithOwner(owner: WeakRef<TextField>): UITextFieldDelegateImpl {
+        const delegate = <UITextFieldDelegateImpl>UITextFieldDelegateImpl.new();
+        delegate._owner = owner;
+
+        return delegate;
+    }
+
+    public textFieldShouldBeginEditing(textField: UITextField): boolean {
+        this.firstEdit = true;
+        const owner = this._owner.get();
+        if (owner) {
+            return owner.editable;
+        }
+
+        return true;
+    }
+
+    public textFieldDidBeginEditing(textField: UITextField): void {
+        const owner = this._owner.get();
+        if (owner) {
+            owner.notify({ eventName: TextField.focusEvent, object: owner });
+        }
+    }
+
+    public textFieldDidEndEditing(textField: UITextField) {
+        const owner = this._owner.get();
+        if (owner) {
+            if (owner.updateTextTrigger === 'focusLost') {
+                textProperty.nativeValueChange(owner, textField.text);
+            }
+
+            owner.dismissSoftInput();
+        }
+    }
+
+    public textFieldShouldClear(textField: UITextField) {
+        this.firstEdit = false;
+        const owner = this._owner.get();
+        if (owner) {
+            textProperty.nativeValueChange(owner, '');
+        }
+
+        return true;
+    }
+
+    public textFieldShouldReturn(textField: UITextField): boolean {
+        // Called when the user presses the return button.
+        const owner = this._owner.get();
+        if (owner) {
+            if (owner.closeOnReturn) {
+                owner.dismissSoftInput();
+            }
+            owner.notify({ eventName: TextField.returnPressEvent, object: owner });
+        }
+
+        return true;
+    }
+
+    public textFieldShouldChangeCharactersInRangeReplacementString(textField: UITextField, range: NSRange, replacementString: string): boolean {
+        const owner = this._owner.get();
+        if (owner) {
+            // ignore if not in our alllowed digits
+            if (owner.nsdigits && replacementString.length > 0 && NSString.stringWithString(replacementString).rangeOfCharacterFromSet(owner.nsdigits).location === NSNotFound) {
+                return false;
+            }
+            if (owner.secureWithoutAutofill && !textField.secureTextEntry) {
+                /**
+                 * Helps avoid iOS 12+ autofill strong password suggestion prompt
+                 * Discussed in several circles but for example:
+                 * https://github.com/expo/expo/issues/2571#issuecomment-473347380
+                 */
+                textField.secureTextEntry = true;
+            }
+            const delta = replacementString.length - range.length;
+            if (delta > 0) {
+                if (textField.text.length + delta > owner.maxLength) {
+                    return false;
+                }
+            }
+
+            if (owner.updateTextTrigger === 'textChanged') {
+                if (textField.secureTextEntry && this.firstEdit) {
+                    textProperty.nativeValueChange(owner, replacementString);
+                } else {
+                    if (range.location <= textField.text.length) {
+                        const newText = NSString.stringWithString(textField.text).stringByReplacingCharactersInRangeWithString(range, replacementString);
+                        textProperty.nativeValueChange(owner, newText);
+                    }
+                }
+            }
+
+            if (owner.formattedText) {
+                _updateCharactersInRangeReplacementString(owner.formattedText, range.location, range.length, replacementString);
+            }
+        }
+
+        this.firstEdit = false;
+
+        return true;
+    }
+}
+
 export class TextField extends TextFieldBase {
     nativeViewProtected: MDCTextField;
+    nativeTextViewProtected: MDCTextField;
     private _controller: MDCTextInputControllerBase;
     public readonly style: Style & { variant: 'outline' | 'underline' | 'filled' };
-
+    public nsdigits?: NSCharacterSet;
     public clearFocus() {
         this.dismissSoftInput();
     }
@@ -161,6 +274,13 @@ export class TextField extends TextFieldBase {
         }
         return view;
     }
+    private _delegate: UITextFieldDelegateImpl;
+
+    initNativeView() {
+        super.initNativeView();
+        // it will get picked in onLoaded
+        this._delegate = UITextFieldDelegateImpl.initWithOwner(new WeakRef(this));
+    }
 
     // TODO: check why i was checking for isFirstResponder
     // with it the blur event is not fired anymore
@@ -176,6 +296,18 @@ export class TextField extends TextFieldBase {
 
     blur() {
         this.dismissSoftInput();
+    }
+
+    public setSelection(start: number, stop?: number) {
+        const view = this.nativeTextViewProtected;
+        if (stop !== undefined) {
+            const begin = view.beginningOfDocument;
+            view.selectedTextRange = view.textRangeFromPositionToPosition(view.positionFromPositionOffset(begin, start), view.positionFromPositionOffset(begin, stop));
+        } else {
+            const begin = view.beginningOfDocument;
+            const pos = view.positionFromPositionOffset(begin, start);
+            view.selectedTextRange = view.textRangeFromPositionToPosition(pos, pos);
+        }
     }
 
     [floatingColorProperty.setNative](value: Color) {
@@ -225,13 +357,20 @@ export class TextField extends TextFieldBase {
     [errorProperty.setNative](value: string) {
         this._controller.setErrorTextErrorAccessibilityValue(value, value);
     }
+    [digitsProperty.setNative](value: string) {
+        if (value && value.length > 0) {
+            this.nsdigits = NSCharacterSet.characterSetWithCharactersInString(value);
+        } else {
+            this.nsdigits = null;
+        }
+    }
     [backgroundInternalProperty.setNative](value: Background) {
         switch (this.variant) {
             case 'none':
-            case 'filled':
                 super[backgroundInternalProperty.setNative](value);
                 break;
             case 'outline':
+            case 'filled':
             case 'underline': {
                 if (value.color) {
                     this._controller.borderFillColor = value.color.ios;

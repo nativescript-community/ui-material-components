@@ -24,7 +24,7 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottom
         // called when clicked on background
         const owner = this._owner.get();
         if (owner) {
-            owner._whenCloseBottomSheetCallback && owner._whenCloseBottomSheetCallback();
+            owner._onDismissBottomSheetCallback && owner._onDismissBottomSheetCallback();
             if (owner && owner.isLoaded) {
                 owner.callUnloaded();
             }
@@ -35,7 +35,7 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottom
         if (state === MDCSheetState.Closed) {
             const owner = this._owner.get();
             if (owner) {
-                owner._whenCloseBottomSheetCallback && owner._whenCloseBottomSheetCallback();
+                owner._onDismissBottomSheetCallback && owner._onDismissBottomSheetCallback();
                 if (owner && owner.isLoaded) {
                     owner.callUnloaded();
                 }

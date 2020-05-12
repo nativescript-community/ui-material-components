@@ -7,6 +7,7 @@
             <MDButton id="alert" text="alert" @tap="onTap" />
             <MDButton id="prompt" text="prompt" @tap="onTap" />
             <MDButton id="confirm" text="confirm" @tap="onTap" />
+            <MDButton id="action" text="action" @tap="onTap" />
             <MDButton id="password" text="password" @tap="onTap" />
             <MDButton id="login" text="login" @tap="onTap" />
             <MDButton id="dialogCustomView" text="customView" @tap="onTap" />
@@ -19,7 +20,7 @@
 import * as frameModule from '@nativescript/core/ui/frame';
 import Vue from 'vue';
 import { EventData, View, Color } from '@nativescript/core/ui/frame';
-import { alert, confirm, AlertDialog, login, prompt, inputType } from 'nativescript-material-dialogs';
+import { action, alert, confirm, AlertDialog, login, prompt, inputType } from 'nativescript-material-dialogs';
 import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout/stack-layout';
 import { ActivityIndicator } from '@nativescript/core/ui/activity-indicator/activity-indicator';
 import { Label } from '@nativescript/core/ui/label/label';
@@ -35,7 +36,7 @@ export default Vue.extend({
     },
     methods: {
         onNavigationButtonTap() {
-            frameModule.topmost().goBack();
+            frameModule.Frame.topmost().goBack();
         },
         onTap(args: EventData) {
             const obj = args.object as View;
@@ -115,6 +116,16 @@ export default Vue.extend({
                         userName: 'my username?',
                         password: 'my password?'
                     }).then(result => console.log('login result', result));
+                    break;
+                }
+                case 'action': {
+                    console.log('about to action');
+                    action({
+                        message: 'this is test Prompt!',
+                        cancelButtonText: 'Cancel',
+                        title: 'title?',
+                        actions: ['action1', 'action2', 'action3'],
+                    }).then(result => console.log('action result', result));
                     break;
                 }
 

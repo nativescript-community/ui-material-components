@@ -112,6 +112,10 @@ class TextViewDelegateImpl extends NSObject implements UITextViewDelegate {
 
     public textViewShouldBeginEditing(textView: UITextView): boolean {
         const owner = this._owner.get();
+        if (owner) {
+            return owner.editable;
+        }
+
         return true;
     }
 
@@ -228,6 +232,18 @@ export class TextView extends TextViewBase {
         this.dismissSoftInput();
     }
 
+    public setSelection(start:number, stop?:number) {
+        const view = this.nativeTextViewProtected;
+        if (stop !== undefined) {
+            const begin = view.beginningOfDocument;
+            view.selectedTextRange = view.textRangeFromPositionToPosition(view.positionFromPositionOffset(begin, start), view.positionFromPositionOffset(begin, stop));
+        } else {
+            const begin = view.beginningOfDocument;
+            const pos = view.positionFromPositionOffset(begin, start);
+            view.selectedTextRange = view.textRangeFromPositionToPosition(pos, pos);
+        }
+    }
+    
     [hintProperty.getDefault](): string {
         return '';
     }

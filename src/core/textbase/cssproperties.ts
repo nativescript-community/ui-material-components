@@ -67,3 +67,8 @@ export const buttonColorProperty = new CssProperty<Style, Color>({
     valueConverter: v => new Color(v)
 });
 buttonColorProperty.register(Style);
+export const digitsProperty = new CssProperty<Style, string>({
+    name: 'digits',
+    cssName: 'digits'
+});
+digitsProperty.register(Style);

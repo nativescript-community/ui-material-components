@@ -18,7 +18,7 @@ import {
     LoginResult,
     OK,
     PROMPT,
-    PromptResult
+    PromptResult,
 } from '@nativescript/core/ui/dialogs';
 import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout';
 import { ad } from '@nativescript/core/utils/utils';
@@ -39,8 +39,8 @@ function isString(value): value is string {
     return typeof value === 'string';
 }
 
-function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): androidx.appcompat.app.AlertDialog.Builder {
-    const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
+function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOptions): androidx.appcompat.app.AlertDialog.Builder {
+    const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
     const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
     alert.setTitle(options && isString(options.title) ? options.title : null);
     alert.setMessage(options && isString(options.message) ? options.message : null);
@@ -61,12 +61,12 @@ function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): 
             options.view instanceof View
                 ? options.view
                 : createViewFromEntry({
-                      moduleName: options.view as string
+                      moduleName: options.view as string,
                   });
 
         view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = getSystemCssClasses();
-        modalRootViewCssClasses.forEach(c => view.cssClasses.add(c));
+        modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
 
         (activity as any)._currentModalCustomView = view;
         view._setupAsRootView(activity);
@@ -81,13 +81,12 @@ function createAlertDialog(options?: DialogOptions & MDCAlertControlerOptions): 
     return alert;
 }
 
-function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
-    const dlg = builder.show();
-    const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
+function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
+    const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
     if ((activity as any)._currentModalCustomView) {
         const view = (activity as any)._currentModalCustomView as View;
         const context = options.context || {};
-        context.closeCallback = function(...originalArgs) {
+        context.closeCallback = function (...originalArgs) {
             dlg.dismiss();
             if (resolve) {
                 resolve.apply(this, originalArgs);
@@ -96,10 +95,7 @@ function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options
         view.bindingContext = fromObject(context);
     }
     if (options.titleColor) {
-        const textViewId = dlg
-            .getContext()
-            .getResources()
-            .getIdentifier('android:id/alertTitle', null, null);
+        const textViewId = dlg.getContext().getResources().getIdentifier('android:id/alertTitle', null, null);
         if (textViewId) {
             const tv = <android.widget.TextView>dlg.findViewById(textViewId);
             if (tv) {
@@ -107,10 +103,7 @@ function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options
             }
         }
         if (options.messageColor) {
-            const messageTextViewId = dlg
-                .getContext()
-                .getResources()
-                .getIdentifier('android:id/message', null, null);
+            const messageTextViewId = dlg.getContext().getResources().getIdentifier('android:id/message', null, null);
             if (messageTextViewId) {
                 const messageTextView = <android.widget.TextView>dlg.findViewById(messageTextViewId);
                 if (messageTextView) {
@@ -156,23 +149,22 @@ function showDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options
             buttons[i] = <android.widget.Button>dlg.findViewById(id);
         }
 
-        buttons.forEach(button => {
+        buttons.forEach((button) => {
             if (button) {
                 button.setTextColor((options.buttonInkColor || options.buttonTitleColor).android);
             }
         });
     }
+    dlg.show();
     return dlg;
 }
 
-function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validation?: Function): void {
-    if (!options) {
-        return;
-    }
+function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any) {
+    
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
-    const onDone = function(result: boolean, dialog?: android.content.DialogInterface) {
-        if (validation && !validation(options)) {
+    const onDone = function (result: boolean, dialog?: android.content.DialogInterface) {
+        if (options && options.shouldResolveOnAction && !options.shouldResolveOnAction(validationArgs ? validationArgs(result) : result)) {
             return;
         }
         if (onDoneCalled) {
@@ -188,42 +180,10 @@ function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Build
         callback && callback(result);
     };
 
-    if (options.okButtonText) {
-        alert.setPositiveButton(
-            options.okButtonText,
-            new android.content.DialogInterface.OnClickListener({
-                onClick: function(dialog: android.content.DialogInterface, id: number) {
-                    onDone(true, dialog);
-                }
-            })
-        );
-    }
-
-    if (options.cancelButtonText) {
-        alert.setNegativeButton(
-            options.cancelButtonText,
-            new android.content.DialogInterface.OnClickListener({
-                onClick: function(dialog: android.content.DialogInterface, id: number) {
-                    onDone(false, dialog);
-                }
-            })
-        );
-    }
-
-    if (options.neutralButtonText) {
-        alert.setNeutralButton(
-            options.neutralButtonText,
-            new android.content.DialogInterface.OnClickListener({
-                onClick: function(dialog: android.content.DialogInterface, id: number) {
-                    onDone(undefined, dialog);
-                }
-            })
-        );
-    }
-    const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
-    alert.setOnDismissListener(
+    const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
+    builder.setOnDismissListener(
         new android.content.DialogInterface.OnDismissListener({
-            onDismiss: function() {
+            onDismiss: function () {
                 onDone(false);
                 if ((activity as any)._currentModalCustomView) {
                     const view = (activity as any)._currentModalCustomView;
@@ -232,9 +192,72 @@ function addButtonsToAlertDialog(alert: androidx.appcompat.app.AlertDialog.Build
                     view._isAddedToNativeVisualTree = false;
                     (activity as any)._currentModalCustomView = null;
                 }
-            }
+            },
         })
     );
+    const dlg = builder.create();
+    if (!options) {
+        return dlg;
+    }
+
+    if (options.okButtonText) {
+        dlg.setButton(
+            android.content.DialogInterface.BUTTON_POSITIVE,
+            options.okButtonText,
+            null,
+            new android.content.DialogInterface.OnClickListener({
+                onClick: function (dialog: android.content.DialogInterface, id: number) {
+                    onDone(true, dialog);
+                },
+            })
+        );
+        // alert.setPositiveButton(
+
+        // );
+    }
+
+    if (options.cancelButtonText) {
+        dlg.setButton(
+            android.content.DialogInterface.BUTTON_NEGATIVE,
+            options.cancelButtonText,
+            null,
+            new android.content.DialogInterface.OnClickListener({
+                onClick: function (dialog: android.content.DialogInterface, id: number) {
+                    onDone(false, dialog);
+                },
+            })
+        );
+        // alert.setNegativeButton(
+        //     options.cancelButtonText,
+        //     new android.content.DialogInterface.OnClickListener({
+        //         onClick: function(dialog: android.content.DialogInterface, id: number) {
+        //             onDone(false, dialog);
+        //         }
+        //     })
+        // );
+    }
+
+    if (options.neutralButtonText) {
+        dlg.setButton(
+            android.content.DialogInterface.BUTTON_NEUTRAL,
+            options.neutralButtonText,
+            null,
+            new android.content.DialogInterface.OnClickListener({
+                onClick: function (dialog: android.content.DialogInterface, id: number) {
+                    onDone(undefined, dialog);
+                },
+            })
+        );
+        // alert.setNeutralButton(
+        //     options.neutralButtonText,
+        //     new android.content.DialogInterface.OnClickListener({
+        //         onClick: function(dialog: android.content.DialogInterface, id: number) {
+        //             onDone(undefined, dialog);
+        //         }
+        //     })
+        // );
+    }
+    return dlg;
 }
 
 export function alert(arg: any): Promise<void> {
@@ -242,15 +265,15 @@ export function alert(arg: any): Promise<void> {
         try {
             const defaultOptions = {
                 title: ALERT,
-                okButtonText: OK
+                okButtonText: OK,
             };
             const options = !isDialogOptions(arg) ? Object.assign(defaultOptions, { message: arg + '' }) : Object.assign(defaultOptions, arg);
 
-            const alert = createAlertDialog(options);
+            const alert = createAlertDialogBuilder(options);
 
-            addButtonsToAlertDialog(alert, options);
+            const dlg = prepareAndCreateAlertDialog(alert, options);
 
-            showDialog(alert, options, resolve);
+            showDialog(dlg, options, resolve);
         } catch (ex) {
             console.error(ex);
             reject(ex);
@@ -263,12 +286,12 @@ export class AlertDialog {
     constructor(private options: any) {}
     show() {
         if (!this.dialog) {
-            const alert = createAlertDialog(this.options);
+            const alert = createAlertDialogBuilder(this.options);
 
-            const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
+            const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
             alert.setOnDismissListener(
                 new android.content.DialogInterface.OnDismissListener({
-                    onDismiss: function() {
+                    onDismiss: function () {
                         if ((activity as any)._currentModalCustomView) {
                             const view = (activity as any)._currentModalCustomView;
                             view.callUnloaded();
@@ -276,11 +299,11 @@ export class AlertDialog {
                             view._isAddedToNativeVisualTree = false;
                             (activity as any)._currentModalCustomView = null;
                         }
-                    }
+                    },
                 })
             );
-
-            this.dialog = showDialog(alert, this.options);
+            this.dialog = alert.create();
+            showDialog(this.dialog, this.options);
         }
     }
     hide() {
@@ -297,20 +320,16 @@ export function confirm(arg: any): Promise<boolean> {
             const defaultOptions = {
                 title: CONFIRM,
                 okButtonText: OK,
-                cancelButtonText: CANCEL
+                cancelButtonText: CANCEL,
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
-                      message: arg + ''
+                      message: arg + '',
                   })
                 : Object.assign(defaultOptions, arg);
-            const alert = createAlertDialog(options);
-
-            addButtonsToAlertDialog(alert, options, function(result) {
-                resolve(result);
-            });
-
-            showDialog(alert, options, resolve);
+            const alert = createAlertDialogBuilder(options);
+            const dlg = prepareAndCreateAlertDialog(alert, options, resolve);
+            showDialog(dlg, options, resolve);
         } catch (ex) {
             console.error(ex);
             reject(ex);
@@ -325,7 +344,7 @@ export function prompt(arg: any): Promise<PromptResult> {
         title: PROMPT,
         okButtonText: OK,
         cancelButtonText: CANCEL,
-        inputType: inputType.text
+        inputType: inputType.text,
     };
 
     if (arguments.length === 1) {
@@ -389,13 +408,20 @@ export function prompt(arg: any): Promise<PromptResult> {
             }
             stackLayout.addChild(textField);
             options.view = stackLayout;
-            const alert = createAlertDialog(options);
+            const alert = createAlertDialogBuilder(options);
 
-            addButtonsToAlertDialog(alert, options, function(r) {
-                resolve({ result: r, text: textField.text });
-            });
+            const dlg = prepareAndCreateAlertDialog(
+                alert,
+                options,
+                function (r) {
+                    resolve({ result: r, text: textField.text });
+                },
+                (r) => {
+                    return { result: r, text: textField.text };
+                }
+            );
 
-            showDialog(alert, options, resolve);
+            showDialog(dlg, options, resolve);
             if (!!options.autoFocus) {
                 textField.requestFocus();
             }
@@ -411,7 +437,7 @@ export function login(arg: any): Promise<LoginResult> {
     const defaultOptions = {
         title: LOGIN,
         okButtonText: OK,
-        cancelButtonText: CANCEL
+        cancelButtonText: CANCEL,
     };
 
     if (arguments.length === 1) {
@@ -459,20 +485,26 @@ export function login(arg: any): Promise<LoginResult> {
             stackLayout.addChild(passwordTextField);
             options.view = stackLayout;
 
-            const alert = createAlertDialog(options);
-            addButtonsToAlertDialog(alert, options, function(r) {
-                resolve({
-                    result: r,
-                    userName: userNameTextField.text,
-                    password: passwordTextField.text
-                });
-            });
+            const alert = createAlertDialogBuilder(options);
 
             if (!!options.beforeShow) {
                 options.beforeShow(options, userNameTextField, passwordTextField);
             }
-
-            const dlg = showDialog(alert, options, resolve);
+            const dlg = prepareAndCreateAlertDialog(
+                alert,
+                options,
+                function (r) {
+                    resolve({
+                        result: r,
+                        userName: userNameTextField.text,
+                        password: passwordTextField.text,
+                    });
+                },
+                (r) => {
+                    return { result: r, userName: userNameTextField.text, password: passwordTextField.text };
+                }
+            );
+            showDialog(dlg, options, resolve);
             if (!!options.autoFocus) {
                 userNameTextField.requestFocus();
             }
@@ -512,7 +544,7 @@ export function action(arg: any): Promise<string> {
 
     return new Promise<string>((resolve, reject) => {
         try {
-            const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
+            const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
             const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
             const message = options && isString(options.message) ? options.message : '';
             const title = options && isString(options.title) ? options.title : '';
@@ -533,38 +565,20 @@ export function action(arg: any): Promise<string> {
                 alert.setItems(
                     options.actions,
                     new android.content.DialogInterface.OnClickListener({
-                        onClick: function(dialog: android.content.DialogInterface, which: number) {
+                        onClick: function (dialog: android.content.DialogInterface, which: number) {
                             resolve(options.actions[which]);
-                        }
+                        },
                     })
                 );
             }
 
-            if (isString(options.cancelButtonText)) {
-                alert.setNegativeButton(
-                    options.cancelButtonText,
-                    new android.content.DialogInterface.OnClickListener({
-                        onClick: function(dialog: android.content.DialogInterface, id: number) {
-                            dialog.cancel();
-                            resolve(options.cancelButtonText);
-                        }
-                    })
-                );
-            }
-
-            alert.setOnDismissListener(
-                new android.content.DialogInterface.OnDismissListener({
-                    onDismiss: function() {
-                        if (isString(options.cancelButtonText)) {
-                            resolve(options.cancelButtonText);
-                        } else {
-                            resolve('');
-                        }
-                    }
-                })
-            );
-
-            showDialog(alert, options, resolve);
+            const dlg = prepareAndCreateAlertDialog(alert, options, function (r) {
+                if (r === false || r === undefined) {
+                    resolve(options.cancelButtonText);
+                }
+                resolve(r);
+            });
+            showDialog(dlg, options, resolve);
         } catch (ex) {
             console.error(ex);
             reject(ex);

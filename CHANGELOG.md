@@ -3,6 +3,131 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/Akylas/nativescript-material-components/compare/v3.2.1...v3.2.2) (2020-04-20)
+
+
+### Bug Fixes
+
+* **dialogs:** missing return case ([630fd6d](https://github.com/Akylas/nativescript-material-components/commit/630fd6daa3dd9e3b6406c60ea77cd1139c947964))
+* **textview:** Editable prop now works ([fe05603](https://github.com/Akylas/nativescript-material-components/commit/fe05603eca0786cbfcf5bfc74bdc4985748a5a97))
+
+
+
+
+
+## [3.2.1](https://github.com/Akylas/nativescript-material-components/compare/v3.2.0...v3.2.1) (2020-04-14)
+
+**Note:** Version bump only for package nativescript-material-components
+
+
+
+
+
+# [3.2.0](https://github.com/Akylas/nativescript-material-components/compare/v3.1.18...v3.2.0) (2020-04-14)
+
+
+### Features
+
+* new tabs component to replace N one ([2ca1a71](https://github.com/Akylas/nativescript-material-components/commit/2ca1a7170b65a5203b9f5d8f83097f03fe850b8d))
+
+
+
+
+
+## [3.1.18](https://github.com/Akylas/nativescript-material-components/compare/v3.1.17...v3.1.18) (2020-04-12)
+
+
+### Bug Fixes
+
+* native class when possible. Will be faster ([a3e1964](https://github.com/Akylas/nativescript-material-components/commit/a3e1964182af43fd4bedae369d48b4ab67238b9a))
+
+
+
+
+
+## [3.1.17](https://github.com/Akylas/nativescript-material-components/compare/v3.1.16...v3.1.17) (2020-04-09)
+
+
+### Bug Fixes
+
+* **ios:** prevent dialogs not showing ([45488a0](https://github.com/Akylas/nativescript-material-components/commit/45488a0c3c1f6e3db3b135110b50d357808059e1))
+* rollback on keyboardType, added digits ([27cfbb5](https://github.com/Akylas/nativescript-material-components/commit/27cfbb5372e99134fd97ef4d392fdb583768007b))
+
+
+
+
+
+## [3.1.16](https://github.com/Akylas/nativescript-material-components/compare/v3.1.15...v3.1.16) (2020-04-07)
+
+
+### Bug Fixes
+
+* bottomsheet android is now handling dismissOnDraggingDownSheet correcly ([d07719f](https://github.com/Akylas/nativescript-material-components/commit/d07719f7504ce8046fdbc626a1a0989a5b81efed))
+* snackbar cleanup ([5133052](https://github.com/Akylas/nativescript-material-components/commit/5133052e7afb9098eec3900d63e8cb0d241491e1))
+* vue signature fi ([8f8570a](https://github.com/Akylas/nativescript-material-components/commit/8f8570aa581997b239b1a4ab7f798f4cb147d47d))
+
+
+### Features
+
+* new keyboardTypes ([ed71f6a](https://github.com/Akylas/nativescript-material-components/commit/ed71f6addbfc35e82dce2164b78f607ee0d63e39))
+* setSelection on textfield/textview ([bc845b6](https://github.com/Akylas/nativescript-material-components/commit/bc845b615e10b7f7957b4e57436cfa165bfe02ab))
+
+
+
+
+
+## [3.1.15](https://github.com/Akylas/nativescript-material-components/compare/v3.1.14...v3.1.15) (2020-03-24)
+
+
+### Bug Fixes
+
+* prevent closecallback from beeing called twice ([d090ac8](https://github.com/Akylas/nativescript-material-components/commit/d090ac843d6d5a5a4865cf3edd47ef4b23d59692))
+* **ios:** textfield backgroundColor not rendered correctly ([26fbae6](https://github.com/Akylas/nativescript-material-components/commit/26fbae6d20487c26994808ecb957fdf06a857841))
+
+
+
+
+
+## [3.1.14](https://github.com/Akylas/nativescript-material-components/compare/v3.1.13...v3.1.14) (2020-03-19)
+
+
+### Bug Fixes
+
+* vue bottomsheet close callback args ([1c05736](https://github.com/Akylas/nativescript-material-components/commit/1c05736d752432986eac08ed12d2b0ce4f8cc865))
+* **ios:** edge case dialog custom view not being layed out ([b975d63](https://github.com/Akylas/nativescript-material-components/commit/b975d63dc53c03ff006c21233c10b1afcaf73b16))
+
+
+
+
+
+## [3.1.13](https://github.com/Akylas/nativescript-material-components/compare/v3.1.12...v3.1.13) (2020-03-15)
+
+
+### Bug Fixes
+
+* **android:** wrong button gradle dependencies ([b5b001f](https://github.com/Akylas/nativescript-material-components/commit/b5b001fde85ccb787379c432c3dc60990173d65f))
+
+
+
+
+
+## [3.1.12](https://github.com/Akylas/nativescript-material-components/compare/v3.1.11...v3.1.12) (2020-03-13)
+
+
+### Bug Fixes
+
+* **android:** prevent crash on closing ([0bbc552](https://github.com/Akylas/nativescript-material-components/commit/0bbc552da2be0d98494141935f1b92b5160fd2b2))
+* vue $closeBottomSheet support argiuments ([4337ac0](https://github.com/Akylas/nativescript-material-components/commit/4337ac0cc7d1a40bfb09c9ba5e74d1440a736ac6))
+
+
+### Features
+
+* shouldResolveOnAction ([69c1d0d](https://github.com/Akylas/nativescript-material-components/commit/69c1d0d42127402bf197b2068e546a424d17b866))
+
+
+
+
+
 ## [3.1.11](https://github.com/Akylas/nativescript-material-components/compare/v3.1.10...v3.1.11) (2020-03-04)
 
 

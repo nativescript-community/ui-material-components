@@ -4,18 +4,19 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap"></NavigationButton>
         </ActionBar>
         <ScrollView>
-        <GridLayout rows="auto,auto,auto,auto,auto,auto,auto">
-            <StackLayout row="0" backgroundColor="red" horizontalAlignment="center">
+        <StackLayout>
+            <StackLayout backgroundColor="red" horizontalAlignment="center">
                 <MDTextField id="textField1"  verticalAlignment="center" variant="none" width="250" placeholderColor="green" keyboardType="datetime" hint="i am an hint" returnKeyType="next" v-model="value"  @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" />
             </StackLayout>
-            <GridLayout row="1" backgroundColor="red" rows="auto" padding="20">
+            <GridLayout backgroundColor="red" rows="auto" padding="20">
                 <MDTextField id="textField2" variant="filled" hint="hint me" v-model="value" backgroundColor="green" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floating="false" />
             </GridLayout>
-            <MDTextField row="2" id="textField3" hint="filled" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" margin="10" />
-            <MDTextField row="3" id="textField4" maxLength="10" variant="outline" hint="outline" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floatingColor="red" margin="10" buttonColor="red"/>
-            <MDTextField row="4" id="textField5" variant="outline" hint="outline" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floatingColor="red" placeholderColor="blue" strokeColor="green" margin="10" />
-            <MDTextField row="5" id="textField6" variant="filled" required="true" email="true" hint="fill this out..." @focus="onFocus" @blur="onBlur" floating="false" @textChange="onTextChange" @returnPress="onReturnPress" strokeColor="red" margin="10" />
-        </GridLayout>
+            <MDTextField id="textField3" hint="filled" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" margin="10" />
+            <MDTextField id="textField4" maxLength="10" variant="outline" hint="outline" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floatingColor="red" margin="10" buttonColor="red"/>
+            <MDTextField id="textField5" variant="outline" hint="outline" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floatingColor="red" placeholderColor="blue" strokeColor="green" margin="10" />
+            <MDTextField id="textField6" variant="filled" required="true" email="true" hint="fill this out..." @focus="onFocus" @blur="onBlur" floating="false" @textChange="onTextChange" @returnPress="onReturnPress" strokeColor="red" margin="10" />
+            <MDTextField id="textField7" variant="filled" hint="limited digits 0123456789." @focus="onFocus" @blur="onBlur" floating="false" @textChange="onTextChange" @returnPress="onReturnPress" digits="0123456789." strokeColor="red" margin="10" />
+        </StackLayout>
         </ScrollView>
     </Page>
 </template>
@@ -38,7 +39,7 @@ export default Vue.extend({
 
     methods: {
         onNavigationButtonTap() {
-            frameModule.topmost().goBack();
+            frameModule.Frame.topmost().goBack();
         },
         onFocus() {
             console.log('Focused');

@@ -1,6 +1,7 @@
 import { NativeScriptVue } from 'nativescript-vue';
 import { BottomSheetOptions } from '../bottomsheet';
 import { Vue } from 'vue/types/vue';
+import { View } from '@nativescript/core';
 
 export interface VueBottomSheetOptions extends Omit<BottomSheetOptions, 'view'> {
     props?: any;
@@ -9,7 +10,7 @@ export interface VueBottomSheetOptions extends Omit<BottomSheetOptions, 'view'> 
 declare module 'nativescript-vue' {
     interface NativeScriptVue {
         $showBottomSheet(component: typeof Vue, options?: VueBottomSheetOptions);
-        $closeBottomSheet();
+        $closeBottomSheet(...args);
     }
 }
 
@@ -29,17 +30,19 @@ const BottomSheetPlugin = {
             this.nativeView.showBottomSheet(
                 Object.assign({}, options, {
                     view: navEntryInstance.nativeView,
-                    closeCallback: objId => {
-                        options.closeCallback && options.closeCallback();
-                        navEntryInstance.$emit('bottomsheet:close');
-                        navEntryInstance.$destroy();
-                        navEntryInstance = null;
+                    closeCallback: (...args) => {
+                        if (navEntryInstance && navEntryInstance.nativeView) {
+                            options.closeCallback && options.closeCallback.apply(undefined, args);
+                            navEntryInstance.$emit('bottomsheet:close');
+                            navEntryInstance.$destroy();
+                            navEntryInstance = null;
+                        }
                     }
                 })
             );
         };
-        Vue.prototype.$closeBottomSheet = function() {
-            this.nativeView.closeBottomSheet();
+        Vue.prototype.$closeBottomSheet = function(...args) {
+            (this.nativeView as View).closeBottomSheet.apply(this.nativeView, args);
         };
     }
 };

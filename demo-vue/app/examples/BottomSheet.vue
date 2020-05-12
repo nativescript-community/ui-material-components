@@ -35,7 +35,7 @@ export default Vue.extend({
     },
     methods: {
         onNavigationButtonTap() {
-            frameModule.topmost().goBack();
+            frameModule.Frame.topmost().goBack();
         },
         onTap(args: EventData) {
             const obj = args.object as View;
@@ -44,9 +44,9 @@ export default Vue.extend({
             switch (objId) {
                 case 'bottomsheet': {
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
-                        // transparent:true,
-                        closeCallback: objId => {
-                            console.log('bottom sheet closed');
+                        transparent:true,
+                        closeCallback: (...args) => {
+                            console.log('bottom sheet closed', args);
                         }
                     });
                     break;
@@ -55,8 +55,8 @@ export default Vue.extend({
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
                         ignoreTopSafeArea:false,
                         // transparent:true,
-                        closeCallback: objId => {
-                            console.log('bottom sheet closed');
+                        closeCallback: (...args) => {
+                            console.log('bottom sheet closed', args);
                         }
                     });
                     break;
@@ -65,8 +65,8 @@ export default Vue.extend({
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
                         // transparent:true,
                         ignoreBottomSafeArea:true,
-                        closeCallback: objId => {
-                            console.log('bottom sheet closed');
+                        closeCallback: (...args) => {
+                            console.log('bottom sheet closed', args);
                         }
                     });
                     break;
@@ -76,16 +76,16 @@ export default Vue.extend({
                         // transparent:true,
                         ignoreTopSafeArea:false,
                         ignoreBottomSafeArea:true,
-                        closeCallback: objId => {
-                            console.log('bottom sheet closed');
+                        closeCallback: (...args) => {
+                            console.log('bottom sheet closed', args);
                         }
                     });
                     break;
                 }
                 case 'bottomsheet-keyboard': {
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInnerKeyboard, {
-                        closeCallback: objId => {
-                            console.log('bottom sheet closed');
+                        closeCallback: (...args) => {
+                            console.log('bottom sheet closed', args);
                         }
                     });
                     break;

@@ -1,9 +1,5 @@
 import { ActionOptions, AlertOptions, ConfirmOptions, LoginOptions as TNSLoginOptions, LoginResult, PromptOptions as TNSPromptOptions, PromptResult } from '@nativescript/core/ui/dialogs';
-import { Font } from '@nativescript/core/ui/styling/font';
 import { Color } from '@nativescript/core/color';
-import { TextAlignment } from '@nativescript/core/ui/text-base/text-base';
-import { View } from '@nativescript/core/ui/core/view/view';
-import { ImageSource } from '@nativescript/core/image-source/image-source';
 import { Page } from '@nativescript/core/ui/page/page';
 import { MDCAlertControlerOptions } from './dialogs-common';
 import { TextField, TextFieldProperties } from 'nativescript-material-textfield';

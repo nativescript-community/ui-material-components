@@ -1,4 +1,4 @@
 ext {
-    // androidXMaterial = "1.2.0-alpha01"
+    androidXMaterial = "1.2.0-alpha02"
 }
 // println 'demo vue before plugins set  androidXMaterial ' + ext.androidXMaterial

@@ -11,6 +11,7 @@ import TextFields, { title as textFieldsTitle } from './TextFields.vue';
 import TextViews, { title as textViewsTitle } from './TextView.vue';
 import ButtonIssue, { title as buttonIssueTitle } from './ButtonIssue.vue';
 import BottomSheet, { title as bottomsheetTitle } from './BottomSheet.vue';
+import Tabs, { title as tabsTitle } from './Tabs.vue';
 import Mixins, { title as mixinsTitle } from './Mixins.vue';
 
 export const getExamples = () => {
@@ -26,6 +27,10 @@ export const getExamples = () => {
         {
             title: bottomNavigationBarTitle,
             component: BottomNavigationBar
+        },
+        {
+            title: tabsTitle,
+            component: Tabs
         },
         {
             title: cardViewsTitle,

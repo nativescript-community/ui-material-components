@@ -36,6 +36,7 @@ export class TextView extends EditableTextBase {
     blur();
     requestFocus();
     clearFocus();
+    setSelection(start:number, stop?:number);
 }
 
 export function initTextInputEditText(); // android only

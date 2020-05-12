@@ -1,6 +1,7 @@
 dependencies {
-	def androidxVersion =  project.hasProperty("androidxVersion") ? project.androidxVersion : "1.1.0"
+	def androidXAppCompatVersion =  project.hasProperty("androidXAppCompatVersion") ? project.androidXAppCompatVersion : "1.1.0"
+	def androidXMaterial =  project.hasProperty("androidXMaterial") ? project.androidXMaterial : "1.1.0"
 
-	compile "androidx.appcompat:appcompat:$androidxVersion"
-	compile "com.google.android.material:material:1.1.0"
+	compile "androidx.appcompat:appcompat:$androidXAppCompatVersion"
+	compile "com.google.android.material:material:$androidXMaterial"
 }
