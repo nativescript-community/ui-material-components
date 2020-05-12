@@ -169,25 +169,27 @@ class ViewWithElevationAndRipple extends View {
         return result;
     }
 
-    [elevationProperty.getDefault](): number {
-        return this.getDefaultElevation();
-    }
+    // [elevationProperty.getDefault](): number {
+    //     return this.getDefaultElevation();
+    // }
     [elevationProperty.setNative](value: number) {
         if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
-            this.nativeViewProtected.setElevation(value);
+            const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+            this.nativeViewProtected.setElevation(newValue);
         }
     }
-    [dynamicElevationOffsetProperty.getDefault](): number {
-        return this.getDefaultDynamicElevationOffset();
-    }
+    // [dynamicElevationOffsetProperty.getDefault](): number {
+    //     return this.getDefaultDynamicElevationOffset();
+    // }
     [dynamicElevationOffsetProperty.setNative](value: number) {
         this.nativeViewProtected.setClickable(this.isUserInteractionEnabled);
         if (isPostLollipop()) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
-            this.nativeViewProtected.setTranslationZ(value);
+            const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+            this.nativeViewProtected.setTranslationZ(newValue);
         }
     }
     [androidElevationProperty.setNative](value: number) {
