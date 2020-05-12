@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.3](https://github.com/Akylas/nativescript-material-components/compare/v3.2.2...v3.2.3) (2020-05-12)
+
+
+### Bug Fixes
+
+* **android:** elevation on pre lollipop ([08f96c4](https://github.com/Akylas/nativescript-material-components/commit/08f96c4acafcf3e12e60feb16dbd8abccd9e88de))
+* **android:** elevation on pre lollipop was in dp ([dd6ad58](https://github.com/Akylas/nativescript-material-components/commit/dd6ad588e4b4c65528145a260bb238aeb8351bca))
+* **android:** fab button was not working anymore ([c7e96bc](https://github.com/Akylas/nativescript-material-components/commit/c7e96bc0f771100c8a8dd39015df9e65438c1ca3))
+* **bottomnavigationbar:** showBadge doesn't exist on google BottomNavigationView, replace with getOrCreateBadge ([0cf6241](https://github.com/Akylas/nativescript-material-components/commit/0cf6241cd77574925b9b7d42f372f2af85aac0bc))
+* **ios:** text not supported anymore on fab (for now) ([b88513a](https://github.com/Akylas/nativescript-material-components/commit/b88513a864ca597afcbefab5315d20100543c40a))
+
+
+
+
+
 ## [3.2.2](https://github.com/Akylas/nativescript-material-components/compare/v3.2.1...v3.2.2) (2020-04-20)
 
 
