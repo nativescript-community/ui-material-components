@@ -48,7 +48,9 @@ export default Vue.extend({
                     break;
                 }
                 case 'show_snack_action_color': {
-                    showSnack({ message: 'this is test snack with action colored!', actionText:'delete', actionTextColor:'red' });
+                    showSnack({ message: 'this is test snack with action colored!', actionText:'delete', actionTextColor:'red' }).then(r=>{
+                        console.log('showSnack result', r);
+                    });
                     break;
                 }
             }
