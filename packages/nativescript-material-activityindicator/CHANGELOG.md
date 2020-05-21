@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.4](https://github.com/Akylas/nativescript-material-components/compare/v3.2.3...v3.2.4) (2020-05-21)
+
+
+### Bug Fixes
+
+* full esm support! ([7e910f3](https://github.com/Akylas/nativescript-material-components/commit/7e910f3950659ee4165bfea5cf3cf7379617bf1e))
+
+
+
+
+
 ## [3.2.3](https://github.com/Akylas/nativescript-material-components/compare/v3.2.2...v3.2.3) (2020-05-12)
 
 **Note:** Version bump only for package nativescript-material-activityindicator
