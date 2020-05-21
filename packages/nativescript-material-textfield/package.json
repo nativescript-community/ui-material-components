@@ -4,6 +4,7 @@
     "description": "Material textfield component",
     "main": "./textfield.js",
     "module": "./textfield.mjs",
+    "sideEffects": false,
     "typings": "./textfield.d.ts",
     "scripts": {
         "tsc": "cp ../../src/textfield/textfield.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",

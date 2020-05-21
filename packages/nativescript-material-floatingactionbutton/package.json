@@ -4,6 +4,7 @@
     "description": "Material floatingactionbutton component",
     "main": "./floatingactionbutton.js",
     "module": "./floatingactionbutton.mjs",
+    "sideEffects": false,
     "typings": "./floatingactionbutton.d.ts",
     "scripts": {
         "tsc": "cp ../../src/floatingactionbutton/floatingactionbutton.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",

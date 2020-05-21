@@ -4,6 +4,7 @@
     "description": "NativeScript plugin to add a bottom navigation bar component for Android & iOS",
     "main": "bottomnavigationbar.js",
     "module": "./bottomnavigationbar.mjs",
+    "sideEffects": false,
     "typings": "bottomnavigationbar.d.ts",
     "nativescript": {
         "platforms": {

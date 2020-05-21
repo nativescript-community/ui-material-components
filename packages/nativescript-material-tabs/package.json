@@ -4,6 +4,7 @@
     "description": "Material Tabs component",
     "main": "./tabs.js",
     "module": "./tabs.mjs",
+    "sideEffects": false,
     "typings": "./tabs.d.ts",
     "scripts": {
         "tsc": "cp ../../src/tabs/tabs.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",

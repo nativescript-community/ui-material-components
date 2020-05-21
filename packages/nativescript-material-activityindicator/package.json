@@ -4,6 +4,7 @@
     "description": "Material ActivityIndicator component",
     "main": "./activityindicator.js",
     "module": "./activityindicator.mjs",
+    "sideEffects": false,
     "typings": "./activityindicator.d.ts",
     "scripts": {
         "tsc": "cp ../../src/activityindicator/activityindicator.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",

@@ -4,6 +4,7 @@
     "description": "Material cardview component",
     "main": "./cardview.js",
     "module": "./cardview.mjs",
+    "sideEffects": false,
     "typings": "./cardview.d.ts",
     "scripts": {
         "tsc": "cp ../../src/cardview/cardview.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",

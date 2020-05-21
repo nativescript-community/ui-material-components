@@ -4,6 +4,7 @@
     "description": "Material bottomsheet component",
     "main": "./bottomsheet.js",
     "module": "./bottomsheet.mjs",
+    "sideEffects": false,
     "typings": "./bottomsheet.d.ts",
     "scripts": {
         "tsc": "cp ../../src/bottomsheet/bottomsheet.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",

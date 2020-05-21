@@ -4,6 +4,7 @@
     "description": "Material textview component",
     "main": "./textview.js",
     "module": "./textview.mjs",
+    "sideEffects": false,
     "typings": "./textview.d.ts",
     "scripts": {
         "tsc": "cp ../../src/textview/textview.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",

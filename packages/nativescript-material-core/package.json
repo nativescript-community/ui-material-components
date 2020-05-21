@@ -4,6 +4,7 @@
     "description": "Material Core component",
     "main": "./core.js",
     "module": "./core.mjs",
+    "sideEffects": false,
     "typings": "./core.d.ts",
     "scripts": {
         "tsc": "cp ../../src/core/core.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",

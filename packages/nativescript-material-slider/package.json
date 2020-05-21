@@ -4,6 +4,7 @@
     "description": "Material slider component",
     "main": "./slider.js",
     "module": "./slider.mjs",
+    "sideEffects": false,
     "typings": "./slider.d.ts",
     "scripts": {
         "tsc": "cp ../../src/slider/slider.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",

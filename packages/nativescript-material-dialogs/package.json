@@ -4,6 +4,7 @@
     "description": "Material Dialogs component",
     "main": "./dialogs.js",
     "module": "./dialogs.mjs",
+    "sideEffects": false,
     "typings": "./dialogs.d.ts",
     "scripts": {
         "tsc": "cp ../../src/dialogs/dialogs.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",

@@ -4,6 +4,7 @@
     "description": "Material ripple component",
     "main": "./ripple.js",
     "module": "./ripple.mjs",
+    "sideEffects": false,
     "typings": "./ripple.d.ts",
     "scripts": {
         "tsc": "cp ../../src/ripple/ripple.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
