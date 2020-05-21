@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.7](https://github.com/Akylas/nativescript-material-components/compare/v3.2.6...v3.2.7) (2020-05-21)
+
+
+### Bug Fixes
+
+* **android:** bottomsheet working in ESM ([7a75bcb](https://github.com/Akylas/nativescript-material-components/commit/7a75bcbf8b2c89fcb4e45facb9c5b61b2532a55b))
+
+
+
+
+
 ## [3.2.6](https://github.com/Akylas/nativescript-material-components/compare/v3.2.5...v3.2.6) (2020-05-21)
 
 **Note:** Version bump only for package nativescript-material-bottomsheet

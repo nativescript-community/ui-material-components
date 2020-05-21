@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.7](https://github.com/Akylas/nativescript-material-components/compare/v3.2.6...v3.2.7) (2020-05-21)
+
+
+### Bug Fixes
+
+* **android:** snackbar supports ESM ([f8ee7e0](https://github.com/Akylas/nativescript-material-components/commit/f8ee7e066a1cc4e541e7f9d77913d87a5d2b711f))
+
+
+
+
+
 ## [3.2.6](https://github.com/Akylas/nativescript-material-components/compare/v3.2.5...v3.2.6) (2020-05-21)
 
 **Note:** Version bump only for package nativescript-material-snackbar
