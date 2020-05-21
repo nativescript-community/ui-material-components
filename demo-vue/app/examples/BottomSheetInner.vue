@@ -16,8 +16,8 @@ export default Vue.extend({
         return {};
     },
     methods: {
-        onButtonTap() {
-            this.$closeBottomSheet(true);
+        onButtonTap(event) {
+            this.$closeBottomSheet(event.object.id);
         },
         onShownInBottomSheet(args) {
             console.log('onShownInBottomSheet');
