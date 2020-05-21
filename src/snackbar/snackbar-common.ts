@@ -52,17 +52,18 @@ export interface SnackBarOptions {
 }
 
 export enum DismissReasons {
-    SWIPE = 'Swipe',
-    ACTION = 'Action',
-    TIMEOUT = 'Timeout',
-    MANUAL = 'Manual',
-    CONSECUTIVE = 'Consecutive',
-    UNKNOWN = 'Unknown'
+    SWIPE = 'swipe',
+    ACTION = 'action',
+    TIMEOUT = 'timeout',
+    MANUAL = 'manual',
+    CONSECUTIVE = 'consecutive',
+    UNKNOWN = 'unknown'
 }
 
 export enum SnackBarAction {
-    NONE = 'None',
-    DISMISS = 'Dismiss'
+    ACTION = 'action',
+    NONE = 'none',
+    DISMISS = 'dismiss'
 }
 
 export abstract class SnackBarBase {

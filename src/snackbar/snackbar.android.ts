@@ -105,24 +105,43 @@ export class SnackBar extends SnackBarBase {
         }
         if (resolve) {
             const listener = new android.view.View.OnClickListener({
-                onClick: args => {
+                onClick: (args) => {
                     resolve({
-                        command: 'Action',
+                        command: SnackBarAction.ACTION,
                         reason: _getReason(1),
-                        event: args
+                        event: args,
                     });
                     if (this._snackbarCallback) {
                         (this._snackbarCallback as any).cb = null;
                         this._snackbarCallback = null;
                     }
                     this._snackbar = null;
-                }
+                },
             });
 
             // set the action text, click listener
             this._snackbar.setAction(options.actionText, listener);
-            initializeSnackCallback();
-            const cb = (this._snackbarCallback = new SnackCallback());
+
+            const callbackListener = new com.nativescript.material.snackbar.SnackCallback.SnackCallbackListener({
+                onDismissed(snackbar: com.google.android.material.snackbar.Snackbar, event: number) {
+                    // if the dismiss was not caused by the action button click listener
+                    const resolve = (cb as any).resolve;
+                    if (event !== com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_ACTION && resolve) {
+                        resolve({
+                            command: SnackBarAction.DISMISS,
+                            reason: _getReason(event),
+                            event: event,
+                        });
+                        (cb as any).resolve.resolve = null;
+                    }
+                    (cb as any).nListener = null;
+                },
+
+                onShown(snackbar: com.google.android.material.snackbar.Snackbar) {},
+            });
+            const cb = (this._snackbarCallback = new com.nativescript.material.snackbar.SnackCallback());
+            cb.setListener(callbackListener);
+            (cb as any).nListener = callbackListener; // handles the resolve of the promise
             (cb as any).resolve = resolve; // handles the resolve of the promise
             this._snackbar.addCallback(cb);
         }
@@ -158,7 +177,7 @@ export class SnackBar extends SnackBarBase {
                     setTimeout(() => {
                         resolve({
                             action: SnackBarAction.DISMISS,
-                            reason: _getReason(3)
+                            reason: _getReason(3),
                         });
                     }, 200);
                     this._snackbar = null;
@@ -168,49 +187,13 @@ export class SnackBar extends SnackBarBase {
             } else {
                 resolve({
                     action: SnackBarAction.NONE,
-                    message: 'No actionbar to dismiss'
+                    message: 'No actionbar to dismiss',
                 });
             }
         });
     }
 }
 
-let SnackCallback: SnackCallback;
-
-interface SnackCallback {
-    // resolve: Function;
-    new (): com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback<com.google.android.material.snackbar.Snackbar>;
-}
-function initializeSnackCallback() {
-    if (SnackCallback) {
-        return;
-    }
-
-    class SnackCallbackImpl extends com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback<com.google.android.material.snackbar.Snackbar> {
-        public resolve: Function = null;
-
-        constructor() {
-            super();
-            return global.__native(this);
-        }
-
-        onDismissed(snackbar: com.google.android.material.snackbar.Snackbar, event: number) {
-            // if the dismiss was not caused by the action button click listener
-            if (event !== com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_ACTION && this.resolve) {
-                this.resolve({
-                    command: 'Dismiss',
-                    reason: _getReason(event),
-                    event: event
-                });
-                this.resolve = null;
-            }
-        }
-
-        onShown(snackbar: com.google.android.material.snackbar.Snackbar) {}
-    }
-
-    SnackCallback = SnackCallbackImpl;
-}
 export function showSnack(options: SnackBarOptions) {
     return new SnackBar().showSnack(options);
 }

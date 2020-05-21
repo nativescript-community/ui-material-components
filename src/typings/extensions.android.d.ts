@@ -11,6 +11,21 @@ declare namespace com {
                     fullClearFocus();
                 }
             }
+            export namespace snackbar {
+                class SnackCallback extends com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback<com.google.android.material.snackbar.Snackbar> {
+                    public setListener(listener: SnackCallback.SnackCallbackListener);
+                }
+                namespace SnackCallback {
+                    class SnackCallbackListener {
+                        constructor(implementation: {
+                            onDismissed(snackbar: com.google.android.material.snackbar.Snackbar, event: number): void;
+                            onShown(snackbar: com.google.android.material.snackbar.Snackbar): void;
+                        });
+                        public onDismissed(snackbar: com.google.android.material.snackbar.Snackbar, event: number): void;
+                        public onShown(snackbar: com.google.android.material.snackbar.Snackbar): void;
+                    }
+                }
+            }
             export namespace bottomsheet {
                 class BottomSheetDialogFragment extends com.google.android.material.bottomsheet.BottomSheetDialogFragment {
                     public setListener(listener: BottomSheetDialogFragment.BottomSheetDialogFragmentListener);
