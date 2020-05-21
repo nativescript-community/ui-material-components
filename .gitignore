@@ -74,3 +74,6 @@ packages/**/*.ngsummary.json
 .idea
 /pnpm-lock.yaml
 pnpm-lock.yaml
+
+packages/**/*js.map
+packages/**/*js

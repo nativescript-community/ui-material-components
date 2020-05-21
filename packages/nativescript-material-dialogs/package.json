@@ -2,11 +2,14 @@
     "name": "nativescript-material-dialogs",
     "version": "3.2.3",
     "description": "Material Dialogs component",
-    "main": "./dialogs",
+    "main": "./dialogs.js",
+    "module": "./dialogs.mjs",
     "typings": "./dialogs.d.ts",
     "scripts": {
-        "tsc-win": "..\\..\\node_modules\\.bin\\tsc && copy ..\\..\\src\\dialogs\\dialogs.d.ts .\\",
-        "tsc": "cp ../../src/dialogs/dialogs.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck",
+        "tsc": "cp ../../src/dialogs/dialogs.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
+        "tsc-win": "copy ..\\..\\src\\dialogs\\dialogs.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
+        "build": "npm run tsc && npm run build.esm && node ../../build.esm.js && ../../node_modules/.bin/rimraf ./build/esm",
+        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments --outDir ./build/esm",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {

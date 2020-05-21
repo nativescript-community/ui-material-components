@@ -3,10 +3,9 @@
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
-        "declaration": true,
-        "removeComments": false,
+        "removeComments": true,
         "noLib": false,
-        "emitDecoratorMetadata": true,
+        "emitDecoratorMetadata": false,
         "experimentalDecorators": true,
         "lib": ["es6", "dom"],
         "sourceMap": true,
@@ -17,12 +16,12 @@
         "noEmitOnError": false,
         "noImplicitAny": false,
         "noImplicitReturns": true,
-        "noImplicitUseStrict": false,
+        "noImplicitUseStrict": true,
         "noFallthroughCasesInSwitch": true,
+        "sourceRoot": "../src",
         "baseUrl": ".",
         "outDir": "./plugin",
         "paths": {
-            
             "tns-core-modules": ["./node_modules/@nativescript/core"],
             "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
             "nativescript-material-dialogs": ["src/dialogs/dialogs"],
@@ -56,8 +55,8 @@
             "*": ["node_modules/*"]
         }
     },
-    "include": ["src/**/*", "src/**/*.ts", "./references.d.ts", "./src/references.d.ts"],
-    "exclude": ["platforms"],
+    "include": ["src/**/*", "./references.d.ts"],
+    "exclude": ["node_modules", "platforms"],
     "compileOnSave": false,
     "angularCompilerOptions": {
         "skipTemplateCodegen": true

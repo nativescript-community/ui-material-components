@@ -2,7 +2,8 @@
     "name": "nativescript-material-bottomnavigationbar",
     "version": "3.2.3",
     "description": "NativeScript plugin to add a bottom navigation bar component for Android & iOS",
-    "main": "bottomnavigationbar",
+    "main": "bottomnavigationbar.js",
+    "module": "./bottomnavigationbar.mjs",
     "typings": "bottomnavigationbar.d.ts",
     "nativescript": {
         "platforms": {
@@ -11,8 +12,10 @@
         }
     },
     "scripts": {
-        "tsc-win": "copy ..\\..\\src\\bottomnavigationbar\\bottomnavigationbar.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck",
-        "tsc": "cp ../../src/bottomnavigationbar/bottomnavigationbar.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck",
+        "tsc": "cp ../../src/bottomnavigationbar/bottomnavigationbar.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
+        "tsc-win": "copy ..\\..\\src\\bottomnavigationbar\\bottomnavigationbar.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
+        "build": "npm run tsc && npm run build.esm && node ../../build.esm.js && ../../node_modules/.bin/rimraf ./build/esm && npm run ngc",
+        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments --outDir ./build/esm",
         "ngc-win": "..\\..\\node_modules\\.bin\\ngc",
         "ngc": "NODE_OPTIONS=--max_old_space_size=8192 ../../node_modules/.bin/ngc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"

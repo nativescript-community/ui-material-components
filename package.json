@@ -9,9 +9,9 @@
         }
     },
     "scripts": {
-        "publish": "lerna run tsc && lerna run ngc && lerna publish",
-        "build.plugin": "lerna run tsc && lerna run ngc",
-        "build.plugin.win": "lerna run tsc-win && lerna run ngc-win",
+        "publish": "npm run build && lerna publish",
+        "build": "lerna run build",
+        "build.win": "lerna run build-win",
         "force_publish": "lerna publish from-package",
         "increment_version": "lerna version",
         "tsc": "lerna run tsc",
@@ -61,7 +61,9 @@
         "nativescript-vue": "2.5.1",
         "prettier": "^2.0.4",
         "prompt": "^1.0.0",
+        "recursive-copy": "^2.0.10",
         "rimraf": "^3.0.2",
+        "through2": "^3.0.1",
         "rxjs": "^6.5.5",
         "tns-platform-declarations": "6.5.1",
         "tslint": "^6.1.1",
