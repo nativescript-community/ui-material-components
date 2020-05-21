@@ -2,15 +2,14 @@
     "name": "nativescript-material-button",
     "version": "3.2.5",
     "description": "Material button component",
-    "main": "./button.js",
-    "module": "./button.mjs",
+    "main": "./button",
     "sideEffects": false,
     "typings": "./button.d.ts",
     "scripts": {
         "tsc": "cp ../../src/button/button.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "copy ..\\..\\src\\button\\button.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
-        "build": "npm run tsc && npm run build.esm && node ../../build.esm.js && ../../node_modules/.bin/rimraf ./build/esm && npm run ngc",
-        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments --outDir ./build/esm",
+        "build": "npm run tsc && npm run build.esm && ../../node_modules/.bin/rimraf ./build/esm && npm run ngc",
+        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",
         "ngc-win": "..\\..\\node_modules\\.bin\\ngc",
         "ngc": "NODE_OPTIONS=--max_old_space_size=8192 ../../node_modules/.bin/ngc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"

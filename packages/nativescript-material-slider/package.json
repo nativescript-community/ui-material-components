@@ -2,15 +2,14 @@
     "name": "nativescript-material-slider",
     "version": "3.2.5",
     "description": "Material slider component",
-    "main": "./slider.js",
-    "module": "./slider.mjs",
+    "main": "./slider",
     "sideEffects": false,
     "typings": "./slider.d.ts",
     "scripts": {
         "tsc": "cp ../../src/slider/slider.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "copy ..\\..\\src\\slider\\slider.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
-        "build": "npm run tsc && npm run build.esm && node ../../build.esm.js && ../../node_modules/.bin/rimraf ./build/esm && npm run ngc",
-        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments --outDir ./build/esm",
+        "build": "npm run tsc && npm run build.esm && ../../node_modules/.bin/rimraf ./build/esm && npm run ngc",
+        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",
         "ngc-win": "..\\..\\node_modules\\.bin\\ngc",
         "ngc": "NODE_OPTIONS=--max_old_space_size=8192 ../../node_modules/.bin/ngc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"

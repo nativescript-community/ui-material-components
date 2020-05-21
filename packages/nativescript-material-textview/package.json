@@ -2,15 +2,14 @@
     "name": "nativescript-material-textview",
     "version": "3.2.5",
     "description": "Material textview component",
-    "main": "./textview.js",
-    "module": "./textview.mjs",
+    "main": "./textview",
     "sideEffects": false,
     "typings": "./textview.d.ts",
     "scripts": {
         "tsc": "cp ../../src/textview/textview.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "copy ..\\..\\src\\textview\\textview.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
-        "build": "npm run tsc && npm run build.esm && node ../../build.esm.js && ../../node_modules/.bin/rimraf ./build/esm && npm run ngc",
-        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments --outDir ./build/esm",
+        "build": "npm run tsc && npm run build.esm && ../../node_modules/.bin/rimraf ./build/esm && npm run ngc",
+        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",
         "ngc-win": "..\\..\\node_modules\\.bin\\ngc",
         "ngc": "NODE_OPTIONS=--max_old_space_size=8192 ../../node_modules/.bin/ngc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"

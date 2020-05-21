@@ -2,15 +2,14 @@
     "name": "nativescript-material-core",
     "version": "3.2.5",
     "description": "Material Core component",
-    "main": "./core.js",
-    "module": "./core.mjs",
+    "main": "./core",
     "sideEffects": false,
     "typings": "./core.d.ts",
     "scripts": {
         "tsc": "cp ../../src/core/core.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "copy ..\\..\\src\\core\\core.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
-        "build": "npm run tsc && npm run build.esm && node ../../build.esm.js && ../../node_modules/.bin/rimraf ./build/esm",
-        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments --outDir ./build/esm",
+        "build": "npm run tsc && npm run build.esm && ../../node_modules/.bin/rimraf ./build/esm",
+        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
     },
     "nativescript": {
