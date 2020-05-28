@@ -227,10 +227,6 @@ export class CardView extends CardViewBase {
     _strokeWidth = 0;
     _borderRadius = 0;
 
-    get android(): com.google.android.material.card.MaterialCardView {
-        return this.nativeView;
-    }
-
     getDefaultElevation(): number {
         if (isPostLollipop()) {
             return 1; // 1dp @dimen/mtrl_card_elevation

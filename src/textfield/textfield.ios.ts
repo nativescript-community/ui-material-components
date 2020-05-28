@@ -290,9 +290,6 @@ export class TextField extends TextFieldBase {
     //         super.dismissSoftInput();
     //     }
     // }
-    get ios(): MDCTextField {
-        return this.nativeViewProtected;
-    }
 
     blur() {
         this.dismissSoftInput();

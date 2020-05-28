@@ -137,7 +137,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     bottomSheetOptions.dismissCallback();
                 }
 
-                const owner = this.owner;
                 if (owner && owner.isLoaded) {
                     owner.callUnloaded();
                 }

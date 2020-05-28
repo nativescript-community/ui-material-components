@@ -224,9 +224,6 @@ export class TextView extends TextViewBase {
     //         super.dismissSoftInput();
     //     }
     // }
-    get ios(): MDCMultilineTextField {
-        return this.nativeViewProtected;
-    }
 
     blur() {
         this.dismissSoftInput();

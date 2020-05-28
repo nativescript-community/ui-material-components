@@ -10,9 +10,6 @@ let MDCFabButton: typeof com.google.android.material.floatingactionbutton.Floati
 export class FloatingActionButton extends FloatingActionButtonBase {
     nativeViewProtected: com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-    get android(): com.google.android.material.floatingactionbutton.FloatingActionButton {
-        return this.nativeViewProtected;
-    }
     public createNativeView() {
         if (!MDCFabButton) {
             MDCFabButton = com.google.android.material.floatingactionbutton.FloatingActionButton;

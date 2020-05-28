@@ -15,9 +15,6 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     nativeViewProtected: MDCActivityIndicator;
     autoSize = true;
 
-    get ios(): MDCActivityIndicator {
-        return this.nativeViewProtected;
-    }
     public createNativeView() {
         const view = MDCActivityIndicator.new();
         const color = (themer.getAppColorScheme() as MDCSemanticColorScheme).primaryColor;

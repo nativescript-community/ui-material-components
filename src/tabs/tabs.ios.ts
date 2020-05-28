@@ -511,9 +511,6 @@ export class Tabs extends TabsBase {
         super.onUnloaded();
     }
 
-    get ios(): UIPageViewController {
-        return this._ios;
-    }
 
     public layoutNativeView(left: number, top: number, right: number, bottom: number): void {
         //

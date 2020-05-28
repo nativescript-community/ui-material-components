@@ -20,10 +20,6 @@ export class Button extends ButtonBase {
 
     public isLoading: boolean;
 
-    get android(): com.google.android.material.button.MaterialButton {
-        return this.nativeView;
-    }
-
     @profile
     public createNativeView() {
         let layoutId;

@@ -54,6 +54,9 @@ export class TextField extends TextFieldBase {
     get nativeViewProtected() {
         return this.layoutView;
     }
+    set nativeViewProtected(view) {
+        this.layoutView = view;
+    }
 
     @profile
     public createNativeView() {

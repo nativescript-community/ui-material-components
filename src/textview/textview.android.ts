@@ -47,6 +47,9 @@ export class TextView extends TextViewBase {
     get nativeViewProtected() {
         return this.layoutView;
     }
+    set nativeViewProtected(view) {
+        this.layoutView = view;
+    }
 
     public createNativeView() {
         let layoutId;
