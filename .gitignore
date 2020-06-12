@@ -47,7 +47,6 @@ obj
 .vs
 .tscache
 *.user
-*.js
 *.map
 !gruntfile.js
 node_modules
@@ -77,3 +76,4 @@ pnpm-lock.yaml
 
 packages/**/*js.map
 packages/**/*js
+hooks
