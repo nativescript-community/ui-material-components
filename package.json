@@ -56,6 +56,7 @@
         "@commitlint/config-conventional": "^8.3.4",
         "@nativescript/angular":"8.21.0",
         "@nativescript/core":"6.5.1",
+        "@types/node": "14.0.4",
         "husky": "^4.2.3",
         "lerna": "^3.20.2",
         "nativescript-vue": "2.5.1",
