@@ -5,8 +5,12 @@
         </ActionBar>
         <GridLayout rows="*, auto" backgroundColor="blue">
             <StackLayout class="page" backgroundColor="white" row="0">
-                <!-- <ns-first-tab *ngSwitchDefault></ns-first-tab> -->
-                <!-- <ns-third-tab *ngSwitchCase="2"></ns-third-tab> -->
+                <GridLayout class="p-20" v-if="currentTab === 0"> -->
+                    <Label class="h1 text-center" text="First tab" textWrap="true"></Label>
+                </GridLayout> -->
+                <GridLayout class="p-20" v-if="currentTab === 2">
+                    <Label class="h1 text-center" text="Third tab" textWrap="true"></Label>
+                </GridLayout>
             </StackLayout>
             <MDBottomNavigationBar
                 row="1"
@@ -37,7 +41,8 @@ export default Vue.extend({
     name: 'BottomNavigationBar',
     data() {
         return {
-            title: title
+            title: title,
+            currentTab: 0
         };
     },
     methods: {
@@ -58,6 +63,7 @@ export default Vue.extend({
         onBottomNavigationTabSelected(args: TabSelectedEventData): void {
             console.log(`old tab index:  ${args.oldIndex}`);
             console.log(`selected tab index:  ${args.newIndex}`);
+            this.currentTab = args.newIndex;
         },
 
         onBottomNavigationTabReselected(args: TabReselectedEventData): void {
