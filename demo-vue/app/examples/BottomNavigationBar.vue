@@ -8,7 +8,14 @@
                 <!-- <ns-first-tab *ngSwitchDefault></ns-first-tab> -->
                 <!-- <ns-third-tab *ngSwitchCase="2"></ns-third-tab> -->
             </StackLayout>
-            <MDBottomNavigationBar row="1" activeColor="red" @loaded="onbottomNavigationBarLoaded">
+            <MDBottomNavigationBar
+                row="1"
+                activeColor="red" 
+                @loaded="onbottomNavigationBarLoaded"
+                @tabPressed="onBottomNavigationTabPressed"
+                @tabSelected="onBottomNavigationTabSelected"
+                @tabReselected="onBottomNavigationTabReselected"                
+            >
                 <MDBottomNavigationTab title="First" icon="res://ic_home" activeColor="green"/>
                 <MDBottomNavigationTab title="Second" icon="res://ic_view_list" isSelectable="false" />
                 <MDBottomNavigationTab title="Third" icon="res://ic_menu" inactiveColor="brown"/>
