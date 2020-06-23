@@ -41,20 +41,20 @@ function isString(value): value is string {
 
 function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOptions): androidx.appcompat.app.AlertDialog.Builder {
     const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
-    const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
-    alert.setTitle(options && isString(options.title) ? options.title : null);
-    alert.setMessage(options && isString(options.message) ? options.message : null);
+    const builder = new androidx.appcompat.app.AlertDialog.Builder(activity);
+    builder.setTitle(options && isString(options.title) ? options.title : null);
+    builder.setMessage(options && isString(options.message) ? options.message : null);
     if (options.titleIcon) {
-        alert.setIcon(options.titleIcon.android);
+        builder.setIcon(options.titleIcon.android);
     }
     if (options && options.cancelable === false) {
-        alert.setCancelable(false);
+        builder.setCancelable(false);
     }
     if (options.titleIcon) {
-        alert.setIcon(options.titleIcon.android);
+        builder.setIcon(options.titleIcon.android);
     }
     if (options.customTitleView) {
-        alert.setCustomTitle(options.customTitleView.nativeViewProtected);
+        builder.setCustomTitle(options.customTitleView.nativeViewProtected);
     }
     if (options.view) {
         const view =
@@ -68,7 +68,7 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
         const modalRootViewCssClasses = getSystemCssClasses();
         modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
 
-        (activity as any)._currentModalCustomView = view;
+        (builder as any)._currentModalCustomView = view;
         view._setupAsRootView(activity);
         view._isAddedToNativeVisualTree = true;
         view.callLoaded();
@@ -76,24 +76,12 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
         // seems necessary to add a frame or the view wont correctly size itself
         const frame = new android.widget.FrameLayout(activity);
         frame.addView(view.nativeViewProtected);
-        alert.setView(frame);
+        builder.setView(frame);
     }
-    return alert;
+    return builder;
 }
 
 function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
-    const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
-    if ((activity as any)._currentModalCustomView) {
-        const view = (activity as any)._currentModalCustomView as View;
-        const context = options.context || {};
-        context.closeCallback = function (...originalArgs) {
-            dlg.dismiss();
-            if (resolve) {
-                resolve.apply(this, originalArgs);
-            }
-        };
-        view.bindingContext = fromObject(context);
-    }
     if (options.titleColor) {
         const textViewId = dlg.getContext().getResources().getIdentifier('android:id/alertTitle', null, null);
         if (textViewId) {
@@ -185,12 +173,12 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
         new android.content.DialogInterface.OnDismissListener({
             onDismiss: function () {
                 onDone(false);
-                if ((activity as any)._currentModalCustomView) {
-                    const view = (activity as any)._currentModalCustomView;
+                if ((builder as any)._currentModalCustomView) {
+                    const view = (builder as any)._currentModalCustomView;
                     view.callUnloaded();
                     view._tearDownUI(true);
                     view._isAddedToNativeVisualTree = false;
-                    (activity as any)._currentModalCustomView = null;
+                    (builder as any)._currentModalCustomView = null;
                 }
             },
         })
@@ -198,6 +186,17 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
     const dlg = builder.create();
     if (!options) {
         return dlg;
+    }
+    if ((builder as any)._currentModalCustomView) {
+        const view = (builder as any)._currentModalCustomView as View;
+        const context = options.context || {};
+        context.closeCallback = function (...originalArgs) {
+            dlg.dismiss();
+            if (callback) {
+                callback.apply(this, originalArgs);
+            }
+        };
+        view.bindingContext = fromObject(context);
     }
 
     if (options.okButtonText) {
@@ -287,22 +286,8 @@ export class AlertDialog {
     show() {
         if (!this.dialog) {
             const alert = createAlertDialogBuilder(this.options);
-
-            const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
-            alert.setOnDismissListener(
-                new android.content.DialogInterface.OnDismissListener({
-                    onDismiss: function () {
-                        if ((activity as any)._currentModalCustomView) {
-                            const view = (activity as any)._currentModalCustomView;
-                            view.callUnloaded();
-                            view._tearDownUI(true);
-                            view._isAddedToNativeVisualTree = false;
-                            (activity as any)._currentModalCustomView = null;
-                        }
-                    },
-                })
-            );
             this.dialog = alert.create();
+            this.dialog = prepareAndCreateAlertDialog(alert, this.options, null);
             showDialog(this.dialog, this.options);
         }
     }
