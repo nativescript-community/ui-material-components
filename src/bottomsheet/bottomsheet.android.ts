@@ -115,7 +115,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
                 const behavior = com.google.android.material.bottomsheet.BottomSheetBehavior.from(view);
                 // prevent hiding the bottom sheet by
-                const dismissOnDraggingDownSheet = bottomSheetOptions.options && bottomSheetOptions.options.dismissOnDraggingDownSheet;
+                const dismissOnDraggingDownSheet = !bottomSheetOptions.options || bottomSheetOptions.options.dismissOnDraggingDownSheet !== false;
                 behavior.setHideable(dismissOnDraggingDownSheet);
                 if (!dismissOnDraggingDownSheet) {
                     // directly expand the bottom sheet after start
