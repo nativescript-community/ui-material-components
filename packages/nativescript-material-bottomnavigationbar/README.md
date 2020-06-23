@@ -32,7 +32,7 @@ tns plugin add nativescript-material-bottomnavigationbar
 
 ### Usage
 
-Before start using the plugin you need to add the icons for android & iOS in your `App_Resources` directory.
+Before start using the plugin you need to add the icons for Android & iOS in your `App_Resources` directory.
 
 #### XML
 

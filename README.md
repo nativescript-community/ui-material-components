@@ -23,7 +23,7 @@ Build beautiful, usable products using Material Components for NativeScript.
 ## Android migration to AndroidX
 
 For Material Components to work correctly with {N} 6 and AndroidX you need to update your android app theme.
-inside ```App_ressources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
+inside ```App_resources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
 
 ## Contribution
 
