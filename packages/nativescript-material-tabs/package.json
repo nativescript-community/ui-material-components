@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-tabs",
-    "version": "3.2.8",
+    "version": "3.2.9",
     "description": "Material Tabs component",
     "main": "./tabs",
     "sideEffects": false,
@@ -37,6 +37,6 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^3.2.8"
+        "nativescript-material-core": "^3.2.9"
     }
 }

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.9](https://github.com/Akylas/nativescript-material-components/compare/v3.2.8...v3.2.9) (2020-06-23)
+
+
+### Bug Fixes
+
+* **android:** default dismissOnDraggingDownSheet value ([0f65246](https://github.com/Akylas/nativescript-material-components/commit/0f652467df70e4a7a6805908dae299ed91e011df))
+* **android:** fix error with multiple dialogs showing and the release of the custom view ([b7badb9](https://github.com/Akylas/nativescript-material-components/commit/b7badb94770d10c4622869b4c3241dbf4ae801ff))
+* **bottomsheet:** set index to 0 instead of -1 ([57cfeff](https://github.com/Akylas/nativescript-material-components/commit/57cfeff43ac8fa637fbd5eb95a6805685b226e7a))
+
+
+
+
+
 ## [3.2.8](https://github.com/Akylas/nativescript-material-components/compare/v3.2.7...v3.2.8) (2020-05-28)
 
 
