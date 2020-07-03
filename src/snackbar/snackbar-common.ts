@@ -31,6 +31,13 @@ export interface SnackBarOptions {
      * Background Color of the snackbar.
      */
     backgroundColor?: string | Color;
+
+    /**
+     * * *IOS Only*
+     * Bottom offset of the snackbar.
+     */
+    bottomOffset?: number;
+
     /**
      * *Android Only*
      * Set the maxLines if you are displaying a long string of text and it will wrap.
@@ -57,13 +64,13 @@ export enum DismissReasons {
     TIMEOUT = 'timeout',
     MANUAL = 'manual',
     CONSECUTIVE = 'consecutive',
-    UNKNOWN = 'unknown'
+    UNKNOWN = 'unknown',
 }
 
 export enum SnackBarAction {
     ACTION = 'action',
     NONE = 'none',
-    DISMISS = 'dismiss'
+    DISMISS = 'dismiss',
 }
 
 export abstract class SnackBarBase {
@@ -79,7 +86,7 @@ export abstract class SnackBarBase {
             backgroundColor,
             maxLines,
             isRTL,
-            view
+            view,
         });
     }
 

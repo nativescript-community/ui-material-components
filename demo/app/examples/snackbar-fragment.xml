@@ -1,6 +1,7 @@
-<StackLayout xmlns:mdb="nativescript-material-button">
+<StackLayout loaded="onViewLoaded" xmlns:mdb="nativescript-material-button">
     <mdb:Button text="Simple Snackbar" tap="showSimpleSnackbar"/>
     <mdb:Button text="Action Snackbar" tap="showActionSnackbar"/>
     <mdb:Button text="Colorful Snackbar" tap="showColorfulSnackbar"/>
+    <mdb:Button visibility="{{isIOS ? 'visible' : 'collapsed'}}" text="Offset Snackbar" tap="showSnackbarWithOffset"/>
     <mdb:Button text="Dismiss Snackbar" tap="dismissSnackbar"/>
 </StackLayout>

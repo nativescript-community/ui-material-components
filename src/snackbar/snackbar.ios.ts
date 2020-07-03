@@ -35,7 +35,7 @@ export class SnackBar extends SnackBarBase {
         if (accentColor) {
             const buttons = messageView.actionButtons;
             const color = (accentColor instanceof Color ? accentColor : new Color(accentColor)).ios;
-            buttons.enumerateObjectsUsingBlock(button => {
+            buttons.enumerateObjectsUsingBlock((button) => {
                 button.setTitleColorForState(color, UIControlState.Normal);
                 button.setTitleColorForState(color, UIControlState.Highlighted);
                 button.inkColor = getRippleColor(accentColor);
@@ -53,7 +53,7 @@ export class SnackBar extends SnackBarBase {
         if (options.actionTextColor && Color.isValid(options.actionTextColor)) {
             const color = (options.actionTextColor instanceof Color ? options.actionTextColor : new Color(options.actionTextColor)).ios;
             const buttons = messageView.actionButtons;
-            buttons.enumerateObjectsUsingBlock(button => {
+            buttons.enumerateObjectsUsingBlock((button) => {
                 button.setTitleColorForState(color, UIControlState.Normal);
                 button.setTitleColorForState(color, UIControlState.Highlighted);
                 button.inkColor = getRippleColor(options.actionTextColor);
@@ -64,6 +64,13 @@ export class SnackBar extends SnackBarBase {
 
         if (options.backgroundColor && Color.isValid(options.backgroundColor)) {
             messageView.snackbarMessageViewBackgroundColor = (options.backgroundColor instanceof Color ? options.backgroundColor : new Color(options.backgroundColor)).ios;
+        }
+
+        if (options.bottomOffset && !isNaN(options.bottomOffset)) {
+            MDCSnackbarManager.setBottomOffset(options.bottomOffset);
+        } else {
+            //To reset bottom offset it the same instance of the snackbar is resued
+            MDCSnackbarManager.setBottomOffset(0);
         }
     }
 
@@ -96,7 +103,7 @@ export class SnackBar extends SnackBarBase {
             this._shown = false;
             resolve({
                 action: SnackBarAction.DISMISS,
-                reason: userInitiated ? DismissReasons.ACTION : DismissReasons.TIMEOUT
+                reason: userInitiated ? DismissReasons.ACTION : DismissReasons.TIMEOUT,
             });
         };
     }
@@ -112,7 +119,7 @@ export class SnackBar extends SnackBarBase {
                     setTimeout(() => {
                         resolve({
                             action: SnackBarAction.DISMISS,
-                            reason: DismissReasons.MANUAL
+                            reason: DismissReasons.MANUAL,
                         });
                     }, 200);
                 } catch (ex) {
@@ -121,7 +128,7 @@ export class SnackBar extends SnackBarBase {
             } else {
                 resolve({
                     action: SnackBarAction.NONE,
-                    message: 'No actionbar to dismiss'
+                    message: 'No actionbar to dismiss',
                 });
             }
         });
