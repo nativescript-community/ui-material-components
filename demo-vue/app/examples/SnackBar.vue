@@ -1,15 +1,18 @@
 <template>
     <Page>
-        
         <ActionBar :title="title">
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
-        <GridLayout rows="*, auto" backgroundColor="blue">
-            <StackLayout ref="innerView">
-                <MDButton id="show_snack" text="show snack" @tap="onTap" />
-                <MDButton id="show_snack_action" text="show snack action" @tap="onTap" />
-                <MDButton id="show_snack_action_color" text="show snack action color" @tap="onTap" />
-            </StackLayout>
+        <GridLayout rows="*, auto" id="innerView" ref="innerView">
+            <Frame actionBarHidden="true">
+                <Page actionBarHidden="true" backgroundColor="blue">
+                    <StackLayout>
+                        <MDButton id="show_snack" text="show snack" @tap="onTap" />
+                        <MDButton id="show_snack_action" text="show snack action" @tap="onTap" />
+                        <MDButton id="show_snack_action_color" text="show snack action color" @tap="onTap" />
+                    </StackLayout>
+                </Page>
+            </Frame>
             <MDBottomNavigationBar row="1" activeColor="red">
                 <MDBottomNavigationTab title="First" icon="res://ic_home" activeColor="green" />
                 <MDBottomNavigationTab title="Second" icon="res://ic_view_list" isSelectable="false" />
@@ -56,7 +59,7 @@ export default Vue.extend({
                     break;
                 }
                 case 'show_snack_action_color': {
-                    showSnack({ message: 'this is test snack with action colored!', actionText: 'delete', actionTextColor: 'red' }).then((r) => {
+                    showSnack({ message: 'this is test snack with action colored!', actionText: 'delete', actionTextColor: 'red', view: this.$refs.innerView.nativeView }).then((r) => {
                         console.log('showSnack result', r);
                     });
                     break;
