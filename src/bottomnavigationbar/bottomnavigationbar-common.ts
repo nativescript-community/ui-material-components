@@ -1,6 +1,6 @@
 import { AddChildFromBuilder, booleanConverter, Color, CssProperty, CSSType, Property, Style, View } from '@nativescript/core/ui/core/view';
 
-import { fromFileOrResource, ImageSource } from '@nativescript/core/image-source';
+import { ImageSource } from '@nativescript/core/image-source';
 
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 
@@ -217,7 +217,7 @@ isSelectableProperty.register(BottomNavigationTabBase);
 export const iconProperty = new Property<BottomNavigationTabBase, ImageSource>({
     name: 'icon',
     affectsLayout: true,
-    valueConverter: fromFileOrResource
+    valueConverter: ImageSource.fromFileOrResourceSync
 });
 
 iconProperty.register(BottomNavigationTabBase);
