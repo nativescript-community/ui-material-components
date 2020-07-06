@@ -65,7 +65,6 @@ export class SnackBar extends SnackBarBase {
         let nCoordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout;
         if (!(nView instanceof androidx.coordinatorlayout.widget.CoordinatorLayout) && nView instanceof android.view.ViewGroup) {
             nCoordinatorLayout = new androidx.coordinatorlayout.widget.CoordinatorLayout(attachView._context);
-            console.log('adding nCoordinatorLayout', attachView, nView, nView.getParent(), nCoordinatorLayout);
             (nView as android.view.ViewGroup).addView(
                 nCoordinatorLayout,
                 new android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT)
