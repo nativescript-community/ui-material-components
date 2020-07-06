@@ -1,5 +1,6 @@
 import { Color } from '@nativescript/core/color';
 import { Frame } from '@nativescript/core/ui/frame';
+import { Page } from '@nativescript/core/ui/page';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 import { android as androidApp } from '@nativescript/core/application';
 
@@ -56,7 +57,22 @@ export class SnackBar extends SnackBarBase {
         while (attachView['_modal']) {
             attachView = attachView['_modal'];
         }
-        this._snackbar = com.google.android.material.snackbar.Snackbar.make(attachView.nativeViewProtected, options.message, options.hideDelay);
+        let nView = attachView.nativeViewProtected as android.view.View;
+        if (attachView instanceof Page) {
+            // in case of a page we try to handle it correctly
+            nView = nView.getParent().getParent() as any;
+        }
+        let nCoordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout;
+        if (!(nView instanceof androidx.coordinatorlayout.widget.CoordinatorLayout) && nView instanceof android.view.ViewGroup) {
+            nCoordinatorLayout = new androidx.coordinatorlayout.widget.CoordinatorLayout(attachView._context);
+            console.log('adding nCoordinatorLayout', attachView, nView, nView.getParent(), nCoordinatorLayout);
+            (nView as android.view.ViewGroup).addView(
+                nCoordinatorLayout,
+                new android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT)
+            );
+            nView = nCoordinatorLayout;
+        }
+        this._snackbar = com.google.android.material.snackbar.Snackbar.make(nView, options.message, options.hideDelay);
 
         this._snackbar.setText(options.message);
         this._snackbar.setDuration(options.hideDelay);
@@ -121,30 +137,32 @@ export class SnackBar extends SnackBarBase {
 
             // set the action text, click listener
             this._snackbar.setAction(options.actionText, listener);
-
-            const callbackListener = new com.nativescript.material.snackbar.SnackCallback.SnackCallbackListener({
-                onDismissed(snackbar: com.google.android.material.snackbar.Snackbar, event: number) {
-                    // if the dismiss was not caused by the action button click listener
-                    const resolve = (cb as any).resolve;
-                    if (event !== com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_ACTION && resolve) {
-                        resolve({
-                            command: SnackBarAction.DISMISS,
-                            reason: _getReason(event),
-                            event: event,
-                        });
-                        (cb as any).resolve.resolve = null;
-                    }
-                    (cb as any).nListener = null;
-                },
-
-                onShown(snackbar: com.google.android.material.snackbar.Snackbar) {},
-            });
-            const cb = (this._snackbarCallback = new com.nativescript.material.snackbar.SnackCallback());
-            cb.setListener(callbackListener);
-            (cb as any).nListener = callbackListener; // handles the resolve of the promise
-            (cb as any).resolve = resolve; // handles the resolve of the promise
-            this._snackbar.addCallback(cb);
         }
+        const cb = (this._snackbarCallback = new com.nativescript.material.snackbar.SnackCallback());
+        const callbackListener = new com.nativescript.material.snackbar.SnackCallback.SnackCallbackListener({
+            onDismissed(snackbar: com.google.android.material.snackbar.Snackbar, event: number) {
+                // if the dismiss was not caused by the action button click listener
+                const resolve = (cb as any).resolve;
+                if (event !== com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_ACTION && resolve) {
+                    resolve({
+                        command: SnackBarAction.DISMISS,
+                        reason: _getReason(event),
+                        event: event,
+                    });
+                    (cb as any).resolve.resolve = null;
+                }
+                (cb as any).nListener = null;
+                if (nCoordinatorLayout) {
+                    (nCoordinatorLayout.getParent() as android.view.ViewGroup).removeView(nCoordinatorLayout);
+                }
+            },
+
+            onShown(snackbar: com.google.android.material.snackbar.Snackbar) {},
+        });
+        cb.setListener(callbackListener);
+        (cb as any).nListener = callbackListener; // handles the resolve of the promise
+        (cb as any).resolve = resolve; // handles the resolve of the promise
+        this._snackbar.addCallback(cb);
     }
 
     public show() {
