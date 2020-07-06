@@ -22,10 +22,12 @@ function getButtonScheme() {
     }
     return buttonScheme;
 }
-
-class ObserverClass extends NSObject {
+declare class IObserverClass extends NSObject {
+    static new(): IObserverClass;
+    static alloc(): IObserverClass;
     _owner: WeakRef<Button>;
-    // NOTE: Refactor this - use Typescript property instead of strings....
+}
+const ObserverClass  = (NSObject as any).extend({
     observeValueForKeyPathOfObjectChangeContext(path: string, tv: UITextView) {
         if (path === 'contentSize') {
             const owner = this._owner && this._owner.get();
@@ -75,9 +77,9 @@ class ObserverClass extends NSObject {
             }
         }
     }
-}
+}) as typeof IObserverClass;
 export class Button extends ButtonBase {
-    private _observer: NSObject;
+    private _observer: IObserverClass;
     nativeViewProtected: MDCButton;
     _ios: MDCButton;
 
@@ -144,8 +146,8 @@ export class Button extends ButtonBase {
     }
     initNativeView() {
         super.initNativeView();
-        this._observer = ObserverClass.alloc().init();
-        this._observer['_owner'] = new WeakRef(this);
+        this._observer = ObserverClass.new();
+        this._observer._owner = new WeakRef(this);
         this.nativeViewProtected.addObserverForKeyPathOptionsContext(this._observer, 'contentSize', NSKeyValueObservingOptions.New, null);
     }
     disposeNativeView() {

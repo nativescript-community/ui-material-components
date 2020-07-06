@@ -10,29 +10,23 @@ import { ios as iosView } from '@nativescript/core/ui/core/view/view-helper';
 import { Page } from '@nativescript/core/ui/page';
 
 const majorVersion = iosUtils.MajorVersion;
-class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottomSheetControllerDelegate {
-    public static ObjCProtocols = [MDCBottomSheetControllerDelegate];
 
-    private _owner: WeakRef<ViewWithBottomSheet>;
+declare class IMDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottomSheetControllerDelegate {
+    static new(): IMDCBottomSheetControllerDelegateImpl;
+    _owner: WeakRef<ViewWithBottomSheet>;
+}
 
-    public static initWithOwner(owner: WeakRef<ViewWithBottomSheet>): MDCBottomSheetControllerDelegateImpl {
-        const impl = <MDCBottomSheetControllerDelegateImpl>MDCBottomSheetControllerDelegateImpl.new();
-        impl._owner = owner;
-        return impl;
-    }
-    bottomSheetControllerDidDismissBottomSheet(controller: MDCBottomSheetController) {
-        // called when clicked on background
-        const owner = this._owner.get();
-        if (owner) {
-            owner._onDismissBottomSheetCallback && owner._onDismissBottomSheetCallback();
-            if (owner && owner.isLoaded) {
-                owner.callUnloaded();
-            }
-        }
-    }
-    bottomSheetControllerStateChangedState(controller: MDCBottomSheetController, state: MDCSheetState) {
-        // called when swiped
-        if (state === MDCSheetState.Closed) {
+const MDCBottomSheetControllerDelegateImpl = (NSObject as any).extend(
+    {
+        // private _owner: WeakRef<ViewWithBottomSheet>;
+
+        // public static initWithOwner(owner: WeakRef<ViewWithBottomSheet>): MDCBottomSheetControllerDelegateImpl {
+        //     const impl = <MDCBottomSheetControllerDelegateImpl>MDCBottomSheetControllerDelegateImpl.new();
+        //     impl._owner = owner;
+        //     return impl;
+        // }
+        bottomSheetControllerDidDismissBottomSheet(controller: MDCBottomSheetController) {
+            // called when clicked on background
             const owner = this._owner.get();
             if (owner) {
                 owner._onDismissBottomSheetCallback && owner._onDismissBottomSheetCallback();
@@ -40,9 +34,24 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottom
                     owner.callUnloaded();
                 }
             }
-        }
+        },
+        bottomSheetControllerStateChangedState(controller: MDCBottomSheetController, state: MDCSheetState) {
+            // called when swiped
+            if (state === MDCSheetState.Closed) {
+                const owner = this._owner.get();
+                if (owner) {
+                    owner._onDismissBottomSheetCallback && owner._onDismissBottomSheetCallback();
+                    if (owner && owner.isLoaded) {
+                        owner.callUnloaded();
+                    }
+                }
+            }
+        },
+    },
+    {
+        protocols: [MDCBottomSheetControllerDelegate],
     }
-}
+) as typeof IMDCBottomSheetControllerDelegateImpl;
 
 declare module '@nativescript/core/ui/core/view/view' {
     interface View {
@@ -68,12 +77,12 @@ function initLayoutGuide(controller: UIViewController) {
         layoutGuide.topAnchor.constraintEqualToAnchor(controller.topLayoutGuide.bottomAnchor),
         layoutGuide.bottomAnchor.constraintEqualToAnchor(controller.bottomLayoutGuide.topAnchor),
         layoutGuide.leadingAnchor.constraintEqualToAnchor(rootView.leadingAnchor),
-        layoutGuide.trailingAnchor.constraintEqualToAnchor(rootView.trailingAnchor)
+        layoutGuide.trailingAnchor.constraintEqualToAnchor(rootView.trailingAnchor),
     ]);
 
     return layoutGuide;
 }
-function layoutView(controller: UILayoutViewController, owner: View): void {
+function layoutView(controller: IUILayoutViewController, owner: View): void {
     let layoutGuide = controller.view.safeAreaLayoutGuide;
     if (!layoutGuide) {
         traceWrite(`safeAreaLayoutGuide during layout of ${owner}. Creating fallback constraints, but layout might be wrong.`, traceCategories.Layout, traceMessageType.error);
@@ -131,7 +140,7 @@ function layoutView(controller: UILayoutViewController, owner: View): void {
             adjustedPosition.top -= delta;
         }
         if (controller.ignoreBottomSafeArea) {
-            const delta = fullscreenPosition.bottom -  safeAreaPosition.bottom ;
+            const delta = fullscreenPosition.bottom - safeAreaPosition.bottom;
             effectiveHeight -= delta;
             // adjustedPosition.bottom += delta * 2;
         }
@@ -197,127 +206,135 @@ function getAvailableSpaceFromParent(view: View, frame: CGRect): { safeArea: CGR
     return { safeArea: safeArea, fullscreen: fullscreen, inWindow: inWindow };
 }
 
-class UILayoutViewController extends UIViewController {
-    public owner: WeakRef<View>;
+declare class IUILayoutViewController extends UIViewController {
+    static new(): IUILayoutViewController;
+    static alloc(): IUILayoutViewController;
+    owner: WeakRef<View>;
     ignoreBottomSafeArea: boolean;
     ignoreTopSafeArea: boolean;
-
-    public static initWithOwner(owner: WeakRef<View>): UILayoutViewController {
-        const controller = <UILayoutViewController>UILayoutViewController.new();
-        controller.owner = owner;
-
-        return controller;
-    }
-
-    public viewDidLoad(): void {
-        super.viewDidLoad();
-
-        // Unify translucent and opaque bars layout
-        // this.edgesForExtendedLayout = UIRectEdgeBottom;
-        this.extendedLayoutIncludesOpaqueBars = true;
-    }
-
-    public viewWillLayoutSubviews(): void {
-        super.viewWillLayoutSubviews();
-        const owner = this.owner.get();
-        if (owner) {
-            iosView.updateConstraints(this, owner);
-        }
-    }
-
-    public viewDidLayoutSubviews(): void {
-        super.viewDidLayoutSubviews();
-        const owner = this.owner.get();
-        if (owner) {
-            if (majorVersion >= 11) {
-                // Handle nested UILayoutViewController safe area application.
-                // Currently, UILayoutViewController can be nested only in a TabView.
-                // The TabView itself is handled by the OS, so we check the TabView's parent (usually a Page, but can be a Layout).
-                const tabViewItem = owner.parent;
-                const tabView = tabViewItem && tabViewItem.parent;
-                let parent = tabView && tabView.parent;
-
-                // Handle Angular scenario where TabView is in a ProxyViewContainer
-                // It is possible to wrap components in ProxyViewContainers indefinitely
-                // Not using instanceof ProxyViewContainer to avoid circular dependency
-                // TODO: Try moving UILayoutViewController out of view module
-                while (parent && !parent.nativeViewProtected) {
-                    parent = parent.parent;
-                }
-                const additionalInsets = { top: 0, left: 0, bottom: 0, right: 0 };
-
-                if (parent) {
-                    const parentPageInsetsTop = parent.nativeViewProtected.safeAreaInsets.top;
-                    const currentInsetsTop = this.view.safeAreaInsets.top;
-                    const additionalInsetsTop = Math.max(parentPageInsetsTop - currentInsetsTop, 0);
-
-                    const parentPageInsetsBottom = parent.nativeViewProtected.safeAreaInsets.bottom;
-                    const currentInsetsBottom = this.view.safeAreaInsets.bottom;
-                    const additionalInsetsBottom = Math.max(parentPageInsetsBottom - currentInsetsBottom, 0);
-
-                    if (additionalInsetsTop > 0 || additionalInsetsBottom > 0) {
-                        additionalInsets.top = additionalInsetsTop;
-                        additionalInsets.bottom = additionalInsetsBottom;
-                    }
-                }
-                // if (this.ignoreTopSafeArea === true) {
-                //     console.log('ignoreTopSafeArea', additionalInsets.top, this.view.safeAreaLayoutGuide.layoutFrame.origin.x, this.view.safeAreaInsets.top);
-                //     additionalInsets.top += this.view.safeAreaLayoutGuide.layoutFrame.origin.x;
-                // }
-
-                // if (this.ignoreBottomSafeArea === true) {
-                //     additionalInsets.bottom -= this.view.safeAreaInsets.bottom;
-                // }
-
-                const insets = new UIEdgeInsets(additionalInsets);
-                this.additionalSafeAreaInsets = insets;
-            }
-
-            layoutView(this, owner);
-        }
-    }
-
-    public viewWillAppear(animated: boolean): void {
-        super.viewWillAppear(animated);
-        const owner = this.owner.get();
-        if (!owner) {
-            return;
-        }
-
-        iosView.updateAutoAdjustScrollInsets(this, owner);
-
-        if (!owner.parent) {
-            owner.callLoaded();
-        }
-    }
-
-    public viewDidDisappear(animated: boolean): void {
-        super.viewDidDisappear(animated);
-        const owner = this.owner.get();
-        if (owner && !owner.parent) {
-            owner.callUnloaded();
-        }
-    }
-
-    // Mind implementation for other controllers
-    public traitCollectionDidChange(previousTraitCollection: UITraitCollection): void {
-        super.traitCollectionDidChange(previousTraitCollection);
-
-        if (majorVersion >= 13) {
-            const owner = this.owner.get();
-            if (
-                owner &&
-                this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection &&
-                this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection(previousTraitCollection)
-            ) {
-                owner.notify({ eventName: 'traitCollectionColorAppearanceChanged', object: owner });
-            }
-        }
-    }
 }
+const UILayoutViewController = (UIViewController as any).extend(
+    {
+        // public owner: WeakRef<View>;
+
+        // public static initWithOwner(owner: WeakRef<View>): UILayoutViewController {
+        //     const controller = <UILayoutViewController>UILayoutViewController.new();
+        //     controller.owner = owner;
+
+        //     return controller;
+        // }
+
+        viewDidLoad(): void {
+            this.super.viewDidLoad();
+
+            // Unify translucent and opaque bars layout
+            // this.edgesForExtendedLayout = UIRectEdgeBottom;
+            this.extendedLayoutIncludesOpaqueBars = true;
+        },
+
+        viewWillLayoutSubviews(): void {
+            this.super.viewWillLayoutSubviews();
+            const owner = this.owner.get();
+            if (owner) {
+                iosView.updateConstraints(this, owner);
+            }
+        },
+
+        viewDidLayoutSubviews(): void {
+            this.super.viewDidLayoutSubviews();
+            const owner = this.owner.get();
+            if (owner) {
+                if (majorVersion >= 11) {
+                    // Handle nested UILayoutViewController safe area application.
+                    // Currently, UILayoutViewController can be nested only in a TabView.
+                    // The TabView itself is handled by the OS, so we check the TabView's parent (usually a Page, but can be a Layout).
+                    const tabViewItem = owner.parent;
+                    const tabView = tabViewItem && tabViewItem.parent;
+                    let parent = tabView && tabView.parent;
+
+                    // Handle Angular scenario where TabView is in a ProxyViewContainer
+                    // It is possible to wrap components in ProxyViewContainers indefinitely
+                    // Not using instanceof ProxyViewContainer to avoid circular dependency
+                    // TODO: Try moving UILayoutViewController out of view module
+                    while (parent && !parent.nativeViewProtected) {
+                        parent = parent.parent;
+                    }
+                    const additionalInsets = { top: 0, left: 0, bottom: 0, right: 0 };
+
+                    if (parent) {
+                        const parentPageInsetsTop = parent.nativeViewProtected.safeAreaInsets.top;
+                        const currentInsetsTop = this.view.safeAreaInsets.top;
+                        const additionalInsetsTop = Math.max(parentPageInsetsTop - currentInsetsTop, 0);
+
+                        const parentPageInsetsBottom = parent.nativeViewProtected.safeAreaInsets.bottom;
+                        const currentInsetsBottom = this.view.safeAreaInsets.bottom;
+                        const additionalInsetsBottom = Math.max(parentPageInsetsBottom - currentInsetsBottom, 0);
+
+                        if (additionalInsetsTop > 0 || additionalInsetsBottom > 0) {
+                            additionalInsets.top = additionalInsetsTop;
+                            additionalInsets.bottom = additionalInsetsBottom;
+                        }
+                    }
+                    // if (this.ignoreTopSafeArea === true) {
+                    //     console.log('ignoreTopSafeArea', additionalInsets.top, this.view.safeAreaLayoutGuide.layoutFrame.origin.x, this.view.safeAreaInsets.top);
+                    //     additionalInsets.top += this.view.safeAreaLayoutGuide.layoutFrame.origin.x;
+                    // }
+
+                    // if (this.ignoreBottomSafeArea === true) {
+                    //     additionalInsets.bottom -= this.view.safeAreaInsets.bottom;
+                    // }
+
+                    const insets = new UIEdgeInsets(additionalInsets);
+                    this.additionalSafeAreaInsets = insets;
+                }
+
+                layoutView(this, owner);
+            }
+        },
+
+        viewWillAppear(animated: boolean): void {
+            this.super.viewWillAppear(animated);
+            const owner = this.owner.get();
+            if (!owner) {
+                return;
+            }
+
+            iosView.updateAutoAdjustScrollInsets(this, owner);
+
+            if (!owner.parent) {
+                owner.callLoaded();
+            }
+        },
+
+        viewDidDisappear(animated: boolean): void {
+            this.super.viewDidDisappear(animated);
+            const owner = this.owner.get();
+            if (owner && !owner.parent) {
+                owner.callUnloaded();
+            }
+        },
+
+        // Mind implementation for other controllers
+        traitCollectionDidChange(previousTraitCollection: UITraitCollection): void {
+            this.super.traitCollectionDidChange(previousTraitCollection);
+
+            if (majorVersion >= 13) {
+                const owner = this.owner.get();
+                if (
+                    owner &&
+                    this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection &&
+                    this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection(previousTraitCollection)
+                ) {
+                    owner.notify({ eventName: 'traitCollectionColorAppearanceChanged', object: owner });
+                }
+            }
+        },
+    },
+    {}
+) as typeof IUILayoutViewController;
 
 export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
-    bottomSheetControllerDelegate: MDCBottomSheetControllerDelegateImpl;
+    bottomSheetControllerDelegate: IMDCBottomSheetControllerDelegateImpl;
     bottomSheetController: MDCBottomSheetController;
     protected _showNativeBottomSheet(parent: View, options: BottomSheetOptions) {
         options.context = options.context || {};
@@ -340,10 +357,11 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         this._setupAsRootView({});
 
         this._commonShowNativeBottomSheet(parentWithController, options);
-        let controller: UILayoutViewController = this.viewController;
+        let controller: IUILayoutViewController = this.viewController;
         if (!controller) {
             const nativeView = this.ios || this.nativeViewProtected;
-            controller = UILayoutViewController.initWithOwner(new WeakRef(this));
+            controller = UILayoutViewController.new();
+            controller.owner = new WeakRef(this);
             // newController = iosView.UILayoutViewController.initWithOwner(new WeakRef(item.content)) as UIViewController;
             if (options.ignoreBottomSafeArea !== undefined) {
                 controller.ignoreBottomSafeArea = options.ignoreBottomSafeArea;
@@ -370,7 +388,8 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         this._raiseShowingBottomSheetEvent();
         // animated = animated === undefined ? true : !!animated;
         const bottomSheet = (this.bottomSheetController = MDCBottomSheetController.alloc().initWithContentViewController(controller));
-        this.bottomSheetControllerDelegate = bottomSheet.delegate = MDCBottomSheetControllerDelegateImpl.initWithOwner(new WeakRef(this));
+        this.bottomSheetControllerDelegate = bottomSheet.delegate = MDCBottomSheetControllerDelegateImpl.new();
+        this.bottomSheetControllerDelegate._owner = new WeakRef(this);
         bottomSheet.isScrimAccessibilityElement = true;
         bottomSheet.scrimAccessibilityLabel = 'close';
         bottomSheet.dismissOnBackgroundTap = options.dismissOnBackgroundTap !== false;

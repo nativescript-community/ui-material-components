@@ -36,190 +36,177 @@ declare module '@nativescript/core/ui/text-field/text-field' {
     }
 }
 
-class TextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
-    private _owner: WeakRef<TextField>;
-    public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerUnderlineImpl {
-        const handler = <TextInputControllerUnderlineImpl>TextInputControllerUnderlineImpl.new();
-        handler._owner = owner;
-        return handler;
-    }
+declare class ITextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
+    static new(): ITextInputControllerUnderlineImpl;
+    _owner: WeakRef<TextField>;
+}
 
+const TextInputControllerUnderlineImpl = (MDCTextInputControllerUnderline as any).extend({
     textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+        let result = this.super.textInsets(defaultValue);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
         }
         return result;
-    }
+    },
+}) as typeof ITextInputControllerUnderlineImpl;
+
+declare class ITextInputControllerImpl extends MDCTextInputControllerBase {
+    static new(): ITextInputControllerImpl;
+    _owner: WeakRef<TextField>;
 }
-
-class TextInputControllerImpl extends MDCTextInputControllerBase {
-    private _owner: WeakRef<TextField>;
-    public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerImpl {
-        const handler = <TextInputControllerImpl>TextInputControllerImpl.new();
-        handler.underlineHeightActive = 0;
-        handler.underlineHeightNormal = 0;
-        handler._owner = owner;
-        return handler;
-    }
-
+const TextInputControllerImpl = (MDCTextInputControllerBase as any).extend({
     textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+        let result = this.super.textInsets(defaultValue);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
         }
         return result;
-    }
-}
+    },
+}) as typeof ITextInputControllerImpl;
 
-class TextInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
-    private _owner: WeakRef<TextField>;
-    public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerOutlinedImpl {
-        const handler = <TextInputControllerOutlinedImpl>TextInputControllerOutlinedImpl.new();
-        handler._owner = owner;
-        return handler;
-    }
+declare class ITextInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
+    static new(): ITextInputControllerOutlinedImpl;
+    _owner: WeakRef<TextField>;
+}
+const TextInputControllerOutlinedImpl = (MDCTextInputControllerOutlined as any).extend({
     textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+        let result = this.super.textInsets(defaultValue);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
         }
         return result;
-    }
-}
+    },
+}) as typeof ITextInputControllerOutlinedImpl;
 
-class TextInputControllerFilledImpl extends MDCTextInputControllerFilled {
-    private _owner: WeakRef<TextField>;
-    public static initWithOwner(owner: WeakRef<TextField>): TextInputControllerFilledImpl {
-        const handler = <TextInputControllerFilledImpl>TextInputControllerFilledImpl.new();
-        handler._owner = owner;
-        return handler;
-    }
+declare class ITextInputControllerFilledImpl extends MDCTextInputControllerFilled {
+    static new(): ITextInputControllerFilledImpl;
+    _owner: WeakRef<TextField>;
+}
+const TextInputControllerFilledImpl = (MDCTextInputControllerFilled as any).extend({
     textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+        let result = this.super.textInsets(defaultValue);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
         }
         return result;
-    }
+    },
+}) as typeof ITextInputControllerFilledImpl;
+
+declare class IUITextFieldDelegateImpl extends NSObject implements UITextFieldDelegate {
+    static new(): IUITextFieldDelegateImpl;
+    _owner: WeakRef<TextField>;
+    firstEdit: boolean;
 }
-
-class UITextFieldDelegateImpl extends NSObject implements UITextFieldDelegate {
-    public static ObjCProtocols = [UITextFieldDelegate];
-
-    private _owner: WeakRef<TextField>;
-    private firstEdit: boolean;
-
-    public static initWithOwner(owner: WeakRef<TextField>): UITextFieldDelegateImpl {
-        const delegate = <UITextFieldDelegateImpl>UITextFieldDelegateImpl.new();
-        delegate._owner = owner;
-
-        return delegate;
-    }
-
-    public textFieldShouldBeginEditing(textField: UITextField): boolean {
-        this.firstEdit = true;
-        const owner = this._owner.get();
-        if (owner) {
-            return owner.editable;
-        }
-
-        return true;
-    }
-
-    public textFieldDidBeginEditing(textField: UITextField): void {
-        const owner = this._owner.get();
-        if (owner) {
-            owner.notify({ eventName: TextField.focusEvent, object: owner });
-        }
-    }
-
-    public textFieldDidEndEditing(textField: UITextField) {
-        const owner = this._owner.get();
-        if (owner) {
-            if (owner.updateTextTrigger === 'focusLost') {
-                textProperty.nativeValueChange(owner, textField.text);
+const UITextFieldDelegateImpl = (NSObject as any).extend(
+    {
+        textFieldShouldBeginEditing(textField: UITextField): boolean {
+            this.firstEdit = true;
+            const owner = this._owner.get();
+            if (owner) {
+                return owner.editable;
             }
 
-            owner.dismissSoftInput();
-        }
-    }
+            return true;
+        },
 
-    public textFieldShouldClear(textField: UITextField) {
-        this.firstEdit = false;
-        const owner = this._owner.get();
-        if (owner) {
-            textProperty.nativeValueChange(owner, '');
-        }
+        textFieldDidBeginEditing(textField: UITextField): void {
+            const owner = this._owner.get();
+            if (owner) {
+                owner.notify({ eventName: TextField.focusEvent, object: owner });
+            }
+        },
 
-        return true;
-    }
+        textFieldDidEndEditing(textField: UITextField) {
+            const owner = this._owner.get();
+            if (owner) {
+                if (owner.updateTextTrigger === 'focusLost') {
+                    textProperty.nativeValueChange(owner, textField.text);
+                }
 
-    public textFieldShouldReturn(textField: UITextField): boolean {
-        // Called when the user presses the return button.
-        const owner = this._owner.get();
-        if (owner) {
-            if (owner.closeOnReturn) {
                 owner.dismissSoftInput();
             }
-            owner.notify({ eventName: TextField.returnPressEvent, object: owner });
-        }
+        },
 
-        return true;
-    }
+        textFieldShouldClear(textField: UITextField) {
+            this.firstEdit = false;
+            const owner = this._owner.get();
+            if (owner) {
+                textProperty.nativeValueChange(owner, '');
+            }
 
-    public textFieldShouldChangeCharactersInRangeReplacementString(textField: UITextField, range: NSRange, replacementString: string): boolean {
-        const owner = this._owner.get();
-        if (owner) {
-            // ignore if not in our alllowed digits
-            if (owner.nsdigits && replacementString.length > 0 && NSString.stringWithString(replacementString).rangeOfCharacterFromSet(owner.nsdigits).location === NSNotFound) {
-                return false;
+            return true;
+        },
+
+        textFieldShouldReturn(textField: UITextField): boolean {
+            // Called when the user presses the return button.
+            const owner = this._owner.get();
+            if (owner) {
+                if (owner.closeOnReturn) {
+                    owner.dismissSoftInput();
+                }
+                owner.notify({ eventName: TextField.returnPressEvent, object: owner });
             }
-            if (owner.secureWithoutAutofill && !textField.secureTextEntry) {
-                /**
-                 * Helps avoid iOS 12+ autofill strong password suggestion prompt
-                 * Discussed in several circles but for example:
-                 * https://github.com/expo/expo/issues/2571#issuecomment-473347380
-                 */
-                textField.secureTextEntry = true;
-            }
-            const delta = replacementString.length - range.length;
-            if (delta > 0) {
-                if (textField.text.length + delta > owner.maxLength) {
+
+            return true;
+        },
+
+        textFieldShouldChangeCharactersInRangeReplacementString(textField: UITextField, range: NSRange, replacementString: string): boolean {
+            const owner = this._owner.get();
+            if (owner) {
+                // ignore if not in our alllowed digits
+                if (owner.nsdigits && replacementString.length > 0 && NSString.stringWithString(replacementString).rangeOfCharacterFromSet(owner.nsdigits).location === NSNotFound) {
                     return false;
                 }
-            }
-
-            if (owner.updateTextTrigger === 'textChanged') {
-                if (textField.secureTextEntry && this.firstEdit) {
-                    textProperty.nativeValueChange(owner, replacementString);
-                } else {
-                    if (range.location <= textField.text.length) {
-                        const newText = NSString.stringWithString(textField.text).stringByReplacingCharactersInRangeWithString(range, replacementString);
-                        textProperty.nativeValueChange(owner, newText);
+                if (owner.secureWithoutAutofill && !textField.secureTextEntry) {
+                    /**
+                     * Helps avoid iOS 12+ autofill strong password suggestion prompt
+                     * Discussed in several circles but for example:
+                     * https://github.com/expo/expo/issues/2571#issuecomment-473347380
+                     */
+                    textField.secureTextEntry = true;
+                }
+                const delta = replacementString.length - range.length;
+                if (delta > 0) {
+                    if (textField.text.length + delta > owner.maxLength) {
+                        return false;
                     }
+                }
+
+                if (owner.updateTextTrigger === 'textChanged') {
+                    if (textField.secureTextEntry && this.firstEdit) {
+                        textProperty.nativeValueChange(owner, replacementString);
+                    } else {
+                        if (range.location <= textField.text.length) {
+                            const newText = NSString.stringWithString(textField.text).stringByReplacingCharactersInRangeWithString(range, replacementString);
+                            textProperty.nativeValueChange(owner, newText);
+                        }
+                    }
+                }
+
+                if (owner.formattedText) {
+                    _updateCharactersInRangeReplacementString(owner.formattedText, range.location, range.length, replacementString);
                 }
             }
 
-            if (owner.formattedText) {
-                _updateCharactersInRangeReplacementString(owner.formattedText, range.location, range.length, replacementString);
-            }
-        }
+            this.firstEdit = false;
 
-        this.firstEdit = false;
-
-        return true;
+            return true;
+        },
+    },
+    {
+        protocols: [UITextFieldDelegate],
     }
-}
+) as typeof IUITextFieldDelegateImpl;
 
 export class TextField extends TextFieldBase {
     nativeViewProtected: MDCTextField;
     nativeTextViewProtected: MDCTextField;
-    private _controller: MDCTextInputControllerBase;
+    private _controller: ITextInputControllerImpl;
     public readonly style: Style & { variant: 'outline' | 'underline' | 'filled' };
     public nsdigits?: NSCharacterSet;
     public clearFocus() {
@@ -255,16 +242,18 @@ export class TextField extends TextFieldBase {
         // disable it for now
         view.clearButtonMode = UITextFieldViewMode.Never;
         const colorScheme = themer.getAppColorScheme();
-        const owner = new WeakRef(this);
         if (this.style.variant === 'filled') {
-            this._controller = TextInputControllerFilledImpl.initWithOwner(owner);
+            this._controller = TextInputControllerFilledImpl.new();
         } else if (this.style.variant === 'outline') {
-            this._controller = TextInputControllerOutlinedImpl.initWithOwner(owner);
+            this._controller = TextInputControllerOutlinedImpl.new();
         } else if (this.style.variant === 'underline') {
-            this._controller = TextInputControllerUnderlineImpl.initWithOwner(owner);
+            this._controller = TextInputControllerUnderlineImpl.new();
         } else {
-            this._controller = TextInputControllerImpl.initWithOwner(owner);
+            this._controller = TextInputControllerImpl.new();
+            this._controller.underlineHeightActive = 0;
+            this._controller.underlineHeightNormal = 0;
         }
+        this._controller._owner = new WeakRef(this);
         this._controller.textInput = view;
         view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;
 
@@ -274,12 +263,13 @@ export class TextField extends TextFieldBase {
         }
         return view;
     }
-    private _delegate: UITextFieldDelegateImpl;
+    private _delegate: IUITextFieldDelegateImpl;
 
     initNativeView() {
         super.initNativeView();
         // it will get picked in onLoaded
-        this._delegate = UITextFieldDelegateImpl.initWithOwner(new WeakRef(this));
+        this._delegate = UITextFieldDelegateImpl.new();
+        this._delegate._owner = new WeakRef(this);
     }
 
     // TODO: check why i was checking for isFirstResponder

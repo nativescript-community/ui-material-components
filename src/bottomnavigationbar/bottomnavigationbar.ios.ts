@@ -6,36 +6,44 @@ import { getRippleColor, themer } from 'nativescript-material-core/core';
 
 import { activeColorCssProperty, BottomNavigationBarBase, BottomNavigationTabBase, inactiveColorCssProperty, tabsProperty, titleVisibilityProperty } from './bottomnavigationbar-common';
 
-// Delegate
-class BottomNavigationBarDelegate extends NSObject {
-    static ObjCProtocols = [MDCBottomNavigationBarDelegate];
-    private _owner: BottomNavigationBar;
-
-    static initWithOwner(owner: WeakRef<BottomNavigationBar>): BottomNavigationBarDelegate {
-        const delegate = <BottomNavigationBarDelegate>BottomNavigationBarDelegate.new();
-        delegate._owner = owner.get();
-
-        return delegate;
-    }
-
-    bottomNavigationBarDidSelectItem(navigationBar: MDCBottomNavigationBar, item: UITabBarItem) {
-        if (this._owner.selectedTabIndex === item.tag) {
-            this._owner._emitTabReselected(item.tag);
-            return;
-        }
-
-        this._owner._emitTabSelected(item.tag);
-    }
-
-    bottomNavigationBarShouldSelectItem(bottomNavigationBar: MDCBottomNavigationBar, item: UITabBarItem): boolean {
-        const bottomNavigationTab = this._owner.items[item.tag];
-        if (!bottomNavigationTab.isSelectable) {
-            this._owner._emitTabPressed(item.tag);
-        }
-
-        return bottomNavigationTab.isSelectable;
-    }
+declare class IBottomNavigationBarDelegate extends NSObject implements MDCBottomNavigationBarDelegate {
+    static new(): IBottomNavigationBarDelegate;
+    _owner: WeakRef<BottomNavigationBar>;
 }
+
+const BottomNavigationBarDelegate = (NSObject as any).extend(
+    {
+
+        bottomNavigationBarDidSelectItem(navigationBar: MDCBottomNavigationBar, item: UITabBarItem) {
+            const owner = this._owner.get();
+            if (!owner) {
+                return;
+            }
+            if (owner.selectedTabIndex === item.tag) {
+                owner._emitTabReselected(item.tag);
+                return;
+            }
+
+            owner._emitTabSelected(item.tag);
+        },
+
+        bottomNavigationBarShouldSelectItem(bottomNavigationBar: MDCBottomNavigationBar, item: UITabBarItem): boolean {
+            const owner = this._owner.get();
+            if (!owner) {
+                return true;
+            }
+            const bottomNavigationTab = owner.items[item.tag];
+            if (!bottomNavigationTab.isSelectable) {
+                owner._emitTabPressed(item.tag);
+            }
+
+            return bottomNavigationTab.isSelectable;
+        },
+    },
+    {
+        protocols: [MDCBottomNavigationBarDelegate],
+    }
+) as typeof IBottomNavigationBarDelegate;
 
 export class BottomNavigationBar extends BottomNavigationBarBase {
     nativeViewProtected: MDCBottomNavigationBar;
@@ -45,7 +53,7 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         super();
     }
 
-    private _delegate: BottomNavigationBarDelegate;
+    private _delegate: IBottomNavigationBarDelegate;
 
     createNativeView(): Object {
         const view = MDCBottomNavigationBar.new();
@@ -58,7 +66,8 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
 
     initNativeView(): void {
         super.initNativeView();
-        this._delegate = BottomNavigationBarDelegate.initWithOwner(new WeakRef(this));
+        this._delegate = BottomNavigationBarDelegate.new();
+        this._delegate._owner = new WeakRef(this);
         this.nativeViewProtected.delegate = this._delegate;
         // Create the tabs before setting the default values for each tab
         // We call this method here to create the tabs defined in the xml
@@ -68,7 +77,7 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
     disposeNativeView() {
         this.nativeViewProtected.delegate = null;
         this._delegate = null;
-        this._items.forEach(item => this._removeView(item));
+        this._items.forEach((item) => this._removeView(item));
         super.disposeNativeView();
     }
 

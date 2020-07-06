@@ -15,7 +15,7 @@ import {
     inputType,
     LoginResult,
     OK,
-    PromptResult
+    PromptResult,
 } from '@nativescript/core/ui/dialogs';
 import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout';
 import { isDefined, isFunction, isString } from '@nativescript/core/utils/types';
@@ -30,196 +30,199 @@ export { capitalizationType, inputType };
 
 const UNSPECIFIED = layout.makeMeasureSpec(0, layout.UNSPECIFIED);
 
-class MDCDialogPresentationControllerDelegateImpl extends NSObject implements MDCDialogPresentationControllerDelegate {
-    public static ObjCProtocols = [MDCDialogPresentationControllerDelegate];
-
-    private _callback: Function;
-
-    public static initWithCallback(callback: Function): MDCDialogPresentationControllerDelegateImpl {
-        const impl = <MDCDialogPresentationControllerDelegateImpl>MDCDialogPresentationControllerDelegateImpl.new();
-        impl._callback = callback;
-        return impl;
-    }
-    dialogPresentationControllerDidDismiss(controller: MDCDialogPresentationController) {
-        const callback = this._callback;
-        if (callback) {
-            callback();
-        }
-    }
+declare class IMDCDialogPresentationControllerDelegateImpl extends NSObject implements MDCDialogPresentationControllerDelegate {
+    static new(): IMDCDialogPresentationControllerDelegateImpl;
+    // _owner: WeakRef<BottomNavigationBar>;
+    _callback: Function;
 }
+const MDCDialogPresentationControllerDelegateImpl = (NSObject as any).extend(
+    {
+        // private _callback: Function;
 
-interface MDCAlertControllerImpl extends MDCAlertController {
-    // new (): MDCAlertControllerImpl;
+        // public static initWithCallback(callback: Function): MDCDialogPresentationControllerDelegateImpl {
+        //     const impl = <MDCDialogPresentationControllerDelegateImpl>MDCDialogPresentationControllerDelegateImpl.new();
+        //     impl._callback = callback;
+        //     return impl;
+        // }
+        dialogPresentationControllerDidDismiss(controller: MDCDialogPresentationController) {
+            const callback = this._callback;
+            if (callback) {
+                callback();
+            }
+        },
+    },
+    {
+        protocols: [MDCDialogPresentationControllerDelegate],
+    }
+) as typeof IMDCDialogPresentationControllerDelegateImpl;
+
+declare class IMDCAlertControllerImpl extends MDCAlertController {
+    static new(): IMDCAlertControllerImpl;
     autoFocusTextField?: TextField;
     customContentView?: View;
     _customContentViewContext?: any;
     _resolveFunction?: Function;
     actions: NSArray<any>;
 }
-const MDCAlertControllerImpl: MDCAlertControllerImpl = (MDCAlertController as any).extend(
-    {
-        get preferredContentSize() {
-            const superResult = this.super.preferredContentSize;
-            const measuredHeight = this._customContentView ? this._customContentView.getMeasuredHeight() : 0; // pixels
-            const hasTitleOrMessage = this.title || this.message;
-            let result: CGSize;
-            if (hasTitleOrMessage) {
-                result = CGSizeMake(superResult.width, Math.round(superResult.height + layout.toDeviceIndependentPixels(measuredHeight)));
-            } else if (this.actions.count > 0) {
-                result = CGSizeMake(superResult.width, Math.round(layout.toDeviceIndependentPixels(superResult.height) + layout.toDeviceIndependentPixels(measuredHeight)));
-            } else {
-                result = CGSizeMake(superResult.width, Math.floor(layout.toDeviceIndependentPixels(measuredHeight)));
-            }
-            return result;
-        },
-        set preferredContentSize(x) {
-            this.super.preferredContentSize = x;
-        },
-        get contentScrollView() {
-            const alertView = this.super.view as MDCAlertControllerView;
-            if (alertView) {
-                return alertView.subviews[0] as UIScrollView;
-            }
-            return null;
-        },
+const MDCAlertControllerImpl = (MDCAlertController as any).extend({
+    get preferredContentSize() {
+        const superResult = this.super.preferredContentSize;
+        const measuredHeight = this._customContentView ? this._customContentView.getMeasuredHeight() : 0; // pixels
+        const hasTitleOrMessage = this.title || this.message;
+        let result: CGSize;
+        if (hasTitleOrMessage) {
+            result = CGSizeMake(superResult.width, Math.round(superResult.height + layout.toDeviceIndependentPixels(measuredHeight)));
+        } else if (this.actions.count > 0) {
+            result = CGSizeMake(superResult.width, Math.round(layout.toDeviceIndependentPixels(superResult.height) + layout.toDeviceIndependentPixels(measuredHeight)));
+        } else {
+            result = CGSizeMake(superResult.width, Math.floor(layout.toDeviceIndependentPixels(measuredHeight)));
+        }
+        return result;
+    },
+    set preferredContentSize(x) {
+        this.super.preferredContentSize = x;
+    },
+    get contentScrollView() {
+        const alertView = this.super.view as MDCAlertControllerView;
+        if (alertView) {
+            return alertView.subviews[0] as UIScrollView;
+        }
+        return null;
+    },
 
-        addCustomViewToLayout() {
-            const contentScrollView = this.contentScrollView as UIView;
-            const view = this._customContentView;
-            view._setupAsRootView({});
-            view._isAddedToNativeVisualTree = true;
-            view.callLoaded();
-            if (this._customContentViewContext) {
-                view.bindingContext = fromObject(this._customContentViewContext);
-                this._customContentViewContext = null;
-            }
-            const nativeViewProtected = this._customContentView.nativeViewProtected;
-            if (contentScrollView && nativeViewProtected) {
-                contentScrollView.addSubview(nativeViewProtected);
-            }
-        },
-        get customContentView() {
-            return this._customContentView;
-        },
-        set customContentView(view: View) {
-            this._customContentView = view;
-            if (view) {
-                view.viewController = this;
-                if (this.viewLoaded) {
-                    this.addCustomViewToLayout();
-                }
-            }
-        },
-        measureChild() {
-            const contentSize = this.contentScrollView.contentSize;
-            if (contentSize.width === 0) {
-                return false;
-            }
-            const width = contentSize.width || this.super.preferredContentSize.width;
-            const widthSpec = layout.makeMeasureSpec(layout.toDevicePixels(width), layout.EXACTLY);
-            View.measureChild(null, this._customContentView, widthSpec, UNSPECIFIED);
-            return true;
-        },
-        layoutCustomView() {
-            const view = this._customContentView as View;
-            if (view) {
-                if (!this.measureChild()) {
-                    return false;
-                }
-                this.viewLayedOut = true;
-                const hasTitleOrMessage = this.title || this.message;
-
-                const contentScrollView = this.contentScrollView as UIScrollView;
-                const contentSize = contentScrollView.contentSize;
-                let originY = 0;
-                if (hasTitleOrMessage) {
-                    const index = contentScrollView.subviews.indexOfObject(view.nativeViewProtected);
-                    if (index === -1) {
-                        originY = layout.toDevicePixels(contentSize.height);
-                    } else {
-                        const viewOnTopFrame = contentScrollView.subviews.objectAtIndex(index - 1).frame;
-                        // the +24 is MDCDialogContentInsets
-                        originY = layout.toDevicePixels(viewOnTopFrame.origin.y + viewOnTopFrame.size.height + 24);
-                    }
-                }
-
-                const measuredWidth = view.getMeasuredWidth(); // pixels
-                const measuredHeight = view.getMeasuredHeight(); // pixels
-                View.layoutChild(null, view, 0, originY, measuredWidth, originY + measuredHeight);
-
-                // TODO: for a reload of the preferredContentSize. Find a better solution!
-                const pW = this.super.preferredContentSize.width;
-                const pH = this.super.preferredContentSize.height;
-                this.preferredContentSize = CGSizeMake(pW, pH + 0.00000000001);
-                this.preferredContentSize = CGSizeMake(pW, pH);
-                return true;
-            } else {
-                this.viewLayedOut = true;
-            }
-            return false;
-        },
-        updateContentViewSize() {
-            const view = this._customContentView as View;
-            if (!view) {
-                return;
-            }
-            const contentScrollView = this.contentScrollView as UIScrollView;
-            contentScrollView.clipsToBounds = true;
-            const contentSize = contentScrollView.contentSize;
-            const bounds = contentScrollView.frame;
-            const boundsSize = bounds.size;
-
-            const measuredHeight = view.getMeasuredHeight(); // pixels
-            contentSize.height = contentSize.height + measuredHeight;
-            boundsSize.height = boundsSize.height + measuredHeight;
-
-            contentScrollView.contentSize = contentSize;
-            bounds.size = boundsSize;
-            contentScrollView.frame = bounds;
-        },
-
-        viewWillLayoutSubviews() {
-            this.viewLayedOut = false;
-            this.super.viewWillLayoutSubviews();
-            // in some case the the content scrollview is not "layed out when calling layoutCustomView"
-            // so we keep track of that in viewLayedOut
-            this.layoutCustomView();
-        },
-        viewDidLayoutSubviews() {
-            // if the content scrollview was not layed out we need to call setNeedsLayout again...
-            if (!this.viewLayedOut) {
-                this.layoutCustomView();
-                this.view.setNeedsLayout();
-            }
-            this.updateContentViewSize();
-        },
-        viewDidAppear() {
-            if (this.autoFocusTextField) {
-                this.autoFocusTextField.requestFocus();
-                this.autoFocusTextField = null;
-            }
-        },
-        viewDidLoad() {
-            this.super.viewDidLoad();
-            if (this._customContentView) {
+    addCustomViewToLayout() {
+        const contentScrollView = this.contentScrollView as UIView;
+        const view = this._customContentView;
+        view._setupAsRootView({});
+        view._isAddedToNativeVisualTree = true;
+        view.callLoaded();
+        if (this._customContentViewContext) {
+            view.bindingContext = fromObject(this._customContentViewContext);
+            this._customContentViewContext = null;
+        }
+        const nativeViewProtected = this._customContentView.nativeViewProtected;
+        if (contentScrollView && nativeViewProtected) {
+            contentScrollView.addSubview(nativeViewProtected);
+        }
+    },
+    get customContentView() {
+        return this._customContentView;
+    },
+    set customContentView(view: View) {
+        this._customContentView = view;
+        if (view) {
+            view.viewController = this;
+            if (this.viewLoaded) {
                 this.addCustomViewToLayout();
-                this.view.setNeedsLayout();
-            }
-        },
-        viewDidUnload() {
-            this.super.viewDidUnload();
-            if (this.customContentView) {
-                this._customContentView.callUnloaded();
-                this._customContentView._tearDownUI(true);
-                this._customContentView._isAddedToNativeVisualTree = false;
-                this._customContentView = null;
             }
         }
     },
-    {
-        name: 'MDCAlertControllerImpl'
-    }
-);
+    measureChild() {
+        const contentSize = this.contentScrollView.contentSize;
+        if (contentSize.width === 0) {
+            return false;
+        }
+        const width = contentSize.width || this.super.preferredContentSize.width;
+        const widthSpec = layout.makeMeasureSpec(layout.toDevicePixels(width), layout.EXACTLY);
+        View.measureChild(null, this._customContentView, widthSpec, UNSPECIFIED);
+        return true;
+    },
+    layoutCustomView() {
+        const view = this._customContentView as View;
+        if (view) {
+            if (!this.measureChild()) {
+                return false;
+            }
+            this.viewLayedOut = true;
+            const hasTitleOrMessage = this.title || this.message;
+
+            const contentScrollView = this.contentScrollView as UIScrollView;
+            const contentSize = contentScrollView.contentSize;
+            let originY = 0;
+            if (hasTitleOrMessage) {
+                const index = contentScrollView.subviews.indexOfObject(view.nativeViewProtected);
+                if (index === -1) {
+                    originY = layout.toDevicePixels(contentSize.height);
+                } else {
+                    const viewOnTopFrame = contentScrollView.subviews.objectAtIndex(index - 1).frame;
+                    // the +24 is MDCDialogContentInsets
+                    originY = layout.toDevicePixels(viewOnTopFrame.origin.y + viewOnTopFrame.size.height + 24);
+                }
+            }
+
+            const measuredWidth = view.getMeasuredWidth(); // pixels
+            const measuredHeight = view.getMeasuredHeight(); // pixels
+            View.layoutChild(null, view, 0, originY, measuredWidth, originY + measuredHeight);
+
+            // TODO: for a reload of the preferredContentSize. Find a better solution!
+            const pW = this.super.preferredContentSize.width;
+            const pH = this.super.preferredContentSize.height;
+            this.preferredContentSize = CGSizeMake(pW, pH + 0.00000000001);
+            this.preferredContentSize = CGSizeMake(pW, pH);
+            return true;
+        } else {
+            this.viewLayedOut = true;
+        }
+        return false;
+    },
+    updateContentViewSize() {
+        const view = this._customContentView as View;
+        if (!view) {
+            return;
+        }
+        const contentScrollView = this.contentScrollView as UIScrollView;
+        contentScrollView.clipsToBounds = true;
+        const contentSize = contentScrollView.contentSize;
+        const bounds = contentScrollView.frame;
+        const boundsSize = bounds.size;
+
+        const measuredHeight = view.getMeasuredHeight(); // pixels
+        contentSize.height = contentSize.height + measuredHeight;
+        boundsSize.height = boundsSize.height + measuredHeight;
+
+        contentScrollView.contentSize = contentSize;
+        bounds.size = boundsSize;
+        contentScrollView.frame = bounds;
+    },
+
+    viewWillLayoutSubviews() {
+        this.viewLayedOut = false;
+        this.super.viewWillLayoutSubviews();
+        // in some case the the content scrollview is not "layed out when calling layoutCustomView"
+        // so we keep track of that in viewLayedOut
+        this.layoutCustomView();
+    },
+    viewDidLayoutSubviews() {
+        // if the content scrollview was not layed out we need to call setNeedsLayout again...
+        if (!this.viewLayedOut) {
+            this.layoutCustomView();
+            this.view.setNeedsLayout();
+        }
+        this.updateContentViewSize();
+    },
+    viewDidAppear() {
+        if (this.autoFocusTextField) {
+            this.autoFocusTextField.requestFocus();
+            this.autoFocusTextField = null;
+        }
+    },
+    viewDidLoad() {
+        this.super.viewDidLoad();
+        if (this._customContentView) {
+            this.addCustomViewToLayout();
+            this.view.setNeedsLayout();
+        }
+    },
+    viewDidUnload() {
+        this.super.viewDidUnload();
+        if (this.customContentView) {
+            this._customContentView.callUnloaded();
+            this._customContentView._tearDownUI(true);
+            this._customContentView._isAddedToNativeVisualTree = false;
+            this._customContentView = null;
+        }
+    },
+}) as typeof IMDCAlertControllerImpl;
 
 function addButtonsToAlertController(alertController: MDCAlertController, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any): void {
     if (!options) {
@@ -265,7 +268,7 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
 }
 
 function createAlertController(options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
-    const alertController = (MDCAlertControllerImpl as any).new() as MDCAlertControllerImpl;
+    const alertController = MDCAlertControllerImpl.new();
     // const buttonColor = getButtonColors().color;
     // if (buttonColor) {
     //     alertController.view.tintColor = buttonColor.ios;
@@ -340,17 +343,17 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
             options.view instanceof View
                 ? (options.view as View)
                 : createViewFromEntry({
-                      moduleName: options.view as string
+                      moduleName: options.view as string,
                   });
 
         view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = getSystemCssClasses();
-        modalRootViewCssClasses.forEach(c => view.cssClasses.add(c));
+        modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
 
         alertController.customContentView = view;
         alertController._resolveFunction = resolve;
         const context = options.context || {};
-        context.closeCallback = function(...originalArgs) {
+        context.closeCallback = function (...originalArgs) {
             alertController.dismissModalViewControllerAnimated(true);
             if (alertController._resolveFunction && resolve) {
                 alertController._resolveFunction = null;
@@ -360,12 +363,13 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
         alertController._customContentViewContext = context;
         // view.bindingContext = fromObject(context);
     }
-
-    alertController.mdc_dialogPresentationController.dialogPresentationControllerDelegate = MDCDialogPresentationControllerDelegateImpl.initWithCallback(() => {
+    const dialogPresentationControllerDelegate = MDCDialogPresentationControllerDelegateImpl.new();
+    dialogPresentationControllerDelegate._callback = () => {
         resolve && resolve();
         alertController._resolveFunction = null;
         alertController.mdc_dialogPresentationController.delegate = null;
-    });
+    };
+    alertController.mdc_dialogPresentationController.dialogPresentationControllerDelegate = dialogPresentationControllerDelegate;
 
     if (options && options.cancelable === false) {
         alertController.mdc_dialogPresentationController.dismissOnBackgroundTap = false;
@@ -382,12 +386,12 @@ export function alert(arg: any): Promise<void> {
         try {
             const defaultOptions = {
                 // title: ALERT,
-                okButtonText: OK
+                okButtonText: OK,
             };
             const options = !isDialogOptions(arg) ? Object.assign(defaultOptions, { message: arg + '' }) : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
 
-            addButtonsToAlertController(alertController, options, result => {
+            addButtonsToAlertController(alertController, options, (result) => {
                 alertController._resolveFunction = null;
                 resolve(result);
             });
@@ -430,16 +434,16 @@ export function confirm(arg: any): Promise<boolean> {
             const defaultOptions = {
                 // title: CONFIRM,
                 okButtonText: OK,
-                cancelButtonText: CANCEL
+                cancelButtonText: CANCEL,
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
-                      message: arg + ''
+                      message: arg + '',
                   })
                 : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
 
-            addButtonsToAlertController(alertController, options, r => {
+            addButtonsToAlertController(alertController, options, (r) => {
                 resolve(r);
             });
 
@@ -457,7 +461,7 @@ export function prompt(arg: any): Promise<PromptResult> {
         // title: PROMPT,
         okButtonText: OK,
         cancelButtonText: CANCEL,
-        inputType: inputType.text
+        inputType: inputType.text,
     };
 
     if (arguments.length === 1) {
@@ -536,11 +540,11 @@ export function prompt(arg: any): Promise<PromptResult> {
             addButtonsToAlertController(
                 alertController,
                 options,
-                r => {
+                (r) => {
                     alertController._resolveFunction = null;
                     resolve({ result: r, text: textField.text });
                 },
-                r => {
+                (r) => {
                     return { result: r, text: textField.text };
                 }
             );
@@ -560,7 +564,7 @@ export function login(arg: any): Promise<LoginResult> {
     const defaultOptions = {
         // title: LOGIN,
         okButtonText: OK,
-        cancelButtonText: CANCEL
+        cancelButtonText: CANCEL,
     };
 
     if (arguments.length === 1) {
@@ -648,14 +652,14 @@ export function login(arg: any): Promise<LoginResult> {
             addButtonsToAlertController(
                 alertController,
                 options,
-                r => {
+                (r) => {
                     resolve({
                         result: r,
                         userName: userNameTextField.text,
-                        password: passwordTextField.text
+                        password: passwordTextField.text,
                     });
                 },
-                r => {
+                (r) => {
                     return { result: r, userName: userNameTextField.text, password: passwordTextField.text };
                 }
             );
@@ -723,7 +727,7 @@ export function action(): Promise<string> {
 
     const defaultOptions = {
         // title: null,
-        cancelButtonText: CANCEL
+        cancelButtonText: CANCEL,
     };
 
     if (arguments.length === 1) {
