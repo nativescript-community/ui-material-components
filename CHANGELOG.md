@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.10](https://github.com/Akylas/nativescript-material-components/compare/v3.2.9...v3.2.10) (2020-07-06)
+
+
+### Bug Fixes
+
+* **android:** snackbar correctly handle the view option ([28581d6](https://github.com/Akylas/nativescript-material-components/commit/28581d645f82994d4ee9638b3784a7723848b19b))
+* **ios:** esm compatible ([f645d5f](https://github.com/Akylas/nativescript-material-components/commit/f645d5f5aef3856b54251922a9a820eb11bb7ba8))
+* remove warning about deprecated method ([d18d90c](https://github.com/Akylas/nativescript-material-components/commit/d18d90c9bab7f45c69a3f9dee9547db6d5e902d0))
+
+
+
+
+
 ## [3.2.9](https://github.com/Akylas/nativescript-material-components/compare/v3.2.8...v3.2.9) (2020-06-23)
 
 
