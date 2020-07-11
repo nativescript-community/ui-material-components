@@ -82,8 +82,12 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
 }
 
 function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
+    dlg.show();
+
+    const packageName = dlg.getContext().getPackageName();
+    
     if (options.titleColor) {
-        const textViewId = dlg.getContext().getResources().getIdentifier('android:id/alertTitle', null, null);
+        const textViewId = dlg.getContext().getResources().getIdentifier('alertTitle', 'id', packageName);
         if (textViewId) {
             const tv = <android.widget.TextView>dlg.findViewById(textViewId);
             if (tv) {
@@ -91,7 +95,7 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
             }
         }
         if (options.messageColor) {
-            const messageTextViewId = dlg.getContext().getResources().getIdentifier('android:id/message', null, null);
+            const messageTextViewId = dlg.getContext().getResources().getIdentifier('message', 'id', packageName);
             if (messageTextViewId) {
                 const messageTextView = <android.widget.TextView>dlg.findViewById(messageTextViewId);
                 if (messageTextView) {
@@ -128,14 +132,11 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
     // let { color, backgroundColor } = getButtonColors();
 
     if (options.buttonInkColor || options.buttonTitleColor) {
-        let buttons: android.widget.Button[] = [];
-        for (let i = 0; i < 3; i++) {
-            let id = dlg
-                .getContext()
-                .getResources()
-                .getIdentifier('android:id/button' + i, null, null);
-            buttons[i] = <android.widget.Button>dlg.findViewById(id);
-        }
+        let buttons: android.widget.Button[] = [
+            dlg.getButton(android.content.DialogInterface.BUTTON_POSITIVE),
+            dlg.getButton(android.content.DialogInterface.BUTTON_NEGATIVE),
+            dlg.getButton(android.content.DialogInterface.BUTTON_NEUTRAL)
+        ];
 
         buttons.forEach((button) => {
             if (button) {
@@ -143,7 +144,6 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
             }
         });
     }
-    dlg.show();
     return dlg;
 }
 
@@ -203,7 +203,6 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
         dlg.setButton(
             android.content.DialogInterface.BUTTON_POSITIVE,
             options.okButtonText,
-            null,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function (dialog: android.content.DialogInterface, id: number) {
                     onDone(true, dialog);
@@ -219,7 +218,6 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
         dlg.setButton(
             android.content.DialogInterface.BUTTON_NEGATIVE,
             options.cancelButtonText,
-            null,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function (dialog: android.content.DialogInterface, id: number) {
                     onDone(false, dialog);
@@ -240,7 +238,6 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
         dlg.setButton(
             android.content.DialogInterface.BUTTON_NEUTRAL,
             options.neutralButtonText,
-            null,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function (dialog: android.content.DialogInterface, id: number) {
                     onDone(undefined, dialog);
