@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-bottomnavigationbar",
-    "version": "3.2.11",
+    "version": "3.2.12",
     "description": "NativeScript plugin to add a bottom navigation bar component for Android & iOS",
     "main": "bottomnavigationbar",
     "sideEffects": false,
@@ -44,6 +44,7 @@
     "repository": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^3.2.11"
-    }
+        "nativescript-material-core": "^3.2.12"
+    },
+    "gitHead": "0a88b555df0173e87f96eef4d1b9a5dd820c7443"
 }
