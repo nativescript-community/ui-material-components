@@ -1,21 +1,18 @@
-// Types
-import { TabContentItem } from '@nativescript/core/ui/tab-navigation-base/tab-content-item';
-import { TabStrip } from '@nativescript/core/ui/tab-navigation-base/tab-strip';
-import { TabStripItem } from '@nativescript/core/ui/tab-navigation-base/tab-strip-item';
-import { TextTransform } from '@nativescript/core/ui/text-base';
-
-// Requires
 import * as application from '@nativescript/core/application';
 import { ImageSource } from '@nativescript/core/image-source';
-import { ad, isFontIconURI, layout, RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
 import { Color } from '@nativescript/core/ui/core/view';
 import { Frame } from '@nativescript/core/ui/frame';
 import { Font } from '@nativescript/core/ui/styling/font';
+import { TabContentItem } from '@nativescript/core/ui/tab-navigation-base/tab-content-item';
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript/core/ui/tab-navigation-base/tab-navigation-base';
-import { getTransformedText } from '@nativescript/core/ui/text-base';
+import { TabStrip } from '@nativescript/core/ui/tab-navigation-base/tab-strip';
+import { TabStripItem } from '@nativescript/core/ui/tab-navigation-base/tab-strip-item';
+import { getTransformedText, TextTransform } from '@nativescript/core/ui/text-base';
+import { ad, isFontIconURI, layout } from '@nativescript/core/utils/utils';
 import { offscreenTabLimitProperty, swipeEnabledProperty, TabsBase } from './tabs-common';
 
-export * from './tabs-common'
+
+export * from './tabs-common';
 
 const ACCENT_COLOR = 'colorAccent';
 const PRIMARY_COLOR = 'colorPrimary';

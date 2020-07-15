@@ -1,5 +1,4 @@
 import { CSSType, View } from '@nativescript/core/ui/core/view';
-import { Button as NSButton } from '@nativescript/core/ui/button';
 import { Color } from '@nativescript/core/color';
 import { ImageAsset } from '@nativescript/core/image-asset';
 import { isDataURI, isFileOrResourcePath, RESOURCE_PREFIX } from '@nativescript/core/utils/utils';

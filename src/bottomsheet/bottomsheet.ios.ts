@@ -1,13 +1,12 @@
-import { ViewWithBottomSheetBase } from './bottomsheet-common';
-import { ios, traceCategories, traceError, traceMessageType, traceWrite, View } from '@nativescript/core/ui/core/view';
-import { ViewBase } from '@nativescript/core/ui/core/view-base';
-import { layout } from '@nativescript/core/utils/utils';
-import { BottomSheetOptions } from './bottomsheet';
 import { fromObject } from '@nativescript/core/data/observable';
-import { applyMixins } from 'nativescript-material-core/core';
-import { ios as iosUtils } from '@nativescript/core/utils/utils';
+import { ios, View } from '@nativescript/core/ui/core/view';
+import { categories, error, messageType, write } from '@nativescript/core/trace';
 import { ios as iosView } from '@nativescript/core/ui/core/view/view-helper';
 import { Page } from '@nativescript/core/ui/page';
+import { ios as iosUtils, layout } from '@nativescript/core/utils/utils';
+import { applyMixins } from 'nativescript-material-core/core';
+import { BottomSheetOptions } from './bottomsheet';
+import { ViewWithBottomSheetBase } from './bottomsheet-common';
 
 const majorVersion = iosUtils.MajorVersion;
 
@@ -85,7 +84,7 @@ function initLayoutGuide(controller: UIViewController) {
 function layoutView(controller: IUILayoutViewController, owner: View): void {
     let layoutGuide = controller.view.safeAreaLayoutGuide;
     if (!layoutGuide) {
-        traceWrite(`safeAreaLayoutGuide during layout of ${owner}. Creating fallback constraints, but layout might be wrong.`, traceCategories.Layout, traceMessageType.error);
+        write(`safeAreaLayoutGuide during layout of ${owner}. Creating fallback constraints, but layout might be wrong.`, categories.Layout, messageType.error);
 
         layoutGuide = initLayoutGuide(controller);
     }
@@ -340,18 +339,18 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         options.context = options.context || {};
         const parentWithController = ios.getParentWithViewController(parent);
         if (!parentWithController) {
-            traceWrite(`Could not find parent with viewController for ${parent} while showing bottom sheet view.`, traceCategories.ViewHierarchy, traceMessageType.error);
+            write(`Could not find parent with viewController for ${parent} while showing bottom sheet view.`, categories.ViewHierarchy, messageType.error);
             return;
         }
 
         const parentController = parentWithController.viewController;
         if (parentController.presentedViewController) {
-            traceWrite('Parent is already presenting view controller. Close the current bottom sheet page before showing another one!', traceCategories.ViewHierarchy, traceMessageType.error);
+            write('Parent is already presenting view controller. Close the current bottom sheet page before showing another one!', categories.ViewHierarchy, messageType.error);
             return;
         }
 
         if (!parentController.view || !parentController.view.window) {
-            traceWrite('Parent page is not part of the window hierarchy.', traceCategories.ViewHierarchy, traceMessageType.error);
+            write('Parent page is not part of the window hierarchy.', categories.ViewHierarchy, messageType.error);
             return;
         }
         this._setupAsRootView({});
@@ -434,7 +433,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     protected _hideNativeBottomSheet(parent: View, whenClosedCallback: () => void) {
         const parentWithController = ios.getParentWithViewController(parent);
         if (!parent || !parentWithController) {
-            traceError('Trying to hide bottom-sheet view but no parent with viewController specified.');
+            error('Trying to hide bottom-sheet view but no parent with viewController specified.');
             return;
         }
 

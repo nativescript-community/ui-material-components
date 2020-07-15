@@ -1,9 +1,10 @@
-import { getLayout, handleClearFocus, stateSets } from 'nativescript-material-core/android/utils';
 import { Color } from '@nativescript/core/color';
-import { backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
+import { profile } from '@nativescript/core/profiling';
+import { hintProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
 import { Background } from '@nativescript/core/ui/styling/background';
+import { backgroundInternalProperty, borderBottomLeftRadiusProperty } from '@nativescript/core/ui/styling/style-properties';
 import { ad } from '@nativescript/core/utils/utils';
-import { TextFieldBase } from './textfield.common';
+import { getLayout, stateSets } from 'nativescript-material-core/android/utils';
 import {
     digitsProperty,
     errorColorProperty,
@@ -14,9 +15,9 @@ import {
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
-    strokeInactiveColorProperty,
+    strokeInactiveColorProperty
 } from 'nativescript-material-core/textbase/cssproperties';
-import { profile } from '@nativescript/core/profiling/profiling';
+import { TextFieldBase } from './textfield.common';
 
 declare module '@nativescript/core/ui/text-field/text-field' {
     interface TextField {

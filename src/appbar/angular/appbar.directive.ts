@@ -1,6 +1,6 @@
 import { AfterViewInit, Directive } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Page } from '@nativescript/core/ui/page/page';
+import { Page } from '@nativescript/core/ui/page';
 import { addCss, ios as iosApp } from '@nativescript/core/application';
 import { themer } from 'nativescript-material-core/core';
 

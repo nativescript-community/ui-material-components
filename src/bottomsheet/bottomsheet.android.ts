@@ -1,8 +1,8 @@
-import { View, Color } from '@nativescript/core/ui/core/view';
-import { fromObject } from '@nativescript/core/data/observable';
-import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
-import { applyMixins } from 'nativescript-material-core/core';
 import { android as androidApp, AndroidActivityBackPressedEventData } from '@nativescript/core/application';
+import { fromObject } from '@nativescript/core/data/observable';
+import { View } from '@nativescript/core/ui/core/view';
+import { applyMixins } from 'nativescript-material-core/core';
+import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
 
 interface BottomSheetDataOptions {
     owner: View;

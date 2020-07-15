@@ -1,8 +1,7 @@
-import { cssProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from '@nativescript/core/color';
-import { CssProperty, Style } from '@nativescript/core/ui/core/properties';
-import { CSSType, View } from '@nativescript/core/ui/core/view';
+import { CSSType } from '@nativescript/core/ui/core/view';
 import { Slider as NSSlider } from '@nativescript/core/ui/slider';
+import { cssProperty } from 'nativescript-material-core/cssproperties';
 
 @CSSType('MDSlider')
 export abstract class SliderBase extends NSSlider {

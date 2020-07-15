@@ -1,5 +1,3 @@
-import { getRippleColor, themer } from 'nativescript-material-core/core';
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from '@nativescript/core/color';
 import { screen } from '@nativescript/core/platform';
 import { Background } from '@nativescript/core/ui/styling/background';
@@ -13,6 +11,8 @@ import {
     fontInternalProperty
 } from '@nativescript/core/ui/styling/style-properties';
 import { layout } from '@nativescript/core/utils/utils';
+import { getRippleColor, themer } from 'nativescript-material-core/core';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { ButtonBase } from './button-common';
 
 let buttonScheme: MDCButtonScheme;

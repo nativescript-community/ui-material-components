@@ -1,9 +1,9 @@
-import { getLayout, handleClearFocus, stateSets } from 'nativescript-material-core/android/utils';
 import { Color } from '@nativescript/core/color';
-import { backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
+import { hintProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
 import { Background } from '@nativescript/core/ui/styling/background';
+import { backgroundInternalProperty, borderBottomLeftRadiusProperty } from '@nativescript/core/ui/styling/style-properties';
 import { ad } from '@nativescript/core/utils/utils';
-import { TextViewBase } from './textview.common';
+import { getLayout, stateSets } from 'nativescript-material-core/android/utils';
 import {
     errorColorProperty,
     errorProperty,
@@ -13,9 +13,9 @@ import {
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
-    strokeInactiveColorProperty,
+    strokeInactiveColorProperty
 } from 'nativescript-material-core/textbase/cssproperties';
-import { profile } from '@nativescript/core/profiling/profiling';
+import { TextViewBase } from './textview.common';
 
 function getColorStateList(activeColor: number, inactiveColor = 1627389952) {
     const states = Array.create('[I', 2);

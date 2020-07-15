@@ -1,7 +1,7 @@
-import { RippleBase } from './ripple-common';
-import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from '@nativescript/core/color';
 import { getRippleColor, themer } from 'nativescript-material-core/core';
+import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { RippleBase } from './ripple-common';
 
 export class Ripple extends RippleBase {
     inkTouchController: MDCInkTouchController;

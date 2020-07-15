@@ -1,6 +1,6 @@
-import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { Color } from '@nativescript/core/color';
 import { colorProperty } from '@nativescript/core/ui/styling/style-properties';
+import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { thumbColorProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
 import { SliderBase } from './slider-common';
 

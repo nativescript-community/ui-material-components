@@ -1,6 +1,4 @@
 import { Color } from '@nativescript/core/color';
-import { Length } from '@nativescript/core/ui/styling/style-properties';
-
 
 declare module '@nativescript/core/ui/styling/style-properties' {
     export const androidElevationProperty;

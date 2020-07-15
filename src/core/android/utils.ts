@@ -1,4 +1,4 @@
-import * as application from '@nativescript/core/application';
+import {android as androidApp} from '@nativescript/core/application';
 import { Color } from '@nativescript/core/color';
 import { ViewBase } from '@nativescript/core/ui/page';
 import { ad, layout } from '@nativescript/core/utils/utils';
@@ -310,6 +310,6 @@ export function getLayout(id: string) {
     if (!id) {
         return 0;
     }
-    const context: android.content.Context = application.android.context;
+    const context: android.content.Context = androidApp.context;
     return context.getResources().getIdentifier(id, 'layout', context.getPackageName());
 }

@@ -1,7 +1,7 @@
 import { getRootView, ios } from '@nativescript/core/application';
 import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/core/css/system-classes';
 import { fromObject } from '@nativescript/core/data/observable';
-import { createViewFromEntry } from '@nativescript/core/ui/builder/builder';
+import { createViewFromEntry } from '@nativescript/core/ui/builder';
 import { View } from '@nativescript/core/ui/core/view';
 import {
     ActionOptions,

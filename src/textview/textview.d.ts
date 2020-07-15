@@ -1,17 +1,5 @@
+import { Color } from '@nativescript/core/color';
 import { EditableTextBase } from '@nativescript/core/ui/editable-text-base';
-import { Color } from '@nativescript/core/color/color';
-import {
-    AutocapitalizationType,
-    FormattedString,
-    KeyboardType,
-    Length,
-    ReturnKeyType,
-    TextAlignment,
-    TextDecoration,
-    TextTransform,
-    UpdateTextTrigger,
-    WhiteSpace
-} from '@nativescript/core/ui/editable-text-base/editable-text-base';
 
 type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 

@@ -1,6 +1,6 @@
 import { ActionOptions, AlertOptions, ConfirmOptions, LoginOptions as TNSLoginOptions, LoginResult, PromptOptions as TNSPromptOptions, PromptResult } from '@nativescript/core/ui/dialogs';
 import { Color } from '@nativescript/core/color';
-import { Page } from '@nativescript/core/ui/page/page';
+import { Page } from '@nativescript/core/ui/page';
 import { MDCAlertControlerOptions } from './dialogs-common';
 import { TextField, TextFieldProperties } from 'nativescript-material-textfield';
 

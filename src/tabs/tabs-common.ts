@@ -1,17 +1,18 @@
 ﻿// Types
-import { Tabs as TabsDefinition } from "./tabs";
-
+import { Property } from "@nativescript/core/ui/core/properties";
+import { CSSType } from "@nativescript/core/ui/core/view";
+import { booleanConverter } from "@nativescript/core/ui/core/view-base";
 // Requires
 import { TabNavigationBase } from "@nativescript/core/ui/tab-navigation-base/tab-navigation-base";
-import { CSSType, booleanConverter } from "@nativescript/core/ui/core/view";
-import { Property } from "@nativescript/core/ui/core/properties";
+import { Tabs as TabsDefinition } from "./tabs";
+
 
 declare module '@nativescript/core/data/observable' {
     interface Observable {
         _emit(eventName: string);
     }
 }
-declare module '@nativescript/core/ui/core/view/view' {
+declare module '@nativescript/core/ui/core/view' {
     interface View {
         callLoaded(): void;
         _getFragmentManager();

@@ -1,6 +1,8 @@
 import { screen } from '@nativescript/core/platform';
 import { ios } from '@nativescript/core/application';
-import { backgroundColorProperty, Color, layout } from '@nativescript/core/ui/core/view';
+import { layout } from '@nativescript/core/utils/utils';
+import { backgroundColorProperty } from '@nativescript/core/ui/styling/style-properties';
+import { Color } from '@nativescript/core/color';
 import { ImageSource } from '@nativescript/core/image-source';
 import { getRippleColor, themer } from 'nativescript-material-core/core';
 

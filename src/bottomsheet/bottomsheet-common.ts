@@ -1,9 +1,8 @@
-import { View } from '@nativescript/core/ui/core/view';
-import { Frame } from '@nativescript/core/ui/frame';
-import { EventData } from '@nativescript/core/data/observable';
-import { eachDescendant, ViewBase } from '@nativescript/core/ui/core/view-base';
-import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/core/css/system-classes';
 import { Builder } from "@nativescript/core";
+import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/core/css/system-classes';
+import { EventData } from '@nativescript/core/data/observable';
+import { View } from '@nativescript/core/ui/core/view';
+import { ViewBase } from '@nativescript/core/ui/core/view-base';
 
 declare module '@nativescript/core/ui/core/view/view' {
     interface View {

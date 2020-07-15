@@ -1,10 +1,10 @@
-import { createRippleDrawable, createStateListAnimator, getAttrColor, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from './android/utils';
 import * as application from '@nativescript/core/application';
 import { Color } from '@nativescript/core/color';
 import { Button } from '@nativescript/core/ui/button';
-import { backgroundInternalProperty, View } from '@nativescript/core/ui/core/view';
+import { View } from '@nativescript/core/ui/core/view';
 import { Background } from '@nativescript/core/ui/styling/background';
-import { androidDynamicElevationOffsetProperty, androidElevationProperty, Length } from '@nativescript/core/ui/styling/style-properties';
+import { androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, Length } from '@nativescript/core/ui/styling/style-properties';
+import { createRippleDrawable, createStateListAnimator, getAttrColor, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from './android/utils';
 import { applyMixins } from './core.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
 export { applyMixins };

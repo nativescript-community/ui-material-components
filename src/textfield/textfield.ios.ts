@@ -1,5 +1,9 @@
-import { TextFieldBase } from './textfield.common';
-import { backgroundInternalProperty, placeholderColorProperty, keyboardTypeProperty, textProperty } from '@nativescript/core/ui/editable-text-base';
+import { Color } from '@nativescript/core/color';
+import { screen } from '@nativescript/core/platform/platform';
+import { backgroundInternalProperty, placeholderColorProperty, textProperty } from '@nativescript/core/ui/editable-text-base';
+import { Background } from '@nativescript/core/ui/styling/background';
+import { Style } from '@nativescript/core/ui/styling/style';
+import { themer } from 'nativescript-material-core/core';
 import {
     buttonColorProperty,
     digitsProperty,
@@ -11,13 +15,9 @@ import {
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
-    strokeInactiveColorProperty,
+    strokeInactiveColorProperty
 } from 'nativescript-material-core/textbase/cssproperties';
-import { themer } from 'nativescript-material-core/core';
-import { Color } from '@nativescript/core/color';
-import { Style } from '@nativescript/core/ui/styling/style';
-import { Background } from '@nativescript/core/ui/styling/background';
-import { screen } from '@nativescript/core/platform/platform';
+import { TextFieldBase } from './textfield.common';
 
 // it is exported but not in the typings
 const _updateCharactersInRangeReplacementString = require('@nativescript/core/ui/editable-text-base')._updateCharactersInRangeReplacementString;

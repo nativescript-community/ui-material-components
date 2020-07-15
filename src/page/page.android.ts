@@ -1,15 +1,15 @@
 import { Page as INSPage, View } from '@nativescript/core/ui/page';
 import { ActionBar } from '@nativescript/core/ui/action-bar';
-import * as application from '@nativescript/core/application';
+import {android as androidApp} from '@nativescript/core/application';
 import { applyMixins } from 'nativescript-material-core/core';
 
 function getLayout(id: string) {
-    const context: android.content.Context = application.android.context;
+    const context: android.content.Context = androidApp.context;
     return context.getResources().getIdentifier(id, 'layout', context.getPackageName());
 }
 
 function getId(id: string) {
-    const context: android.content.Context = application.android.context;
+    const context: android.content.Context = androidApp.context;
     return context.getResources().getIdentifier(id, 'id', context.getPackageName());
 }
 
@@ -52,7 +52,7 @@ export class Page extends INSPage {
 }
 let mixinInstalled = false;
 export function overridePage() {
-    const NSPage = require('@nativescript/core/ui/page/page').Page;
+    const NSPage = require('@nativescript/core/ui/page').Page;
     applyMixins(NSPage, [Page]);
 }
 export function install() {

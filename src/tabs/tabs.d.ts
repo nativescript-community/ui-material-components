@@ -3,7 +3,8 @@
  * @module "ui/tabs"
  */ /** */
 
-import { EventData, Property } from "@nativescript/core/ui/core/view";
+import { EventData } from "@nativescript/core/data/observable";
+import { Property } from "@nativescript/core/ui/core/properties";
 import { TabContentItem } from "@nativescript/core/ui/tab-navigation-base/tab-content-item";
 import {
     SelectedIndexChangedEventData, TabNavigationBase

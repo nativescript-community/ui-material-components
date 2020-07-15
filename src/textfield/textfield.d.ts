@@ -1,5 +1,5 @@
-import { TextField as NTextField } from '@nativescript/core/ui/text-field/text-field';
-import { Color } from '@nativescript/core/color/color';
+import { Color } from '@nativescript/core/color';
+import { TextField as NTextField } from '@nativescript/core/ui/text-field';
 
 type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 

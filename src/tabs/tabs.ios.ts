@@ -1,19 +1,19 @@
 ﻿// Types
-import { TabContentItem } from '@nativescript/core/ui/tab-navigation-base/tab-content-item';
-import { TabStrip } from '@nativescript/core/ui/tab-navigation-base/tab-strip';
-import { TabStripItem } from '@nativescript/core/ui/tab-navigation-base/tab-strip-item';
-import { TextTransform, ViewBase } from '@nativescript/core/ui/text-base';
-
 // Requires
 import { Color } from '@nativescript/core/color';
 import { ImageSource } from '@nativescript/core/image-source';
 import { device } from '@nativescript/core/platform';
-import { ios as iosUtils, isFontIconURI, layout } from '@nativescript/core/utils/utils';
 import { ios as iosView, View } from '@nativescript/core/ui/core/view';
 import { Frame } from '@nativescript/core/ui/frame';
 import { Font } from '@nativescript/core/ui/styling/font';
+import { TabContentItem } from '@nativescript/core/ui/tab-navigation-base/tab-content-item';
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript/core/ui/tab-navigation-base/tab-navigation-base';
-import { swipeEnabledProperty, TabsBase, IOSTabBarItemsAlignment, iOSTabBarItemsAlignmentProperty } from './tabs-common';
+import { TabStrip } from '@nativescript/core/ui/tab-navigation-base/tab-strip';
+import { TabStripItem } from '@nativescript/core/ui/tab-navigation-base/tab-strip-item';
+import { TextTransform, ViewBase } from '@nativescript/core/ui/text-base';
+import { ios as iosUtils, isFontIconURI, layout } from '@nativescript/core/utils/utils';
+import { IOSTabBarItemsAlignment, iOSTabBarItemsAlignmentProperty, swipeEnabledProperty, TabsBase } from './tabs-common';
+
 
 // TODO
 // import { profile } from "../../profiling";
