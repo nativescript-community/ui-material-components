@@ -26,7 +26,7 @@
         "nativescript-material-textview": "file:../packages/nativescript-material-textview",
         "@nativescript/theme": "~2.3.2",
         "nativescript-ui-listview": "7.1.0",
-        "tns-core-modules": "rc"
+        "@nativescript/core": "rc"
     },
     "devDependencies": {
         "awesome-typescript-loader": "~5.2.1",

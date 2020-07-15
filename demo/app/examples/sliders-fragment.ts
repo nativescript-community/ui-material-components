@@ -1,5 +1,5 @@
 import { Observable, PropertyChangeData } from '@nativescript/core/ui/core/view';
-import { Page } from '@nativescript/core/ui/page/page';
+import { Page } from '@nativescript/core/ui/page';
 import { Slider } from 'nativescript-material-slider';
 
 export function onNavigatingTo(args) {
