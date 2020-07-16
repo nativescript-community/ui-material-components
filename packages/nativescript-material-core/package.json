@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-core",
-    "version": "3.2.16",
+    "version": "3.2.17",
     "description": "Material Core component",
     "main": "./core",
     "sideEffects": false,
@@ -34,5 +34,5 @@
     "license": "Apache-2.0",
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
-    "gitHead": "a1bf3e154438bb0bfc7e9a46901093a64f88d615"
+    "gitHead": "2479e20312df2de89200ed676e68c1fb4ab36439"
 }

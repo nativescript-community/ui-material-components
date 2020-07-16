@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-textview",
-    "version": "3.2.16",
+    "version": "3.2.17",
     "description": "Material textview component",
     "main": "./textview",
     "sideEffects": false,
@@ -37,7 +37,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^3.2.16"
+        "nativescript-material-core": "^3.2.17"
     },
-    "gitHead": "a1bf3e154438bb0bfc7e9a46901093a64f88d615"
+    "gitHead": "2479e20312df2de89200ed676e68c1fb4ab36439"
 }
