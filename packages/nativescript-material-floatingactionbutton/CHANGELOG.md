@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.19](https://github.com/Akylas/nativescript-material-components/compare/v3.2.18...v3.2.19) (2020-07-26)
+
+**Note:** Version bump only for package nativescript-material-floatingactionbutton
+
+
+
+
+
 ## [3.2.18](https://github.com/Akylas/nativescript-material-components/compare/v3.2.17...v3.2.18) (2020-07-16)
 
 **Note:** Version bump only for package nativescript-material-floatingactionbutton
