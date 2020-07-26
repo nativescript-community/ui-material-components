@@ -1,11 +1,9 @@
 import { ComponentFactoryResolver, ComponentRef, Injectable, Injector, Type, ViewContainerRef } from '@angular/core';
-import { DetachedLoader } from '@nativescript/angular/common/detached-loader';
-import { AppHostView } from '@nativescript/angular/app-host-view';
-import { once } from '@nativescript/angular/common/utils';
+import { AppHostView, DetachedLoader, once } from '@nativescript/angular';
+import { ProxyViewContainer } from '@nativescript/core';
 import { BottomSheetOptions as MaterialBottomSheetOptions, ViewWithBottomSheetBase } from '../bottomsheet-common';
 import { Observable, Subject } from 'rxjs';
 import { filter, first, map } from 'rxjs/operators';
-import { ProxyViewContainer } from '@nativescript/core/ui/proxy-view-container';
 
 export type BaseShowBottomSheetOptions = Pick<MaterialBottomSheetOptions, Exclude<keyof MaterialBottomSheetOptions, 'closeCallback' | 'view'>>;
 

@@ -1,9 +1,4 @@
-import { Color } from '@nativescript/core/color';
-import { profile } from '@nativescript/core/profiling';
-import { hintProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
-import { Background } from '@nativescript/core/ui/styling/background';
-import { backgroundInternalProperty, borderBottomLeftRadiusProperty } from '@nativescript/core/ui/styling/style-properties';
-import { ad } from '@nativescript/core/utils/utils';
+import { Color, profile, hintProperty, placeholderColorProperty, Background, backgroundInternalProperty, borderBottomLeftRadiusProperty, Utils } from '@nativescript/core';
 import { getLayout, stateSets } from 'nativescript-material-core/android/utils';
 import {
     digitsProperty,
@@ -18,12 +13,6 @@ import {
     strokeInactiveColorProperty
 } from 'nativescript-material-core/textbase/cssproperties';
 import { TextFieldBase } from './textfield.common';
-
-declare module '@nativescript/core/ui/text-field/text-field' {
-    interface TextField {
-        _setInputType(type: number);
-    }
-}
 
 function getColorStateList(activeColor: number, inactiveColor = 1627389952) {
     const states = Array.create('[I', 2);
@@ -149,7 +138,7 @@ export class TextField extends TextFieldBase {
             this.layoutView.requestFocus();
             setTimeout(() => {
                 this.layoutView.setDescendantFocusability(oldDesc);
-                ad.showSoftInput(this.nativeTextViewProtected);
+                Utils.android.showSoftInput(this.nativeTextViewProtected);
                 // this.focus();
             }, 0);
         }

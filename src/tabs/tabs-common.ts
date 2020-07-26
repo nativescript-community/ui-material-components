@@ -1,43 +1,6 @@
 ﻿// Types
-import { Property } from "@nativescript/core/ui/core/properties";
-import { CSSType } from "@nativescript/core/ui/core/view";
-import { booleanConverter } from "@nativescript/core/ui/core/view-base";
-// Requires
-import { TabNavigationBase } from "@nativescript/core/ui/tab-navigation-base/tab-navigation-base";
+import { Property, CSSType, TabNavigationBase, booleanConverter } from "@nativescript/core";
 import { Tabs as TabsDefinition } from "./tabs";
-
-
-declare module '@nativescript/core/data/observable' {
-    interface Observable {
-        _emit(eventName: string);
-    }
-}
-declare module '@nativescript/core/ui/core/view' {
-    interface View {
-        callLoaded(): void;
-        _getFragmentManager();
-    }
-}
-declare module '@nativescript/core/ui/frame' {
-    interface Frame {
-        _pushInFrameStackRecursive();
-        _animationInProgress: boolean;
-    }
-}
-declare module '@nativescript/core/ui/tab-navigation-base/tab-strip-item' {
-    namespace TabStripItem {
-        const selectEvent: string;
-        const unselectEvent: string;
-    }
-    interface TabStripItem {
-        _index: number;
-    }
-}
-
-// export * from "@nativescript/core/ui/tab-navigation-base/tab-content-item";
-// export * from "@nativescript/core/ui/tab-navigation-base/tab-navigation-base";
-// export * from "@nativescript/core/ui/tab-navigation-base/tab-strip";
-// export * from "@nativescript/core/ui/tab-navigation-base/tab-strip-item";
 
 export const traceCategory = "TabView";
 

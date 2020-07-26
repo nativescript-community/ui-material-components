@@ -1,4 +1,4 @@
-import { Color } from '@nativescript/core/color';
+import { Color } from '@nativescript/core';
 import {
     activeColorCssProperty,
     BottomNavigationBarBase,

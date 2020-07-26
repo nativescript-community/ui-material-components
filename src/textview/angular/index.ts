@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { TextValueAccessor } from './textvalue-accessor';
 
-import { registerElement } from '@nativescript/angular/element-registry';
+import { registerElement } from '@nativescript/angular';
 
 export const FORMS_DIRECTIVES = [TextValueAccessor];
 

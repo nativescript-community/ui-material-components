@@ -1,11 +1,11 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
+        "target": "es2017",
+        "module": "esnext",
         "moduleResolution": "node",
         "removeComments": true,
         "noLib": false,
-        "emitDecoratorMetadata": false,
+        "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": ["es6", "dom"],
         "sourceMap": true,
@@ -59,6 +59,7 @@
     "exclude": ["node_modules", "platforms"],
     "compileOnSave": false,
     "angularCompilerOptions": {
-        "skipTemplateCodegen": true
+        "skipTemplateCodegen": true,
+        "enableIvy": true
     }
 }

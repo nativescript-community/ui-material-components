@@ -1,14 +1,5 @@
-import { AddChildFromBuilder, CSSType, View } from '@nativescript/core/ui/core/view';
-import { booleanConverter } from '@nativescript/core/ui/core/view-base';
-
-import { Color } from '@nativescript/core/color';
-import { CssProperty, Property } from '@nativescript/core/ui/core/properties';
-import { Style } from '@nativescript/core/ui/styling/style';
-import { ImageSource } from '@nativescript/core/image-source';
-
+import { CSSType, View, EventData, booleanConverter, Color, CssProperty, Property, Style, ImageSource } from '@nativescript/core';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
-
-import { EventData } from '@nativescript/core/data/observable';
 
 /**
  * Event interface for tab pressed event
@@ -56,7 +47,7 @@ export enum TitleVisibility {
 }
 
 @CSSType('BottomNavigationBar')
-export abstract class BottomNavigationBarBase extends View implements AddChildFromBuilder {
+export abstract class BottomNavigationBarBase extends View {
     static tabPressedEvent = 'tabPressed';
     static tabSelectedEvent = 'tabSelected';
     static tabReselectedEvent = 'tabReselected';

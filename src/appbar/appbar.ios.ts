@@ -1,12 +1,6 @@
 import { AppBarBase } from './appbar-common';
-import { layout } from '@nativescript/core/utils/utils';
+import { Utils } from '@nativescript/core';
 import { themer } from 'nativescript-material-core/core';
-
-declare module '@nativescript/core/ui/action-bar/action-bar' {
-    interface ActionBar {
-        _setupUI(context: android.content.Context, atIndex?: number, parentIsLoaded?: boolean);
-    }
-}
 
 export class AppBar extends AppBarBase {
     // appBar: MDCAppBar;
@@ -47,8 +41,8 @@ export class AppBar extends AppBarBase {
         }
 
         const size = navBar.sizeThatFits(this._appBarController.navigationBar.frame.size);
-        const width = layout.toDevicePixels(size.width);
-        const height = layout.toDevicePixels(size.height);
+        const width = Utils.layout.toDevicePixels(size.width);
+        const height = Utils.layout.toDevicePixels(size.height);
         return { width, height };
     }
 

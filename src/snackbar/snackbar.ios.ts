@@ -1,4 +1,4 @@
-import { Color } from '@nativescript/core/color';
+import { Color } from '@nativescript/core';
 import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 

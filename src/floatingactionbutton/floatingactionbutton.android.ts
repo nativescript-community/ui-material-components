@@ -1,9 +1,9 @@
 import { FloatingActionButtonBase, imageSourceProperty, sizeProperty, srcProperty } from './floatingactionbutton-common';
-import { ImageSource } from '@nativescript/core/image-source';
+import { ImageSource } from '@nativescript/core';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
-import { backgroundInternalProperty, colorProperty, Length } from '@nativescript/core/ui/styling/style-properties';
-import { Background } from '@nativescript/core/ui/styling/background';
-import { Color } from '@nativescript/core/color';
+import { backgroundInternalProperty, colorProperty, Length } from '@nativescript/core';
+import { Background } from '@nativescript/core';
+import { Color } from '@nativescript/core';
 
 let MDCFabButton: typeof com.google.android.material.floatingactionbutton.FloatingActionButton;
 

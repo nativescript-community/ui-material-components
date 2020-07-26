@@ -1,7 +1,7 @@
-import { Color } from '@nativescript/core/color';
-import { CssProperty } from '@nativescript/core/ui/core/properties';
-import { booleanConverter } from '@nativescript/core/ui/core/view-base';
-import { Style } from '@nativescript/core/ui/styling/style';
+import { Color } from '@nativescript/core';
+import { CssProperty } from '@nativescript/core';
+import { booleanConverter } from '@nativescript/core';
+import { Style } from '@nativescript/core';
 
 export const trackBackgroundColorProperty = new CssProperty<Style, Color>({
     name: 'trackBackgroundColor',

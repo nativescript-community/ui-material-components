@@ -1,46 +1,24 @@
-import { android as androidApp } from '@nativescript/core/application';
-import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/core/css/system-classes';
-import { fromObject } from '@nativescript/core/data/observable';
-import { createViewFromEntry } from '@nativescript/core/ui/builder';
-import { View } from '@nativescript/core/ui/core/view';
-import {
-    ActionOptions,
-    ALERT,
-    CANCEL,
-    capitalizationType,
-    CONFIRM,
-    ConfirmOptions,
-    DialogOptions,
-    getButtonColors,
-    getLabelColor,
-    inputType,
-    LOGIN,
-    LoginResult,
-    OK,
-    PROMPT,
-    PromptResult,
-} from '@nativescript/core/ui/dialogs';
-import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout';
-import { ad } from '@nativescript/core/utils/utils';
+import { Application } from '@nativescript/core';
+import { View, CSSUtils, Utils, fromObject, Builder, StackLayout, ActionOptions,
+  DialogStrings,
+  capitalizationType,
+  ConfirmOptions,
+  DialogOptions,
+  inputType,
+  LoginResult,
+  PromptResult } from '@nativescript/core';
 import { TextField } from 'nativescript-material-textfield';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
 
 export { capitalizationType, inputType };
 
-declare module '@nativescript/core/ui/core/view/view' {
-    interface View {
-        _setupAsRootView(context: any): void;
-        callLoaded(): void;
-    }
-}
-
 function isString(value): value is string {
     return typeof value === 'string';
 }
 
 function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOptions): androidx.appcompat.app.AlertDialog.Builder {
-    const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
+    const activity = Application.android.foregroundActivity || (Application.android.startActivity as globalAndroid.app.Activity);
     const builder = new androidx.appcompat.app.AlertDialog.Builder(activity);
     builder.setTitle(options && isString(options.title) ? options.title : null);
     builder.setMessage(options && isString(options.message) ? options.message : null);
@@ -60,12 +38,12 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
         const view =
             options.view instanceof View
                 ? options.view
-                : createViewFromEntry({
+                : Builder.createViewFromEntry({
                       moduleName: options.view as string,
                   });
 
-        view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
-        const modalRootViewCssClasses = getSystemCssClasses();
+        view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
+        const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
         modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
 
         (builder as any)._currentModalCustomView = view;
@@ -160,7 +138,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
         }
         onDoneCalled = true;
         if (options.view instanceof View) {
-            ad.dismissSoftInput(options.view.nativeView);
+            Utils.android.dismissSoftInput(options.view.nativeView);
         }
         if (dialog) {
             dialog.cancel();
@@ -168,7 +146,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
         callback && callback(result);
     };
 
-    const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
+    const activity = Application.android.foregroundActivity || (Application.android.startActivity as globalAndroid.app.Activity);
     builder.setOnDismissListener(
         new android.content.DialogInterface.OnDismissListener({
             onDismiss: function () {
@@ -263,8 +241,8 @@ export function alert(arg: any): Promise<void> {
     return new Promise<void>((resolve, reject) => {
         try {
             const defaultOptions = {
-                title: ALERT,
-                okButtonText: OK,
+                title: DialogStrings.ALERT,
+                okButtonText: DialogStrings.OK,
             };
             const options = !isDialogOptions(arg) ? Object.assign(defaultOptions, { message: arg + '' }) : Object.assign(defaultOptions, arg);
 
@@ -303,9 +281,9 @@ export function confirm(arg: any): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
         try {
             const defaultOptions = {
-                title: CONFIRM,
-                okButtonText: OK,
-                cancelButtonText: CANCEL,
+                title: DialogStrings.CONFIRM,
+                okButtonText: DialogStrings.OK,
+                cancelButtonText: DialogStrings.CANCEL,
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
@@ -326,9 +304,9 @@ export function prompt(arg: any): Promise<PromptResult> {
     let options: PromptOptions & MDCAlertControlerOptions;
 
     const defaultOptions = {
-        title: PROMPT,
-        okButtonText: OK,
-        cancelButtonText: CANCEL,
+        title: DialogStrings.PROMPT,
+        okButtonText: DialogStrings.OK,
+        cancelButtonText: DialogStrings.CANCEL,
         inputType: inputType.text,
     };
 
@@ -420,9 +398,9 @@ export function prompt(arg: any): Promise<PromptResult> {
 export function login(arg: any): Promise<LoginResult> {
     let options: LoginOptions & MDCAlertControlerOptions;
     const defaultOptions = {
-        title: LOGIN,
-        okButtonText: OK,
-        cancelButtonText: CANCEL,
+        title: DialogStrings.LOGIN,
+        okButtonText: DialogStrings.OK,
+        cancelButtonText: DialogStrings.CANCEL,
     };
 
     if (arguments.length === 1) {
@@ -503,7 +481,7 @@ export function login(arg: any): Promise<LoginResult> {
 export function action(arg: any): Promise<string> {
     let options: ActionOptions;
 
-    const defaultOptions = { title: null, cancelButtonText: CANCEL };
+    const defaultOptions = { title: null, cancelButtonText: DialogStrings.CANCEL };
 
     if (arguments.length === 1) {
         if (isString(arguments[0])) {
@@ -529,7 +507,7 @@ export function action(arg: any): Promise<string> {
 
     return new Promise<string>((resolve, reject) => {
         try {
-            const activity = androidApp.foregroundActivity || (androidApp.startActivity as globalAndroid.app.Activity);
+            const activity = Application.android.foregroundActivity || (Application.android.startActivity as globalAndroid.app.Activity);
             const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
             const message = options && isString(options.message) ? options.message : '';
             const title = options && isString(options.title) ? options.title : '';

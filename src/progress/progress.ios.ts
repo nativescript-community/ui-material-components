@@ -1,14 +1,13 @@
 import { progressBackgroundColorProperty, ProgressBase, progressColorProperty } from './progress-common';
 import { themer } from 'nativescript-material-core/core';
-import { screen } from '@nativescript/core/platform';
-import { Color } from '@nativescript/core/color';
+import { Screen, Color } from '@nativescript/core';
 
 export class Progress extends ProgressBase {
     nativeViewProtected: MDCProgressView;
 
     constructor() {
         super();
-        this.effectiveMinHeight = 2 * screen.mainScreen.scale;
+        this.effectiveMinHeight = 2 * Screen.mainScreen.scale;
     }
 
     public createNativeView() {

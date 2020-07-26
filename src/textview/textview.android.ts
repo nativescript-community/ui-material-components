@@ -1,8 +1,5 @@
-import { Color } from '@nativescript/core/color';
-import { hintProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
-import { Background } from '@nativescript/core/ui/styling/background';
-import { backgroundInternalProperty, borderBottomLeftRadiusProperty } from '@nativescript/core/ui/styling/style-properties';
-import { ad } from '@nativescript/core/utils/utils';
+import { Color, Utils, Background, hintProperty, placeholderColorProperty } from '@nativescript/core';
+import { backgroundInternalProperty, borderBottomLeftRadiusProperty } from '@nativescript/core';
 import { getLayout, stateSets } from 'nativescript-material-core/android/utils';
 import {
     errorColorProperty,
@@ -153,7 +150,7 @@ export class TextView extends TextViewBase {
             this.layoutView.requestFocus();
             setTimeout(() => {
                 this.layoutView.setDescendantFocusability(oldDesc);
-                ad.showSoftInput(this.nativeTextViewProtected);
+                Utils.android.showSoftInput(this.nativeTextViewProtected);
                 // this.focus();
             }, 0);
         }

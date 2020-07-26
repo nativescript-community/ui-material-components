@@ -1,5 +1,4 @@
-import { Color } from '@nativescript/core/color';
-import { TextField as NTextField } from '@nativescript/core/ui/text-field';
+import { Color, TextField as NTextField } from '@nativescript/core';
 
 type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 

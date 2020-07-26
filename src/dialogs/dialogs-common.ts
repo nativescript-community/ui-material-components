@@ -1,17 +1,4 @@
-import { View } from '@nativescript/core/ui/core/view';
-import { ImageSource } from '@nativescript/core/image-source/image-source';
-import { TextAlignment } from '@nativescript/core/ui/text-base';
-import { ViewBase } from '@nativescript/core/ui/core/view-base';
-import { Font } from '@nativescript/core/ui/styling/font';
-import { Color } from '@nativescript/core/color';
-
-declare module '@nativescript/core/ui/core/view' {
-    interface View {
-        _setupAsRootView(context: any): void;
-        callLoaded(): void;
-        callUnloaded(): void;
-    }
-}
+import { View, ImageSource, ViewBase, Font, Color, Enums } from '@nativescript/core';
 
 export interface MDCAlertControlerOptions {
     buttonFont?: Font;
@@ -22,7 +9,7 @@ export interface MDCAlertControlerOptions {
     messageColor?: Color;
     messageFont?: Font;
     scrimColor?: Color;
-    titleAlignment?: TextAlignment;
+    titleAlignment?: string;
     titleColor?: Color;
     titleFont?: Font;
     titleIcon?: ImageSource;

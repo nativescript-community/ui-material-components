@@ -1,14 +1,4 @@
-import * as application from '@nativescript/core/application';
-import { ImageSource } from '@nativescript/core/image-source';
-import { Color } from '@nativescript/core/ui/core/view';
-import { Frame } from '@nativescript/core/ui/frame';
-import { Font } from '@nativescript/core/ui/styling/font';
-import { TabContentItem } from '@nativescript/core/ui/tab-navigation-base/tab-content-item';
-import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript/core/ui/tab-navigation-base/tab-navigation-base';
-import { TabStrip } from '@nativescript/core/ui/tab-navigation-base/tab-strip';
-import { TabStripItem } from '@nativescript/core/ui/tab-navigation-base/tab-strip-item';
-import { getTransformedText, TextTransform } from '@nativescript/core/ui/text-base';
-import { ad, isFontIconURI, layout } from '@nativescript/core/utils/utils';
+import { Application, ImageSource, Color, Frame, Font, TabContentItem, getIconSpecSize, tabStripProperty, TabStrip, TabStripItem, getTransformedText, TextTransform, Utils, Property, CoercibleProperty, isIOS } from '@nativescript/core';
 import { offscreenTabLimitProperty, swipeEnabledProperty, TabsBase } from './tabs-common';
 
 
@@ -28,6 +18,38 @@ interface PagerAdapter {
 let PagerAdapter: PagerAdapter;
 let TabsBar: any;
 let appResources: android.content.res.Resources;
+
+const itemsProperty = new Property<Tabs, TabContentItem[]>({
+	name: 'items',
+	valueChanged: (target, oldValue, newValue) => {
+		target.onItemsChanged(oldValue, newValue);
+	},
+});
+const selectedIndexProperty = new CoercibleProperty<Tabs, number>({
+	name: 'selectedIndex',
+	defaultValue: -1,
+	affectsLayout: isIOS,
+	valueChanged: (target, oldValue, newValue) => {
+		target.onSelectedIndexChanged(oldValue, newValue);
+	},
+	coerceValue: (target, value) => {
+		let items = target.items;
+		if (items) {
+			let max = items.length - 1;
+			if (value < 0) {
+				value = 0;
+			}
+			if (value > max) {
+				value = max;
+			}
+		} else {
+			value = -1;
+		}
+
+		return value;
+	},
+	valueConverter: (v) => parseInt(v),
+});
 
 function makeFragmentName(viewId: number, id: number): string {
     return 'android:viewpager:' + viewId + ':' + id;
@@ -327,14 +349,14 @@ function initializeNativeClasses() {
 
     PagerAdapter = FragmentPagerAdapter;
     TabsBar = TabsBarImplementation;
-    appResources = application.android.context.getResources();
+    appResources = Application.android.context.getResources();
 }
 
 let defaultAccentColor: number = undefined;
 function getDefaultAccentColor(context: android.content.Context): number {
     if (defaultAccentColor === undefined) {
         //Fallback color: https://developer.android.com/samples/SlidingTabsColors/src/com.example.android.common/view/SlidingTabStrip.html
-        defaultAccentColor = ad.resources.getPaletteColor(ACCENT_COLOR, context) || 0xff33b5e5;
+        defaultAccentColor = Utils.android.resources.getPaletteColor(ACCENT_COLOR, context) || 0xff33b5e5;
     }
 
     return defaultAccentColor;
@@ -343,7 +365,7 @@ function getDefaultAccentColor(context: android.content.Context): number {
 function setElevation(grid: org.nativescript.widgets.GridLayout, tabsBar: org.nativescript.widgets.TabsBar, tabsPosition: string) {
     const compat = <any>androidx.core.view.ViewCompat;
     if (compat.setElevation) {
-        const val = DEFAULT_ELEVATION * layout.getDisplayDensity();
+        const val = DEFAULT_ELEVATION * Utils.layout.getDisplayDensity();
 
         if (tabsPosition === 'top') {
             compat.setElevation(grid, val);
@@ -406,7 +428,7 @@ export class Tabs extends TabsBase {
         const viewPager = new org.nativescript.widgets.TabViewPager(context);
         const tabsBar = new TabsBar(context, this);
         const lp = new org.nativescript.widgets.CommonLayoutParams();
-        const primaryColor = ad.resources.getPaletteColor(PRIMARY_COLOR, context);
+        const primaryColor = Utils.android.resources.getPaletteColor(PRIMARY_COLOR, context);
         let accentColor = getDefaultAccentColor(context);
 
         lp.row = 1;
@@ -703,7 +725,7 @@ export class Tabs extends TabsBase {
         }
 
         let is: ImageSource;
-        if (isFontIconURI(iconSource)) {
+        if (Utils.isFontIconURI(iconSource)) {
             const fontIconCode = iconSource.split('//')[1];
             const target = tabStripItem.image ? tabStripItem.image : tabStripItem;
             const font = target.style.fontInternal;
@@ -738,8 +760,8 @@ export class Tabs extends TabsBase {
 
         const iconSpecSize = getIconSpecSize({ width: inWidth, height: inHeight });
 
-        const widthPixels = iconSpecSize.width * layout.getDisplayDensity();
-        const heightPixels = iconSpecSize.height * layout.getDisplayDensity();
+        const widthPixels = iconSpecSize.width * Utils.layout.getDisplayDensity();
+        const heightPixels = iconSpecSize.height * Utils.layout.getDisplayDensity();
 
         const scaledImage = android.graphics.Bitmap.createScaledBitmap(image, widthPixels, heightPixels, true);
 
@@ -965,3 +987,6 @@ function tryCloneDrawable(value: android.graphics.drawable.Drawable, resources: 
 
     return value;
 }
+
+itemsProperty.register(Tabs);
+selectedIndexProperty.register(Tabs);

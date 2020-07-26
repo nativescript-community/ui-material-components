@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ActionBarComponent } from '@nativescript/angular/directives/action-bar';
-import { ActionBar, ActionItem, ActionItems, NavigationButton } from '@nativescript/core/ui/action-bar/action-bar';
-import { isInvisibleNode, isView, NgView, ViewClassMeta, ViewExtensions } from '@nativescript/angular/element-registry';
+import { ActionBarComponent, isInvisibleNode, isView, NgView, ViewClassMeta, ViewExtensions } from '@nativescript/angular';
+import { ActionBar, ActionItem, ActionItems, NavigationButton } from '@nativescript/core';
 
 export function isActionItem(view: any): view is ActionItem {
     return view instanceof ActionItem;
