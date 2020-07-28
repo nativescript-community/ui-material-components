@@ -6,7 +6,7 @@
     "sideEffects": false,
     "typings": "./dialogs.d.ts",
     "scripts": {
-        "tsc": "cp ../../src/dialogs/dialogs.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
+        "tsc": "cp -f ../../src/dialogs/dialogs.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "copy ..\\..\\src\\dialogs\\dialogs.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
         "build": "npm run tsc && ../../node_modules/.bin/rimraf ./build/esm",
         "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",

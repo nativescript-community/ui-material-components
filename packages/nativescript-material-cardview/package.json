@@ -6,9 +6,9 @@
     "sideEffects": false,
     "typings": "./cardview.d.ts",
     "scripts": {
-        "tsc": "cp ../../src/cardview/cardview.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
+        "tsc": "cp -f ../../src/cardview/cardview.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "copy ..\\..\\src\\cardview\\cardview.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
-        "build": "npm run tsc && ../../node_modules/.bin/rimraf ./build/esm && npm run ngc",
+        "build": "npm run tsc && npm run ngc",
         "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",
         "ngc-win": "..\\..\\node_modules\\.bin\\ngc",
         "ngc": "NODE_OPTIONS=--max_old_space_size=8192 ../../node_modules/.bin/ngc",
