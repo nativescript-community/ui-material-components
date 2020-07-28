@@ -1,8 +1,4 @@
-import { Color, Screen, editableProperty, hintProperty, placeholderColorProperty, Property, isAndroid } from '@nativescript/core';
-import { Background } from '@nativescript/core';
-import { Style } from '@nativescript/core';
-import { backgroundInternalProperty } from '@nativescript/core';
-import { themer } from 'nativescript-material-core/core';
+import { themer } from '@nativescript-community/ui-material-core';
 import {
     buttonColorProperty,
     errorColorProperty,
@@ -14,13 +10,14 @@ import {
     maxLengthProperty,
     strokeColorProperty,
     strokeInactiveColorProperty
-} from 'nativescript-material-core/textbase/cssproperties';
+} from '@nativescript-community/ui-material-core/textbase/cssproperties';
+import { Background, Color, Property, Screen, Style, backgroundInternalProperty, editableProperty, hintProperty, isAndroid, placeholderColorProperty } from '@nativescript/core';
 import { TextViewBase } from './textview.common';
 
 const textProperty = new Property<TextView, string>({
-	name: 'text',
-	defaultValue: '',
-	affectsLayout: isAndroid,
+    name: 'text',
+    defaultValue: '',
+    affectsLayout: isAndroid,
 });
 
 let colorScheme: MDCSemanticColorScheme;

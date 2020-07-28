@@ -1,5 +1,5 @@
+import { getRippleColor, themer } from '@nativescript-community/ui-material-core';
 import { Color } from '@nativescript/core';
-import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 
 export class SnackBar extends SnackBarBase {

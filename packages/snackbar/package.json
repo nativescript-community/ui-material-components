@@ -1,0 +1,40 @@
+{
+    "name": "@nativescript-community/ui-material-snackbar",
+    "version": "3.2.19",
+    "description": "Material snackbar component",
+    "main": "./snackbar",
+    "sideEffects": false,
+    "typings": "./snackbar.d.ts",
+    "scripts": {
+        "tsc": "../../node_modules/.bin/cpy ../../src/snackbar/snackbar.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
+        "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\snackbar\\snackbar.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
+        "build": "npm run tsc",
+        "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
+    },
+    "nativescript": {
+        "platforms": {
+            "android": "6.3.1",
+            "ios": "6.3.1"
+        }
+    },
+    "keywords": [
+        "NativeScript",
+        "JavaScript",
+        "Android",
+        "iOS"
+    ],
+    "author": {
+        "name": "Martin Guillon",
+        "email": "martin@akylas.fr"
+    },
+    "bugs": {
+        "url": "https://github.com/Akylas/nativescript-material-components/issues"
+    },
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/Akylas/nativescript-material-components",
+    "readmeFilename": "README.md",
+    "dependencies": {
+        "nativescript-material-core": "^3.2.19"
+    },
+    "gitHead": "511d6d5c154f669b23b56d01a7965205eb9c9d0f"
+}

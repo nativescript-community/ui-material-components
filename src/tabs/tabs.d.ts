@@ -3,7 +3,7 @@
  * @module "ui/tabs"
  */ /** */
 
-import { EventData, TabContentItem, Property, SelectedIndexChangedEventData, TabNavigationBase, TabStrip } from "@nativescript/core";
+import { EventData, Property, SelectedIndexChangedEventData, TabContentItem, TabNavigationBase, TabStrip } from '@nativescript/core';
 
 /**
  * Represents a swipeable tabs view.
@@ -12,7 +12,7 @@ export class Tabs extends TabNavigationBase {
     /**
      * Gets or sets the items of the Tabs.
      */
-    items: Array<TabContentItem>;
+    items: TabContentItem[];
 
     /**
      * Gets or sets the tab strip of the Tabs.
@@ -20,6 +20,7 @@ export class Tabs extends TabNavigationBase {
     tabStrip: TabStrip;
 
     /**
+     *
      * Gets or sets the selectedIndex of the Tabs.
      */
     selectedIndex: number;
@@ -37,9 +38,9 @@ export class Tabs extends TabNavigationBase {
     /**
      * Gets or sets the position state of the Tabs.
      */
-    tabsPosition: "top" | "bottom";
+    tabsPosition: 'top' | 'bottom';
 
-     /**
+    /**
      * Gets or set the MDCTabBarAlignment of the tab bar icons in iOS. Defaults to "justified"
      * Valid values are:
      *  - leading
@@ -75,11 +76,11 @@ export class Tabs extends TabNavigationBase {
     /**
      * Raised when the selected index changes.
      */
-    on(event: "selectedIndexChanged", callback: (args: SelectedIndexChangedEventData) => void, thisArg?: any);
+    on(event: 'selectedIndexChanged', callback: (args: SelectedIndexChangedEventData) => void, thisArg?: any);
 }
 
 export const itemsProperty: Property<Tabs, TabContentItem[]>;
-export const tabStripProperty: Property<Tabs, TabStrip>
+export const tabStripProperty: Property<Tabs, TabStrip>;
 export const selectedIndexProperty: Property<Tabs, number>;
 
 /**
@@ -89,4 +90,4 @@ export const selectedIndexProperty: Property<Tabs, number>;
  *  - `center` - tabs items are aligned in the center
  *  - `centerSelected` - tab items move to make the selected tab in the center
  */
-export type IOSTabBarItemsAlignment = "leading" | "justified" | "center" | "centerSelected";
+export type IOSTabBarItemsAlignment = 'leading' | 'justified' | 'center' | 'centerSelected';

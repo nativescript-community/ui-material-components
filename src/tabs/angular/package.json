@@ -1,5 +1,5 @@
 {
-	"name": "nativescript-material-tabs-angular",
+	"name": "@nativescript-community/ui-material-tabs-angular",
 	"main": "index.js",
 	"ngPackage": {
 		"lib": {

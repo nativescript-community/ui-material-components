@@ -1,8 +1,6 @@
-import { NgModule } from '@angular/core';
+import { Directive, NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-
-import { Directive } from '@angular/core';
-import { Slider } from 'nativescript-material-slider';
+import { Slider } from '../slider';
 
 @Directive({ selector: 'MDSlider' })
 export class MaterialSliderDirective {}

@@ -1,11 +1,9 @@
-import { ActionOptions, AlertOptions, ConfirmOptions, LoginOptions as TNSLoginOptions, LoginResult, PromptOptions as TNSPromptOptions, PromptResult } from '@nativescript/core';
-import { Color } from '@nativescript/core';
-import { Page } from '@nativescript/core';
+/* eslint-disable @typescript-eslint/unified-signatures */
+import { ActionOptions, AlertOptions, ConfirmOptions, LoginResult, PromptResult, LoginOptions as TNSLoginOptions, PromptOptions as TNSPromptOptions } from '@nativescript/core';
+import { TextField, TextFieldProperties } from '@nativescript-community/ui-material-textfield';
 import { MDCAlertControlerOptions } from './dialogs-common';
-import { TextField, TextFieldProperties } from 'nativescript-material-textfield';
 
 export interface PromptOptions extends TNSPromptOptions {
-
     autoFocus?: boolean;
 
     /**
@@ -19,17 +17,16 @@ export interface PromptOptions extends TNSPromptOptions {
     /**
      * Optional object to set any property to the textfield!
      */
-    textFieldProperties?: Partial<TextFieldProperties>
+    textFieldProperties?: Partial<TextFieldProperties>;
 }
 
 export interface LoginOptions extends TNSLoginOptions {
-
     autoFocus?: boolean;
     /**
      * Gets or sets the default text to display as hint in the user name input box.
      */
     userNameHint?: string;
-    
+
     /**
      * Gets or sets the default text to display as hint in the password input box.
      */
@@ -38,21 +35,20 @@ export interface LoginOptions extends TNSLoginOptions {
     /**
      * Optional object to set any property to the username textfield!
      */
-    usernameTextFieldProperties?: Partial<TextFieldProperties>
+    usernameTextFieldProperties?: Partial<TextFieldProperties>;
 
     /**
      * Optional object to set any property to the username textfield!
      */
-    passwordTextFieldProperties?: Partial<TextFieldProperties>
-
+    passwordTextFieldProperties?: Partial<TextFieldProperties>;
 
     /**
      * Optional function to choose if you can validate or not
      */
-    beforeShow?:(options: LoginOptions & MDCAlertControlerOptions, usernameTextField:TextField, passwordTextField:TextField) => void
+    beforeShow?: (options: LoginOptions & MDCAlertControlerOptions, usernameTextField: TextField, passwordTextField: TextField) => void;
 }
 
-export { MDCAlertControlerOptions }
+export { MDCAlertControlerOptions };
 
 /**
  * The alert() method displays an alert box with a specified message.
@@ -111,7 +107,7 @@ export function login(options: LoginOptions & MDCAlertControlerOptions): Promise
  * @param cancelButtonText The text to display in the cancel button.
  * @param actions List of available actions.
  */
-export function action(message: string, cancelButtonText: string, actions: Array<string>): Promise<string>;
+export function action(message: string, cancelButtonText: string, actions: string[]): Promise<string>;
 
 /**
  * The action() method displays a action box that prompts the visitor to choose some action.
@@ -119,9 +115,8 @@ export function action(message: string, cancelButtonText: string, actions: Array
  */
 export function action(options: ActionOptions & MDCAlertControlerOptions): Promise<string>;
 
-
-export class AlertDialog  {
-    constructor(options: AlertOptions & MDCAlertControlerOptions)
+export class AlertDialog {
+    constructor(options: AlertOptions & MDCAlertControlerOptions);
     show();
     hide();
 }

@@ -1,6 +1,6 @@
-import { Application, Color, ViewBase, Utils } from '@nativescript/core';
+import { Application, Color, Utils, ViewBase } from '@nativescript/core';
 
-let isPostLollipopVar: boolean = undefined;
+let isPostLollipopVar: boolean;
 export function isPostLollipop() {
     if (isPostLollipopVar === undefined) {
         isPostLollipopVar = android.os.Build.VERSION.SDK_INT >= 21;
@@ -8,14 +8,14 @@ export function isPostLollipop() {
     return isPostLollipopVar;
 }
 
-let isPostLollipopMR1Var: boolean = undefined;
+let isPostLollipopMR1Var: boolean;
 export function isPostLollipopMR1() {
     if (isPostLollipopMR1Var === undefined) {
         isPostLollipopMR1Var = android.os.Build.VERSION.SDK_INT >= 22;
     }
     return isPostLollipopMR1Var;
 }
-let isPostMarshmallowVar: boolean = undefined;
+let isPostMarshmallowVar: boolean;
 export function isPostMarshmallow() {
     if (isPostMarshmallowVar === undefined) {
         isPostMarshmallowVar = android.os.Build.VERSION.SDK_INT >= 23;
@@ -44,7 +44,7 @@ export const state = {
     },
     get checked() {
         return 16842912;
-    }
+    },
 };
 
 function createNativeArray(...args) {
@@ -142,7 +142,7 @@ export const stateSets = {
             this._BACKGROUND_DISABLED_STATE = createNativeArray(-state.enabled);
         }
         return this._BACKGROUND_DISABLED_STATE as native.Array<number>;
-    }
+    },
 };
 
 export function getRippleColorStateList(color: number) {
@@ -203,11 +203,7 @@ export function createStateListAnimator(view: ViewBase, nativeView: android.view
     const ObjectAnimator = android.animation.ObjectAnimator;
     const AnimatorSet = android.animation.AnimatorSet;
 
-    const duration =
-        nativeView
-            .getContext()
-            .getResources()
-            .getInteger(shortAnimTime) / 2;
+    const duration = nativeView.getContext().getResources().getInteger(shortAnimTime) / 2;
 
     let elevation = view['elevation'];
     if (typeof elevation === 'undefined' || elevation === null) {
@@ -234,7 +230,7 @@ export function createStateListAnimator(view: ViewBase, nativeView: android.view
     const defaultSet = new AnimatorSet();
     defaultSet.playTogether(java.util.Arrays.asList([ObjectAnimator.ofFloat(nativeView, 'translationZ', [0]).setDuration(0), ObjectAnimator.ofFloat(nativeView, 'elevation', [0]).setDuration(0)]));
 
-    const stateListAnimator = new (<any>android.animation).StateListAnimator();
+    const stateListAnimator = new android.animation.StateListAnimator();
     stateListAnimator.addState([statePressed, stateEnabled], pressedSet);
     stateListAnimator.addState([stateEnabled], notPressedSet);
     stateListAnimator.addState([], defaultSet);
@@ -265,7 +261,7 @@ export function createRippleDrawable(view: android.view.View, rippleColor: numbe
         rippleDrawable = new android.graphics.drawable.StateListDrawable();
         // const foregroundShape = this.createForegroundShape(this._borderRadius);
         rippleShape.getPaint().setColor(rippleColor);
-        (rippleDrawable as android.graphics.drawable.StateListDrawable).addState([state.pressed], rippleShape);
+        rippleDrawable.addState([state.pressed], rippleShape);
         // this.rippleDrawable = this.createCompatRippleDrawable(this.getCardRippleColor());
         // view.setForeground(this.createCompatRippleDrawable(this.getRippleColor(this.style['rippleColor'])));
     }

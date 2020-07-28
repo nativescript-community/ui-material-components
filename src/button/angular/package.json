@@ -1,5 +1,5 @@
 {
-	"name": "nativescript-material-button-angular",
+	"name": "@nativescript-community/ui-material-button-angular",
 	"main": "index.js",
 	"ngPackage": {
 		"lib": {

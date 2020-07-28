@@ -82,8 +82,8 @@ module.exports = env => {
         aliases = Object.assign(aliases, {
             '#': srcFullPath,
             'nativescript-material-core$': '#/core/core.' + platform,
-            'nativescript-material-core/core': '#/core/core.' + platform,
-            'nativescript-material-core/android/utils$': '#/core/android/utils',
+            '@nativescript-community/ui-material-core': '#/core/core.' + platform,
+            from '@nativescript-community/ui-material-core/android/utils$': '#/core/android/utils',
             'nativescript-material-core/cssproperties$': '#/core/cssproperties',
 
             'nativescript-material-bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,

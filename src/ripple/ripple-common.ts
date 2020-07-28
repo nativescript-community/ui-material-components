@@ -1,5 +1,5 @@
-import { Color, StackLayout, CSSType } from '@nativescript/core';
-import { cssProperty } from 'nativescript-material-core/cssproperties';
+import { CSSType, Color, StackLayout } from '@nativescript/core';
+import { cssProperty } from '@nativescript-community/ui-material-core';
 
 @CSSType('MDRipple')
 export abstract class RippleBase extends StackLayout {

@@ -7,5 +7,5 @@ export default {
             installed = true;
             Vue.registerElement('MDFloatingActionButton', () => FloatingActionButton, {});
         }
-    }
+    },
 };

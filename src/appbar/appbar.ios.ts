@@ -1,6 +1,6 @@
-import { AppBarBase } from './appbar-common';
+import { themer } from '@nativescript-community/ui-material-core';
 import { Utils } from '@nativescript/core';
-import { themer } from 'nativescript-material-core/core';
+import { AppBarBase } from './appbar-common';
 
 export class AppBar extends AppBarBase {
     // appBar: MDCAppBar;

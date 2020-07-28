@@ -1,6 +1,5 @@
+import { getRippleColor, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
 import { Color } from '@nativescript/core';
-import { getRippleColor, themer } from 'nativescript-material-core/core';
-import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { RippleBase } from './ripple-common';
 
 export class Ripple extends RippleBase {

@@ -1,0 +1,37 @@
+{
+    "name": "@nativescript-community/ui-material-core",
+    "version": "3.2.19",
+    "description": "Material Core component",
+    "main": "./core",
+    "sideEffects": false,
+    "typings": "./core.d.ts",
+    "scripts": {
+        "tsc": "../../node_modules/.bin/cpy ../../src/core/core.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
+        "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\core\\core.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
+        "build": "npm run tsc && ../../node_modules/.bin/rimraf ./build/esm",
+        "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
+    },
+    "nativescript": {
+        "platforms": {
+            "android": "6.2.0",
+            "ios": "6.2.0"
+        }
+    },
+    "keywords": [
+        "NativeScript",
+        "JavaScript",
+        "Android",
+        "iOS"
+    ],
+    "author": {
+        "name": "Martin Guillon",
+        "email": "martin@akylas.fr"
+    },
+    "bugs": {
+        "url": "https://github.com/Akylas/nativescript-material-components/issues"
+    },
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/Akylas/nativescript-material-components",
+    "readmeFilename": "README.md",
+    "gitHead": "511d6d5c154f669b23b56d01a7965205eb9c9d0f"
+}

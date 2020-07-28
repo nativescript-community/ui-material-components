@@ -1,4 +1,4 @@
-import { View, ImageSource, ViewBase, Font, Color, Enums } from '@nativescript/core';
+import { Color, Enums, Font, ImageSource, View, ViewBase } from '@nativescript/core';
 
 export interface MDCAlertControlerOptions {
     buttonFont?: Font;

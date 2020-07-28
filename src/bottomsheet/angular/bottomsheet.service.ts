@@ -1,9 +1,9 @@
 import { ComponentFactoryResolver, ComponentRef, Injectable, Injector, Type, ViewContainerRef } from '@angular/core';
 import { AppHostView, DetachedLoader, once } from '@nativescript/angular';
 import { ProxyViewContainer } from '@nativescript/core';
-import { BottomSheetOptions as MaterialBottomSheetOptions } from 'nativescript-material-bottomsheet'; // ViewWithBottomSheetBase
 import { Observable, Subject } from 'rxjs';
 import { filter, first, map } from 'rxjs/operators';
+import { BottomSheetOptions as MaterialBottomSheetOptions } from '../bottomsheet'; // ViewWithBottomSheetBase
 
 export type BaseShowBottomSheetOptions = Pick<MaterialBottomSheetOptions, Exclude<keyof MaterialBottomSheetOptions, 'closeCallback' | 'view'>>;
 
@@ -34,7 +34,7 @@ export class BottomSheetService {
         return this.showWithCloseCallback(type, options).observable;
     }
 
-    showWithCloseCallback<T = any>(type: Type<any>, options: BottomSheetOptions): { observable: Observable<T>, closeCallback: () => void } {
+    showWithCloseCallback<T = any>(type: Type<any>, options: BottomSheetOptions): { observable: Observable<T>; closeCallback: () => void } {
         if (!options.viewContainerRef) {
             throw new Error('No viewContainerRef: Make sure you pass viewContainerRef in BottomSheetOptions.');
         }
@@ -125,7 +125,7 @@ export class BottomSheetService {
     private async loadComponent(type: Type<any>): Promise<any> {//ViewWithBottomSheetBase> {
         try {
             const componentRef = await this.detachedLoader.instance.loadComponent(type);
-            const detachedProxy = <ProxyViewContainer>componentRef.location.nativeElement;
+            const detachedProxy = componentRef.location.nativeElement as ProxyViewContainer;
 
             if (detachedProxy.getChildrenCount() > 1) {
                 throw new Error('BottomSheet content has more than one root view.');
@@ -134,8 +134,8 @@ export class BottomSheetService {
             this.componentView = detachedProxy.getChildAt(0) as any;//ViewWithBottomSheetBase;
 
             if (this.componentView.parent) {
-                (<any>this.componentView.parent)._ngDialogRoot = this.componentView;
-                (<any>this.componentView.parent).removeChild(this.componentView);
+                (this.componentView.parent)._ngDialogRoot = this.componentView;
+                (this.componentView.parent).removeChild(this.componentView);
             }
 
             return this.componentView;

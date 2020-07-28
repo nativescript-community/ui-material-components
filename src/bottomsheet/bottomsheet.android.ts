@@ -1,5 +1,5 @@
-import { Application, AndroidActivityBackPressedEventData, View, fromObject } from '@nativescript/core';
-import { applyMixins } from 'nativescript-material-core/core';
+import { applyMixins } from '@nativescript-community/ui-material-core';
+import { AndroidActivityBackPressedEventData, Application, View, fromObject } from '@nativescript/core';
 import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
 
 export { ViewWithBottomSheetBase } from './bottomsheet-common';
@@ -15,7 +15,6 @@ function getId(id: string) {
     const context: android.content.Context = Application.android.context;
     return context.getResources().getIdentifier(id, 'id', context.getPackageName());
 }
-
 
 export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     _bottomSheetFragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment;
@@ -36,7 +35,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         const domId = this._domId;
         const bottomSheetOptions: BottomSheetDataOptions = {
             owner: this,
-            options: options,
+            options,
             shownCallback: () => {
                 this.bindingContext = fromObject(options.context);
                 this._raiseShownBottomSheetEvent();
@@ -45,7 +44,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         };
         const dfListener = new com.nativescript.material.bottomsheet.BottomSheetDialogFragment.BottomSheetDialogFragmentListener({
             onCreateDialog(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment, savedInstanceState: android.os.Bundle): android.app.Dialog {
-                let theme = fragment.getTheme();
+                const theme = fragment.getTheme();
                 const dialogListener = new com.nativescript.material.bottomsheet.BottomSheetDialog.BottomSheetDialogListener({
                     onDetachedFromWindow(dialog: com.nativescript.material.bottomsheet.BottomSheetDialog) {
                         (dialog as any).nListener = null;
@@ -55,12 +54,12 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                         if (!owner) {
                             return false;
                         }
-                        const args = <AndroidActivityBackPressedEventData>{
+                        const args = {
                             eventName: 'activityBackPressed',
                             object: owner,
                             activity: owner._context,
                             cancel: false,
-                        };
+                        } as AndroidActivityBackPressedEventData;
 
                         // Fist fire application.android global event
                         Application.android.notify(args);
@@ -154,7 +153,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         (df as any).nListener = dfListener;
         this._bottomSheetFragment = df;
         this._raiseShowingBottomSheetEvent();
-        df.show((<any>parent)._getRootFragmentManager(), domId.toString());
+        df.show((parent as any)._getRootFragmentManager(), domId.toString());
     }
 }
 

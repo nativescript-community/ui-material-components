@@ -1,11 +1,8 @@
-import { Color } from '@nativescript/core';
-import { CSSType } from '@nativescript/core';
-import { EditableTextBase } from '@nativescript/core';
-import { cssProperty } from 'nativescript-material-core/cssproperties';
+import { cssProperty } from '@nativescript-community/ui-material-core';
+import { CSSType, Color, EditableTextBase } from '@nativescript/core';
 
 @CSSType('MDTextView')
 export abstract class TextViewBase extends EditableTextBase {
-
     abstract requestFocus();
     abstract clearFocus();
 

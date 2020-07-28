@@ -1,7 +1,6 @@
-import { Color, profile, Background, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, Length } from '@nativescript/core';
-import { VerticalTextAlignment } from 'nativescript-material-core';
-import { createStateListAnimator, getEnabledColorStateList, getLayout, isPostLollipop } from 'nativescript-material-core/android/utils';
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, verticalTextAlignmentProperty } from 'nativescript-material-core/cssproperties';
+import { VerticalTextAlignment, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, verticalTextAlignmentProperty } from '@nativescript-community/ui-material-core';
+import { createStateListAnimator, getEnabledColorStateList, getLayout, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
+import { Background, Color, Length, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, profile } from '@nativescript/core';
 import { ButtonBase } from './button-common';
 
 let LayoutInflater: typeof android.view.LayoutInflater;

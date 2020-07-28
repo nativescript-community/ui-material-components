@@ -1,7 +1,4 @@
-import { Color } from '@nativescript/core';
-import { CssProperty, Style } from '@nativescript/core';
-import { CSSType } from '@nativescript/core';
-import { Progress as NSProgress } from '@nativescript/core';
+import { CSSType, Color, CssProperty, Progress as NSProgress, Style } from '@nativescript/core';
 
 @CSSType('MDProgress')
 export abstract class ProgressBase extends NSProgress {}

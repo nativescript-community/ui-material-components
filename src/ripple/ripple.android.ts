@@ -1,7 +1,6 @@
-import { Color, backgroundInternalProperty, Background } from '@nativescript/core';
-import { createRippleDrawable, getAttrColor, isPostLollipopMR1, isPostMarshmallow } from 'nativescript-material-core/android/utils';
-import { getRippleColor } from 'nativescript-material-core/core';
-import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { getRippleColor, rippleColorProperty } from '@nativescript-community/ui-material-core';
+import { Background, Color, backgroundInternalProperty } from '@nativescript/core';
+import { createRippleDrawable, getAttrColor, isPostLollipopMR1, isPostMarshmallow } from '@nativescript-community/ui-material-core/android/utils';
 import { RippleBase } from './ripple-common';
 
 let MDStackLayout: typeof org.nativescript.widgets.StackLayout;

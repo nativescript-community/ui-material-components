@@ -1,11 +1,11 @@
 import { Color } from '@nativescript/core';
 import {
-    activeColorCssProperty,
     BottomNavigationBarBase,
     BottomNavigationTabBase,
+    TitleVisibility,
+    activeColorCssProperty,
     inactiveColorCssProperty,
     tabsProperty,
-    TitleVisibility,
     titleVisibilityProperty
 } from './bottomnavigationbar-common';
 
@@ -14,9 +14,7 @@ declare type OnNavigationItemSelectedListener = com.google.android.material.bott
 declare type OnNavigationItemReselectedListener = com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemReselectedListener;
 
 // Listeners
-interface OnTabSelectedlistener {
-    new (owner: BottomNavigationBar): OnNavigationItemSelectedListener;
-}
+type OnTabSelectedlistener = new (owner: BottomNavigationBar) => OnNavigationItemSelectedListener;
 
 let OnTabSelectedlistener: OnTabSelectedlistener;
 
@@ -53,9 +51,7 @@ const getOnTabSelectedlistener = () => {
     return OnTabSelectedlistener;
 };
 
-interface OnTabReselectedListener {
-    new (owner: BottomNavigationBar): OnNavigationItemReselectedListener;
-}
+type OnTabReselectedListener = new (owner: BottomNavigationBar) => OnNavigationItemReselectedListener;
 
 let OnTabReselectedListener: OnTabReselectedListener;
 

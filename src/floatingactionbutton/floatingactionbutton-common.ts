@@ -1,20 +1,20 @@
-import { CSSType, View, ImageAsset, Color, Utils, ImageSource, Property } from '@nativescript/core';
-import { cssProperty } from 'nativescript-material-core/cssproperties';
+import { CSSType, Color, ImageAsset, ImageSource, Property, Utils, View } from '@nativescript/core';
+import { cssProperty } from '@nativescript-community/ui-material-core';
 
 export const imageSourceProperty = new Property<FloatingActionButtonBase, ImageSource>({ name: 'imageSource' });
 
 export const srcProperty = new Property<FloatingActionButtonBase, any>({
-    name: 'src'
+    name: 'src',
 });
 
 export const sizeProperty = new Property<FloatingActionButtonBase, string>({
     name: 'size',
-    affectsLayout: true
+    affectsLayout: true,
 });
 
 export const expandedProperty = new Property<FloatingActionButtonBase, boolean>({
     name: 'expanded',
-    affectsLayout: true
+    affectsLayout: true,
 });
 
 @CSSType('MDFloatingActionButton')
@@ -92,7 +92,7 @@ export abstract class FloatingActionButtonBase extends View {
                 }
             } else {
                 this.imageSource = null;
-                ImageSource.fromUrl(value).then(r => {
+                ImageSource.fromUrl(value).then((r) => {
                     if (this['_url'] === value) {
                         this.imageSource = r;
                         this.isLoading = false;
@@ -104,7 +104,7 @@ export abstract class FloatingActionButtonBase extends View {
             this.imageSource = value;
             this.isLoading = false;
         } else if (value instanceof ImageAsset) {
-            ImageSource.fromAsset(value).then(result => {
+            ImageSource.fromAsset(value).then((result) => {
                 this.imageSource = result;
                 this.isLoading = false;
             });

@@ -1,14 +1,23 @@
-import { Application, fromObject, Builder, View, ActionOptions,
-  DialogStrings,
-  capitalizationType,
-  ConfirmOptions,
-  DialogOptions,
-  getCurrentPage,
-  inputType,
-  LoginResult,
-  PromptResult, StackLayout, Utils, CSSUtils } from '@nativescript/core';
-import { themer } from 'nativescript-material-core/core';
-import { TextField } from 'nativescript-material-textfield';
+import { themer } from '@nativescript-community/ui-material-core';
+import { TextField } from '@nativescript-community/ui-material-textfield';
+import {
+    ActionOptions,
+    Application,
+    Builder,
+    CSSUtils,
+    ConfirmOptions,
+    DialogOptions,
+    DialogStrings,
+    LoginResult,
+    PromptResult,
+    StackLayout,
+    Utils,
+    View,
+    capitalizationType,
+    fromObject,
+    getCurrentPage,
+    inputType,
+} from '@nativescript/core';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
 
@@ -327,10 +336,10 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     if (options.view) {
         const view =
             options.view instanceof View
-                ? (options.view as View)
+                ? options.view
                 : Builder.createViewFromEntry({
-                      moduleName: options.view as string,
-                  });
+                    moduleName: options.view as string,
+                });
 
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
@@ -424,8 +433,8 @@ export function confirm(arg: any): Promise<boolean> {
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
-                      message: arg + '',
-                  })
+                    message: arg + '',
+                })
                 : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
 
@@ -530,9 +539,7 @@ export function prompt(arg: any): Promise<PromptResult> {
                     alertController._resolveFunction = null;
                     resolve({ result: r, text: textField.text });
                 },
-                (r) => {
-                    return { result: r, text: textField.text };
-                }
+                (r) => ({ result: r, text: textField.text })
             );
             if (!!options.autoFocus) {
                 alertController.autoFocusTextField = textField;
@@ -645,9 +652,7 @@ export function login(arg: any): Promise<LoginResult> {
                         password: passwordTextField.text,
                     });
                 },
-                (r) => {
-                    return { result: r, userName: userNameTextField.text, password: passwordTextField.text };
-                }
+                (r) => ({ result: r, userName: userNameTextField.text, password: passwordTextField.text })
             );
 
             if (!!options.beforeShow) {
@@ -679,7 +684,7 @@ function showUIAlertController(alertController: MDCAlertController) {
         currentView = currentView.modal || currentView;
 
         // for now we need to use the rootController because of a bug in {N}
-        let viewController = Application.ios.rootController;
+        const viewController = Application.ios.rootController;
 
         // let viewController: UIViewController = currentView.ios;
 

@@ -1,4 +1,4 @@
-import { Builder, CSSUtils, EventData, View, ViewBase } from "@nativescript/core";
+import { Builder, CSSUtils, EventData, View, ViewBase } from '@nativescript/core';
 
 export interface ShownBottomSheetData extends EventData {
     /**
@@ -84,17 +84,17 @@ export abstract class ViewWithBottomSheetBase extends View {
             if (!this._closeBottomSheetCallback) {
                 return;
             }
-                // const callback = this._closeBottomSheetCallback;
-                this._closeBottomSheetCallback = null;
-                if (this._bottomSheetContext) {
-                    this._bottomSheetContext.closeCallback = null;
+            // const callback = this._closeBottomSheetCallback;
+            this._closeBottomSheetCallback = null;
+            if (this._bottomSheetContext) {
+                this._bottomSheetContext.closeCallback = null;
+            }
+            const whenClosedCallback = () => {
+                if (typeof options.closeCallback === 'function') {
+                    options.closeCallback.apply(undefined, originalArgs);
                 }
-                const whenClosedCallback = () => {
-                    if (typeof options.closeCallback === 'function') {
-                        options.closeCallback.apply(undefined, originalArgs);
-                    }
-                };
-                this._hideNativeBottomSheet(parent, whenClosedCallback);
+            };
+            this._hideNativeBottomSheet(parent, whenClosedCallback);
         };
         this._bottomSheetContext.closeCallback = this._closeBottomSheetCallback;
     }
@@ -108,11 +108,11 @@ export abstract class ViewWithBottomSheetBase extends View {
         this.notify(args);
     }
     public closeBottomSheet(...args) {
-        let closeCallback = this._closeBottomSheetCallback;
+        const closeCallback = this._closeBottomSheetCallback;
         if (closeCallback) {
             closeCallback.apply(undefined, arguments);
         } else {
-            let parent = this.parent as ViewWithBottomSheetBase;
+            const parent = this.parent as ViewWithBottomSheetBase;
             if (parent) {
                 parent.closeBottomSheet(...args);
             }
@@ -123,13 +123,13 @@ export abstract class ViewWithBottomSheetBase extends View {
         if (arguments.length === 0) {
             throw new Error('showModal without parameters is deprecated. Please call showModal on a view instance instead.');
         } else {
-            const view = options.view instanceof View ? (options.view as ViewWithBottomSheetBase) : <ViewWithBottomSheetBase>Builder.createViewFromEntry({
-                          moduleName: options.view as string
-                      });
+            const view = options.view instanceof View ? (options.view as ViewWithBottomSheetBase) : Builder.createViewFromEntry({
+                moduleName: options.view as string
+            }) as ViewWithBottomSheetBase;
             view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
             const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
             modalRootViewCssClasses.forEach(c => view.cssClasses.add(c));
-            
+
             view._showNativeBottomSheet(this, options);
             return view;
         }

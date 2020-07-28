@@ -1,5 +1,5 @@
 {
-	"name": "nativescript-material-floatingactionbutton-angular",
+	"name": "@nativescript-community/ui-material-floatingactionbutton-angular",
 	"main": "index.js",
 	"ngPackage": {
 		"lib": {

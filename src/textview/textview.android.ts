@@ -1,6 +1,3 @@
-import { Color, Utils, Background, hintProperty, placeholderColorProperty } from '@nativescript/core';
-import { backgroundInternalProperty, borderBottomLeftRadiusProperty } from '@nativescript/core';
-import { getLayout, stateSets } from 'nativescript-material-core/android/utils';
 import {
     errorColorProperty,
     errorProperty,
@@ -10,9 +7,11 @@ import {
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
-    strokeInactiveColorProperty
-} from 'nativescript-material-core/textbase/cssproperties';
+    strokeInactiveColorProperty,
+} from '@nativescript-community/ui-material-core/textbase/cssproperties';
+import { Background, Color, Utils, backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty } from '@nativescript/core';
 import { TextViewBase } from './textview.common';
+import { getLayout, stateSets } from '@nativescript-community/ui-material-core/android/utils';
 
 function getColorStateList(activeColor: number, inactiveColor = 1627389952) {
     const states = Array.create('[I', 2);

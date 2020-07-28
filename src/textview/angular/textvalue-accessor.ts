@@ -1,8 +1,8 @@
 import { Directive, ElementRef, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { BaseValueAccessor } from '@nativescript/angular';
 import { View } from '@nativescript/core';
 
-import { BaseValueAccessor } from '@nativescript/angular';
 
 const TEXT_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,

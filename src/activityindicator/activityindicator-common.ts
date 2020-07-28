@@ -1,10 +1,5 @@
-import { applyMixins } from 'nativescript-material-core';
-import { ActivityIndicator as NSActivityIndicator } from '@nativescript/core';
-import { Property } from '@nativescript/core';
-import { CSSType } from '@nativescript/core';
-import { booleanConverter } from '@nativescript/core';
-import { Progress as NSProgress } from '@nativescript/core';
-import { Utils } from '@nativescript/core';
+import { CSSType, ActivityIndicator as NSActivityIndicator, Progress as NSProgress, Property, Utils, booleanConverter } from '@nativescript/core';
+import { applyMixins } from '@nativescript-community/ui-material-core';
 
 @CSSType('MDActivityIndicator')
 export class ActivityIndicatorBase extends NSActivityIndicator {

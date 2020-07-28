@@ -2,32 +2,32 @@ declare namespace com {
     export namespace nativescript {
         export namespace material {
             export namespace textfield {
-                class TextInputEditText extends com.google.android.material.textfield.TextInputEditText {
+                class TextInputEditText extends google.android.material.textfield.TextInputEditText {
                     fullClearFocus();
                 }
             }
             export namespace textview {
-                class TextViewInputEditText extends com.google.android.material.textfield.TextInputEditText {
+                class TextViewInputEditText extends google.android.material.textfield.TextInputEditText {
                     fullClearFocus();
                 }
             }
             export namespace snackbar {
-                class SnackCallback extends com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback<com.google.android.material.snackbar.Snackbar> {
+                class SnackCallback extends google.android.material.snackbar.BaseTransientBottomBar.BaseCallback<google.android.material.snackbar.Snackbar> {
                     public setListener(listener: SnackCallback.SnackCallbackListener);
                 }
                 namespace SnackCallback {
                     class SnackCallbackListener {
                         constructor(implementation: {
-                            onDismissed(snackbar: com.google.android.material.snackbar.Snackbar, event: number): void;
-                            onShown(snackbar: com.google.android.material.snackbar.Snackbar): void;
+                            onDismissed(snackbar: google.android.material.snackbar.Snackbar, event: number): void;
+                            onShown(snackbar: google.android.material.snackbar.Snackbar): void;
                         });
-                        public onDismissed(snackbar: com.google.android.material.snackbar.Snackbar, event: number): void;
-                        public onShown(snackbar: com.google.android.material.snackbar.Snackbar): void;
+                        public onDismissed(snackbar: google.android.material.snackbar.Snackbar, event: number): void;
+                        public onShown(snackbar: google.android.material.snackbar.Snackbar): void;
                     }
                 }
             }
             export namespace bottomsheet {
-                class BottomSheetDialogFragment extends com.google.android.material.bottomsheet.BottomSheetDialogFragment {
+                class BottomSheetDialogFragment extends google.android.material.bottomsheet.BottomSheetDialogFragment {
                     public setListener(listener: BottomSheetDialogFragment.BottomSheetDialogFragmentListener);
                 }
                 namespace BottomSheetDialogFragment {
@@ -57,7 +57,7 @@ declare namespace com {
                     }
                 }
 
-                class BottomSheetDialog extends com.google.android.material.bottomsheet.BottomSheetDialog {
+                class BottomSheetDialog extends google.android.material.bottomsheet.BottomSheetDialog {
                     public setListener(listener: BottomSheetDialog.BottomSheetDialogListener);
                 }
                 namespace BottomSheetDialog {

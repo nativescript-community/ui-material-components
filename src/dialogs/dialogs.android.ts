@@ -1,13 +1,21 @@
-import { Application } from '@nativescript/core';
-import { View, CSSUtils, Utils, fromObject, Builder, StackLayout, ActionOptions,
-  DialogStrings,
-  capitalizationType,
-  ConfirmOptions,
-  DialogOptions,
-  inputType,
-  LoginResult,
-  PromptResult } from '@nativescript/core';
-import { TextField } from 'nativescript-material-textfield';
+import { TextField } from '@nativescript-community/ui-material-textfield';
+import {
+    ActionOptions,
+    Application,
+    Builder,
+    CSSUtils,
+    ConfirmOptions,
+    DialogOptions,
+    DialogStrings,
+    LoginResult,
+    PromptResult,
+    StackLayout,
+    Utils,
+    View,
+    capitalizationType,
+    fromObject,
+    inputType,
+} from '@nativescript/core';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
 
@@ -39,8 +47,8 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
             options.view instanceof View
                 ? options.view
                 : Builder.createViewFromEntry({
-                      moduleName: options.view as string,
-                  });
+                    moduleName: options.view as string,
+                });
 
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
@@ -63,7 +71,7 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
     if (options.titleColor) {
         const textViewId = dlg.getContext().getResources().getIdentifier('android:id/alertTitle', null, null);
         if (textViewId) {
-            const tv = <android.widget.TextView>dlg.findViewById(textViewId);
+            const tv = dlg.findViewById(textViewId) as android.widget.TextView;
             if (tv) {
                 tv.setTextColor(options.titleColor.android);
             }
@@ -71,7 +79,7 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
         if (options.messageColor) {
             const messageTextViewId = dlg.getContext().getResources().getIdentifier('android:id/message', null, null);
             if (messageTextViewId) {
-                const messageTextView = <android.widget.TextView>dlg.findViewById(messageTextViewId);
+                const messageTextView = dlg.findViewById(messageTextViewId) as android.widget.TextView;
                 if (messageTextView) {
                     messageTextView.setTextColor(options.messageColor.android);
                 }
@@ -106,13 +114,13 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
     // let { color, backgroundColor } = getButtonColors();
 
     if (options.buttonInkColor || options.buttonTitleColor) {
-        let buttons: android.widget.Button[] = [];
+        const buttons: android.widget.Button[] = [];
         for (let i = 0; i < 3; i++) {
-            let id = dlg
+            const id = dlg
                 .getContext()
                 .getResources()
                 .getIdentifier('android:id/button' + i, null, null);
-            buttons[i] = <android.widget.Button>dlg.findViewById(id);
+            buttons[i] = dlg.findViewById(id) as android.widget.Button;
         }
 
         buttons.forEach((button) => {
@@ -126,7 +134,6 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
 }
 
 function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any) {
-    
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
     const onDone = function (result: boolean, dialog?: android.content.DialogInterface) {
@@ -149,7 +156,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
     const activity = Application.android.foregroundActivity || (Application.android.startActivity as globalAndroid.app.Activity);
     builder.setOnDismissListener(
         new android.content.DialogInterface.OnDismissListener({
-            onDismiss: function () {
+            onDismiss() {
                 onDone(false);
                 if ((builder as any)._currentModalCustomView) {
                     const view = (builder as any)._currentModalCustomView;
@@ -183,7 +190,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
             options.okButtonText,
             null,
             new android.content.DialogInterface.OnClickListener({
-                onClick: function (dialog: android.content.DialogInterface, id: number) {
+                onClick(dialog: android.content.DialogInterface, id: number) {
                     onDone(true, dialog);
                 },
             })
@@ -199,7 +206,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
             options.cancelButtonText,
             null,
             new android.content.DialogInterface.OnClickListener({
-                onClick: function (dialog: android.content.DialogInterface, id: number) {
+                onClick(dialog: android.content.DialogInterface, id: number) {
                     onDone(false, dialog);
                 },
             })
@@ -220,7 +227,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
             options.neutralButtonText,
             null,
             new android.content.DialogInterface.OnClickListener({
-                onClick: function (dialog: android.content.DialogInterface, id: number) {
+                onClick(dialog: android.content.DialogInterface, id: number) {
                     onDone(undefined, dialog);
                 },
             })
@@ -287,8 +294,8 @@ export function confirm(arg: any): Promise<boolean> {
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
-                      message: arg + '',
-                  })
+                    message: arg + '',
+                })
                 : Object.assign(defaultOptions, arg);
             const alert = createAlertDialogBuilder(options);
             const dlg = prepareAndCreateAlertDialog(alert, options, resolve);
@@ -379,9 +386,7 @@ export function prompt(arg: any): Promise<PromptResult> {
                 function (r) {
                     resolve({ result: r, text: textField.text });
                 },
-                (r) => {
-                    return { result: r, text: textField.text };
-                }
+                (r) => ({ result: r, text: textField.text })
             );
 
             showDialog(dlg, options, resolve);
@@ -463,9 +468,7 @@ export function login(arg: any): Promise<LoginResult> {
                         password: passwordTextField.text,
                     });
                 },
-                (r) => {
-                    return { result: r, userName: userNameTextField.text, password: passwordTextField.text };
-                }
+                (r) => ({ result: r, userName: userNameTextField.text, password: passwordTextField.text })
             );
             showDialog(dlg, options, resolve);
             if (!!options.autoFocus) {
@@ -528,7 +531,7 @@ export function action(arg: any): Promise<string> {
                 alert.setItems(
                     options.actions,
                     new android.content.DialogInterface.OnClickListener({
-                        onClick: function (dialog: android.content.DialogInterface, which: number) {
+                        onClick(dialog: android.content.DialogInterface, which: number) {
                             resolve(options.actions[which]);
                         },
                     })

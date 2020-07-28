@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { BottomSheetService } from './bottomsheet.service';
-import { install } from 'nativescript-material-bottomsheet';
+import { install } from '../bottomsheet';
 
 @NgModule()
 export class NativeScriptMaterialBottomSheetModule {

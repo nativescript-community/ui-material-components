@@ -1,13 +1,13 @@
 import { Directive, NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-import { Ripple } from 'nativescript-material-ripple';
+import { Ripple } from '../ripple';
 
 @Directive({ selector: 'MDRipple' })
 export class MaterialRippleDirective {}
 
 @NgModule({
     declarations: [MaterialRippleDirective],
-    exports: [MaterialRippleDirective]
+    exports: [MaterialRippleDirective],
 })
 export class NativeScriptMaterialRippleModule {}
 

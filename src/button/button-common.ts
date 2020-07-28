@@ -1,6 +1,5 @@
-import { CSSType, Button, Color, Property } from '@nativescript/core';
-import { cssProperty } from 'nativescript-material-core/cssproperties';
-import { VerticalTextAlignment } from 'nativescript-material-core';
+import { Button, CSSType, Color, Property } from '@nativescript/core';
+import { VerticalTextAlignment, cssProperty } from '@nativescript-community/ui-material-core';
 
 @CSSType('MDButton')
 export abstract class ButtonBase extends Button {

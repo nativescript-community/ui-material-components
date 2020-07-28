@@ -1,5 +1,5 @@
-import { Color, CSSType, TextField as NTextField } from '@nativescript/core';
-import { cssProperty } from 'nativescript-material-core/cssproperties';
+import { CSSType, Color, TextField as NTextField } from '@nativescript/core';
+import { cssProperty } from '@nativescript-community/ui-material-core';
 
 @CSSType('MDTextField')
 export abstract class TextFieldBase extends NTextField {
@@ -7,8 +7,8 @@ export abstract class TextFieldBase extends NTextField {
     abstract clearFocus();
 
     // those 2 are not released yet
-    secureWithoutAutofill:boolean
-    closeOnReturn:boolean
+    secureWithoutAutofill: boolean;
+    closeOnReturn: boolean;
 
     @cssProperty helper: string;
     @cssProperty maxLength: number;

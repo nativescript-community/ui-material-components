@@ -1,8 +1,6 @@
-import { NgModule } from '@angular/core';
+import { Directive, NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-
-import { Directive } from '@angular/core';
-import { Button } from 'nativescript-material-button';
+import { Button } from '../button';
 
 @Directive({ selector: 'MDButton' })
 export class MaterialButtonDirective {}

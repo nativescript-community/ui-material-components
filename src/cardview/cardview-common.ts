@@ -1,5 +1,5 @@
-import { Color, ContentView, CSSType } from '@nativescript/core';
-import { cssProperty } from 'nativescript-material-core/cssproperties';
+import { CSSType, Color, ContentView } from '@nativescript/core';
+import { cssProperty } from '@nativescript-community/ui-material-core';
 
 @CSSType('MDCardView')
 export abstract class CardViewBase extends ContentView {

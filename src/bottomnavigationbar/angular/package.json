@@ -1,5 +1,5 @@
 {
-	"name": "nativescript-material-bottomnavigationbar-angular",
+	"name": "@nativescript-community/ui-material-bottomnavigationbar-angular",
 	"main": "index.js",
 	"ngPackage": {
 		"lib": {

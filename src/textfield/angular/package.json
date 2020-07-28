@@ -1,5 +1,5 @@
 {
-	"name": "nativescript-material-textfield-angular",
+	"name": "@nativescript-community/ui-material-textfield-angular",
 	"main": "index.js",
 	"ngPackage": {
 		"lib": {

@@ -1,5 +1,5 @@
 {
-	"name": "nativescript-material-cardview-angular",
+	"name": "@nativescript-community/ui-material-cardview-angular",
 	"main": "index.js",
 	"ngPackage": {
 		"lib": {

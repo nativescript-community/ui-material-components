@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
+import { Directive, NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
+import { Tabs } from '../tabs';
 
-import { Directive } from '@angular/core';
-import { Tabs } from 'nativescript-material-tabs';
 
 @Directive({ selector: 'MDTabs' })
 export class MaterialTabsDirective {}

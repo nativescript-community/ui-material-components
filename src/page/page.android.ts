@@ -1,5 +1,5 @@
-import { Application, Page as INSPage, View, ActionBar } from '@nativescript/core';
-import { applyMixins } from 'nativescript-material-core/core';
+import { applyMixins } from '@nativescript-community/ui-material-core';
+import { ActionBar, Application, Page as INSPage, View } from '@nativescript/core';
 
 function getLayout(id: string) {
     const context: android.content.Context = Application.android.context;
@@ -20,9 +20,9 @@ export class Page extends INSPage {
     createNativeView() {
         const layout = android.view.LayoutInflater.from(this._context).inflate(getLayout('material_page'), null, false) as androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-        this.appBarLayout = Utils.layout.findViewById(getId('appbarLayout')) as com.google.android.material.appbar.AppBarLayout;
-        this.collapsingToolbarLayout = Utils.layout.findViewById(getId('collapsingToolbarLayout')) as com.google.android.material.appbar.CollapsingToolbarLayout;
-        this.contentLayout = Utils.layout.findViewById(getId('contentLayout')) as android.widget.LinearLayout;
+        this.appBarLayout = layout.findViewById(getId('appbarLayout')) as com.google.android.material.appbar.AppBarLayout;
+        this.collapsingToolbarLayout = layout.findViewById(getId('collapsingToolbarLayout')) as com.google.android.material.appbar.CollapsingToolbarLayout;
+        this.contentLayout = layout.findViewById(getId('contentLayout')) as android.widget.LinearLayout;
         return layout;
     }
     _addViewToNativeVisualTree(child: View, atIndex?: number): boolean {

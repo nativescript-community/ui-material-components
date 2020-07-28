@@ -1,8 +1,8 @@
-import { Color, Button, ControlStateChangeListener, View, GestureTypes, TouchAction, TouchGestureEventData, Background, backgroundInternalProperty, Utils } from '@nativescript/core';
+import { Background, Button, Color, ControlStateChangeListener, GestureTypes, TouchAction, TouchGestureEventData, Utils, View, backgroundInternalProperty } from '@nativescript/core';
 import { TypographyOptions } from './core';
 import { applyMixins } from './core.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
-
+export * from './cssproperties';
 export { applyMixins };
 
 export class Themer {

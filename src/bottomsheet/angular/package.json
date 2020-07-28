@@ -1,5 +1,5 @@
 {
-	"name": "nativescript-material-bottomsheet-angular",
+	"name": "@nativescript-community/ui-material-bottomsheet-angular",
 	"main": "index.js",
 	"ngPackage": {
 		"lib": {

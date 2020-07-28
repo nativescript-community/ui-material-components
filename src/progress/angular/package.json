@@ -1,5 +1,5 @@
 {
-	"name": "nativescript-material-progress-angular",
+	"name": "@nativescript-community/ui-material-progress-angular",
 	"main": "index.js",
 	"ngPackage": {
 		"lib": {

@@ -1,7 +1,6 @@
-import { Color } from '@nativescript/core';
-import { backgroundInternalProperty, Length } from '@nativescript/core';
-import { createStateListAnimator, getAttrColor, isPostLollipop } from 'nativescript-material-core/android/utils';
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from '@nativescript-community/ui-material-core';
+import { createStateListAnimator, getAttrColor, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
+import { Color, Length, backgroundInternalProperty } from '@nativescript/core';
 import { CardViewBase } from './cardview-common';
 
 let MDCCardView: typeof com.google.android.material.card.MaterialCardView;

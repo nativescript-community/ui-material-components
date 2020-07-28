@@ -1,7 +1,7 @@
 import { AfterViewInit, Directive } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Page } from '@nativescript/core';
-import { themer } from 'nativescript-material-core/core';
+import { themer } from '@nativescript-community/ui-material-core';
 
 @Directive({
     selector: '[materialAppBar]'

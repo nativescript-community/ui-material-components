@@ -1,6 +1,5 @@
 import { Color } from '@nativescript/core';
 
-
 export interface TypographyOptions {
     fontFamily?: string;
     fontSize?: number;
@@ -24,28 +23,16 @@ export class Themer {
     getOnSurfaceColor(): string | Color;
 }
 
-export var themer: Themer;
+export let themer: Themer;
+
+export { applyMixins } from './core.common';
+export * from './cssproperties';
 
 export function install();
 export function installMixins();
-export function applyMixins(
-    derivedCtor: any,
-    baseCtors: any[],
-    options?: {
-        after?: boolean;
-        override?: boolean;
-        omit?: Array<string | symbol>;
-    }
-);
 export function getRippleColor(color: string | Color): any;
 
 export type VerticalTextAlignment = 'initial' | 'top' | 'middle' | 'bottom';
 
-
 type Constructor<T = {}> = new (...args: any[]) => T;
-export function mixin<T1 extends Constructor, T2 extends Constructor>(
-    mix1: T1,
-    mix2: T2
-): {
-    new(...args: any[]): (InstanceType<T1> & InstanceType<T2>)
-} & T1 & T2
+export function mixin<T1 extends Constructor, T2 extends Constructor>(mix1: T1, mix2: T2): (new (...args: any[]) => InstanceType<T1> & InstanceType<T2>) & T1 & T2;

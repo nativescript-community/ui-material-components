@@ -1,5 +1,5 @@
 {
-	"name": "nativescript-material-appbar-angular",
+	"name": "@nativescript-community/ui-material-appbar-angular",
 	"main": "index.js",
 	"ngPackage": {
 		"lib": {

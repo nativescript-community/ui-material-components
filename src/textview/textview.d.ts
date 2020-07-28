@@ -1,5 +1,4 @@
-import { Color } from '@nativescript/core';
-import { EditableTextBase } from '@nativescript/core';
+import { Color, EditableTextBase } from '@nativescript/core';
 
 type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 
@@ -24,7 +23,7 @@ export class TextView extends EditableTextBase {
     blur();
     requestFocus();
     clearFocus();
-    setSelection(start:number, stop?:number);
+    setSelection(start: number, stop?: number);
 }
 
 export function initTextInputEditText(); // android only

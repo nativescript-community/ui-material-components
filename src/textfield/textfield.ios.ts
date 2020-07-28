@@ -1,5 +1,4 @@
-import { Color, Screen, backgroundInternalProperty, placeholderColorProperty, Background, Property, Style, isAndroid } from '@nativescript/core';
-import { themer } from 'nativescript-material-core/core';
+import { themer } from '@nativescript-community/ui-material-core';
 import {
     buttonColorProperty,
     digitsProperty,
@@ -12,13 +11,14 @@ import {
     maxLengthProperty,
     strokeColorProperty,
     strokeInactiveColorProperty
-} from 'nativescript-material-core/textbase/cssproperties';
+} from '@nativescript-community/ui-material-core/textbase/cssproperties';
+import { Background, Color, Property, Screen, Style, backgroundInternalProperty, isAndroid, placeholderColorProperty } from '@nativescript/core';
 import { TextFieldBase } from './textfield.common';
 
 const textProperty = new Property<TextField, string>({
-	name: 'text',
-	defaultValue: '',
-	affectsLayout: isAndroid,
+    name: 'text',
+    defaultValue: '',
+    affectsLayout: isAndroid,
 });
 
 let colorScheme: MDCSemanticColorScheme;

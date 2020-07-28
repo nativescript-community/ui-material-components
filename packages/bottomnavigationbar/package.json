@@ -1,0 +1,48 @@
+{
+    "name": "@nativescript-community/ui-material-bottomnavigationbar",
+    "version": "3.2.19",
+    "description": "NativeScript plugin to add a bottom navigation bar component for Android & iOS",
+    "main": "bottomnavigationbar",
+    "sideEffects": false,
+    "typings": "bottomnavigationbar.d.ts",
+    "nativescript": {
+        "platforms": {
+            "android": "6.2.0",
+            "ios": "6.2.0"
+        }
+    },
+    "scripts": {
+        "tsc": "../../node_modules/.bin/cpy ../../src/bottomnavigationbar/bottomnavigationbar.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
+        "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\bottomnavigationbar\\bottomnavigationbar.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
+        "build": "npm run tsc && npm run build.angular",
+        "build.angular": "cd ../../src/bottomnavigationbar/angular && npm run build",
+        "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
+    },
+    "keywords": [
+        "NativeScript",
+        "JavaScript",
+        "Typescript",
+        "Android",
+        "iOS",
+        "Henry Chavez",
+        "Bytpher",
+        "Bottom Navigation",
+        "Material Design",
+        "Tab Navigation"
+    ],
+    "author": {
+        "name": "Henry Chavez",
+        "email": "henry19.chavez@gmail.com"
+    },
+    "bugs": {
+        "url": "https://github.com/Akylas/nativescript-material-components/issues"
+    },
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/Akylas/nativescript-material-components",
+    "repository": "https://github.com/Akylas/nativescript-material-components",
+    "readmeFilename": "README.md",
+    "dependencies": {
+        "nativescript-material-core": "^3.2.19"
+    },
+    "gitHead": "511d6d5c154f669b23b56d01a7965205eb9c9d0f"
+}

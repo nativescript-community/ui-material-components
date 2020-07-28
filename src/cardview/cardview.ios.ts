@@ -1,8 +1,5 @@
-import { Color, Screen, isUserInteractionEnabledProperty } from '@nativescript/core';
-import { Background } from '@nativescript/core';
-import { backgroundInternalProperty } from '@nativescript/core';
-import { getRippleColor, themer } from 'nativescript-material-core/core';
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
+import { Background, Color, Screen, backgroundInternalProperty, isUserInteractionEnabledProperty } from '@nativescript/core';
 import { CardViewBase } from './cardview-common';
 
 // use custom class to get the same behavior as android which is

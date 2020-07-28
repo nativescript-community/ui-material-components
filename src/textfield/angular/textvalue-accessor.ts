@@ -7,7 +7,7 @@ import { BaseValueAccessor } from '@nativescript/angular';
 const TEXT_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => TextValueAccessor),
-    multi: true
+    multi: true,
 };
 
 export type TextView = { text: string } & View;
@@ -26,8 +26,8 @@ export type TextView = { text: string } & View;
     providers: [TEXT_VALUE_ACCESSOR],
     host: {
         '(blur)': 'onTouched()',
-        '(textChange)': 'onChange($event.value)'
-    }
+        '(textChange)': 'onChange($event.value)',
+    },
 })
 export class TextValueAccessor extends BaseValueAccessor<TextView> {
     // tslint:disable-line:directive-class-suffix

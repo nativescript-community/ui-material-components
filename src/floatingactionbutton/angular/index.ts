@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-import { FloatingActionButton } from 'nativescript-material-floatingactionbutton';
+import { FloatingActionButton } from '../floatingactionbutton';
 
 @NgModule()
 export class NativeScriptMaterialFloatingButtonModule {}

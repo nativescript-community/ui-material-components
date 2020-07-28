@@ -1,5 +1,5 @@
-import { CSSType, View, EventData, booleanConverter, Color, CssProperty, Property, Style, ImageSource } from '@nativescript/core';
-import { cssProperty } from 'nativescript-material-core/cssproperties';
+import { CSSType, Color, CssProperty, EventData, ImageSource, Property, Style, View, booleanConverter } from '@nativescript/core';
+import { cssProperty } from '@nativescript-community/ui-material-core';
 
 /**
  * Event interface for tab pressed event
@@ -81,7 +81,7 @@ export abstract class BottomNavigationBarBase extends View {
     }
 
     _emitTabPressed(index: number) {
-        let eventData: TabPressedEventData = {
+        const eventData: TabPressedEventData = {
             eventName: BottomNavigationBarBase.tabPressedEvent,
             object: this,
             index,
@@ -91,7 +91,7 @@ export abstract class BottomNavigationBarBase extends View {
     }
 
     _emitTabSelected(index: number) {
-        let eventData: TabSelectedEventData = {
+        const eventData: TabSelectedEventData = {
             eventName: BottomNavigationBarBase.tabSelectedEvent,
             object: this,
             oldIndex: this.selectedTabIndex,
@@ -103,7 +103,7 @@ export abstract class BottomNavigationBarBase extends View {
     }
 
     _emitTabReselected(index: number) {
-        let eventData: TabReselectedEventData = {
+        const eventData: TabReselectedEventData = {
             eventName: BottomNavigationBarBase.tabReselectedEvent,
             object: this,
             index,

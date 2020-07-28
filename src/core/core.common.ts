@@ -4,7 +4,7 @@ export function applyMixins(
     options?: {
         after?: boolean;
         override?: boolean;
-        omit?: Array<string | symbol>;
+        omit?: (string | symbol)[];
     }
 ) {
     const omits = options && options.omit ? options.omit : [];

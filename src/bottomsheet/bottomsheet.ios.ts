@@ -1,5 +1,5 @@
-import { View, IOSHelper, Page, Trace, fromObject, Utils } from '@nativescript/core';
-import { applyMixins } from 'nativescript-material-core/core';
+import { IOSHelper, Page, Trace, Utils, View, fromObject } from '@nativescript/core';
+import { applyMixins } from '@nativescript-community/ui-material-core';
 import { BottomSheetOptions } from './bottomsheet';
 import { ViewWithBottomSheetBase } from './bottomsheet-common';
 
@@ -53,12 +53,12 @@ function initLayoutGuide(controller: UIViewController) {
     const rootView = controller.view;
     const layoutGuide = UILayoutGuide.alloc().init();
     rootView.addLayoutGuide(layoutGuide);
-    NSLayoutConstraint.activateConstraints(<any>[
+    NSLayoutConstraint.activateConstraints([
         layoutGuide.topAnchor.constraintEqualToAnchor(controller.topLayoutGuide.bottomAnchor),
         layoutGuide.bottomAnchor.constraintEqualToAnchor(controller.bottomLayoutGuide.topAnchor),
         layoutGuide.leadingAnchor.constraintEqualToAnchor(rootView.leadingAnchor),
         layoutGuide.trailingAnchor.constraintEqualToAnchor(rootView.trailingAnchor),
-    ]);
+    ] as any);
 
     return layoutGuide;
 }
@@ -90,9 +90,9 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
     const marginBottom = owner.effectiveMarginBottom;
     const marginLeft = owner.effectiveMarginLeft + position.left;
     const marginRight = owner.effectiveMarginRight;
-    let top = marginTop + position.top;
+    const top = marginTop + position.top;
     const width = owner.getMeasuredWidth();
-    let height = owner.getMeasuredHeight();
+    const height = owner.getMeasuredHeight();
 
     owner.iosOverflowSafeArea = false;
 
@@ -183,7 +183,7 @@ function getAvailableSpaceFromParent(view: View, frame: CGRect): { safeArea: CGR
 
     const inWindow = CGRectMake(inWindowLeft, inWindowTop, frame.size.width, frame.size.height);
 
-    return { safeArea: safeArea, fullscreen: fullscreen, inWindow: inWindow };
+    return { safeArea, fullscreen, inWindow };
 }
 
 declare class IUILayoutViewController extends UIViewController {
@@ -381,7 +381,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 bottomSheet.trackingScrollView = scrollView.nativeViewProtected;
             }
         }
-        (<any>controller).animated = true;
+        (controller as any).animated = true;
         parentController.presentViewControllerAnimatedCompletion(bottomSheet, true, null);
         if (options.transparent === true) {
             controller.view.backgroundColor = UIColor.clearColor;
@@ -393,7 +393,8 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         const transitionCoordinator = bottomSheet.transitionCoordinator;
         if (transitionCoordinator) {
             UIViewControllerTransitionCoordinator.prototype.animateAlongsideTransitionCompletion.call(transitionCoordinator, null, () => {
-                (this.bindingContext = fromObject(options.context)), this._raiseShownBottomSheetEvent();
+                this.bindingContext = fromObject(options.context);
+                this._raiseShownBottomSheetEvent();
             });
         } else {
             // Apparently iOS 9+ stops all transitions and animations upon application suspend and transitionCoordinator becomes null here in this case.
@@ -419,7 +420,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         }
 
         const parentController = parentWithController.viewController;
-        const animated = (<any>this.viewController).animated;
+        const animated = this.viewController.animated;
         parentController.dismissViewControllerAnimatedCompletion(animated, whenClosedCallback);
     }
 }

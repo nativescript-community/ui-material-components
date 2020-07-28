@@ -1,4 +1,4 @@
-import { Color, Page, Frame } from '@nativescript/core';
+import { Color, Frame, Page } from '@nativescript/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 
 function _getReason(value: number) {
@@ -62,7 +62,7 @@ export class SnackBar extends SnackBarBase {
         let nCoordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout;
         if (!(nView instanceof androidx.coordinatorlayout.widget.CoordinatorLayout) && nView instanceof android.view.ViewGroup) {
             nCoordinatorLayout = new androidx.coordinatorlayout.widget.CoordinatorLayout(attachView._context);
-            (nView as android.view.ViewGroup).addView(
+            (nView).addView(
                 nCoordinatorLayout,
                 new android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT)
             );
@@ -124,7 +124,7 @@ export class SnackBar extends SnackBarBase {
                         event: args,
                     });
                     if (this._snackbarCallback) {
-                        (this._snackbarCallback as any).cb = null;
+                        (this._snackbarCallback).cb = null;
                         this._snackbarCallback = null;
                     }
                     this._snackbar = null;
@@ -143,7 +143,7 @@ export class SnackBar extends SnackBarBase {
                     resolve({
                         command: SnackBarAction.DISMISS,
                         reason: _getReason(event),
-                        event: event,
+                        event,
                     });
                     (cb as any).resolve.resolve = null;
                 }

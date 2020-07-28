@@ -1,5 +1,5 @@
-import { themer } from 'nativescript-material-core/core';
-import { Color, Screen, View, colorProperty, Utils } from '@nativescript/core';
+import { themer } from '@nativescript-community/ui-material-core';
+import { Color, Screen, Utils, View, colorProperty } from '@nativescript/core';
 import { ActivityIndicatorBase, indeterminateProperty } from './activityindicator-common';
 
 export class ActivityIndicator extends ActivityIndicatorBase {
@@ -43,7 +43,7 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     }
 
     public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
-        let nativeView = this.nativeViewProtected;
+        const nativeView = this.nativeViewProtected;
         if (nativeView) {
             const width = Utils.layout.getMeasureSpecSize(widthMeasureSpec);
             const widthMode = Utils.layout.getMeasureSpecMode(widthMeasureSpec);
@@ -51,7 +51,7 @@ export class ActivityIndicator extends ActivityIndicatorBase {
             const heightMode = Utils.layout.getMeasureSpecMode(heightMeasureSpec);
 
             const horizontalPadding = this.effectivePaddingLeft + this.effectiveBorderLeftWidth + this.effectivePaddingRight + this.effectiveBorderRightWidth;
-            let verticalPadding = this.effectivePaddingTop + this.effectiveBorderTopWidth + this.effectivePaddingBottom + this.effectiveBorderBottomWidth;
+            const verticalPadding = this.effectivePaddingTop + this.effectiveBorderTopWidth + this.effectivePaddingBottom + this.effectiveBorderBottomWidth;
 
             const desiredSize = Utils.layout.measureNativeView(nativeView, width - horizontalPadding, widthMode, height - verticalPadding, heightMode);
 

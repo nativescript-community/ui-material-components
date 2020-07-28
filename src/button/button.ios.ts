@@ -1,11 +1,17 @@
-import { Color, Screen, Background, Font,  backgroundInternalProperty,
-  borderBottomLeftRadiusProperty,
-  borderBottomRightRadiusProperty,
-  borderTopLeftRadiusProperty,
-  borderTopRightRadiusProperty,
-  fontInternalProperty, Utils } from '@nativescript/core';
-import { getRippleColor, themer } from 'nativescript-material-core/core';
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
+import {
+    Background,
+    Color,
+    Font,
+    Screen,
+    Utils,
+    backgroundInternalProperty,
+    borderBottomLeftRadiusProperty,
+    borderBottomRightRadiusProperty,
+    borderTopLeftRadiusProperty,
+    borderTopRightRadiusProperty,
+    fontInternalProperty,
+} from '@nativescript/core';
 import { ButtonBase } from './button-common';
 
 let buttonScheme: MDCButtonScheme;
@@ -20,7 +26,7 @@ declare class IObserverClass extends NSObject {
     static alloc(): IObserverClass;
     _owner: WeakRef<Button>;
 }
-const ObserverClass  = (NSObject as any).extend({
+const ObserverClass = (NSObject as any).extend({
     observeValueForKeyPathOfObjectChangeContext(path: string, tv: UITextView) {
         if (path === 'contentSize') {
             const owner = this._owner && this._owner.get();
@@ -35,7 +41,7 @@ const ObserverClass  = (NSObject as any).extend({
                             top,
                             left: inset.left,
                             bottom: inset.bottom,
-                            right: inset.right
+                            right: inset.right,
                         };
                         break;
 
@@ -48,7 +54,7 @@ const ObserverClass  = (NSObject as any).extend({
                             top: top + topCorrect,
                             left: inset.left,
                             bottom: inset.bottom,
-                            right: inset.right
+                            right: inset.right,
                         };
                         break;
                     }
@@ -62,14 +68,14 @@ const ObserverClass  = (NSObject as any).extend({
                             top: top + bottomCorrect,
                             left: inset.left,
                             bottom: inset.bottom,
-                            right: inset.right
+                            right: inset.right,
                         };
                         break;
                     }
                 }
             }
         }
-    }
+    },
 }) as typeof IObserverClass;
 export class Button extends ButtonBase {
     private _observer: IObserverClass;

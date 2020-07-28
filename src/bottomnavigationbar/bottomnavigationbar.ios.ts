@@ -1,7 +1,7 @@
-import { Screen, Application, Utils, backgroundColorProperty, Color, ImageSource } from '@nativescript/core';
-import { getRippleColor, themer } from 'nativescript-material-core/core';
+import { themer } from '@nativescript-community/ui-material-core';
+import { Application, Color, Screen, Utils, backgroundColorProperty } from '@nativescript/core';
+import { BottomNavigationBarBase, BottomNavigationTabBase, activeColorCssProperty, inactiveColorCssProperty, tabsProperty, titleVisibilityProperty } from './bottomnavigationbar-common';
 
-import { activeColorCssProperty, BottomNavigationBarBase, BottomNavigationTabBase, inactiveColorCssProperty, tabsProperty, titleVisibilityProperty } from './bottomnavigationbar-common';
 
 declare class IBottomNavigationBarDelegate extends NSObject implements MDCBottomNavigationBarDelegate {
     static new(): IBottomNavigationBarDelegate;
