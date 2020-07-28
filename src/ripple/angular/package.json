@@ -1,3 +1,23 @@
 {
-  "main": "index.js"
+	"name": "nativescript-material-ripple-angular",
+	"main": "index.js",
+	"ngPackage": {
+		"lib": {
+			"entryFile": "index.ts",
+			"umdModuleIds": {
+				"@nativescript/core": "ns-core",
+				"@nativescript/angular": "ns-angular",
+				"nativescript-material-ripple": "ns-material-ripple"
+			}
+		},
+		"whitelistedNonPeerDependencies": [
+			"."
+		]
+	},
+	"scripts": {
+		"build": "npm i && ../../../node_modules/.bin/ng-packagr -p package.json && cd dist && ../../../../node_modules/.bin/cpy '**/*' '../../../../packages/nativescript-material-ripple/angular' --parents"
+	},
+	"devDependencies": {
+		"nativescript-material-ripple": "*"
+	}
 }

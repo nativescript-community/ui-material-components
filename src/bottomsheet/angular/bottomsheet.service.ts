@@ -1,7 +1,7 @@
 import { ComponentFactoryResolver, ComponentRef, Injectable, Injector, Type, ViewContainerRef } from '@angular/core';
 import { AppHostView, DetachedLoader, once } from '@nativescript/angular';
 import { ProxyViewContainer } from '@nativescript/core';
-import { BottomSheetOptions as MaterialBottomSheetOptions, ViewWithBottomSheetBase } from '../bottomsheet-common';
+import { BottomSheetOptions as MaterialBottomSheetOptions } from 'nativescript-material-bottomsheet'; // ViewWithBottomSheetBase
 import { Observable, Subject } from 'rxjs';
 import { filter, first, map } from 'rxjs/operators';
 
@@ -26,7 +26,7 @@ export class BottomSheetParams {
 })
 export class BottomSheetService {
     private detachedLoader: ComponentRef<DetachedLoader>;
-    private componentView: ViewWithBottomSheetBase;
+    private componentView: any;//ViewWithBottomSheetBase;
     private subject$: Subject<{ requestId: number; result: any }> = new Subject();
     private currentId = 0;
 
@@ -64,7 +64,7 @@ export class BottomSheetService {
         };
     }
 
-    private getParentView(viewContainerRef: ViewContainerRef): ViewWithBottomSheetBase {
+    private getParentView(viewContainerRef: ViewContainerRef): any {//ViewWithBottomSheetBase {
         let parentView = viewContainerRef.element.nativeElement;
 
         if (parentView instanceof AppHostView && parentView.ngAppRoot) {
@@ -122,7 +122,7 @@ export class BottomSheetService {
         return viewContainerRef.createComponent(detachedLoaderFactory, 0, childInjector, null);
     }
 
-    private async loadComponent(type: Type<any>): Promise<ViewWithBottomSheetBase> {
+    private async loadComponent(type: Type<any>): Promise<any> {//ViewWithBottomSheetBase> {
         try {
             const componentRef = await this.detachedLoader.instance.loadComponent(type);
             const detachedProxy = <ProxyViewContainer>componentRef.location.nativeElement;
@@ -131,7 +131,7 @@ export class BottomSheetService {
                 throw new Error('BottomSheet content has more than one root view.');
             }
 
-            this.componentView = detachedProxy.getChildAt(0) as ViewWithBottomSheetBase;
+            this.componentView = detachedProxy.getChildAt(0) as any;//ViewWithBottomSheetBase;
 
             if (this.componentView.parent) {
                 (<any>this.componentView.parent)._ngDialogRoot = this.componentView;

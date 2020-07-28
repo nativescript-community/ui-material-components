@@ -2,6 +2,8 @@ import { Application, AndroidActivityBackPressedEventData, View, fromObject } fr
 import { applyMixins } from 'nativescript-material-core/core';
 import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
 
+export { ViewWithBottomSheetBase } from './bottomsheet-common';
+
 interface BottomSheetDataOptions {
     owner: View;
     options: BottomSheetOptions;

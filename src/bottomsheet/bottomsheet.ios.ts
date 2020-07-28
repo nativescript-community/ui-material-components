@@ -3,6 +3,8 @@ import { applyMixins } from 'nativescript-material-core/core';
 import { BottomSheetOptions } from './bottomsheet';
 import { ViewWithBottomSheetBase } from './bottomsheet-common';
 
+export { ViewWithBottomSheetBase } from './bottomsheet-common';
+
 const majorVersion = Utils.ios.MajorVersion;
 
 declare class IMDCBottomSheetControllerDelegateImpl extends NSObject implements MDCBottomSheetControllerDelegate {

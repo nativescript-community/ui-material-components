@@ -4,9 +4,9 @@ import { AppBarComponent, appBarMeta } from './app-bar';
 import { AppBarDirective } from './appbar.directive';
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
-
+import { AppBar } from 'nativescript-material-appbar';
 import { registerElement } from '@nativescript/angular';
-registerElement('AppBar', () => require('../appbar').AppBar, appBarMeta);
+registerElement('AppBar', () => AppBar, appBarMeta);
 
 @NgModule({
     imports: [],

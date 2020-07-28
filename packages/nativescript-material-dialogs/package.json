@@ -6,10 +6,10 @@
     "sideEffects": false,
     "typings": "./dialogs.d.ts",
     "scripts": {
-        "tsc": "cp -f ../../src/dialogs/dialogs.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
-        "tsc-win": "copy ..\\..\\src\\dialogs\\dialogs.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
+        "tsc": "../../node_modules/.bin/cpy ../../src/dialogs/dialogs.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
+        "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\dialogs\\dialogs.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
         "build": "npm run tsc && ../../node_modules/.bin/rimraf ./build/esm",
-        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",
+        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {

@@ -6,12 +6,10 @@
     "sideEffects": false,
     "typings": "./snackbar.d.ts",
     "scripts": {
-        "tsc": "cp -f ../../src/snackbar/snackbar.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
-        "tsc-win": "copy ..\\..\\src\\snackbar\\snackbar.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
-        "build": "npm run tsc && npm run ngc",
-        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",
-        "ngc-win": "..\\..\\node_modules\\.bin\\ngc",
-        "ngc": "NODE_OPTIONS=--max_old_space_size=8192 ../../node_modules/.bin/ngc",
+        "tsc": "../../node_modules/.bin/cpy ../../src/snackbar/snackbar.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
+        "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\snackbar\\snackbar.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
+        "build": "npm run tsc",
+        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {

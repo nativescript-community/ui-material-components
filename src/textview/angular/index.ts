@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { TextValueAccessor } from './textvalue-accessor';
 
 import { registerElement } from '@nativescript/angular';
+import { TextView } from 'nativescript-material-textview';
 
 export const FORMS_DIRECTIVES = [TextValueAccessor];
 
@@ -11,4 +12,4 @@ export const FORMS_DIRECTIVES = [TextValueAccessor];
 })
 export class NativeScriptMaterialTextViewModule {}
 
-registerElement('MDTextView', () => require('../textview').TextView);
+registerElement('MDTextView', () => TextView);

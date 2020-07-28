@@ -6,12 +6,11 @@
     "sideEffects": false,
     "typings": "./progress.d.ts",
     "scripts": {
-        "tsc": "cp -f ../../src/progress/progress.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
-        "tsc-win": "copy ..\\..\\src\\progress\\progress.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
-        "build": "npm run tsc && npm run ngc",
-        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",
-        "ngc-win": "..\\..\\node_modules\\.bin\\ngc",
-        "ngc": "NODE_OPTIONS=--max_old_space_size=8192 ../../node_modules/.bin/ngc",
+        "tsc": "../../node_modules/.bin/cpy ../../src/progress/progress.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
+        "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\progress\\progress.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
+        "build": "npm run tsc && npm run build.angular",
+        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",
+        "build.angular": "cd ../../src/progress/angular && npm run build",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {
