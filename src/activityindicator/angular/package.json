@@ -2,7 +2,7 @@
 	"name": "@nativescript-community/ui-material-activityindicator-angular",
 	"main": "index.js",
 	"ngPackage": {
-		"dest":"../../tempAngular/activityindicator",
+		"dest":"../../../tempAngular/activityindicator",
 		"lib": {
 			"entryFile": "index.ts",
 			"umdModuleIds": {
@@ -16,7 +16,7 @@
 		]
 	},
 	"scripts": {
-		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../tempAngular/activityindicator && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy './../tempAngular/activityindicator/**/*' '../../../../packages/activityindicator/angular' --parents"
+		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../../tempAngular/activityindicator && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy '../../../tempAngular/activityindicator/**/*' '../../../../packages/activityindicator/angular' --parents"
 	},
 	"devDependencies": {
 		"tslib":"2.0.0",

@@ -2,7 +2,7 @@
 	"name": "@nativescript-community/ui-material-progress-angular",
 	"main": "index.js",
 	"ngPackage": {
-		"dest":"../../tempAngular/progress",
+		"dest":"../../../tempAngular/progress",
 		"lib": {
 			"entryFile": "index.ts",
 			"umdModuleIds": {
@@ -16,7 +16,7 @@
 		]
 	},
 	"scripts": {
-		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../tempAngular/progress && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy './../tempAngular/progress/**/*' '../../../../packages/progress/angular' --parents"
+		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../../tempAngular/progress && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy '../../../tempAngular/progress/**/*' '../../../../packages/progress/angular' --parents"
 	},
 	"devDependencies": {
 		"@nativescript-community/ui-material-core": "file:../../../packages/core",

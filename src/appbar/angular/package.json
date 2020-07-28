@@ -2,7 +2,7 @@
 	"name": "@nativescript-community/ui-material-appbar-angular",
 	"main": "index.js",
 	"ngPackage": {
-		"dest":"../../tempAngular/appbar",
+		"dest":"../../../tempAngular/appbar",
 		"lib": {
 			"entryFile": "index.ts",
 			"umdModuleIds": {
@@ -16,7 +16,7 @@
 		]
 	},
 	"scripts": {
-		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../tempAngular/appbar && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy './../tempAngular/appbar/**/*' '../../../../packages/appbar/angular' --parents"
+		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../../tempAngular/appbar && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy '../../../tempAngular/appbar/**/*' '../../../../packages/appbar/angular' --parents"
 	},
 	"devDependencies": {
 		"@nativescript-community/ui-material-core": "file:../../../packages/core"
