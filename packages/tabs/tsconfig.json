@@ -10,5 +10,6 @@
             "@nativescript-community/ui-material-core/*": ["src/core/*"],
         }
     },
-    "include": ["../../src/tabs/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
+    "include": ["../../src/tabs/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
+    "exclude": ["../../src/tabs/angular"]
 }

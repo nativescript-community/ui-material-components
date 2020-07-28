@@ -10,5 +10,6 @@
             "@nativescript-community/ui-material-core/*": ["src/core/*"],
         }
     },
-    "include": ["../../src/textfield/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
+    "include": ["../../src/textfield/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
+    "exclude": ["../../src/textfield/angular"]
 }
