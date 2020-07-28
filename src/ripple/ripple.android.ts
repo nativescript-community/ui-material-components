@@ -1,6 +1,4 @@
-import { Color } from '@nativescript/core/color';
-import { backgroundInternalProperty } from '@nativescript/core/ui/page';
-import { Background } from '@nativescript/core/ui/styling/background';
+import { Color, backgroundInternalProperty, Background } from '@nativescript/core';
 import { createRippleDrawable, getAttrColor, isPostLollipopMR1, isPostMarshmallow } from 'nativescript-material-core/android/utils';
 import { getRippleColor } from 'nativescript-material-core/core';
 import { rippleColorProperty } from 'nativescript-material-core/cssproperties';
@@ -104,7 +102,7 @@ function initializePreLollipopStackLayout() {
 
         /**
          * Supply a Drawable that is to be rendered on top of all of the child
-         * views in the frame layout.  Any padding in the Drawable will be taken
+         * views in the frame Utils.layout.  Any padding in the Drawable will be taken
          * into account by ensuring that the children are inset to be placed
          * inside of the padding area.
          *
@@ -193,13 +191,6 @@ function initializePreLollipopStackLayout() {
         }
     }
     PreLollipopStackLayout = PreLollipopStackLayoutImpl as any;
-}
-
-declare module '@nativescript/core/ui/core/view/view' {
-    interface View {
-        hasGestureObservers(): boolean;
-        setOnTouchListener();
-    }
 }
 
 export class Ripple extends RippleBase {

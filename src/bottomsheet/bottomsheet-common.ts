@@ -1,18 +1,4 @@
-import { Builder } from "@nativescript/core";
-import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/core/css/system-classes';
-import { EventData } from '@nativescript/core/data/observable';
-import { View } from '@nativescript/core/ui/core/view';
-import { ViewBase } from '@nativescript/core/ui/core/view-base';
-
-declare module '@nativescript/core/ui/core/view/view' {
-    interface View {
-        showBottomSheet(options: BottomSheetOptions): ViewBase;
-        _setupAsRootView(context: any): void;
-        callLoaded(): void;
-        callUnloaded(): void;
-        _removeFromFrameStack(): void;
-    }
-}
+import { Builder, CSSUtils, EventData, View, ViewBase } from "@nativescript/core";
 
 export interface ShownBottomSheetData extends EventData {
     /**
@@ -140,8 +126,8 @@ export abstract class ViewWithBottomSheetBase extends View {
             const view = options.view instanceof View ? (options.view as ViewWithBottomSheetBase) : <ViewWithBottomSheetBase>Builder.createViewFromEntry({
                           moduleName: options.view as string
                       });
-            view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
-            const modalRootViewCssClasses = getSystemCssClasses();
+            view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
+            const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
             modalRootViewCssClasses.forEach(c => view.cssClasses.add(c));
             
             view._showNativeBottomSheet(this, options);

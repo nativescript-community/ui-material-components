@@ -1,5 +1,5 @@
-import { Color } from '@nativescript/core/color';
-import { View } from '@nativescript/core/ui/core/view';
+import { Color } from '@nativescript/core';
+import { View } from '@nativescript/core';
 
 export interface SnackBarOptions {
     /**

@@ -1,11 +1,4 @@
-import { Color } from '@nativescript/core/color';
-import { Button } from '@nativescript/core/ui/button';
-import { ControlStateChangeListener } from '@nativescript/core/ui/core/control-state-change';
-import { View } from '@nativescript/core/ui/core/view';
-import { GestureTypes, TouchAction, TouchGestureEventData } from '@nativescript/core/ui/gestures';
-import { Background } from '@nativescript/core/ui/styling/background';
-import { backgroundInternalProperty } from '@nativescript/core/ui/styling/style-properties';
-import { layout } from '@nativescript/core/utils/utils';
+import { Color, Button, ControlStateChangeListener, View, GestureTypes, TouchAction, TouchGestureEventData, Background, backgroundInternalProperty, Utils } from '@nativescript/core';
 import { TypographyOptions } from './core';
 import { applyMixins } from './core.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
@@ -144,7 +137,7 @@ class ViewWithElevationAndRipple extends View {
             const colorScheme = themer.getAppColorScheme();
             MDCInkColorThemer.applyColorSchemeToInkView(colorScheme, this.inkTouchController.defaultInkView);
             if (this.style.backgroundInternal) {
-                this.inkTouchController.defaultInkView.layer.cornerRadius = layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
+                this.inkTouchController.defaultInkView.layer.cornerRadius = Utils.layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
             }
         }
         return this.inkTouchController;
@@ -163,7 +156,7 @@ class ViewWithElevationAndRipple extends View {
             this['clipToBounds'] = false;
             this.nativeViewProtected.clipsToBounds = false;
             if (this.style.backgroundInternal) {
-                layer.cornerRadius = layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
+                layer.cornerRadius = Utils.layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
             }
             if (this.nativeViewProtected instanceof UIControl) {
                 this.startElevationStateChangeHandler();
@@ -271,16 +264,16 @@ class ViewWithElevationAndRipple extends View {
     [backgroundInternalProperty.setNative](value: Background) {
         // base impl will be called before
         // if (this.shadowLayer) {
-        //     this.shadowLayer.cornerRadius = layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
+        //     this.shadowLayer.cornerRadius = Utils.layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
         // }
         if (this.inkTouchController) {
-            this.inkTouchController.defaultInkView.layer.cornerRadius = layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
+            this.inkTouchController.defaultInkView.layer.cornerRadius = Utils.layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
         }
     }
 }
 
 export function overrideViewBase() {
-    const NSView = require('@nativescript/core/ui/core/view').View;
+    const NSView = require('@nativescript/core').View;
     // we need mixins to be applied after (run default implementation first) because of _setNativeClipToBounds.
     // it needs to be applied after for shadows to be drawn correctly
     applyMixins(NSView, [ViewWithElevationAndRipple], {

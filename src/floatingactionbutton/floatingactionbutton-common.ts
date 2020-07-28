@@ -1,10 +1,5 @@
-import { CSSType, View } from '@nativescript/core/ui/core/view';
-import { Color } from '@nativescript/core/color';
-import { ImageAsset } from '@nativescript/core/image-asset';
-import { isDataURI, isFileOrResourcePath, RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
-import { fromAsset, fromNativeSource, fromUrl, ImageSource } from '@nativescript/core/image-source';
+import { CSSType, View, ImageAsset, Color, Utils, ImageSource, Property } from '@nativescript/core';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
-import { Property } from '@nativescript/core/ui/core/properties';
 
 export const imageSourceProperty = new Property<FloatingActionButtonBase, ImageSource>({ name: 'imageSource' });
 
@@ -66,7 +61,7 @@ export abstract class FloatingActionButtonBase extends View {
                 this.isLoading = false;
             };
 
-            if (isDataURI(value)) {
+            if (Utils.isDataURI(value)) {
                 const base64Data = value.split(',')[1];
                 if (base64Data !== undefined) {
                     // if (sync) {
@@ -76,9 +71,9 @@ export abstract class FloatingActionButtonBase extends View {
                     //     source.fromBase64(base64Data).then(imageLoaded);
                     // }
                 }
-            } else if (isFileOrResourcePath(value)) {
-                if (value.indexOf(RESOURCE_PREFIX) === 0) {
-                    const resPath = value.substr(RESOURCE_PREFIX.length);
+            } else if (Utils.isFileOrResourcePath(value)) {
+                if (value.indexOf(Utils.RESOURCE_PREFIX) === 0) {
+                    const resPath = value.substr(Utils.RESOURCE_PREFIX.length);
                     // if (sync) {
                     source.loadFromResource(resPath);
                     imageLoaded();
@@ -97,7 +92,7 @@ export abstract class FloatingActionButtonBase extends View {
                 }
             } else {
                 this.imageSource = null;
-                fromUrl(value).then(r => {
+                ImageSource.fromUrl(value).then(r => {
                     if (this['_url'] === value) {
                         this.imageSource = r;
                         this.isLoading = false;
@@ -109,12 +104,12 @@ export abstract class FloatingActionButtonBase extends View {
             this.imageSource = value;
             this.isLoading = false;
         } else if (value instanceof ImageAsset) {
-            fromAsset(value).then(result => {
+            ImageSource.fromAsset(value).then(result => {
                 this.imageSource = result;
                 this.isLoading = false;
             });
         } else {
-            this.imageSource = fromNativeSource(value);
+            this.imageSource = new ImageSource(value);
             this.isLoading = false;
         }
     }

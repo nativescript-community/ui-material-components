@@ -1,7 +1,4 @@
-import { Color } from '@nativescript/core/color';
-import { profile } from '@nativescript/core/profiling';
-import { Background } from '@nativescript/core/ui/styling/background';
-import { androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, Length } from '@nativescript/core/ui/styling/style-properties';
+import { Color, profile, Background, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, Length } from '@nativescript/core';
 import { VerticalTextAlignment } from 'nativescript-material-core';
 import { createStateListAnimator, getEnabledColorStateList, getLayout, isPostLollipop } from 'nativescript-material-core/android/utils';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, verticalTextAlignmentProperty } from 'nativescript-material-core/cssproperties';

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { registerElement } from '@nativescript/angular/element-registry';
+import { registerElement } from '@nativescript/angular';
+import { FloatingActionButton } from 'nativescript-material-floatingactionbutton';
 
 @NgModule()
 export class NativeScriptMaterialFloatingButtonModule {}
 
-registerElement('MDFloatingActionButton', () => require('../floatingactionbutton').FloatingActionButton);
+registerElement('MDFloatingActionButton', () => FloatingActionButton);

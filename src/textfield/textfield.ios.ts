@@ -1,8 +1,4 @@
-import { Color } from '@nativescript/core/color';
-import { screen } from '@nativescript/core/platform/platform';
-import { backgroundInternalProperty, placeholderColorProperty, textProperty } from '@nativescript/core/ui/editable-text-base';
-import { Background } from '@nativescript/core/ui/styling/background';
-import { Style } from '@nativescript/core/ui/styling/style';
+import { Color, Screen, backgroundInternalProperty, placeholderColorProperty, Background, Property, Style, isAndroid } from '@nativescript/core';
 import { themer } from 'nativescript-material-core/core';
 import {
     buttonColorProperty,
@@ -19,8 +15,11 @@ import {
 } from 'nativescript-material-core/textbase/cssproperties';
 import { TextFieldBase } from './textfield.common';
 
-// it is exported but not in the typings
-const _updateCharactersInRangeReplacementString = require('@nativescript/core/ui/editable-text-base')._updateCharactersInRangeReplacementString;
+const textProperty = new Property<TextField, string>({
+	name: 'text',
+	defaultValue: '',
+	affectsLayout: isAndroid,
+});
 
 let colorScheme: MDCSemanticColorScheme;
 function getColorScheme() {
@@ -28,12 +27,6 @@ function getColorScheme() {
         colorScheme = MDCSemanticColorScheme.new();
     }
     return colorScheme;
-}
-
-declare module '@nativescript/core/ui/text-field/text-field' {
-    interface TextField {
-        _updateAttributedPlaceholder();
-    }
 }
 
 declare class ITextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
@@ -189,7 +182,7 @@ const UITextFieldDelegateImpl = (NSObject as any).extend(
                 }
 
                 if (owner.formattedText) {
-                    _updateCharactersInRangeReplacementString(owner.formattedText, range.location, range.length, replacementString);
+                    this._updateCharactersInRangeReplacementString(owner.formattedText, range.location, range.length, replacementString);
                 }
             }
 
@@ -218,7 +211,7 @@ export class TextField extends TextFieldBase {
     }
 
     _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
-        const scale = screen.mainScreen.scale;
+        const scale = Screen.mainScreen.scale;
 
         if (this.variant === 'underline' && this._controller.underlineHeightNormal === 0) {
             // if no underline/custom background, remove all insets like on android
@@ -370,3 +363,4 @@ export class TextField extends TextFieldBase {
         }
     }
 }
+textProperty.register(TextField);

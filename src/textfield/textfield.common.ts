@@ -1,6 +1,4 @@
-import { Color } from '@nativescript/core/color';
-import { CSSType } from '@nativescript/core/ui/core/view';
-import { TextField as NTextField } from '@nativescript/core/ui/text-field';
+import { Color, CSSType, TextField as NTextField } from '@nativescript/core';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 
 @CSSType('MDTextField')

@@ -1,24 +1,23 @@
-import { ViewBase } from '@nativescript/core/ui/core/view-base';
+import { ViewBase, View } from '@nativescript/core';
 import { BottomSheetOptions } from './bottomsheet-common';
 
 export { BottomSheetOptions };
-declare module '@nativescript/core/ui/core/view' {
-    interface View {
-        showBottomSheet(options: BottomSheetOptions): ViewBase;
-        closeBottomSheet(...args);
-    }
-}
 
+export declare abstract class ViewWithBottomSheetBase extends View { 
+  // used when triggering the closing of the bottomsheet
+  protected _closeBottomSheetCallback: Function;
+  // used when the bottomSheet is dismissed
+  public _onDismissBottomSheetCallback: Function;
+  _bottomSheetFragment: any; // com.google.android.material.bottomsheet.BottomSheetDialogFragment
+  protected abstract _hideNativeBottomSheet(parent: any, whenClosedCallback: any): void;
+  protected _bottomSheetContext: any;
+  _raiseShownBottomSheetEvent(): void;
+  public _bottomSheetClosed(): void;
+  protected abstract _showNativeBottomSheet(parent: View, options: BottomSheetOptions): void;
+  protected _commonShowNativeBottomSheet(parent: View, options: BottomSheetOptions): void;
+  protected _raiseShowingBottomSheetEvent(): void;
+  public closeBottomSheet(...args: any): void;
+
+  public showBottomSheet(options: BottomSheetOptions): ViewBase;
+}
 export function install(): void;
-declare module '@nativescript/core/ui/core/view/view' {
-    interface View {
-        // _modalContext: any;
-        _showNativeModalView(parent: View, context: any, closeCallback: Function, fullscreen?: boolean, animated?: boolean, stretched?: boolean);
-        // _closeModalCallback: Function;
-
-        _setupAsRootView(context: any): void;
-        callLoaded(): void;
-        callUnloaded(): void;
-        _removeFromFrameStack(): void;
-    }
-}

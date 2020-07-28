@@ -1,6 +1,4 @@
-import { Color } from '@nativescript/core/color';
-import { Frame } from '@nativescript/core/ui/frame';
-import { Page } from '@nativescript/core/ui/page';
+import { Color, Page, Frame } from '@nativescript/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 
 function _getReason(value: number) {

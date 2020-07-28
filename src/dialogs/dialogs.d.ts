@@ -1,27 +1,8 @@
-import { ActionOptions, AlertOptions, ConfirmOptions, LoginOptions as TNSLoginOptions, LoginResult, PromptOptions as TNSPromptOptions, PromptResult } from '@nativescript/core/ui/dialogs';
-import { Color } from '@nativescript/core/color';
-import { Page } from '@nativescript/core/ui/page';
+import { ActionOptions, AlertOptions, ConfirmOptions, LoginOptions as TNSLoginOptions, LoginResult, PromptOptions as TNSPromptOptions, PromptResult } from '@nativescript/core';
+import { Color } from '@nativescript/core';
+import { Page } from '@nativescript/core';
 import { MDCAlertControlerOptions } from './dialogs-common';
 import { TextField, TextFieldProperties } from 'nativescript-material-textfield';
-
-
-declare module '@nativescript/core/ui/dialogs' {
-    function isDialogOptions(arg): boolean;
-    function getTextFieldColor(): Color;
-    function getLabelColor(): Color;
-    function getButtonColors(): { color: Color; backgroundColor: Color };
-    function getCurrentPage(): Page;
-    const STRING: string;
-    const PROMPT: string;
-    const CONFIRM: string;
-    const ALERT: string;
-    const LOGIN: string;
-    const OK: string;
-    const CANCEL: string;
-}
-
-
-export * from '@nativescript/core/ui/dialogs';
 
 export interface PromptOptions extends TNSPromptOptions {
 

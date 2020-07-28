@@ -1,9 +1,4 @@
-import { screen } from '@nativescript/core/platform';
-import { ios } from '@nativescript/core/application';
-import { layout } from '@nativescript/core/utils/utils';
-import { backgroundColorProperty } from '@nativescript/core/ui/styling/style-properties';
-import { Color } from '@nativescript/core/color';
-import { ImageSource } from '@nativescript/core/image-source';
+import { Screen, Application, Utils, backgroundColorProperty, Color, ImageSource } from '@nativescript/core';
 import { getRippleColor, themer } from 'nativescript-material-core/core';
 
 import { activeColorCssProperty, BottomNavigationBarBase, BottomNavigationTabBase, inactiveColorCssProperty, tabsProperty, titleVisibilityProperty } from './bottomnavigationbar-common';
@@ -89,16 +84,16 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         }
 
         let bottomSafeArea = 0;
-        if (ios.window.safeAreaInsets) {
-            bottomSafeArea = ios.window.safeAreaInsets.bottom;
+        if (Application.ios.window.safeAreaInsets) {
+            bottomSafeArea = Application.ios.window.safeAreaInsets.bottom;
         }
 
-        const viewSize: CGSize = CGSizeMake(screen.mainScreen.widthDIPs, screen.mainScreen.heightDIPs);
+        const viewSize: CGSize = CGSizeMake(Screen.mainScreen.widthDIPs, Screen.mainScreen.heightDIPs);
         const nativeViewSize: CGSize = this.nativeViewProtected.sizeThatFits(viewSize);
         const bottomBarHeight = nativeViewSize.height + bottomSafeArea;
 
         const nativeView = this.nativeViewProtected;
-        const frame = CGRectMake(0, layout.toDeviceIndependentPixels(top), viewSize.width, bottomBarHeight);
+        const frame = CGRectMake(0, Utils.layout.toDeviceIndependentPixels(top), viewSize.width, bottomBarHeight);
 
         (this as any)._setNativeViewFrame(nativeView, frame);
     }

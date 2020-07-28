@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { registerElement } from '@nativescript/angular/element-registry';
+import { registerElement } from '@nativescript/angular';
 
 import { Directive } from '@angular/core';
+import { Tabs } from 'nativescript-material-tabs';
 
 @Directive({ selector: 'MDTabs' })
 export class MaterialTabsDirective {}
@@ -12,4 +13,4 @@ export class MaterialTabsDirective {}
 })
 export class NativeScriptMaterialTabsModule {}
 
-registerElement('MDTabs', () => require('../tabs').Tabs);
+registerElement('MDTabs', () => Tabs);

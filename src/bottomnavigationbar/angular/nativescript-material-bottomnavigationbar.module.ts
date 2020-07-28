@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { registerElement } from '@nativescript/angular/element-registry';
+import { registerElement } from '@nativescript/angular';
 
 import { DIRECTIVES } from './nativescript-material-bottomnavigationbar.directives';
+import { BottomNavigationBar, BottomNavigationTab } from 'nativescript-material-bottomnavigationbar';
 
 @NgModule({
     declarations: [DIRECTIVES],
@@ -9,5 +10,5 @@ import { DIRECTIVES } from './nativescript-material-bottomnavigationbar.directiv
 })
 export class NativeScriptMaterialBottomNavigationBarModule {}
 
-registerElement('BottomNavigationBar', () => require('../').BottomNavigationBar);
-registerElement('BottomNavigationTab', () => require('../').BottomNavigationTab);
+registerElement('BottomNavigationBar', () => BottomNavigationBar);
+registerElement('BottomNavigationTab', () => BottomNavigationTab);

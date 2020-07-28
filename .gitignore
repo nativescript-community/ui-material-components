@@ -59,7 +59,9 @@ lib
 !webpack.*.js
 report
 *.log
+dist
 
+packages/**/angular
 packages/**/*.js
 packages/**/*.ts
 packages/**/*.js.map
@@ -67,7 +69,7 @@ packages/**/*.metadata.json
 packages/**/*.ngsummary.json
 *.tgz
 *.aar
-/package-lock.json
+package-lock.json
 
 # IDE
 .idea

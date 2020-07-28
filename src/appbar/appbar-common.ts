@@ -1,5 +1,5 @@
-import { CSSType } from '@nativescript/core/ui/core/view';
-import { ActionBar } from '@nativescript/core/ui/action-bar';
+import { CSSType } from '@nativescript/core';
+import { ActionBar } from '@nativescript/core';
 
 @CSSType('AppBar')
 export abstract class AppBarBase extends ActionBar {}

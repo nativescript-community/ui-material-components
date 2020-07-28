@@ -1,15 +1,14 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { BottomSheetService } from './bottomsheet.service';
-
-import { install } from '../bottomsheet';
+import { install } from 'nativescript-material-bottomsheet';
 
 @NgModule()
 export class NativeScriptMaterialBottomSheetModule {
     // This flag help us to avoid problems when using the new development workflow
     private static initialized: boolean = false;
 
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<any> {
         return {
             ngModule: NativeScriptMaterialBottomSheetModule,
             providers: [BottomSheetService]

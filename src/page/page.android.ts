@@ -1,15 +1,13 @@
-import { Page as INSPage, View } from '@nativescript/core/ui/page';
-import { ActionBar } from '@nativescript/core/ui/action-bar';
-import {android as androidApp} from '@nativescript/core/application';
+import { Application, Page as INSPage, View, ActionBar } from '@nativescript/core';
 import { applyMixins } from 'nativescript-material-core/core';
 
 function getLayout(id: string) {
-    const context: android.content.Context = androidApp.context;
+    const context: android.content.Context = Application.android.context;
     return context.getResources().getIdentifier(id, 'layout', context.getPackageName());
 }
 
 function getId(id: string) {
-    const context: android.content.Context = androidApp.context;
+    const context: android.content.Context = Application.android.context;
     return context.getResources().getIdentifier(id, 'id', context.getPackageName());
 }
 
@@ -22,9 +20,9 @@ export class Page extends INSPage {
     createNativeView() {
         const layout = android.view.LayoutInflater.from(this._context).inflate(getLayout('material_page'), null, false) as androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-        this.appBarLayout = layout.findViewById(getId('appbarLayout')) as com.google.android.material.appbar.AppBarLayout;
-        this.collapsingToolbarLayout = layout.findViewById(getId('collapsingToolbarLayout')) as com.google.android.material.appbar.CollapsingToolbarLayout;
-        this.contentLayout = layout.findViewById(getId('contentLayout')) as android.widget.LinearLayout;
+        this.appBarLayout = Utils.layout.findViewById(getId('appbarLayout')) as com.google.android.material.appbar.AppBarLayout;
+        this.collapsingToolbarLayout = Utils.layout.findViewById(getId('collapsingToolbarLayout')) as com.google.android.material.appbar.CollapsingToolbarLayout;
+        this.contentLayout = Utils.layout.findViewById(getId('contentLayout')) as android.widget.LinearLayout;
         return layout;
     }
     _addViewToNativeVisualTree(child: View, atIndex?: number): boolean {
@@ -52,8 +50,7 @@ export class Page extends INSPage {
 }
 let mixinInstalled = false;
 export function overridePage() {
-    const NSPage = require('@nativescript/core/ui/page').Page;
-    applyMixins(NSPage, [Page]);
+    applyMixins(INSPage, [Page]);
 }
 export function install() {
     if (!mixinInstalled) {

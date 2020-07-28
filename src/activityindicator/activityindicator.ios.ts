@@ -1,16 +1,7 @@
 import { themer } from 'nativescript-material-core/core';
-import { Color } from '@nativescript/core/color';
-import { screen } from '@nativescript/core/platform';
-import { View } from '@nativescript/core/ui/core/view';
-import { colorProperty } from '@nativescript/core/ui/styling/style-properties';
-import { layout } from '@nativescript/core/utils/utils';
+import { Color, Screen, View, colorProperty, Utils } from '@nativescript/core';
 import { ActivityIndicatorBase, indeterminateProperty } from './activityindicator-common';
 
-declare module '@nativescript/core/ui/core/view/view' {
-    interface View {
-        _onSizeChanged();
-    }
-}
 export class ActivityIndicator extends ActivityIndicatorBase {
     nativeViewProtected: MDCActivityIndicator;
     autoSize = true;
@@ -44,7 +35,7 @@ export class ActivityIndicator extends ActivityIndicatorBase {
         // radius is maxed to 72
         const min = Math.min(Math.min(width, height), 144);
         const strokeWidth = min / 25;
-        const scale = screen.mainScreen.scale;
+        const scale = Screen.mainScreen.scale;
 
         const radius = min / 2 - strokeWidth / 2;
         this.nativeViewProtected.strokeWidth = strokeWidth;
@@ -54,15 +45,15 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
         let nativeView = this.nativeViewProtected;
         if (nativeView) {
-            const width = layout.getMeasureSpecSize(widthMeasureSpec);
-            const widthMode = layout.getMeasureSpecMode(widthMeasureSpec);
-            const height = layout.getMeasureSpecSize(heightMeasureSpec);
-            const heightMode = layout.getMeasureSpecMode(heightMeasureSpec);
+            const width = Utils.layout.getMeasureSpecSize(widthMeasureSpec);
+            const widthMode = Utils.layout.getMeasureSpecMode(widthMeasureSpec);
+            const height = Utils.layout.getMeasureSpecSize(heightMeasureSpec);
+            const heightMode = Utils.layout.getMeasureSpecMode(heightMeasureSpec);
 
             const horizontalPadding = this.effectivePaddingLeft + this.effectiveBorderLeftWidth + this.effectivePaddingRight + this.effectiveBorderRightWidth;
             let verticalPadding = this.effectivePaddingTop + this.effectiveBorderTopWidth + this.effectivePaddingBottom + this.effectiveBorderBottomWidth;
 
-            const desiredSize = layout.measureNativeView(nativeView, width - horizontalPadding, widthMode, height - verticalPadding, heightMode);
+            const desiredSize = Utils.layout.measureNativeView(nativeView, width - horizontalPadding, widthMode, height - verticalPadding, heightMode);
 
             desiredSize.width = desiredSize.width + horizontalPadding;
             desiredSize.height = desiredSize.height + verticalPadding;

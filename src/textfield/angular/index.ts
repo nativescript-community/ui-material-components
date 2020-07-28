@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { TextValueAccessor } from './textvalue-accessor';
 
-import { registerElement } from '@nativescript/angular/element-registry';
+import { registerElement } from '@nativescript/angular';
+import { TextField } from 'nativescript-material-textfield';
 
 export const FORMS_DIRECTIVES = [TextValueAccessor];
 
@@ -11,4 +12,4 @@ export const FORMS_DIRECTIVES = [TextValueAccessor];
 })
 export class NativeScriptMaterialTextFieldModule {}
 
-registerElement('MDTextField', () => require('../textfield').TextField);
+registerElement('MDTextField', () => TextField);

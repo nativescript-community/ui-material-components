@@ -1,6 +1,4 @@
-import { Color } from '@nativescript/core/color';
-import { CSSType } from '@nativescript/core/ui/core/view';
-import { Slider as NSSlider } from '@nativescript/core/ui/slider';
+import { Color, CSSType, Slider as NSSlider } from '@nativescript/core';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 
 @CSSType('MDSlider')

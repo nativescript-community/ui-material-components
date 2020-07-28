@@ -1,5 +1,5 @@
-import { Color } from '@nativescript/core/color';
-import { colorProperty } from '@nativescript/core/ui/styling/style-properties';
+import { Color } from '@nativescript/core';
+import { colorProperty } from '@nativescript/core';
 import { themer } from 'nativescript-material-core/core';
 import { elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { thumbColorProperty, thumbHollowAtStartProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';

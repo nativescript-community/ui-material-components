@@ -42,7 +42,7 @@ const BottomSheetPlugin = {
             );
         };
         Vue.prototype.$closeBottomSheet = function(...args) {
-            (this.nativeView as View).closeBottomSheet.apply(this.nativeView, args);
+            (this.nativeView as any).closeBottomSheet.apply(this.nativeView, args);
         };
     }
 };

@@ -1,16 +1,9 @@
-import { Color } from '@nativescript/core/color';
-import { screen } from '@nativescript/core/platform';
-import { Background } from '@nativescript/core/ui/styling/background';
-import { Font } from '@nativescript/core/ui/styling/font';
-import {
-    backgroundInternalProperty,
-    borderBottomLeftRadiusProperty,
-    borderBottomRightRadiusProperty,
-    borderTopLeftRadiusProperty,
-    borderTopRightRadiusProperty,
-    fontInternalProperty
-} from '@nativescript/core/ui/styling/style-properties';
-import { layout } from '@nativescript/core/utils/utils';
+import { Color, Screen, Background, Font,  backgroundInternalProperty,
+  borderBottomLeftRadiusProperty,
+  borderBottomRightRadiusProperty,
+  borderTopLeftRadiusProperty,
+  borderTopRightRadiusProperty,
+  fontInternalProperty, Utils } from '@nativescript/core';
 import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { ButtonBase } from './button-common';
@@ -33,7 +26,7 @@ const ObserverClass  = (NSObject as any).extend({
             const owner = this._owner && this._owner.get();
             if (owner) {
                 const inset = owner.nativeViewProtected.titleEdgeInsets;
-                const top = layout.toDeviceIndependentPixels(owner.effectivePaddingTop + owner.effectiveBorderTopWidth);
+                const top = Utils.layout.toDeviceIndependentPixels(owner.effectivePaddingTop + owner.effectiveBorderTopWidth);
 
                 switch (owner.verticalTextAlignment) {
                     case 'initial': // not supported
@@ -183,7 +176,7 @@ export class Button extends ButtonBase {
 
     [backgroundInternalProperty.setNative](value: Background) {
         if (this.nativeViewProtected) {
-            const scale = screen.mainScreen.scale;
+            const scale = Screen.mainScreen.scale;
             // this.nativeViewProtected.backgroundColor = value.color ? value.color.ios : null;
             if (value.color) {
                 this.nativeViewProtected.setBackgroundColorForState(value.color ? value.color.ios : null, UIControlState.Normal);

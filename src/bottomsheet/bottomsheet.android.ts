@@ -1,8 +1,8 @@
-import { android as androidApp, AndroidActivityBackPressedEventData } from '@nativescript/core/application';
-import { fromObject } from '@nativescript/core/data/observable';
-import { View } from '@nativescript/core/ui/core/view';
+import { Application, AndroidActivityBackPressedEventData, View, fromObject } from '@nativescript/core';
 import { applyMixins } from 'nativescript-material-core/core';
 import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
+
+export { ViewWithBottomSheetBase } from './bottomsheet-common';
 
 interface BottomSheetDataOptions {
     owner: View;
@@ -12,14 +12,8 @@ interface BottomSheetDataOptions {
 }
 
 function getId(id: string) {
-    const context: android.content.Context = androidApp.context;
+    const context: android.content.Context = Application.android.context;
     return context.getResources().getIdentifier(id, 'id', context.getPackageName());
-}
-
-declare module '@nativescript/core/ui/core/view' {
-    interface View {
-        _bottomSheetFragment: com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-    }
 }
 
 
@@ -69,7 +63,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                         };
 
                         // Fist fire application.android global event
-                        androidApp.notify(args);
+                        Application.android.notify(args);
                         if (args.cancel) {
                             return true;
                         }
@@ -166,8 +160,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
 let mixinInstalled = false;
 export function overrideBottomSheet() {
-    const NSView = require('@nativescript/core/ui/core/view/view').View;
-    applyMixins(NSView, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
+    applyMixins(View, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
 }
 export function install() {
     if (!mixinInstalled) {

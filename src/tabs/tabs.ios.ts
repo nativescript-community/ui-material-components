@@ -1,27 +1,47 @@
 ﻿// Types
 // Requires
-import { Color } from '@nativescript/core/color';
-import { ImageSource } from '@nativescript/core/image-source';
-import { device } from '@nativescript/core/platform';
-import { ios as iosView, View } from '@nativescript/core/ui/core/view';
-import { Frame } from '@nativescript/core/ui/frame';
-import { Font } from '@nativescript/core/ui/styling/font';
-import { TabContentItem } from '@nativescript/core/ui/tab-navigation-base/tab-content-item';
-import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript/core/ui/tab-navigation-base/tab-navigation-base';
-import { TabStrip } from '@nativescript/core/ui/tab-navigation-base/tab-strip';
-import { TabStripItem } from '@nativescript/core/ui/tab-navigation-base/tab-strip-item';
-import { TextTransform, ViewBase } from '@nativescript/core/ui/text-base';
-import { ios as iosUtils, isFontIconURI, layout } from '@nativescript/core/utils/utils';
+import { Color, IOSHelper, Utils, Property, CoercibleProperty, isIOS, ImageSource, Device, View, Frame, Font, TabContentItem, getIconSpecSize, tabStripProperty, TabStrip, TabStripItem, TextTransform, ViewBase } from '@nativescript/core';
 import { IOSTabBarItemsAlignment, iOSTabBarItemsAlignmentProperty, swipeEnabledProperty, TabsBase } from './tabs-common';
 
+const itemsProperty = new Property<Tabs, TabContentItem[]>({
+	name: 'items',
+	valueChanged: (target, oldValue, newValue) => {
+		target.onItemsChanged(oldValue, newValue);
+	},
+});
+const selectedIndexProperty = new CoercibleProperty<Tabs, number>({
+	name: 'selectedIndex',
+	defaultValue: -1,
+	affectsLayout: isIOS,
+	valueChanged: (target, oldValue, newValue) => {
+		target.onSelectedIndexChanged(oldValue, newValue);
+	},
+	coerceValue: (target, value) => {
+		let items = target.items;
+		if (items) {
+			let max = items.length - 1;
+			if (value < 0) {
+				value = 0;
+			}
+			if (value > max) {
+				value = max;
+			}
+		} else {
+			value = -1;
+		}
+
+		return value;
+	},
+	valueConverter: (v) => parseInt(v),
+});
 
 // TODO
 // import { profile } from "../../profiling";
 
 export * from './tabs-common';
 
-const majorVersion = iosUtils.MajorVersion;
-const isPhone = device.deviceType === 'Phone';
+const majorVersion = Utils.ios.MajorVersion;
+const isPhone = Device.deviceType === 'Phone';
 
 // Equivalent to dispatch_async(dispatch_get_main_queue(...)) call
 const invokeOnRunLoop = (function () {
@@ -165,7 +185,7 @@ const UIPageViewControllerImpl = (UIPageViewController as any).extend(
                 return;
             }
 
-            iosView.updateAutoAdjustScrollInsets(this, owner);
+            IOSHelper.updateAutoAdjustScrollInsets(this, owner);
 
             // Tabs can be reset as a root view. Call loaded here in this scenario.
             if (!owner.isLoaded) {
@@ -258,7 +278,7 @@ const UIPageViewControllerImpl = (UIPageViewController as any).extend(
                     this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection &&
                     this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection(previousTraitCollection)
                 ) {
-                    owner.notify({ eventName: iosView.traitCollectionColorAppearanceChangedEvent, object: owner });
+                    owner.notify({ eventName: IOSHelper.traitCollectionColorAppearanceChangedEvent, object: owner });
                 }
             }
         },
@@ -657,11 +677,11 @@ export class Tabs extends TabsBase {
     }
 
     public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
-        const width = layout.getMeasureSpecSize(widthMeasureSpec);
-        const widthMode = layout.getMeasureSpecMode(widthMeasureSpec);
+        const width = Utils.layout.getMeasureSpecSize(widthMeasureSpec);
+        const widthMode = Utils.layout.getMeasureSpecMode(widthMeasureSpec);
 
-        const height = layout.getMeasureSpecSize(heightMeasureSpec);
-        const heightMode = layout.getMeasureSpecMode(heightMeasureSpec);
+        const height = Utils.layout.getMeasureSpecSize(heightMeasureSpec);
+        const heightMode = Utils.layout.getMeasureSpecMode(heightMeasureSpec);
 
         const widthAndState = View.resolveSizeAndState(width, width, widthMode, 0);
         const heightAndState = View.resolveSizeAndState(height, height, heightMode, 0);
@@ -701,7 +721,7 @@ export class Tabs extends TabsBase {
             newController = item.content.ios.controller;
             (<any>item).setViewController(newController, newController.view);
         } else {
-            newController = iosView.UILayoutViewController.initWithOwner(new WeakRef(item.content)) as UIViewController;
+            newController = IOSHelper.UILayoutViewController.initWithOwner(new WeakRef(item.content)) as UIViewController;
             newController.view.addSubview(item.content.nativeViewProtected);
             item.content.viewController = newController;
             (<any>item).setViewController(newController, item.content.nativeViewProtected);
@@ -869,7 +889,7 @@ export class Tabs extends TabsBase {
         let image: UIImage = this._iconsCache[iconTag];
         if (!image) {
             let is = new ImageSource();
-            if (isFontIconURI(iconSource)) {
+            if (Utils.isFontIconURI(iconSource)) {
                 isFontIcon = true;
                 const fontIconCode = iconSource.split('//')[1];
                 is = ImageSource.fromFontIconCodeSync(fontIconCode, font, color);
@@ -906,7 +926,7 @@ export class Tabs extends TabsBase {
         const widthPts = iconSpecSize.width;
         const heightPts = iconSpecSize.height;
 
-        UIGraphicsBeginImageContextWithOptions({ width: widthPts, height: heightPts }, false, layout.getDisplayDensity());
+        UIGraphicsBeginImageContextWithOptions({ width: widthPts, height: heightPts }, false, Utils.layout.getDisplayDensity());
         image.drawInRect(CGRectMake(0, 0, widthPts, heightPts));
         let resultImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
