@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-tabs",
-    "version": "3.2.19",
+    "version": "3.2.20",
     "description": "Material Tabs component",
     "main": "./tabs",
     "sideEffects": false,
@@ -35,7 +35,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^3.2.19"
+        "@nativescript-community/ui-material-core": "^3.2.20"
     },
     "gitHead": "511d6d5c154f669b23b56d01a7965205eb9c9d0f"
 }
