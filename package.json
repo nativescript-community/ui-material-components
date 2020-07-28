@@ -11,6 +11,7 @@
     "scripts": {
         "publish": "npm run build && lerna publish",
         "build": "lerna run build",
+        "build.angular": "lerna run build.angular",
         "build.win": "lerna run build-win",
         "force_publish": "lerna publish from-package",
         "increment_version": "lerna version",

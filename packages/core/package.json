@@ -8,7 +8,7 @@
     "scripts": {
         "tsc": "../../node_modules/.bin/cpy ../../src/core/index.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\core\\core.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
-        "build": "npm run tsc && ../../node_modules/.bin/rimraf ./build/esm",
+        "build": "npm run tsc",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
     },
     "nativescript": {

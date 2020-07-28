@@ -3,7 +3,7 @@ import { AppHostView, DetachedLoader, once } from '@nativescript/angular';
 import { ProxyViewContainer } from '@nativescript/core';
 import { Observable, Subject } from 'rxjs';
 import { filter, first, map } from 'rxjs/operators';
-import { BottomSheetOptions as MaterialBottomSheetOptions } from '../bottomsheet'; // ViewWithBottomSheetBase
+import { BottomSheetOptions as MaterialBottomSheetOptions } from '@nativescript-community/ui-material-bottomsheet'; // ViewWithBottomSheetBase
 
 export type BaseShowBottomSheetOptions = Pick<MaterialBottomSheetOptions, Exclude<keyof MaterialBottomSheetOptions, 'closeCallback' | 'view'>>;
 
