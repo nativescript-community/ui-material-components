@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/progress/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/progress/angular"]
+    "exclude": ["../../src/progress/angular/**"]
 }

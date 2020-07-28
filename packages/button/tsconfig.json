@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/button/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/button/angular"]
+    "exclude": ["../../src/button/angular/**"]
 }

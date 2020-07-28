@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/ripple/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/ripple/angular"]
+    "exclude": ["../../src/ripple/angular/**"]
 }

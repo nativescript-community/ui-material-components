@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/tabs/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/tabs/angular"]
+    "exclude": ["../../src/tabs/angular/**"]
 }

@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/bottomnavigationbar/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/bottomnavigationbar/angular"]
+    "exclude": ["../../src/bottomnavigationbar/angular/**"]
 }

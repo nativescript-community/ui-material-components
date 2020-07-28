@@ -13,5 +13,5 @@
         }
     },
     "include": ["../../src/dialogs/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/dialogs/angular"]
+    "exclude": ["../../src/dialogs/angular/**"]
 }

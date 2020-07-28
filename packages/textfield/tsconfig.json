@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/textfield/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/textfield/angular"]
+    "exclude": ["../../src/textfield/angular/**"]
 }

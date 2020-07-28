@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/slider/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/slider/angular"]
+    "exclude": ["../../src/slider/angular/**"]
 }

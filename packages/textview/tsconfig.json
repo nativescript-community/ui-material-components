@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/textview/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/textview/angular"]
+    "exclude": ["../../src/textview/angular/**"]
 }

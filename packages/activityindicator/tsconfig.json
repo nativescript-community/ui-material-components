@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/activityindicator/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/activityindicator/angular"]
+    "exclude": ["../../src/activityindicator/angular/**"]
 }

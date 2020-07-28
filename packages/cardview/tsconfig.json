@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/cardview/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/cardview/angular"]
+    "exclude": ["../../src/cardview/angular/**"]
 }

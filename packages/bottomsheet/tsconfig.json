@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/bottomsheet/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/bottomsheet/angular"]
+    "exclude": ["../../src/bottomsheet/angular/**"]
 }

@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/snackbar/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/snackbar/angular"]
+    "exclude": ["../../src/snackbar/angular/**"]
 }

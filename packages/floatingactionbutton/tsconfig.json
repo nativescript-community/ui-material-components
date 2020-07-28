@@ -11,5 +11,5 @@
         }
     },
     "include": ["../../src/floatingactionbutton/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/floatingactionbutton/angular"]
+    "exclude": ["../../src/floatingactionbutton/angular/**"]
 }

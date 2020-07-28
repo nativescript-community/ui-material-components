@@ -10,5 +10,5 @@
         }
     },
     "include": ["../../src/core/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/core/angular"]
+    "exclude": ["../../src/core/angular/**"]
 }
