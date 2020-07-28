@@ -25,7 +25,7 @@ export class Themer {
 
 export let themer: Themer;
 
-export { applyMixins } from './core.common';
+export { applyMixins } from './index.common';
 export * from './cssproperties';
 
 export function install();

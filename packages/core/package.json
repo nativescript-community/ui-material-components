@@ -2,11 +2,11 @@
     "name": "@nativescript-community/ui-material-core",
     "version": "3.2.19",
     "description": "Material Core component",
-    "main": "./core",
+    "main": "./index",
     "sideEffects": false,
-    "typings": "./core.d.ts",
+    "typings": "./index.d.ts",
     "scripts": {
-        "tsc": "../../node_modules/.bin/cpy ../../src/core/core.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
+        "tsc": "../../node_modules/.bin/cpy ../../src/core/index.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\core\\core.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
         "build": "npm run tsc && ../../node_modules/.bin/rimraf ./build/esm",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"

@@ -2,12 +2,13 @@
 	"name": "@nativescript-community/ui-material-cardview-angular",
 	"main": "index.js",
 	"ngPackage": {
+		"dest":"../../tempAngular/cardview",
 		"lib": {
 			"entryFile": "index.ts",
 			"umdModuleIds": {
 				"@nativescript/core": "ns-core",
 				"@nativescript/angular": "ns-angular",
-				"nativescript-material-cardview": "ns-material-cardview"
+				"@nativescript-community/ui-material-cardview": "ns-material-cardview"
 			}
 		},
 		"whitelistedNonPeerDependencies": [
@@ -15,9 +16,9 @@
 		]
 	},
 	"scripts": {
-		"build": "npm i && ../../../node_modules/.bin/ng-packagr -p package.json && cd dist && ../../../../node_modules/.bin/cpy '**/*' '../../../../packages/nativescript-material-cardview/angular' --parents"
+		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../tempAngular/cardview && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy './../tempAngular/cardview/**/*' '../../../../packages/cardview/angular' --parents"
 	},
 	"devDependencies": {
-		"nativescript-material-cardview": "*"
+		"@nativescript-community/ui-material-core": "file:../../../packages/core"
 	}
 }

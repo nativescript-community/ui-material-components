@@ -22,12 +22,12 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdb="nativescript-material-button"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdb="@nativescript-community/ui-material-button"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mdb="nativescript-material-button">
+<Page xmlns:mdb="@nativescript-community/ui-material-button">
     <StackLayout horizontalAlignment="center">
         <mdb:Button text="raised button"/>
         <mdb:Button variant="flat" text="flat button"/>
@@ -49,7 +49,7 @@ mdbutton {
 ## NativeScript + Angular
 
 ```typescript
-import { NativeScriptMaterialButtonModule } from "nativescript-material-button/angular";
+import { NativeScriptMaterialButtonModule } from "@nativescript-community/ui-material-button/angular";
 
 @NgModule({
     imports: [

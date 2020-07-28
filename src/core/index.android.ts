@@ -1,6 +1,6 @@
 import { Application, Background, Button, Color, Length, View, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty } from '@nativescript/core';
 import { createRippleDrawable, createStateListAnimator, getAttrColor, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from './android/utils';
-import { applyMixins } from './core.common';
+import { applyMixins } from './index.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
 export * from './cssproperties';
 export { applyMixins };

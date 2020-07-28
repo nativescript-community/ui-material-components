@@ -1,6 +1,6 @@
 import { Background, Button, Color, ControlStateChangeListener, GestureTypes, TouchAction, TouchGestureEventData, Utils, View, backgroundInternalProperty } from '@nativescript/core';
-import { TypographyOptions } from './core';
-import { applyMixins } from './core.common';
+import { TypographyOptions } from '.';
+import { applyMixins } from './index.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
 export * from './cssproperties';
 export { applyMixins };

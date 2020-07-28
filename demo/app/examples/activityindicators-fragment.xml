@@ -1,5 +1,5 @@
 
-<StackLayout xmlns:mdca="nativescript-material-activityindicator" horizontalAlignment="center">
+<StackLayout xmlns:mdca="@nativescript-community/ui-material-activityindicator" horizontalAlignment="center">
     <mdca:ActivityIndicator backgroundColor="yellow" busy="true"/>
     <mdca:ActivityIndicator backgroundColor="yellow" color="red" busy="true"/>
     <mdca:ActivityIndicator backgroundColor="yellow" width="30" busy="true"/>

@@ -1,6 +1,6 @@
 <StackLayout 
     xmlns:lv="nativescript-ui-listview"
-    xmlns:mdcr="nativescript-material-ripple" 
+    xmlns:mdcr="@nativescript-community/ui-material-ripple" 
     >
     <ListView id="listview" height="200" items="{{ dataItems }}" itemTap="onTap" class="list-group" backgroundColor="transparent">
         <ListView.itemTemplate>

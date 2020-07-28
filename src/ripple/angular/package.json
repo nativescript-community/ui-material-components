@@ -2,12 +2,13 @@
 	"name": "@nativescript-community/ui-material-ripple-angular",
 	"main": "index.js",
 	"ngPackage": {
+		"dest":"../../tempAngular/ripple",
 		"lib": {
 			"entryFile": "index.ts",
 			"umdModuleIds": {
 				"@nativescript/core": "ns-core",
 				"@nativescript/angular": "ns-angular",
-				"nativescript-material-ripple": "ns-material-ripple"
+				"@nativescript-community/ui-material-ripple": "ns-material-ripple"
 			}
 		},
 		"whitelistedNonPeerDependencies": [
@@ -15,9 +16,9 @@
 		]
 	},
 	"scripts": {
-		"build": "npm i && ../../../node_modules/.bin/ng-packagr -p package.json && cd dist && ../../../../node_modules/.bin/cpy '**/*' '../../../../packages/nativescript-material-ripple/angular' --parents"
+		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../tempAngular/ripple && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy './../tempAngular/ripple/**/*' '../../../../packages/ripple/angular' --parents"
 	},
 	"devDependencies": {
-		"nativescript-material-ripple": "*"
+		"@nativescript-community/ui-material-core": "file:../../../packages/core"
 	}
 }

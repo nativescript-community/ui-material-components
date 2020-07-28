@@ -1,6 +1,6 @@
 <ScrollView>
     <StackLayout margin="20"
-        xmlns:mdct="nativescript-material-textview">
+        xmlns:mdct="@nativescript-community/ui-material-textview">
         <mdct:TextView id="textView1" helper="help me!" width="250" backgroundColor="orange" placeholderColor="green"
         hint="i am an hint"/>
         <mdct:TextView id="textView2" maxLength="10" hint="hint me"/>

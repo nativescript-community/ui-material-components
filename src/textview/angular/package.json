@@ -2,12 +2,13 @@
 	"name": "@nativescript-community/ui-material-textview-angular",
 	"main": "index.js",
 	"ngPackage": {
+		"dest":"../../tempAngular/textview",
 		"lib": {
 			"entryFile": "index.ts",
 			"umdModuleIds": {
 				"@nativescript/core": "ns-core",
 				"@nativescript/angular": "ns-angular",
-				"nativescript-material-textview": "ns-material-textview"
+				"@nativescript-community/ui-material-textview": "ns-material-textview"
 			}
 		},
 		"whitelistedNonPeerDependencies": [
@@ -15,9 +16,9 @@
 		]
 	},
 	"scripts": {
-		"build": "npm i && ../../../node_modules/.bin/ng-packagr -p package.json && cd dist && ../../../../node_modules/.bin/cpy '**/*' '../../../../packages/nativescript-material-textview/angular' --parents"
+		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../tempAngular/textview && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy './../tempAngular/textview/**/*' '../../../../packages/textview/angular' --parents"
 	},
 	"devDependencies": {
-		"nativescript-material-textview": "*"
+		"@nativescript-community/ui-material-core": "file:../../../packages/core"
 	}
 }

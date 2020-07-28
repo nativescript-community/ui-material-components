@@ -22,12 +22,12 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdt="nativescript-material-textview"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdt="@nativescript-community/ui-material-textview"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mdt="nativescript-material-textview">
+<Page xmlns:mdt="@nativescript-community/ui-material-textview">
     <StackLayout horizontalAlignment="center">
         <mdt:TextView text="raised textview"/>
         <mdt:TextView variant="flat" text="flat textview"/>
@@ -53,7 +53,7 @@ mdctextview {
 ## NativeScript + Angular
 
 ```typescript
-import { NativeScriptMaterialTextViewModule } from "nativescript-material-textview/angular";
+import { NativeScriptMaterialTextViewModule } from "@nativescript-community/ui-material-textview/angular";
 
 @NgModule({
     imports: [

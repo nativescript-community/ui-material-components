@@ -1,4 +1,4 @@
-<StackLayout xmlns:mdcv="nativescript-material-cardview" padding="20">
+<StackLayout xmlns:mdcv="@nativescript-community/ui-material-cardview" padding="20">
     <mdcv:CardView elevation="1" borderRadius="10" borderColor="yellow" borderWidth="2" margin="10" rippleColor="red" >
         <StackLayout padding="10">
             <Label text="Hello World!"></Label>

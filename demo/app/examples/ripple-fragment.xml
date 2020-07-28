@@ -1,5 +1,5 @@
 <StackLayout
-    xmlns:mdr="nativescript-material-ripple" xmlns:mdcv="nativescript-material-cardview" padding="20" backgroundColor="yellow">
+    xmlns:mdr="@nativescript-community/ui-material-ripple" xmlns:mdcv="@nativescript-community/ui-material-cardview" padding="20" backgroundColor="yellow">
     <mdr:Ripple backgroundColor="lightgray" rippleColor="red" width="100%" height="40" />
     <GridLayout width="100%" height="40" backgroundColor="brown"  padding="3">
         <mdr:Ripple height="50" rippleColor="blue" tap="{{noop}}">

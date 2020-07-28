@@ -22,12 +22,12 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mda="nativescript-material-activityindicator"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mda="@nativescript-community/ui-material-activityindicator"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mda="nativescript-material-activityindicator">
+<Page xmlns:mda="@nativescript-community/ui-material-activityindicator">
     <StackLayout horizontalAlignment="center">
         <mda:ActivityIndicator busy="true"/>
     </StackLayout>
@@ -45,7 +45,7 @@ mdcactivityindicator {
 ## NativeScript + Angular
 
 ```typescript
-import { NativeScriptMaterialActivityIndicatorModule } from "nativescript-material-activityindicator/angular";
+import { NativeScriptMaterialActivityIndicatorModule } from "@nativescript-community/ui-material-activityindicator/angular";
 
 @NgModule({
     imports: [

@@ -22,12 +22,12 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdt="nativescript-material-textfield"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdt="@nativescript-community/ui-material-textfield"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mdt="nativescript-material-textfield">
+<Page xmlns:mdt="@nativescript-community/ui-material-textfield">
     <StackLayout horizontalAlignment="center">
         <mdt:TextField text="raised textfield"/>
         <mdt:TextField variant="flat" text="flat textfield"/>
@@ -53,7 +53,7 @@ mdctextfield {
 ## NativeScript + Angular
 
 ```typescript
-import { NativeScriptMaterialTextFieldModule } from "nativescript-material-textfield/angular";
+import { NativeScriptMaterialTextFieldModule } from "@nativescript-community/ui-material-textfield/angular";
 
 @NgModule({
     imports: [

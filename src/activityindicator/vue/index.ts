@@ -1,4 +1,4 @@
-import { ActivityIndicator } from '../activityindicator';
+import { ActivityIndicator } from '..';
 let installed = false;
 export default {
     install(Vue) {

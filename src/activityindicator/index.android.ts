@@ -1,4 +1,4 @@
-import { ActivityIndicatorBase, indeterminateProperty } from './activityindicator-common';
+import { ActivityIndicatorBase, indeterminateProperty } from './index-common';
 
 export class ActivityIndicator extends ActivityIndicatorBase {
     nativeViewProtected: android.widget.ProgressBar;

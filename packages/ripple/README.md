@@ -22,12 +22,12 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdr="nativescript-material-ripple"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdr="@nativescript-community/ui-material-ripple"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mdr="nativescript-material-ripple">
+<Page xmlns:mdr="@nativescript-community/ui-material-ripple">
     <StackLayout horizontalAlignment="center">
         <mdr:Ripple rippleColor="green" width="100" height="100" />
    </StackLayout>
@@ -45,7 +45,7 @@ mdcripple {
 ## NativeScript + Angular
 
 ```typescript
-import { NativeScriptMaterialRippleModule } from "nativescript-material-ripple/angular";
+import { NativeScriptMaterialRippleModule } from "@nativescript-community/ui-material-ripple/angular";
 
 @NgModule({
     imports: [

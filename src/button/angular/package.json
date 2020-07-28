@@ -2,12 +2,13 @@
 	"name": "@nativescript-community/ui-material-button-angular",
 	"main": "index.js",
 	"ngPackage": {
+		"dest":"../../tempAngular/button",
 		"lib": {
 			"entryFile": "index.ts",
 			"umdModuleIds": {
 				"@nativescript/core": "ns-core",
 				"@nativescript/angular": "ns-angular",
-				"nativescript-material-button": "ns-material-button"
+				"@nativescript-community/ui-material-button": "ns-material-button"
 			}
 		},
 		"whitelistedNonPeerDependencies": [
@@ -15,9 +16,9 @@
 		]
 	},
 	"scripts": {
-		"build": "npm i && ../../../node_modules/.bin/ng-packagr -p package.json && cd dist && ../../../../node_modules/.bin/cpy '**/*' '../../../../packages/nativescript-material-button/angular' --parents"
+		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../tempAngular/button && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy './../tempAngular/button/**/*' '../../../../packages/button/angular' --parents"
 	},
 	"devDependencies": {
-		"nativescript-material-button": "*"
+		"@nativescript-community/ui-material-core": "file:../../../packages/core"
 	}
 }

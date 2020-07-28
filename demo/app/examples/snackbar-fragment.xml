@@ -1,4 +1,4 @@
-<StackLayout xmlns:mdb="nativescript-material-button">
+<StackLayout xmlns:mdb="@nativescript-community/ui-material-button">
     <mdb:Button text="Simple Snackbar" tap="showSimpleSnackbar"/>
     <mdb:Button text="Action Snackbar" tap="showActionSnackbar"/>
     <mdb:Button text="Colorful Snackbar" tap="showColorfulSnackbar"/>

@@ -27,14 +27,14 @@ We need to do some wiring when your app starts, so open `app.js` and add this be
 
 ##### JavaScript
 ```js
-var material = require("nativescript-material-bottomsheet");
+var material = require("@nativescript-community/ui-material-bottomsheet");
 
 material.install();
 ```
 
 ##### TypeScript
 ```ts
-import { install } from "nativescript-material-bottomsheet";
+import { install } from "@nativescript-community/ui-material-bottomsheet";
 install();
 ```
 
@@ -83,7 +83,7 @@ this.$showBottomSheet(MyComponent, options)
 First you need to include the `NativeScriptMaterialBottomSheetModule` in your `app.module.ts`
 
 ```typescript
-import { NativeScriptMaterialBottomSheetModule} from "nativescript-material-bottomsheet/angular";
+import { NativeScriptMaterialBottomSheetModule} from "@nativescript-community/ui-material-bottomsheet/angular";
 
 @NgModule({
     imports: [

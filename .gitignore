@@ -53,7 +53,6 @@ node_modules
 *.tmp.*
 platforms
 !plugin/platforms
-!packages/**/platforms
 lib
 *.css
 !webpack.*.js
@@ -67,6 +66,8 @@ packages/**/*.ts
 packages/**/*.js.map
 packages/**/*.metadata.json
 packages/**/*.ngsummary.json
+!packages/**/angular/package.json
+!packages/**/platforms
 *.tgz
 *.aar
 package-lock.json
@@ -75,7 +76,4 @@ package-lock.json
 .idea
 /pnpm-lock.yaml
 pnpm-lock.yaml
-
-packages/**/*js.map
-packages/**/*js
 hooks

@@ -1,8 +1,8 @@
     
 <ScrollView>
     <StackLayout
-        xmlns:mdb="nativescript-material-button"
-        xmlns:mdfb="nativescript-material-floatingactionbutton">
+        xmlns:mdb="@nativescript-community/ui-material-button"
+        xmlns:mdfb="@nativescript-community/ui-material-floatingactionbutton">
         <mdfb:FloatingActionButton id="fab" src="res://ic_action_add" backgroundColor="blue" tap="{{ onTap }}"/>
         <mdb:Button id="button1" elevation="5" borderRadius="10" fontSize="20" text="raised button" tap="{{ onTap }}"/>
         <mdb:Button id="button2" borderRadius="10" color="red" text="text button" rippleColor="green" backgroundColor="red" variant="text" tap="{{ onTap }}">

@@ -28,12 +28,12 @@ inside ```App_ressources/android/res/values/styles.xml``` replace all occurences
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdc="nativescript-material-cardview"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdc="@nativescript-community/ui-material-cardview"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mdc="nativescript-material-cardview">
+<Page xmlns:mdc="@nativescript-community/ui-material-cardview">
     <StackLayout horizontalAlignment="center">
         <mdc:CardView width="100" height="100"/>
         <mdc:CardView elevation="5" rippleColor="red"  width="100" height="100"/>
@@ -53,7 +53,7 @@ mdccardview {
 ## NativeScript + Angular
 
 ```typescript
-import { NativeScriptMaterialCardViewModule } from "nativescript-material-cardview/angular";
+import { NativeScriptMaterialCardViewModule } from "@nativescript-community/ui-material-cardview/angular";
 
 @NgModule({
     imports: [

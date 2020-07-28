@@ -1,5 +1,5 @@
-import { ActivityIndicatorBase } from './activityindicator-common';
+import { ActivityIndicatorBase } from './index-common';
 import { Progress as NSProgress } from '@nativescript/core';
-import { mixin } from 'packages/core/core';
+import { mixin } from '@nativescript-community/ui-material-core';
 
 export class ActivityIndicator extends mixin(ActivityIndicatorBase, NSProgress) {}

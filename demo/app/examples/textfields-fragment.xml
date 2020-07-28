@@ -1,6 +1,6 @@
 <ScrollView>
     <StackLayout margin="20"
-        xmlns:mdct="nativescript-material-textfield">
+        xmlns:mdct="@nativescript-community/ui-material-textfield">
         <mdct:TextField id="textField1" helper="help me!" width="250" backgroundColor="orange" placeholderColor="green" keyboardType="datetime"
         hint="i am an hint" returnKeyType="next" focus="onFocus" blur="{{ onBlur }}"
         textChange="{{ onTextChange }}"/>

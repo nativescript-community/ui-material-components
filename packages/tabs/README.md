@@ -20,12 +20,12 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="nativescript-material-tabs"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="@nativescript-community/ui-material-tabs"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mdt="nativescript-material-tabs">
+<Page xmlns:mdt="@nativescript-community/ui-material-tabs">
     <mdt:Tabs selectedIndex="1">
         <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
         <TabStrip>
@@ -100,7 +100,7 @@ MDTabs TabStrip {
 ## NativeScript + Angular
 
 ```typescript
-import { NativeScriptMaterialTabsModule } from "nativescript-material-slider/angular";
+import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-material-slider/angular";
 
 @NgModule({
     imports: [

@@ -40,7 +40,7 @@ You can set the tabs using the `tabs` property
 
 ```xml
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
-      xmlns:mdc="nativescript-material-bottomnavigationbar"
+      xmlns:mdc="@nativescript-community/ui-material-bottomnavigationbar"
       loaded="pageLoaded"
       class="page">
     <GridLayout rows="*, auto">
@@ -90,7 +90,7 @@ or you can add the tabs directly in your xml view
 
 ```xml
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
-      xmlns:mdc="nativescript-material-bottomnavigationbar"
+      xmlns:mdc="@nativescript-community/ui-material-bottomnavigationbar"
       loaded="pageLoaded"
       class="page">
     <GridLayout rows="*, auto">
@@ -117,7 +117,7 @@ or you can add the tabs directly in your xml view
 First you need to include the `NativeScriptMaterialBottomNavigationBarModule` in your `app.module.ts``
 
 ```typescript
-import { NativeScriptMaterialBottomNavigationBarModule} from "nativescript-material-bottomnavigationbar/angular";
+import { NativeScriptMaterialBottomNavigationBarModule} from "@nativescript-community/ui-material-bottomnavigationbar/angular";
 
 @NgModule({
     imports: [

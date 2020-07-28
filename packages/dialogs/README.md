@@ -27,7 +27,7 @@ Adds one option for ```alert```:
 ### TS
 
 ```typescript
-import { login, alert, prompt } from "nativescript-material-dialogs";
+import { login, alert, prompt } from "@nativescript-community/ui-material-dialogs";
 
 alert("Your message").then(()=> {
     console.log("Dialog closed!");

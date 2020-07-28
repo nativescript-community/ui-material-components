@@ -1,5 +1,5 @@
 <GridLayout rows="*, auto" backgroundColor="blue"
-    xmlns:mdcb="nativescript-material-bottomnavigationbar">
+    xmlns:mdcb="@nativescript-community/ui-material-bottomnavigationbar">
     <StackLayout
       class="page"
       backgroundColor="blue"
@@ -29,4 +29,3 @@
         icon="res://ic_menu"/>
     </mdcb:BottomNavigationBar>
 </GridLayout>
-  

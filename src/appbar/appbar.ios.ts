@@ -31,7 +31,7 @@ export class AppBar extends AppBarBase {
         return this._appBarController ? this._appBarController.navigationBar : null;
     }
     set nativeViewProtected(view) {
-        
+
     }
 
     public get _getActualSize(): { width: number; height: number } {

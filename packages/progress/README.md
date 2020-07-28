@@ -22,12 +22,12 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdp="nativescript-material-progress"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdp="@nativescript-community/ui-material-progress"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mdp="nativescript-material-progress">
+<Page xmlns:mdp="@nativescript-community/ui-material-progress">
     <StackLayout horizontalAlignment="center">
         <mdp:Progress value="50" maxValue="100"/>
    </StackLayout>
@@ -46,7 +46,7 @@ mdprogress {
 ## NativeScript + Angular
 
 ```typescript
-import { NativeScriptMaterialProgressModule } from "nativescript-material-progress/angular";
+import { NativeScriptMaterialProgressModule } from "@nativescript-community/ui-material-progress/angular";
 
 @NgModule({
     imports: [

@@ -2,12 +2,13 @@
 	"name": "@nativescript-community/ui-material-activityindicator-angular",
 	"main": "index.js",
 	"ngPackage": {
+		"dest":"../../tempAngular/activityindicator",
 		"lib": {
 			"entryFile": "index.ts",
 			"umdModuleIds": {
 				"@nativescript/core": "ns-core",
 				"@nativescript/angular": "ns-angular",
-				"nativescript-material-activityindicator": "ns-material-activityindicator"
+				"@nativescript-community/ui-material-activityindicator": "ns-material-activityindicator"
 			}
 		},
 		"whitelistedNonPeerDependencies": [
@@ -15,9 +16,10 @@
 		]
 	},
 	"scripts": {
-		"build": "npm i && ../../../node_modules/.bin/ng-packagr -p package.json && cd dist && ../../../../node_modules/.bin/cpy '**/*' '../../../../packages/nativescript-material-activityindicator/angular' --parents"
+		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../tempAngular/activityindicator && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy './../tempAngular/activityindicator/**/*' '../../../../packages/activityindicator/angular' --parents"
 	},
 	"devDependencies": {
-		"nativescript-material-activityindicator": "*"
+		"tslib":"2.0.0",
+		"@nativescript-community/ui-material-core": "file:../../../packages/core"
 	}
 }

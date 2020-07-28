@@ -1,5 +1,5 @@
 import { Color, CssProperty, InheritedCssProperty, Length, Style, makeParser, makeValidator } from '@nativescript/core';
-import { VerticalTextAlignment } from './core';
+import { VerticalTextAlignment } from '.';
 
 function createGetter(key) {
     return function() {

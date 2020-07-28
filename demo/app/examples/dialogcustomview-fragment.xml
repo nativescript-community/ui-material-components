@@ -1,6 +1,6 @@
 <StackLayout 
     xmlns:lv="nativescript-ui-listview"
-    xmlns:mdcr="nativescript-material-ripple" 
+    xmlns:mdcr="@nativescript-community/ui-material-ripple" 
     height="100"
     backgroundColor="blue">
     <lv:RadListView id="listview" items="{{ dataItems }}" itemTap="onTap" class="list-group" >

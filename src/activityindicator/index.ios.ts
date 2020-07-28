@@ -1,6 +1,6 @@
 import { themer } from '@nativescript-community/ui-material-core';
 import { Color, Screen, Utils, View, colorProperty } from '@nativescript/core';
-import { ActivityIndicatorBase, indeterminateProperty } from './activityindicator-common';
+import { ActivityIndicatorBase, indeterminateProperty } from './index-common';
 
 export class ActivityIndicator extends ActivityIndicatorBase {
     nativeViewProtected: MDCActivityIndicator;

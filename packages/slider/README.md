@@ -22,12 +22,12 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="nativescript-material-slider"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="@nativescript-community/ui-material-slider"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mds="nativescript-material-slider">
+<Page xmlns:mds="@nativescript-community/ui-material-slider">
     <StackLayout horizontalAlignment="center">
         <mds:Slider value="50" minValue="0" maxValue="100" />
    </StackLayout>
@@ -46,7 +46,7 @@ mdslider {
 ## NativeScript + Angular
 
 ```typescript
-import { NativeScriptMaterialSliderModule } from "nativescript-material-slider/angular";
+import { NativeScriptMaterialSliderModule } from "@nativescript-community/ui-material-slider/angular";
 
 @NgModule({
     imports: [
