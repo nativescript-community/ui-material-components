@@ -2,7 +2,7 @@
 	"name": "@nativescript-community/ui-material-bottomsheet-angular",
 	"main": "index.js",
 	"ngPackage": {
-		"dest":"../../tempAngular/bottomsheet",
+		"dest": "../../tempAngular/bottomsheet",
 		"lib": {
 			"entryFile": "index.ts",
 			"umdModuleIds": {
@@ -19,6 +19,7 @@
 		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../tempAngular/bottomsheet && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy './../tempAngular/bottomsheet/**/*' '../../../../packages/bottomsheet/angular' --parents"
 	},
 	"devDependencies": {
-		"@nativescript-community/ui-material-core": "file:../../../packages/core"
+		"@nativescript-community/ui-material-core": "file:../../../packages/core",
+		"@nativescript-community/ui-material-bottomsheet": "file:../../../packages/bottomsheet"
 	}
 }

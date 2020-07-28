@@ -1,6 +1,6 @@
 import { Directive, NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-import { Progress } from '../progress';
+import { Progress } from '@nativescript-community/ui-material-progress';
 
 @Directive({ selector: 'MDProgress' })
 export class MaterialProgressDirective {}

@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { BottomSheetService } from './bottomsheet.service';
-import { install } from '../bottomsheet';
+import { install } from '@nativescript-community/ui-material-bottomsheet';
 
 @NgModule()
 export class NativeScriptMaterialBottomSheetModule {
@@ -11,7 +11,7 @@ export class NativeScriptMaterialBottomSheetModule {
     static forRoot(): ModuleWithProviders<any> {
         return {
             ngModule: NativeScriptMaterialBottomSheetModule,
-            providers: [BottomSheetService]
+            providers: [BottomSheetService],
         };
     }
 

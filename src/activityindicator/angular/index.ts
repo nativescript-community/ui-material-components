@@ -1,6 +1,6 @@
 import { Directive, NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-import { ActivityIndicator } from '../index';
+import { ActivityIndicator } from '@nativescript-community/ui-material-activityindicator';
 
 @Directive({ selector: 'MDActivityIndicator' })
 export class MaterialActivityIndicatorDirective {}

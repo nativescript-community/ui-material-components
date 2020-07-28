@@ -19,6 +19,7 @@
 		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../tempAngular/button && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy './../tempAngular/button/**/*' '../../../../packages/button/angular' --parents"
 	},
 	"devDependencies": {
-		"@nativescript-community/ui-material-core": "file:../../../packages/core"
+		"@nativescript-community/ui-material-core": "file:../../../packages/core",
+		"@nativescript-community/ui-material-button": "file:../../../packages/button"
 	}
 }

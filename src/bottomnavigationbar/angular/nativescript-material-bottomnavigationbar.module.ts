@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-import { BottomNavigationBar, BottomNavigationTab } from '../bottomnavigationbar';
+import { BottomNavigationBar, BottomNavigationTab } from '@nativescript-community/ui-material-bottomnavigationbar';
 import { DIRECTIVES } from './nativescript-material-bottomnavigationbar.directives';
 
 @NgModule({

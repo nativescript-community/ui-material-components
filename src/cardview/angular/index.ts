@@ -1,6 +1,6 @@
 import { Directive, NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-import { CardView } from '../cardview';
+import { CardView } from '@nativescript-community/ui-material-cardview';
 
 @Directive({ selector: 'MDCardView' })
 export class MaterialCardViewDirective {}

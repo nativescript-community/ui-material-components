@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { TextValueAccessor } from './textvalue-accessor';
 
 import { registerElement } from '@nativescript/angular';
-import { TextView } from '../textview';
+import { TextView } from '@nativescript-community/ui-material-textview';
 
 export const FORMS_DIRECTIVES = [TextValueAccessor];
 
