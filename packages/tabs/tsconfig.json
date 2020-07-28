@@ -6,7 +6,8 @@
         "paths": {
             "tns-core-modules": ["./node_modules/@nativescript/core"],
             "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
-            "*": ["node_modules/*", "packages/*"]
+            "@nativescript-community/ui-material-core": ["src/core/index"],
+            "@nativescript-community/ui-material-core/*": ["src/core/*"],
         }
     },
     "include": ["../../src/tabs/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"]
