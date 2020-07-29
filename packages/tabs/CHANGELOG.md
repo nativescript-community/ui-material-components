@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/Akylas/nativescript-material-components/compare/v4.0.0...v4.0.1) (2020-07-29)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-tabs
+
+
+
+
+
 # [4.0.0](https://github.com/Akylas/nativescript-material-components/compare/v3.2.20...v4.0.0) (2020-07-29)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-tabs

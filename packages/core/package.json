@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-core",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "description": "Material Core component",
     "main": "./index",
     "sideEffects": false,
@@ -33,5 +33,5 @@
     "license": "Apache-2.0",
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
-    "gitHead": "f594b28aa2ab5f4968b08b01100a9a141c913c06"
+    "gitHead": "f0c903eb440eda20c2a9cd1243cb88d4a6313bcd"
 }
