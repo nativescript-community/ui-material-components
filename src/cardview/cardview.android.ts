@@ -202,6 +202,7 @@ function initializeOutlineProvider() {
     if (ViewOutlineProvider) {
         return;
     }
+    @NativeClass
     class OutlineProvider extends android.view.ViewOutlineProvider {
         constructor(private owner: WeakRef<CardView>) {
             super();

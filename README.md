@@ -29,6 +29,7 @@ inside ```App_resources/android/res/values/styles.xml``` replace all occurences 
 
 ```bash
 npm i
+npm run setup // this should happen for every typescript update
 npm run tsc
 npm run demo.ios
 npm run demo.android

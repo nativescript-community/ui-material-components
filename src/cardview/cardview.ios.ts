@@ -5,27 +5,25 @@ import { CardViewBase } from './cardview-common';
 // use custom class to get the same behavior as android which is
 // highlight even if clicked on subview (which is not a control)
 
-declare class ICard extends MDCCardCollectionCell {
-    static new(): ICard;
-    static alloc(): ICard;
-}
-const Card = (MDCCardCollectionCell as any).extend({
+@NativeClass
+class Card extends MDCCardCollectionCell {
     touchesBeganWithEvent(touches, event) {
-        this.super.touchesBeganWithEvent(touches, event);
+        super.touchesBeganWithEvent(touches, event);
         if (this.interactable) {
             this.highlighted = true;
         }
-    },
+    }
     touchesEndedWithEvent(touches, event) {
-        this.super.touchesEndedWithEvent(touches, event);
+        super.touchesEndedWithEvent(touches, event);
         this.highlighted = false;
-    },
-}) as typeof ICard;
+    }
+}
+
 export class CardView extends CardViewBase {
-    nativeViewProtected: ICard;
+    nativeViewProtected: Card;
 
     public createNativeView() {
-        const view = Card.new();
+        const view = Card.new() as Card;
         const colorScheme = themer.getAppColorScheme();
         if (colorScheme) {
             MDCCardsColorThemer.applySemanticColorSchemeToCardCell(colorScheme, view);

@@ -28,122 +28,92 @@ function getColorScheme() {
     return colorScheme;
 }
 
-declare class ITextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
-    static new(): ITextInputControllerUnderlineImpl;
+@NativeClass
+class TextViewInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
     _owner: WeakRef<TextView>;
-}
+    public static initWithOwner(owner: TextView) {
+        const delegate = TextViewInputControllerUnderlineImpl.new() as TextViewInputControllerUnderlineImpl;
+        delegate._owner = new WeakRef(owner);
 
-const TextViewInputControllerUnderlineImpl = (MDCTextInputControllerUnderline as any).extend({
-    textInsets(defaultValue) {
-        let result = this.super.textInsets(defaultValue);
-        const owner = this._owner ? this._owner.get() : null;
-        if (owner) {
-            result = owner._getTextInsetsForBounds(result);
-        }
-        return result;
-    },
-}) as typeof ITextInputControllerUnderlineImpl;
-
-declare class ITextInputControllerImpl extends MDCTextInputControllerBase {
-    static new(): ITextInputControllerImpl;
-    _owner: WeakRef<TextView>;
-}
-const TextViewInputControllerImpl = (MDCTextInputControllerBase as any).extend({
-    textInsets(defaultValue) {
-        let result = this.super.textInsets(defaultValue);
-        const owner = this._owner ? this._owner.get() : null;
-        if (owner) {
-            result = owner._getTextInsetsForBounds(result);
-        }
-        return result;
-    },
-}) as typeof ITextInputControllerImpl;
-
-declare class ITextInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
-    static new(): ITextInputControllerOutlinedImpl;
-    _owner: WeakRef<TextView>;
-}
-const TextViewInputControllerOutlinedImpl = (MDCTextInputControllerOutlined as any).extend({
-    textInsets(defaultValue) {
-        let result = this.super.textInsets(defaultValue);
-        const owner = this._owner ? this._owner.get() : null;
-        if (owner) {
-            result = owner._getTextInsetsForBounds(result);
-        }
-        return result;
-    },
-}) as typeof ITextInputControllerOutlinedImpl;
-
-declare class ITextInputControllerFilledImpl extends MDCTextInputControllerFilled {
-    static new(): ITextInputControllerFilledImpl;
-    _owner: WeakRef<TextView>;
-}
-const TextViewInputControllerFilledImpl = (MDCTextInputControllerFilled as any).extend({
-    textInsets(defaultValue) {
-        let result = this.super.textInsets(defaultValue);
-        const owner = this._owner ? this._owner.get() : null;
-        if (owner) {
-            result = owner._getTextInsetsForBounds(result);
-        }
-        return result;
-    },
-}) as typeof ITextInputControllerFilledImpl;
-
-declare class ITextViewDelegateImpl extends NSObject implements UITextViewDelegate {
-    static new(): ITextViewDelegateImpl;
-    _owner: WeakRef<TextView>;
-}
-const TextViewDelegateImpl = (NSObject as any).extend(
-    {
-        textViewShouldBeginEditing(textView: UITextView): boolean {
-            const owner = this._owner.get();
-            if (owner) {
-                return owner.editable;
-            }
-
-            return true;
-        },
-
-        textViewDidBeginEditing(textView: UITextView): void {
-            const owner = this._owner.get();
-            if (owner) {
-                owner._isEditing = true;
-                owner.notify({ eventName: TextView.focusEvent, object: owner });
-            }
-        },
-
-        textViewDidEndEditing(textView: UITextView) {
-            const owner = this._owner.get();
-            if (owner) {
-                if (owner.updateTextTrigger === 'focusLost') {
-                    textProperty.nativeValueChange(owner, textView.text);
-                }
-
-                owner._isEditing = false;
-                owner.dismissSoftInput();
-            }
-        },
-
-        textViewDidChange(textView: UITextView) {
-            const owner = this._owner.get();
-            if (owner) {
-                if (owner.updateTextTrigger === 'textChanged') {
-                    textProperty.nativeValueChange(owner, textView.text);
-                }
-                owner.requestLayout();
-            }
-        },
-    },
-    {
-        protocols: [UITextViewDelegate],
+        return delegate;
     }
-) as typeof ITextViewDelegateImpl;
+    textInsets(defaultValue) {
+        let result = super.textInsets(defaultValue);
+        const owner = this._owner ? this._owner.get() : null;
+        if (owner) {
+            result = owner._getTextInsetsForBounds(result);
+        }
+        return result;
+    }
+}
+
+@NativeClass
+class TextViewInputControllerImpl extends MDCTextInputControllerBase {
+    _owner: WeakRef<TextView>;
+    public static initWithOwner(owner: TextView) {
+        const delegate = TextViewInputControllerImpl.new() as TextViewInputControllerImpl;
+        delegate._owner = new WeakRef(owner);
+
+        return delegate;
+    }
+    textInsets(defaultValue) {
+        let result = super.textInsets(defaultValue);
+        const owner = this._owner ? this._owner.get() : null;
+        if (owner) {
+            result = owner._getTextInsetsForBounds(result);
+        }
+        return result;
+    }
+}
+
+@NativeClass
+class TextViewInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
+    _owner: WeakRef<TextView>;
+    public static initWithOwner(owner: TextView) {
+        const delegate = TextViewInputControllerOutlinedImpl.new() as TextViewInputControllerOutlinedImpl;
+        delegate._owner = new WeakRef(owner);
+
+        return delegate;
+    }
+    textInsets(defaultValue) {
+        let result = super.textInsets(defaultValue);
+        const owner = this._owner ? this._owner.get() : null;
+        if (owner) {
+            result = owner._getTextInsetsForBounds(result);
+        }
+        return result;
+    }
+}
+
+@NativeClass
+class TextViewInputControllerFilledImpl extends MDCTextInputControllerFilled {
+    _owner: WeakRef<TextView>;
+    public static initWithOwner(owner: TextView) {
+        const delegate = TextViewInputControllerFilledImpl.new() as TextViewInputControllerFilledImpl;
+        delegate._owner = new WeakRef(owner);
+
+        return delegate;
+    }
+    textInsets(defaultValue) {
+        let result = super.textInsets(defaultValue);
+        const owner = this._owner ? this._owner.get() : null;
+        if (owner) {
+            result = owner._getTextInsetsForBounds(result);
+        }
+        return result;
+    }
+}
+
+declare module '@nativescript/core/ui/text-field' {
+    interface TextField {
+        textFieldShouldChangeCharactersInRangeReplacementString(textField: UITextField, range: NSRange, replacementString: string): boolean;
+    }
+}
 
 export class TextView extends TextViewBase {
     nativeViewProtected: MDCMultilineTextField;
-    private _controller: ITextInputControllerImpl;
+    private _controller: MDCTextInputControllerBase;
     public _isEditing: boolean;
-    private _delegate: ITextViewDelegateImpl;
     public readonly style: Style & { variant: 'outline' | 'underline' | 'filled' };
 
     public clearFocus() {
@@ -179,17 +149,16 @@ export class TextView extends TextViewBase {
         view.clearButtonMode = UITextFieldViewMode.Never;
         const colorScheme = themer.getAppColorScheme();
         if (this.style.variant === 'filled') {
-            this._controller = TextViewInputControllerFilledImpl.new();
+            this._controller = TextViewInputControllerFilledImpl.initWithOwner(this);;
         } else if (this.style.variant === 'outline') {
-            this._controller = TextViewInputControllerOutlinedImpl.new();
+            this._controller = TextViewInputControllerOutlinedImpl.initWithOwner(this);
         } else if (this.style.variant === 'underline') {
-            this._controller = TextViewInputControllerUnderlineImpl.new();
+            this._controller = TextViewInputControllerUnderlineImpl.initWithOwner(this);
         } else {
-            this._controller = TextViewInputControllerImpl.new();
+            this._controller = TextViewInputControllerImpl.initWithOwner(this);
             this._controller.underlineHeightActive = 0;
             this._controller.underlineHeightNormal = 0;
         }
-        this._controller._owner = new WeakRef(this);
         this._controller.textInput = view;
         view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;
         this._controller.placeholderText = this.hint;
@@ -199,13 +168,6 @@ export class TextView extends TextViewBase {
             MDCTextFieldColorThemer.applySemanticColorSchemeToTextInputController(colorScheme, this._controller);
         }
         return view;
-    }
-
-    initNativeView() {
-        super.initNativeView();
-        this._delegate = TextViewDelegateImpl.new();
-        this._delegate._owner = new WeakRef(this);
-        this.ios.textView.delegate = this._delegate;
     }
 
     // TODO: check why i was checking for isFirstResponder

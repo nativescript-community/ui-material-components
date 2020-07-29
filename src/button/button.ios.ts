@@ -26,7 +26,17 @@ declare class IObserverClass extends NSObject {
     static alloc(): IObserverClass;
     _owner: WeakRef<Button>;
 }
-const ObserverClass = (NSObject as any).extend({
+
+@NativeClass
+class MDButtonObserverClass extends NSObject {
+    _owner: WeakRef<Button>;
+    public static initWithOwner(owner: Button) {
+        const delegate = MDButtonObserverClass.new() as MDButtonObserverClass;
+        delegate._owner = new WeakRef(owner);
+
+        return delegate;
+    }
+
     observeValueForKeyPathOfObjectChangeContext(path: string, tv: UITextView) {
         if (path === 'contentSize') {
             const owner = this._owner && this._owner.get();
@@ -75,8 +85,8 @@ const ObserverClass = (NSObject as any).extend({
                 }
             }
         }
-    },
-}) as typeof IObserverClass;
+    }
+}
 export class Button extends ButtonBase {
     private _observer: IObserverClass;
     nativeViewProtected: MDCButton;
@@ -145,8 +155,7 @@ export class Button extends ButtonBase {
     }
     initNativeView() {
         super.initNativeView();
-        this._observer = ObserverClass.new();
-        this._observer._owner = new WeakRef(this);
+        this._observer = MDButtonObserverClass.initWithOwner(this);
         this.nativeViewProtected.addObserverForKeyPathOptionsContext(this._observer, 'contentSize', NSKeyValueObservingOptions.New, null);
     }
     disposeNativeView() {

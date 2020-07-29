@@ -55,7 +55,10 @@
             "@nativescript-community/ui-material-textview": ["src/textview/textview"],
             "@nativescript-community/ui-material-textview/*": ["src/textview/*"],
             "*": ["node_modules/*"]
-        }
+        },
+        "plugins": [
+          { "transform": "../../node_modules/@nativescript/webpack/transformers/ns-transform-native-classes", "type": "raw" }
+        ]
     },
     "include": ["src/**/*", "./references.d.ts"],
     "exclude": ["node_modules", "platforms", "dist", "packages"],
