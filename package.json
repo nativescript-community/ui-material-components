@@ -19,6 +19,7 @@
         "tsc": "lerna run tsc",
         "tsc-win": "lerna run tsc-win",
         "clean": "rimraf packages/**/*.d.ts packages/**/*.js packages/**/*.js.map packages/**/*.metadata.json packages/**/*.ngsummary.json packages/core/android",
+        "clean.all": "npm run clean && npx rimraf -- node_modules package-lock.json",
         "demo.android": "cd ./demo && tns run android",
         "demo.ios": "cd ./demo && tns run ios",
         "build.demo.android": "cd ./demo && tns build android",
@@ -53,10 +54,10 @@
         "@angular/router": "~10.0.0",
         "@commitlint/cli": "^9.1.1",
         "@commitlint/config-conventional": "^9.1.1",
-        "@nativescript/angular": "rc",
-        "@nativescript/core": "rc-esm",
+        "@nativescript/angular": "~10.0.0",
+        "@nativescript/core": "rc",
         "@nativescript/types": "rc",
-        "@nativescript/webpack": "rc-esm",
+        "@nativescript/webpack": "~2.1.3",
         "@types/node": "~14.0.22",
         "@typescript-eslint/eslint-plugin": "3.7.1",
         "@typescript-eslint/parser": "3.7.1",
@@ -80,5 +81,6 @@
     },
     "dependencies": {
         "ts-node": "^8.10.2"
-    }
+    },
+    "bootstrapper": "@nativescript/plugin-seed"
 }

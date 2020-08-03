@@ -2,7 +2,7 @@
 	"name": "@nativescript-community/ui-material-floatingactionbutton-angular",
 	"main": "index.js",
 	"ngPackage": {
-		"dest":"../../../tempAngular/floatingactionbutton",
+		"dest": "../../../tempAngular/floatingactionbutton",
 		"lib": {
 			"entryFile": "index.ts",
 			"umdModuleIds": {
@@ -16,10 +16,10 @@
 		]
 	},
 	"scripts": {
-		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../../tempAngular/floatingactionbutton&& ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy '../../../tempAngular/floatingactionbutton/**/*' '../../../../packages/floatingactionbutton/angular' --parents"
+		"build": "../../../node_modules/.bin/rimraf -- node_modules package-lock.json && npm i && ../../../node_modules/.bin/ng-packagr -p package.json && cd ../../../tempAngular/floatingactionbutton && ../../node_modules/.bin/cpy '**/*' '../../packages/floatingactionbutton/angular' --parents"
 	},
 	"devDependencies": {
-		"tslib":"2.0.0",
+		"tslib": "2.0.0",
 		"@nativescript-community/ui-material-core": "file:../../../packages/core",
 		"@nativescript-community/ui-material-floatingactionbutton": "file:../../../packages/floatingactionbutton"
 	}

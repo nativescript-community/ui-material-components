@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-tabs",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "description": "Material Tabs component",
     "main": "./tabs",
     "sideEffects": false,

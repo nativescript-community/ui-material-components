@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-snackbar",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "description": "Material snackbar component",
     "main": "./snackbar",
     "sideEffects": false,
