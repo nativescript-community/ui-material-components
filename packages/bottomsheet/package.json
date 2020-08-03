@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-bottomsheet",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "description": "Material bottomsheet component",
     "main": "./bottomsheet",
     "sideEffects": false,

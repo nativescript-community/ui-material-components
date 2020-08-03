@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-floatingactionbutton",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "description": "Material floatingactionbutton component",
     "main": "./floatingactionbutton",
     "sideEffects": false,

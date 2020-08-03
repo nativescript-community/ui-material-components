@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-progress",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "description": "Material progress component",
     "main": "./progress",
     "sideEffects": false,
