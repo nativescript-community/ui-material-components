@@ -9,7 +9,7 @@
         "tsc": "../../node_modules/.bin/cpy ../../src/activityindicator/index.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\activityindicator\\index.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
         "build": "npm run tsc && npm run build.angular",
-        "build.angular": "cd angular && npm run build",
+        "build.angular": "cd ../../src/activityindicator/angular && npm run build",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {
