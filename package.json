@@ -9,7 +9,7 @@
         }
     },
     "scripts": {
-        "setup": "ts-patch install",
+        "setup": "npm i && ts-patch install",
         "publish": "npm run build && lerna publish",
         "build": "lerna run build",
         "build.angular": "lerna run build.angular",

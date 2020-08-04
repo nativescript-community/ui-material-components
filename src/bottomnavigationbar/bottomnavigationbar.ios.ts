@@ -2,7 +2,7 @@ import { themer } from '@nativescript-community/ui-material-core';
 import { Application, Color, Screen, Utils, backgroundColorProperty } from '@nativescript/core';
 import { BottomNavigationBarBase, BottomNavigationTabBase, activeColorCssProperty, inactiveColorCssProperty, tabsProperty, titleVisibilityProperty } from './bottomnavigationbar-common';
 
-@NativeClass
+@NativeClass()
 class BottomNavigationBarDelegate extends NSObject {
     static ObjCProtocols = [MDCBottomNavigationBarDelegate];
     _owner: WeakRef<BottomNavigationBar>;
@@ -36,8 +36,7 @@ class BottomNavigationBarDelegate extends NSObject {
         return bottomNavigationTab.isSelectable;
     }
 }
-{
-}
+
 export class BottomNavigationBar extends BottomNavigationBarBase {
     nativeViewProtected: MDCBottomNavigationBar;
     _items: BottomNavigationTab[];

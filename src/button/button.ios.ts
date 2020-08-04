@@ -27,7 +27,7 @@ declare class IObserverClass extends NSObject {
     _owner: WeakRef<Button>;
 }
 
-@NativeClass
+@NativeClass()
 class MDButtonObserverClass extends NSObject {
     _owner: WeakRef<Button>;
     public static initWithOwner(owner: Button) {

@@ -12,7 +12,7 @@ declare class IMDCBottomSheetControllerDelegateImpl extends NSObject implements 
     _owner: WeakRef<ViewWithBottomSheet>;
 }
 
-@NativeClass
+@NativeClass()
 class MDCBottomSheetControllerDelegateImpl extends NSObject {
     static ObjCProtocols = [MDCBottomSheetControllerDelegate];
     _owner: WeakRef<ViewWithBottomSheet>;
@@ -191,7 +191,7 @@ declare class IUILayoutViewController extends UIViewController {
     ignoreTopSafeArea: boolean;
 }
 
-@NativeClass
+@NativeClass()
 class UILayoutViewController extends UIViewController {
     owner: WeakRef<View>;
     ignoreBottomSafeArea: boolean;

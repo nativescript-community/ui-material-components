@@ -25,7 +25,7 @@ export { capitalizationType, inputType };
 
 const UNSPECIFIED = Utils.layout.makeMeasureSpec(0, Utils.layout.UNSPECIFIED);
 
-@NativeClass
+@NativeClass()
 class MDCDialogPresentationControllerDelegateImpl extends NSObject {
     static ObjCProtocols = [MDCDialogPresentationControllerDelegate];
     _callback: Function;
@@ -43,7 +43,7 @@ class MDCDialogPresentationControllerDelegateImpl extends NSObject {
     }
 }
 
-@NativeClass
+@NativeClass()
 class MDCAlertControllerImpl extends MDCAlertController {
     autoFocusTextField?: TextField;
     _customContentView?: View;

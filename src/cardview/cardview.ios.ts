@@ -5,7 +5,7 @@ import { CardViewBase } from './cardview-common';
 // use custom class to get the same behavior as android which is
 // highlight even if clicked on subview (which is not a control)
 
-@NativeClass
+@NativeClass()
 class Card extends MDCCardCollectionCell {
     touchesBeganWithEvent(touches, event) {
         super.touchesBeganWithEvent(touches, event);

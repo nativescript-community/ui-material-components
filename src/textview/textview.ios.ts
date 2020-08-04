@@ -28,7 +28,7 @@ function getColorScheme() {
     return colorScheme;
 }
 
-@NativeClass
+@NativeClass()
 class TextViewInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
     _owner: WeakRef<TextView>;
     public static initWithOwner(owner: TextView) {
@@ -47,7 +47,7 @@ class TextViewInputControllerUnderlineImpl extends MDCTextInputControllerUnderli
     }
 }
 
-@NativeClass
+@NativeClass()
 class TextViewInputControllerImpl extends MDCTextInputControllerBase {
     _owner: WeakRef<TextView>;
     public static initWithOwner(owner: TextView) {
@@ -66,7 +66,7 @@ class TextViewInputControllerImpl extends MDCTextInputControllerBase {
     }
 }
 
-@NativeClass
+@NativeClass()
 class TextViewInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
     _owner: WeakRef<TextView>;
     public static initWithOwner(owner: TextView) {
@@ -85,7 +85,7 @@ class TextViewInputControllerOutlinedImpl extends MDCTextInputControllerOutlined
     }
 }
 
-@NativeClass
+@NativeClass()
 class TextViewInputControllerFilledImpl extends MDCTextInputControllerFilled {
     _owner: WeakRef<TextView>;
     public static initWithOwner(owner: TextView) {
