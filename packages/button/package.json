@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-button",
-    "version": "4.0.3",
+    "version": "4.0.4",
     "description": "Material button component",
     "main": "./button",
     "sideEffects": false,
@@ -35,7 +35,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^4.0.3"
+        "@nativescript-community/ui-material-core": "^4.0.4"
     },
     "gitHead": "f0c903eb440eda20c2a9cd1243cb88d4a6313bcd"
 }
