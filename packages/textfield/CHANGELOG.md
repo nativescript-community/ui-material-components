@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.3](https://github.com/nstudio/nativescript-material-components/compare/v4.0.1...v4.0.3) (2020-08-04)
+
+
+### Bug Fixes
+
+* **angular:** build scripting ([d7db58e](https://github.com/nstudio/nativescript-material-components/commit/d7db58eb1bcec81a75c3c043800b7065dfce7553))
+
+
+
+
+
 ## [4.0.1](https://github.com/Akylas/nativescript-material-components/compare/v4.0.0...v4.0.1) (2020-07-29)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-textfield
