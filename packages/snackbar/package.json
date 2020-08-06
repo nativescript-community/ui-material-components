@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-snackbar",
-    "version": "4.0.3",
+    "version": "4.0.5",
     "description": "Material snackbar component",
     "main": "./snackbar",
     "sideEffects": false,
@@ -34,7 +34,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^4.0.3"
+        "@nativescript-community/ui-material-core": "^4.0.5"
     },
     "gitHead": "f0c903eb440eda20c2a9cd1243cb88d4a6313bcd"
 }
