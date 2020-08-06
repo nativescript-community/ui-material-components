@@ -67,7 +67,7 @@ function initializeNativeClasses() {
     if (PagerAdapter) {
         return;
     }
-
+    @NativeClass
     class TabFragmentImplementation extends org.nativescript.widgets.FragmentBase {
         private owner: Tabs;
         private index: number;
@@ -298,6 +298,7 @@ function initializeNativeClasses() {
         }
     }
 
+    @NativeClass
     class TabsBarImplementation extends org.nativescript.widgets.TabsBar {
         constructor(context: android.content.Context, public owner: Tabs) {
             super(context);
