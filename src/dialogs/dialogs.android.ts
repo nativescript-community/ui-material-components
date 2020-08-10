@@ -35,6 +35,10 @@ declare module '@nativescript/core/ui/core/view/view' {
     }
 }
 
+const BUTTON_POSITIVE: String = android.content.DialogInterface.BUTTON_POSITIVE;
+const BUTTON_NEGATIVE: String = android.content.DialogInterface.BUTTON_NEGATIVE;
+const BUTTON_NEUTRAL: String = android.content.DialogInterface.BUTTON_NEUTRAL;
+
 function isString(value): value is string {
     return typeof value === 'string';
 }
@@ -82,8 +86,16 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
 }
 
 function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
+    /**
+     * dialog should be shown before its subviews configuration,
+     * because some of them don't exist until dialog has been brought into view
+     */
+    dlg.show();
+
+    const packageName = dlg.getContext().getPackageName();
+
     if (options.titleColor) {
-        const textViewId = dlg.getContext().getResources().getIdentifier('android:id/alertTitle', null, null);
+        const textViewId = dlg.getContext().getResources().getIdentifier('alertTitle', 'id', packageName);
         if (textViewId) {
             const tv = <android.widget.TextView>dlg.findViewById(textViewId);
             if (tv) {
@@ -91,7 +103,7 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
             }
         }
         if (options.messageColor) {
-            const messageTextViewId = dlg.getContext().getResources().getIdentifier('android:id/message', null, null);
+            const messageTextViewId = dlg.getContext().getResources().getIdentifier('message', 'id', packageName);
             if (messageTextViewId) {
                 const messageTextView = <android.widget.TextView>dlg.findViewById(messageTextViewId);
                 if (messageTextView) {
@@ -128,14 +140,11 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
     // let { color, backgroundColor } = getButtonColors();
 
     if (options.buttonInkColor || options.buttonTitleColor) {
-        let buttons: android.widget.Button[] = [];
-        for (let i = 0; i < 3; i++) {
-            let id = dlg
-                .getContext()
-                .getResources()
-                .getIdentifier('android:id/button' + i, null, null);
-            buttons[i] = <android.widget.Button>dlg.findViewById(id);
-        }
+        let buttons: android.widget.Button[] = [
+            dlg.getButton(BUTTON_POSITIVE),
+            dlg.getButton(BUTTON_NEGATIVE),
+            dlg.getButton(BUTTON_NEUTRAL)
+        ];
 
         buttons.forEach((button) => {
             if (button) {
@@ -143,12 +152,11 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
             }
         });
     }
-    dlg.show();
     return dlg;
 }
 
 function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any) {
-    
+
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
     const onDone = function (result: boolean, dialog?: android.content.DialogInterface) {
@@ -201,9 +209,8 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
 
     if (options.okButtonText) {
         dlg.setButton(
-            android.content.DialogInterface.BUTTON_POSITIVE,
+            BUTTON_POSITIVE,
             options.okButtonText,
-            null,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function (dialog: android.content.DialogInterface, id: number) {
                     onDone(true, dialog);
@@ -217,9 +224,8 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
 
     if (options.cancelButtonText) {
         dlg.setButton(
-            android.content.DialogInterface.BUTTON_NEGATIVE,
+            BUTTON_NEGATIVE,
             options.cancelButtonText,
-            null,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function (dialog: android.content.DialogInterface, id: number) {
                     onDone(false, dialog);
@@ -238,9 +244,8 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
 
     if (options.neutralButtonText) {
         dlg.setButton(
-            android.content.DialogInterface.BUTTON_NEUTRAL,
+            BUTTON_NEUTRAL,
             options.neutralButtonText,
-            null,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function (dialog: android.content.DialogInterface, id: number) {
                     onDone(undefined, dialog);
