@@ -35,6 +35,10 @@ declare module '@nativescript/core/ui/core/view/view' {
     }
 }
 
+const BUTTON_POSITIVE: String = android.content.DialogInterface.BUTTON_POSITIVE;
+const BUTTON_NEGATIVE: String = android.content.DialogInterface.BUTTON_NEGATIVE;
+const BUTTON_NEUTRAL: String = android.content.DialogInterface.BUTTON_NEUTRAL;
+
 function isString(value): value is string {
     return typeof value === 'string';
 }
@@ -82,10 +86,14 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
 }
 
 function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
+    /**
+     * dialog should be shown before its subviews configuration,
+     * because some of them don't exist until dialog has been brought into view
+     */
     dlg.show();
 
     const packageName = dlg.getContext().getPackageName();
-    
+
     if (options.titleColor) {
         const textViewId = dlg.getContext().getResources().getIdentifier('alertTitle', 'id', packageName);
         if (textViewId) {
@@ -133,9 +141,9 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
 
     if (options.buttonInkColor || options.buttonTitleColor) {
         let buttons: android.widget.Button[] = [
-            dlg.getButton(android.content.DialogInterface.BUTTON_POSITIVE),
-            dlg.getButton(android.content.DialogInterface.BUTTON_NEGATIVE),
-            dlg.getButton(android.content.DialogInterface.BUTTON_NEUTRAL)
+            dlg.getButton(BUTTON_POSITIVE),
+            dlg.getButton(BUTTON_NEGATIVE),
+            dlg.getButton(BUTTON_NEUTRAL)
         ];
 
         buttons.forEach((button) => {
@@ -148,7 +156,7 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
 }
 
 function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any) {
-    
+
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
     const onDone = function (result: boolean, dialog?: android.content.DialogInterface) {
@@ -201,7 +209,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
 
     if (options.okButtonText) {
         dlg.setButton(
-            android.content.DialogInterface.BUTTON_POSITIVE,
+            BUTTON_POSITIVE,
             options.okButtonText,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function (dialog: android.content.DialogInterface, id: number) {
@@ -216,7 +224,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
 
     if (options.cancelButtonText) {
         dlg.setButton(
-            android.content.DialogInterface.BUTTON_NEGATIVE,
+            BUTTON_NEGATIVE,
             options.cancelButtonText,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function (dialog: android.content.DialogInterface, id: number) {
@@ -236,7 +244,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
 
     if (options.neutralButtonText) {
         dlg.setButton(
-            android.content.DialogInterface.BUTTON_NEUTRAL,
+            BUTTON_NEUTRAL,
             options.neutralButtonText,
             new android.content.DialogInterface.OnClickListener({
                 onClick: function (dialog: android.content.DialogInterface, id: number) {
