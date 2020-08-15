@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-bottomsheet",
-    "version": "4.0.8",
+    "version": "4.0.9",
     "description": "Material bottomsheet component",
     "main": "./bottomsheet",
     "sideEffects": false,
@@ -37,5 +37,5 @@
     "dependencies": {
         "@nativescript-community/ui-material-core": "^4.0.8"
     },
-    "gitHead": "f0c903eb440eda20c2a9cd1243cb88d4a6313bcd"
+    "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }
