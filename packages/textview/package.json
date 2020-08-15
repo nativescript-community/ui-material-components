@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-textview",
-    "version": "4.0.6",
+    "version": "4.0.7",
     "description": "Material textview component",
     "main": "./textview",
     "sideEffects": false,

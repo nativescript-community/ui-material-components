@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-dialogs",
-    "version": "4.0.6",
+    "version": "4.0.7",
     "description": "Material Dialogs component",
     "main": "./dialogs",
     "sideEffects": false,

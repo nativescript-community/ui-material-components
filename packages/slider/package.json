@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-slider",
-    "version": "4.0.6",
+    "version": "4.0.7",
     "description": "Material slider component",
     "main": "./slider",
     "sideEffects": false,
