@@ -23,6 +23,7 @@ const getOnTabSelectedlistener = () => {
         return OnTabSelectedlistener;
     }
 
+    @NativeClass
     @Interfaces([com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener])
     class OnTabSelectedlistenerImpl extends java.lang.Object implements OnNavigationItemSelectedListener {
         constructor(public owner: BottomNavigationBar) {
@@ -59,6 +60,7 @@ const getOnTabReselectedListener = () => {
     if (OnTabReselectedListener) {
         return OnTabReselectedListener;
     }
+    @NativeClass
     @Interfaces([com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemReselectedListener])
     class OnTabReselectedListenerImpl extends java.lang.Object implements OnNavigationItemReselectedListener {
         constructor(public owner: BottomNavigationBar) {
