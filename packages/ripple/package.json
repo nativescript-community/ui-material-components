@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-ripple",
-    "version": "4.0.6",
+    "version": "4.0.7",
     "description": "Material ripple component",
     "main": "./ripple",
     "sideEffects": false,

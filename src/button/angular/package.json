@@ -16,7 +16,7 @@
 		]
 	},
 	"scripts": {
-		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../../tempAngular/button && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy '../../../tempAngular/button/**/*' '../../../../packages/button/angular' --parents"
+		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../../tempAngular/button && ../../../node_modules/.bin/ng-packagr -p package.json && cd ../../../tempAngular/button && ../../node_modules/.bin/cpy '**/*' '../../packages/button/angular' --parents"
 	},
 	"devDependencies": {
 		"tslib": "2.0.0",

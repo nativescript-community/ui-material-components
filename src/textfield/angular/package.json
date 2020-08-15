@@ -16,7 +16,7 @@
 		]
 	},
 	"scripts": {
-		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../../tempAngular/textfield && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy '../../../tempAngular/textfield/**/*' '../../../../packages/textfield/angular' --parents"
+		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../../tempAngular/textfield && ../../../node_modules/.bin/ng-packagr -p package.json && cd ../../../tempAngular/textfield && ../../node_modules/.bin/cpy '**/*' '../../packages/textfield/angular' --parents"
 	},
 	"devDependencies": {
 		"tslib": "2.0.0",

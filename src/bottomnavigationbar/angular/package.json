@@ -16,7 +16,7 @@
 		]
 	},
 	"scripts": {
-		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../../tempAngular/bottomnavigationbar && ../../../node_modules/.bin/ng-packagr -p package.json && ../../../node_modules/.bin/cpy '../../../tempAngular/bottomnavigationbar/**/*' '../../../../packages/bottomnavigationbar/angular' --parents"
+		"build": "pnpm i && ../../../node_modules/.bin/rimraf ../../../tempAngular/bottomnavigationbar && ../../../node_modules/.bin/ng-packagr -p package.json && cd ../../../tempAngular/bottomnavigationbar && ../../node_modules/.bin/cpy '**/*' '../../packages/bottomnavigationbar/angular' --parents"
 	},
 	"devDependencies": {
 		"tslib": "2.0.0",

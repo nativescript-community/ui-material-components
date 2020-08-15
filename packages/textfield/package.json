@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-textfield",
-    "version": "4.0.6",
+    "version": "4.0.7",
     "description": "Material textfield component",
     "main": "./textfield",
     "sideEffects": false,
