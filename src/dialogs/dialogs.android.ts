@@ -27,6 +27,12 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
     }
     if (options && options.cancelable === false) {
         builder.setCancelable(false);
+        builder.setOnKeyListener(new android.content.DialogInterface.OnKeyListener({
+            onKey( dialog,  keyCode,  event) {
+                // Prevent dialog close on back press button
+                return keyCode === android.view.KeyEvent.KEYCODE_BACK;
+            }
+        }));
     }
     if (options.titleIcon) {
         builder.setIcon(options.titleIcon.android);
