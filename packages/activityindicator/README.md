@@ -64,7 +64,7 @@ import { NativeScriptMaterialActivityIndicatorModule } from "@nativescript-commu
 
 ```javascript
 import Vue from 'nativescript-vue';
-import ActivityIndicatorPlugin from 'nativescript-material-activityindicator/vue';
+import ActivityIndicatorPlugin from '@nativescript-community/ui-material-activityindicator/vue';
 
 Vue.use(ActivityIndicatorPlugin);
 ```

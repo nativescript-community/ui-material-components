@@ -73,7 +73,7 @@ import { NativeScriptMaterialTextViewModule } from "@nativescript-community/ui-m
 ## NativeScript + Vue
 
 ```javascript
-import TextViewPlugin from 'nativescript-material-textview/vue';
+import TextViewPlugin from '@nativescript-community/ui-material-textview/vue';
 
 Vue.use(TextViewPlugin);
 ```

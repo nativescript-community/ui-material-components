@@ -72,7 +72,7 @@ import { NativeScriptMaterialCardViewModule } from "@nativescript-community/ui-m
 
 ```javascript
 import Vue from 'nativescript-vue';
-import CardViewPlugin from 'nativescript-material-cardview/vue';
+import CardViewPlugin from '@nativescript-community/ui-material-cardview/vue';
 
 Vue.use(CardViewPlugin);
 ```

@@ -5,7 +5,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.6](https://github.com/Akylas/nativescript-material-components/compare/v4.0.5...v4.0.6) (2020-08-08)
 
-**Note:** Version bump only for package @nativescript-community/ui-material-cardview
+**Note:** Version bump only for package '@nativescript-community/ui-material-cardview
 
 
 
@@ -13,7 +13,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.5](https://github.com/Akylas/nativescript-material-components/compare/v4.0.3...v4.0.5) (2020-08-06)
 
-**Note:** Version bump only for package @nativescript-community/ui-material-cardview
+**Note:** Version bump only for package '@nativescript-community/ui-material-cardview
 
 
 
@@ -21,7 +21,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.3](https://github.com/Akylas/nativescript-material-components/compare/v4.0.2...v4.0.3) (2020-08-03)
 
-**Note:** Version bump only for package @nativescript-community/ui-material-cardview
+**Note:** Version bump only for package '@nativescript-community/ui-material-cardview
 
 
 
@@ -29,7 +29,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.2](https://github.com/Akylas/nativescript-material-components/compare/v4.0.1...v4.0.2) (2020-08-03)
 
-**Note:** Version bump only for package @nativescript-community/ui-material-cardview
+**Note:** Version bump only for package '@nativescript-community/ui-material-cardview
 
 
 
@@ -37,7 +37,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.1](https://github.com/Akylas/nativescript-material-components/compare/v4.0.0...v4.0.1) (2020-07-29)
 
-**Note:** Version bump only for package @nativescript-community/ui-material-cardview
+**Note:** Version bump only for package '@nativescript-community/ui-material-cardview
 
 
 
@@ -45,7 +45,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [4.0.0](https://github.com/Akylas/nativescript-material-components/compare/v3.2.20...v4.0.0) (2020-07-29)
 
-**Note:** Version bump only for package @nativescript-community/ui-material-cardview
+**Note:** Version bump only for package '@nativescript-community/ui-material-cardview
 
 
 
@@ -53,7 +53,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [3.2.20](https://github.com/Akylas/nativescript-material-components/compare/v3.2.19...v3.2.20) (2020-07-28)
 
-**Note:** Version bump only for package @nativescript-community/ui-material-cardview
+**Note:** Version bump only for package '@nativescript-community/ui-material-cardview
 
 
 

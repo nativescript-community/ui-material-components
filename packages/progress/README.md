@@ -64,7 +64,7 @@ import { NativeScriptMaterialProgressModule } from "@nativescript-community/ui-m
 ## NativeScript + Vue
 
 ```typescript
-import ProgressPlugin from 'nativescript-material-progress/vue';
+import ProgressPlugin from '@nativescript-community/ui-material-progress/vue';
 
 Vue.use(ProgressPlugin);
 ```

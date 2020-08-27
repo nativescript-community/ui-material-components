@@ -24,7 +24,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 ### TS
 
 ```typescript
-import { SnackBar } from 'nativescript-material-snackbar';
+import { SnackBar } from '@nativescript-community/ui-material-snackbar';
 
 const snackbar = new SnackBar();
 

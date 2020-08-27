@@ -73,7 +73,7 @@ import { NativeScriptMaterialTextFieldModule } from "@nativescript-community/ui-
 ## NativeScript + Vue
 
 ```javascript
-import TextFieldPlugin from 'nativescript-material-textfield/vue';
+import TextFieldPlugin from '@nativescript-community/ui-material-textfield/vue';
 
 Vue.use(TextFieldPlugin);
 ```

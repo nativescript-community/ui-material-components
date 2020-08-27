@@ -64,7 +64,7 @@ import { NativeScriptMaterialSliderModule } from "@nativescript-community/ui-mat
 ## NativeScript + Vue
 
 ```javascript
-import SliderPlugin from 'nativescript-material-slider/vue';
+import SliderPlugin from '@nativescript-community/ui-material-slider/vue';
 
 Vue.use(SliderPlugin);
 ```

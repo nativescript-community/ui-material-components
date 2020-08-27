@@ -151,7 +151,7 @@ import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-mater
 ## NativeScript + Vue
 
 ```javascript
-import TabsPlugin from 'nativescript-material-slider/vue';
+import TabsPlugin from '@nativescript-community/ui-material-slider/vue';
 
 Vue.use(TabsPlugin);
 ```

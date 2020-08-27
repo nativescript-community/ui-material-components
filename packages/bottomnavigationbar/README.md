@@ -62,7 +62,7 @@ You can set the tabs using the `tabs` property
 ```typescript
 import { EventData } from '@nativescript/core/data/observable';
 import { Page } from '@nativescript/core/ui/page';
-import { BottomNavigationTab, TabSelectedEventData } from 'nativescript-material-bottomnavigationbar';
+import { BottomNavigationTab, TabSelectedEventData } from '@nativescript-community/ui-material-bottomnavigationbar';
 
 // Event handler for Page 'loaded' event attached in main-page.xml
 export function pageLoaded(args: EventData) {
@@ -171,7 +171,7 @@ or you can declare the `BottomNavigationTab` in your html directly
 If you want to use this plugin with Vue, do this in your `app.js` or `main.js`:
 
 ```javascript
-import BottomNavigationBar from 'nativescript-material-bottomnavigationbar/vue';
+import BottomNavigationBar from '@nativescript-community/ui-material-bottomnavigationbar/vue';
 
 Vue.use(BottomNavigationBar);
 ```

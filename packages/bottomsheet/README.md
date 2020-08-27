@@ -64,7 +64,7 @@ export function openBottomSheet(args) {
 ### NativeScript + Vue
 ```typescript
 import Vue from 'nativescript-vue';
-import BottomSheetPlugin from 'nativescript-material-bottomsheet/vue';
+import BottomSheetPlugin from '@nativescript-community/ui-material-bottomsheet/vue';
 
 Vue.use(BottomSheetPlugin);
 ```
@@ -98,7 +98,7 @@ now you can show your custom BottomSheet using the `BottomSheetService`, this se
 ##### ItemComponent
 ```typescript
 import { Component,  ViewContainerRef } from '@angular/core';
-import { BottomSheetOptions, BottomSheetService } from 'nativescript-material-bottomsheet/angular';
+import { BottomSheetOptions, BottomSheetService } from '@nativescript-community/ui-material-bottomsheet/angular';
 import { ShareOptionsComponent } from './share-options.component';
 
 @Component({
@@ -143,7 +143,7 @@ export class ItemComponent {
 ```
 ```typescript
 import { Component, OnInit } from '@angular/core';
-import { BottomSheetParams } from 'nativescript-material-bottomsheet/angular';
+import { BottomSheetParams } from '@nativescript-community/ui-material-bottomsheet/angular';
 import { ItemEventData } from '@nativescript/core/ui/list-view';
 
 @Component({

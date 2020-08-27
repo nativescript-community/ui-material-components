@@ -64,7 +64,7 @@ import { NativeScriptMaterialRippleModule } from "@nativescript-community/ui-mat
 
 ```javascript
 import Vue from 'nativescript-vue';
-import RipplePlugin from 'nativescript-material-ripple/vue';
+import RipplePlugin from '@nativescript-community/ui-material-ripple/vue';
 
 Vue.use(RipplePlugin);
 ```

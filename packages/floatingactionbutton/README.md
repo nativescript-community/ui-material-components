@@ -48,7 +48,7 @@ mdcfloatingactionbutton {
 
 ```typescript
 import { registerElement } from '@nativescript/angular/element-registry';
-import { FloatingActionButton } from 'nativescript-material-floatingactionbutton';
+import { FloatingActionButton } from '@nativescript-community/ui-material-floatingactionbutton';
 registerElement('MDFloatingActionButton', () => FloatingActionButton);
 ```
 
@@ -60,7 +60,7 @@ registerElement('MDFloatingActionButton', () => FloatingActionButton);
 
 ```javascript
 import Vue from 'nativescript-vue';
-import FloatingActionButtonPlugin from 'nativescript-material-floatingactionbutton/vue';
+import FloatingActionButtonPlugin from '@nativescript-community/ui-material-floatingactionbutton/vue';
 
 Vue.use(FloatingActionButtonPlugin);
 ```
