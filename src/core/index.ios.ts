@@ -105,7 +105,7 @@ export const themer = new Themer();
 
 export function install() {
     // try {
-    //     require('nativescript-material-bottomsheet').install();
+    //     require(@nativescript-community/ui-material-bottomsheet').install();
     // } catch (e) {
     //     console.log('error installing bottom-sheet', e);
     // }
