@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { BottomSheetOptions, BottomSheetService } from 'nativescript-material-bottomsheet/angular';
+import { BottomSheetOptions, BottomSheetService } from '@nativescript-community/ui-material-bottomsheet/angular';
 import { LoginOptionsComponent } from './login-options.component';
 
 @Component({

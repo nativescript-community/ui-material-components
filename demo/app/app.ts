@@ -1,8 +1,8 @@
 ﻿import './bundle-config';
 import * as app from '@nativescript/core/application';
 
-import { installMixins, themer } from 'nativescript-material-core';
-import { install } from 'nativescript-material-bottomsheet';
+import { installMixins, themer } from '@nativescript-community/ui-material-core';
+import { install } from '@nativescript-community/ui-material-bottomsheet';
 
 install();
 installMixins();

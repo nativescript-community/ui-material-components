@@ -1,4 +1,4 @@
-import { BottomNavigationBar, TabPressedEventData, TabReselectedEventData, TabSelectedEventData } from 'nativescript-material-bottomnavigationbar';
+import { BottomNavigationBar, TabPressedEventData, TabReselectedEventData, TabSelectedEventData } from '@nativescript-community/ui-material-bottomnavigationbar';
 import { EventData } from '@nativescript/core/ui/core/view';
 
 export function onbottomNavigationBarLoaded(args: EventData): void {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NativeScriptCommonModule } from '@nativescript/angular/common';
-import { NativeScriptMaterialBottomSheetModule } from 'nativescript-material-bottomsheet/angular';
+import { NativeScriptMaterialBottomSheetModule } from '@nativescript-community/ui-material-bottomsheet/angular';
 
 import { LoginOptionsComponent } from './login-options.component';
 import { BottomSheetComponent } from './bottom-sheet.component';

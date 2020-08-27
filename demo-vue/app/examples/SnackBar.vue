@@ -25,12 +25,12 @@
 <script lang="ts">
 import * as frameModule from '@nativescript/core/ui/frame';
 import Vue from 'vue';
-import { EventData, View } from '@nativescript/core/ui/frame';
-import { alert, AlertDialog, login, prompt } from 'nativescript-material-dialogs';
-import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout/stack-layout';
-import { ActivityIndicator } from '@nativescript/core/ui/activity-indicator/activity-indicator';
-import { Label } from '@nativescript/core/ui/label/label';
-import { showSnack } from 'nativescript-material-snackbar';
+import { EventData, View } from '@nativescript/core';
+import { alert, AlertDialog, login, prompt } from '@nativescript-community/ui-material-dialogs';
+import { StackLayout } from '@nativescript/core';
+import { ActivityIndicator } from '@nativescript/core';
+import { Label } from '@nativescript/core';
+import { showSnack } from '@nativescript-community/ui-material-snackbar';
 
 export const title = 'SnackBar sample';
 

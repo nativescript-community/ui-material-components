@@ -30,8 +30,8 @@
 
 <script lang="ts">
 import * as frameModule from '@nativescript/core/ui/frame';
-import { BottomNavigationBar, TabPressedEventData, TabReselectedEventData, TabSelectedEventData } from 'nativescript-material-bottomnavigationbar';
-import { EventData } from '@nativescript/core/ui/core/view';
+import { BottomNavigationBar, TabPressedEventData, TabReselectedEventData, TabSelectedEventData } from '@nativescript-community/ui-material-bottomnavigationbar';
+import { EventData } from '@nativescript/core';
 
 import Vue from 'vue';
 

@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import * as frameModule from '@nativescript/core/ui/frame';
+import {Frame} from '@nativescript/core/ui/frame';
 import Vue from 'vue'
 
 export const title = 'Activity indicators sample';
@@ -32,7 +32,7 @@ export default Vue.extend({
     },
     methods: {
         onNavigationButtonTap() {
-            frameModule.Frame.topmost().goBack();
+            Frame.topmost().goBack();
         }
     },
     created() {

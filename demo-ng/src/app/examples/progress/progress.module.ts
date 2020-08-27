@@ -1,6 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NativeScriptCommonModule } from '@nativescript/angular/common';
-import { NativeScriptMaterialProgressModule } from 'nativescript-material-progress/angular';
+import { NativeScriptMaterialProgressModule } from '@nativescript-community/ui-material-progress/angular';
 import { ProgressComponent } from './progress.component';
 
 @NgModule({

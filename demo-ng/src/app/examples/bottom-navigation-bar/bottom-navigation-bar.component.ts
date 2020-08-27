@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { BottomNavigationBar, TabPressedEventData, TabReselectedEventData, TabSelectedEventData } from 'nativescript-material-bottomnavigationbar';
+import { BottomNavigationBar, TabPressedEventData, TabReselectedEventData, TabSelectedEventData } from '@nativescript-community/ui-material-bottomnavigationbar';
 
 @Component({
     moduleId: module.id,

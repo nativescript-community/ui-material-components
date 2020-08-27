@@ -1,12 +1,12 @@
 import { NavigationButton } from '@nativescript/core/ui/action-bar/action-bar';
 import { EventData, Frame, View } from '@nativescript/core/ui/frame/frame';
-import { alert, AlertDialog, login, prompt } from 'nativescript-material-dialogs';
+import { alert, AlertDialog, login, prompt } from '@nativescript-community/ui-material-dialogs';
 import { ObservableArray } from '@nativescript/core/data/observable-array/observable-array';
 const builder = require('@nativescript/core/ui/builder');
 // importing adds the View augmentation
-import { BottomSheetOptions } from 'nativescript-material-bottomsheet';
+import { BottomSheetOptions } from '@nativescript-community/ui-material-bottomsheet';
 import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout/stack-layout';
-import { ActivityIndicator } from 'nativescript-material-activityindicator';
+import { ActivityIndicator } from '@nativescript-community/ui-material-activityindicator';
 import { Label } from '@nativescript/core/ui/label/label';
 import { Button } from '@nativescript/core/ui/button/button';
 

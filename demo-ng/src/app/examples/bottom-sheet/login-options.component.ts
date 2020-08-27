@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BottomSheetParams } from 'nativescript-material-bottomsheet/angular';
+import { BottomSheetParams } from '@nativescript-community/ui-material-bottomsheet/angular';
 import { ItemEventData } from '@nativescript/core/ui/list-view';
 
 @Component({

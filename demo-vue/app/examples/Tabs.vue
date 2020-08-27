@@ -42,8 +42,8 @@
 
 <script lang="ts">
 import * as frameModule from '@nativescript/core/ui/frame';
-import { Tabs } from 'nativescript-material-tabs';
-import { EventData } from '@nativescript/core/ui/core/view';
+import { Tabs } from '@nativescript-community/ui-material-tabs';
+import { EventData } from '@nativescript/core';
 
 import Vue from 'vue';
 

@@ -19,11 +19,12 @@
 <script lang="ts">
 import * as frameModule from '@nativescript/core/ui/frame';
 import Vue from 'vue';
-import { EventData, View, Color } from '@nativescript/core/ui/frame';
-import { action, alert, confirm, AlertDialog, login, prompt, inputType } from 'nativescript-material-dialogs';
-import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout/stack-layout';
-import { ActivityIndicator } from '@nativescript/core/ui/activity-indicator/activity-indicator';
-import { Label } from '@nativescript/core/ui/label/label';
+import { EventData, View, Color } from '@nativescript/core';
+import { action, alert, confirm, AlertDialog, login, prompt } from '@nativescript-community/ui-material-dialogs';
+import { StackLayout } from '@nativescript/core';
+import { ActivityIndicator } from '@nativescript/core';
+import { Label } from '@nativescript/core';
+import { inputType } from '@nativescript/core/ui/dialogs/dialogs-common';
 
 export const title = 'Dialogs sample';
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Progress } from 'nativescript-material-progress';
+import { Progress } from '@nativescript-community/ui-material-progress';
 
 @Component({
     selector: 'ns-progress',

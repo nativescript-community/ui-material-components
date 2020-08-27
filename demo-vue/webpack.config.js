@@ -10,36 +10,36 @@ const TerserPlugin = require('terser-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const NsVueTemplateCompiler = require('nativescript-vue-template-compiler');
 
-const nsWebpack = require('nativescript-dev-webpack');
-const nativescriptTarget = require('nativescript-dev-webpack/nativescript-target');
+const nsWebpack = require('@nativescript/webpack');
+const nativescriptTarget = require('@nativescript/webpack/nativescript-target');
 const { NativeScriptWorkerPlugin } = require('nativescript-worker-loader/NativeScriptWorkerPlugin');
 const hashSalt = Date.now().toString();
 
 // temporary hack to support v-model using ns-vue-template-compiler
 // See https://github.com/nativescript-vue/nativescript-vue/issues/371
-NsVueTemplateCompiler.registerElement('MDTextField', () => require('nativescript-material-textfield').TextField, {
+NsVueTemplateCompiler.registerElement('MDTextField', () => require('@nativescript-community/ui-material-textfield').TextField, {
     model: {
         prop: 'text',
-        event: 'textChange'
-    }
+        event: 'textChange',
+    },
 });
-NsVueTemplateCompiler.registerElement('MDTextView', () => require('nativescript-material-textview').TextField, {
+NsVueTemplateCompiler.registerElement('MDTextView', () => require('@nativescript-community/ui-material-textview').TextField, {
     model: {
         prop: 'text',
-        event: 'textChange'
-    }
+        event: 'textChange',
+    },
 });
-NsVueTemplateCompiler.registerElement('MDSlider', () => require('nativescript-material-slider').Slider, {
+NsVueTemplateCompiler.registerElement('MDSlider', () => require('@nativescript-community/ui-material-slider').Slider, {
     model: {
         prop: 'value',
-        event: 'valueChange'
-    }
+        event: 'valueChange',
+    },
 });
 
-module.exports = env => {
+module.exports = (env) => {
     // Add your custom Activities, Services and other android app components here.
     const appComponents = env.appComponents || [];
-    appComponents.push(...['tns-core-modules/ui/frame', 'tns-core-modules/ui/frame/activity']);
+    appComponents.push(...['@nativescript/core/ui/frame', '@nativescript/core/ui/frame/activity']);
 
     const platform = env && ((env.android && 'android') || (env.ios && 'ios') || env.platform);
     if (!platform) {
@@ -74,7 +74,7 @@ module.exports = env => {
         snapshotInDocker, // --env.snapshotInDocker
         skipSnapshotTools, // --env.skipSnapshotTools
         compileSnapshot, // --env.compileSnapshot
-        development // --env.development
+        development, // --env.development
     } = env;
 
     const useLibs = compileSnapshot;
@@ -87,6 +87,7 @@ module.exports = env => {
     const hasRootLevelScopedModules = nsWebpack.hasRootLevelScopedModules({ projectDir: projectRoot });
     let coreModulesPackageName = 'tns-core-modules';
     let alias = env.alias || {};
+    alias['~/package.json'] = resolve(projectRoot, 'package.json');
     alias['~'] = appFullPath;
     alias['@'] = appFullPath;
     alias['vue'] = 'nativescript-vue';
@@ -100,82 +101,82 @@ module.exports = env => {
         const srcFullPath = resolve(projectRoot, '..', 'src');
         alias = Object.assign(alias, {
             '#': srcFullPath,
-            'nativescript-material-core$': '#/core/core.' + platform,
+            '@nativescript-community/ui-material-core$': '#/core/core.' + platform,
             '@nativescript-community/ui-material-core': '#/core/core.' + platform,
-            from '@nativescript-community/ui-material-core/android/utils$': '#/core/android/utils',
-            'nativescript-material-core/cssproperties$': '#/core/cssproperties',
-            'nativescript-material-core/textbase/cssproperties$': '#/core/textbase/cssproperties',
+            '@nativescript-community/ui-material-core/android/utils$': '#/core/android/utils',
+            '@nativescript-community/ui-material-core/cssproperties$': '#/core/cssproperties',
+            '@nativescript-community/ui-material-core/textbase/cssproperties$': '#/core/textbase/cssproperties',
 
-            'nativescript-material-bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
-            'nativescript-material-bottomsheet/vue$': '#/bottomsheet/vue/index',
-            'nativescript-material-bottomsheet/bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
+            '@nativescript-community/ui-material-bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
+            '@nativescript-community/ui-material-bottomsheet/vue$': '#/bottomsheet/vue/index',
+            '@nativescript-community/ui-material-bottomsheet/bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
             '../bottomsheet$': '#/bottomsheet/bottomsheet.' + platform,
 
-            'nativescript-material-bottomnavigationbar$': '#/bottomnavigationbar/bottomnavigationbar.' + platform,
-            'nativescript-material-bottomnavigationbar/vue$': '#/bottomnavigationbar/vue/index',
-            'nativescript-material-bottomnavigationbar/bottomnavigationbar$': '#/bottomnavigationbar/bottomnavigationbar.' + platform,
+            '@nativescript-community/ui-material-bottomnavigationbar$': '#/bottomnavigationbar/bottomnavigationbar.' + platform,
+            '@nativescript-community/ui-material-bottomnavigationbar/vue$': '#/bottomnavigationbar/vue/index',
+            '@nativescript-community/ui-material-bottomnavigationbar/bottomnavigationbar$': '#/bottomnavigationbar/bottomnavigationbar.' + platform,
             '../bottomnavigationbar$': '#/bottomnavigationbar/bottomnavigationbar.' + platform,
 
-            'nativescript-material-progress$': '#/progress/progress.' + platform,
-            'nativescript-material-progress/vue$': '#/progress/vue/index',
-            'nativescript-material-progress/progress$': '#/progress/progress.' + platform,
+            '@nativescript-community/ui-material-progress$': '#/progress/progress.' + platform,
+            '@nativescript-community/ui-material-progress/vue$': '#/progress/vue/index',
+            '@nativescript-community/ui-material-progress/progress$': '#/progress/progress.' + platform,
             '../progress$': '#/progress/progress.' + platform,
 
-            'nativescript-material-cardview$': '#/cardview/cardview.' + platform,
-            'nativescript-material-cardview/vue$': '#/cardview/vue/index',
-            'nativescript-material-cardview/cardview$': '#/cardview/cardview.' + platform,
+            '@nativescript-community/ui-material-cardview$': '#/cardview/cardview.' + platform,
+            '@nativescript-community/ui-material-cardview/vue$': '#/cardview/vue/index',
+            '@nativescript-community/ui-material-cardview/cardview$': '#/cardview/cardview.' + platform,
             '../cardview$': '#/cardview/cardview.' + platform,
 
-            'nativescript-material-slider$': '#/slider/slider.' + platform,
-            'nativescript-material-slider/vue$': '#/slider/vue/index',
-            'nativescript-material-slider/slider$': '#/slider/slider.' + platform,
+            '@nativescript-community/ui-material-slider$': '#/slider/slider.' + platform,
+            '@nativescript-community/ui-material-slider/vue$': '#/slider/vue/index',
+            '@nativescript-community/ui-material-slider/slider$': '#/slider/slider.' + platform,
             '../slider$': '#/slider/slider.' + platform,
 
-            'nativescript-material-button$': '#/button/button.' + platform,
-            'nativescript-material-button/vue$': '#/button/vue/index',
-            'nativescript-material-button/button$': '#/button/button.' + platform,
+            '@nativescript-community/ui-material-button$': '#/button/button.' + platform,
+            '@nativescript-community/ui-material-button/vue$': '#/button/vue/index',
+            '@nativescript-community/ui-material-button/button$': '#/button/button.' + platform,
             '../button$': '#/button/button.' + platform,
 
-            'nativescript-material-tabs$': '#/tabs/tabs.' + platform,
-            'nativescript-material-tabs/vue$': '#/tabs/vue/index',
-            'nativescript-material-tabs/tabs$': '#/tabs/button.' + platform,
+            '@nativescript-community/ui-material-tabs$': '#/tabs/tabs.' + platform,
+            '@nativescript-community/ui-material-tabs/vue$': '#/tabs/vue/index',
+            '@nativescript-community/ui-material-tabs/tabs$': '#/tabs/button.' + platform,
             '../tabs$': '#/tabs/tabs.' + platform,
 
-            'nativescript-material-textfield$': '#/textfield/textfield',
-            'nativescript-material-textfield': '#/textfield',
-            // 'nativescript-material-textfield/textfield$': '#/textfield/textfield.' + platform,
-            // 'nativescript-material-textfield/textfield_cssproperties$': '#/textfield/textfield_cssproperties',
-            // 'nativescript-material-textfield/vue$': '#/textfield/vue/index',
+            '@nativescript-community/ui-material-textfield$': '#/textfield/textfield',
+            '@nativescript-community/ui-material-textfield': '#/textfield',
+            // '@nativescript-community/ui-material-textfield/textfield$': '#/textfield/textfield.' + platform,
+            // '@nativescript-community/ui-material-textfield/textfield_cssproperties$': '#/textfield/textfield_cssproperties',
+            // '@nativescript-community/ui-material-textfield/vue$': '#/textfield/vue/index',
             // '../textfield$': '#/textfield/textfield.' + platform,
 
-            'nativescript-material-textview$': '#/textview/textview',
-            'nativescript-material-textview': '#/textview',
-            // 'nativescript-material-textview/textview$': '#/textview/textview.' + platform,
-            // 'nativescript-material-textview/textview_cssproperties$': '#/textview/textview_cssproperties',
-            // 'nativescript-material-textview/vue$': '#/textview/vue/index',
+            '@nativescript-community/ui-material-textview$': '#/textview/textview',
+            '@nativescript-community/ui-material-textview': '#/textview',
+            // '@nativescript-community/ui-material-textview/textview$': '#/textview/textview.' + platform,
+            // '@nativescript-community/ui-material-textview/textview_cssproperties$': '#/textview/textview_cssproperties',
+            // '@nativescript-community/ui-material-textview/vue$': '#/textview/vue/index',
             // '../textfield$': '#/textview/textview.' + platform,
 
-            'nativescript-material-floatingactionbutton$': '#/floatingactionbutton/floatingactionbutton.' + platform,
-            'nativescript-material-floatingactionbutton/vue$': '#/floatingactionbutton/vue/index',
-            'nativescript-material-floatingactionbutton/floatingactionbutton$': '#/floatingactionbutton/floatingactionbutton.' + platform,
+            '@nativescript-community/ui-material-floatingactionbutton$': '#/floatingactionbutton/floatingactionbutton.' + platform,
+            '@nativescript-community/ui-material-floatingactionbutton/vue$': '#/floatingactionbutton/vue/index',
+            '@nativescript-community/ui-material-floatingactionbutton/floatingactionbutton$': '#/floatingactionbutton/floatingactionbutton.' + platform,
             '../floatingactionbutton$': '#/floatingactionbutton/floatingactionbutton.' + platform,
 
-            'nativescript-material-activityindicator$': '#/activityindicator/activityindicator.' + platform,
-            'nativescript-material-activityindicator/vue$': '#/activityindicator/vue/index',
-            'nativescript-material-activityindicator/activityindicator$': '#/activityindicator/activityindicator.' + platform,
+            '@nativescript-community/ui-material-activityindicator$': '#/activityindicator/activityindicator.' + platform,
+            '@nativescript-community/ui-material-activityindicator/vue$': '#/activityindicator/vue/index',
+            '@nativescript-community/ui-material-activityindicator/activityindicator$': '#/activityindicator/activityindicator.' + platform,
             '../activityindicator$': '#/activityindicator/activityindicator.' + platform,
 
-            'nativescript-material-ripple$': '#/ripple/ripple.' + platform,
-            'nativescript-material-ripple/vue$': '#/ripple/vue/index',
-            'nativescript-material-ripple/ripple$': '#/ripple/ripple.' + platform,
+            '@nativescript-community/ui-material-ripple$': '#/ripple/ripple.' + platform,
+            '@nativescript-community/ui-material-ripple/vue$': '#/ripple/vue/index',
+            '@nativescript-community/ui-material-ripple/ripple$': '#/ripple/ripple.' + platform,
             '../ripple$': '#/ripple/ripple.' + platform,
 
-            'nativescript-material-dialogs$': '#/dialogs/dialogs.' + platform,
-            'nativescript-material-dialogs/dialogs$': '#/dialogs/dialogs.' + platform,
+            '@nativescript-community/ui-material-dialogs$': '#/dialogs/dialogs.' + platform,
+            '@nativescript-community/ui-material-dialogs/dialogs$': '#/dialogs/dialogs.' + platform,
 
-            'nativescript-material-snackbar$': '#/snackbar/snackbar.' + platform,
-            'nativescript-material-snackbar/snackbar$': '#/snackbar/snackbar.' + platform,
-            './snackbar$': '#/snackbar/snackbar.' + platform
+            '@nativescript-community/ui-material-snackbar$': '#/snackbar/snackbar.' + platform,
+            '@nativescript-community/ui-material-snackbar/snackbar$': '#/snackbar/snackbar.' + platform,
+            './snackbar$': '#/snackbar/snackbar.' + platform,
         });
     }
 
@@ -186,13 +187,14 @@ module.exports = env => {
     const entries = env.entries || {};
     entries.bundle = entryPath;
 
-    const areCoreModulesExternal = Array.isArray(env.externals) && env.externals.some(e => e.indexOf('tns-core-modules') > -1);
+    const areCoreModulesExternal = Array.isArray(env.externals) && env.externals.some((e) => e.indexOf('tns-core-modules') > -1);
     if (platform === 'ios' && !areCoreModulesExternal) {
-        entries['tns_modules/tns-core-modules/inspector_modules'] = 'inspector_modules';
+        entries['tns_modules/@nativescript/core/inspector_modules'] = 'inspector_modules';
     }
+    console.log('alias',alias);
     console.log(`Bundling application for entryPath ${entryPath}...`);
 
-    let sourceMapFilename = nsWebpack.getSourceMapFilename(hiddenSourceMap, __dirname, dist);
+    const sourceMapFilename = nsWebpack.getSourceMapFilename(hiddenSourceMap, __dirname, dist);
 
     const itemsToClean = [`${dist}/**/*`];
     if (platform === 'android') {
@@ -206,15 +208,15 @@ module.exports = env => {
 
     nsWebpack.processAppComponents(appComponents, platform);
     const config = {
-        mode: mode,
+        mode,
         context: appFullPath,
         externals,
         watchOptions: {
             ignored: [
                 appResourcesFullPath,
                 // Don't watch hidden files
-                '**/.*'
-            ]
+                '**/.*',
+            ],
         },
         target: nativescriptTarget,
         // target: nativeScriptVueTarget,
@@ -226,7 +228,7 @@ module.exports = env => {
             libraryTarget: 'commonjs2',
             filename: '[name].js',
             globalObject: 'global',
-            hashSalt
+            hashSalt,
         },
         resolve: {
             extensions: ['.vue', '.ts', '.js', '.scss', '.css'],
@@ -234,11 +236,11 @@ module.exports = env => {
             modules: [resolve(__dirname, `node_modules/${coreModulesPackageName}`), resolve(__dirname, 'node_modules'), `node_modules/${coreModulesPackageName}`, 'node_modules'],
             alias,
             // resolve symlinks to symlinked modules
-            symlinks: true
+            symlinks: true,
         },
         resolveLoader: {
             // don't resolve symlinks to symlinked loaders
-            symlinks: false
+            symlinks: false,
         },
         node: {
             // Disable node shims that conflict with NativeScript
@@ -246,7 +248,7 @@ module.exports = env => {
             timers: false,
             setImmediate: false,
             fs: 'empty',
-            __dirname: false
+            __dirname: false,
         },
         devtool: hiddenSourceMap ? 'hidden-source-map' : sourceMap ? 'inline-source-map' : 'none',
         optimization: {
@@ -257,13 +259,13 @@ module.exports = env => {
                     vendor: {
                         name: 'vendor',
                         chunks: 'all',
-                        test: module => {
+                        test: (module) => {
                             const moduleName = module.nameForCondition ? module.nameForCondition() : '';
-                            return /[\\/]node_modules[\\/]/.test(moduleName) || appComponents.some(comp => comp === moduleName);
+                            return /[\\/]node_modules[\\/]/.test(moduleName) || appComponents.some((comp) => comp === moduleName);
                         },
-                        enforce: true
-                    }
-                }
+                        enforce: true,
+                    },
+                },
             },
             minimize: Boolean(production),
             minimizer: [
@@ -274,18 +276,18 @@ module.exports = env => {
                     terserOptions: {
                         output: {
                             comments: false,
-                            semicolons: !isAnySourceMapEnabled
+                            semicolons: !isAnySourceMapEnabled,
                         },
                         compress: {
                             // The Android SBG has problems parsing the output
                             // when these options are enabled
                             collapse_vars: platform !== 'android',
-                            sequences: platform !== 'android'
+                            sequences: platform !== 'android',
                         },
-                        keep_fnames: true
-                    }
-                })
-            ]
+                        keep_fnames: true,
+                    },
+                }),
+            ],
         },
         module: {
             rules: [
@@ -294,29 +296,29 @@ module.exports = env => {
                     use: [
                         // Require all Android app components
                         platform === 'android' && {
-                            loader: 'nativescript-dev-webpack/android-app-components-loader',
-                            options: { modules: appComponents }
+                            loader: '@nativescript/webpack/helpers/android-app-components-loader',
+                            options: { modules: appComponents },
                         },
 
                         {
-                            loader: 'nativescript-dev-webpack/bundle-config-loader',
+                            loader: '@nativescript/webpack/bundle-config-loader',
                             options: {
                                 registerPages: true, // applicable only for non-angular apps
                                 loadCss: !snapshot, // load the application css if in debug mode
                                 unitTesting,
                                 appFullPath,
                                 projectRoot,
-                                ignoredFiles: nsWebpack.getUserDefinedEntries(entries, platform)
-                            }
-                        }
-                    ].filter(loader => Boolean(loader))
+                                ignoredFiles: nsWebpack.getUserDefinedEntries(entries, platform),
+                            },
+                        },
+                    ].filter((loader) => Boolean(loader)),
                 },
                 {
                     test: /\.vue$/,
                     loader: 'vue-loader',
                     options: {
-                        compiler: NsVueTemplateCompiler
-                    }
+                        compiler: NsVueTemplateCompiler,
+                    },
                 },
                 {
                     // rules to replace mdi icons and not use nativescript-font-icon
@@ -327,67 +329,67 @@ module.exports = env => {
                             loader: 'string-replace-loader',
                             options: {
                                 search: 'mdi-([a-z-]+)',
-                                replace: (match, p1, offset, string) => {
+                                replace: (match, p1, offset, str) => {
                                     if (mdiIcons[p1]) {
                                         console.log('replace mdi icon', p1, mdiIcons[p1], String.fromCharCode(parseInt(mdiIcons[p1], 16)));
                                         return String.fromCharCode(parseInt(mdiIcons[p1], 16));
                                     }
                                     return match;
                                 },
-                                flags: 'g'
-                            }
-                        }
-                    ]
+                                flags: 'g',
+                            },
+                        },
+                    ],
                 },
                 {
                     test: /[\/|\\]app\.css$/,
                     use: [
-                        'nativescript-dev-webpack/style-hot-loader',
+                        '@nativescript/webpack/helpers/style-hot-loader',
                         {
-                            loader: 'nativescript-dev-webpack/css2json-loader',
-                            options: { useForImports: true }
-                        }
-                    ]
+                            loader: '@nativescript/webpack/helpers/css2json-loader',
+                            options: { useForImports: true },
+                        },
+                    ],
                 },
                 {
                     test: /[\/|\\]app\.scss$/,
                     use: [
-                        'nativescript-dev-webpack/style-hot-loader',
+                        '@nativescript/webpack/helpers/style-hot-loader',
                         {
-                            loader: 'nativescript-dev-webpack/css2json-loader',
-                            options: { useForImports: true }
+                            loader: '@nativescript/webpack/helpers/css2json-loader',
+                            options: { useForImports: true },
                         },
                         {
                             loader: 'sass-loader',
                             options: {
-                                sourceMap: false
-                            }
-                        }
-                    ]
+                                sourceMap: false,
+                            },
+                        },
+                    ],
                 },
                 {
                     test: /\.css$/,
                     exclude: /[\/|\\]app\.css$/,
-                    use: ['nativescript-dev-webpack/style-hot-loader', 'nativescript-dev-webpack/apply-css-loader.js', { loader: 'css-loader', options: { url: false } }]
+                    use: ['@nativescript/webpack/helpers/style-hot-loader', '@nativescript/webpack/helpers/apply-css-loader.js', { loader: 'css-loader', options: { url: false } }],
                 },
                 {
                     test: /\.scss$/,
                     exclude: /[\/|\\]app\.scss$/,
                     use: [
-                        'nativescript-dev-webpack/style-hot-loader',
-                        'nativescript-dev-webpack/apply-css-loader.js',
+                        '@nativescript/webpack/helpers/style-hot-loader',
+                        '@nativescript/webpack/helpers/apply-css-loader.js',
                         { loader: 'css-loader', options: { url: false } },
                         {
                             loader: 'sass-loader',
                             options: {
-                                sourceMap: false
-                            }
-                        }
-                    ]
+                                sourceMap: false,
+                            },
+                        },
+                    ],
                 },
                 {
                     test: /\.js$/,
-                    loader: 'babel-loader'
+                    loader: 'babel-loader',
                 },
                 {
                     test: /\.ts$/,
@@ -397,11 +399,11 @@ module.exports = env => {
                         allowTsInNodeModules: true,
                         transpileOnly: true,
                         compilerOptions: {
-                            declaration: false
-                        }
-                    }
-                }
-            ]
+                            declaration: false,
+                        },
+                    },
+                },
+            ],
         },
         plugins: [
             // ... Vue Loader plugin omitted
@@ -411,7 +413,7 @@ module.exports = env => {
             new webpack.DefinePlugin({
                 'global.TNS_WEBPACK': 'true',
                 TNS_ENV: JSON.stringify(mode),
-                process: 'global.process'
+                process: 'global.process',
             }),
             // Remove all files from the out dir.
             new CleanWebpackPlugin({ verbose: !!verbose, cleanOnceBeforeBuildPatterns: itemsToClean }),
@@ -423,11 +425,11 @@ module.exports = env => {
                     { from: { glob: 'assets/**/*' } },
                     {
                         from: resolve(__dirname, 'node_modules', '@mdi/font/fonts/materialdesignicons-webfont.ttf'),
-                        to: 'fonts'
-                    }
+                        to: 'fonts',
+                    },
                 ],
                 {
-                    ignore: [`${relative(appPath, appResourcesFullPath)}/**`]
+                    ignore: [`${relative(appPath, appResourcesFullPath)}/**`],
                 }
             ),
             new nsWebpack.GenerateNativeScriptEntryPointsPlugin('bundle'),
@@ -436,11 +438,11 @@ module.exports = env => {
             new NativeScriptWorkerPlugin(),
             new nsWebpack.PlatformFSPlugin({
                 platform,
-                platforms
+                platforms,
             }),
             // Does IPC communication with the {N} CLI to notify events when running in watch mode.
-            new nsWebpack.WatchStateLoggerPlugin()
-        ]
+            new nsWebpack.WatchStateLoggerPlugin(),
+        ],
     };
 
     if (development) {
@@ -451,14 +453,14 @@ module.exports = env => {
         config.module.rules.push(
             {
                 test: /-page\.js$/,
-                use: 'nativescript-dev-webpack/script-hot-loader'
+                use: '@nativescript/webpack/helpers/script-hot-loader',
             },
             {
                 test: /\.(html|xml)$/,
-                use: 'nativescript-dev-webpack/markup-hot-loader'
+                use: '@nativescript/webpack/helpers/markup-hot-loader',
             },
 
-            { test: /\.(html|xml)$/, use: 'nativescript-dev-webpack/xml-namespace-loader' }
+            { test: /\.(html|xml)$/, use: '@nativescript/webpack/helpers/xml-namespace-loader' }
         );
     }
 
@@ -469,8 +471,8 @@ module.exports = env => {
                 analyzerMode: 'static',
                 openAnalyzer: false,
                 generateStatsFile: true,
-                reportFilename: resolve(projectRoot, 'report', `report.html`),
-                statsFilename: resolve(projectRoot, 'report', `stats.json`)
+                reportFilename: resolve(projectRoot, 'report', 'report.html'),
+                statsFilename: resolve(projectRoot, 'report', 'stats.json'),
             })
         );
     }
@@ -479,12 +481,12 @@ module.exports = env => {
         config.plugins.push(
             new nsWebpack.NativeScriptSnapshotPlugin({
                 chunk: 'vendor',
-                requireModules: ['tns-core-modules/bundle-entry-points'],
+                requireModules: ['@nativescript/core/bundle-entry-points'],
                 projectRoot,
                 webpackConfig: config,
                 snapshotInDocker,
                 skipSnapshotTools,
-                useLibs
+                useLibs,
             })
         );
     }

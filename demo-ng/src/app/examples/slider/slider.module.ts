@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NativeScriptCommonModule } from '@nativescript/angular/common';
-import { NativeScriptMaterialSliderModule } from 'nativescript-material-slider/angular';
+import { NativeScriptMaterialSliderModule } from '@nativescript-community/ui-material-slider/angular';
 import { SliderComponent } from './slider.component';
 
 @NgModule({

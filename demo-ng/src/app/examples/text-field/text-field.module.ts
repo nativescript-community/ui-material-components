@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NativeScriptCommonModule } from '@nativescript/angular/common';
-import { NativeScriptMaterialTextFieldModule } from 'nativescript-material-textfield/angular';
+import { NativeScriptMaterialTextFieldModule } from '@nativescript-community/ui-material-textfield/angular';
 import { TextFieldComponent } from './text-field.component';
 
 @NgModule({
