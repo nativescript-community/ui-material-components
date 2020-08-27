@@ -27,6 +27,7 @@ function initializePreLollipopStackLayout() {
     if (PreLollipopStackLayout) {
         return;
     }
+    @NativeClass
     class PreLollipopStackLayoutImpl extends org.nativescript.widgets.StackLayout {
         constructor(context) {
             super(context);

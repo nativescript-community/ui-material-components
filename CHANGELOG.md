@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.8](https://github.com/Akylas/nativescript-material-components/compare/v4.0.6...v4.0.8) (2020-08-15)
+
+
+### Bug Fixes
+
+* **android:** bottomnav and ripple - NativeClass decorations needed ([#166](https://github.com/Akylas/nativescript-material-components/issues/166)) ([b1ba21f](https://github.com/Akylas/nativescript-material-components/commit/b1ba21f5a3e8f6f6d2f3cd3e8c05f6b8c833ff2d))
+* **angular:** v10 build scripting works now ([#167](https://github.com/Akylas/nativescript-material-components/issues/167)) ([05c2cb4](https://github.com/Akylas/nativescript-material-components/commit/05c2cb4b79ab6239dc4b4ee5084fed94d53e1920))
+
+
+
+
+
 ## [4.0.6](https://github.com/Akylas/nativescript-material-components/compare/v4.0.5...v4.0.6) (2020-08-08)
 
 **Note:** Version bump only for package '@nativescript-community/ui-material-components
