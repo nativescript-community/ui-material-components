@@ -1,4 +1,11 @@
-import { Color } from '@nativescript/core';
+import { Color } from '@nativescript/core/color';
+import { Length } from '@nativescript/core/ui/styling/style-properties';
+
+
+declare module '@nativescript/core/ui/styling/style-properties' {
+    export const androidElevationProperty;
+    export const androidDynamicElevationOffsetProperty;
+}
 
 
 export interface TypographyOptions {
@@ -39,6 +46,12 @@ export function applyMixins(
 );
 export function getRippleColor(color: string | Color): any;
 
+// declare module '@nativescript/core/ui/core/view' {
+//     interface View {
+//         elevation: Length;
+//         rippleColor: string | Color;
+//     }
+// }
 export type VerticalTextAlignment = 'initial' | 'top' | 'middle' | 'bottom';
 
 

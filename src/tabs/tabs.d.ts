@@ -3,7 +3,17 @@
  * @module "ui/tabs"
  */ /** */
 
-import { EventData, TabContentItem, Property, SelectedIndexChangedEventData, TabNavigationBase, TabStrip } from "@nativescript/core";
+import { EventData, Property } from "@nativescript/core/ui/core/view";
+import { TabContentItem } from "@nativescript/core/ui/tab-navigation-base/tab-content-item";
+import {
+    SelectedIndexChangedEventData, TabNavigationBase
+} from "@nativescript/core/ui/tab-navigation-base/tab-navigation-base";
+import { TabStrip } from "@nativescript/core/ui/tab-navigation-base/tab-strip";
+
+// export * from "../tab-navigation-base/tab-content-item";
+// export * from "../tab-navigation-base/tab-navigation-base";
+// export * from "../tab-navigation-base/tab-strip";
+// export * from "../tab-navigation-base/tab-strip-item";
 
 /**
  * Represents a swipeable tabs view.

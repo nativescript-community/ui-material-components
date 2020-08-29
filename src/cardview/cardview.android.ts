@@ -1,7 +1,7 @@
-import { Color } from '@nativescript/core';
-import { backgroundInternalProperty, Length } from '@nativescript/core';
 import { createStateListAnimator, getAttrColor, isPostLollipop } from 'nativescript-material-core/android/utils';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { Color } from '@nativescript/core/color';
+import { backgroundInternalProperty, Length } from '@nativescript/core/ui/styling/style-properties';
 import { CardViewBase } from './cardview-common';
 
 let MDCCardView: typeof com.google.android.material.card.MaterialCardView;
@@ -102,7 +102,7 @@ function initMDCCardView() {
 
 //         /**
 //          * Supply a Drawable that is to be rendered on top of all of the child
-//          * views in the frame Utils.layout.  Any padding in the Drawable will be taken
+//          * views in the frame layout.  Any padding in the Drawable will be taken
 //          * into account by ensuring that the children are inset to be placed
 //          * inside of the padding area.
 //          *

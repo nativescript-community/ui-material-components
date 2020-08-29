@@ -1,8 +1,8 @@
-import { Application, AndroidActivityBackPressedEventData, View, fromObject } from '@nativescript/core';
-import { applyMixins } from 'nativescript-material-core/core';
+import { View, Color } from '@nativescript/core/ui/core/view';
+import { fromObject } from '@nativescript/core/data/observable';
 import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
-
-export { ViewWithBottomSheetBase } from './bottomsheet-common';
+import { applyMixins } from 'nativescript-material-core/core';
+import { android as androidApp, AndroidActivityBackPressedEventData } from '@nativescript/core/application';
 
 interface BottomSheetDataOptions {
     owner: View;
@@ -12,8 +12,14 @@ interface BottomSheetDataOptions {
 }
 
 function getId(id: string) {
-    const context: android.content.Context = Application.android.context;
+    const context: android.content.Context = androidApp.context;
     return context.getResources().getIdentifier(id, 'id', context.getPackageName());
+}
+
+declare module '@nativescript/core/ui/core/view' {
+    interface View {
+        _bottomSheetFragment: com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+    }
 }
 
 
@@ -63,7 +69,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                         };
 
                         // Fist fire application.android global event
-                        Application.android.notify(args);
+                        androidApp.notify(args);
                         if (args.cancel) {
                             return true;
                         }
@@ -160,7 +166,8 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
 let mixinInstalled = false;
 export function overrideBottomSheet() {
-    applyMixins(View, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
+    const NSView = require('@nativescript/core/ui/core/view/view').View;
+    applyMixins(NSView, [ViewWithBottomSheetBase, ViewWithBottomSheet]);
 }
 export function install() {
     if (!mixinInstalled) {

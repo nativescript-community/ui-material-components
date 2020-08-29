@@ -1,5 +1,10 @@
-import { Application, Color, Button, View, Background, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, Length } from '@nativescript/core';
 import { createRippleDrawable, createStateListAnimator, getAttrColor, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from './android/utils';
+import * as application from '@nativescript/core/application';
+import { Color } from '@nativescript/core/color';
+import { Button } from '@nativescript/core/ui/button';
+import { backgroundInternalProperty, View } from '@nativescript/core/ui/core/view';
+import { Background } from '@nativescript/core/ui/styling/background';
+import { androidDynamicElevationOffsetProperty, androidElevationProperty, Length } from '@nativescript/core/ui/styling/style-properties';
 import { applyMixins } from './core.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
 export { applyMixins };
@@ -27,14 +32,14 @@ export class Themer {
     }
     getPrimaryColor(): string | Color {
         if (!this.primaryColor) {
-            this.primaryColor = new Color(getAttrColor(Application.android.startActivity, 'colorPrimary'));
+            this.primaryColor = new Color(getAttrColor(application.android.startActivity, 'colorPrimary'));
         }
         return this.primaryColor;
     }
 
     setAccentColor(value: string | Color) {
         if (!this.accentColor) {
-            this.accentColor = new Color(getAttrColor(Application.android.startActivity, 'colorAccent'));
+            this.accentColor = new Color(getAttrColor(application.android.startActivity, 'colorAccent'));
         }
         this.accentColor = value;
     }
@@ -59,7 +64,7 @@ export class Themer {
     }
     getPrimaryColorVariant(): string | Color {
         if (!this.primaryColorVariant) {
-            this.primaryColorVariant = new Color(getAttrColor(Application.android.context, 'colorSecondary'));
+            this.primaryColorVariant = new Color(getAttrColor(application.android.context, 'colorSecondary'));
         }
         return this.primaryColorVariant;
     }
@@ -197,7 +202,7 @@ class ViewWithElevationAndRipple extends View {
 
 let mixinInstalled = false;
 export function overrideViewBase() {
-    const NSView = require('@nativescript/core').View;
+    const NSView = require('@nativescript/core/ui/core/view').View;
     applyMixins(NSView, [ViewWithElevationAndRipple]);
 }
 

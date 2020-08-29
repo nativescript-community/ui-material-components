@@ -1,8 +1,5 @@
-import { Color, Screen, editableProperty, hintProperty, placeholderColorProperty, Property, isAndroid } from '@nativescript/core';
-import { Background } from '@nativescript/core';
-import { Style } from '@nativescript/core';
-import { backgroundInternalProperty } from '@nativescript/core';
-import { themer } from 'nativescript-material-core/core';
+import { TextViewBase } from './textview.common';
+import { backgroundInternalProperty, editableProperty, hintProperty, placeholderColorProperty, textProperty } from '@nativescript/core/ui/editable-text-base';
 import {
     buttonColorProperty,
     errorColorProperty,
@@ -13,15 +10,13 @@ import {
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
-    strokeInactiveColorProperty
+    strokeInactiveColorProperty,
 } from 'nativescript-material-core/textbase/cssproperties';
-import { TextViewBase } from './textview.common';
-
-const textProperty = new Property<TextView, string>({
-	name: 'text',
-	defaultValue: '',
-	affectsLayout: isAndroid,
-});
+import { themer } from 'nativescript-material-core/core';
+import { Color } from '@nativescript/core/color';
+import { Style } from '@nativescript/core/ui/styling/style';
+import { Background } from '@nativescript/core/ui/styling/background';
+import { screen } from '@nativescript/core/platform/platform';
 
 let colorScheme: MDCSemanticColorScheme;
 function getColorScheme() {
@@ -158,7 +153,7 @@ export class TextView extends TextViewBase {
     }
 
     _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
-        const scale = Screen.mainScreen.scale;
+        const scale = screen.mainScreen.scale;
 
         if (this.variant === 'underline' && this._controller.underlineHeightNormal === 0) {
             // if no underline/custom background, remove all insets like on android
@@ -311,5 +306,3 @@ export class TextView extends TextViewBase {
         }
     }
 }
-
-textProperty.register(TextView);

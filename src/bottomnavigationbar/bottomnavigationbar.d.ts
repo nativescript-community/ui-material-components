@@ -1,5 +1,7 @@
-import { Color, EventData, ImageSource } from '@nativescript/core';
+import { Color, EventData } from '@nativescript/core/ui/core/view';
+
 import { BottomNavigationBarBase, BottomNavigationTabBase, TabPressedEventData, TabReselectedEventData, TabSelectedEventData, TitleVisibility } from './bottomnavigationbar-common';
+import { ImageSource } from '@nativescript/core/image-source';
 
 export { TabPressedEventData, TabReselectedEventData, TabSelectedEventData, TitleVisibility };
 

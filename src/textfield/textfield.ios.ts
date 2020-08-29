@@ -1,5 +1,5 @@
-import { Color, Screen, backgroundInternalProperty, placeholderColorProperty, Background, Property, Style, isAndroid } from '@nativescript/core';
-import { themer } from 'nativescript-material-core/core';
+import { TextFieldBase } from './textfield.common';
+import { backgroundInternalProperty, placeholderColorProperty, keyboardTypeProperty, textProperty } from '@nativescript/core/ui/editable-text-base';
 import {
     buttonColorProperty,
     digitsProperty,
@@ -11,15 +11,16 @@ import {
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
-    strokeInactiveColorProperty
+    strokeInactiveColorProperty,
 } from 'nativescript-material-core/textbase/cssproperties';
-import { TextFieldBase } from './textfield.common';
+import { themer } from 'nativescript-material-core/core';
+import { Color } from '@nativescript/core/color';
+import { Style } from '@nativescript/core/ui/styling/style';
+import { Background } from '@nativescript/core/ui/styling/background';
+import { screen } from '@nativescript/core/platform/platform';
 
-const textProperty = new Property<TextField, string>({
-	name: 'text',
-	defaultValue: '',
-	affectsLayout: isAndroid,
-});
+// it is exported but not in the typings
+const _updateCharactersInRangeReplacementString = require('@nativescript/core/ui/editable-text-base')._updateCharactersInRangeReplacementString;
 
 let colorScheme: MDCSemanticColorScheme;
 function getColorScheme() {
@@ -27,6 +28,12 @@ function getColorScheme() {
         colorScheme = MDCSemanticColorScheme.new();
     }
     return colorScheme;
+}
+
+declare module '@nativescript/core/ui/text-field/text-field' {
+    interface TextField {
+        _updateAttributedPlaceholder();
+    }
 }
 
 declare class ITextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
@@ -182,7 +189,7 @@ const UITextFieldDelegateImpl = (NSObject as any).extend(
                 }
 
                 if (owner.formattedText) {
-                    this._updateCharactersInRangeReplacementString(owner.formattedText, range.location, range.length, replacementString);
+                    _updateCharactersInRangeReplacementString(owner.formattedText, range.location, range.length, replacementString);
                 }
             }
 
@@ -211,7 +218,7 @@ export class TextField extends TextFieldBase {
     }
 
     _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
-        const scale = Screen.mainScreen.scale;
+        const scale = screen.mainScreen.scale;
 
         if (this.variant === 'underline' && this._controller.underlineHeightNormal === 0) {
             // if no underline/custom background, remove all insets like on android
@@ -363,4 +370,3 @@ export class TextField extends TextFieldBase {
         }
     }
 }
-textProperty.register(TextField);

@@ -201,10 +201,10 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
 export class BottomNavigationTab extends BottomNavigationTabBase {
     nativeViewProtected: android.view.MenuItem;
     index: number = android.view.Menu.NONE;
-    _isPaddingRelative = true; // trick because @nativescript/core expect us to be a view
+    _isPaddingRelative = true; // trick because tns-core-modules expect us to be a view
     createNativeView() {
         const view = (this.parent as BottomNavigationBar).nativeViewProtected.getMenu().add(android.view.Menu.NONE, this.index, android.view.Menu.NONE, this.title);
-        // trick because @nativescript/core expect us to be a view
+        // trick because tns-core-modules expect us to be a view
         (view as any).defaultPaddings = { top: 0, left: 0, bottom: 0, right: 0 };
         return view;
     }

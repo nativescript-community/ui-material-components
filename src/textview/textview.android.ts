@@ -1,6 +1,9 @@
-import { Color, Utils, Background, hintProperty, placeholderColorProperty } from '@nativescript/core';
-import { backgroundInternalProperty, borderBottomLeftRadiusProperty } from '@nativescript/core';
-import { getLayout, stateSets } from 'nativescript-material-core/android/utils';
+import { getLayout, handleClearFocus, stateSets } from 'nativescript-material-core/android/utils';
+import { Color } from '@nativescript/core/color';
+import { backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty } from '@nativescript/core/ui/editable-text-base';
+import { Background } from '@nativescript/core/ui/styling/background';
+import { ad } from '@nativescript/core/utils/utils';
+import { TextViewBase } from './textview.common';
 import {
     errorColorProperty,
     errorProperty,
@@ -10,9 +13,9 @@ import {
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
-    strokeInactiveColorProperty
+    strokeInactiveColorProperty,
 } from 'nativescript-material-core/textbase/cssproperties';
-import { TextViewBase } from './textview.common';
+import { profile } from '@nativescript/core/profiling/profiling';
 
 function getColorStateList(activeColor: number, inactiveColor = 1627389952) {
     const states = Array.create('[I', 2);
@@ -150,7 +153,7 @@ export class TextView extends TextViewBase {
             this.layoutView.requestFocus();
             setTimeout(() => {
                 this.layoutView.setDescendantFocusability(oldDesc);
-                Utils.android.showSoftInput(this.nativeTextViewProtected);
+                ad.showSoftInput(this.nativeTextViewProtected);
                 // this.focus();
             }, 0);
         }

@@ -1,20 +1,34 @@
-import { Application, fromObject, Builder, View, ActionOptions,
-  DialogStrings,
-  capitalizationType,
-  ConfirmOptions,
-  DialogOptions,
-  getCurrentPage,
-  inputType,
-  LoginResult,
-  PromptResult, StackLayout, Utils, CSSUtils } from '@nativescript/core';
+import { getRootView, ios } from '@nativescript/core/application';
+import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/core/css/system-classes';
+import { fromObject } from '@nativescript/core/data/observable';
+import { createViewFromEntry } from '@nativescript/core/ui/builder/builder';
+import { View } from '@nativescript/core/ui/core/view';
+import {
+    ActionOptions,
+    CANCEL,
+    capitalizationType,
+    ConfirmOptions,
+    DialogOptions,
+    getButtonColors,
+    getCurrentPage,
+    getLabelColor,
+    inputType,
+    LoginResult,
+    OK,
+    PromptResult,
+} from '@nativescript/core/ui/dialogs';
+import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout';
+import { isDefined, isFunction, isString } from '@nativescript/core/utils/types';
+import { layout } from '@nativescript/core/utils/utils';
 import { themer } from 'nativescript-material-core/core';
 import { TextField } from 'nativescript-material-textfield';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
+import { ios as iosView } from '@nativescript/core/ui/core/view/view-helper';
 
 export { capitalizationType, inputType };
 
-const UNSPECIFIED = Utils.layout.makeMeasureSpec(0, Utils.layout.UNSPECIFIED);
+const UNSPECIFIED = layout.makeMeasureSpec(0, layout.UNSPECIFIED);
 
 declare class IMDCDialogPresentationControllerDelegateImpl extends NSObject implements MDCDialogPresentationControllerDelegate {
     static new(): IMDCDialogPresentationControllerDelegateImpl;
@@ -57,11 +71,11 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
         const hasTitleOrMessage = this.title || this.message;
         let result: CGSize;
         if (hasTitleOrMessage) {
-            result = CGSizeMake(superResult.width, Math.round(superResult.height + Utils.layout.toDeviceIndependentPixels(measuredHeight)));
+            result = CGSizeMake(superResult.width, Math.round(superResult.height + layout.toDeviceIndependentPixels(measuredHeight)));
         } else if (this.actions.count > 0) {
-            result = CGSizeMake(superResult.width, Math.round(Utils.layout.toDeviceIndependentPixels(superResult.height) + Utils.layout.toDeviceIndependentPixels(measuredHeight)));
+            result = CGSizeMake(superResult.width, Math.round(layout.toDeviceIndependentPixels(superResult.height) + layout.toDeviceIndependentPixels(measuredHeight)));
         } else {
-            result = CGSizeMake(superResult.width, Math.floor(Utils.layout.toDeviceIndependentPixels(measuredHeight)));
+            result = CGSizeMake(superResult.width, Math.floor(layout.toDeviceIndependentPixels(measuredHeight)));
         }
         return result;
     },
@@ -109,7 +123,7 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
             return false;
         }
         const width = contentSize.width || this.super.preferredContentSize.width;
-        const widthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(width), Utils.layout.EXACTLY);
+        const widthSpec = layout.makeMeasureSpec(layout.toDevicePixels(width), layout.EXACTLY);
         View.measureChild(null, this._customContentView, widthSpec, UNSPECIFIED);
         return true;
     },
@@ -128,11 +142,11 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
             if (hasTitleOrMessage) {
                 const index = contentScrollView.subviews.indexOfObject(view.nativeViewProtected);
                 if (index === -1) {
-                    originY = Utils.layout.toDevicePixels(contentSize.height);
+                    originY = layout.toDevicePixels(contentSize.height);
                 } else {
                     const viewOnTopFrame = contentScrollView.subviews.objectAtIndex(index - 1).frame;
                     // the +24 is MDCDialogContentInsets
-                    originY = Utils.layout.toDevicePixels(viewOnTopFrame.origin.y + viewOnTopFrame.size.height + 24);
+                    originY = layout.toDevicePixels(viewOnTopFrame.origin.y + viewOnTopFrame.size.height + 24);
                 }
             }
 
@@ -223,12 +237,12 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
             return;
         }
         onDoneCalled = true;
-        if (Utils.isFunction(callback)) {
+        if (isFunction(callback)) {
             callback(result);
         }
     }
 
-    if (Utils.isString(options.cancelButtonText)) {
+    if (isString(options.cancelButtonText)) {
         alertController.addAction(
             MDCAlertAction.actionWithTitleEmphasisHandler(options.cancelButtonText, MDCActionEmphasis.Low, () => {
                 raiseCallback(callback, false);
@@ -236,7 +250,7 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
         );
     }
 
-    if (Utils.isString(options.neutralButtonText)) {
+    if (isString(options.neutralButtonText)) {
         alertController.addAction(
             MDCAlertAction.actionWithTitleEmphasisHandler(options.neutralButtonText, MDCActionEmphasis.Low, () => {
                 raiseCallback(callback, undefined);
@@ -244,7 +258,7 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
         );
     }
 
-    if (Utils.isString(options.okButtonText)) {
+    if (isString(options.okButtonText)) {
         alertController.addAction(
             MDCAlertAction.actionWithTitleEmphasisHandler(options.okButtonText, MDCActionEmphasis.Low, () => {
                 raiseCallback(callback, true);
@@ -328,12 +342,12 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
         const view =
             options.view instanceof View
                 ? (options.view as View)
-                : Builder.createViewFromEntry({
+                : createViewFromEntry({
                       moduleName: options.view as string,
                   });
 
-        view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
-        const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
+        view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
+        const modalRootViewCssClasses = getSystemCssClasses();
         modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
 
         alertController.customContentView = view;
@@ -372,7 +386,7 @@ export function alert(arg: any): Promise<void> {
         try {
             const defaultOptions = {
                 // title: ALERT,
-                okButtonText: DialogStrings.OK,
+                okButtonText: OK,
             };
             const options = !isDialogOptions(arg) ? Object.assign(defaultOptions, { message: arg + '' }) : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
@@ -419,8 +433,8 @@ export function confirm(arg: any): Promise<boolean> {
         try {
             const defaultOptions = {
                 // title: CONFIRM,
-                okButtonText: DialogStrings.OK,
-                cancelButtonText: DialogStrings.CANCEL,
+                okButtonText: OK,
+                cancelButtonText: CANCEL,
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
@@ -445,20 +459,20 @@ export function prompt(arg: any): Promise<PromptResult> {
 
     const defaultOptions = {
         // title: PROMPT,
-        okButtonText: DialogStrings.OK,
-        cancelButtonText: DialogStrings.CANCEL,
+        okButtonText: OK,
+        cancelButtonText: CANCEL,
         inputType: inputType.text,
     };
 
     if (arguments.length === 1) {
-        if (Utils.isString(arg)) {
+        if (isString(arg)) {
             options = defaultOptions;
             options.message = arg;
         } else {
             options = Object.assign(defaultOptions, arg);
         }
     } else if (arguments.length === 2) {
-        if (Utils.isString(arguments[0]) && Utils.isString(arguments[1])) {
+        if (isString(arguments[0]) && isString(arguments[1])) {
             options = defaultOptions;
             options.message = arguments[0];
             options.defaultText = arguments[1];
@@ -549,25 +563,25 @@ export function login(arg: any): Promise<LoginResult> {
 
     const defaultOptions = {
         // title: LOGIN,
-        okButtonText: DialogStrings.OK,
-        cancelButtonText: DialogStrings.CANCEL,
+        okButtonText: OK,
+        cancelButtonText: CANCEL,
     };
 
     if (arguments.length === 1) {
-        if (Utils.isString(arguments[0])) {
+        if (isString(arguments[0])) {
             options = defaultOptions;
             options.message = arguments[0];
         } else {
             options = Object.assign(defaultOptions, arguments[0]);
         }
     } else if (arguments.length === 2) {
-        if (Utils.isString(arguments[0]) && Utils.isString(arguments[1])) {
+        if (isString(arguments[0]) && isString(arguments[1])) {
             options = defaultOptions;
             options.message = arguments[0];
             options.userName = arguments[1];
         }
     } else if (arguments.length === 3) {
-        if (Utils.isString(arguments[0]) && Utils.isString(arguments[1]) && Utils.isString(arguments[2])) {
+        if (isString(arguments[0]) && isString(arguments[1]) && isString(arguments[2])) {
             options = defaultOptions;
             options.message = arguments[0];
             options.userName = arguments[1];
@@ -608,7 +622,7 @@ export function login(arg: any): Promise<LoginResult> {
             // alertController.addTextFieldWithConfigurationHandler(
             //     (arg: UITextField) => {
             //         arg.placeholder = "Login"
-            //         arg.text = Utils.isString(options.userName)
+            //         arg.text = isString(options.userName)
             //             ? options.userName
             //             : ""
 
@@ -622,7 +636,7 @@ export function login(arg: any): Promise<LoginResult> {
             //     (arg: UITextField) => {
             //         arg.placeholder = "Password"
             //         arg.secureTextEntry = true
-            //         arg.text = Utils.isString(options.password)
+            //         arg.text = isString(options.password)
             //             ? options.password
             //             : ""
 
@@ -673,18 +687,18 @@ function showUIAlertController(alertController: MDCAlertController) {
         // MDCAlertControllerThemer.applySchemeToAlertController(MDCAlertScheme.alloc().init(), alertController);
     }
 
-    let currentView = getCurrentPage() || Application.getRootView();
+    let currentView = getCurrentPage() || getRootView();
 
     if (currentView) {
         currentView = currentView.modal || currentView;
 
         // for now we need to use the rootController because of a bug in {N}
-        let viewController = Application.ios.rootController;
+        let viewController = ios.rootController;
 
         // let viewController: UIViewController = currentView.ios;
 
         // if (!(currentView.ios instanceof UIViewController)) {
-        //     const parentWithController = IOSHelper.getParentWithViewController(currentView);
+        //     const parentWithController = iosView.getParentWithViewController(currentView);
         //     viewController = parentWithController ? parentWithController.viewController : undefined;
         // }
         // if (viewController && viewController.parentViewController) {
@@ -713,24 +727,24 @@ export function action(): Promise<string> {
 
     const defaultOptions = {
         // title: null,
-        cancelButtonText: DialogStrings.CANCEL,
+        cancelButtonText: CANCEL,
     };
 
     if (arguments.length === 1) {
-        if (Utils.isString(arguments[0])) {
+        if (isString(arguments[0])) {
             options = defaultOptions;
             options.message = arguments[0];
         } else {
             options = Object.assign(defaultOptions, arguments[0]);
         }
     } else if (arguments.length === 2) {
-        if (Utils.isString(arguments[0]) && Utils.isString(arguments[1])) {
+        if (isString(arguments[0]) && isString(arguments[1])) {
             options = defaultOptions;
             options.message = arguments[0];
             options.cancelButtonText = arguments[1];
         }
     } else if (arguments.length === 3) {
-        if (Utils.isString(arguments[0]) && Utils.isString(arguments[1]) && Utils.isDefined(arguments[2])) {
+        if (isString(arguments[0]) && isString(arguments[1]) && isDefined(arguments[2])) {
             options = defaultOptions;
             options.message = arguments[0];
             options.cancelButtonText = arguments[1];
@@ -747,7 +761,7 @@ export function action(): Promise<string> {
             if (options.actions) {
                 for (i = 0; i < options.actions.length; i++) {
                     action = options.actions[i];
-                    if (Utils.isString(action)) {
+                    if (isString(action)) {
                         alertController.addAction(
                             MDCAlertAction.actionWithTitleEmphasisHandler(action, MDCActionEmphasis.Low, (arg: MDCAlertAction) => {
                                 resolve(arg.title);
@@ -757,7 +771,7 @@ export function action(): Promise<string> {
                 }
             }
 
-            if (Utils.isString(options.cancelButtonText)) {
+            if (isString(options.cancelButtonText)) {
                 alertController.addAction(
                     MDCAlertAction.actionWithTitleEmphasisHandler(options.cancelButtonText, MDCActionEmphasis.Low, (arg: MDCAlertAction) => {
                         resolve(arg.title);

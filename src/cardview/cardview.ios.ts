@@ -1,8 +1,10 @@
-import { Color, Screen, isUserInteractionEnabledProperty } from '@nativescript/core';
-import { Background } from '@nativescript/core';
-import { backgroundInternalProperty } from '@nativescript/core';
 import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
+import { Color } from '@nativescript/core/color';
+import { screen } from '@nativescript/core/platform';
+import { isUserInteractionEnabledProperty } from '@nativescript/core/ui/core/view';
+import { Background } from '@nativescript/core/ui/styling/background';
+import { backgroundInternalProperty } from '@nativescript/core/ui/styling/style-properties';
 import { CardViewBase } from './cardview-common';
 
 // use custom class to get the same behavior as android which is
@@ -73,7 +75,7 @@ export class CardView extends CardViewBase {
     }
     [backgroundInternalProperty.setNative](value: Background) {
         if (this.nativeViewProtected) {
-            const scale = Screen.mainScreen.scale;
+            const scale = screen.mainScreen.scale;
             if (value.color) {
                 this.nativeViewProtected.backgroundColor = value.color ? value.color.ios : null;
             }

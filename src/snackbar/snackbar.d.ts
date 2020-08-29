@@ -1,4 +1,4 @@
-import { View } from "@nativescript/core";
+import { View } from "@nativescript/core/ui/page/page";
 
 export declare class SnackBar {
     /**

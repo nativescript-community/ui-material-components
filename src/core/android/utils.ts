@@ -1,4 +1,7 @@
-import { Application, Color, ViewBase, Utils } from '@nativescript/core';
+import * as application from '@nativescript/core/application';
+import { Color } from '@nativescript/core/color';
+import { ViewBase } from '@nativescript/core/ui/page';
+import { ad, layout } from '@nativescript/core/utils/utils';
 
 let isPostLollipopVar: boolean = undefined;
 export function isPostLollipop() {
@@ -213,13 +216,13 @@ export function createStateListAnimator(view: ViewBase, nativeView: android.view
     if (typeof elevation === 'undefined' || elevation === null) {
         elevation = (view as any).getDefaultElevation();
     }
-    elevation = Utils.layout.toDevicePixels(elevation);
+    elevation = layout.toDevicePixels(elevation);
 
     let pressedZ = view['dynamicElevationOffset'];
     if (typeof pressedZ === 'undefined' || pressedZ === null) {
         pressedZ = (view as any).getDefaultDynamicElevationOffset();
     }
-    pressedZ = Utils.layout.toDevicePixels(pressedZ);
+    pressedZ = layout.toDevicePixels(pressedZ);
 
     const pressedSet = new AnimatorSet();
     pressedSet.playTogether(
@@ -242,7 +245,7 @@ export function createStateListAnimator(view: ViewBase, nativeView: android.view
 }
 
 export function getAttrColor(context: android.content.Context, name: string) {
-    const ta = context.obtainStyledAttributes([Utils.android.resources.getId(':attr/' + name)]);
+    const ta = context.obtainStyledAttributes([ad.resources.getId(':attr/' + name)]);
     const color = ta.getColor(0, 0);
     ta.recycle();
     return color;
@@ -307,6 +310,6 @@ export function getLayout(id: string) {
     if (!id) {
         return 0;
     }
-    const context: android.content.Context = Application.android.context;
+    const context: android.content.Context = application.android.context;
     return context.getResources().getIdentifier(id, 'layout', context.getPackageName());
 }
