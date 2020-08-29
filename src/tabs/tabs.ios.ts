@@ -1017,10 +1017,14 @@ export class Tabs extends TabsBase {
         return this.tabBar.unselectedItemTitleFont;
     }
 
+    private getUIFont(view: View, fontSize) {
+        return view.style.fontInternal ? view.style.fontInternal.getUIFont(UIFont.systemFontOfSize(fontSize)) : UIFont.systemFontOfSize(fontSize);
+    }
+
     public setTabBarFontInternal(value: Font): void {
         const defaultTabItemFontSize = 10;
         const tabItemFontSize = this.tabStrip.style.fontSize || defaultTabItemFontSize;
-        const font: UIFont = this.tabStrip.style.fontInternal.getUIFont(UIFont.systemFontOfSize(tabItemFontSize));
+        const font: UIFont = this.getUIFont(this.tabStrip, tabItemFontSize);
 
         this.tabBar.unselectedItemTitleFont = font;
         this.tabBar.selectedItemTitleFont = font;
@@ -1215,7 +1219,7 @@ export class Tabs extends TabsBase {
 
         const defaultTabItemFontSize = 10;
         const tabItemFontSize = view.style.fontSize || defaultTabItemFontSize;
-        const font: UIFont = view.style.fontInternal.getUIFont(UIFont.systemFontOfSize(tabItemFontSize));
+        const font: UIFont = this.getUIFont(view, tabItemFontSize);
 
         this.tabBar.unselectedItemTitleFont = font;
         this.tabBar.selectedItemTitleFont = font;
