@@ -1,4 +1,8 @@
-import { Color, Button, ControlStateChangeListener, View, GestureTypes, TouchAction, TouchGestureEventData, Background, backgroundInternalProperty, Utils } from '@nativescript/core';
+import { Color, Button, View, GestureTypes, TouchGestureEventData, Utils } from '@nativescript/core';
+import { TouchAction } from '@nativescript/core/ui/gestures';
+import { backgroundInternalProperty } from '@nativescript/core/ui/page';
+import { Background } from '@nativescript/core/ui/styling/background';
+import { ControlStateChangeListener } from '@nativescript/core/ui/core/control-state-change';
 import { TypographyOptions } from './core';
 import { applyMixins } from './core.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';

@@ -1,4 +1,5 @@
-import { Color, colorProperty, ImageSource } from '@nativescript/core';
+import { Color, ImageSource } from '@nativescript/core';
+import { colorProperty } from '@nativescript/core/ui/styling/style-properties';
 import { getRippleColor, themer } from 'nativescript-material-core/core';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from 'nativescript-material-core/cssproperties';
 import { expandedProperty, FloatingActionButtonBase, imageSourceProperty, srcProperty } from './floatingactionbutton-common';

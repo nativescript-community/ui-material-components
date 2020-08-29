@@ -1,7 +1,7 @@
-import { CssProperty } from '@nativescript/core';
 import { Color } from '@nativescript/core';
 import { Style } from '@nativescript/core';
-import { booleanConverter } from '@nativescript/core';
+import { CssProperty } from '@nativescript/core/ui/core/properties/properties';
+import { booleanConverter } from '@nativescript/core/ui/core/view-base';
 
 export const errorColorProperty = new CssProperty<Style, Color>({
     name: 'errorColor',

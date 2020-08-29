@@ -1,15 +1,27 @@
 import { Application } from '@nativescript/core';
-import { View, CSSUtils, Utils, fromObject, Builder, StackLayout, ActionOptions,
-  DialogStrings,
-  capitalizationType,
-  ConfirmOptions,
-  DialogOptions,
-  inputType,
-  LoginResult,
-  PromptResult } from '@nativescript/core';
+import { MODAL_ROOT_VIEW_CSS_CLASS, getSystemCssClasses } from '@nativescript/core/css/system-classes';
+import {
+    View,
+    Utils,
+    Builder,
+    StackLayout
+} from '@nativescript/core';
+import {
+    ActionOptions,
+    capitalizationType,
+    ConfirmOptions,
+    DialogOptions,
+    inputType,
+    LoginResult,
+    PromptResult,
+} from '@nativescript/core/ui/dialogs';
+import {
+    DialogStrings,
+} from '@nativescript/core/ui/dialogs/dialogs-common';
 import { TextField } from 'nativescript-material-textfield';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
+import { fromObject } from '@nativescript/core/data/observable';
 
 export { capitalizationType, inputType };
 
@@ -27,12 +39,14 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
     }
     if (options && options.cancelable === false) {
         builder.setCancelable(false);
-        builder.setOnKeyListener(new android.content.DialogInterface.OnKeyListener({
-            onKey( dialog,  keyCode,  event) {
-                // Prevent dialog close on back press button
-                return keyCode === android.view.KeyEvent.KEYCODE_BACK;
-            }
-        }));
+        builder.setOnKeyListener(
+            new android.content.DialogInterface.OnKeyListener({
+                onKey(dialog, keyCode, event) {
+                    // Prevent dialog close on back press button
+                    return keyCode === android.view.KeyEvent.KEYCODE_BACK;
+                },
+            })
+        );
     }
     if (options.titleIcon) {
         builder.setIcon(options.titleIcon.android);
@@ -48,8 +62,8 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
                       moduleName: options.view as string,
                   });
 
-        view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
-        const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
+        view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
+        const modalRootViewCssClasses = getSystemCssClasses();
         modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
 
         (builder as any)._currentModalCustomView = view;
@@ -132,7 +146,6 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
 }
 
 function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any) {
-    
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
     const onDone = function (result: boolean, dialog?: android.content.DialogInterface) {

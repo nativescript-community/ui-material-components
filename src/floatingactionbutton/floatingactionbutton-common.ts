@@ -3,7 +3,7 @@ import { Button as NSButton } from '@nativescript/core/ui/button';
 import { Color } from '@nativescript/core/color';
 import { ImageAsset } from '@nativescript/core/image-asset';
 import { isDataURI, isFileOrResourcePath, RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
-import { fromAsset, fromNativeSource, fromUrl, ImageSource } from '@nativescript/core/image-source';
+import { ImageSource } from '@nativescript/core/image-source';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 import { Property } from '@nativescript/core/ui/core/properties';
 
@@ -98,7 +98,7 @@ export abstract class FloatingActionButtonBase extends View {
                 }
             } else {
                 this.imageSource = null;
-                fromUrl(value).then(r => {
+                ImageSource.fromUrl(value).then(r => {
                     if (this['_url'] === value) {
                         this.imageSource = r;
                         this.isLoading = false;
@@ -110,12 +110,12 @@ export abstract class FloatingActionButtonBase extends View {
             this.imageSource = value;
             this.isLoading = false;
         } else if (value instanceof ImageAsset) {
-            fromAsset(value).then(result => {
+            ImageSource.fromAsset(value).then(result => {
                 this.imageSource = result;
                 this.isLoading = false;
             });
         } else {
-            this.imageSource = fromNativeSource(value);
+            this.imageSource = new ImageSource(value);
             this.isLoading = false;
         }
     }

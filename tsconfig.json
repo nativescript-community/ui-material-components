@@ -20,7 +20,6 @@
         "noFallthroughCasesInSwitch": true,
         "sourceRoot": "../src",
         "baseUrl": ".",
-        "outDir": "./plugin",
         "paths": {
             "tns-core-modules": ["./node_modules/@nativescript/core"],
             "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
@@ -51,8 +50,7 @@
             "nativescript-material-textfield": ["src/textfield/textfield"],
             "nativescript-material-textfield/*": ["src/textfield/*"],
             "nativescript-material-textview": ["src/textview/textview"],
-            "nativescript-material-textview/*": ["src/textview/*"],
-            "*": ["node_modules/*"]
+            "nativescript-material-textview/*": ["src/textview/*"]
         }
     },
     "include": ["src/**/*", "./references.d.ts"],
