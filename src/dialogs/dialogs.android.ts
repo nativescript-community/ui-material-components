@@ -1,8 +1,7 @@
 import { Application, Builder, StackLayout, Utils, View } from '@nativescript/core';
 import { MODAL_ROOT_VIEW_CSS_CLASS, getSystemCssClasses } from '@nativescript/core/css/system-classes';
 import { fromObject } from '@nativescript/core/data/observable';
-import { ActionOptions, ConfirmOptions, DialogOptions, LoginResult, PromptResult, capitalizationType, inputType } from '@nativescript/core/ui/dialogs';
-import { DialogStrings } from '@nativescript/core/ui/dialogs/dialogs-common';
+import { ALERT, ActionOptions , CANCEL, CONFIRM, ConfirmOptions, DialogOptions, LOGIN, LoginResult, OK, PROMPT, PromptResult, capitalizationType, inputType } from '@nativescript/core/ui/dialogs';
 import { TextField } from 'nativescript-material-textfield';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
@@ -244,8 +243,8 @@ export function alert(arg: any): Promise<void> {
     return new Promise<void>((resolve, reject) => {
         try {
             const defaultOptions = {
-                title: DialogStrings.ALERT,
-                okButtonText: DialogStrings.OK,
+                title: ALERT,
+                okButtonText: OK,
             };
             const options = !isDialogOptions(arg) ? Object.assign(defaultOptions, { message: arg + '' }) : Object.assign(defaultOptions, arg);
 
@@ -284,9 +283,9 @@ export function confirm(arg: any): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
         try {
             const defaultOptions = {
-                title: DialogStrings.CONFIRM,
-                okButtonText: DialogStrings.OK,
-                cancelButtonText: DialogStrings.CANCEL,
+                title: CONFIRM,
+                okButtonText: OK,
+                cancelButtonText: CANCEL,
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
@@ -307,9 +306,9 @@ export function prompt(arg: any): Promise<PromptResult> {
     let options: PromptOptions & MDCAlertControlerOptions;
 
     const defaultOptions = {
-        title: DialogStrings.PROMPT,
-        okButtonText: DialogStrings.OK,
-        cancelButtonText: DialogStrings.CANCEL,
+        title: PROMPT,
+        okButtonText: OK,
+        cancelButtonText: CANCEL,
         inputType: inputType.text,
     };
 
@@ -399,9 +398,9 @@ export function prompt(arg: any): Promise<PromptResult> {
 export function login(arg: any): Promise<LoginResult> {
     let options: LoginOptions & MDCAlertControlerOptions;
     const defaultOptions = {
-        title: DialogStrings.LOGIN,
-        okButtonText: DialogStrings.OK,
-        cancelButtonText: DialogStrings.CANCEL,
+        title: LOGIN,
+        okButtonText: OK,
+        cancelButtonText: CANCEL,
     };
 
     if (arguments.length === 1) {
@@ -480,7 +479,7 @@ export function login(arg: any): Promise<LoginResult> {
 export function action(arg: any): Promise<string> {
     let options: ActionOptions;
 
-    const defaultOptions = { title: null, cancelButtonText: DialogStrings.CANCEL };
+    const defaultOptions = { title: null, cancelButtonText: CANCEL };
 
     if (arguments.length === 1) {
         if (isString(arguments[0])) {
