@@ -18,6 +18,6 @@
 		"build": "npm i && ../../../node_modules/.bin/ng-packagr -p package.json && cd dist && ../../../../node_modules/.bin/cpy '**/*' '../../../../packages/nativescript-material-textfield/angular' --parents"
 	},
 	"devDependencies": {
-		"nativescript-material-textfield": "*"
+		"nativescript-material-textfield": "^3.2.19"
 	}
 }

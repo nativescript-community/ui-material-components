@@ -34,7 +34,7 @@ export class BottomSheetService {
         return this.showWithCloseCallback(type, options).observable;
     }
 
-    showWithCloseCallback<T = any>(type: Type<any>, options: BottomSheetOptions): { observable: Observable<T>, closeCallback: () => void } {
+    showWithCloseCallback<T = any>(type: Type<any>, options: BottomSheetOptions): { observable: Observable<T>; closeCallback: () => void } {
         if (!options.viewContainerRef) {
             throw new Error('No viewContainerRef: Make sure you pass viewContainerRef in BottomSheetOptions.');
         }
@@ -134,8 +134,8 @@ export class BottomSheetService {
             this.componentView = detachedProxy.getChildAt(0) as any;//ViewWithBottomSheetBase;
 
             if (this.componentView.parent) {
-                (<any>this.componentView.parent)._ngDialogRoot = this.componentView;
-                (<any>this.componentView.parent).removeChild(this.componentView);
+                (this.componentView.parent)._ngDialogRoot = this.componentView;
+                (this.componentView.parent).removeChild(this.componentView);
             }
 
             return this.componentView;
