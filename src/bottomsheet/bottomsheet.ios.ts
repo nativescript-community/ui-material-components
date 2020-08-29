@@ -412,7 +412,8 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         const transitionCoordinator = bottomSheet.transitionCoordinator;
         if (transitionCoordinator) {
             UIViewControllerTransitionCoordinator.prototype.animateAlongsideTransitionCompletion.call(transitionCoordinator, null, () => {
-                (this.bindingContext = fromObject(options.context)), this._raiseShownBottomSheetEvent();
+                this.bindingContext = fromObject(options.context);
+                this._raiseShownBottomSheetEvent();
             });
         } else {
             // Apparently iOS 9+ stops all transitions and animations upon application suspend and transitionCoordinator becomes null here in this case.
@@ -438,7 +439,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         }
 
         const parentController = parentWithController.viewController;
-        const animated = (this.viewController).animated;
+        const animated = this.viewController.animated;
         parentController.dismissViewControllerAnimatedCompletion(animated, whenClosedCallback);
     }
 }
