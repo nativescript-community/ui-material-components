@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-button",
-    "version": "3.2.19",
+    "version": "3.2.20",
     "description": "Material button component",
     "main": "./button",
     "sideEffects": false,
@@ -35,7 +35,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^3.2.19"
+        "nativescript-material-core": "^3.2.20"
     },
     "gitHead": "511d6d5c154f669b23b56d01a7965205eb9c9d0f"
 }
