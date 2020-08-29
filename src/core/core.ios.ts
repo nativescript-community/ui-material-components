@@ -1,4 +1,4 @@
-import { Color, Button, View, GestureTypes, TouchGestureEventData, Utils } from '@nativescript/core';
+import { Button, Color, GestureTypes, TouchGestureEventData, Utils, View } from '@nativescript/core';
 import { TouchAction } from '@nativescript/core/ui/gestures';
 import { backgroundInternalProperty } from '@nativescript/core/ui/page';
 import { Background } from '@nativescript/core/ui/styling/background';
@@ -281,7 +281,7 @@ export function overrideViewBase() {
     // we need mixins to be applied after (run default implementation first) because of _setNativeClipToBounds.
     // it needs to be applied after for shadows to be drawn correctly
     applyMixins(NSView, [ViewWithElevationAndRipple], {
-        after: true
+        after: true,
     });
 }
 

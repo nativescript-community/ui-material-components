@@ -1,5 +1,4 @@
-import { Color } from '@nativescript/core';
-import { Progress as NSProgress } from '@nativescript/core';
+import { Color, Progress as NSProgress } from '@nativescript/core';
 import { CssProperty, Style } from '@nativescript/core/ui/core/properties/properties';
 import { CSSType } from '@nativescript/core/ui/core/view';
 

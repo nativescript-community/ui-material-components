@@ -15,7 +15,7 @@ module.exports = {
         '@typescript-eslint/await-thenable': 'error',
         '@typescript-eslint/ban-types': 'off',
         '@typescript-eslint/class-name-casing': 'off',
-        '@typescript-eslint/consistent-type-assertions': 'error',
+        '@typescript-eslint/consistent-type-assertions': 'off',
         '@typescript-eslint/consistent-type-definitions': 'error',
         '@typescript-eslint/explicit-member-accessibility': [
             'off',
@@ -96,8 +96,8 @@ module.exports = {
             {
                 // ignorePattern: '^import |^export {(.*?)}',
                 code: 130,
-                "ignoreRegExpLiterals": true,
-                "ignoreComments": true
+                'ignoreRegExpLiterals': true,
+                'ignoreComments': true
             }
         ],
         'new-parens': 'off',

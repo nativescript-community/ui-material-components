@@ -1,22 +1,9 @@
 import { getRootView, ios } from '@nativescript/core/application';
-import { getSystemCssClasses, MODAL_ROOT_VIEW_CSS_CLASS } from '@nativescript/core/css/system-classes';
+import { MODAL_ROOT_VIEW_CSS_CLASS, getSystemCssClasses } from '@nativescript/core/css/system-classes';
 import { fromObject } from '@nativescript/core/data/observable';
-import { createViewFromEntry } from '@nativescript/core/ui/builder/builder';
+import { Builder } from '@nativescript/core/ui/builder/builder';
 import { View } from '@nativescript/core/ui/core/view';
-import {
-    ActionOptions,
-    CANCEL,
-    capitalizationType,
-    ConfirmOptions,
-    DialogOptions,
-    getButtonColors,
-    getCurrentPage,
-    getLabelColor,
-    inputType,
-    LoginResult,
-    OK,
-    PromptResult,
-} from '@nativescript/core/ui/dialogs';
+import { ActionOptions, CANCEL, ConfirmOptions, DialogOptions, LoginResult, OK, PromptResult, capitalizationType, getCurrentPage, inputType } from '@nativescript/core/ui/dialogs';
 import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout';
 import { isDefined, isFunction, isString } from '@nativescript/core/utils/types';
 import { layout } from '@nativescript/core/utils/utils';
@@ -24,7 +11,6 @@ import { themer } from 'nativescript-material-core/core';
 import { TextField } from 'nativescript-material-textfield';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
-import { ios as iosView } from '@nativescript/core/ui/core/view/view-helper';
 
 export { capitalizationType, inputType };
 
@@ -341,10 +327,10 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     if (options.view) {
         const view =
             options.view instanceof View
-                ? (options.view as View)
-                : createViewFromEntry({
-                      moduleName: options.view as string,
-                  });
+                ? options.view
+                : Builder.createViewFromEntry({
+                    moduleName: options.view as string,
+                });
 
         view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = getSystemCssClasses();
@@ -438,8 +424,8 @@ export function confirm(arg: any): Promise<boolean> {
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
-                      message: arg + '',
-                  })
+                    message: arg + '',
+                })
                 : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
 
@@ -544,9 +530,7 @@ export function prompt(arg: any): Promise<PromptResult> {
                     alertController._resolveFunction = null;
                     resolve({ result: r, text: textField.text });
                 },
-                (r) => {
-                    return { result: r, text: textField.text };
-                }
+                (r) => ({ result: r, text: textField.text })
             );
             if (!!options.autoFocus) {
                 alertController.autoFocusTextField = textField;
@@ -659,9 +643,7 @@ export function login(arg: any): Promise<LoginResult> {
                         password: passwordTextField.text,
                     });
                 },
-                (r) => {
-                    return { result: r, userName: userNameTextField.text, password: passwordTextField.text };
-                }
+                (r) => ({ result: r, userName: userNameTextField.text, password: passwordTextField.text })
             );
 
             if (!!options.beforeShow) {
@@ -693,7 +675,7 @@ function showUIAlertController(alertController: MDCAlertController) {
         currentView = currentView.modal || currentView;
 
         // for now we need to use the rootController because of a bug in {N}
-        let viewController = ios.rootController;
+        const viewController = ios.rootController;
 
         // let viewController: UIViewController = currentView.ios;
 

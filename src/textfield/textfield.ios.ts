@@ -1,5 +1,5 @@
 import { TextFieldBase } from './textfield.common';
-import { backgroundInternalProperty, placeholderColorProperty, keyboardTypeProperty, textProperty } from '@nativescript/core/ui/editable-text-base';
+import { backgroundInternalProperty, keyboardTypeProperty, placeholderColorProperty, textProperty } from '@nativescript/core/ui/editable-text-base';
 import {
     buttonColorProperty,
     digitsProperty,

@@ -1,27 +1,11 @@
-import { Application } from '@nativescript/core';
+import { Application, Builder, StackLayout, Utils, View } from '@nativescript/core';
 import { MODAL_ROOT_VIEW_CSS_CLASS, getSystemCssClasses } from '@nativescript/core/css/system-classes';
-import {
-    View,
-    Utils,
-    Builder,
-    StackLayout
-} from '@nativescript/core';
-import {
-    ActionOptions,
-    capitalizationType,
-    ConfirmOptions,
-    DialogOptions,
-    inputType,
-    LoginResult,
-    PromptResult,
-} from '@nativescript/core/ui/dialogs';
-import {
-    DialogStrings,
-} from '@nativescript/core/ui/dialogs/dialogs-common';
+import { fromObject } from '@nativescript/core/data/observable';
+import { ActionOptions, ConfirmOptions, DialogOptions, LoginResult, PromptResult, capitalizationType, inputType } from '@nativescript/core/ui/dialogs';
+import { DialogStrings } from '@nativescript/core/ui/dialogs/dialogs-common';
 import { TextField } from 'nativescript-material-textfield';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
-import { fromObject } from '@nativescript/core/data/observable';
 
 export { capitalizationType, inputType };
 
@@ -59,8 +43,8 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
             options.view instanceof View
                 ? options.view
                 : Builder.createViewFromEntry({
-                      moduleName: options.view as string,
-                  });
+                    moduleName: options.view as string,
+                });
 
         view.cssClasses.add(MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = getSystemCssClasses();
@@ -126,9 +110,9 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
     // let { color, backgroundColor } = getButtonColors();
 
     if (options.buttonInkColor || options.buttonTitleColor) {
-        let buttons: android.widget.Button[] = [];
+        const buttons: android.widget.Button[] = [];
         for (let i = 0; i < 3; i++) {
-            let id = dlg
+            const id = dlg
                 .getContext()
                 .getResources()
                 .getIdentifier('android:id/button' + i, null, null);
@@ -168,7 +152,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
     const activity = Application.android.foregroundActivity || (Application.android.startActivity as globalAndroid.app.Activity);
     builder.setOnDismissListener(
         new android.content.DialogInterface.OnDismissListener({
-            onDismiss: function () {
+            onDismiss() {
                 onDone(false);
                 if ((builder as any)._currentModalCustomView) {
                     const view = (builder as any)._currentModalCustomView;
@@ -202,7 +186,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
             options.okButtonText,
             null,
             new android.content.DialogInterface.OnClickListener({
-                onClick: function (dialog: android.content.DialogInterface, id: number) {
+                onClick(dialog: android.content.DialogInterface, id: number) {
                     onDone(true, dialog);
                 },
             })
@@ -218,7 +202,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
             options.cancelButtonText,
             null,
             new android.content.DialogInterface.OnClickListener({
-                onClick: function (dialog: android.content.DialogInterface, id: number) {
+                onClick(dialog: android.content.DialogInterface, id: number) {
                     onDone(false, dialog);
                 },
             })
@@ -239,7 +223,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
             options.neutralButtonText,
             null,
             new android.content.DialogInterface.OnClickListener({
-                onClick: function (dialog: android.content.DialogInterface, id: number) {
+                onClick(dialog: android.content.DialogInterface, id: number) {
                     onDone(undefined, dialog);
                 },
             })
@@ -306,8 +290,8 @@ export function confirm(arg: any): Promise<boolean> {
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
-                      message: arg + '',
-                  })
+                    message: arg + '',
+                })
                 : Object.assign(defaultOptions, arg);
             const alert = createAlertDialogBuilder(options);
             const dlg = prepareAndCreateAlertDialog(alert, options, resolve);
@@ -398,9 +382,7 @@ export function prompt(arg: any): Promise<PromptResult> {
                 function (r) {
                     resolve({ result: r, text: textField.text });
                 },
-                (r) => {
-                    return { result: r, text: textField.text };
-                }
+                (r) => ({ result: r, text: textField.text })
             );
 
             showDialog(dlg, options, resolve);
@@ -482,9 +464,7 @@ export function login(arg: any): Promise<LoginResult> {
                         password: passwordTextField.text,
                     });
                 },
-                (r) => {
-                    return { result: r, userName: userNameTextField.text, password: passwordTextField.text };
-                }
+                (r) => ({ result: r, userName: userNameTextField.text, password: passwordTextField.text })
             );
             showDialog(dlg, options, resolve);
             if (!!options.autoFocus) {
@@ -547,7 +527,7 @@ export function action(arg: any): Promise<string> {
                 alert.setItems(
                     options.actions,
                     new android.content.DialogInterface.OnClickListener({
-                        onClick: function (dialog: android.content.DialogInterface, which: number) {
+                        onClick(dialog: android.content.DialogInterface, which: number) {
                             resolve(options.actions[which]);
                         },
                     })

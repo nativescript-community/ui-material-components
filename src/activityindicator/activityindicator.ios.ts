@@ -1,7 +1,7 @@
-import { themer } from 'nativescript-material-core/core';
-import { Color, Screen, View, Utils } from '@nativescript/core';
-import { ActivityIndicatorBase, indeterminateProperty } from './activityindicator-common';
+import { Color, Screen, Utils, View } from '@nativescript/core';
 import { colorProperty } from '@nativescript/core/ui/page';
+import { themer } from 'nativescript-material-core/core';
+import { ActivityIndicatorBase, indeterminateProperty } from './activityindicator-common';
 
 declare module '@nativescript/core/ui/core/view' {
     interface View {
@@ -16,7 +16,7 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     public createNativeView() {
         const view = MDCActivityIndicator.new();
         const color = (themer.getAppColorScheme() as MDCSemanticColorScheme).primaryColor;
-        view.cycleColors  = color ? NSArray.arrayWithObject(color) : null;
+        view.cycleColors = color ? NSArray.arrayWithObject(color) : null;
         // const colorScheme = this.colorThemer || themer.getAppColorScheme();
         // if (colorScheme) {
         //     MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(colorScheme, view);
@@ -50,7 +50,7 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     }
 
     public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
-        let nativeView = this.nativeViewProtected;
+        const nativeView = this.nativeViewProtected;
         if (nativeView) {
             const width = Utils.layout.getMeasureSpecSize(widthMeasureSpec);
             const widthMode = Utils.layout.getMeasureSpecMode(widthMeasureSpec);
@@ -58,7 +58,7 @@ export class ActivityIndicator extends ActivityIndicatorBase {
             const heightMode = Utils.layout.getMeasureSpecMode(heightMeasureSpec);
 
             const horizontalPadding = this.effectivePaddingLeft + this.effectiveBorderLeftWidth + this.effectivePaddingRight + this.effectiveBorderRightWidth;
-            let verticalPadding = this.effectivePaddingTop + this.effectiveBorderTopWidth + this.effectivePaddingBottom + this.effectiveBorderBottomWidth;
+            const verticalPadding = this.effectivePaddingTop + this.effectiveBorderTopWidth + this.effectivePaddingBottom + this.effectiveBorderBottomWidth;
 
             const desiredSize = Utils.layout.measureNativeView(nativeView, width - horizontalPadding, widthMode, height - verticalPadding, heightMode);
 
@@ -86,8 +86,8 @@ export class ActivityIndicator extends ActivityIndicatorBase {
         return null;
     }
     [colorProperty.setNative](value: UIColor | Color) {
-        const color = value instanceof Color ? value.ios : value;;
-        this.nativeViewProtected.cycleColors  = color ? NSArray.arrayWithObject(color) : null;
+        const color = value instanceof Color ? value.ios : value;
+        this.nativeViewProtected.cycleColors = color ? NSArray.arrayWithObject(color) : null;
         // this.getColorThemer().primaryColor = value instanceof Color ? value.ios : value;
         // MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(this.getColorThemer(), this.nativeViewProtected);
     }

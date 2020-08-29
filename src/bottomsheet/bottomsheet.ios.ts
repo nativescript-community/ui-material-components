@@ -1,13 +1,12 @@
-import { ViewWithBottomSheetBase } from './bottomsheet-common';
-import { ios, traceCategories, traceError, traceMessageType, traceWrite, View } from '@nativescript/core/ui/core/view';
-import { ViewBase } from '@nativescript/core/ui/core/view-base';
-import { layout } from '@nativescript/core/utils/utils';
-import { BottomSheetOptions } from './bottomsheet';
 import { fromObject } from '@nativescript/core/data/observable';
-import { applyMixins } from 'nativescript-material-core/core';
-import { ios as iosUtils } from '@nativescript/core/utils/utils';
+import { View, ios, traceCategories, traceError, traceMessageType, traceWrite } from '@nativescript/core/ui/core/view';
+import { ViewBase } from '@nativescript/core/ui/core/view-base';
 import { ios as iosView } from '@nativescript/core/ui/core/view/view-helper';
 import { Page } from '@nativescript/core/ui/page';
+import { ios as iosUtils, layout } from '@nativescript/core/utils/utils';
+import { applyMixins } from 'nativescript-material-core/core';
+import { BottomSheetOptions } from './bottomsheet';
+import { ViewWithBottomSheetBase } from './bottomsheet-common';
 
 const majorVersion = iosUtils.MajorVersion;
 
@@ -20,7 +19,7 @@ const MDCBottomSheetControllerDelegateImpl = (NSObject as any).extend(
     {
         // private _owner: WeakRef<ViewWithBottomSheet>;
 
-        // public static initWithOwner(owner: WeakRef<ViewWithBottomSheet>): MDCBottomSheetControllerDelegateImpl {
+        // public static initWithOwner(owner: WeakRef<ViewWithpBottomSheet>): MDCBottomSheetControllerDelegateImpl {
         //     const impl = <MDCBottomSheetControllerDelegateImpl>MDCBottomSheetControllerDelegateImpl.new();
         //     impl._owner = owner;
         //     return impl;
@@ -110,9 +109,9 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
     const marginBottom = owner.effectiveMarginBottom;
     const marginLeft = owner.effectiveMarginLeft + position.left;
     const marginRight = owner.effectiveMarginRight;
-    let top = marginTop + position.top;
+    const top = marginTop + position.top;
     const width = owner.getMeasuredWidth();
-    let height = owner.getMeasuredHeight();
+    const height = owner.getMeasuredHeight();
 
     owner.iosOverflowSafeArea = false;
 
@@ -203,7 +202,7 @@ function getAvailableSpaceFromParent(view: View, frame: CGRect): { safeArea: CGR
 
     const inWindow = CGRectMake(inWindowLeft, inWindowTop, frame.size.width, frame.size.height);
 
-    return { safeArea: safeArea, fullscreen: fullscreen, inWindow: inWindow };
+    return { safeArea, fullscreen, inWindow };
 }
 
 declare class IUILayoutViewController extends UIViewController {
@@ -439,7 +438,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         }
 
         const parentController = parentWithController.viewController;
-        const animated = (<any>this.viewController).animated;
+        const animated = (this.viewController).animated;
         parentController.dismissViewControllerAnimatedCompletion(animated, whenClosedCallback);
     }
 }

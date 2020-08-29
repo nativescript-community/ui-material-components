@@ -1,8 +1,6 @@
+import { ActivityIndicator as NSActivityIndicator, Progress as NSProgress, Utils } from '@nativescript/core';
+import { CSSType, Property, booleanConverter } from '@nativescript/core/ui/core/view';
 import { applyMixins } from 'nativescript-material-core';
-import { ActivityIndicator as NSActivityIndicator } from '@nativescript/core';
-import { Progress as NSProgress } from '@nativescript/core';
-import { Utils } from '@nativescript/core';
-import { booleanConverter, CSSType, Property } from '@nativescript/core/ui/core/view';
 
 @CSSType('MDActivityIndicator')
 export class ActivityIndicatorBase extends NSActivityIndicator {
@@ -37,6 +35,6 @@ applyMixins(ActivityIndicatorBase, [NSProgress], { omit: ['createNativeView'] })
 
 export const indeterminateProperty = new Property<ActivityIndicatorBase, boolean>({
     name: 'indeterminate',
-    valueConverter: booleanConverter
+    valueConverter: booleanConverter,
 });
 indeterminateProperty.register(ActivityIndicatorBase);

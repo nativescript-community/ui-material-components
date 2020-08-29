@@ -1,21 +1,20 @@
 // Types
-import { TabContentItem } from '@nativescript/core/ui/tab-navigation-base/tab-content-item';
-import { TabStrip } from '@nativescript/core/ui/tab-navigation-base/tab-strip';
-import { TabStripItem } from '@nativescript/core/ui/tab-navigation-base/tab-strip-item';
-import { TextTransform } from '@nativescript/core/ui/text-base';
-
 // Requires
 import * as application from '@nativescript/core/application';
 import { ImageSource } from '@nativescript/core/image-source';
-import { ad, isFontIconURI, layout, RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
 import { Color } from '@nativescript/core/ui/core/view';
 import { Frame } from '@nativescript/core/ui/frame';
 import { Font } from '@nativescript/core/ui/styling/font';
+import { TabContentItem } from '@nativescript/core/ui/tab-navigation-base/tab-content-item';
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript/core/ui/tab-navigation-base/tab-navigation-base';
-import { getTransformedText } from '@nativescript/core/ui/text-base';
-import { offscreenTabLimitProperty, swipeEnabledProperty, TabsBase } from './tabs-common';
+import { TabStrip } from '@nativescript/core/ui/tab-navigation-base/tab-strip';
+import { TabStripItem } from '@nativescript/core/ui/tab-navigation-base/tab-strip-item';
+import { TextTransform, getTransformedText } from '@nativescript/core/ui/text-base';
+import { ad, isFontIconURI, layout } from '@nativescript/core/utils/utils';
+import { TabsBase, offscreenTabLimitProperty, swipeEnabledProperty } from './tabs-common';
 
-export * from './tabs-common'
+
+export * from './tabs-common';
 
 const ACCENT_COLOR = 'colorAccent';
 const PRIMARY_COLOR = 'colorPrimary';
@@ -24,9 +23,7 @@ const DEFAULT_ELEVATION = 4;
 const TABID = '_tabId';
 const INDEX = '_index';
 
-interface PagerAdapter {
-    new (owner: Tabs): androidx.viewpager.widget.PagerAdapter;
-}
+type PagerAdapter = new (owner: Tabs) => androidx.viewpager.widget.PagerAdapter;
 
 let PagerAdapter: PagerAdapter;
 let TabsBar: any;
@@ -78,7 +75,7 @@ function initializeNativeClasses() {
             this.owner = getTabById(args.getInt(TABID));
             this.index = args.getInt(INDEX);
             if (!this.owner) {
-                throw new Error(`Cannot find TabView`);
+                throw new Error('Cannot find TabView');
             }
         }
 
@@ -136,7 +133,7 @@ function initializeNativeClasses() {
     const POSITION_NONE = -2;
 
     class FragmentPagerAdapter extends androidx.viewpager.widget.PagerAdapter {
-        public items: Array<TabContentItem>;
+        public items: TabContentItem[];
         private mCurTransaction: androidx.fragment.app.FragmentTransaction;
         private mCurrentPrimaryItem: androidx.fragment.app.Fragment;
 
@@ -333,7 +330,7 @@ function initializeNativeClasses() {
     appResources = application.android.context.getResources();
 }
 
-let defaultAccentColor: number = undefined;
+let defaultAccentColor: number;
 function getDefaultAccentColor(context: android.content.Context): number {
     if (defaultAccentColor === undefined) {
         //Fallback color: https://developer.android.com/samples/SlidingTabsColors/src/com.example.android.common/view/SlidingTabStrip.html
@@ -410,7 +407,7 @@ export class Tabs extends TabsBase {
         const tabsBar = new TabsBar(context, this);
         const lp = new org.nativescript.widgets.CommonLayoutParams();
         const primaryColor = ad.resources.getPaletteColor(PRIMARY_COLOR, context);
-        let accentColor = getDefaultAccentColor(context);
+        const accentColor = getDefaultAccentColor(context);
 
         lp.row = 1;
 
@@ -456,12 +453,12 @@ export class Tabs extends TabsBase {
         }
 
         const nativeView: any = this.nativeViewProtected;
-        this._tabsBar = (<any>nativeView).tabsBar;
+        this._tabsBar = nativeView.tabsBar;
 
-        const viewPager = (<any>nativeView).viewPager;
+        const viewPager = nativeView.viewPager;
         viewPager.setId(this._androidViewId);
         this._viewPager = viewPager;
-        this._pagerAdapter = (<any>viewPager).adapter;
+        this._pagerAdapter = viewPager.adapter;
         (<any>this._pagerAdapter).owner = this;
     }
 
@@ -474,8 +471,8 @@ export class Tabs extends TabsBase {
         const lastIndex = items.length - 1;
         const offsideItems = this.offscreenTabLimit;
 
-        let toUnload = [];
-        let toLoad = [];
+        const toUnload = [];
+        const toLoad = [];
 
         iterateIndexRange(newIndex, offsideItems, lastIndex, (i) => toLoad.push(i));
 
@@ -496,7 +493,7 @@ export class Tabs extends TabsBase {
         const newItem = items[newIndex];
         const selectedView = newItem && newItem.content;
         if (selectedView instanceof Frame) {
-            (<Frame>selectedView)._pushInFrameStackRecursive();
+            selectedView._pushInFrameStackRecursive();
         }
 
         toLoad.forEach((index) => {
@@ -557,13 +554,13 @@ export class Tabs extends TabsBase {
     private disposeCurrentFragments(): void {
         const fragmentManager = this._getFragmentManager();
         const transaction = fragmentManager.beginTransaction();
-        for (let fragment of <Array<any>>fragmentManager.getFragments().toArray()) {
+        for (const fragment of <any[]>fragmentManager.getFragments().toArray()) {
             transaction.remove(fragment);
         }
         transaction.commitNowAllowingStateLoss();
     }
 
-    private shouldUpdateAdapter(items: Array<TabContentItem>) {
+    private shouldUpdateAdapter(items: TabContentItem[]) {
         if (!this._pagerAdapter) {
             return false;
         }
@@ -585,11 +582,7 @@ export class Tabs extends TabsBase {
             return true;
         }
 
-        const matchingItems = currentPagerAdapterItems.filter((currentItem) => {
-            return !!items.filter((item) => {
-                return item._domId === currentItem._domId;
-            })[0];
-        });
+        const matchingItems = currentPagerAdapterItems.filter((currentItem) => !!items.filter((item) => item._domId === currentItem._domId)[0]);
 
         // if both are Arrays and length matches, but not all items are the same, should update
         if (matchingItems.length !== items.length) {
@@ -600,7 +593,7 @@ export class Tabs extends TabsBase {
         return false;
     }
 
-    private setItems(items: Array<TabContentItem>) {
+    private setItems(items: TabContentItem[]) {
         if (this.shouldUpdateAdapter(items)) {
             (<any>this._pagerAdapter).items = items;
 
@@ -614,7 +607,7 @@ export class Tabs extends TabsBase {
         }
     }
 
-    private setTabStripItems(items: Array<TabStripItem>) {
+    private setTabStripItems(items: TabStripItem[]) {
         const length = items ? items.length : 0;
         if (length === 0) {
             this._tabsBar.setItems(null, null);
@@ -669,7 +662,7 @@ export class Tabs extends TabsBase {
             tabItemSpec.backgroundColor = backgroundColor ? backgroundColor.android : this.getTabBarBackgroundArgbColor();
 
             // COLOR
-            let itemColor = this.selectedIndex === tabStripItem._index ? this._selectedItemColor : this._unSelectedItemColor;
+            const itemColor = this.selectedIndex === tabStripItem._index ? this._selectedItemColor : this._unSelectedItemColor;
             const color = itemColor || nestedLabel.style.color;
             tabItemSpec.color = color && color.android;
 
@@ -903,7 +896,7 @@ export class Tabs extends TabsBase {
     }
 
     public setTabBarTextTransform(value: TextTransform): void {
-        let items = this.tabStrip && this.tabStrip.items;
+        const items = this.tabStrip && this.tabStrip.items;
         if (items) {
             items.forEach((tabStripItem) => {
                 if (tabStripItem.label && tabStripItem.nativeViewProtected) {

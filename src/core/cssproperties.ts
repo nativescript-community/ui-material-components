@@ -1,16 +1,15 @@
-import { Color } from '@nativescript/core';
-import { Style } from '@nativescript/core';
+import { Color, Style } from '@nativescript/core';
 import { CssProperty, InheritedCssProperty, makeParser, makeValidator } from '@nativescript/core/ui/core/properties/properties';
 import { Length } from '@nativescript/core/ui/styling/style-properties';
 import { VerticalTextAlignment } from './core';
 
 function createGetter(key) {
-    return function() {
+    return function () {
         return this.style[key];
     };
 }
 function createSetter(key) {
-    return function(newVal) {
+    return function (newVal) {
         this.style[key] = newVal;
     };
 }
@@ -20,7 +19,7 @@ export const cssProperty = (target: Object, key: string | symbol) => {
         get: createGetter(key),
         set: createSetter(key),
         enumerable: true,
-        configurable: true
+        configurable: true,
     });
 };
 
@@ -28,27 +27,27 @@ export const rippleColorProperty = new CssProperty<Style, Color>({
     name: 'rippleColor',
     cssName: 'ripple-color',
     equalityComparer: Color.equals,
-    valueConverter: v => new Color(v)
+    valueConverter: (v) => new Color(v),
 });
 rippleColorProperty.register(Style);
 export const elevationProperty = new CssProperty<Style, Length>({
     name: 'elevation',
     cssName: 'elevation',
 
-    valueConverter: parseFloat
+    valueConverter: parseFloat,
 });
 elevationProperty.register(Style);
 export const dynamicElevationOffsetProperty = new CssProperty<Style, Length>({
     name: 'dynamicElevationOffset',
     cssName: 'dynamic-elevation-offset',
 
-    valueConverter: parseFloat
+    valueConverter: parseFloat,
 });
 dynamicElevationOffsetProperty.register(Style);
 
 export const variantProperty = new CssProperty<Style, string>({
     name: 'variant',
-    cssName: 'variant'
+    cssName: 'variant',
 });
 variantProperty.register(Style);
 
@@ -57,6 +56,6 @@ export const verticalTextAlignmentProperty = new InheritedCssProperty<Style, Ver
     name: 'verticalTextAlignment',
     cssName: 'vertical-text-align',
     defaultValue: 'initial',
-    valueConverter: textAlignmentConverter
+    valueConverter: textAlignmentConverter,
 });
 verticalTextAlignmentProperty.register(Style);

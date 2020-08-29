@@ -1,10 +1,8 @@
-import { screen } from '@nativescript/core/platform';
 import { ios } from '@nativescript/core/application';
-import { backgroundColorProperty, Color, layout } from '@nativescript/core/ui/core/view';
-import { ImageSource } from '@nativescript/core/image-source';
-import { getRippleColor, themer } from 'nativescript-material-core/core';
-
-import { activeColorCssProperty, BottomNavigationBarBase, BottomNavigationTabBase, inactiveColorCssProperty, tabsProperty, titleVisibilityProperty } from './bottomnavigationbar-common';
+import { screen } from '@nativescript/core/platform';
+import { Color, backgroundColorProperty, layout } from '@nativescript/core/ui/core/view';
+import { themer } from 'nativescript-material-core/core';
+import { BottomNavigationBarBase, BottomNavigationTabBase, activeColorCssProperty, inactiveColorCssProperty, tabsProperty, titleVisibilityProperty } from './bottomnavigationbar-common';
 
 declare class IBottomNavigationBarDelegate extends NSObject implements MDCBottomNavigationBarDelegate {
     static new(): IBottomNavigationBarDelegate;
@@ -13,7 +11,6 @@ declare class IBottomNavigationBarDelegate extends NSObject implements MDCBottom
 
 const BottomNavigationBarDelegate = (NSObject as any).extend(
     {
-
         bottomNavigationBarDidSelectItem(navigationBar: MDCBottomNavigationBar, item: UITabBarItem) {
             const owner = this._owner.get();
             if (!owner) {

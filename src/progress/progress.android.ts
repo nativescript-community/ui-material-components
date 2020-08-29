@@ -1,4 +1,4 @@
-import { progressBackgroundColorProperty, ProgressBase, progressColorProperty } from './progress-common';
+import { ProgressBase, progressBackgroundColorProperty, progressColorProperty } from './progress-common';
 import { Color } from '@nativescript/core';
 
 export class Progress extends ProgressBase {

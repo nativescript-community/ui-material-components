@@ -2,7 +2,7 @@ import { CSSType, View } from '@nativescript/core/ui/core/view';
 import { Button as NSButton } from '@nativescript/core/ui/button';
 import { Color } from '@nativescript/core/color';
 import { ImageAsset } from '@nativescript/core/image-asset';
-import { isDataURI, isFileOrResourcePath, RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
+import { RESOURCE_PREFIX, isDataURI, isFileOrResourcePath } from '@nativescript/core/utils/utils';
 import { ImageSource } from '@nativescript/core/image-source';
 import { cssProperty } from 'nativescript-material-core/cssproperties';
 import { Property } from '@nativescript/core/ui/core/properties';

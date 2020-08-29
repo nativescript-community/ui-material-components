@@ -1,10 +1,7 @@
-import { AddChildFromBuilder, booleanConverter, Color, CssProperty, CSSType, Property, Style, View } from '@nativescript/core/ui/core/view';
-
-import { ImageSource } from '@nativescript/core/image-source';
-
-import { cssProperty } from 'nativescript-material-core/cssproperties';
-
 import { EventData } from '@nativescript/core/data/observable';
+import { ImageSource } from '@nativescript/core/image-source';
+import { CSSType, Color, CssProperty, Property, Style, View, booleanConverter } from '@nativescript/core/ui/core/view';
+import { cssProperty } from 'nativescript-material-core/cssproperties';
 
 /**
  * Event interface for tab pressed event
@@ -48,7 +45,7 @@ export interface TabReselectedEventData extends EventData {
 export enum TitleVisibility {
     Selected = 0,
     Always = 1,
-    Never = 2
+    Never = 2,
 }
 
 @CSSType('BottomNavigationBar')
@@ -71,7 +68,7 @@ export abstract class BottomNavigationBarBase extends View {
 
     onLoaded() {
         super.onLoaded();
-        this._items.forEach(child => {
+        this._items.forEach((child) => {
             this.loadView(child);
             return true;
         });
@@ -86,21 +83,21 @@ export abstract class BottomNavigationBarBase extends View {
     }
 
     _emitTabPressed(index: number) {
-        let eventData: TabPressedEventData = {
+        const eventData: TabPressedEventData = {
             eventName: BottomNavigationBarBase.tabPressedEvent,
             object: this,
-            index
+            index,
         };
         this.notify(eventData);
         this.removeBadge(index);
     }
 
     _emitTabSelected(index: number) {
-        let eventData: TabSelectedEventData = {
+        const eventData: TabSelectedEventData = {
             eventName: BottomNavigationBarBase.tabSelectedEvent,
             object: this,
             oldIndex: this.selectedTabIndex,
-            newIndex: index
+            newIndex: index,
         };
         this.selectedTabIndex = index;
         this.notify(eventData);
@@ -108,10 +105,10 @@ export abstract class BottomNavigationBarBase extends View {
     }
 
     _emitTabReselected(index: number) {
-        let eventData: TabReselectedEventData = {
+        const eventData: TabReselectedEventData = {
             eventName: BottomNavigationBarBase.tabReselectedEvent,
             object: this,
-            index
+            index,
         };
         this.notify(eventData);
     }
@@ -139,7 +136,7 @@ export abstract class BottomNavigationBarBase extends View {
 
 export const tabsProperty = new Property<BottomNavigationBarBase, BottomNavigationTabBase[]>({
     name: 'tabs',
-    affectsLayout: true
+    affectsLayout: true,
 });
 
 tabsProperty.register(BottomNavigationBarBase);
@@ -149,7 +146,7 @@ export const titleVisibilityProperty = new Property<BottomNavigationBarBase, Tit
     equalityComparer: (x, y) => x === y,
     affectsLayout: true,
     defaultValue: TitleVisibility.Selected,
-    valueConverter: v => TitleVisibility[v]
+    valueConverter: (v) => TitleVisibility[v],
 });
 
 titleVisibilityProperty.register(BottomNavigationBarBase);
@@ -159,7 +156,7 @@ export const activeColorCssProperty = new CssProperty<Style, Color>({
     cssName: 'active-color',
     equalityComparer: Color.equals,
     defaultValue: new Color('black'),
-    valueConverter: v => new Color(v)
+    valueConverter: (v) => new Color(v),
 });
 activeColorCssProperty.register(Style);
 
@@ -168,7 +165,7 @@ export const inactiveColorCssProperty = new CssProperty<Style, Color>({
     cssName: 'inactive-color',
     equalityComparer: Color.equals,
     defaultValue: new Color('gray'),
-    valueConverter: v => new Color(v)
+    valueConverter: (v) => new Color(v),
 });
 inactiveColorCssProperty.register(Style);
 
@@ -209,7 +206,7 @@ export abstract class BottomNavigationTabBase extends View implements BottomNavi
 export const isSelectableProperty = new Property<BottomNavigationTabBase, boolean>({
     name: 'isSelectable',
     defaultValue: true,
-    valueConverter: booleanConverter
+    valueConverter: booleanConverter,
 });
 
 isSelectableProperty.register(BottomNavigationTabBase);
@@ -217,7 +214,7 @@ isSelectableProperty.register(BottomNavigationTabBase);
 export const iconProperty = new Property<BottomNavigationTabBase, ImageSource>({
     name: 'icon',
     affectsLayout: true,
-    valueConverter: ImageSource.fromFileOrResourceSync
+    valueConverter: ImageSource.fromFileOrResourceSync,
 });
 
 iconProperty.register(BottomNavigationTabBase);

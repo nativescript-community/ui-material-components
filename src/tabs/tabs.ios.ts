@@ -9,11 +9,11 @@ import { Color } from '@nativescript/core/color';
 import { ImageSource } from '@nativescript/core/image-source';
 import { device } from '@nativescript/core/platform';
 import { ios as iosUtils, isFontIconURI, layout } from '@nativescript/core/utils/utils';
-import { ios as iosView, View } from '@nativescript/core/ui/core/view';
+import { View, ios as iosView } from '@nativescript/core/ui/core/view';
 import { Frame } from '@nativescript/core/ui/frame';
 import { Font } from '@nativescript/core/ui/styling/font';
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript/core/ui/tab-navigation-base/tab-navigation-base';
-import { swipeEnabledProperty, TabsBase, IOSTabBarItemsAlignment, iOSTabBarItemsAlignmentProperty } from './tabs-common';
+import { IOSTabBarItemsAlignment, TabsBase, iOSTabBarItemsAlignmentProperty, swipeEnabledProperty } from './tabs-common';
 
 // TODO
 // import { profile } from "../../profiling";
@@ -91,7 +91,7 @@ declare class IBackgroundIndicatorTemplate extends NSObject implements MDCTabBar
 const BackgroundIndicatorTemplate = (NSObject as any).extend(
     {
         indicatorAttributesForContext(context: MDCTabBarIndicatorContext): MDCTabBarIndicatorAttributes {
-            let attributes = new MDCTabBarIndicatorAttributes();
+            const attributes = new MDCTabBarIndicatorAttributes();
             attributes.path = UIBezierPath.bezierPathWithRect(context.bounds);
 
             return attributes;
@@ -197,7 +197,7 @@ const UIPageViewControllerImpl = (UIPageViewController as any).extend(
                 scrollViewTop = this.tabBar.frame.size.height;
                 scrollViewHeight = this.view.bounds.size.height - this.tabBar.frame.size.height + safeAreaInsetsBottom;
                 let tabBarTop = safeAreaInsetsTop;
-                let tabBarHeight = this.tabBar.frame.size.height;
+                const tabBarHeight = this.tabBar.frame.size.height;
 
                 const tabsPosition = owner.tabsPosition;
                 if (tabsPosition === 'bottom') {
@@ -230,7 +230,7 @@ const UIPageViewControllerImpl = (UIPageViewController as any).extend(
             for (let i = 0; i < subViews.count; i++) {
                 const view: UIView = subViews[i];
                 if (view instanceof UIScrollView) {
-                    scrollView = <UIScrollView>view;
+                    scrollView = view;
                 }
             }
 
@@ -312,7 +312,7 @@ const UIPageViewControllerDataSourceImpl = (NSObject as any).extend(
 
             selectedIndex--;
             const prevItem = owner.items[selectedIndex];
-            let prevViewController = (<any>prevItem).__controller;
+            const prevViewController = prevItem.__controller;
 
             // if (!prevViewController) {
             //     prevViewController = owner.getViewController(prevItem);
@@ -339,7 +339,7 @@ const UIPageViewControllerDataSourceImpl = (NSObject as any).extend(
 
             selectedIndex++;
             const nextItem = owner.items[selectedIndex];
-            let nextViewController = (<any>nextItem).__controller;
+            const nextViewController = nextItem.__controller;
 
             // if (!nextViewController) {
             //     nextViewController = owner.getViewController(nextItem);
@@ -442,7 +442,7 @@ function iterateIndexRange(index: number, eps: number, lastIndex: number, callba
 function updateBackgroundPositions(tabStrip: TabStrip, tabStripItem: TabStripItem, color: UIColor = null) {
     let bgView = (<any>tabStripItem).bgView;
     const index = tabStripItem._index;
-    let width = tabStrip.nativeView.frame.size.width / tabStrip.items.length;
+    const width = tabStrip.nativeView.frame.size.width / tabStrip.items.length;
     const frame = CGRectMake(width * index, 0, width, tabStrip.nativeView.frame.size.width);
     if (!bgView) {
         bgView = UIView.alloc().initWithFrame(frame);
@@ -623,8 +623,8 @@ export class Tabs extends TabsBase {
         const lastIndex = items.length - 1;
         const offsideItems = this.offscreenTabLimit;
 
-        let toUnload = [];
-        let toLoad = [];
+        const toUnload = [];
+        const toLoad = [];
 
         iterateIndexRange(newIndex, offsideItems, lastIndex, (i) => toLoad.push(i));
 
@@ -721,7 +721,7 @@ export class Tabs extends TabsBase {
 
         iterateIndexRange(index, offsideItems, lastIndex, (i) => {
             if (items[i]) {
-                (<TabContentItem>items[i]).canBeLoaded = true;
+                items[i].canBeLoaded = true;
             }
         });
     }
@@ -752,7 +752,7 @@ export class Tabs extends TabsBase {
             const controller = this.getViewController(item);
 
             if (this.tabStrip && this.tabStrip.items && this.tabStrip.items[i]) {
-                const tabStripItem = <TabStripItem>this.tabStrip.items[i];
+                const tabStripItem = this.tabStrip.items[i];
                 const tabBarItem = this.createTabBarItem(tabStripItem, i);
                 updateTitleAndIconPositions(tabStripItem, tabBarItem, controller);
 
@@ -908,7 +908,7 @@ export class Tabs extends TabsBase {
 
         UIGraphicsBeginImageContextWithOptions({ width: widthPts, height: heightPts }, false, layout.getDisplayDensity());
         image.drawInRect(CGRectMake(0, 0, widthPts, heightPts));
-        let resultImage = UIGraphicsGetImageFromCurrentImageContext();
+        const resultImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
 
         return resultImage;
@@ -953,7 +953,7 @@ export class Tabs extends TabsBase {
             return;
         }
 
-        let newColor = value instanceof Color ? value.ios : value;
+        const newColor = value instanceof Color ? value.ios : value;
         const itemSelectedAndHighlighted = this.isSelectedAndHightlightedItem(tabStripItem);
 
         // As we cannot implement selected item background color in Tabs we are using the Indicator for this
@@ -999,11 +999,10 @@ export class Tabs extends TabsBase {
             return;
         }
 
-        let image: UIImage;
 
         // if selectedItemColor or unSelectedItemColor is set we don't respect the color from the style
         const tabStripColor = this.selectedIndex === tabStripItem._index ? this._selectedItemColor : this._unSelectedItemColor;
-        image = this.getIcon(tabStripItem, tabStripColor);
+        const image: UIImage = this.getIcon(tabStripItem, tabStripColor);
 
         tabStripItem.nativeView.image = image;
     }
@@ -1107,7 +1106,7 @@ export class Tabs extends TabsBase {
             const item = this.items[value];
             const controllers = NSMutableArray.alloc<UIViewController>().initWithCapacity(1);
 
-            let itemController = (<any>item).__controller;
+            const itemController = (<any>item).__controller;
 
             // if (!itemController) {
             //     itemController = this.getViewController(item);
@@ -1185,7 +1184,7 @@ export class Tabs extends TabsBase {
             return 'justified';
         }
 
-        let alignment = this.tabBar.alignment.toString();
+        const alignment = this.tabBar.alignment.toString();
 
         return <any>(alignment.charAt(0).toLowerCase() + alignment.substring(1));
     }
