@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/nativescript-community/ui-material-components/compare/v3.2.21...v3.3.0) (2020-08-29)
+
+
+### Bug Fixes
+
+* **android:** wrong read of exported variables ([8790d6d](https://github.com/nativescript-community/ui-material-components/commit/8790d6d24382152405f84a2d515ce3261951b206))
+
+
+
+
+
 ## [3.2.21](https://github.com/nativescript-community/ui-material-components/compare/v3.2.19...v3.2.21) (2020-08-29)
 
 
