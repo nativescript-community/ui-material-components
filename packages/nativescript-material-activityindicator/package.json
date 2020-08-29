@@ -8,8 +8,7 @@
     "scripts": {
         "tsc": "../../node_modules/.bin/cpy ../../src/activityindicator/activityindicator.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\activityindicator\\activityindicator.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
-        "build": "npm run tsc && npm run build.angular",
-        "build.esm": "tsc -skipLibCheck --target es2015 --module esnext --removeComments  --outDir ./build/esm && node ../../build.esm.js",
+        "build": "npm run tsc",
         "build.angular": "cd ../../src/activityindicator/angular && npm run build",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
