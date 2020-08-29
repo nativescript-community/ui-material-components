@@ -18,6 +18,7 @@
 		"build": "npm i && ../../../node_modules/.bin/ng-packagr -p package.json && cd dist && ../../../../node_modules/.bin/cpy '**/*' '../../../../packages/nativescript-material-ripple/angular' --parents"
 	},
 	"devDependencies": {
-		"nativescript-material-ripple": "^3.2.19"
+		"nativescript-material-ripple": "^3.2.19",
+		"tslib": "^2.0.1"
 	}
 }
