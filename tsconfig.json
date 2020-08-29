@@ -27,6 +27,8 @@
             "nativescript-material-activityindicator/*": ["src/activityindicator/*"],
             "nativescript-material-bottomnavigationbar": ["src/bottomnavigationbar/bottomnavigationbar"],
             "nativescript-material-bottomnavigationbar/*": ["src/bottomnavigationbar/*"],
+            "nativescript-material-bottomsheet": ["src/bottomsheet/bottomsheet"],
+            "nativescript-material-bottomsheet/*": ["src/bottomsheet/*"],
             "nativescript-material-button": ["src/button/button"],
             "nativescript-material-button/*": ["src/button/*"],
             "nativescript-material-cardview": ["src/cardview/cardview"],
