@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.21](https://github.com/nativescript-community/ui-material-components/compare/v3.2.19...v3.2.21) (2020-08-29)
+
+
+### Bug Fixes
+
+* **android:** prevent back button when cancelable is false ([09960ec](https://github.com/nativescript-community/ui-material-components/commit/09960ec21f42e857d33653822732223cbdef1e79))
+* **ios:** check for fontInternal as it can undefined [#170](https://github.com/nativescript-community/ui-material-components/issues/170) ([2d150a4](https://github.com/nativescript-community/ui-material-components/commit/2d150a4c5de53d4cb3f1fb99ff2fd5701af0fbe8))
+
+
+
+
+
 ## [3.2.20](https://github.com/nativescript-community/ui-material-components/compare/v3.2.19...v3.2.20) (2020-08-29)
 
 
