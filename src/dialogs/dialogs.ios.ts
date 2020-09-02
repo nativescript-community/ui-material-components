@@ -60,7 +60,6 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
     // viewLayedOut = false;
     get preferredContentSize() {
         const superResult = this.super.preferredContentSize;
-        console.log('get preferredContentSize', superResult);
         const measuredHeight = this._customContentView ? this._customContentView.getMeasuredHeight() : 0; // pixels
         const hasTitleOrMessage = this.title || this.message;
         let result: CGSize;

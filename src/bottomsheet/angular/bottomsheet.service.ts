@@ -140,7 +140,7 @@ export class BottomSheetService {
 
             return this.componentView;
         } catch (e) {
-            console.log(e);
+            console.error(e);
             return null;
         }
     }
