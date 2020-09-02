@@ -9,7 +9,7 @@
         "tsc": "../../node_modules/.bin/cpy ../../src/slider/slider.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\slider\\slider.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
         "build": "npm run tsc",
-        "build.angular": "cd ../../src/slider/angular && npm run build",
+        "build.angular": "../../node_modules/.bin/ng-packagr -p ../../src/slider/angular/package.json -c ../../src/slider/angular/tsconfig.json",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {

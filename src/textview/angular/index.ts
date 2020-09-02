@@ -3,6 +3,7 @@ import { TextValueAccessor } from './textvalue-accessor';
 
 import { registerElement } from '@nativescript/angular';
 import { TextView } from '@nativescript-community/ui-material-textview';
+export { TextValueAccessor };
 
 export const FORMS_DIRECTIVES = [TextValueAccessor];
 

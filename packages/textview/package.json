@@ -9,7 +9,7 @@
         "tsc": "../../node_modules/.bin/cpy ../../src/textview/textview.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\textview\\textview.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
         "build": "npm run tsc",
-        "build.angular": "cd ../../src/textview/angular && npm run build",
+        "build.angular": "../../node_modules/.bin/ng-packagr -p ../../src/textview/angular/package.json -c ../../src/textview/angular/tsconfig.json",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {

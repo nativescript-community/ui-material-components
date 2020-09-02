@@ -1,0 +1,15 @@
+{
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "./",
+        "paths": {
+            "tns-core-modules": ["./node_modules/@nativescript/core"],
+            "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
+            "@nativescript-community/ui-material-core": ["packages/core/index"],
+            "@nativescript-community/ui-material-core/*": ["packages/core/*"],
+            "@nativescript-community/ui-material-slider": ["packages/slider/slider"],
+            "@nativescript-community/ui-material-slider/*": ["packages/slider/*"]
+        }
+    },
+    "include": ["./**/*.ts", "../../../references.d.ts", "../../references.d.ts"],
+}
