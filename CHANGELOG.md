@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.10](https://github.com/nativescript-community/ui-material-components/compare/v4.0.8...v4.0.10) (2020-09-02)
+
+
+### Bug Fixes
+
+* **android:** prevent back button when cancelable is false ([882ab2c](https://github.com/nativescript-community/ui-material-components/commit/882ab2c5176ec7aabb7f89ae4d0958bd09ec7b9d))
+* **ios:** check for fontInternal as it can undefined [#170](https://github.com/nativescript-community/ui-material-components/issues/170) ([98a3c9f](https://github.com/nativescript-community/ui-material-components/commit/98a3c9f079420023046e72d90ba12da705383764))
+* **ios:** use extend because extends crashes with the v8 runtime ([4ac8be8](https://github.com/nativescript-community/ui-material-components/commit/4ac8be8d0faf50b8c66ead6670188f777196fa4b))
+
+
+
+
+
 ## [4.0.8](https://github.com/Akylas/nativescript-material-components/compare/v4.0.6...v4.0.8) (2020-08-15)
 
 

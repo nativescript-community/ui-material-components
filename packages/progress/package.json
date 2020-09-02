@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-progress",
-    "version": "4.0.9",
+    "version": "4.0.10",
     "description": "Material progress component",
     "main": "./progress",
     "sideEffects": false,
@@ -35,7 +35,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^4.0.8"
+        "@nativescript-community/ui-material-core": "^4.0.10"
     },
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }
