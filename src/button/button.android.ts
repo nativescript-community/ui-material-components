@@ -80,7 +80,6 @@ export class Button extends ButtonBase {
     }
 
     getDefaultElevation(): number {
-        console.log('getDefaultElevation', 2, new Error().stack);
         return 2; // 2dp @dimen/mtrl_btn_elevation
     }
 

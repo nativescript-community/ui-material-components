@@ -139,7 +139,6 @@ export class TextField extends TextFieldBase {
     }
 
     public requestFocus() {
-        console.log('requestFocus');
         if (this.layoutView) {
             // because of setFocusableInTouchMode fix we need this for focus to work
             const oldDesc = this.layoutView.getDescendantFocusability();

@@ -66,7 +66,6 @@ export class SnackBar extends SnackBarBase {
             messageView.snackbarMessageViewBackgroundColor = (options.backgroundColor instanceof Color ? options.backgroundColor : new Color(options.backgroundColor)).ios;
         }
         if (options.view) {
-            console.log('attaching to custom view', options.view);
             SnackBar._snackbarManager.setPresentationHostView(options.view.nativeViewProtected);
         } else {
             SnackBar._snackbarManager.setPresentationHostView(null);
