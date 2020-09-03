@@ -3,7 +3,7 @@
 
 interface MDCAlertController {
     alertView: MDCAlertControllerView;
-    mdc_dialogPresentationController: MDCDialogPresentationController
+    mdc_dialogPresentationController: MDCDialogPresentationController;
 }
 interface MDCAlertControllerView extends UIView {
     customContentView: UIView;
