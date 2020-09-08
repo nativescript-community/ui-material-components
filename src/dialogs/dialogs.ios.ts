@@ -155,8 +155,8 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
             View.layoutChild(null, view, 0, originY, measuredWidth, originY + measuredHeight);
 
             // TODO: for a reload of the preferredContentSize. Find a better solution!
-            const pW = this.getSuperPreferredContentSize().width;
-            const pH = this.getSuperPreferredContentSize().height;
+            const pW = super.preferredContentSize.width;
+            const pH = super.preferredContentSize.height;
             this.preferredContentSize = CGSizeMake(pW, pH + 0.00000000001);
             this.preferredContentSize = CGSizeMake(pW, pH);
             return true;
