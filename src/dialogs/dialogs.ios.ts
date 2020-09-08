@@ -268,7 +268,7 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
 }
 
 function createAlertController(options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
-    const alertController = MDCAlertControllerImpl.new() as IMDCAlertControllerImpl;
+    const alertController = MDCAlertControllerImpl.alloc().init() as IMDCAlertControllerImpl;
     // const buttonColor = getButtonColors().color;
     // if (buttonColor) {
     //     alertController.view.tintColor = buttonColor.ios;
