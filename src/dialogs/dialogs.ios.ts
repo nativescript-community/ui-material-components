@@ -59,7 +59,9 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
     // actions: NSArray<any>;
     // viewLayedOut = false;
     get preferredContentSize() {
-        const superResult = this.super.preferredContentSize;
+        console.log('get preferredContentSize');
+        // const superResult = this.super.preferredContentSize;
+        const superResult = Object.getOwnPropertyDescriptor(MDCAlertController.prototype, 'preferredContentSize').get.call(this);
         const measuredHeight = this._customContentView ? this._customContentView.getMeasuredHeight() : 0; // pixels
         const hasTitleOrMessage = this.title || this.message;
         let result: CGSize;
@@ -73,7 +75,8 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
         return result;
     },
     set preferredContentSize(x) {
-        this.super.preferredContentSize = x;
+        Object.getOwnPropertyDescriptor(MDCAlertController.prototype, 'preferredContentSize').set.apply(this, arguments);
+        // this.super.preferredContentSize = x;
     },
     get contentScrollView() {
         const alertView = this.view as MDCAlertControllerView;
@@ -112,7 +115,8 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
     },
 
     getSuperPreferredContentSize() {
-        return this.super.preferredContentSize;
+        return Object.getOwnPropertyDescriptor(MDCAlertController.prototype, 'preferredContentSize').get.call(this);
+        // return this.super.preferredContentSize;
         // const proto = MDCAlertControllerImpl.prototype;
         // return Object.getOwnPropertyDescriptor(proto, 'preferredContentSize').get.apply(this);
     },
@@ -154,9 +158,10 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
             const measuredHeight = view.getMeasuredHeight(); // pixels
             View.layoutChild(null, view, 0, originY, measuredWidth, originY + measuredHeight);
 
+            const size = this.getSuperPreferredContentSize();
+            const pW = size.width;
+            const pH = size.height;
             // TODO: for a reload of the preferredContentSize. Find a better solution!
-            const pW = super.preferredContentSize.width;
-            const pH = super.preferredContentSize.height;
             this.preferredContentSize = CGSizeMake(pW, pH + 0.00000000001);
             this.preferredContentSize = CGSizeMake(pW, pH);
             return true;
@@ -206,13 +211,13 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
             this.autoFocusTextField = null;
         }
     },
-    viewDidLoad() {
-        this.super.viewDidLoad();
-        if (this._customContentView) {
-            this.addCustomViewToLayout();
-            this.view.setNeedsLayout();
-        }
-    },
+    // viewDidLoad() {
+    //     this.super.viewDidLoad();
+    //     if (this._customContentView) {
+    //         this.addCustomViewToLayout();
+    //         this.view.setNeedsLayout();
+    //     }
+    // },
     viewDidUnload() {
         this.super.viewDidUnload();
         if (this.customContentView) {
