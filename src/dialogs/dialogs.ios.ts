@@ -211,13 +211,13 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
             this.autoFocusTextField = null;
         }
     },
-    // viewDidLoad() {
-    //     this.super.viewDidLoad();
-    //     if (this._customContentView) {
-    //         this.addCustomViewToLayout();
-    //         this.view.setNeedsLayout();
-    //     }
-    // },
+    viewDidLoad() {
+        this.super.viewDidLoad();
+        if (this._customContentView) {
+            this.addCustomViewToLayout();
+            this.view.setNeedsLayout();
+        }
+    },
     viewDidUnload() {
         this.super.viewDidUnload();
         if (this.customContentView) {
