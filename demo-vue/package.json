@@ -4,10 +4,7 @@
     "readme": "README.md",
     "repository": "http://www.github.com/NativeScript/nativescript-ui-sidedrawer.git",
     "nativescript": {
-        "id": "org.nativescript.demovuematerial",
-        "tns-ios": {
-            "version": "7.0.0-beta.3-v8-2020-07-01-222820-05"
-        }
+        "id": "org.nativescript.demovuematerial"
     },
     "dependencies": {
         "@mdi/font": "4.9.95",
@@ -26,37 +23,30 @@
         "@nativescript-community/ui-material-tabs": "file:../packages/tabs",
         "@nativescript-community/ui-material-textfield": "file:../packages/textfield",
         "@nativescript-community/ui-material-textview": "file:../packages/textview",
-        "@nativescript/core": "rc",
-        "@nativescript/theme": "rc",
+        "@nativescript/core": "7.0.0",
+        "@nativescript/theme": "2.3.3",
         "nativescript-iqkeyboardmanager": "^1.5.1",
-        "nativescript-vue": "~2.7.1",
-        "nativescript-vue-template-compiler": "^2.7.1"
+        "nativescript-vue": "~2.8.1",
+        "nativescript-vue-template-compiler": "~2.8.1"
     },
     "devDependencies": {
-        "@babel/core": "^7.9.0",
-        "@babel/preset-env": "^7.9.0",
-        "@nativescript/types": "rc",
-        "@nativescript/webpack": "rc",
+        "@babel/core": "^7.11.6",
+        "@nativescript/android": "7.0.0",
+        "@nativescript/ios":"7.0.0",
+        "@nativescript/types": "7.0.1",
+        "@nativescript/webpack": "3.0.2",
         "babel-loader": "^8.1.0",
-        "clean-webpack-plugin": "^3.0.0",
-        "copy-webpack-plugin": "^5.1.1",
-        "css-loader": "^3.4.2",
-        "nativescript-vue-template-compiler": "^2.5.0",
-        "node-sass": "^4.13.1",
-        "properties-reader": "^2.1.1",
-        "sass-loader": "^8.0.2",
+        "nativescript-vue-template-compiler": "~2.8.1",
+        "sass-loader": "^10.0.2",
         "scss-symbols-parser": "^2.0.1",
         "string-replace-loader": "^2.3.0",
-        "tslint": "^6.1.2",
-        "tslint-config-prettier": "^1.18.0",
-        "tslint-config-standard": "^9.0.0",
-        "typescript": "^3.8.3",
-        "vue": "^2.6.11",
-        "vue-i18n": "^8.15.6",
-        "vue-loader": "^15.9.1",
-        "vue-property-decorator": "^8.4.1",
-        "webpack": "^4.42.1",
-        "webpack-cli": "^3.3.11"
+        "typescript": "^3.9.7",
+        "vue": "^2.6.12",
+        "vue-i18n": "^8.21.0",
+        "vue-loader": "^15.9.3",
+        "vue-property-decorator": "^8.5.1",
+        "webpack": "^4.44.1",
+        "webpack-cli": "^3.3.12"
     },
     "scripts": {
         "tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'"
