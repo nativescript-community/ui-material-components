@@ -59,24 +59,28 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
     // actions: NSArray<any>;
     // viewLayedOut = false;
     get preferredContentSize() {
-        console.log('get preferredContentSize');
-        // const superResult = this.super.preferredContentSize;
-        const superResult = Object.getOwnPropertyDescriptor(MDCAlertController.prototype, 'preferredContentSize').get.call(this);
+        const superResult = this.super.preferredContentSize;
+        // const superResult = Object.getOwnPropertyDescriptor(MDCAlertController.prototype, 'preferredContentSize').get.call(this);
         const measuredHeight = this._customContentView ? this._customContentView.getMeasuredHeight() : 0; // pixels
+        const measuredHeightDP = Utils.layout.toDeviceIndependentPixels(measuredHeight); // pixels
         const hasTitleOrMessage = this.title || this.message;
         let result: CGSize;
         if (hasTitleOrMessage) {
-            result = CGSizeMake(superResult.width, Math.round(superResult.height + Utils.layout.toDeviceIndependentPixels(measuredHeight)));
+            result = CGSizeMake(superResult.width, Math.round(superResult.height + measuredHeightDP));
         } else if (this.actions.count > 0) {
-            result = CGSizeMake(superResult.width, Math.round(Utils.layout.toDeviceIndependentPixels(superResult.height) + Utils.layout.toDeviceIndependentPixels(measuredHeight)));
+            result = CGSizeMake(superResult.width, Math.round(Utils.layout.toDeviceIndependentPixels(superResult.height) + measuredHeightDP));
         } else {
-            result = CGSizeMake(superResult.width, Math.floor(Utils.layout.toDeviceIndependentPixels(measuredHeight)));
+            result = CGSizeMake(superResult.width, Math.floor(measuredHeightDP));
         }
+        console.log('get preferredContentSize1', hasTitleOrMessage, this.actions.count > 0, superResult.width, superResult.height, measuredHeight, measuredHeightDP, result.width, result.height);
         return result;
     },
     set preferredContentSize(x) {
-        Object.getOwnPropertyDescriptor(MDCAlertController.prototype, 'preferredContentSize').set.apply(this, arguments);
-        // this.super.preferredContentSize = x;
+        // Object.getOwnPropertyDescriptor(MDCAlertController.prototype, 'preferredContentSize').set.apply(this, arguments);
+        const old  =this.super.preferredContentSize;
+        this.super.preferredContentSize = x;
+        const newValue  =this.super.preferredContentSize;
+        console.log('set preferredContentSize1', old.width, old.height, x.width, x.height, newValue.width, newValue.height);
     },
     get contentScrollView() {
         const alertView = this.view as MDCAlertControllerView;
@@ -115,8 +119,8 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
     },
 
     getSuperPreferredContentSize() {
-        return Object.getOwnPropertyDescriptor(MDCAlertController.prototype, 'preferredContentSize').get.call(this);
-        // return this.super.preferredContentSize;
+        // return Object.getOwnPropertyDescriptor(MDCAlertController.prototype, 'preferredContentSize').get.call(this);
+        return this.super.preferredContentSize;
         // const proto = MDCAlertControllerImpl.prototype;
         // return Object.getOwnPropertyDescriptor(proto, 'preferredContentSize').get.apply(this);
     },
@@ -162,7 +166,8 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
             const pW = size.width;
             const pH = size.height;
             // TODO: for a reload of the preferredContentSize. Find a better solution!
-            this.preferredContentSize = CGSizeMake(pW, pH + 0.00000000001);
+            console.log('layoutCustomView',measuredWidth , measuredHeight);
+            this.preferredContentSize = CGSizeMake(pW, pH + 1);
             this.preferredContentSize = CGSizeMake(pW, pH);
             return true;
         } else {
