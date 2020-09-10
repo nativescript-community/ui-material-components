@@ -63,7 +63,6 @@ export class Button extends ButtonBase {
     //     const nativeView = this.nativeViewProtected;
     //     const clickListener = new android.view.View.OnClickListener({
     //         onClick:()=>{
-    //             console.log('overriden button onClick');
     //     this._emit(ButtonBase.tapEvent);
     //         }
     //     });

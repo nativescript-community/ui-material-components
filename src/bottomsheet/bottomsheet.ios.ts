@@ -257,7 +257,6 @@ class UILayoutViewController extends UIViewController {
                     }
                 }
                 // if (this.ignoreTopSafeArea === true) {
-                //     console.log('ignoreTopSafeArea', additionalInsets.top, this.view.safeAreaLayoutGuide.layoutFrame.origin.x, this.view.safeAreaInsets.top);
                 //     additionalInsets.top += this.view.safeAreaLayoutGuide.layoutFrame.origin.x;
                 // }
 
@@ -337,7 +336,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
         this._commonShowNativeBottomSheet(parentWithController, options);
         let controller: IUILayoutViewController = this.viewController;
-        // console.log('_showNativeBottomSheet', this, controller, controller instanceof UILayoutViewController);
         if (!controller) {
             const nativeView = this.ios || this.nativeViewProtected;
             controller = UILayoutViewController.initWithOwner(this);

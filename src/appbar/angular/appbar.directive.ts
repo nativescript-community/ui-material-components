@@ -31,7 +31,6 @@ export class AppBarDirective implements AfterViewInit {
     }
 
     private _addController() {
-        // console.log('_addController', this.addedToParent, this instanceof AppBar, this instanceof ActionBar);
         if (this._appBarController && !this.addedToParent) {
             const page = this.page;
             if (page && page.parent) {
@@ -41,13 +40,11 @@ export class AppBarDirective implements AfterViewInit {
                     viewController.navigationController.navigationBarHidden = true;
                 }
                 // let currentControllers = viewController.childViewControllers;
-                // console.log('currentControllers', currentControllers.count);
                 // if (currentControllers.count > 0) {
                 //     currentControllers[0].removeFromParentViewController();
                 // }
                 // viewController.childViewControllers[0]
                 // viewController.addChildViewController(this._appBarController);
-                // console.log('addChildViewController done');
                 this.addedToParent = true;
             }
         }
