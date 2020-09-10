@@ -52,15 +52,8 @@ declare class IMDCAlertControllerImpl extends MDCAlertController {
 }
 // @NativeClass
 const MDCAlertControllerImpl = (MDCAlertController as any).extend({
-    // autoFocusTextField?: TextField;
-    // _customContentView?: View;
-    // _customContentViewContext?: any;
-    // _resolveFunction?: Function;
-    // actions: NSArray<any>;
-    // viewLayedOut = false;
     get preferredContentSize() {
         const superResult = this.super.preferredContentSize;
-        // const superResult = Object.getOwnPropertyDescriptor(MDCAlertController.prototype, 'preferredContentSize').get.call(this);
         const measuredHeight = this._customContentView ? this._customContentView.getMeasuredHeight() : 0; // pixels
         const measuredHeightDP = Utils.layout.toDeviceIndependentPixels(measuredHeight); // pixels
         const hasTitleOrMessage = this.title || this.message;
@@ -72,15 +65,10 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
         } else {
             result = CGSizeMake(superResult.width, Math.floor(measuredHeightDP));
         }
-        console.log('get preferredContentSize1', hasTitleOrMessage, this.actions.count > 0, superResult.width, superResult.height, measuredHeight, measuredHeightDP, result.width, result.height);
         return result;
     },
     set preferredContentSize(x) {
-        // Object.getOwnPropertyDescriptor(MDCAlertController.prototype, 'preferredContentSize').set.apply(this, arguments);
-        const old  =this.super.preferredContentSize;
         this.super.preferredContentSize = x;
-        const newValue  =this.super.preferredContentSize;
-        console.log('set preferredContentSize1', old.width, old.height, x.width, x.height, newValue.width, newValue.height);
     },
     get contentScrollView() {
         const alertView = this.view as MDCAlertControllerView;
@@ -117,20 +105,13 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
             }
         }
     },
-
-    getSuperPreferredContentSize() {
-        // return Object.getOwnPropertyDescriptor(MDCAlertController.prototype, 'preferredContentSize').get.call(this);
-        return this.super.preferredContentSize;
-        // const proto = MDCAlertControllerImpl.prototype;
-        // return Object.getOwnPropertyDescriptor(proto, 'preferredContentSize').get.apply(this);
-    },
     measureChild() {
         const contentScrollView = this.contentScrollView;
         const contentSize = contentScrollView.contentSize;
         if (contentSize.width === 0) {
             return false;
         }
-        const width = contentSize.width || this.getSuperPreferredContentSize().width;
+        const width = contentSize.width || this.super.prefer.width;
         const widthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(width), Utils.layout.EXACTLY);
         View.measureChild(null, this._customContentView, widthSpec, UNSPECIFIED);
         return true;
@@ -162,12 +143,11 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
             const measuredHeight = view.getMeasuredHeight(); // pixels
             View.layoutChild(null, view, 0, originY, measuredWidth, originY + measuredHeight);
 
-            const size = this.getSuperPreferredContentSize();
+            const size = this.super.preferredContentSize;
             const pW = size.width;
             const pH = size.height;
             // TODO: for a reload of the preferredContentSize. Find a better solution!
-            console.log('layoutCustomView',measuredWidth , measuredHeight);
-            this.preferredContentSize = CGSizeMake(pW, pH + 1);
+            this.preferredContentSize = CGSizeMake(pW, pH + 0.0000001);
             this.preferredContentSize = CGSizeMake(pW, pH);
             return true;
         } else {
@@ -221,6 +201,13 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
         if (this._customContentView) {
             this.addCustomViewToLayout();
             this.view.setNeedsLayout();
+        }
+    },
+    traitCollectionDidChange(previousTraitCollection: UITraitCollection): void {
+        try {
+            this.super.traitCollectionDidChange(previousTraitCollection);
+        } catch (err) {
+            console.error('error', err);
         }
     },
     viewDidUnload() {
