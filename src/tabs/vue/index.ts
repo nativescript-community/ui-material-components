@@ -11,7 +11,7 @@ export default {
                     prop: 'selectedIndex',
                     event: 'selectedIndexChange',
                 },
-                component: require('./tabs').default,
+                component: require('./tabsComponent').default,
             });
         }
     },
