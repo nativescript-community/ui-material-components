@@ -16,6 +16,7 @@ declare type OnNavigationItemReselectedListener = com.google.android.material.bo
 // Listeners
 type OnTabSelectedlistener = new (owner: BottomNavigationBar) => OnNavigationItemSelectedListener;
 
+// eslint-disable-next-line no-redeclare
 let OnTabSelectedlistener: OnTabSelectedlistener;
 
 const getOnTabSelectedlistener = () => {
@@ -54,6 +55,7 @@ const getOnTabSelectedlistener = () => {
 
 type OnTabReselectedListener = new (owner: BottomNavigationBar) => OnNavigationItemReselectedListener;
 
+// eslint-disable-next-line no-redeclare
 let OnTabReselectedListener: OnTabReselectedListener;
 
 const getOnTabReselectedListener = () => {
