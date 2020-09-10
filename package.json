@@ -13,7 +13,7 @@
         "publish": "npm run setup && npm run build && npm run build.angular && lerna publish",
         "build": "lerna run build",
         "build.angular": "lerna run build.angular",
-        "build.all": "lerna run build.angular",
+        "build.all": "lerna run build.all",
         "build.win": "lerna run build-win",
         "force_publish": "lerna publish from-package",
         "increment_version": "lerna version",
