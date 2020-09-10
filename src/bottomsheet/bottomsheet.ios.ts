@@ -187,6 +187,7 @@ declare class IUILayoutViewController extends UIViewController {
     static new(): IUILayoutViewController;
     static alloc(): IUILayoutViewController;
     owner: WeakRef<View>;
+    nsAnimated: boolean;
     ignoreBottomSafeArea: boolean;
     ignoreTopSafeArea: boolean;
 }
@@ -196,6 +197,7 @@ class UILayoutViewController extends UIViewController {
     owner: WeakRef<View>;
     ignoreBottomSafeArea: boolean;
     ignoreTopSafeArea: boolean;
+    nsAnimated: boolean;
     public static initWithOwner(owner: View) {
         const delegate = UILayoutViewController.new() as UILayoutViewController;
         delegate.owner = new WeakRef(owner);
@@ -335,6 +337,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
         this._commonShowNativeBottomSheet(parentWithController, options);
         let controller: IUILayoutViewController = this.viewController;
+        // console.log('_showNativeBottomSheet', this, controller, controller instanceof UILayoutViewController);
         if (!controller) {
             const nativeView = this.ios || this.nativeViewProtected;
             controller = UILayoutViewController.initWithOwner(this);
@@ -376,7 +379,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 bottomSheet.trackingScrollView = scrollView.nativeViewProtected;
             }
         }
-        (controller as any).animated = true;
+        controller.nsAnimated = true;
         parentController.presentViewControllerAnimatedCompletion(bottomSheet, true, null);
         if (options.transparent === true) {
             controller.view.backgroundColor = UIColor.clearColor;
@@ -415,7 +418,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         }
 
         const parentController = parentWithController.viewController;
-        const animated = this.viewController.animated;
+        const animated = this.viewController.nsAnimated;
         parentController.dismissViewControllerAnimatedCompletion(animated, whenClosedCallback);
     }
 }
