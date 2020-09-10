@@ -8,7 +8,7 @@ export interface VueBottomSheetOptions extends Omit<BottomSheetOptions, 'view'> 
 }
 
 declare module 'nativescript-vue' {
-    interface NativeScriptVue {
+    interface NativeScriptVue <V = View> extends Vue{
         $showBottomSheet(component: typeof Vue, options?: VueBottomSheetOptions);
         $closeBottomSheet(...args);
     }
@@ -42,7 +42,7 @@ const BottomSheetPlugin = {
             );
         };
         Vue.prototype.$closeBottomSheet = function(...args) {
-            (this.nativeView as any).closeBottomSheet.apply(this.nativeView, args);
+            (this.nativeView).closeBottomSheet.apply(this.nativeView, args);
         };
     }
 };
