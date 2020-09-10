@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-dialogs",
-    "version": "4.0.10",
+    "version": "4.0.11",
     "description": "Material Dialogs component",
     "main": "./dialogs",
     "sideEffects": false,
@@ -35,8 +35,8 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^4.0.10",
-        "@nativescript-community/ui-material-textfield": "^4.0.10"
+        "@nativescript-community/ui-material-core": "^4.0.11",
+        "@nativescript-community/ui-material-textfield": "^4.0.11"
     },
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }

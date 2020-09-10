@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.11](https://github.com/nativescript-community/ui-material-components/compare/v4.0.10...v4.0.11) (2020-09-10)
+
+
+### Bug Fixes
+
+* **ios:** crash with readonly property ([207668e](https://github.com/nativescript-community/ui-material-components/commit/207668eacf4c29112252003a6e164d291b6bc1ec))
+* **ios:** temp fix for crashwith v8 runtime ([c920b97](https://github.com/nativescript-community/ui-material-components/commit/c920b974bc717bcb56fcfad0a1c4052c9f030597))
+
+
+
+
+
 ## [4.0.10](https://github.com/nativescript-community/ui-material-components/compare/v4.0.8...v4.0.10) (2020-09-02)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.11](https://github.com/nativescript-community/ui-material-components/compare/v4.0.10...v4.0.11) (2020-09-10)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-ripple
+
+
+
+
+
 ## [4.0.10](https://github.com/nativescript-community/ui-material-components/compare/v4.0.8...v4.0.10) (2020-09-02)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-ripple
