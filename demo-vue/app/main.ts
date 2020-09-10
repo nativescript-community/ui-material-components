@@ -57,8 +57,8 @@ Vue.use(BottomSheetPlugin);
 Vue.use(BottomNavigationBarPlugin);
 // Vue.use(TabsPlugin);
 
-Vue.registerElement('PreviousNextView', () => require('nativescript-iqkeyboardmanager').PreviousNextView);
-Vue.registerElement('TextViewWithHint', () => require('nativescript-iqkeyboardmanager').TextViewWithHint);
+Vue.registerElement('PreviousNextView', () => require('@nativescript/iqkeyboardmanager').PreviousNextView);
+Vue.registerElement('TextViewWithHint', () => require('@nativescript/iqkeyboardmanager').TextViewWithHint);
 
 import { installMixins, themer } from '@nativescript-community/ui-material-core';
 installMixins();

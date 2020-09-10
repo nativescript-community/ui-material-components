@@ -25,7 +25,7 @@
         "@nativescript-community/ui-material-textview": "file:../packages/textview",
         "@nativescript/core": "7.0.0",
         "@nativescript/theme": "2.3.3",
-        "nativescript-iqkeyboardmanager": "^1.5.1",
+        "@nativescript/iqkeyboardmanager": "^2.0.0",
         "nativescript-vue": "~2.8.1",
         "nativescript-vue-template-compiler": "~2.8.1"
     },
