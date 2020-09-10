@@ -1,3 +1,4 @@
+/* eslint-disable no-redeclare */
 /* eslint-disable @typescript-eslint/unified-signatures */
 import { ActionOptions, AlertOptions, ConfirmOptions, LoginResult, PromptResult, LoginOptions as TNSLoginOptions, PromptOptions as TNSPromptOptions } from '@nativescript/core';
 import { TextField, TextFieldProperties } from '@nativescript-community/ui-material-textfield';
