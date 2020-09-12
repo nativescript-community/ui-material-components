@@ -55,7 +55,7 @@ Vue.use(TextViewPlugin);
 Vue.use(TextFieldPlugin);
 Vue.use(BottomSheetPlugin);
 Vue.use(BottomNavigationBarPlugin);
-// Vue.use(TabsPlugin);
+Vue.use(TabsPlugin);
 
 Vue.registerElement('PreviousNextView', () => require('@nativescript/iqkeyboardmanager').PreviousNextView);
 Vue.registerElement('TextViewWithHint', () => require('@nativescript/iqkeyboardmanager').TextViewWithHint);
