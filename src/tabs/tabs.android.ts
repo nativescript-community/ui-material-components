@@ -1,6 +1,5 @@
 import { Application, CoercibleProperty, Color, Font, Frame, ImageSource, Property, TabContentItem, TabStrip, TabStripItem, TextTransform, Utils, getIconSpecSize, getTransformedText, isIOS, tabStripProperty } from '@nativescript/core';
-import { TabsBase, offscreenTabLimitProperty, swipeEnabledProperty } from './tabs-common';
-
+import { TabsBase, animationEnabledProperty, offscreenTabLimitProperty, swipeEnabledProperty } from './tabs-common';
 
 export * from './tabs-common';
 
@@ -13,6 +12,7 @@ const INDEX = '_index';
 
 type PagerAdapter = new (owner: Tabs) => androidx.viewpager.widget.PagerAdapter;
 
+// eslint-disable-next-line no-redeclare
 let PagerAdapter: PagerAdapter;
 let TabsBar: any;
 let appResources: android.content.res.Resources;
@@ -387,7 +387,7 @@ function iterateIndexRange(index: number, eps: number, lastIndex: number, callba
 
 export class Tabs extends TabsBase {
     private _tabsBar: org.nativescript.widgets.TabsBar;
-    private _viewPager: androidx.viewpager.widget.ViewPager;
+    private _viewPager: org.nativescript.widgets.TabViewPager;
     private _pagerAdapter: androidx.viewpager.widget.PagerAdapter;
     private _androidViewId: number = -1;
     public _originalBackground: any;
@@ -475,12 +475,12 @@ export class Tabs extends TabsBase {
         }
 
         const nativeView: any = this.nativeViewProtected;
-        this._tabsBar = (nativeView).tabsBar;
+        this._tabsBar = nativeView.tabsBar;
 
-        const viewPager = (nativeView).viewPager;
+        const viewPager = nativeView.viewPager;
         viewPager.setId(this._androidViewId);
         this._viewPager = viewPager;
-        this._pagerAdapter = (viewPager).adapter;
+        this._pagerAdapter = viewPager.adapter;
         (this._pagerAdapter as any).owner = this;
     }
 
@@ -515,7 +515,7 @@ export class Tabs extends TabsBase {
         const newItem = items[newIndex];
         const selectedView = newItem && newItem.content;
         if (selectedView instanceof Frame) {
-            (selectedView)._pushInFrameStackRecursive();
+            selectedView._pushInFrameStackRecursive();
         }
 
         toLoad.forEach((index) => {
@@ -576,8 +576,9 @@ export class Tabs extends TabsBase {
     private disposeCurrentFragments(): void {
         const fragmentManager = this._getFragmentManager();
         const transaction = fragmentManager.beginTransaction();
-        for (const fragment of fragmentManager.getFragments().toArray()) {
-            transaction.remove(fragment);
+        const fragments = fragmentManager.getFragments().toArray();
+        for (let i = 0; i < fragments.length; i++) {
+            transaction.remove(fragments[i]);
         }
         transaction.commitNowAllowingStateLoss();
     }
@@ -806,7 +807,7 @@ export class Tabs extends TabsBase {
         if (value instanceof Color) {
             this._tabsBar.setBackgroundColor(value.android);
         } else {
-            this._tabsBar.setBackground(tryCloneDrawable(value, this.nativeViewProtected.getResources));
+            this._tabsBar.setBackground(tryCloneDrawable(value, this.nativeViewProtected.getResources()));
         }
     }
 
@@ -835,18 +836,19 @@ export class Tabs extends TabsBase {
         this._unSelectedItemColor = value;
     }
 
-    public setTabBarItemTitle(tabStripItem: TabStripItem, value: string): void {
+    private updateItem(tabStripItem: TabStripItem): void {
         // TODO: Should figure out a way to do it directly with the the nativeView
         const tabStripItemIndex = this.tabStrip.items.indexOf(tabStripItem);
         const tabItemSpec = this.createTabItemSpec(tabStripItem);
         this.updateAndroidItemAt(tabStripItemIndex, tabItemSpec);
     }
 
+    public setTabBarItemTitle(tabStripItem: TabStripItem, value: string): void {
+        this.updateItem(tabStripItem);
+    }
+
     public setTabBarItemBackgroundColor(tabStripItem: TabStripItem, value: android.graphics.drawable.Drawable | Color): void {
-        // TODO: Should figure out a way to do it directly with the the nativeView
-        const tabStripItemIndex = this.tabStrip.items.indexOf(tabStripItem);
-        const tabItemSpec = this.createTabItemSpec(tabStripItem);
-        this.updateAndroidItemAt(tabStripItemIndex, tabItemSpec);
+        this.updateItem(tabStripItem);
     }
 
     public _setItemColor(tabStripItem: TabStripItem) {
@@ -866,7 +868,7 @@ export class Tabs extends TabsBase {
         const tabBarItem = this._tabsBar.getViewForItemAt(tabStripItem._index);
 
         const drawable = this.getIcon(tabStripItem, color);
-        const imgView = tabBarItem.getChildAt (0) as android.widget.ImageView;
+        const imgView = tabBarItem.getChildAt(0) as android.widget.ImageView;
         imgView.setImageDrawable(drawable);
         if (color) {
             imgView.setColorFilter(color.android);
@@ -894,6 +896,10 @@ export class Tabs extends TabsBase {
         }
 
         this.setIconColor(tabStripItem);
+    }
+
+    public setTabBarIconSource(tabStripItem: TabStripItem, value: number | Color): void {
+        this.updateItem(tabStripItem);
     }
 
     public setTabBarItemFontInternal(tabStripItem: TabStripItem, value: Font): void {
@@ -932,14 +938,12 @@ export class Tabs extends TabsBase {
     }
 
     [selectedIndexProperty.setNative](value: number) {
-        const smoothScroll = true;
-
         // TODO
         // if (traceEnabled()) {
         //     traceWrite("TabView this._viewPager.setCurrentItem(" + value + ", " + smoothScroll + ");", traceCategory);
         // }
 
-        this._viewPager.setCurrentItem(value, smoothScroll);
+        this._viewPager.setCurrentItem(value, this.animationEnabled);
     }
 
     [itemsProperty.getDefault](): TabContentItem[] {
@@ -970,6 +974,9 @@ export class Tabs extends TabsBase {
     }
     [offscreenTabLimitProperty.setNative](value: number) {
         this._viewPager.setOffscreenPageLimit(value);
+    }
+    [animationEnabledProperty.setNative](value: number) {
+        (this._viewPager as any).setAnimationEnabled(value);
     }
 }
 

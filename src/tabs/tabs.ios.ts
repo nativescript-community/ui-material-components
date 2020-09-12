@@ -14,11 +14,7 @@ import {
     TabStripItem,
     TextTransform,
     Utils,
-    View,
-    ViewBase,
-    getIconSpecSize,
-    isIOS,
-    tabStripProperty,
+    View, ViewBase, getIconSpecSize, isIOS, tabStripProperty
 } from '@nativescript/core';
 import { IOSTabBarItemsAlignment, TabsBase, iOSTabBarItemsAlignmentProperty, swipeEnabledProperty } from './tabs-common';
 
@@ -59,7 +55,7 @@ const selectedIndexProperty = new CoercibleProperty<Tabs, number>({
 
 declare module '@nativescript/core/ui/tab-navigation-base/tab-content-item' {
     interface TabContentItem {
-        __controller: UIViewController;
+        __controller?: UIViewController;
     }
 }
 
@@ -333,7 +329,7 @@ class UIPageViewControllerDataSourceImpl extends NSObject implements UIPageViewC
 
         selectedIndex--;
         const prevItem = owner.items[selectedIndex];
-        const prevViewController = prevItem.__controller;
+        const prevViewController = (prevItem).__controller;
 
         // if (!prevViewController) {
         //     prevViewController = owner.getViewController(prevItem);
@@ -600,12 +596,12 @@ export class Tabs extends TabsBase {
         if (tabStripItems) {
             if (tabStripItems[newIndex]) {
                 tabStripItems[newIndex]._emit(TabStripItem.selectEvent);
-                this.setIconColor(tabStripItems[newIndex]);
+                this.updateItemColors(tabStripItems[newIndex]);
             }
 
             if (tabStripItems[oldIndex]) {
                 tabStripItems[oldIndex]._emit(TabStripItem.unselectEvent);
-                this.setIconColor(tabStripItems[oldIndex]);
+                this.updateItemColors(tabStripItems[oldIndex]);
             }
         }
 
@@ -800,6 +796,20 @@ export class Tabs extends TabsBase {
             }
         }
     }
+    private updateAllItemsColors() {
+        this._defaultItemBackgroundColor = null;
+        this.setItemColors();
+        if (this.tabStrip && this.tabStrip.items) {
+            this.tabStrip.items.forEach(tabStripItem => {
+                this.updateItemColors(tabStripItem);
+            });
+        }
+    }
+
+    private updateItemColors(tabStripItem: TabStripItem): void {
+        updateBackgroundPositions(this.tabStrip, tabStripItem);
+        this.setIconColor(tabStripItem, true);
+    }
 
     private createTabBarItem(item: TabStripItem, index: number): UITabBarItem {
         let image: UIImage;
@@ -859,7 +869,7 @@ export class Tabs extends TabsBase {
         }
 
         const target = tabStripItem.image;
-        const font = target.style.fontInternal;
+        const font = target.style.fontInternal || Font.default;
         if (!color) {
             color = target.style.color;
         }
@@ -920,6 +930,7 @@ export class Tabs extends TabsBase {
 
     public setTabBarBackgroundColor(value: UIColor | Color): void {
         this.tabBar.barTintColor = value instanceof Color ? value.ios : value;
+        this.updateAllItemsColors();
     }
 
     public setTabBarItemTitle(tabStripItem: TabStripItem, value: string): void {
@@ -1009,6 +1020,10 @@ export class Tabs extends TabsBase {
         this.setIconColor(tabStripItem, true);
     }
 
+    public setTabBarIconSource(tabStripItem: TabStripItem, value: UIColor | Color): void {
+        this.updateItemColors(tabStripItem);
+    }
+
     public setTabBarItemFontInternal(tabStripItem: TabStripItem, value: Font): void {
         this.setViewTextAttributes(tabStripItem.label);
     }
@@ -1077,6 +1092,7 @@ export class Tabs extends TabsBase {
 
     public setTabBarSelectedItemColor(value: Color) {
         this._selectedItemColor = value;
+        this.updateAllItemsColors();
     }
 
     public getTabBarUnSelectedItemColor(): Color {
@@ -1085,6 +1101,7 @@ export class Tabs extends TabsBase {
 
     public setTabBarUnSelectedItemColor(value: Color) {
         this._unSelectedItemColor = value;
+        this.updateAllItemsColors();
     }
 
     private visitFrames(view: ViewBase, operation: (frame: Frame) => {}) {
@@ -1127,7 +1144,7 @@ export class Tabs extends TabsBase {
             // do not make layout changes while the animation is in progress https://stackoverflow.com/a/47031524/613113
             this.visitFrames(item, (frame) => (frame._animationInProgress = true));
 
-            this.viewController.setViewControllersDirectionAnimatedCompletion(controllers, navigationDirection, true, (finished: boolean) => {
+            this.viewController.setViewControllersDirectionAnimatedCompletion(controllers, navigationDirection, this.animationEnabled, (finished: boolean) => {
                 this.visitFrames(item, (frame) => (frame._animationInProgress = false));
                 if (finished) {
                     // HACK: UIPageViewController fix; see https://stackoverflow.com/a/17330606
@@ -1140,7 +1157,7 @@ export class Tabs extends TabsBase {
             });
 
             if (this.tabBarItems && this.tabBarItems.length && this.viewController && this.tabBar) {
-                this.tabBar.setSelectedItemAnimated(this.tabBarItems[value], true);
+                this.tabBar.setSelectedItemAnimated(this.tabBarItems[value], this.animationEnabled);
             }
             // TODO:
             // (this._ios as any)._willSelectViewController = this._ios.viewControllers[value];
