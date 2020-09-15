@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.12](https://github.com/nativescript-community/ui-material-components/compare/v4.0.11...v4.0.12) (2020-09-15)
+
+
+### Bug Fixes
+
+* fixed bottomsheet on angular ([5a488ea](https://github.com/nativescript-community/ui-material-components/commit/5a488ea59faabe8689b5cfd45ab4c4f0b26170f2))
+* wrong script ([786316d](https://github.com/nativescript-community/ui-material-components/commit/786316d7842e06609db760d8797700335f118433))
+
+
+
+
+
 ## [4.0.11](https://github.com/nativescript-community/ui-material-components/compare/v4.0.10...v4.0.11) (2020-09-10)
 
 
