@@ -1,18 +1,18 @@
 <template>
-    <Page>
+    <Page id="pag" >
         <ActionBar :title="title">
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
-        <GridLayout rows="*, auto" id="innerView" ref="innerView">
-            <Frame actionBarHidden="true">
-                <Page actionBarHidden="true" backgroundColor="blue">
-                    <StackLayout>
+        <GridLayout rows="*, auto" id="outerView" ref="outerView">
+            <!-- <Frame actionBarHidden="true"> -->
+                <!-- <Page actionBarHidden="true" backgroundColor="blue" id="innerPage" > -->
+                    <StackLayout id="innerView" ref="innerView">
                         <MDButton id="show_snack" text="show snack" @tap="onTap" />
                         <MDButton id="show_snack_action" text="show snack action" @tap="onTap" />
                         <MDButton id="show_snack_action_color" text="show snack action color" @tap="onTap" />
                     </StackLayout>
-                </Page>
-            </Frame>
+                <!-- </Page> -->
+            <!-- </Frame> -->
             <MDBottomNavigationBar row="1" activeColor="red">
                 <MDBottomNavigationTab title="First" icon="res://ic_home" activeColor="green" />
                 <MDBottomNavigationTab title="Second" icon="res://ic_view_list" isSelectable="false" />
@@ -30,7 +30,7 @@ import { alert, AlertDialog, login, prompt } from '@nativescript-community/ui-ma
 import { StackLayout } from '@nativescript/core';
 import { ActivityIndicator } from '@nativescript/core';
 import { Label } from '@nativescript/core';
-import { showSnack } from '@nativescript-community/ui-material-snackbar';
+import { SnackBar, showSnack } from '@nativescript-community/ui-material-snackbar';
 
 export const title = 'SnackBar sample';
 
@@ -38,7 +38,7 @@ export default Vue.extend({
     data() {
         return {
             name: 'SnackBar',
-            title: title,
+            title: title
         };
     },
     methods: {
@@ -55,17 +55,22 @@ export default Vue.extend({
                     break;
                 }
                 case 'show_snack_action': {
-                    showSnack({ message: 'this is test snack with action!', actionText: 'done' });
+                    const test = new SnackBar();
+                    test.showSnack({ message: 'this is test snack with action!', actionText: 'done' }).then(r=>{
+                        console.log('showSnack result', r);
+
+                    });
+                    test.dismiss();
                     break;
                 }
                 case 'show_snack_action_color': {
-                    showSnack({ message: 'this is test snack with action colored!', actionText: 'delete', actionTextColor: 'red', view: this.$refs.innerView.nativeView }).then((r) => {
+                    showSnack({ message: 'this is test snack with action colored!', actionText: 'delete', actionTextColor: 'red', view: this.$refs.outerView.nativeView }).then(r => {
                         console.log('showSnack result', r);
                     });
                     break;
                 }
             }
-        },
-    },
+        }
+    }
 });
 </script>

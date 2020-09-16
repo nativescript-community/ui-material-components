@@ -1,5 +1,6 @@
-import { CSSType, Color, ImageAsset, ImageSource, Property, Utils, View } from '@nativescript/core';
+import { Button, CSSType, Color, ImageAsset, ImageSource, Property, Utils, View } from '@nativescript/core';
 import { cssProperty } from '@nativescript-community/ui-material-core';
+import { textProperty } from '@nativescript/core/ui/text-base';
 
 export const imageSourceProperty = new Property<FloatingActionButtonBase, ImageSource>({ name: 'imageSource' });
 
@@ -18,7 +19,7 @@ export const expandedProperty = new Property<FloatingActionButtonBase, boolean>(
 });
 
 @CSSType('MDFloatingActionButton')
-export abstract class FloatingActionButtonBase extends View {
+export abstract class FloatingActionButtonBase extends Button {
     constructor() {
         super();
         // we need to set the default through css or user would not be able to overload it through css...
@@ -29,6 +30,7 @@ export abstract class FloatingActionButtonBase extends View {
     }
     @cssProperty elevation: number;
     @cssProperty color: Color;
+    @cssProperty rippleColor: Color;
     @cssProperty dynamicElevationOffset: number;
 
     public srcCompat: string;
@@ -42,7 +44,7 @@ export abstract class FloatingActionButtonBase extends View {
     /**
      * @internal //copied from image common
      */
-    protected _createImageSourceFromSrc(value: string | ImageSource | ImageAsset): void {
+    protected async _createImageSourceFromSrc(value: string | ImageSource | ImageAsset) {
         const originalValue = value;
         if (typeof value === 'string' || value instanceof String) {
             value = value.trim();
@@ -51,7 +53,7 @@ export abstract class FloatingActionButtonBase extends View {
 
             this.isLoading = true;
 
-            const source = new ImageSource();
+            let source: ImageSource;
             const imageLoaded = () => {
                 const currentValue = this.src;
                 if (currentValue !== originalValue) {
@@ -65,7 +67,7 @@ export abstract class FloatingActionButtonBase extends View {
                 const base64Data = value.split(',')[1];
                 if (base64Data !== undefined) {
                     // if (sync) {
-                    source.loadFromBase64(base64Data);
+                    source = await ImageSource.fromBase64(base64Data);
                     imageLoaded();
                     // } else {
                     //     source.fromBase64(base64Data).then(imageLoaded);
@@ -75,7 +77,7 @@ export abstract class FloatingActionButtonBase extends View {
                 if (value.indexOf(Utils.RESOURCE_PREFIX) === 0) {
                     const resPath = value.substr(Utils.RESOURCE_PREFIX.length);
                     // if (sync) {
-                    source.loadFromResource(resPath);
+                    source = await ImageSource.fromResource(resPath);
                     imageLoaded();
                     // } else {
                     //     this.imageSource = null;
@@ -83,7 +85,7 @@ export abstract class FloatingActionButtonBase extends View {
                     // }
                 } else {
                     // if (sync) {
-                    source.loadFromFile(value);
+                    source = await ImageSource.fromFile(value);
                     imageLoaded();
                     // } else {
                     //     this.imageSource = null;
@@ -92,12 +94,8 @@ export abstract class FloatingActionButtonBase extends View {
                 }
             } else {
                 this.imageSource = null;
-                ImageSource.fromUrl(value).then((r) => {
-                    if (this['_url'] === value) {
-                        this.imageSource = r;
-                        this.isLoading = false;
-                    }
-                });
+                source = await ImageSource.fromUrl(value);
+                imageLoaded();
             }
         } else if (value instanceof ImageSource) {
             // Support binding the imageSource trough the src property
@@ -109,6 +107,7 @@ export abstract class FloatingActionButtonBase extends View {
                 this.isLoading = false;
             });
         } else {
+            // native source
             this.imageSource = new ImageSource(value);
             this.isLoading = false;
         }

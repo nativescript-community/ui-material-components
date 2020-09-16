@@ -9,6 +9,7 @@ import {
     DialogOptions,
     DialogStrings,
     LoginResult,
+    PercentLength,
     PromptResult,
     StackLayout,
     Utils,
@@ -23,8 +24,36 @@ import { isDialogOptions } from './dialogs-common';
 
 export { capitalizationType, inputType };
 
-const UNSPECIFIED = Utils.layout.makeMeasureSpec(0, Utils.layout.UNSPECIFIED);
+const UIViewAutoSizeUIViewAutoSize = (UIView as any).extend({
+    systemLayoutSizeFittingSizeWithHorizontalFittingPriorityVerticalFittingPriority(boundsSize: CGSize) {
+        const widthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(boundsSize.width), Utils.layout.EXACTLY);
+        const heighthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(boundsSize.height), Utils.layout.UNSPECIFIED);
+        const view = this._view;
+        View.measureChild(null, view, widthSpec, heighthSpec);
+        const measuredHeight = view.getMeasuredHeight() + view.effectiveMarginBottom + view.effectiveMarginTop;
+        const size = CGSizeMake(0, Utils.layout.toDeviceIndependentPixels(measuredHeight));
+        const currentSize = this.frame.size;
 
+        if (size.width !== currentSize.width || size.height !== currentSize.height) {
+            setTimeout(() => {
+                View.layoutChild(null, view, 0, 0, Utils.layout.toDevicePixels(this.frame.size.width), Utils.layout.toDevicePixels(this.frame.size.height));
+            }, 0);
+        }
+
+        return size;
+    },
+});
+
+function createUIViewAutoSizeUIViewAutoSize(view: View) {
+    const self = UIViewAutoSizeUIViewAutoSize.new() as UIView;
+    view._setupAsRootView({});
+    view._isAddedToNativeVisualTree = true;
+    view.callLoaded();
+    (self as any)._view = view;
+    self.addSubview(view.nativeViewProtected);
+    (view.nativeViewProtected as UIView).autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
+    return self;
+}
 @NativeClass
 class MDCDialogPresentationControllerDelegateImpl extends NSObject {
     static ObjCProtocols = [MDCDialogPresentationControllerDelegate];
@@ -45,162 +74,17 @@ class MDCDialogPresentationControllerDelegateImpl extends NSObject {
 declare class IMDCAlertControllerImpl extends MDCAlertController {
     autoFocusTextField?: TextField;
     customContentView?: View;
-    _customContentViewContext?: any;
+    // _customContentViewContext?: any;
     _resolveFunction?: Function;
     actions: NSArray<any>;
     viewLayedOut: boolean;
 }
-// @NativeClass
 const MDCAlertControllerImpl = (MDCAlertController as any).extend({
-    get preferredContentSize() {
-        const superResult = this.super.preferredContentSize;
-        const measuredHeight = this._customContentView ? this._customContentView.getMeasuredHeight() : 0; // pixels
-        const measuredHeightDP = Utils.layout.toDeviceIndependentPixels(measuredHeight); // pixels
-        const hasTitleOrMessage = this.title || this.message;
-        let result: CGSize;
-        if (hasTitleOrMessage) {
-            result = CGSizeMake(superResult.width, Math.round(superResult.height + measuredHeightDP));
-        } else if (this.actions.count > 0) {
-            result = CGSizeMake(superResult.width, Math.round(Utils.layout.toDeviceIndependentPixels(superResult.height) + measuredHeightDP));
-        } else {
-            result = CGSizeMake(superResult.width, Math.floor(measuredHeightDP));
-        }
-        return result;
-    },
-    set preferredContentSize(x) {
-        this.super.preferredContentSize = x;
-    },
-    get contentScrollView() {
-        const alertView = this.view as MDCAlertControllerView;
-        if (alertView) {
-            return alertView.subviews[0] as UIScrollView;
-        }
-        return null;
-    },
-
-    addCustomViewToLayout() {
-        const contentScrollView = this.contentScrollView as UIView;
-        const view = this._customContentView;
-        view._setupAsRootView({});
-        view._isAddedToNativeVisualTree = true;
-        view.callLoaded();
-        if (this._customContentViewContext) {
-            view.bindingContext = fromObject(this._customContentViewContext);
-            this._customContentViewContext = null;
-        }
-        const nativeViewProtected = this._customContentView.nativeViewProtected;
-        if (contentScrollView && nativeViewProtected) {
-            contentScrollView.addSubview(nativeViewProtected);
-        }
-    },
-    get customContentView() {
-        return this._customContentView;
-    },
-    set customContentView(view: View) {
-        this._customContentView = view;
-        if (view) {
-            view.viewController = this;
-            if (this.viewLoaded) {
-                this.addCustomViewToLayout();
-            }
-        }
-    },
-    measureChild() {
-        const contentScrollView = this.contentScrollView;
-        const contentSize = contentScrollView.contentSize;
-        if (contentSize.width === 0) {
-            return false;
-        }
-        const width = contentSize.width || this.super.prefer.width;
-        const widthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(width), Utils.layout.EXACTLY);
-        View.measureChild(null, this._customContentView, widthSpec, UNSPECIFIED);
-        return true;
-    },
-    layoutCustomView() {
-        const view = this._customContentView;
-        if (view) {
-            if (!this.measureChild()) {
-                return false;
-            }
-            this.viewLayedOut = true;
-            const hasTitleOrMessage = this.title || this.message;
-
-            const contentScrollView = this.contentScrollView;
-            const contentSize = contentScrollView.contentSize;
-            let originY = 0;
-            if (hasTitleOrMessage) {
-                const index = contentScrollView.subviews.indexOfObject(view.nativeViewProtected);
-                if (index === -1) {
-                    originY = Utils.layout.toDevicePixels(contentSize.height);
-                } else {
-                    const viewOnTopFrame = contentScrollView.subviews.objectAtIndex(index - 1).frame;
-                    // the +24 is MDCDialogContentInsets
-                    originY = Utils.layout.toDevicePixels(viewOnTopFrame.origin.y + viewOnTopFrame.size.height + 24);
-                }
-            }
-
-            const measuredWidth = view.getMeasuredWidth(); // pixels
-            const measuredHeight = view.getMeasuredHeight(); // pixels
-            View.layoutChild(null, view, 0, originY, measuredWidth, originY + measuredHeight);
-
-            const size = this.super.preferredContentSize;
-            const pW = size.width;
-            const pH = size.height;
-            // TODO: for a reload of the preferredContentSize. Find a better solution!
-            this.preferredContentSize = CGSizeMake(pW, pH + 0.0000001);
-            this.preferredContentSize = CGSizeMake(pW, pH);
-            return true;
-        } else {
-            this.viewLayedOut = true;
-        }
-        return false;
-    },
-    updateContentViewSize() {
-        const view = this._customContentView;
-        if (!view) {
-            return;
-        }
-        const contentScrollView = this.contentScrollView;
-        contentScrollView.clipsToBounds = true;
-        const contentSize = contentScrollView.contentSize;
-        const bounds = contentScrollView.frame;
-        const boundsSize = bounds.size;
-
-        const measuredHeight = view.getMeasuredHeight(); // pixels
-        contentSize.height = contentSize.height + measuredHeight;
-        boundsSize.height = boundsSize.height + measuredHeight;
-
-        contentScrollView.contentSize = contentSize;
-        bounds.size = boundsSize;
-        contentScrollView.frame = bounds;
-    },
-
-    viewWillLayoutSubviews() {
-        this.viewLayedOut = false;
-        this.super.viewWillLayoutSubviews();
-        // in some case the the content scrollview is not "layed out when calling layoutCustomView"
-        // so we keep track of that in viewLayedOut
-        this.layoutCustomView();
-    },
-    viewDidLayoutSubviews() {
-        // if the content scrollview was not layed out we need to call setNeedsLayout again...
-        if (!this.viewLayedOut) {
-            this.layoutCustomView();
-            this.view.setNeedsLayout();
-        }
-        this.updateContentViewSize();
-    },
     viewDidAppear() {
         if (this.autoFocusTextField) {
             this.autoFocusTextField.requestFocus();
-            this.autoFocusTextField = null;
-        }
-    },
-    viewDidLoad() {
-        this.super.viewDidLoad();
-        if (this._customContentView) {
-            this.addCustomViewToLayout();
             this.view.setNeedsLayout();
+            this.autoFocusTextField = null;
         }
     },
     traitCollectionDidChange(previousTraitCollection: UITraitCollection): void {
@@ -210,13 +94,24 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
             console.error('error', err);
         }
     },
+    viewDidDisappear(animated: boolean) {
+        this.super.viewDidDisappear(animated);
+        console.log('viewDidDisappear', this.customContentView);
+        if (this.customContentView) {
+            this.customContentView.callUnloaded();
+            this.customContentView._tearDownUI(true);
+            this.customContentView._isAddedToNativeVisualTree = false;
+            this.customContentView = null;
+        }
+    },
     viewDidUnload() {
+        console.log('viewDidUnload', this.customContentView);
         this.super.viewDidUnload();
         if (this.customContentView) {
-            this._customContentView.callUnloaded();
-            this._customContentView._tearDownUI(true);
-            this._customContentView._isAddedToNativeVisualTree = false;
-            this._customContentView = null;
+            this.customContentView.callUnloaded();
+            this.customContentView._tearDownUI(true);
+            this.customContentView._isAddedToNativeVisualTree = false;
+            this.customContentView = null;
         }
     },
 });
@@ -266,11 +161,6 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
 
 function createAlertController(options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
     const alertController = MDCAlertControllerImpl.alloc().init() as IMDCAlertControllerImpl;
-    // const buttonColor = getButtonColors().color;
-    // if (buttonColor) {
-    //     alertController.view.tintColor = buttonColor.ios;
-    // }
-    // const lblColor = getLabelColor();
 
     if (options.title) {
         alertController.title = options.title;
@@ -306,8 +196,6 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
     if (options.messageColor) {
         alertController.messageColor = options.messageColor.ios;
-        // } else if (lblColor) {
-        // alertController.messageColor = lblColor.ios;
     }
     if (options.elevation) {
         alertController.elevation = options.elevation;
@@ -357,8 +245,10 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
                 resolve.apply(this, originalArgs);
             }
         };
-        alertController._customContentViewContext = context;
-        // view.bindingContext = fromObject(context);
+        view.bindingContext = fromObject(context);
+        alertController.accessoryView = createUIViewAutoSizeUIViewAutoSize(view);
+        view.viewController = alertController; // needed to prevent a crash in layoutChild
+
     }
     const dialogPresentationControllerDelegate = MDCDialogPresentationControllerDelegateImpl.initWithCallback(() => {
         resolve && resolve();
@@ -406,12 +296,6 @@ export class AlertDialog {
     show() {
         if (!this.alertController) {
             this.alertController = createAlertController(this.options);
-
-            // addButtonsToAlertController(this.alertController, options, result => {
-            //     (this.alertController as any)._resolveFunction = null;
-            //     resolve(result);
-            // });
-
             this.presentingController = showUIAlertController(this.alertController);
         }
     }
@@ -477,13 +361,9 @@ export function prompt(arg: any): Promise<PromptResult> {
 
     return new Promise<PromptResult>((resolve, reject) => {
         try {
-            // let textField: MDCTextField;
-
             const stackLayout = new StackLayout();
             const textField = new TextField();
             textField.hint = options.hintText;
-            textField.marginTop = 2;
-            textField.marginBottom = 2;
             if (options) {
                 if (options.textFieldProperties) {
                     Object.assign(textField, options.textFieldProperties);
@@ -499,17 +379,12 @@ export function prompt(arg: any): Promise<PromptResult> {
                 }
                 if (options.inputType === inputType.password) {
                     textField.secure = true;
-                    // textField.keyboardType = 'text';
-                    // input.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 } else if (options.inputType === inputType.email) {
                     textField.keyboardType = 'email';
-                    // input.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
                 } else if (options.inputType === inputType.number) {
                     textField.keyboardType = 'number';
-                    // input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
                 } else if (options.inputType === inputType.phone) {
                     textField.keyboardType = 'phone';
-                    //   input.setInputType(android.text.InputType.TYPE_CLASS_PHONE);
                 }
 
                 switch (options.capitalizationType) {
@@ -519,12 +394,10 @@ export function prompt(arg: any): Promise<PromptResult> {
                     }
                     case capitalizationType.sentences: {
                         textField.autocapitalizationType = 'sentences';
-                        // input.setInputType(input.getInputType() | android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
                         break;
                     }
                     case capitalizationType.words: {
                         textField.autocapitalizationType = 'words';
-                        // input.setInputType(input.getInputType() | android.text.InputType.TYPE_TEXT_FLAG_CAP_WORDS);
                         break;
                     }
                 }
@@ -556,7 +429,6 @@ export function login(arg: any): Promise<LoginResult> {
     let options: LoginOptions & MDCAlertControlerOptions;
 
     const defaultOptions = {
-        // title: LOGIN,
         okButtonText: DialogStrings.OK,
         cancelButtonText: DialogStrings.CANCEL,
     };
@@ -586,13 +458,9 @@ export function login(arg: any): Promise<LoginResult> {
     return new Promise<LoginResult>((resolve, reject) => {
         try {
             const stackLayout = new StackLayout();
-            // stackLayout.margin = 4;
             const userNameTextField = new TextField();
-            userNameTextField.marginTop = 2;
-            userNameTextField.marginBottom = 2;
+            userNameTextField.marginBottom = 10;
             const passwordTextField = new TextField();
-            passwordTextField.marginTop = 2;
-            passwordTextField.marginBottom = 2;
             userNameTextField.hint = options.userNameHint || 'Username';
             userNameTextField.text = options.userName;
             passwordTextField.hint = options.passwordHint || 'Password';
@@ -610,38 +478,6 @@ export function login(arg: any): Promise<LoginResult> {
             stackLayout.addChild(passwordTextField);
             options.view = stackLayout;
             const alertController = createAlertController(options, resolve);
-
-            // const textFieldColor = getTextFieldColor();
-
-            // alertController.addTextFieldWithConfigurationHandler(
-            //     (arg: UITextField) => {
-            //         arg.placeholder = "Login"
-            //         arg.text = Utils.isString(options.userName)
-            //             ? options.userName
-            //             : ""
-
-            //         if (textFieldColor) {
-            //             arg.textColor = arg.tintColor = textFieldColor.ios
-            //         }
-            //     }
-            // )
-
-            // alertController.addTextFieldWithConfigurationHandler(
-            //     (arg: UITextField) => {
-            //         arg.placeholder = "Password"
-            //         arg.secureTextEntry = true
-            //         arg.text = Utils.isString(options.password)
-            //             ? options.password
-            //             : ""
-
-            //         if (textFieldColor) {
-            //             arg.textColor = arg.tintColor = textFieldColor.ios
-            //         }
-            //     }
-            // )
-
-            // userNameTextField = alertController.textFields.firstObject
-            // passwordTextField = alertController.textFields.lastObject
 
             addButtonsToAlertController(
                 alertController,
@@ -686,19 +522,6 @@ function showUIAlertController(alertController: MDCAlertController) {
 
         // for now we need to use the rootController because of a bug in {N}
         const viewController = Application.ios.rootController;
-
-        // let viewController: UIViewController = currentView.ios;
-
-        // if (!(currentView.ios instanceof UIViewController)) {
-        //     const parentWithController = IOSHelper.getParentWithViewController(currentView);
-        //     viewController = parentWithController ? parentWithController.viewController : undefined;
-        // }
-        // if (viewController && viewController.parentViewController) {
-        //     while(viewController.parentViewController) {
-        //         viewController = viewController.parentViewController
-        //         viewController.parentViewController
-        //     }
-        // }
 
         if (viewController) {
             if (alertController.popoverPresentationController) {

@@ -1,5 +1,5 @@
 import { getRippleColor, themer } from '@nativescript-community/ui-material-core';
-import { Color } from '@nativescript/core';
+import { Color, Frame, Page } from '@nativescript/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 
 export class SnackBar extends SnackBarBase {
@@ -12,13 +12,12 @@ export class SnackBar extends SnackBarBase {
 
     private _shown = false;
     private _message: MDCSnackbarMessage;
+    private _dismissReason: DismissReasons;
 
     public show() {
         return new Promise((resolve, reject) => {
             try {
-                // if (!this._snackbar) {
                 this.initSnack(this._options, resolve);
-                // }
                 if (!this._shown) {
                     SnackBar._snackbarManager.showMessage(this._message);
                     this._shown = true;
@@ -29,21 +28,17 @@ export class SnackBar extends SnackBarBase {
         });
     }
 
-    prepareView(message: SnackbarMessage, messageView: SnackbarMessageView) {
+    prepareView(message: MDCSnackbarMessage, messageView: MDCSnackbarMessageView) {
         const options = this._options;
         const accentColor = themer.getAccentColor();
         if (accentColor) {
             const buttons = messageView.actionButtons;
             const color = (accentColor instanceof Color ? accentColor : new Color(accentColor)).ios;
-            buttons.enumerateObjectsUsingBlock(button => {
+            buttons.enumerateObjectsUsingBlock((button) => {
                 button.setTitleColorForState(color, UIControlState.Normal);
                 button.setTitleColorForState(color, UIControlState.Highlighted);
                 button.inkColor = getRippleColor(accentColor);
             });
-        }
-        const colorScheme = themer.getAppColorScheme() as MDCColorScheming;
-        if (colorScheme) {
-            MDCSnackbarColorThemer.applySemanticColorSchemeToSnackbarManager(colorScheme, SnackBar._snackbarManager);
         }
 
         if (options.textColor && Color.isValid(options.textColor)) {
@@ -53,7 +48,7 @@ export class SnackBar extends SnackBarBase {
         if (options.actionTextColor && Color.isValid(options.actionTextColor)) {
             const color = (options.actionTextColor instanceof Color ? options.actionTextColor : new Color(options.actionTextColor)).ios;
             const buttons = messageView.actionButtons;
-            buttons.enumerateObjectsUsingBlock(button => {
+            buttons.enumerateObjectsUsingBlock((button) => {
                 button.setTitleColorForState(color, UIControlState.Normal);
                 button.setTitleColorForState(color, UIControlState.Highlighted);
                 button.inkColor = getRippleColor(options.actionTextColor);
@@ -65,8 +60,18 @@ export class SnackBar extends SnackBarBase {
         if (options.backgroundColor && Color.isValid(options.backgroundColor)) {
             messageView.snackbarMessageViewBackgroundColor = (options.backgroundColor instanceof Color ? options.backgroundColor : new Color(options.backgroundColor)).ios;
         }
-        if (options.view) {
-            SnackBar._snackbarManager.setPresentationHostView(options.view.nativeViewProtected);
+        let attachView = options.view || Frame.topmost().currentPage;
+        while (attachView['_modal']) {
+            attachView = attachView['_modal'];
+        }
+        console.log('test', attachView);
+        // let nView = attachView.nativeViewProtected as android.view.View;
+        // if (attachView instanceof Page) {
+        //     // in case of a page we try to handle it correctly
+        //     nView = nView.getParent().getParent() as any;
+        // }
+        if (attachView) {
+            SnackBar._snackbarManager.setPresentationHostView(attachView.nativeViewProtected);
         } else {
             SnackBar._snackbarManager.setPresentationHostView(null);
         }
@@ -101,7 +106,7 @@ export class SnackBar extends SnackBarBase {
             this._shown = false;
             resolve({
                 action: SnackBarAction.DISMISS,
-                reason: userInitiated ? DismissReasons.ACTION : DismissReasons.TIMEOUT
+                reason: this._dismissReason !== undefined ? this._dismissReason : userInitiated ? DismissReasons.ACTION : DismissReasons.TIMEOUT,
             });
         };
     }
@@ -111,22 +116,14 @@ export class SnackBar extends SnackBarBase {
             if (!!SnackBar._snackbarManager) {
                 try {
                     SnackBar._snackbarManager.dismissAndCallCompletionBlocksWithCategory(null);
-                    this._shown = false;
-
-                    // Return AFTER the item is dismissed, 200ms delay
-                    setTimeout(() => {
-                        resolve({
-                            action: SnackBarAction.DISMISS,
-                            reason: DismissReasons.MANUAL
-                        });
-                    }, 200);
+                    this._dismissReason = DismissReasons.MANUAL;
                 } catch (ex) {
                     reject(ex);
                 }
             } else {
                 resolve({
                     action: SnackBarAction.NONE,
-                    message: 'No actionbar to dismiss'
+                    message: 'No actionbar to dismiss',
                 });
             }
         });

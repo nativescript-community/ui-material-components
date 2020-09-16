@@ -11,7 +11,7 @@
             <GridLayout backgroundColor="red" rows="auto" padding="20">
                 <MDTextField id="textField2" variant="filled" hint="hint me" v-model="value" backgroundColor="green" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floating="false" />
             </GridLayout>
-            <MDTextField id="textField3" hint="filled" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" margin="10" />
+            <MDTextField id="textField3" hint="filled" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" margin="10" editable="false"/>
             <MDTextField id="textField4" maxLength="10" variant="outline" hint="outline" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floatingColor="red" margin="10" buttonColor="red"/>
             <MDTextField id="textField5" variant="outline" hint="outline" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floatingColor="red" placeholderColor="blue" strokeColor="green" margin="10" />
             <MDTextField id="textField6" variant="filled" required="true" email="true" hint="fill this out..." @focus="onFocus" @blur="onBlur" floating="false" @textChange="onTextChange" @returnPress="onReturnPress" strokeColor="red" margin="10" />

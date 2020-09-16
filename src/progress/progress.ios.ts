@@ -12,14 +12,9 @@ export class Progress extends ProgressBase {
 
     public createNativeView() {
         const result = MDCProgressView.new();
-        const colorScheme: MDCSemanticColorScheme = themer.getAppColorScheme();
-        if (colorScheme) {
-            MDCProgressViewColorThemer.applyColorSchemeToProgressView(colorScheme, result);
-            // light color is not applied
-            if (colorScheme.primaryColorVariant) {
-                result.trackTintColor = colorScheme.primaryColorVariant;
-            }
-        }
+        const scheme = MDCContainerScheme.new();
+        scheme.colorScheme = themer.getAppColorScheme();
+        result.applyThemeWithScheme(scheme);
         return result;
     }
 

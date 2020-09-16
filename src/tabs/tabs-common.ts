@@ -1,5 +1,6 @@
-﻿// Types
-import { CSSType, Property, TabNavigationBase, booleanConverter } from '@nativescript/core';
+﻿import { cssProperty } from '@nativescript-community/ui-material-core';
+// Types
+import { CSSType, Color, Property, TabNavigationBase, booleanConverter } from '@nativescript/core';
 import { Tabs as TabsDefinition } from './tabs';
 
 export const traceCategory = 'TabView';
@@ -13,8 +14,9 @@ export class TabsBase extends TabNavigationBase implements TabsDefinition {
     public swipeEnabled: boolean;
     public offscreenTabLimit: number;
     public tabsPosition: 'top' | 'bottom';
-    public iOSTabBarItemsAlignment: IOSTabBarItemsAlignment;
+    // public iOSTabBarItemsAlignment: IOSTabBarItemsAlignment;
     public animationEnabled: boolean;
+    @cssProperty rippleColor: Color;
 }
 
 // TODO: Add Unit tests
@@ -33,9 +35,9 @@ offscreenTabLimitProperty.register(TabsBase);
 export const tabsPositionProperty = new Property<TabsBase, 'top' | 'bottom'>({ name: 'tabsPosition', defaultValue: 'top' });
 tabsPositionProperty.register(TabsBase);
 
-export type IOSTabBarItemsAlignment = 'leading' | 'justified' | 'center' | 'centerSelected';
-export const iOSTabBarItemsAlignmentProperty = new Property<TabsBase, IOSTabBarItemsAlignment>({ name: 'iOSTabBarItemsAlignment', defaultValue: 'justified' });
-iOSTabBarItemsAlignmentProperty.register(TabsBase);
+// export type IOSTabBarItemsAlignment = 'leading' | 'justified' | 'center' | 'centerSelected';
+// export const iOSTabBarItemsAlignmentProperty = new Property<TabsBase, IOSTabBarItemsAlignment>({ name: 'iOSTabBarItemsAlignment', defaultValue: 'justified' });
+// iOSTabBarItemsAlignmentProperty.register(TabsBase);
 
 export const animationEnabledProperty = new Property<TabsBase, boolean>({ name: 'animationEnabled', defaultValue: true, valueConverter: booleanConverter });
 animationEnabledProperty.register(TabsBase);

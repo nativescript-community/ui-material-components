@@ -50,9 +50,11 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
 
     createNativeView(): Object {
         const view = MDCBottomNavigationBar.new();
-        const colorScheme = themer.getAppColorScheme();
+        const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
         if (colorScheme) {
-            MDCBottomNavigationBarColorThemer.applyColorSchemeToBottomNavigationBar(colorScheme, view);
+            const scheme = MDCContainerScheme.alloc().init();
+            scheme.colorScheme = colorScheme;
+            view.applyPrimaryThemeWithScheme(scheme);
         }
         return view;
     }

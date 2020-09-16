@@ -22,7 +22,7 @@ export class AppBarDirective implements AfterViewInit {
         // _appBar.navigationBar.tintColor  = new Color('blue').ios;
         // _appBar.headerViewController.headerView.backgroundColor = new Color('yellow').ios;
         // _appBar.navigationBar.sizeToFit();
-        const colorScheme = themer.getAppColorScheme();
+        const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
         if (colorScheme) {
             MDCAppBarColorThemer.applyColorSchemeToAppBarViewController(colorScheme, this._appBarController);
         }

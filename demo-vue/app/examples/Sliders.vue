@@ -7,7 +7,7 @@
       </ActionBar>
       <StackLayout>
         <Label text="Default slider with dynamic value" padding="10" />
-        <MDSlider elevation="3" thumbColor="yellow"
+        <MDSlider elevation="3" 
                   minValue="0" maxValue="100"
                   :value="value" @valueChange="onValueChanged"/>
         <Label text="Green slider without hollow at 0" padding="10" />

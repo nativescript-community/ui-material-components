@@ -1,7 +1,11 @@
+import { cssProperty } from '@nativescript-community/ui-material-core';
 import { CSSType, Color, CssProperty, Progress as NSProgress, Style } from '@nativescript/core';
 
 @CSSType('MDProgress')
-export abstract class ProgressBase extends NSProgress {}
+export abstract class ProgressBase extends NSProgress {
+    @cssProperty progressColor: Color;
+    @cssProperty progressBackgroundColor: Color;
+}
 
 export const progressColorProperty = new CssProperty<Style, Color>({
     cssName: 'progress-color',

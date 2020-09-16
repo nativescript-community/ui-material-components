@@ -24,9 +24,11 @@ export class CardView extends CardViewBase {
 
     public createNativeView() {
         const view = Card.new() as Card;
-        const colorScheme = themer.getAppColorScheme();
+        const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
         if (colorScheme) {
-            MDCCardsColorThemer.applySemanticColorSchemeToCardCell(colorScheme, view);
+            const scheme = MDCContainerScheme.alloc().init();
+            scheme.colorScheme = colorScheme;
+            view.applyThemeWithScheme(scheme);
         }
         view.interactable = this.isUserInteractionEnabled;
         return view;
@@ -40,7 +42,7 @@ export class CardView extends CardViewBase {
     }
 
     getDefaultDynamicElevationOffset() {
-        return 5;
+        return 1;
     }
 
     // trick to get the same behavior as android (don't disable all children)
@@ -50,12 +52,9 @@ export class CardView extends CardViewBase {
 
     [elevationProperty.setNative](value: number) {
         this.nativeViewProtected.setShadowElevationForState(value, MDCCardCellState.Normal);
-        let dynamicElevationOffset = this.dynamicElevationOffset;
+        const dynamicElevationOffset = this.dynamicElevationOffset;
         if (typeof dynamicElevationOffset === 'undefined' || dynamicElevationOffset === null) {
-            dynamicElevationOffset = this.getDefaultDynamicElevationOffset();
-        }
-        if (dynamicElevationOffset === undefined) {
-            this.nativeViewProtected.setShadowElevationForState(value + dynamicElevationOffset, MDCCardCellState.Highlighted);
+            this.nativeViewProtected.setShadowElevationForState(value, MDCCardCellState.Highlighted);
         }
     }
 

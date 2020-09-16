@@ -9,13 +9,7 @@ export declare class SnackBar {
      * @param {number} - The max lines for the text of the snackbar. * Android Only *
      * @param {boolean} - Set RTL for the textview of the snackbar. * Android Only *
      */
-    simple(
-        message: string,
-        textColor?: string,
-        backgroundColor?: string,
-        maxLines?: number,
-        isRTL?: boolean
-    ): Promise<any>;
+    simple(message: string, textColor?: string, backgroundColor?: string, maxLines?: number, isRTL?: boolean): Promise<any>;
 
     /**
      * Show a SnackBar with Action
@@ -26,6 +20,13 @@ export declare class SnackBar {
      * Manually Dismiss an active SnackBar.
      */
     dismiss(): Promise<any>;
+
+    showSnack(
+        options: SnackBarOptions
+    ): Promise<{
+        action: SnackBarAction;
+        reason: DismissReasons;
+    }>;
 }
 
 export function showSnack(options: SnackBarOptions);
@@ -84,10 +85,10 @@ export enum DismissReasons {
     ACTION = 'Action',
     TIMEOUT = 'Timeout',
     MANUAL = 'Manual',
-    CONSECUTIVE = 'Consecutive'
+    CONSECUTIVE = 'Consecutive',
 }
 
 export enum SnackBarAction {
     NONE = 'None',
-    DISMISS = 'Dismiss'
+    DISMISS = 'Dismiss',
 }

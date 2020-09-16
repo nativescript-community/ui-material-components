@@ -7,6 +7,7 @@
     </ActionBar>
     <StackLayout>
       <MDRipple backgroundColor="gray" rippleColor="green" width="100" height="100" borderRadius="10"/>
+      <MDRipple width="100" height="100" borderRadius="10"/>
     </StackLayout>
   </Page>
 </template>

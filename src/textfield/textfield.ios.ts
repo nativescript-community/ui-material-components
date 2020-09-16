@@ -157,7 +157,8 @@ export class TextField extends TextFieldBase {
 
         // disable it for now
         view.clearButtonMode = UITextFieldViewMode.Never;
-        const colorScheme = themer.getAppColorScheme();
+        const scheme = MDCContainerScheme.new();
+        scheme.colorScheme = themer.getAppColorScheme();
         if (this.style.variant === 'filled') {
             this._controller = TextInputControllerFilledImpl.initWithOwner(this);
         } else if (this.style.variant === 'outline') {
@@ -166,16 +167,26 @@ export class TextField extends TextFieldBase {
             this._controller = TextInputControllerUnderlineImpl.initWithOwner(this);
         } else {
             this._controller = TextInputControllerImpl.initWithOwner(this);
+            // (this._controller as TextInputControllerImpl).applyThemeWithScheme(scheme);
+        }
+        this._controller.textInput = view;
+        //theme needs to be applied after setting the textInput
+        if (this.style.variant === 'filled') {
+            (this._controller as TextInputControllerFilledImpl).applyThemeWithScheme(scheme);
+        } else if (this.style.variant === 'outline') {
+            (this._controller as TextInputControllerOutlinedImpl).applyThemeWithScheme(scheme);
+        } else if (this.style.variant === 'underline') {
+            (this._controller as TextInputControllerUnderlineImpl).applyThemeWithScheme(scheme);
+        } else {
             this._controller.underlineHeightActive = 0;
             this._controller.underlineHeightNormal = 0;
         }
-        this._controller.textInput = view;
         view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;
-
-        if (colorScheme) {
-            MDCTextFieldColorThemer.applySemanticColorSchemeToTextInput(colorScheme, view);
-            MDCTextFieldColorThemer.applySemanticColorSchemeToTextInputController(colorScheme, this._controller);
-        }
+        // this._controller.
+        // if (colorScheme) {
+        //     MDCTextFieldColorThemer.applySemanticColorSchemeToTextInput(colorScheme, view);
+        //     MDCTextFieldColorThemer.applySemanticColorSchemeToTextInputController(colorScheme, this._controller);
+        // }
         return view;
     }
 

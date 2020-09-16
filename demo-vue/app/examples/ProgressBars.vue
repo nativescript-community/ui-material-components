@@ -7,6 +7,7 @@
     </ActionBar>
     <StackLayout>
       <MDProgress :value="value" maxValue="100"></MDProgress>
+      <MDProgress value="50" maxValue="100" progressColor="red" progressBackgroundColor="blue"></MDProgress>
     </StackLayout>
   </Page>
 </template>

@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/unified-signatures */
+/* eslint-disable no-var */
+/* eslint-disable no-redeclare */
 
 declare const enum MDCActionEmphasis {
 
@@ -64,7 +66,7 @@ interface MDCActivityIndicatorDelegate extends NSObjectProtocol {
 
     activityIndicatorModeTransitionDidFinish?(activityIndicator: MDCActivityIndicator): void;
 }
-declare let MDCActivityIndicatorDelegate: {
+declare var MDCActivityIndicatorDelegate: {
 
     prototype: MDCActivityIndicatorDelegate;
 };
@@ -159,6 +161,8 @@ declare class MDCAlertColorThemer extends NSObject {
 
 declare class MDCAlertController extends UIViewController implements MDCElevatable, MDCElevationOverriding, UIContentSizeCategoryAdjusting {
 
+    static alertControllerWithTitleAttributedMessage(alertTitle: string, attributedMessage: NSAttributedString): MDCAlertController;
+
     static alertControllerWithTitleMessage(title: string, message: string): MDCAlertController;
 
     static alloc(): MDCAlertController; // inherited from NSObject
@@ -169,7 +173,17 @@ declare class MDCAlertController extends UIViewController implements MDCElevatab
 
     readonly actions: NSArray<MDCAlertAction>;
 
+    actionsHorizontalAlignment: MDCContentHorizontalAlignment;
+
+    actionsHorizontalAlignmentInVerticalLayout: MDCContentHorizontalAlignment;
+
     adjustsFontForContentSizeCategoryWhenScaledFontIsUnavailable: boolean;
+
+    attributedLinkColor: UIColor;
+
+    attributedMessage: NSAttributedString;
+
+    attributedMessageAction: (p1: NSURL, p2: NSRange, p3: UITextItemInteraction) => boolean;
 
     backgroundColor: UIColor;
 
@@ -181,9 +195,13 @@ declare class MDCAlertController extends UIViewController implements MDCElevatab
 
     cornerRadius: number;
 
+    delegate: MDCAlertControllerDelegate;
+
     elevation: number;
 
     enableRippleBehavior: boolean;
+
+    imageAccessibilityLabel: string;
 
     mdc_adjustsFontForContentSizeCategory: boolean;
 
@@ -191,9 +209,19 @@ declare class MDCAlertController extends UIViewController implements MDCElevatab
 
     messageAccessibilityLabel: string;
 
+    messageAlignment: NSTextAlignment;
+
     messageColor: UIColor;
 
     messageFont: UIFont;
+
+    orderVerticalActionsByEmphasis: boolean;
+
+    presentationInitialScaleFactor: number;
+
+    presentationOpacityAnimationDuration: number;
+
+    presentationScaleAnimationDuration: number;
 
     scrimColor: UIColor;
 
@@ -209,7 +237,13 @@ declare class MDCAlertController extends UIViewController implements MDCElevatab
 
     titleIcon: UIImage;
 
+    titleIconAlignment: NSTextAlignment;
+
+    readonly titleIconImageView: UIImageView;
+
     titleIconTintColor: UIColor;
+
+    titleIconView: UIView;
 
     traitCollectionDidChangeBlock: (p1: MDCAlertController, p2: UITraitCollection) => void;
 
@@ -234,6 +268,8 @@ declare class MDCAlertController extends UIViewController implements MDCElevatab
     readonly;  // inherited from NSObjectProtocol
 
     addAction(action: MDCAlertAction): void;
+
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
     buttonForAction(action: MDCAlertAction): MDCButton;
 
@@ -262,6 +298,23 @@ declare class MDCAlertController extends UIViewController implements MDCElevatab
     setAccessoryViewNeedsLayout(): void;
 }
 
+interface MDCAlertControllerDelegate extends NSObjectProtocol {
+
+    alertControllerDidAppear?(alertController: MDCAlertController, animated: boolean): void;
+
+    alertControllerDidDisappear?(alertController: MDCAlertController, animated: boolean): void;
+
+    alertControllerDidTapActionWithEvent?(alertController: MDCAlertController, action: MDCAlertAction, event: _UIEvent): void;
+
+    alertControllerWillAppear?(alertController: MDCAlertController, animated: boolean): void;
+
+    alertControllerWillDisappear?(alertController: MDCAlertController, animated: boolean): void;
+}
+declare var MDCAlertControllerDelegate: {
+
+    prototype: MDCAlertControllerDelegate;
+};
+
 declare class MDCAlertControllerView extends UIView {
 
     static alloc(): MDCAlertControllerView; // inherited from NSObject
@@ -280,11 +333,21 @@ declare class MDCAlertControllerView extends UIView {
 
     static new(): MDCAlertControllerView; // inherited from NSObject
 
+    accessoryViewVerticalInset: number;
+
+    actionsHorizontalMargin: number;
+
+    actionsInsets: UIEdgeInsets;
+
+    actionsVerticalMargin: number;
+
     buttonColor: UIColor;
 
     buttonFont: UIFont;
 
     buttonInkColor: UIColor;
+
+    contentInsets: UIEdgeInsets;
 
     cornerRadius: number;
 
@@ -296,15 +359,26 @@ declare class MDCAlertControllerView extends UIView {
 
     messageFont: UIFont;
 
-    titleAlignment: NSTextAlignment;
-
     titleColor: UIColor;
 
     titleFont: UIFont;
 
     titleIcon: UIImage;
 
+    titleIconInsets: UIEdgeInsets;
+
     titleIconTintColor: UIColor;
+
+    titleInsets: UIEdgeInsets;
+}
+
+declare class MDCAlertTypographyThemer extends NSObject {
+
+    static alloc(): MDCAlertTypographyThemer; // inherited from NSObject
+
+    static applyTypographySchemeToAlertController(typographyScheme: MDCTypographyScheming, alertController: MDCAlertController): void;
+
+    static new(): MDCAlertTypographyThemer; // inherited from NSObject
 }
 
 declare const enum MDCAnimationTimingFunction {
@@ -472,7 +546,7 @@ declare class MDCBasicFontScheme extends NSObject implements MDCFontScheme {
     self(): this;
 }
 
-declare class MDCBottomNavigationBar extends UIView implements MDCElevatable, MDCElevationOverriding {
+declare class MDCBottomNavigationBar extends UIView implements MDCElevatable, MDCElevationOverriding, UILargeContentViewerInteractionDelegate {
 
     static alloc(): MDCBottomNavigationBar; // inherited from NSObject
 
@@ -518,6 +592,8 @@ declare class MDCBottomNavigationBar extends UIView implements MDCElevatable, MD
 
     itemsContentVerticalMargin: number;
 
+    itemsHorizontalPadding: number;
+
     selectedItem: UITabBarItem;
 
     selectedItemTintColor: UIColor;
@@ -556,6 +632,10 @@ declare class MDCBottomNavigationBar extends UIView implements MDCElevatable, MD
 
     readonly;  // inherited from NSObjectProtocol
 
+    applyPrimaryThemeWithScheme(scheme: MDCContainerScheming): void;
+
+    applySurfaceThemeWithScheme(scheme: MDCContainerScheming): void;
+
     class(): typeof NSObject;
 
     conformsToProtocol(aProtocol: any /* Protocol */): boolean;
@@ -565,6 +645,10 @@ declare class MDCBottomNavigationBar extends UIView implements MDCElevatable, MD
     isKindOfClass(aClass: typeof NSObject): boolean;
 
     isMemberOfClass(aClass: typeof NSObject): boolean;
+
+    largeContentViewerInteractionDidEndOnItemAtPoint(interaction: UILargeContentViewerInteraction, item: UILargeContentViewerItem, point: CGPoint): void;
+
+    largeContentViewerInteractionItemAtPoint(interaction: UILargeContentViewerInteraction, point: CGPoint): UILargeContentViewerItem;
 
     performSelector(aSelector: string): any;
 
@@ -578,6 +662,8 @@ declare class MDCBottomNavigationBar extends UIView implements MDCElevatable, MD
 
     self(): this;
 
+    viewControllerForLargeContentViewerInteraction(interaction: UILargeContentViewerInteraction): UIViewController;
+
     viewForItem(item: UITabBarItem): UIView;
 }
 
@@ -590,16 +676,12 @@ declare const enum MDCBottomNavigationBarAlignment {
     Centered = 2
 }
 
-declare class MDCBottomNavigationBarColorThemer extends NSObject {
-
-    static alloc(): MDCBottomNavigationBarColorThemer; // inherited from NSObject
-
-    static applyColorSchemeToBottomNavigationBar(colorScheme: MDCColorScheme, bottomNavigationBar: MDCBottomNavigationBar): void;
-
-    static applySemanticColorSchemeToBottomNavigation(colorScheme: MDCColorScheming, bottomNavigation: MDCBottomNavigationBar): void;
-
-    static new(): MDCBottomNavigationBarColorThemer; // inherited from NSObject
+interface MDCBottomNavigationBarControllerDelegate extends NSObjectProtocol {
 }
+declare var MDCBottomNavigationBarControllerDelegate: {
+
+    prototype: MDCBottomNavigationBarControllerDelegate;
+};
 
 interface MDCBottomNavigationBarDelegate extends UINavigationBarDelegate {
 
@@ -607,7 +689,7 @@ interface MDCBottomNavigationBarDelegate extends UINavigationBarDelegate {
 
     bottomNavigationBarShouldSelectItem?(bottomNavigationBar: MDCBottomNavigationBar, item: UITabBarItem): boolean;
 }
-declare let MDCBottomNavigationBarDelegate: {
+declare var MDCBottomNavigationBarDelegate: {
 
     prototype: MDCBottomNavigationBarDelegate;
 };
@@ -712,7 +794,7 @@ interface MDCBottomSheetControllerDelegate extends NSObjectProtocol {
 
     bottomSheetControllerStateChangedState?(controller: MDCBottomSheetController, state: MDCSheetState): void;
 }
-declare let MDCBottomSheetControllerDelegate: {
+declare var MDCBottomSheetControllerDelegate: {
 
     prototype: MDCBottomSheetControllerDelegate;
 };
@@ -741,6 +823,8 @@ declare class MDCBottomSheetPresentationController extends UIPresentationControl
 
     scrimColor: UIColor;
 
+    shouldPropagateSafeAreaInsetsToPresentedViewController: boolean;
+
     trackingScrollView: UIScrollView;
 
     traitCollectionDidChangeBlock: (p1: MDCBottomSheetPresentationController, p2: UITraitCollection) => void;
@@ -752,11 +836,13 @@ interface MDCBottomSheetPresentationControllerDelegate extends UIAdaptivePresent
 
     bottomSheetPresentationControllerDidDismissBottomSheet?(bottomSheet: MDCBottomSheetPresentationController): void;
 
+    bottomSheetPresentationControllerDismissalAnimationCompleted?(bottomSheet: MDCBottomSheetPresentationController): void;
+
     bottomSheetWillChangeStateSheetState?(bottomSheet: MDCBottomSheetPresentationController, sheetState: MDCSheetState): void;
 
     prepareForBottomSheetPresentation?(bottomSheet: MDCBottomSheetPresentationController): void;
 }
-declare let MDCBottomSheetPresentationControllerDelegate: {
+declare var MDCBottomSheetPresentationControllerDelegate: {
 
     prototype: MDCBottomSheetPresentationControllerDelegate;
 };
@@ -864,6 +950,10 @@ declare class MDCButton extends UIButton implements MDCElevatable, MDCElevationO
 
     adjustsFontForContentSizeCategoryWhenScaledFontIsUnavailable: boolean;
 
+    centerVisibleArea: boolean;
+
+    readonly defaultContentEdgeInsets: UIEdgeInsets;
+
     disabledAlpha: number;
 
     enableRippleBehavior: boolean;
@@ -878,11 +968,21 @@ declare class MDCButton extends UIButton implements MDCElevatable, MDCElevationO
 
     inkStyle: MDCInkStyle;
 
+    inkViewOffset: CGSize;
+
     maximumSize: CGSize;
 
     mdc_adjustsFontForContentSizeCategory: boolean;
 
     minimumSize: CGSize;
+
+    rippleColor: UIColor;
+
+    rippleEdgeInsets: UIEdgeInsets;
+
+    rippleMaximumRadius: number;
+
+    rippleStyle: MDCRippleStyle;
 
     shapeGenerator: MDCShapeGenerating;
 
@@ -891,6 +991,8 @@ declare class MDCButton extends UIButton implements MDCElevatable, MDCElevationO
     underlyingColorHint: UIColor;
 
     uppercaseTitle: boolean;
+
+    visibleAreaInsets: UIEdgeInsets;
 
     readonly debugDescription: string; // inherited from NSObjectProtocol
 
@@ -988,40 +1090,6 @@ declare class MDCButtonColorThemer extends NSObject {
     static new(): MDCButtonColorThemer; // inherited from NSObject
 }
 
-declare class MDCButtonScheme extends NSObject implements MDCButtonScheming {
-
-    static alloc(): MDCButtonScheme; // inherited from NSObject
-
-    static new(): MDCButtonScheme; // inherited from NSObject
-
-    colorScheme: MDCColorScheming;
-
-    cornerRadius: number;
-
-    minimumHeight: number;
-
-    shapeScheme: MDCShapeScheming;
-
-    typographyScheme: MDCTypographyScheming;
-}
-
-interface MDCButtonScheming {
-
-    colorScheme: MDCColorScheming;
-
-    cornerRadius: number;
-
-    minimumHeight: number;
-
-    shapeScheme: MDCShapeScheming;
-
-    typographyScheme: MDCTypographyScheming;
-}
-declare let MDCButtonScheming: {
-
-    prototype: MDCButtonScheming;
-};
-
 declare class MDCButtonShapeThemer extends NSObject {
 
     static alloc(): MDCButtonShapeThemer; // inherited from NSObject
@@ -1089,6 +1157,10 @@ declare class MDCCard extends UIControl implements MDCElevatable, MDCElevationOv
     readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
     readonly;  // inherited from NSObjectProtocol
+
+    applyOutlinedThemeWithScheme(scheme: MDCContainerScheming): void;
+
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
     borderColorForState(state: UIControlState): UIColor;
 
@@ -1214,6 +1286,10 @@ declare class MDCCardCollectionCell extends UICollectionViewCell implements MDCE
 
     readonly;  // inherited from NSObjectProtocol
 
+    applyOutlinedThemeWithScheme(scheme: MDCContainerScheming): void;
+
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
+
     borderColorForState(state: MDCCardCellState): UIColor;
 
     borderWidthForState(state: MDCCardCellState): number;
@@ -1269,21 +1345,6 @@ declare class MDCCardCollectionCell extends UICollectionViewCell implements MDCE
     verticalImageAlignmentForState(state: MDCCardCellState): MDCCardCellVerticalImageAlignment;
 }
 
-declare class MDCCardsColorThemer extends NSObject {
-
-    static alloc(): MDCCardsColorThemer; // inherited from NSObject
-
-    static applyOutlinedVariantWithColorSchemeToCard(colorScheme: MDCColorScheming, card: MDCCard): void;
-
-    static applyOutlinedVariantWithColorSchemeToCardCell(colorScheme: MDCColorScheming, cardCell: MDCCardCollectionCell): void;
-
-    static applySemanticColorSchemeToCard(colorScheme: MDCColorScheming, card: MDCCard): void;
-
-    static applySemanticColorSchemeToCardCell(colorScheme: MDCColorScheming, cardCell: MDCCardCollectionCell): void;
-
-    static new(): MDCCardsColorThemer; // inherited from NSObject
-}
-
 interface MDCColorScheme extends NSObjectProtocol {
 
     primaryColor: UIColor;
@@ -1298,7 +1359,7 @@ interface MDCColorScheme extends NSObjectProtocol {
 
     secondaryLightColor?: UIColor;
 }
-declare let MDCColorScheme: {
+declare var MDCColorScheme: {
 
     prototype: MDCColorScheme;
 };
@@ -1338,7 +1399,7 @@ interface MDCColorScheming {
 
     surfaceColor: UIColor;
 }
-declare let MDCColorScheming: {
+declare var MDCColorScheming: {
 
     prototype: MDCColorScheming;
 };
@@ -1350,15 +1411,6 @@ declare class MDCContainedButtonColorThemer extends NSObject {
     static applySemanticColorSchemeToButton(colorScheme: MDCColorScheming, button: MDCButton): void;
 
     static new(): MDCContainedButtonColorThemer; // inherited from NSObject
-}
-
-declare class MDCContainedButtonThemer extends NSObject {
-
-    static alloc(): MDCContainedButtonThemer; // inherited from NSObject
-
-    static applySchemeToButton(scheme: MDCButtonScheming, button: MDCButton): void;
-
-    static new(): MDCContainedButtonThemer; // inherited from NSObject
 }
 
 declare class MDCContainerScheme extends NSObject implements MDCContainerScheming {
@@ -1382,10 +1434,21 @@ interface MDCContainerScheming {
 
     typographyScheme: MDCTypographyScheming;
 }
-declare let MDCContainerScheming: {
+declare var MDCContainerScheming: {
 
     prototype: MDCContainerScheming;
 };
+
+declare const enum MDCContentHorizontalAlignment {
+
+    Center = 0,
+
+    Leading = 1,
+
+    Trailing = 2,
+
+    Justified = 3
+}
 
 declare class MDCCornerTreatment extends NSObject implements NSCopying {
 
@@ -1486,6 +1549,8 @@ declare class MDCDialogPresentationController extends UIPresentationController {
 
     traitCollectionDidChangeBlock: (p1: MDCDialogPresentationController, p2: UITraitCollection) => void;
 
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
+
     // frameOfPresentedViewInContainerView(): CGRect;
 }
 
@@ -1493,7 +1558,7 @@ interface MDCDialogPresentationControllerDelegate extends NSObjectProtocol {
 
     dialogPresentationControllerDidDismiss?(dialogPresentationController: MDCDialogPresentationController): void;
 }
-declare let MDCDialogPresentationControllerDelegate: {
+declare var MDCDialogPresentationControllerDelegate: {
 
     prototype: MDCDialogPresentationControllerDelegate;
 };
@@ -1580,7 +1645,7 @@ interface MDCElevatable extends NSObjectProtocol {
 
     mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void;
 }
-declare let MDCElevatable: {
+declare var MDCElevatable: {
 
     prototype: MDCElevatable;
 };
@@ -1589,7 +1654,7 @@ interface MDCElevationOverriding {
 
     mdc_overrideBaseElevation: number;
 }
-declare let MDCElevationOverriding: {
+declare var MDCElevationOverriding: {
 
     prototype: MDCElevationOverriding;
 };
@@ -1626,15 +1691,6 @@ declare class MDCFlatButton extends MDCButton {
     static systemButtonWithImageTargetAction(image: UIImage, target: any, action: string): MDCFlatButton; // inherited from UIButton
 
     hasOpaqueBackground: boolean;
-}
-
-declare class MDCFloatingActionButtonThemer extends NSObject {
-
-    static alloc(): MDCFloatingActionButtonThemer; // inherited from NSObject
-
-    static applySchemeToButton(scheme: MDCButtonScheming, button: MDCFloatingButton): void;
-
-    static new(): MDCFloatingActionButtonThemer; // inherited from NSObject
 }
 
 declare class MDCFloatingButton extends MDCButton {
@@ -1681,6 +1737,8 @@ declare class MDCFloatingButton extends MDCButton {
 
     initWithFrameShape(frame: CGRect, shape: MDCFloatingButtonShape): this;
 
+    setCenterVisibleAreaForShapeInMode(centerVisibleArea: boolean, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
+
     setContentEdgeInsetsForShapeInMode(contentEdgeInsets: UIEdgeInsets, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
 
     setHitAreaInsetsForShapeInMode(hitAreaInsets: UIEdgeInsets, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
@@ -1688,6 +1746,12 @@ declare class MDCFloatingButton extends MDCButton {
     setMaximumSizeForShapeInMode(maximumSize: CGSize, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
 
     setMinimumSizeForShapeInMode(minimumSize: CGSize, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
+
+    setModeAnimated(mode: MDCFloatingButtonMode, animated: boolean): void;
+
+    setModeAnimatedAnimateAlongsideCompletion(mode: MDCFloatingButtonMode, animated: boolean, animateAlongside: () => void, completion: (p1: boolean) => void): void;
+
+    setVisibleAreaInsetsForShapeInMode(visibleAreaInsets: UIEdgeInsets, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
 }
 
 declare class MDCFloatingButtonColorThemer extends NSObject {
@@ -1718,15 +1782,6 @@ declare const enum MDCFloatingButtonShape {
     Default = 0,
 
     Mini = 1
-}
-
-declare class MDCFloatingButtonShapeThemer extends NSObject {
-
-    static alloc(): MDCFloatingButtonShapeThemer; // inherited from NSObject
-
-    static applyShapeSchemeToButton(shapeScheme: MDCShapeScheming, button: MDCFloatingButton): void;
-
-    static new(): MDCFloatingButtonShapeThemer; // inherited from NSObject
 }
 
 declare class MDCFontScaler extends NSObject {
@@ -1774,7 +1829,7 @@ interface MDCFontScheme extends NSObjectProtocol {
 
     subtitle2: UIFont;
 }
-declare let MDCFontScheme: {
+declare var MDCFontScheme: {
 
     prototype: MDCFontScheme;
 };
@@ -1815,17 +1870,6 @@ declare class MDCIcons extends NSObject {
     static new(): MDCIcons; // inherited from NSObject
 
     static pathForIconNameWithBundleName(iconName: string, bundleName: string): string;
-
-    static pathFor_ic_check_circle(): string;
-}
-
-declare class MDCInkColorThemer extends NSObject {
-
-    static alloc(): MDCInkColorThemer; // inherited from NSObject
-
-    static applyColorSchemeToInkView(colorScheme: MDCColorScheme, inkView: MDCInkView): void;
-
-    static new(): MDCInkColorThemer; // inherited from NSObject
 }
 
 declare class MDCInkGestureRecognizer extends UIGestureRecognizer {
@@ -1943,7 +1987,7 @@ interface MDCInkTouchControllerDelegate extends NSObjectProtocol {
 
     inkTouchControllerShouldProcessInkTouchesAtTouchLocation?(inkTouchController: MDCInkTouchController, location: CGPoint): boolean;
 }
-declare let MDCInkTouchControllerDelegate: {
+declare var MDCInkTouchControllerDelegate: {
 
     prototype: MDCInkTouchControllerDelegate;
 };
@@ -2003,7 +2047,7 @@ interface MDCInkViewDelegate extends NSObjectProtocol {
 
     inkAnimationDidStart?(inkView: MDCInkView): void;
 }
-declare let MDCInkViewDelegate: {
+declare var MDCInkViewDelegate: {
 
     prototype: MDCInkViewDelegate;
 };
@@ -2056,7 +2100,7 @@ interface MDCLeadingViewTextInput extends MDCTextInput {
 
     leadingViewMode: UITextFieldViewMode;
 }
-declare let MDCLeadingViewTextInput: {
+declare var MDCLeadingViewTextInput: {
 
     prototype: MDCLeadingViewTextInput;
 };
@@ -2088,6 +2132,8 @@ declare class MDCMultilineTextField extends UIView implements MDCElevatable, MDC
     textView: MDCIntrinsicHeightTextView;
 
     traitCollectionDidChangeBlock: (p1: MDCMultilineTextField, p2: UITraitCollection) => void;
+
+    useConstraintsForIntrinsicContentSize: boolean;
 
     attributedPlaceholder: NSAttributedString; // inherited from MDCTextInput
 
@@ -2192,7 +2238,7 @@ interface MDCMultilineTextInput extends MDCTextInput {
 
     minimumLines: number;
 }
-declare let MDCMultilineTextInput: {
+declare var MDCMultilineTextInput: {
 
     prototype: MDCMultilineTextInput;
 };
@@ -2201,7 +2247,7 @@ interface MDCMultilineTextInputDelegate extends NSObjectProtocol {
 
     multilineTextFieldShouldClear?(textField: UIView): boolean;
 }
-declare let MDCMultilineTextInputDelegate: {
+declare var MDCMultilineTextInputDelegate: {
 
     prototype: MDCMultilineTextInputDelegate;
 };
@@ -2210,7 +2256,7 @@ interface MDCMultilineTextInputLayoutDelegate extends NSObjectProtocol {
 
     multilineTextFieldDidChangeContentSize?(multilineTextField: MDCMultilineTextInput, size: CGSize): void;
 }
-declare let MDCMultilineTextInputLayoutDelegate: {
+declare var MDCMultilineTextInputLayoutDelegate: {
 
     prototype: MDCMultilineTextInputLayoutDelegate;
 };
@@ -2287,31 +2333,13 @@ declare class MDCOutlinedButtonColorThemer extends NSObject {
     static new(): MDCOutlinedButtonColorThemer; // inherited from NSObject
 }
 
-declare class MDCOutlinedButtonThemer extends NSObject {
-
-    static alloc(): MDCOutlinedButtonThemer; // inherited from NSObject
-
-    static applySchemeToButton(scheme: MDCButtonScheming, button: MDCButton): void;
-
-    static new(): MDCOutlinedButtonThemer; // inherited from NSObject
-}
-
-declare class MDCOutlinedTextFieldColorThemer extends NSObject {
-
-    static alloc(): MDCOutlinedTextFieldColorThemer; // inherited from NSObject
-
-    static applySemanticColorSchemeToTextInputController(colorScheme: MDCColorScheming, textInputController: MDCTextInputController): void;
-
-    static new(): MDCOutlinedTextFieldColorThemer; // inherited from NSObject
-}
-
 interface MDCOverlay extends NSObjectProtocol {
 
     frame: CGRect;
 
     identifier: string;
 }
-declare let MDCOverlay: {
+declare var MDCOverlay: {
 
     prototype: MDCOverlay;
 };
@@ -2349,7 +2377,7 @@ interface MDCOverlayTransitioning extends NSObjectProtocol {
 
     enumerateOverlays(handler: (p1: MDCOverlay, p2: number, p3: interop.Pointer | interop.Reference<boolean>) => void): void;
 }
-declare let MDCOverlayTransitioning: {
+declare var MDCOverlayTransitioning: {
 
     prototype: MDCOverlayTransitioning;
 };
@@ -2542,21 +2570,33 @@ declare class MDCProgressView extends UIView {
 
     static new(): MDCProgressView; // inherited from NSObject
 
+    animating: boolean;
+
     backwardProgressAnimationMode: MDCProgressViewBackwardAnimationMode;
 
     cornerRadius: number;
+
+    mode: MDCProgressViewMode;
 
     progress: number;
 
     progressTintColor: UIColor;
 
+    progressTintColors: NSArray<any>;
+
     trackTintColor: UIColor;
 
     traitCollectionDidChangeBlock: (p1: MDCProgressView, p2: UITraitCollection) => void;
 
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
+
     setHiddenAnimatedCompletion(hidden: boolean, animated: boolean, completion: (p1: boolean) => void): void;
 
     setProgressAnimatedCompletion(progress: number, animated: boolean, completion: (p1: boolean) => void): void;
+
+    startAnimating(): void;
+
+    stopAnimating(): void;
 }
 
 declare const enum MDCProgressViewBackwardAnimationMode {
@@ -2566,13 +2606,11 @@ declare const enum MDCProgressViewBackwardAnimationMode {
     Animate = 1
 }
 
-declare class MDCProgressViewColorThemer extends NSObject {
+declare const enum MDCProgressViewMode {
 
-    static alloc(): MDCProgressViewColorThemer; // inherited from NSObject
+    Determinate = 0,
 
-    static applyColorSchemeToProgressView(colorScheme: MDCColorScheme, progressView: MDCProgressView): void;
-
-    static new(): MDCProgressViewColorThemer; // inherited from NSObject
+    Indeterminate = 1
 }
 
 declare class MDCRaisedButton extends MDCButton {
@@ -2734,9 +2772,11 @@ interface MDCRippleTouchControllerDelegate extends NSObjectProtocol {
 
     rippleTouchControllerInsertRippleViewIntoView?(rippleTouchController: MDCRippleTouchController, rippleView: MDCRippleView, view: UIView): void;
 
+    rippleTouchControllerRippleViewAtTouchLocation?(rippleTouchController: MDCRippleTouchController, location: CGPoint): MDCRippleView;
+
     rippleTouchControllerShouldProcessRippleTouchesAtTouchLocation?(rippleTouchController: MDCRippleTouchController, location: CGPoint): boolean;
 }
-declare let MDCRippleTouchControllerDelegate: {
+declare var MDCRippleTouchControllerDelegate: {
 
     prototype: MDCRippleTouchControllerDelegate;
 };
@@ -2756,6 +2796,8 @@ declare class MDCRippleView extends UIView {
     static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCRippleView; // inherited from UIAppearance
 
     static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRippleView; // inherited from UIAppearance
+
+    static injectedRippleViewForView(view: UIView): MDCRippleView;
 
     static new(): MDCRippleView; // inherited from NSObject
 
@@ -2794,7 +2836,7 @@ interface MDCRippleViewDelegate extends NSObjectProtocol {
 
     rippleTouchUpAnimationDidEnd?(rippleView: MDCRippleView): void;
 }
-declare let MDCRippleViewDelegate: {
+declare var MDCRippleViewDelegate: {
 
     prototype: MDCRippleViewDelegate;
 };
@@ -2953,6 +2995,8 @@ declare class MDCShadowLayer extends CALayer implements CALayerDelegate {
 
     performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
+    prepareShadowPath(): void;
+
     respondsToSelector(aSelector: string): boolean;
 
     retainCount(): number;
@@ -3013,7 +3057,7 @@ interface MDCShapeGenerating extends NSCopying {
 
     pathForSize(size: CGSize): any;
 }
-declare let MDCShapeGenerating: {
+declare var MDCShapeGenerating: {
 
     prototype: MDCShapeGenerating;
 };
@@ -3048,7 +3092,7 @@ interface MDCShapeScheming {
 
     smallComponentShape: MDCShapeCategory;
 }
-declare let MDCShapeScheming: {
+declare var MDCShapeScheming: {
 
     prototype: MDCShapeScheming;
 };
@@ -3141,6 +3185,8 @@ declare class MDCSlider extends UIControl implements MDCElevatable, MDCElevation
 
     static new(): MDCSlider; // inherited from NSObject
 
+    allowAnimatedValueChanges: boolean;
+
     color: UIColor;
 
     continuous: boolean;
@@ -3171,6 +3217,8 @@ declare class MDCSlider extends UIControl implements MDCElevatable, MDCElevation
 
     shouldDisplayDiscreteValueLabel: boolean;
 
+    shouldDisplayThumbWithDiscreteValueLabel: boolean;
+
     shouldEnableHapticsForAllDiscreteValues: boolean;
 
     statefulAPIEnabled: boolean;
@@ -3184,6 +3232,10 @@ declare class MDCSlider extends UIControl implements MDCElevatable, MDCElevation
     thumbShadowColor: UIColor;
 
     trackBackgroundColor: UIColor;
+
+    trackEndsAreInset: boolean;
+
+    trackEndsAreRounded: boolean;
 
     trackHeight: number;
 
@@ -3285,7 +3337,7 @@ interface MDCSliderDelegate extends NSObjectProtocol {
 
     sliderShouldJumpToValue?(slider: MDCSlider, value: number): boolean;
 }
-declare let MDCSliderDelegate: {
+declare var MDCSliderDelegate: {
 
     prototype: MDCSliderDelegate;
 };
@@ -3306,18 +3358,12 @@ declare const enum MDCSnackbarAlignment {
     Leading = 1
 }
 
-declare class MDCSnackbarColorThemer extends NSObject {
+declare const enum MDCSnackbarError {
 
-    static alloc(): MDCSnackbarColorThemer; // inherited from NSObject
-
-    static applyColorSchemeToSnackbarMessageView(colorScheme: MDCColorScheme, snackbarMessageView: MDCSnackbarMessageView): void;
-
-    static applySemanticColorScheme(colorScheme: MDCColorScheming): void;
-
-    static applySemanticColorSchemeToSnackbarManager(colorScheme: MDCColorScheming, snackbarManager: MDCSnackbarManager): void;
-
-    static new(): MDCSnackbarColorThemer; // inherited from NSObject
+    SlideAnimationMisconfigured = -10
 }
+
+declare let MDCSnackbarErrorDomain: string;
 
 declare class MDCSnackbarManager extends NSObject implements MDCElevationOverriding {
 
@@ -3356,6 +3402,8 @@ declare class MDCSnackbarManager extends NSObject implements MDCElevationOverrid
     delegate: MDCSnackbarManagerDelegate;
 
     disabledButtonAlpha: number;
+
+    focusAccessibilityNotification: number;
 
     mdc_adjustsFontForContentSizeCategory: boolean;
 
@@ -3424,9 +3472,15 @@ declare class MDCSnackbarManager extends NSObject implements MDCElevationOverrid
 
 interface MDCSnackbarManagerDelegate extends NSObjectProtocol {
 
+    isPresentingSnackbarWithMessageView?(messageView: MDCSnackbarMessageView): void;
+
+    snackbarDidDisappear?(): void;
+
+    snackbarWillDisappear?(): void;
+
     willPresentSnackbarWithMessageView(messageView: MDCSnackbarMessageView): void;
 }
-declare let MDCSnackbarManagerDelegate: {
+declare var MDCSnackbarManagerDelegate: {
 
     prototype: MDCSnackbarManagerDelegate;
 };
@@ -3445,17 +3499,27 @@ declare class MDCSnackbarMessage extends NSObject implements NSCopying, UIAccess
 
     attributedText: NSAttributedString;
 
+    automaticallyDismisses: boolean;
+
     buttonTextColor: UIColor;
 
     category: string;
 
     completionHandler: (p1: boolean) => void;
 
+    completionHandlerWithError: (p1: boolean, p2: NSError) => void;
+
     duration: number;
+
+    elementToFocusOnDismiss: UIView;
 
     enableRippleBehavior: boolean;
 
     focusOnShow: boolean;
+
+    presentationHostViewOverride: UIView;
+
+    shouldDismissOnOverlayTap: boolean;
 
     snackbarMessageWillPresentBlock: (p1: MDCSnackbarMessage, p2: MDCSnackbarMessageView) => void;
 
@@ -3593,8 +3657,6 @@ declare class MDCSnackbarMessageView extends UIView implements MDCElevatable, MD
 
     snackbarMessageViewShadowColor: UIColor;
 
-    snackbarMessageViewTextColor: UIColor;
-
     traitCollectionDidChangeBlock: (p1: MDCSnackbarMessageView, p2: UITraitCollection) => void;
 
     readonly debugDescription: string; // inherited from NSObjectProtocol
@@ -3644,7 +3706,7 @@ declare class MDCSnackbarMessageView extends UIView implements MDCElevatable, MD
 
 interface MDCSnackbarSuspensionToken extends NSObjectProtocol {
 }
-declare let MDCSnackbarSuspensionToken: {
+declare var MDCSnackbarSuspensionToken: {
 
     prototype: MDCSnackbarSuspensionToken;
 };
@@ -3739,196 +3801,141 @@ declare class MDCSystemFontLoader extends NSObject implements MDCTypographyFontL
     self(): this;
 }
 
-declare class MDCTabBar extends UIView implements MDCElevatable, MDCElevationOverriding, UIBarPositioning {
+declare class MDCTabBarItem extends UITabBarItem implements MDCTabBarItemCustomViewing {
 
-    static alloc(): MDCTabBar; // inherited from NSObject
+    static alloc(): MDCTabBarItem; // inherited from NSObject
 
-    static appearance(): MDCTabBar; // inherited from UIAppearance
+    static appearance(): MDCTabBarItem; // inherited from UIAppearance
 
-    static appearanceForTraitCollection(trait: UITraitCollection): MDCTabBar; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCTabBarItem; // inherited from UIAppearance
 
-    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTabBar; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTabBarItem; // inherited from UIAppearance
 
-    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBar; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBarItem; // inherited from UIAppearance
 
-    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTabBar; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTabBarItem; // inherited from UIAppearance
 
-    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBar; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBarItem; // inherited from UIAppearance
 
-    static defaultHeightForBarPositionItemAppearance(position: UIBarPosition, appearance: MDCTabBarItemAppearance): number;
+    static new(): MDCTabBarItem; // inherited from NSObject
 
-    static defaultHeightForItemAppearance(appearance: MDCTabBarItemAppearance): number;
+    mdc_customView: UIView; // inherited from MDCTabBarItemCustomViewing
+}
 
-    static new(): MDCTabBar; // inherited from NSObject
+interface MDCTabBarItemCustomViewing {
 
-    alignment: MDCTabBarAlignment;
+    mdc_customView: UIView;
+}
+declare var MDCTabBarItemCustomViewing: {
+
+    prototype: MDCTabBarItemCustomViewing;
+};
+
+declare class MDCTabBarView extends UIScrollView {
+
+    static alloc(): MDCTabBarView; // inherited from NSObject
+
+    static appearance(): MDCTabBarView; // inherited from UIAppearance
+
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCTabBarView; // inherited from UIAppearance
+
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTabBarView; // inherited from UIAppearance
+
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBarView; // inherited from UIAppearance
+
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTabBarView; // inherited from UIAppearance
+
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBarView; // inherited from UIAppearance
+
+    static new(): MDCTabBarView; // inherited from NSObject
 
     barTintColor: UIColor;
 
     bottomDividerColor: UIColor;
 
-    delegate: MDCTabBarDelegate;
-
-    displayDelegate: NSObject;
-
-    displaysUppercaseTitles: boolean;
-
-    enableRippleBehavior: boolean;
-
-    inkColor: UIColor;
-
-    itemAppearance: MDCTabBarItemAppearance;
+    readonly effectiveLayoutStyle: MDCTabBarViewLayoutStyle;
 
     items: NSArray<UITabBarItem>;
+
+    preferredLayoutStyle: MDCTabBarViewLayoutStyle;
 
     rippleColor: UIColor;
 
     selectedItem: UITabBarItem;
 
-    selectedItemTintColor: UIColor;
+    readonly selectionChangeAnimationDuration: number;
 
-    selectedItemTitleFont: UIFont;
+    readonly selectionChangeAnimationTimingFunction: CAMediaTimingFunction;
 
-    selectionIndicatorTemplate: MDCTabBarIndicatorTemplate;
+    selectionIndicatorStrokeColor: UIColor;
 
-    sizeClassDelegate: NSObject;
+    selectionIndicatorTemplate: MDCTabBarViewIndicatorTemplate;
 
-    titleTextTransform: MDCTabBarTextTransform;
+    shouldAdjustForSafeAreaInsets: boolean;
 
-    traitCollectionDidChangeBlock: (p1: MDCTabBar, p2: UITraitCollection) => void;
+    tabBarDelegate: MDCTabBarViewDelegate;
 
-    unselectedItemTintColor: UIColor;
-
-    unselectedItemTitleFont: UIFont;
-
-    readonly barPosition: UIBarPosition; // inherited from UIBarPositioning
-
-    readonly debugDescription: string; // inherited from NSObjectProtocol
-
-    readonly description: string; // inherited from NSObjectProtocol
-
-    readonly hash: number; // inherited from NSObjectProtocol
-
-    readonly isProxy: boolean; // inherited from NSObjectProtocol
-
-    readonly mdc_currentElevation: number; // inherited from MDCElevatable
-
-    mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
-
-    mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
-
-    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
-
-    readonly;  // inherited from NSObjectProtocol
+    traitCollectionDidChangeBlock: (p1: MDCTabBarView, p2: UITraitCollection) => void;
 
     accessibilityElementForItem(item: UITabBarItem): any;
 
-    class(): typeof NSObject;
+    contentPaddingForLayoutStyle(layoutStyle: MDCTabBarViewLayoutStyle): UIEdgeInsets;
 
-    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    imageTintColorForState(state: UIControlState): UIColor;
 
-    imageTintColorForState(state: MDCTabBarItemState): UIColor;
+    rectForItemInCoordinateSpace(item: UITabBarItem, coordinateSpace: UICoordinateSpace): CGRect;
 
-    isEqual(object: any): boolean;
+    setContentPaddingForLayoutStyle(contentPadding: UIEdgeInsets, layoutStyle: MDCTabBarViewLayoutStyle): void;
 
-    isKindOfClass(aClass: typeof NSObject): boolean;
-
-    isMemberOfClass(aClass: typeof NSObject): boolean;
-
-    performSelector(aSelector: string): any;
-
-    performSelectorWithObject(aSelector: string, object: any): any;
-
-    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
-
-    respondsToSelector(aSelector: string): boolean;
-
-    retainCount(): number;
-
-    self(): this;
-
-    setAlignmentAnimated(alignment: MDCTabBarAlignment, animated: boolean): void;
-
-    setImageTintColorForState(color: UIColor, state: MDCTabBarItemState): void;
+    setImageTintColorForState(imageTintColor: UIColor, state: UIControlState): void;
 
     setSelectedItemAnimated(selectedItem: UITabBarItem, animated: boolean): void;
 
-    setTitleColorForState(color: UIColor, state: MDCTabBarItemState): void;
+    setTitleColorForState(titleColor: UIColor, state: UIControlState): void;
 
-    titleColorForState(state: MDCTabBarItemState): UIColor;
+    setTitleFontForState(titleFont: UIFont, state: UIControlState): void;
+
+    titleColorForState(state: UIControlState): UIColor;
+
+    titleFontForState(state: UIControlState): UIFont;
 }
 
-declare const enum MDCTabBarAlignment {
+interface MDCTabBarViewCustomViewable {
 
-    Leading = 0,
+    bounds: CGRect;
 
-    Justified = 1,
+    contentFrame: CGRect;
 
-    Center = 2,
-
-    CenterSelected = 3
+    setSelectedAnimated(selected: boolean, animated: boolean): void;
 }
+declare var MDCTabBarViewCustomViewable: {
 
-interface MDCTabBarControllerDelegate extends NSObjectProtocol {
-
-    tabBarControllerDidSelectViewController?(tabBarController: MDCTabBarViewController, viewController: UIViewController): void;
-
-    tabBarControllerShouldSelectViewController?(tabBarController: MDCTabBarViewController, viewController: UIViewController): boolean;
-}
-declare let MDCTabBarControllerDelegate: {
-
-    prototype: MDCTabBarControllerDelegate;
+    prototype: MDCTabBarViewCustomViewable;
 };
 
-interface MDCTabBarDelegate extends UIBarPositioningDelegate {
+interface MDCTabBarViewDelegate extends NSObjectProtocol {
 
-    tabBarDidSelectItem?(tabBar: MDCTabBar, item: UITabBarItem): void;
+    tabBarViewDidSelectItem?(tabBarView: MDCTabBarView, item: UITabBarItem): void;
 
-    tabBarShouldSelectItem?(tabBar: MDCTabBar, item: UITabBarItem): boolean;
-
-    tabBarWillSelectItem?(tabBar: MDCTabBar, item: UITabBarItem): void;
+    tabBarViewShouldSelectItem?(tabBarView: MDCTabBarView, item: UITabBarItem): boolean;
 }
-declare let MDCTabBarDelegate: {
+declare var MDCTabBarViewDelegate: {
 
-    prototype: MDCTabBarDelegate;
+    prototype: MDCTabBarViewDelegate;
 };
 
-interface MDCTabBarDisplayDelegate {
+declare class MDCTabBarViewIndicatorAttributes extends NSObject implements NSCopying {
 
-    tabBarDidEndDisplayingItem(tabBar: MDCTabBar, item: UITabBarItem): void;
+    static alloc(): MDCTabBarViewIndicatorAttributes; // inherited from NSObject
 
-    tabBarWillDisplayItem(tabBar: MDCTabBar, item: UITabBarItem): void;
-}
-declare let MDCTabBarDisplayDelegate: {
-
-    prototype: MDCTabBarDisplayDelegate;
-};
-
-declare const enum MDCTabBarExtendedAlignment {
-
-    Leading = 0,
-
-    Justified = 1,
-
-    Center = 2,
-
-    CenterSelected = 3,
-
-    BestEffortJustified = 4
-}
-
-declare class MDCTabBarIndicatorAttributes extends NSObject implements NSCopying {
-
-    static alloc(): MDCTabBarIndicatorAttributes; // inherited from NSObject
-
-    static new(): MDCTabBarIndicatorAttributes; // inherited from NSObject
+    static new(): MDCTabBarViewIndicatorAttributes; // inherited from NSObject
 
     path: UIBezierPath;
 
     copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 }
 
-interface MDCTabBarIndicatorContext extends NSObjectProtocol {
+interface MDCTabBarViewIndicatorContext extends NSObjectProtocol {
 
     bounds: CGRect;
 
@@ -3936,59 +3943,42 @@ interface MDCTabBarIndicatorContext extends NSObjectProtocol {
 
     item: UITabBarItem;
 }
-declare let MDCTabBarIndicatorContext: {
+declare var MDCTabBarViewIndicatorContext: {
 
-    prototype: MDCTabBarIndicatorContext;
+    prototype: MDCTabBarViewIndicatorContext;
 };
 
-interface MDCTabBarIndicatorTemplate extends NSObjectProtocol {
+interface MDCTabBarViewIndicatorTemplate extends NSObjectProtocol {
 
-    indicatorAttributesForContext(context: MDCTabBarIndicatorContext): MDCTabBarIndicatorAttributes;
+    indicatorAttributesForContext(context: MDCTabBarViewIndicatorContext): MDCTabBarViewIndicatorAttributes;
 }
-declare let MDCTabBarIndicatorTemplate: {
+declare var MDCTabBarViewIndicatorTemplate: {
 
-    prototype: MDCTabBarIndicatorTemplate;
+    prototype: MDCTabBarViewIndicatorTemplate;
 };
 
-declare const enum MDCTabBarItemAppearance {
+declare const enum MDCTabBarViewLayoutStyle {
 
-    Titles = 0,
+    Fixed = 0,
 
-    Images = 1,
+    Scrollable = 1,
 
-    TitledImages = 2
+    FixedClusteredCentered = 2,
+
+    FixedClusteredLeading = 3,
+
+    FixedClusteredTrailing = 4,
+
+    ScrollableCentered = 5,
+
+    NonFixedClusteredCentered = 6
 }
 
-declare const enum MDCTabBarItemState {
+declare class MDCTabBarViewUnderlineIndicatorTemplate extends NSObject implements MDCTabBarViewIndicatorTemplate {
 
-    Normal = 0,
+    static alloc(): MDCTabBarViewUnderlineIndicatorTemplate; // inherited from NSObject
 
-    Selected = 1
-}
-
-interface MDCTabBarSizeClassDelegate {
-
-    horizontalSizeClassForObject?(object: UITraitEnvironment): UIUserInterfaceSizeClass;
-}
-declare let MDCTabBarSizeClassDelegate: {
-
-    prototype: MDCTabBarSizeClassDelegate;
-};
-
-declare const enum MDCTabBarTextTransform {
-
-    Automatic = 0,
-
-    None = 1,
-
-    Uppercase = 2
-}
-
-declare class MDCTabBarUnderlineIndicatorTemplate extends NSObject implements MDCTabBarIndicatorTemplate {
-
-    static alloc(): MDCTabBarUnderlineIndicatorTemplate; // inherited from NSObject
-
-    static new(): MDCTabBarUnderlineIndicatorTemplate; // inherited from NSObject
+    static new(): MDCTabBarViewUnderlineIndicatorTemplate; // inherited from NSObject
 
     readonly debugDescription: string; // inherited from NSObjectProtocol
 
@@ -4006,7 +3996,7 @@ declare class MDCTabBarUnderlineIndicatorTemplate extends NSObject implements MD
 
     conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-    indicatorAttributesForContext(context: MDCTabBarIndicatorContext): MDCTabBarIndicatorAttributes;
+    indicatorAttributesForContext(context: MDCTabBarViewIndicatorContext): MDCTabBarViewIndicatorAttributes;
 
     isEqual(object: any): boolean;
 
@@ -4026,71 +4016,6 @@ declare class MDCTabBarUnderlineIndicatorTemplate extends NSObject implements MD
 
     self(): this;
 }
-
-declare class MDCTabBarViewController extends UIViewController implements MDCTabBarDelegate, UIBarPositioningDelegate {
-
-    static alloc(): MDCTabBarViewController; // inherited from NSObject
-
-    static new(): MDCTabBarViewController; // inherited from NSObject
-
-    delegate: MDCTabBarControllerDelegate;
-
-    selectedViewController: UIViewController;
-
-    readonly tabBar: MDCTabBar;
-
-    tabBarHidden: boolean;
-
-    traitCollectionDidChangeBlock: (p1: MDCTabBarViewController, p2: UITraitCollection) => void;
-
-    viewControllers: NSArray<UIViewController>;
-
-    readonly debugDescription: string; // inherited from NSObjectProtocol
-
-    readonly description: string; // inherited from NSObjectProtocol
-
-    readonly hash: number; // inherited from NSObjectProtocol
-
-    readonly isProxy: boolean; // inherited from NSObjectProtocol
-
-    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
-
-    readonly;  // inherited from NSObjectProtocol
-
-    class(): typeof NSObject;
-
-    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
-
-    isEqual(object: any): boolean;
-
-    isKindOfClass(aClass: typeof NSObject): boolean;
-
-    isMemberOfClass(aClass: typeof NSObject): boolean;
-
-    performSelector(aSelector: string): any;
-
-    performSelectorWithObject(aSelector: string, object: any): any;
-
-    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
-
-    positionForBar(bar: UIBarPositioning): UIBarPosition;
-
-    respondsToSelector(aSelector: string): boolean;
-
-    retainCount(): number;
-
-    self(): this;
-
-    setTabBarHiddenAnimated(hidden: boolean, animated: boolean): void;
-
-    tabBarDidSelectItem(tabBar: MDCTabBar, item: UITabBarItem): void;
-
-    tabBarShouldSelectItem(tabBar: MDCTabBar, item: UITabBarItem): boolean;
-
-    tabBarWillSelectItem(tabBar: MDCTabBar, item: UITabBarItem): void;
-}
-
-declare let MDCTabBarViewControllerAnimationDuration: number;
 
 declare class MDCTextButtonColorThemer extends NSObject {
 
@@ -4099,15 +4024,6 @@ declare class MDCTextButtonColorThemer extends NSObject {
     static applySemanticColorSchemeToButton(colorScheme: MDCColorScheming, button: MDCButton): void;
 
     static new(): MDCTextButtonColorThemer; // inherited from NSObject
-}
-
-declare class MDCTextButtonThemer extends NSObject {
-
-    static alloc(): MDCTextButtonThemer; // inherited from NSObject
-
-    static applySchemeToButton(scheme: MDCButtonScheming, button: MDCButton): void;
-
-    static new(): MDCTextButtonThemer; // inherited from NSObject
 }
 
 declare class MDCTextField extends UITextField implements MDCElevatable, MDCElevationOverriding, MDCLeadingViewTextInput, MDCTextInput {
@@ -4229,23 +4145,6 @@ declare class MDCTextField extends UITextField implements MDCElevatable, MDCElev
     self(): this;
 }
 
-declare class MDCTextFieldColorThemer extends NSObject {
-
-    static alloc(): MDCTextFieldColorThemer; // inherited from NSObject
-
-    static applyColorSchemeToAllTextInputControllersOfClass(colorScheme: MDCColorScheme, textInputControllerClass: typeof NSObject): void;
-
-    static applyColorSchemeToTextInputController(colorScheme: MDCColorScheme, textInputController: MDCTextInputController): void;
-
-    static applySemanticColorSchemeToAllTextInputControllersOfClass(colorScheme: MDCColorScheming, textInputControllerClass: typeof NSObject): void;
-
-    static applySemanticColorSchemeToTextInput(colorScheme: MDCColorScheming, textInput: MDCTextInput): void;
-
-    static applySemanticColorSchemeToTextInputController(colorScheme: MDCColorScheming, textInputController: MDCTextInputController): void;
-
-    static new(): MDCTextFieldColorThemer; // inherited from NSObject
-}
-
 declare let MDCTextFieldTextDidSetTextNotification: string;
 
 interface MDCTextInput extends NSObjectProtocol {
@@ -4302,7 +4201,7 @@ interface MDCTextInput extends NSObjectProtocol {
 
     clearText(): void;
 }
-declare let MDCTextInput: {
+declare var MDCTextInput: {
 
     prototype: MDCTextInput;
 };
@@ -4381,7 +4280,7 @@ interface MDCTextInputCharacterCounter extends NSObjectProtocol {
 
     characterCountForTextInput(textInput: UIView): number;
 }
-declare let MDCTextInputCharacterCounter: {
+declare var MDCTextInputCharacterCounter: {
 
     prototype: MDCTextInputCharacterCounter;
 };
@@ -4442,7 +4341,7 @@ interface MDCTextInputController extends MDCTextInputPositioningDelegate, NSCopy
 
     setHelperTextHelperAccessibilityLabel(helperText: string, helperAccessibilityLabel: string): void;
 }
-declare let MDCTextInputController: {
+declare var MDCTextInputController: {
 
     prototype: MDCTextInputController;
 };
@@ -4454,6 +4353,8 @@ declare class MDCTextInputControllerBase extends NSObject implements MDCTextInpu
     static new(): MDCTextInputControllerBase; // inherited from NSObject
 
     borderFillColor: UIColor;
+
+    borderRadius: number;
 
     borderStrokeColor: UIColor;
 
@@ -4628,13 +4529,13 @@ declare class MDCTextInputControllerBase extends NSObject implements MDCTextInpu
     trailingViewTrailingPaddingConstant(): number;
 }
 
-declare let MDCTextInputControllerBaseDefaultBorderRadius: number;
-
 declare class MDCTextInputControllerFilled extends MDCTextInputControllerBase {
 
     static alloc(): MDCTextInputControllerFilled; // inherited from NSObject
 
     static new(): MDCTextInputControllerFilled; // inherited from NSObject
+
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 }
 
 interface MDCTextInputControllerFloatingPlaceholder extends MDCTextInputController {
@@ -4651,7 +4552,7 @@ interface MDCTextInputControllerFloatingPlaceholder extends MDCTextInputControll
 
     floatingPlaceholderScale: number;
 }
-declare let MDCTextInputControllerFloatingPlaceholder: {
+declare var MDCTextInputControllerFloatingPlaceholder: {
 
     prototype: MDCTextInputControllerFloatingPlaceholder;
 };
@@ -4830,6 +4731,8 @@ declare class MDCTextInputControllerOutlined extends MDCTextInputControllerBase 
     static alloc(): MDCTextInputControllerOutlined; // inherited from NSObject
 
     static new(): MDCTextInputControllerOutlined; // inherited from NSObject
+
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 }
 
 declare class MDCTextInputControllerOutlinedTextArea extends MDCTextInputControllerBase {
@@ -4844,6 +4747,8 @@ declare class MDCTextInputControllerUnderline extends MDCTextInputControllerBase
     static alloc(): MDCTextInputControllerUnderline; // inherited from NSObject
 
     static new(): MDCTextInputControllerUnderline; // inherited from NSObject
+
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 }
 
 declare let MDCTextInputDidToggleEnabledNotification: string;
@@ -4868,7 +4773,7 @@ interface MDCTextInputPositioningDelegate extends NSObjectProtocol {
 
     trailingViewTrailingPaddingConstant?(): number;
 }
-declare let MDCTextInputPositioningDelegate: {
+declare var MDCTextInputPositioningDelegate: {
 
     prototype: MDCTextInputPositioningDelegate;
 };
@@ -4964,6 +4869,8 @@ declare class MDCThumbTrack extends UIControl implements UIContentSizeCategoryAd
 
     static new(): MDCThumbTrack; // inherited from NSObject
 
+    allowAnimatedValueChanges: boolean;
+
     continuousUpdateEvents: boolean;
 
     delegate: MDCThumbTrackDelegate;
@@ -5002,6 +4909,8 @@ declare class MDCThumbTrack extends UIControl implements UIContentSizeCategoryAd
 
     shouldDisplayRipple: boolean;
 
+    shouldDisplayThumbWithDiscreteValueLabel: boolean;
+
     tapsAllowedOnThumb: boolean;
 
     thumbDisabledColor: UIColor;
@@ -5015,8 +4924,6 @@ declare class MDCThumbTrack extends UIControl implements UIContentSizeCategoryAd
     thumbIsHollowAtStart: boolean;
 
     thumbIsSmallerWhenDisabled: boolean;
-
-    thumbMaxRippleRadius: number;
 
     readonly thumbPosition: CGPoint;
 
@@ -5109,7 +5016,7 @@ interface MDCThumbTrackDelegate extends NSObjectProtocol {
 
     thumbTrackWillJumpToValue?(thumbTrack: MDCThumbTrack, value: number): void;
 }
-declare let MDCThumbTrackDelegate: {
+declare var MDCThumbTrackDelegate: {
 
     prototype: MDCThumbTrackDelegate;
 };
@@ -5132,7 +5039,11 @@ declare class MDCThumbView extends UIView {
 
     static new(): MDCThumbView; // inherited from NSObject
 
+    borderColor: UIColor;
+
     borderWidth: number;
+
+    centerVisibleArea: boolean;
 
     cornerRadius: number;
 
@@ -5336,7 +5247,7 @@ interface MDCTypographyFontLoading extends NSObjectProtocol {
 
     regularFontOfSize(fontSize: number): UIFont;
 }
-declare let MDCTypographyFontLoading: {
+declare var MDCTypographyFontLoading: {
 
     prototype: MDCTypographyFontLoading;
 };
@@ -5453,7 +5364,7 @@ interface MDCTypographyScheming extends NSObjectProtocol {
 
     useCurrentContentSizeCategoryWhenApplied: boolean;
 }
-declare let MDCTypographyScheming: {
+declare var MDCTypographyScheming: {
 
     prototype: MDCTypographyScheming;
 };

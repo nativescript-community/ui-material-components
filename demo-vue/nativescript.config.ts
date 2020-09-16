@@ -8,4 +8,5 @@ export default {
         markingMode: 'none',
     },
     appPath: 'app',
+    webpackConfigPath:'./app.webpack.config.js'
 } as NativeScriptConfig;

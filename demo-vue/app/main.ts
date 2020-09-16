@@ -78,7 +78,7 @@ import * as views from './views';
 
 Vue.component(views.Home.name, views.Home);
 
-Vue.config.silent = true;
+// Vue.config.silent = true;
 
 Vue.config.errorHandler = (e, vm, info) => {
     console.log('vue error', e, e.stack);

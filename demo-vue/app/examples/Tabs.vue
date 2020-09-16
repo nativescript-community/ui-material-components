@@ -22,17 +22,17 @@
 
             <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
             <TabContentItem>
-                <GridLayout>
+                <GridLayout backgroundColor="red">
                     <Label text="Home Page" class="h2 text-center"></Label>
                 </GridLayout>
             </TabContentItem>
             <TabContentItem>
-                <GridLayout>
+                <GridLayout backgroundColor="green">
                     <Label text="Account Page" class="h2 text-center"></Label>
                 </GridLayout>
             </TabContentItem>
             <TabContentItem>
-                <GridLayout>
+                <GridLayout backgroundColor="yellow">
                     <Label text="Search Page" class="h2 text-center"></Label>
                 </GridLayout>
             </TabContentItem>
@@ -65,33 +65,33 @@ export default Vue.extend({
 </script>
 
 <style>
-MDTabs.bottom-nav {
-    background-color: orangered;
-    color: gold;
-    font-size: 18;
+
+MDTabs {
+  color: gold;
 }
 
-TabStripItem.tabstripitem-active {
-    background-color: teal;
+TabContentItem.special {
+  color: green;
 }
 
-TabStripItem.tabstripitem-active:active {
-    background-color: yellowgreen;
+TabStrip {
+  color: skyblue;
 }
 
-TabContentItem.first-tabcontent {
-    background-color: seashell;
-    color: olive;
+TabStripItem.special {
+  color: teal;
 }
-TabContentItem.second-tabcontent {
-    background-color: slategray;
-    color: aquamarine;
+
+TabStripItem.special:active {
+  color: yellowgreen;
 }
-TabContentItem.third-tabcontent {
-    background-color: blueviolet;
-    color: antiquewhite;
+
+TabStripItem.nested Label {
+  color: teal;
 }
-MDTabs TabStrip {
-    highlight-color: red;
+
+TabStripItem.nested:active Label {
+  color: yellowgreen;
 }
+
 </style>

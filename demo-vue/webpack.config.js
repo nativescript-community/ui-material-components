@@ -77,6 +77,7 @@ module.exports = env => {
         coreModulesPackageName = '@nativescript/core';
         alias['tns-core-modules'] = coreModulesPackageName;
     }
+    alias['@nativescript/core'] = '@akylas/nativescript';
 
     const appResourcesFullPath = resolve(projectRoot, appResourcesPath);
 

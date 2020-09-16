@@ -15,7 +15,8 @@ export class Slider extends SliderBase {
         // (result.subviews[0] as any).shouldDisplayRipple = true;
         result.statefulAPIEnabled = true;
         (result as any).enableRippleBehavior = true;
-        const colorScheme = themer.getAppColorScheme();
+
+        const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
         if (colorScheme) {
             MDCSliderColorThemer.applySemanticColorSchemeToSlider(colorScheme, result);
         }
@@ -34,12 +35,14 @@ export class Slider extends SliderBase {
         }
     }
     [rippleColorProperty.setNative](color: Color) {
-        // TODO: Why isn't the ripple color showing?
-        (this.nativeViewProtected as any).rippleColor = color ? color.ios : null;
+        this.nativeViewProtected.rippleColor = color ? (color.ios as UIColor).colorWithAlphaComponent(0.26) : null;
     }
 
     [thumbColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setThumbColorForState(color ? color.ios : null, UIControlState.Normal);
+        if (!this.rippleColor) {
+            this.rippleColor = color;
+        }
     }
     [trackBackgroundColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setTrackBackgroundColorForState(color ? color.ios : null, UIControlState.Normal);
@@ -47,6 +50,7 @@ export class Slider extends SliderBase {
     [trackFillColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setTrackFillColorForState(color ? color.ios : null, UIControlState.Normal);
     }
+
     [thumbHollowAtStartProperty.setNative](value: boolean) {
         this.nativeViewProtected.thumbHollowAtStart = value;
     }

@@ -1,5 +1,6 @@
 import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
 import { Color, ImageSource, colorProperty } from '@nativescript/core';
+import { textProperty } from '@nativescript/core/ui/text-base';
 import { FloatingActionButtonBase, expandedProperty, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
 
 export class FloatingActionButton extends FloatingActionButtonBase {
@@ -19,10 +20,15 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     }
     public createNativeView() {
         const result = MDCFloatingButton.floatingButtonWithShape(this.size === 'mini' ? MDCFloatingButtonShape.Mini : MDCFloatingButtonShape.Default);
-        const colorScheme = themer.getAppColorScheme();
-        if (colorScheme) {
-            MDCFloatingButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, result);
-        }
+
+        const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
+        const scheme = MDCContainerScheme.new();
+        scheme.colorScheme = colorScheme;
+        result.applySecondaryThemeWithScheme(scheme);
+        // const colorScheme = themer.getAppColorScheme();
+        // if (colorScheme) {
+        //     MDCFloatingButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, result);
+        // }
         return result;
     }
     [elevationProperty.setNative](value: number) {
@@ -56,13 +62,10 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     [rippleColorProperty.setNative](color: Color) {
         this.nativeViewProtected.inkColor = getRippleColor(color);
     }
+    [textProperty.setNative](value: string) {
+        this.nativeViewProtected.setTitleForState(value, UIControlState.Normal);
+    }
     [expandedProperty.setNative](value: boolean) {
-        // UIView.animateWithDurationAnimations(0.25, () => {
         this.nativeViewProtected.mode = value ? MDCFloatingButtonMode.Expanded : MDCFloatingButtonMode.Normal;
-        // this.nativeViewProtected.setTitleForState(value ? this.text : null, UIControlState.Normal);
-        this.nativeViewProtected.sizeToFit();
-        // });
-
-        // this.nativeViewProtected.titleForState = value ? MDCFloatingButtonMode.Expanded : MDCFloatingButtonMode.Normal;
     }
 }

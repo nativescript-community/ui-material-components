@@ -98,17 +98,19 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
     const effectiveWidth = width + marginLeft + marginRight;
     let effectiveHeight = height + top + marginBottom;
     if (controller.ignoreTopSafeArea || controller.ignoreBottomSafeArea) {
-        const frame = owner.nativeViewProtected.frame;
+        const frame = CGRectMake(
+            Utils.layout.toDeviceIndependentPixels(marginLeft),
+            Utils.layout.toDeviceIndependentPixels(top),
+            Utils.layout.toDeviceIndependentPixels(effectiveWidth),
+            Utils.layout.toDeviceIndependentPixels(effectiveHeight)
+        );
         const availableSpace = getAvailableSpaceFromParent(owner, frame);
-        // const safeArea = availableSpace.safeArea;
-        // const fullscreen = availableSpace.fullscreen;
-        // const inWindow = availableSpace.inWindow;
 
-        const position = IOSHelper.getPositionFromFrame(frame);
+        const startPos = IOSHelper.getPositionFromFrame(frame);
         const fullscreenPosition = IOSHelper.getPositionFromFrame(availableSpace.fullscreen);
         const safeAreaPosition = IOSHelper.getPositionFromFrame(availableSpace.safeArea);
 
-        const adjustedPosition = position;
+        const adjustedPosition = startPos;
 
         if (controller.ignoreTopSafeArea) {
             const delta = safeAreaPosition.top - fullscreenPosition.top;
@@ -119,7 +121,6 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
         if (controller.ignoreBottomSafeArea) {
             const delta = fullscreenPosition.bottom - safeAreaPosition.bottom;
             effectiveHeight -= delta;
-            // adjustedPosition.bottom += delta * 2;
         }
         owner.nativeViewProtected.frame = CGRectMake(
             Utils.layout.toDeviceIndependentPixels(adjustedPosition.left),
@@ -256,21 +257,14 @@ class UILayoutViewController extends UIViewController {
                         additionalInsets.bottom = additionalInsetsBottom;
                     }
                 }
-                // if (this.ignoreTopSafeArea === true) {
-                //     additionalInsets.top += this.view.safeAreaLayoutGuide.layoutFrame.origin.x;
-                // }
-
-                // if (this.ignoreBottomSafeArea === true) {
-                //     additionalInsets.bottom -= this.view.safeAreaInsets.bottom;
-                // }
 
                 const insets = new UIEdgeInsets(additionalInsets);
                 this.additionalSafeAreaInsets = insets;
             }
-
             layoutView(this, owner);
         }
     }
+    viewLayedOut: boolean;
 
     viewWillAppear(animated: boolean): void {
         super.viewWillAppear(animated);
@@ -357,12 +351,14 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             this.viewController = controller; // store the viewController so that safeArea overflow is applied correctly
         }
 
-        controller.modalPresentationStyle = UIModalPresentationStyle.FormSheet;
+        // controller.modalPresentationStyle = UIModalPresentationStyle.FormSheet;
 
         // this.horizontalAlignment = 'stretch';
         // this.verticalAlignment = 'stretch';
 
         this._raiseShowingBottomSheetEvent();
+        // const controller = UIViewController.new();
+        // controller.view= MDCTextField.new();
         // animated = animated === undefined ? true : !!animated;
         const bottomSheet = (this.bottomSheetController = MDCBottomSheetController.alloc().initWithContentViewController(controller));
         this.bottomSheetControllerDelegate = bottomSheet.delegate = MDCBottomSheetControllerDelegateImpl.initWithOwner(this);

@@ -10,13 +10,13 @@
         <ScrollView>
             <StackLayout>
                 <MDButton id="button1" borderRadius="10" fontSize="20" text="raised button" @tap="onTap" />
-                <StackLayout v-if="isEditing">
+                <StackLayout v-show="isEditing">
                         <MDTextField class="session-details-input" :hint="('name')" />
                         <MDTextField class="session-details-input" :hint="('description')"/>
                     </StackLayout>
                 <MDFloatingActionButton src="res://ic_action_add"  @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton id="fab" src="res://ic_action_add" color="white" backgroundColor="blue" size="mini" @tap="onTap" horizontalAlignment="center" />
-                <MDFloatingActionButton src="res://ic_action_add" text="test expanded" expanded="true" @tap="onTap" horizontalAlignment="center" />
+                <MDFloatingActionButton src="res://ic_action_add" text="test expanded" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton src="res://ic_action_add" text="test expanded" :expanded="expanded" @tap="expanded = !expanded" horizontalAlignment="center" />
                 <StackLayout margin="10">
                     <MDButton id="button0" text="default button" @tap="onTap" />

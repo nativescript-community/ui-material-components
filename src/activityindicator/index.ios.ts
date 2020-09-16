@@ -75,9 +75,6 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     //     this.nativeView.stopAnimating();
     // }
 
-    [colorProperty.getDefault](): UIColor {
-        return null;
-    }
     [colorProperty.setNative](value: UIColor | Color) {
         const color = value instanceof Color ? value.ios : value;;
         this.nativeViewProtected.cycleColors  = color ? NSArray.arrayWithObject(color) : null;

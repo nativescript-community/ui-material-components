@@ -17,7 +17,9 @@ export class Themer {
     constructor() {
         // create a default one to prevent multiple creations on widget side
         this.appColorScheme = MDCSemanticColorScheme.new();
-        this.appColorScheme.primaryColorVariant = this.appColorScheme.primaryColor.colorWithAlphaComponent(0.24);
+        if (this.appColorScheme.primaryColor) {
+            this.appColorScheme.primaryColorVariant = this.appColorScheme.primaryColor.colorWithAlphaComponent(0.24);
+        }
     }
     getOrcreateAppColorScheme() {
         if (!this.appColorScheme) {
@@ -33,7 +35,8 @@ export class Themer {
         const colorTheme = this.getOrcreateAppColorScheme();
         const color = value instanceof Color ? value : new Color(value);
         colorTheme.primaryColor = color.ios;
-        colorTheme.primaryColorVariant = new Color(61.2, color.r, color.g, color.b).ios; // default alpha is 0.24
+        this.appColorScheme.primaryColorVariant = this.appColorScheme.primaryColor.colorWithAlphaComponent(0.24);
+        // colorTheme.primaryColorVariant = new Color(61.2, color.r, color.g, color.b).ios; // default alpha is 0.24
     }
     getPrimaryColor(): string | Color {
         return this.primaryColor;
@@ -120,7 +123,7 @@ class ViewWithElevationAndRipple extends View {
     @cssProperty elevation: number;
     @cssProperty dynamicElevationOffset: number;
     @cssProperty rippleColor: Color;
-    inkTouchController: MDCInkTouchController;
+    inkTouchController: MDCRippleTouchController;
     shadowLayer: MDCShadowLayer;
 
     nativeViewProtected: UIView;
@@ -128,12 +131,12 @@ class ViewWithElevationAndRipple extends View {
     getOrCreateRippleController() {
         if (!this.inkTouchController) {
             // create the shadow Layer
-            this.inkTouchController = MDCInkTouchController.alloc().initWithView(this.nativeViewProtected);
-            this.inkTouchController.addInkView();
-            const colorScheme = themer.getAppColorScheme();
-            MDCInkColorThemer.applyColorSchemeToInkView(colorScheme, this.inkTouchController.defaultInkView);
+            this.inkTouchController = MDCRippleTouchController.alloc().initWithView(this.nativeViewProtected);
+            // this.inkTouchController.addInkView();
+            // const colorScheme = themer.getAppColorScheme();
+            // MDCInkColorThemer.applyColorSchemeToInkView(colorScheme, this.inkTouchController.defaultInkView);
             if (this.style.backgroundInternal) {
-                this.inkTouchController.defaultInkView.layer.cornerRadius = Utils.layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
+                this.inkTouchController.rippleView.layer.cornerRadius = Utils.layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
             }
         }
         return this.inkTouchController;
@@ -189,7 +192,7 @@ class ViewWithElevationAndRipple extends View {
     }
     [rippleColorProperty.setNative](color: Color) {
         this.getOrCreateRippleController();
-        this.inkTouchController.defaultInkView.inkColor = getRippleColor(color);
+        this.inkTouchController.rippleView.rippleColor = getRippleColor(color);
     }
 
     startElevationStateChangeHandler() {
@@ -263,7 +266,7 @@ class ViewWithElevationAndRipple extends View {
         //     this.shadowLayer.cornerRadius = Utils.layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
         // }
         if (this.inkTouchController) {
-            this.inkTouchController.defaultInkView.layer.cornerRadius = Utils.layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
+            this.inkTouchController.rippleView.layer.cornerRadius = Utils.layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
         }
     }
 }

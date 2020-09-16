@@ -14,10 +14,10 @@ import {
 } from '@nativescript/core';
 import { ButtonBase } from './button-common';
 
-let buttonScheme: MDCButtonScheme;
+let buttonScheme: MDCContainerScheme;
 function getButtonScheme() {
     if (!buttonScheme) {
-        buttonScheme = MDCButtonScheme.new();
+        buttonScheme = MDCContainerScheme.new();
     }
     return buttonScheme;
 }
@@ -122,28 +122,31 @@ export class Button extends ButtonBase {
 
     public createNativeView() {
         const view = MDCButton.new();
-        const colorScheme = themer.getAppColorScheme();
-
+        const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
+        const scheme = MDCContainerScheme.new();
+        scheme.colorScheme = colorScheme;
         if (this.variant === 'text') {
-            MDCTextButtonThemer.applySchemeToButton(getButtonScheme(), view);
-            if (colorScheme) {
-                MDCTextButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
-            }
+            view.applyTextThemeWithScheme(scheme);
+            // MDCTextButtonThemer.applySchemeToButton(, view);
+            // if (colorScheme) {
+            // MDCTextButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
+            // }
         } else if (this.variant === 'flat') {
             if (colorScheme) {
                 MDCButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
             }
         } else if (this.variant === 'outline') {
-            MDCOutlinedButtonThemer.applySchemeToButton(getButtonScheme(), view);
-            if (colorScheme) {
-                MDCOutlinedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
-            }
+            view.applyOutlinedThemeWithScheme(scheme);
+            // if (colorScheme) {
+            //     MDCOutlinedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
+            // }
         } else {
             // contained
-            MDCContainedButtonThemer.applySchemeToButton(getButtonScheme(), view);
-            if (colorScheme) {
-                MDCContainedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
-            }
+            view.applyContainedThemeWithScheme(scheme);
+            // MDCContainedButtonThemer.applySchemeToButton(getButtonScheme(), view);
+            // if (colorScheme) {
+            //     MDCContainedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
+            // }
             // we need to set the default through css or user would not be able to overload it through css...
             this.style['css:margin-left'] = 10;
             this.style['css:margin-right'] = 10;

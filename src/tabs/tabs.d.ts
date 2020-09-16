@@ -48,7 +48,7 @@ export class Tabs extends TabNavigationBase {
      *  - center
      *  - centerSelected
      */
-    iOSTabBarItemsAlignment: IOSTabBarItemsAlignment;
+    // iOSTabBarItemsAlignment: IOSTabBarItemsAlignment;
 
     /**
      * Gets the native [android widget](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) that represents the user interface for this component. Valid only when running on Android OS.

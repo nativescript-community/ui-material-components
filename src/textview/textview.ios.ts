@@ -9,9 +9,9 @@ import {
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
-    strokeInactiveColorProperty
+    strokeInactiveColorProperty,
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
-import { Background, Color, Property, Screen, Style, backgroundInternalProperty, editableProperty, hintProperty, isAndroid, placeholderColorProperty } from '@nativescript/core';
+import { Background, Color, Property, Screen, Style, Utils, View, backgroundInternalProperty, editableProperty, hintProperty, isAndroid, placeholderColorProperty } from '@nativescript/core';
 import { TextViewBase } from './textview.common';
 
 const textProperty = new Property<TextView, string>({
@@ -26,6 +26,26 @@ function getColorScheme() {
         colorScheme = MDCSemanticColorScheme.new();
     }
     return colorScheme;
+}
+
+@NativeClass
+class MDCMultilineTextInputLayoutDelegateImpl extends NSObject {
+    static ObjCProtocols = [MDCMultilineTextInputLayoutDelegate];
+    _owner: WeakRef<TextView>;
+    public static initWithOwner(owner: TextView) {
+        const delegate = MDCMultilineTextInputLayoutDelegateImpl.new() as MDCMultilineTextInputLayoutDelegateImpl;
+        delegate._owner = new WeakRef(owner);
+
+        return delegate;
+    }
+
+    multilineTextFieldDidChangeContentSize?(multilineTextField: MDCMultilineTextInput, size: CGSize) {
+        // called when clicked on background
+        const owner = this._owner.get();
+        if (owner) {
+            owner._onTextFieldDidChangeContentSize && owner._onTextFieldDidChangeContentSize(size);
+        }
+    }
 }
 
 @NativeClass
@@ -67,7 +87,7 @@ class TextViewInputControllerImpl extends MDCTextInputControllerBase {
 }
 
 @NativeClass
-class TextViewInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
+class TextViewInputControllerOutlinedImpl extends MDCTextInputControllerOutlinedTextArea {
     _owner: WeakRef<TextView>;
     public static initWithOwner(owner: TextView) {
         const delegate = TextViewInputControllerOutlinedImpl.new() as TextViewInputControllerOutlinedImpl;
@@ -104,6 +124,32 @@ class TextViewInputControllerFilledImpl extends MDCTextInputControllerFilled {
     }
 }
 
+// const MDCMultilineTextFieldImpl = (MDCMultilineTextField as any).extend({
+// sizeThatFits(size: CGSize) {
+//     this._sizeThatFits = size;
+//     let result = this.super.sizeThatFits(size);
+//     const owner = this._owner ? this._owner.get() : null;
+//     if (owner && owner.height !== 'auto') {
+//         result = CGSizeMake(result.width, size.height);
+//         console.log('sizeThatFits', this, size.width, size.height, result.width, result.height, owner && owner.height !== 'auto');
+//     }
+//     return result;
+// },
+// get intrinsicContentSize() {
+//     let result = this.super.intrinsicContentSize;
+//     console.log('get intrinsicContentSize', this, result.width, result.height);
+//     try {
+//         const owner = this._owner ? this._owner.get() : null;
+//         if (owner && owner.height !== 'auto' && this._sizeThatFits) {
+//             result = CGSizeMake(result.width, this._sizeThatFits.height);
+//             this._sizeThatFits = null;
+//             console.log('intrinsicContentSize', this, result.width, result.height, owner.height);
+//         }
+//     } catch (err) {}
+
+//     return result;
+// },
+// });
 declare module '@nativescript/core/ui/text-field' {
     interface TextField {
         textFieldShouldChangeCharactersInRangeReplacementString(textField: UITextField, range: NSRange, replacementString: string): boolean;
@@ -124,6 +170,10 @@ export class TextView extends TextViewBase {
         this.focus();
     }
 
+    get nativeTextViewProtected() {
+        return this.nativeViewProtected.textView;
+    }
+
     _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
         const scale = Screen.mainScreen.scale;
 
@@ -140,34 +190,54 @@ export class TextView extends TextViewBase {
 
         return insets;
     }
-
-    // variant = 'underline';
+    _onTextFieldDidChangeContentSize(size: CGSize) {
+        if (this.height === 'auto') {
+            this.requestLayout();
+        }
+    }
     public createNativeView() {
         const view = MDCMultilineTextField.new();
-
+        (view as any)._owner = new WeakRef(this);
         // disable it for now
         view.clearButtonMode = UITextFieldViewMode.Never;
-        const colorScheme = themer.getAppColorScheme();
+        const scheme = MDCContainerScheme.new();
+        scheme.colorScheme = themer.getAppColorScheme();
         if (this.style.variant === 'filled') {
-            this._controller = TextViewInputControllerFilledImpl.initWithOwner(this);;
+            this._controller = TextViewInputControllerFilledImpl.initWithOwner(this);
         } else if (this.style.variant === 'outline') {
             this._controller = TextViewInputControllerOutlinedImpl.initWithOwner(this);
         } else if (this.style.variant === 'underline') {
             this._controller = TextViewInputControllerUnderlineImpl.initWithOwner(this);
         } else {
             this._controller = TextViewInputControllerImpl.initWithOwner(this);
+        }
+        this._controller.textInput = view;
+
+        if (this.style.variant === 'filled') {
+            (this._controller as TextViewInputControllerFilledImpl).applyThemeWithScheme(scheme);
+        } else if (this.style.variant === 'outline') {
+            // (this._controller as TextViewInputControllerOutlinedImpl).applyThemeWithScheme(scheme);
+        } else if (this.style.variant === 'underline') {
+            (this._controller as TextViewInputControllerUnderlineImpl).applyThemeWithScheme(scheme);
+        } else {
             this._controller.underlineHeightActive = 0;
             this._controller.underlineHeightNormal = 0;
         }
-        this._controller.textInput = view;
-        view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;
-        this._controller.placeholderText = this.hint;
 
-        if (colorScheme) {
-            MDCTextFieldColorThemer.applySemanticColorSchemeToTextInput(colorScheme, view);
-            MDCTextFieldColorThemer.applySemanticColorSchemeToTextInputController(colorScheme, this._controller);
-        }
+        view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;
+
         return view;
+    }
+
+    initNativeView() {
+        super.initNativeView();
+        const view = this.nativeViewProtected;
+        view.layoutDelegate = MDCMultilineTextInputLayoutDelegateImpl.initWithOwner(this);
+    }
+    disposeNativeView() {
+        const view = this.nativeViewProtected;
+        view.layoutDelegate = null;
+        super.disposeNativeView();
     }
 
     // TODO: check why i was checking for isFirstResponder
@@ -200,9 +270,6 @@ export class TextView extends TextViewBase {
     }
     [hintProperty.setNative](value: string) {
         this._controller.placeholderText = value;
-    }
-    [editableProperty.getDefault](): boolean {
-        return this.nativeTextViewProtected.editable;
     }
     [editableProperty.setNative](value: boolean) {
         this.nativeTextViewProtected.editable = value;

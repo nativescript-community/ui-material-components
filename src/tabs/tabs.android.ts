@@ -1,4 +1,21 @@
-import { Application, CoercibleProperty, Color, Font, Frame, ImageSource, Property, TabContentItem, TabStrip, TabStripItem, TextTransform, Utils, getIconSpecSize, getTransformedText, isIOS, tabStripProperty } from '@nativescript/core';
+import {
+    Application,
+    CoercibleProperty,
+    Color,
+    Font,
+    Frame,
+    ImageSource,
+    Property,
+    TabContentItem,
+    TabStrip,
+    TabStripItem,
+    TextTransform,
+    Utils,
+    getIconSpecSize,
+    getTransformedText,
+    isIOS,
+    tabStripProperty,
+} from '@nativescript/core';
 import { TabsBase, animationEnabledProperty, offscreenTabLimitProperty, swipeEnabledProperty } from './tabs-common';
 
 export * from './tabs-common';
@@ -966,7 +983,7 @@ export class Tabs extends TabsBase {
         return true;
     }
     [swipeEnabledProperty.setNative](value: boolean) {
-        (this._viewPager as any).setSwipePageEnabled(value);
+        this._viewPager.setSwipePageEnabled(value);
     }
 
     [offscreenTabLimitProperty.getDefault](): number {
