@@ -1,6 +1,9 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
         "rootDir": "../../src/core",
         "outDir": "./",
         "paths": {
@@ -9,6 +12,6 @@
             "*": ["node_modules/*", "packages/*"]
         }
     },
-    "include": ["../../src/core/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/core/hooks/**/*.ts", "../../src/core/angular/**"]
+    "include": ["../../src/core/hooks/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
+    "exclude": ["../../src/core/angular/**"]
 }

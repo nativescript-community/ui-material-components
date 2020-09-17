@@ -6,9 +6,12 @@
     "sideEffects": false,
     "typings": "./index.d.ts",
     "scripts": {
+        "preuninstall": "node preuninstall.js",
+        "postinstall": "node postinstall.js",
         "tsc": "../../node_modules/.bin/cpy ../../src/core/index.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\core\\core.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
-        "build": "npm run tsc",
+        "build": "npm run tsc && npm run build.hooks",
+        "build.hooks": " tsc -skipLibCheck -p tsconfig.hooks.json",
         "build.all": "npm run build",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
     },
@@ -16,7 +19,14 @@
         "platforms": {
             "android": "6.2.0",
             "ios": "6.2.0"
-        }
+        },
+        "hooks": [
+            {
+                "type": "before-prepare",
+                "script": "hooks/before-prepare.js",
+                "inject": true
+            }
+        ]
     },
     "keywords": [
         "NativeScript",
@@ -34,5 +44,8 @@
     "license": "Apache-2.0",
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
-    "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
+    "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc",
+    "dependencies": {
+        "@nativescript/hook": "~2.0.0"
+    }
 }

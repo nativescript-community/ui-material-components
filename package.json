@@ -55,6 +55,8 @@
         "@commitlint/cli": "^9.1.2",
         "@commitlint/config-conventional": "^9.1.2",
         "@nativescript/angular": "~10.1.0",
+        "@nativescript/hook": "~2.0.0",
+        "nativescript": "7.0.8",
         "@nativescript/core": "7.0.2",
         "@nativescript/types": "7.0.1",
         "@nativescript/webpack": "~3.0.4",
