@@ -92,7 +92,6 @@ class UIPageViewControllerImpl extends UIPageViewController {
 
     public viewDidLoad(): void {
         const owner = this._owner.get();
-        this.view.backgroundColor = UIColor.orangeColor;
 
         const tabBarItems = owner.tabBarItems;
         const tabBar = MDCTabBarView.alloc().init();
@@ -106,6 +105,8 @@ class UIPageViewControllerImpl extends UIPageViewController {
         tabBar.tabBarDelegate = this.tabBarDelegate = MDCTabBarViewDelegateImpl.initWithOwner(new WeakRef(owner));
         if (colorScheme) {
             tabBar.rippleColor = colorScheme.primaryColor.colorWithAlphaComponent(0.24);
+            tabBar.tintColor = colorScheme.primaryColor;
+            tabBar.selectionIndicatorStrokeColor = colorScheme.primaryColor;
             owner.setTabBarColor(colorScheme.primaryColor);
         } else {
             if (majorVersion <= 12 || !UIColor.labelColor) {
