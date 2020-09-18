@@ -7,7 +7,7 @@
         "id": "org.nativescript.demovuematerial"
     },
     "dependencies": {
-        "@akylas/nativescript": "7.0.3-alpha.1",
+        "@nativescript/core": "7.0.3",
         "@mdi/font": "4.9.95",
         "@nativescript-community/ui-material-activityindicator": "file:../packages/activityindicator",
         "@nativescript-community/ui-material-bottomnavigationbar": "file:../packages/bottomnavigationbar",

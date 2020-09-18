@@ -5,7 +5,13 @@
 
 ## Installation
 
-If using ```@nativescript``` :
+### Warning :warning: :warning: 
+From 5.x using material component will break N tab component on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/nativescript-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [tabs](https://www.npmjs.com/package/nativescript-material-tabs) (clone of N one, but with a little less features)
+
+For N 7.0
+* `tns plugin add @nativescript-community/ui-material-slider`
+
+For N 6.x
 * `tns plugin add nativescript-material-slider`
 
 If using ```tns-core-modules```

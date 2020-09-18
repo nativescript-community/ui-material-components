@@ -11,7 +11,10 @@ Use the Material Design Bottom Sheets in your {N} app
 
 ## Installation
 
-If using ```@nativescript``` :
+For N 7.0
+* `tns plugin add @nativescript-community/ui-material-bottomsheet`
+
+For N 6.x
 * `tns plugin add nativescript-material-bottomsheet`
 
 If using ```tns-core-modules```

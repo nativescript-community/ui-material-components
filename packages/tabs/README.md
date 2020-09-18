@@ -5,9 +5,10 @@
 
 ## Installation
 
-If using ```@nativescript``` :
-* `tns plugin add nativescript-material-tabs`
+### Warning :warning: :warning: 
+From 5.x using material component will break N tab component on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/nativescript-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [tabs](https://www.npmjs.com/package/nativescript-material-tabs) (clone of N one, but with a little less features)
 
+* `tns plugin add @nativescript-community/ui-material-tabs`
 
 Be sure to run a new build after adding plugins to avoid any issues.
 

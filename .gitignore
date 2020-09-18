@@ -77,4 +77,5 @@ package-lock.json
 /pnpm-lock.yaml
 pnpm-lock.yaml
 hooks
+!src/core/hooks
 /tempAngular

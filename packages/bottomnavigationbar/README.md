@@ -20,10 +20,11 @@ Nativescript plugin for Android & iOS to have the Bottom Navigation Bar followin
 You need the version of NS6 or later to use this plugin.
 
 ### Installation
+For N 7.0
+* `tns plugin add @nativescript-community/ui-material-bottomnavigationbar`
 
-```javascript
-tns plugin add nativescript-material-bottomnavigationbar
-```
+For N 6.x
+* `tns plugin add nativescript-material-bottomnavigationbar`
 
 ### NEW FEATURES
 
