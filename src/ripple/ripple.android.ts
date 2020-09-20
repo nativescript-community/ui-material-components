@@ -1,4 +1,4 @@
-import { getRippleColor, rippleColorProperty } from '@nativescript-community/ui-material-core';
+import { getRippleColor, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
 import { Background, Color, backgroundInternalProperty } from '@nativescript/core';
 import { createRippleDrawable, getAttrColor, isPostLollipopMR1, isPostMarshmallow } from '@nativescript-community/ui-material-core/android/utils';
 import { RippleBase } from './ripple-common';
@@ -21,6 +21,7 @@ interface PreLollipopStackLayout extends org.nativescript.widgets.StackLayout {
     // tslint:disable-next-line:no-misused-new
     new (context): PreLollipopStackLayout;
 }
+// eslint-disable-next-line no-redeclare
 let PreLollipopStackLayout: PreLollipopStackLayout;
 
 function initializePreLollipopStackLayout() {
@@ -198,8 +199,9 @@ export class Ripple extends RippleBase {
     ripple: android.graphics.drawable.RippleDrawable;
 
     public createNativeView() {
-        initMDStackLayout();
-        const view = new MDStackLayout(this._context);
+        // initMDStackLayout();
+        const view = super.createNativeView() as android.view.View;
+        // view.setClickable(true);
         this.setRippleDrawable(view); // set default ripple
         return view;
     }
@@ -216,16 +218,16 @@ export class Ripple extends RippleBase {
         this.forceSetOnTouchListener = true;
         this.setOnTouchListener();
         this.forceSetOnTouchListener = false;
-        this.nativeView.setClickable(false);
+        // this.nativeView.setClickable(false);
         super.initNativeView();
     }
     rippleDrawable: android.graphics.drawable.Drawable;
     getRippleColor() {
-        return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight')));
+        return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : themer.getPrimaryColor());
     }
-    getCornerRadius() {
-        return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight')));
-    }
+    // getCornerRadius() {
+    //     return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight')));
+    // }
     setRippleDrawable(view: android.view.View, radius = 0) {
         if (!this.rippleDrawable) {
             this.rippleDrawable = createRippleDrawable(view, this.getRippleColor(), radius);

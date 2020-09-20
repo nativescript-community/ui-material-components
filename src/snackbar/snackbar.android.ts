@@ -1,4 +1,4 @@
-import { Color, Frame, Page } from '@nativescript/core';
+import { Color, Frame, Page, Utils } from '@nativescript/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 
 function _getReason(value: number) {
@@ -46,26 +46,27 @@ export class SnackBar extends SnackBarBase {
     }
 
     public initSnack(options: SnackBarOptions, resolve?: Function) {
-        // options.actionText = options.actionText ? options.actionText : 'Close';
         options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
 
-        // const activity = androidApp.foregroundActivity || androidApp.startActivity as globalAndroid.app.Activity;
         let attachView = options.view || Frame.topmost().currentPage;
         while (attachView['_modal']) {
             attachView = attachView['_modal'];
         }
-        let nView = attachView.nativeViewProtected as android.view.View;
-        if (attachView instanceof Page) {
-            // in case of a page we try to handle it correctly
-            nView = nView.getParent().getParent() as any;
-        }
-        let nCoordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout;
-        if (!(nView instanceof androidx.coordinatorlayout.widget.CoordinatorLayout) && nView instanceof android.view.ViewGroup) {
+        const page = (attachView instanceof Page ? attachView : attachView.page);
+        let nView = (page.nativeViewProtected as android.view.View).getParent().getParent() as any;
+        let nCoordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout = (page as any).nCoordinatorLayout;
+        if (!nCoordinatorLayout && !(nView instanceof androidx.coordinatorlayout.widget.CoordinatorLayout) && nView instanceof android.view.ViewGroup) {
             nCoordinatorLayout = new androidx.coordinatorlayout.widget.CoordinatorLayout(attachView._context);
-            (nView).addView(
-                nCoordinatorLayout,
-                new android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT)
-            );
+
+            if (options.view) {
+                const nAttachedView = options.view.nativeViewProtected as android.view.View;
+                const params = new android.widget.FrameLayout.LayoutParams(nAttachedView.getWidth(), nAttachedView.getHeight());
+                params.topMargin = Utils.layout.toDevicePixels(options.view.getLocationRelativeTo(page).y);
+                (nView as any).addView(nCoordinatorLayout, params);
+            } else {
+                (nView as any).addView(nCoordinatorLayout, new android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT));
+            }
+
             nView = nCoordinatorLayout;
         }
         this._snackbar = com.google.android.material.snackbar.Snackbar.make(nView, options.message, options.hideDelay);
@@ -124,7 +125,7 @@ export class SnackBar extends SnackBarBase {
                         event: args,
                     });
                     if (this._snackbarCallback) {
-                        (this._snackbarCallback).cb = null;
+                        this._snackbarCallback.cb = null;
                         this._snackbarCallback = null;
                     }
                     this._snackbar = null;
@@ -150,6 +151,7 @@ export class SnackBar extends SnackBarBase {
                 (cb as any).nListener = null;
                 if (nCoordinatorLayout) {
                     (nCoordinatorLayout.getParent() as android.view.ViewGroup).removeView(nCoordinatorLayout);
+                    (page as any).nCoordinatorLayout = null;
                 }
             },
 

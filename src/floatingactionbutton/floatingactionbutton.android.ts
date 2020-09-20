@@ -1,27 +1,29 @@
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from '@nativescript-community/ui-material-core';
 import { Background, Color, ImageSource, Length, backgroundInternalProperty, colorProperty } from '@nativescript/core';
-import { FloatingActionButtonBase, imageSourceProperty, sizeProperty, srcProperty } from './floatingactionbutton-common';
+import { textProperty } from '@nativescript/core/ui/text-base';
+import { FloatingActionButtonBase, expandedProperty, imageSourceProperty, sizeProperty, srcProperty } from './floatingactionbutton-common';
 
-let MDCFabButton: typeof com.google.android.material.floatingactionbutton.FloatingActionButton;
+let MDCFabButton: typeof com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 export class FloatingActionButton extends FloatingActionButtonBase {
-    nativeViewProtected: com.google.android.material.floatingactionbutton.FloatingActionButton;
-
+    nativeViewProtected: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+    defaultPadding: number;
     public createNativeView() {
         if (!MDCFabButton) {
-            MDCFabButton = com.google.android.material.floatingactionbutton.FloatingActionButton;
+            MDCFabButton = com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
         }
         const view = new MDCFabButton(this._context);
-        view.setSize(MDCFabButton.SIZE_NORMAL);
+        this.defaultPadding = view.getPaddingTop();
+        console.log('defaultPadding', this.defaultPadding);
         return view;
     }
 
     [imageSourceProperty.setNative](value: ImageSource) {
         const nativeView = this.nativeViewProtected;
         if (value && value.android) {
-            nativeView.setImageBitmap(value.android);
+            nativeView.setIcon(new android.graphics.drawable.BitmapDrawable(value.android));
         } else {
-            nativeView.setImageBitmap(null);
+            nativeView.setIcon(null);
         }
     }
 
@@ -37,24 +39,24 @@ export class FloatingActionButton extends FloatingActionButtonBase {
 
     [elevationProperty.setNative](value: number) {
         const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
-        this.nativeViewProtected.setCompatElevation(newValue);
+        this.nativeViewProtected.setElevation(newValue);
     }
 
     [dynamicElevationOffsetProperty.setNative](value: number) {
-        const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+        // const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
         this.nativeViewProtected.setTranslationZ(value);
     }
-
+    [textProperty.setNative](value: string) {
+        this.nativeViewProtected.setText(value);
+    }
     [sizeProperty.setNative](value: string) {
         switch (value) {
-            case 'auto':
-                this.nativeViewProtected.setSize(MDCFabButton.SIZE_AUTO);
-                break;
             case 'mini':
-                this.nativeViewProtected.setSize(MDCFabButton.SIZE_MINI);
+                this.nativeViewProtected.setPadding(30, 30, 30, 30);
                 break;
+            case 'auto':
             default:
-                this.nativeViewProtected.setSize(MDCFabButton.SIZE_NORMAL);
+                this.nativeViewProtected.setPadding(this.defaultPadding, this.defaultPadding, this.defaultPadding, this.defaultPadding);
                 break;
         }
     }
@@ -74,12 +76,20 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         }
     }
     [colorProperty.setNative](value: Color) {
-        this.nativeViewProtected.setSupportImageTintList(android.content.res.ColorStateList.valueOf(value.android));
+        this.nativeViewProtected.setIconTint(android.content.res.ColorStateList.valueOf(value.android));
     }
     [rippleColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
     }
     [rippleColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
+    }
+    [expandedProperty.setNative](value: boolean) {
+        console.log('expandedProperty', value);
+        if (value) {
+            this.nativeViewProtected.extend();
+        } else {
+            this.nativeViewProtected.shrink();
+        }
     }
 }

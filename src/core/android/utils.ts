@@ -146,6 +146,9 @@ export const stateSets = {
 };
 
 export function getRippleColorStateList(color: number) {
+    if (!color) {
+        return null;
+    }
     const states = Array.create('[I', 2);
     states[0] = stateSets.SELECTED_PRESSED_STATE_SET;
     states[1] = Array.create('int', 0);
@@ -161,6 +164,9 @@ export function getRippleColorStateList(color: number) {
     return new android.content.res.ColorStateList(states, colors);
 }
 export function getEnabledColorStateList(color: number, variant: string) {
+    if (!color) {
+        return null;
+    }
     const states = Array.create('[I', 2);
     // const SELECTED_PRESSED_STATE_SET = Array.create("int",1);
     // SELECTED_PRESSED_STATE_SET[0] =  state.enabled;
@@ -178,6 +184,9 @@ export function getEnabledColorStateList(color: number, variant: string) {
     return new android.content.res.ColorStateList(states, colors);
 }
 export function getFocusedColorStateList(color: number, variant: string) {
+    if (!color) {
+        return null;
+    }
     const states = Array.create('[I', 3);
 
     states[0] = Array.create('int', 1);
@@ -305,4 +314,19 @@ export function getLayout(id: string) {
     }
     const context: android.content.Context = Application.android.context;
     return context.getResources().getIdentifier(id, 'layout', context.getPackageName());
+}
+
+export function getStyle(id: string) {
+    if (!id) {
+        return 0;
+    }
+    const context: android.content.Context = Application.android.context;
+    return context.getResources().getIdentifier(id, 'style', context.getPackageName());
+}
+export function getAttr(id: string) {
+    if (!id) {
+        return 0;
+    }
+    const context: android.content.Context = Application.android.context;
+    return context.getResources().getIdentifier(id, 'attr', context.getPackageName());
 }

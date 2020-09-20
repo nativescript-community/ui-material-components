@@ -1,3 +1,4 @@
+import { state } from '@nativescript-community/ui-material-core/android/utils';
 import { Color } from '@nativescript/core';
 import {
     BottomNavigationBarBase,
@@ -84,7 +85,7 @@ const getOnTabReselectedListener = () => {
 
 function createColorStateList(activeColor: Color, inactiveColor: Color) {
     const stateChecked = Array.create('int', 1);
-    stateChecked[0] = android.R.attr.state_checked;
+    stateChecked[0] = state.checked;
     const stateUnChecked = Array.create('int', 0);
 
     const states = java.lang.reflect.Array.newInstance(stateChecked.getClass() || stateUnChecked.getClass(), 2);

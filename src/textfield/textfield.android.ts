@@ -77,8 +77,8 @@ export class TextField extends TextFieldBase {
             if (!LayoutInflater) {
                 LayoutInflater = android.view.LayoutInflater;
             }
-            layoutView = this.layoutView = LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.textfield.TextInputLayout;
-            editText = this.editText = (layoutView.getChildAt(0) as android.widget.FrameLayout).getChildAt(0) as com.nativescript.material.textfield.TextInputEditText;
+            layoutView = this.layoutView = LayoutInflater.from(this._context).inflate(layoutId, null) as com.google.android.material.textfield.TextInputLayout;
+            editText = this.editText = layoutView.getEditText() as com.nativescript.material.textfield.TextInputEditText;
         } else {
             layoutView = this.layoutView = new com.google.android.material.textfield.TextInputLayout(this._context);
             editText = this.editText = new com.nativescript.material.textfield.TextInputEditText(layoutView.getContext());
@@ -92,7 +92,7 @@ export class TextField extends TextFieldBase {
             layoutView.setBoxBackgroundColor(0); // android.graphics.Color.TRANSPARENT
             editText.setBackground(null);
         }
-        layoutView.setFocusableInTouchMode(true); // to prevent focus on view creation
+        // layoutView.setFocusableInTouchMode(true); // to prevent focus on view creation
         return layoutView;
     }
 
