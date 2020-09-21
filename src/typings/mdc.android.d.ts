@@ -23970,7 +23970,7 @@ declare namespace com {
         export namespace android {
             export namespace material {
                 export namespace card {
-                    export class MaterialCardView implements globalAndroid.widget.Checkable, com.google.android.material.shape.Shapeable {
+                    export class MaterialCardView extends androidx.cardview.widget.CardView implements globalAndroid.widget.Checkable, com.google.android.material.shape.Shapeable {
                         public static class: java.lang.Class<com.google.android.material.card.MaterialCardView>;
                         public setBackgroundDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
                         public constructor(param0: globalAndroid.content.Context);
@@ -36306,6 +36306,317 @@ declare namespace androidx {
             }
         }
     }
+}
+
+declare namespace androidx {
+	export namespace cardview {
+		export namespace widget {
+			export class CardView extends globalAndroid.widget.FrameLayout {
+				public static class: java.lang.Class<androidx.cardview.widget.CardView>;
+				public childDrawableStateChanged(param0: globalAndroid.view.View): void;
+				public requestDisallowInterceptTouchEvent(param0: boolean): void;
+				public setCardBackgroundColor(param0: number): void;
+				public getCardElevation(): number;
+				/** @deprecated */
+				public invalidateChild(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect): void;
+				public requestChildFocus(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
+				public clearChildFocus(param0: globalAndroid.view.View): void;
+				public onKeyDown(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+				public setMinimumWidth(param0: number): void;
+				public setUseCompatPadding(param0: boolean): void;
+				public updateViewLayout(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
+				public getContentPaddingBottom(): number;
+				public addView(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
+				public createContextMenu(param0: globalAndroid.view.ContextMenu): void;
+				public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number, param3: number);
+				public getMaxCardElevation(): number;
+				public isLayoutRequested(): boolean;
+				public sendAccessibilityEvent(param0: number): void;
+				public onStartNestedScroll(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): boolean;
+				public focusSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
+				public onKeyUp(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+				public setPadding(param0: number, param1: number, param2: number, param3: number): void;
+				public requestFitSystemWindows(): void;
+				public getTextDirection(): number;
+				public onKeyMultiple(param0: number, param1: number, param2: globalAndroid.view.KeyEvent): boolean;
+				public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable): void;
+				public setMinimumHeight(param0: number): void;
+				public requestTransparentRegion(param0: globalAndroid.view.View): void;
+				public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback): globalAndroid.view.ActionMode;
+				public getChildVisibleRect(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: globalAndroid.graphics.Point): boolean;
+				public onNestedFling(param0: globalAndroid.view.View, param1: number, param2: number, param3: boolean): boolean;
+				public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
+				public getTextAlignment(): number;
+				public getParentForAccessibility(): globalAndroid.view.ViewParent;
+				public onNestedPrePerformAccessibilityAction(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.os.Bundle): boolean;
+				public addView(param0: globalAndroid.view.View, param1: number): void;
+				/** @deprecated */
+				public invalidateChildInParent(param0: native.Array<number>, param1: globalAndroid.graphics.Rect): globalAndroid.view.ViewParent;
+				public getContentPaddingTop(): number;
+				public getPreventCornerOverlap(): boolean;
+				public getRadius(): number;
+				public requestChildRectangleOnScreen(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: boolean): boolean;
+				public onDescendantInvalidated(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
+				public isTextDirectionResolved(): boolean;
+				public showContextMenuForChild(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
+				public onNestedPreFling(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
+				public onNestedPreScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: native.Array<number>): void;
+				public setMaxCardElevation(param0: number): void;
+				public setPreventCornerOverlap(param0: boolean): void;
+				public recomputeViewAttributes(param0: globalAndroid.view.View): void;
+				public isLayoutDirectionResolved(): boolean;
+				public addView(param0: globalAndroid.view.View, param1: number, param2: number): void;
+				public isTextAlignmentResolved(): boolean;
+				public onNestedScrollAccepted(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
+				public notifySubtreeAccessibilityStateChanged(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
+				public getLayoutDirection(): number;
+				public getCardBackgroundColor(): globalAndroid.content.res.ColorStateList;
+				public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number);
+				public removeView(param0: globalAndroid.view.View): void;
+				public canResolveTextDirection(): boolean;
+				public canResolveTextAlignment(): boolean;
+				public setPaddingRelative(param0: number, param1: number, param2: number, param3: number): void;
+				public childHasTransientStateChanged(param0: globalAndroid.view.View, param1: boolean): void;
+				public getContentPaddingLeft(): number;
+				public focusSearch(param0: number): globalAndroid.view.View;
+				public showContextMenuForChild(param0: globalAndroid.view.View): boolean;
+				public requestLayout(): void;
+				public onKeyLongPress(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+				public constructor(param0: globalAndroid.content.Context);
+				/** @deprecated */
+				public requestFitSystemWindows(): void;
+				public bringChildToFront(param0: globalAndroid.view.View): void;
+				public setContentPadding(param0: number, param1: number, param2: number, param3: number): void;
+				public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+				public setRadius(param0: number): void;
+				public setCardBackgroundColor(param0: globalAndroid.content.res.ColorStateList): void;
+				public getContentPaddingRight(): number;
+				public keyboardNavigationClusterSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
+				public requestSendAccessibilityEvent(param0: globalAndroid.view.View, param1: globalAndroid.view.accessibility.AccessibilityEvent): boolean;
+				public onNestedScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: number, param4: number): void;
+				public getUseCompatPadding(): boolean;
+				public focusableViewAvailable(param0: globalAndroid.view.View): void;
+				public canResolveLayoutDirection(): boolean;
+				public addView(param0: globalAndroid.view.View): void;
+				public invalidateDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+				public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback, param2: number): globalAndroid.view.ActionMode;
+				public sendAccessibilityEventUnchecked(param0: globalAndroid.view.accessibility.AccessibilityEvent): void;
+				public onMeasure(param0: number, param1: number): void;
+				public scheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable, param2: number): void;
+				public onStopNestedScroll(param0: globalAndroid.view.View): void;
+				public getParent(): globalAndroid.view.ViewParent;
+				public addView(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.view.ViewGroup.LayoutParams): void;
+				public setCardElevation(param0: number): void;
+			}
+		}
+	}
+}
+
+declare namespace androidx {
+	export namespace cardview {
+		export namespace widget {
+			export class CardViewApi17Impl extends androidx.cardview.widget.CardViewBaseImpl {
+				public static class: java.lang.Class<androidx.cardview.widget.CardViewApi17Impl>;
+				public setRadius(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+				public setBackgroundColor(param0: androidx.cardview.widget.CardViewDelegate, param1: globalAndroid.content.res.ColorStateList): void;
+				public getBackgroundColor(param0: androidx.cardview.widget.CardViewDelegate): globalAndroid.content.res.ColorStateList;
+				public getElevation(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public getMinWidth(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public initStatic(): void;
+				public getMinHeight(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public setElevation(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+				public getMaxElevation(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public setMaxElevation(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+				public onPreventCornerOverlapChanged(param0: androidx.cardview.widget.CardViewDelegate): void;
+				public onCompatPaddingChanged(param0: androidx.cardview.widget.CardViewDelegate): void;
+				public updatePadding(param0: androidx.cardview.widget.CardViewDelegate): void;
+				public initialize(param0: androidx.cardview.widget.CardViewDelegate, param1: globalAndroid.content.Context, param2: globalAndroid.content.res.ColorStateList, param3: number, param4: number, param5: number): void;
+				public getRadius(param0: androidx.cardview.widget.CardViewDelegate): number;
+			}
+		}
+	}
+}
+
+declare namespace androidx {
+	export namespace cardview {
+		export namespace widget {
+			export class CardViewApi21Impl extends java.lang.Object implements androidx.cardview.widget.CardViewImpl {
+				public static class: java.lang.Class<androidx.cardview.widget.CardViewApi21Impl>;
+				public setRadius(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+				public setBackgroundColor(param0: androidx.cardview.widget.CardViewDelegate, param1: globalAndroid.content.res.ColorStateList): void;
+				public getBackgroundColor(param0: androidx.cardview.widget.CardViewDelegate): globalAndroid.content.res.ColorStateList;
+				public getMinWidth(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public getElevation(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public initStatic(): void;
+				public getMinHeight(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public getMaxElevation(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public setElevation(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+				public setMaxElevation(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+				public onPreventCornerOverlapChanged(param0: androidx.cardview.widget.CardViewDelegate): void;
+				public onCompatPaddingChanged(param0: androidx.cardview.widget.CardViewDelegate): void;
+				public updatePadding(param0: androidx.cardview.widget.CardViewDelegate): void;
+				public initialize(param0: androidx.cardview.widget.CardViewDelegate, param1: globalAndroid.content.Context, param2: globalAndroid.content.res.ColorStateList, param3: number, param4: number, param5: number): void;
+				public getRadius(param0: androidx.cardview.widget.CardViewDelegate): number;
+			}
+		}
+	}
+}
+
+declare namespace androidx {
+	export namespace cardview {
+		export namespace widget {
+			export class CardViewBaseImpl extends java.lang.Object implements androidx.cardview.widget.CardViewImpl {
+				public static class: java.lang.Class<androidx.cardview.widget.CardViewBaseImpl>;
+				public setRadius(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+				public setBackgroundColor(param0: androidx.cardview.widget.CardViewDelegate, param1: globalAndroid.content.res.ColorStateList): void;
+				public getBackgroundColor(param0: androidx.cardview.widget.CardViewDelegate): globalAndroid.content.res.ColorStateList;
+				public getElevation(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public getMinWidth(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public initStatic(): void;
+				public getMinHeight(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public setElevation(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+				public getMaxElevation(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public setMaxElevation(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+				public onPreventCornerOverlapChanged(param0: androidx.cardview.widget.CardViewDelegate): void;
+				public onCompatPaddingChanged(param0: androidx.cardview.widget.CardViewDelegate): void;
+				public updatePadding(param0: androidx.cardview.widget.CardViewDelegate): void;
+				public initialize(param0: androidx.cardview.widget.CardViewDelegate, param1: globalAndroid.content.Context, param2: globalAndroid.content.res.ColorStateList, param3: number, param4: number, param5: number): void;
+				public getRadius(param0: androidx.cardview.widget.CardViewDelegate): number;
+			}
+		}
+	}
+}
+
+declare namespace androidx {
+	export namespace cardview {
+		export namespace widget {
+			export class CardViewDelegate extends java.lang.Object {
+				public static class: java.lang.Class<androidx.cardview.widget.CardViewDelegate>;
+				/**
+				 * Constructs a new instance of the androidx.cardview.widget.CardViewDelegate interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+				 */
+				public constructor(implementation: {
+					setCardBackground(param0: globalAndroid.graphics.drawable.Drawable): void;
+					getCardBackground(): globalAndroid.graphics.drawable.Drawable;
+					getUseCompatPadding(): boolean;
+					getPreventCornerOverlap(): boolean;
+					setShadowPadding(param0: number, param1: number, param2: number, param3: number): void;
+					setMinWidthHeightInternal(param0: number, param1: number): void;
+					getCardView(): globalAndroid.view.View;
+				});
+				public constructor();
+				public getCardView(): globalAndroid.view.View;
+				public getCardBackground(): globalAndroid.graphics.drawable.Drawable;
+				public getUseCompatPadding(): boolean;
+				public setCardBackground(param0: globalAndroid.graphics.drawable.Drawable): void;
+				public setMinWidthHeightInternal(param0: number, param1: number): void;
+				public getPreventCornerOverlap(): boolean;
+				public setShadowPadding(param0: number, param1: number, param2: number, param3: number): void;
+			}
+		}
+	}
+}
+
+declare namespace androidx {
+	export namespace cardview {
+		export namespace widget {
+			export class CardViewImpl extends java.lang.Object {
+				public static class: java.lang.Class<androidx.cardview.widget.CardViewImpl>;
+				/**
+				 * Constructs a new instance of the androidx.cardview.widget.CardViewImpl interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+				 */
+				public constructor(implementation: {
+					initialize(param0: androidx.cardview.widget.CardViewDelegate, param1: globalAndroid.content.Context, param2: globalAndroid.content.res.ColorStateList, param3: number, param4: number, param5: number): void;
+					setRadius(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+					getRadius(param0: androidx.cardview.widget.CardViewDelegate): number;
+					setElevation(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+					getElevation(param0: androidx.cardview.widget.CardViewDelegate): number;
+					initStatic(): void;
+					setMaxElevation(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+					getMaxElevation(param0: androidx.cardview.widget.CardViewDelegate): number;
+					getMinWidth(param0: androidx.cardview.widget.CardViewDelegate): number;
+					getMinHeight(param0: androidx.cardview.widget.CardViewDelegate): number;
+					updatePadding(param0: androidx.cardview.widget.CardViewDelegate): void;
+					onCompatPaddingChanged(param0: androidx.cardview.widget.CardViewDelegate): void;
+					onPreventCornerOverlapChanged(param0: androidx.cardview.widget.CardViewDelegate): void;
+					setBackgroundColor(param0: androidx.cardview.widget.CardViewDelegate, param1: globalAndroid.content.res.ColorStateList): void;
+					getBackgroundColor(param0: androidx.cardview.widget.CardViewDelegate): globalAndroid.content.res.ColorStateList;
+				});
+				public constructor();
+				public setRadius(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+				public setBackgroundColor(param0: androidx.cardview.widget.CardViewDelegate, param1: globalAndroid.content.res.ColorStateList): void;
+				public getBackgroundColor(param0: androidx.cardview.widget.CardViewDelegate): globalAndroid.content.res.ColorStateList;
+				public getElevation(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public getMinWidth(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public initStatic(): void;
+				public getMinHeight(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public setElevation(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+				public getMaxElevation(param0: androidx.cardview.widget.CardViewDelegate): number;
+				public setMaxElevation(param0: androidx.cardview.widget.CardViewDelegate, param1: number): void;
+				public onPreventCornerOverlapChanged(param0: androidx.cardview.widget.CardViewDelegate): void;
+				public onCompatPaddingChanged(param0: androidx.cardview.widget.CardViewDelegate): void;
+				public updatePadding(param0: androidx.cardview.widget.CardViewDelegate): void;
+				public initialize(param0: androidx.cardview.widget.CardViewDelegate, param1: globalAndroid.content.Context, param2: globalAndroid.content.res.ColorStateList, param3: number, param4: number, param5: number): void;
+				public getRadius(param0: androidx.cardview.widget.CardViewDelegate): number;
+			}
+		}
+	}
+}
+
+declare namespace androidx {
+	export namespace cardview {
+		export namespace widget {
+			export class RoundRectDrawable extends globalAndroid.graphics.drawable.Drawable {
+				public static class: java.lang.Class<androidx.cardview.widget.RoundRectDrawable>;
+				public setColorFilter(param0: globalAndroid.graphics.ColorFilter): void;
+				public setColor(param0: globalAndroid.content.res.ColorStateList): void;
+				public draw(param0: globalAndroid.graphics.Canvas): void;
+				public setAlpha(param0: number): void;
+				public setColorFilter(param0: number, param1: globalAndroid.graphics.PorterDuff.Mode): void;
+				public setTintList(param0: globalAndroid.content.res.ColorStateList): void;
+				public getColor(): globalAndroid.content.res.ColorStateList;
+				public getOutline(param0: any): void;
+				public onBoundsChange(param0: globalAndroid.graphics.Rect): void;
+				public getRadius(): number;
+				public onStateChange(param0: native.Array<number>): boolean;
+				public getOpacity(): number;
+				public setTintMode(param0: globalAndroid.graphics.PorterDuff.Mode): void;
+				public isStateful(): boolean;
+			}
+		}
+	}
+}
+
+declare namespace androidx {
+	export namespace cardview {
+		export namespace widget {
+			export class RoundRectDrawableWithShadow extends globalAndroid.graphics.drawable.Drawable {
+				public static class: java.lang.Class<androidx.cardview.widget.RoundRectDrawableWithShadow>;
+				public setColorFilter(param0: globalAndroid.graphics.ColorFilter): void;
+				public onStateChange(param0: native.Array<number>): boolean;
+				public setAlpha(param0: number): void;
+				public draw(param0: globalAndroid.graphics.Canvas): void;
+				public setColorFilter(param0: number, param1: globalAndroid.graphics.PorterDuff.Mode): void;
+				public getPadding(param0: globalAndroid.graphics.Rect): boolean;
+				public getOpacity(): number;
+				public onBoundsChange(param0: globalAndroid.graphics.Rect): void;
+				public isStateful(): boolean;
+			}
+			export namespace RoundRectDrawableWithShadow {
+				export class RoundRectHelper extends java.lang.Object {
+					public static class: java.lang.Class<androidx.cardview.widget.RoundRectDrawableWithShadow.RoundRectHelper>;
+					/**
+					 * Constructs a new instance of the androidx.cardview.widget.RoundRectDrawableWithShadow$RoundRectHelper interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+					 */
+					public constructor(implementation: {
+						drawRoundRect(param0: globalAndroid.graphics.Canvas, param1: globalAndroid.graphics.RectF, param2: number, param3: globalAndroid.graphics.Paint): void;
+					});
+					public constructor();
+					public drawRoundRect(param0: globalAndroid.graphics.Canvas, param1: globalAndroid.graphics.RectF, param2: number, param3: globalAndroid.graphics.Paint): void;
+				}
+			}
+		}
+	}
 }
 
 //Generics information:

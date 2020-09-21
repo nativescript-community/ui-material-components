@@ -196,6 +196,7 @@ interface ViewOutlineProvider extends android.view.ViewOutlineProvider {
     // tslint:disable-next-line:no-misused-new
     new (context): ViewOutlineProvider;
 }
+// eslint-disable-next-line no-redeclare
 let ViewOutlineProvider: ViewOutlineProvider;
 
 function initializeOutlineProvider() {
