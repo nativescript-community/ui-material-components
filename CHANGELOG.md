@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.2](https://github.com/nativescript-community/ui-material-components/compare/v5.0.1...v5.0.2) (2020-09-21)
+
+
+### Bug Fixes
+
+* **android:** fix for transparent flat buttn ([18a6458](https://github.com/nativescript-community/ui-material-components/commit/18a645880cfc06752885e851836ad6d37b9d02c5))
+
+
+
+
+
 ## [5.0.1](https://github.com/nativescript-community/ui-material-components/compare/v5.0.0...v5.0.1) (2020-09-21)
 
 
