@@ -23,7 +23,7 @@
         "hooks": [
             {
                 "type": "before-prepare",
-                "script": "hooks/before-prepare.js",
+                "script": "scripts/before-prepare.js",
                 "inject": true
             }
         ]

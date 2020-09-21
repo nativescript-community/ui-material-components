@@ -12,6 +12,6 @@
             "*": ["node_modules/*", "packages/*"]
         }
     },
-    "include": ["../../src/core/hooks/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
+    "include": ["../../src/core/scripts/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
     "exclude": ["../../src/core/angular/**"]
 }
