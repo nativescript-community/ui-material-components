@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.4](https://github.com/nativescript-community/ui-material-components/compare/v5.0.3...v5.0.4) (2020-09-21)
+
+
+### Bug Fixes
+
+* finally fixed the prepare script! ([fba40b9](https://github.com/nativescript-community/ui-material-components/commit/fba40b9f6df4909e8891f69f90b4c8d127c42dfa))
+
+
+
+
+
 ## [5.0.3](https://github.com/nativescript-community/ui-material-components/compare/v5.0.2...v5.0.3) (2020-09-21)
 
 
