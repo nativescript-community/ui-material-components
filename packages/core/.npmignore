@@ -1,7 +1,6 @@
 node_modules/
 bin/
 src/
-hooks/
 *.ts
 *.old
 tsconfig.json
