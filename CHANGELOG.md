@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/nativescript-community/ui-material-components/compare/v5.0.0...v5.0.1) (2020-09-21)
+
+
+### Bug Fixes
+
+* core not containing the hooks ([fdce402](https://github.com/nativescript-community/ui-material-components/commit/fdce402635102875838811180fd3d32e5206b80d))
+
+
+
+
+
 # [5.0.0](https://github.com/nativescript-community/ui-material-components/compare/v4.0.12...v5.0.0) (2020-09-21)
 
 
