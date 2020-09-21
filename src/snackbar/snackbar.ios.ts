@@ -1,5 +1,5 @@
 import { getRippleColor, themer } from '@nativescript-community/ui-material-core';
-import { Color, Frame, Page } from '@nativescript/core';
+import { Application, Color, Frame, Page } from '@nativescript/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 
 export class SnackBar extends SnackBarBase {
@@ -60,18 +60,26 @@ export class SnackBar extends SnackBarBase {
         if (options.backgroundColor && Color.isValid(options.backgroundColor)) {
             messageView.snackbarMessageViewBackgroundColor = (options.backgroundColor instanceof Color ? options.backgroundColor : new Color(options.backgroundColor)).ios;
         }
-        let attachView = options.view || Frame.topmost().currentPage;
-        while (attachView['_modal']) {
-            attachView = attachView['_modal'];
+
+        let nAttachedView: UIView;
+        if (options.view) {
+            let attachView = options.view || Frame.topmost().currentPage;
+            while (attachView['_modal']) {
+                attachView = attachView['_modal'];
+            }
+            nAttachedView = attachView.nativeViewProtected;
+        } else {
+            let viewController = Application.ios.rootController;
+
+            while (viewController && viewController.presentedViewController) {
+                viewController = viewController.presentedViewController;
+            }
+            nAttachedView = viewController.view;
         }
-        console.log('test', attachView);
-        // let nView = attachView.nativeViewProtected as android.view.View;
-        // if (attachView instanceof Page) {
-        //     // in case of a page we try to handle it correctly
-        //     nView = nView.getParent().getParent() as any;
-        // }
-        if (attachView) {
-            SnackBar._snackbarManager.setPresentationHostView(attachView.nativeViewProtected);
+
+
+        if (nAttachedView) {
+            SnackBar._snackbarManager.setPresentationHostView(nAttachedView);
         } else {
             SnackBar._snackbarManager.setPresentationHostView(null);
         }
