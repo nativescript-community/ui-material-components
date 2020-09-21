@@ -81,6 +81,8 @@ declare class IMDCAlertControllerImpl extends MDCAlertController {
 }
 const MDCAlertControllerImpl = (MDCAlertController as any).extend({
     viewDidAppear() {
+
+
         if (this.autoFocusTextField) {
             this.autoFocusTextField.requestFocus();
             this.view.setNeedsLayout();
@@ -96,7 +98,6 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
     },
     viewDidDisappear(animated: boolean) {
         this.super.viewDidDisappear(animated);
-        console.log('viewDidDisappear', this.customContentView);
         if (this.customContentView) {
             this.customContentView.callUnloaded();
             this.customContentView._tearDownUI(true);
@@ -104,8 +105,13 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
             this.customContentView = null;
         }
     },
+    viewDidLoad() {
+        this.super.viewDidLoad();
+        if (this.disableContentInsets) {
+            (this.view as MDCAlertControllerView).contentInsets = UIEdgeInsetsZero;
+        }
+    },
     viewDidUnload() {
-        console.log('viewDidUnload', this.customContentView);
         this.super.viewDidUnload();
         if (this.customContentView) {
             this.customContentView.callUnloaded();
@@ -197,13 +203,13 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     if (options.messageColor) {
         alertController.messageColor = options.messageColor.ios;
     }
-    if (options.elevation) {
+    if (options.elevation !== undefined) {
         alertController.elevation = options.elevation;
     }
-    if (options.cornerRadius) {
+    if (options.cornerRadius !== undefined) {
         alertController.cornerRadius = options.cornerRadius;
-    } else {
-        alertController.cornerRadius = 2;
+    // } else {
+        // alertController.cornerRadius = 2;
     }
     if (options.titleIcon) {
         alertController.titleIcon = options.titleIcon.ios;
@@ -247,8 +253,11 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
         };
         view.bindingContext = fromObject(context);
         alertController.accessoryView = createUIViewAutoSizeUIViewAutoSize(view);
+        // if no title or message disable contentInsets to be like android
+        if (!options.title && !options.message) {
+            (alertController as any).disableContentInsets = true;
+        }
         view.viewController = alertController; // needed to prevent a crash in layoutChild
-
     }
     const dialogPresentationControllerDelegate = MDCDialogPresentationControllerDelegateImpl.initWithCallback(() => {
         resolve && resolve();
@@ -520,8 +529,11 @@ function showUIAlertController(alertController: MDCAlertController) {
     if (currentView) {
         currentView = currentView.modal || currentView;
 
-        // for now we need to use the rootController because of a bug in {N}
-        const viewController = Application.ios.rootController;
+        let viewController = Application.ios.rootController;
+
+        while (viewController && viewController.presentedViewController) {
+            viewController = viewController.presentedViewController;
+        }
 
         if (viewController) {
             if (alertController.popoverPresentationController) {
