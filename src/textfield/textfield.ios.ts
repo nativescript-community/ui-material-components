@@ -15,19 +15,6 @@ import {
 import { Background, Color, Property, Screen, Style, backgroundInternalProperty, isAndroid, placeholderColorProperty } from '@nativescript/core';
 import { TextFieldBase } from './textfield.common';
 
-const textProperty = new Property<TextField, string>({
-    name: 'text',
-    defaultValue: '',
-    affectsLayout: isAndroid,
-});
-
-let colorScheme: MDCSemanticColorScheme;
-function getColorScheme() {
-    if (!colorScheme) {
-        colorScheme = MDCSemanticColorScheme.new();
-    }
-    return colorScheme;
-}
 
 @NativeClass
 class TextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
@@ -288,4 +275,3 @@ export class TextField extends TextFieldBase {
         }
     }
 }
-textProperty.register(TextField);
