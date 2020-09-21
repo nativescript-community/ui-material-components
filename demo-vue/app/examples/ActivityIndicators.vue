@@ -9,7 +9,7 @@
       <MDActivityIndicator busy class="loading" />
       <MDActivityIndicator color="red" :busy="isBusy" class="loading" />
       <MDActivityIndicator color="green" busy class="loading" />
-      <MDActivityIndicator color="orange" busy class="loading" width="50" height="50"/>
+      <MDActivityIndicator color="orange" busy class="loading" width="100" height="100"/>
       <MDActivityIndicator class="loading" backgroundColor="yellow" busy/>
       <MDActivityIndicator color="brown" indeterminate="false" progress="0.5" maxValue="1" class="loading" horizontalAlignment="center"/>
     </StackLayout>

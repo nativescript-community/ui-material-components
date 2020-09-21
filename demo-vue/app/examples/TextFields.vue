@@ -4,19 +4,98 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap"></NavigationButton>
         </ActionBar>
         <ScrollView>
-        <StackLayout>
-            <StackLayout backgroundColor="red" horizontalAlignment="center">
-                <MDTextField id="textField1"  verticalAlignment="center" variant="none" width="250" placeholderColor="green" keyboardType="datetime" hint="i am an hint" returnKeyType="next" v-model="value"  @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" />
+            <StackLayout>
+                <StackLayout orientation="horizontal">
+                    <Button text="setFocus" @tap="$refs.textField1.nativeView.requestFocus()" />
+                    <Button text="setSelection" @tap="$refs.textField1.nativeView.setSelection(1, 4)" />
+                </StackLayout>
+                <StackLayout backgroundColor="red" horizontalAlignment="center">
+                    <MDTextField
+                        ref="textField1"
+                        id="textField1"
+                        verticalAlignment="center"
+                        variant="none"
+                        width="250"
+                        placeholderColor="green"
+                        keyboardType="datetime"
+                        hint="i am an hint"
+                        returnKeyType="next"
+                        v-model="value"
+                        @focus="onFocus"
+                        @blur="onBlur"
+                        @textChange="onTextChange"
+                        @returnPress="onReturnPress"
+                    />
+                </StackLayout>
+                <GridLayout backgroundColor="red" rows="auto" padding="20">
+                    <MDTextField
+                        id="textField2"
+                        variant="filled"
+                        hint="hint me"
+                        v-model="value"
+                        backgroundColor="green"
+                        @focus="onFocus"
+                        @blur="onBlur"
+                        @textChange="onTextChange"
+                        @returnPress="onReturnPress"
+                        floating="false"
+                    />
+                </GridLayout>
+                <MDTextField id="textField3" hint="filled" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" margin="10" editable="false" />
+                <MDTextField
+                    id="textField4"
+                    maxLength="10"
+                    variant="outline"
+                    hint="outline"
+                    @focus="onFocus"
+                    @blur="onBlur"
+                    @textChange="onTextChange"
+                    @returnPress="onReturnPress"
+                    floatingColor="red"
+                    margin="10"
+                    buttonColor="red"
+                />
+                <MDTextField
+                    id="textField5"
+                    variant="outline"
+                    hint="outline"
+                    @focus="onFocus"
+                    @blur="onBlur"
+                    @textChange="onTextChange"
+                    @returnPress="onReturnPress"
+                    floatingColor="red"
+                    placeholderColor="blue"
+                    strokeColor="green"
+                    margin="10"
+                />
+                <MDTextField
+                    id="textField6"
+                    variant="filled"
+                    required="true"
+                    email="true"
+                    hint="fill this out..."
+                    @focus="onFocus"
+                    @blur="onBlur"
+                    floating="false"
+                    @textChange="onTextChange"
+                    @returnPress="onReturnPress"
+                    strokeColor="red"
+                    margin="10"
+                />
+                <MDTextField
+                    id="textField7"
+                    variant="filled"
+                    hint="limited digits 0123456789."
+                    @focus="onFocus"
+                    @blur="onBlur"
+                    floating="false"
+                    @textChange="onTextChange"
+                    @returnPress="onReturnPress"
+                    digits="0123456789."
+                    strokeColor="red"
+                    margin="10"
+                />
             </StackLayout>
-            <GridLayout backgroundColor="red" rows="auto" padding="20">
-                <MDTextField id="textField2" variant="filled" hint="hint me" v-model="value" backgroundColor="green" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floating="false" />
-            </GridLayout>
-            <MDTextField id="textField3" hint="filled" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" margin="10" editable="false"/>
-            <MDTextField id="textField4" maxLength="10" variant="outline" hint="outline" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floatingColor="red" margin="10" buttonColor="red"/>
-            <MDTextField id="textField5" variant="outline" hint="outline" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" floatingColor="red" placeholderColor="blue" strokeColor="green" margin="10" />
-            <MDTextField id="textField6" variant="filled" required="true" email="true" hint="fill this out..." @focus="onFocus" @blur="onBlur" floating="false" @textChange="onTextChange" @returnPress="onReturnPress" strokeColor="red" margin="10" />
-            <MDTextField id="textField7" variant="filled" hint="limited digits 0123456789." @focus="onFocus" @blur="onBlur" floating="false" @textChange="onTextChange" @returnPress="onReturnPress" digits="0123456789." strokeColor="red" margin="10" />
-        </StackLayout>
         </ScrollView>
     </Page>
 </template>

@@ -6,7 +6,7 @@
         <GridLayout rows="*, auto" id="outerView" ref="outerView">
             <!-- <Frame actionBarHidden="true"> -->
                 <!-- <Page actionBarHidden="true" backgroundColor="blue" id="innerPage" > -->
-                    <StackLayout id="innerView" ref="innerView">
+                    <StackLayout id="innerView" ref="innerView" backgroundColor="gray">
                         <MDButton id="show_snack" text="show snack" @tap="onTap" />
                         <MDButton id="show_snack_action" text="show snack action" @tap="onTap" />
                         <MDButton id="show_snack_action_color" text="show snack action color" @tap="onTap" />
@@ -60,7 +60,7 @@ export default Vue.extend({
                         console.log('showSnack result', r);
 
                     });
-                    test.dismiss();
+                    // test.dismiss();
                     break;
                 }
                 case 'show_snack_action_color': {

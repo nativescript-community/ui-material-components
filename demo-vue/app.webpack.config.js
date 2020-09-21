@@ -39,7 +39,7 @@ module.exports = (env, params = {}) => {
         verbose, // --env.verbose
         uglify // --env.uglify
     } = env;
-
+    console.log('test', env, development);
     const config = webpackConfig(env, params);
     const mode = production ? 'production' : 'development';
     const platform = env && ((env.android && 'android') || (env.ios && 'ios'));
@@ -128,8 +128,8 @@ module.exports = (env, params = {}) => {
             '@nativescript-community/ui-material-snackbar/snackbar$': '#/snackbar/snackbar.' + platform,
             './snackbar$': '#/snackbar/snackbar.' + platform
         });
+        console.log(config.resolve.alias);
     }
-    // 0609978011
     const symbolsParser = require('scss-symbols-parser');
     const mdiSymbols = symbolsParser.parseSymbols(readFileSync(resolve(projectRoot, 'node_modules/@mdi/font/scss/_variables.scss')).toString());
     const mdiIcons = JSON.parse(`{${mdiSymbols.variables[mdiSymbols.variables.length - 1].value.replace(/" (F|0)(.*?)([,\n]|$)/g, '": "$1$2"$3')}}`);
@@ -208,7 +208,7 @@ module.exports = (env, params = {}) => {
     //     },
     // };
 
-    config.module.rules.push( {
+    config.module.rules.push({
         // rules to replace mdi icons and not use nativescript-font-icon
         test: /\.(ts|js|scss|css|vue)$/,
         exclude: /node_modules/,

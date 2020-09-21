@@ -4,7 +4,10 @@
     "readme": "README.md",
     "repository": "http://www.github.com/NativeScript/nativescript-ui-sidedrawer.git",
     "nativescript": {
-        "id": "org.nativescript.demovuematerial"
+        "id": "org.nativescript.demovuematerial",
+        "tns-android": {
+            "version": "6.5.3"
+        }
     },
     "dependencies": {
         "@nativescript/core": "7.0.3",
@@ -33,7 +36,7 @@
         "@babel/core": "^7.11.6",
         "@nativescript/android": "7.0.0",
         "@nativescript/core": "7.0.2",
-        "@nativescript/ios":"7.0.0",
+        "@nativescript/ios": "7.0.0",
         "@nativescript/types": "7.0.1",
         "@nativescript/webpack": "3.0.4",
         "babel-loader": "^8.1.0",

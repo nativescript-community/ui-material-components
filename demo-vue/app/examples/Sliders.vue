@@ -11,7 +11,7 @@
                   minValue="0" maxValue="100"
                   :value="value" @valueChange="onValueChanged"/>
         <Label text="Green slider without hollow at 0" padding="10" />
-        <MDSlider thumbHollowAtStart="false" color="green"
+        <MDSlider thumbHollowAtStart="false" color="#6200EE"
                   minValue="0" maxValue="100"
                   :value="value" @valueChange="onValueChanged" />
         <Label text="Disabled slider" padding="10" />
