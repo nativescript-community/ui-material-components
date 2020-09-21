@@ -8,7 +8,7 @@ export class NativeScriptMaterialBottomSheetModule {
     // This flag help us to avoid problems when using the new development workflow
     private static initialized: boolean = false;
 
-    static forRoot(): ModuleWithProviders<any> {
+    static forRoot(): ModuleWithProviders<NativeScriptMaterialBottomSheetModule> {
         return {
             ngModule: NativeScriptMaterialBottomSheetModule,
             providers: [BottomSheetService],
