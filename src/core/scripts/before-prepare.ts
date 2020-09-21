@@ -26,7 +26,7 @@ module.exports = function (hookArgs: { projectData /* : IProjectData */; prepare
         const uiFile = join(projectFilePath, 'node_modules', '@nativescript/core', 'ui/index.js');
         if (existsSync(uiFile)) {
             const data = readFileSync(uiFile, 'utf8');
-            const result = data.replace(/^export \{ Tabs \} from '.\/tabs';/g, '// export { Tabs } from \'./tabs\';');
+            const result = data.replace(/^export \{ Tabs \} from '.\/tabs';/gm, '// export { Tabs } from \'./tabs\';');
             writeFileSync(uiFile, result);
         }
     }
