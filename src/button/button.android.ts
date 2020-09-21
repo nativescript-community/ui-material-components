@@ -12,6 +12,7 @@ let grayColorStateList: android.content.res.ColorStateList;
 
 export class Button extends ButtonBase {
     nativeViewProtected: com.google.android.material.button.MaterialButton;
+    nativeTextViewProtected: com.google.android.material.button.MaterialButton;
 
     public isLoading: boolean;
 
@@ -119,7 +120,11 @@ export class Button extends ButtonBase {
                 view.setBackgroundDrawable(value);
             } else {
                 if (value.color) {
-                    view.setBackgroundTintList(getEnabledColorStateList(value.color.android, this.variant));
+                    if (value.color.android === 0 && this.variant === 'flat') {
+                        view.setBackgroundColor(value.color.android);
+                    } else {
+                        view.setBackgroundTintList(getEnabledColorStateList(value.color.android, this.variant));
+                    }
                 }
                 this.setCornerRadius(value.borderTopLeftRadius);
                 view.setStrokeWidth(value.borderTopWidth);
