@@ -112,7 +112,7 @@ export default Vue.extend({
     data() {
         return {
             title: title,
-            value: ''
+            value: 'test'
         };
     },
 
