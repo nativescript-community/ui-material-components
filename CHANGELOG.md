@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/nativescript-community/ui-material-components/compare/v4.0.12...v5.0.0) (2020-09-21)
+
+
+### Bug Fixes
+
+* **ios:** break N tabs to allow ios lib updates! ([576fd4e](https://github.com/nativescript-community/ui-material-components/commit/576fd4e7d5f59aebcab7f157635ae2f77b81c77f))
+* **ios:** dialog disable contentInsets without title & message ([b18dd4e](https://github.com/nativescript-community/ui-material-components/commit/b18dd4ee727503c9bc738b217c81e96c49a796ab))
+* **ios:** fix textfield setting initial value ([4b7ba38](https://github.com/nativescript-community/ui-material-components/commit/4b7ba384dc902248d39bb70efe44d402497a3739))
+* **ios:** more tabs fixes ([41435c2](https://github.com/nativescript-community/ui-material-components/commit/41435c2f42b17671a56e5ec86ed1905f12a9dfc7))
+* **ios:** snackbar fix in modal windows ([acfe6c9](https://github.com/nativescript-community/ui-material-components/commit/acfe6c9105c8728257c7a0d869e4a564e11bd7da))
+
+
+### Features
+
+* **android:** updated native libs ([2840b4d](https://github.com/nativescript-community/ui-material-components/commit/2840b4d2ccda6f392ec5185d2974fbd5831cd127))
+* **ios:** updated material ios lib ([2dbb44d](https://github.com/nativescript-community/ui-material-components/commit/2dbb44da966cb48631f780218d1473c9c322d220))
+
+
+
+
+
 ## [4.0.12](https://github.com/nativescript-community/ui-material-components/compare/v4.0.11...v4.0.12) (2020-09-15)
 
 

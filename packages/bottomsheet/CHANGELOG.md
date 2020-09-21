@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/nativescript-community/ui-material-components/compare/v4.0.12...v5.0.0) (2020-09-21)
+
+
+### Features
+
+* **android:** updated native libs ([2840b4d](https://github.com/nativescript-community/ui-material-components/commit/2840b4d2ccda6f392ec5185d2974fbd5831cd127))
+
+
+
+
+
 ## [4.0.12](https://github.com/nativescript-community/ui-material-components/compare/v4.0.11...v4.0.12) (2020-09-15)
 
 

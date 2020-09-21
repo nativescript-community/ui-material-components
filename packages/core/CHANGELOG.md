@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/nativescript-community/ui-material-components/compare/v4.0.12...v5.0.0) (2020-09-21)
+
+
+### Bug Fixes
+
+* **ios:** break N tabs to allow ios lib updates! ([576fd4e](https://github.com/nativescript-community/ui-material-components/commit/576fd4e7d5f59aebcab7f157635ae2f77b81c77f))
+
+
+### Features
+
+* **android:** updated native libs ([2840b4d](https://github.com/nativescript-community/ui-material-components/commit/2840b4d2ccda6f392ec5185d2974fbd5831cd127))
+* **ios:** updated material ios lib ([2dbb44d](https://github.com/nativescript-community/ui-material-components/commit/2dbb44da966cb48631f780218d1473c9c322d220))
+
+
+
+
+
 ## [4.0.11](https://github.com/nativescript-community/ui-material-components/compare/v4.0.10...v4.0.11) (2020-09-10)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-core
