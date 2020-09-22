@@ -15,6 +15,13 @@ import { Background, Color, Property, Screen, Style, Utils, View, backgroundInte
 import { resetSymbol, textProperty } from '@nativescript/core/ui/text-base';
 import { TextViewBase } from './textview.common';
 
+declare module '@nativescript/core/ui/text-view' {
+    interface TextView {
+        setFormattedTextDecorationAndTransform();
+        setTextDecorationAndTransform();
+    }
+}
+
 @NativeClass
 class MDCMultilineTextInputLayoutDelegateImpl extends NSObject {
     static ObjCProtocols = [MDCMultilineTextInputLayoutDelegate];
