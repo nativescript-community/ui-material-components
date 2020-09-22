@@ -54,7 +54,11 @@
                     floatingColor="red"
                     margin="10"
                     buttonColor="red"
-                />
+                >
+                <FormattedString>
+                        <Span text="Words " color="#00ff00"></Span>
+                        <Span text="with " color="#ff0000" fontAttributes="Bold"></Span>
+                    </FormattedString></MDTextField>
                 <MDTextField
                     id="textField5"
                     variant="outline"
