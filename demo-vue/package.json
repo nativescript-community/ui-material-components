@@ -10,6 +10,7 @@
         }
     },
     "dependencies": {
+        "@akylas/nativescript":"7.0.3-alpha.4",
         "@mdi/font": "4.9.95",
         "@nativescript-community/ui-material-activityindicator": "file:../packages/activityindicator",
         "@nativescript-community/ui-material-bottomnavigationbar": "file:../packages/bottomnavigationbar",
@@ -26,13 +27,13 @@
         "@nativescript-community/ui-material-tabs": "file:../packages/tabs",
         "@nativescript-community/ui-material-textfield": "file:../packages/textfield",
         "@nativescript-community/ui-material-textview": "file:../packages/textview",
-        "@nativescript/core": "7.0.3",
         "@nativescript/iqkeyboardmanager": "^2.0.0",
         "@nativescript/theme": "2.3.3",
         "nativescript-vue": "~2.8.1",
         "nativescript-vue-template-compiler": "~2.8.1"
     },
     "devDependencies": {
+        "@nativescript/core": "7.0.3",
         "@babel/core": "^7.11.6",
         "@nativescript/android": "7.0.0",
         "@nativescript/core": "7.0.2",
