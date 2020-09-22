@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.5](https://github.com/nativescript-community/ui-material-components/compare/v5.0.4...v5.0.5) (2020-09-22)
+
+
+### Bug Fixes
+
+* **ios:** fix modifying formattedString in textfield ([b6a805e](https://github.com/nativescript-community/ui-material-components/commit/b6a805eedfdee475678db5697b0d03953ce868d5))
+* **ios:** multiple textview fixes ([9fe3220](https://github.com/nativescript-community/ui-material-components/commit/9fe3220f811ba7465288ead659fffbbe39c7f619))
+
+
+
+
+
 ## [5.0.4](https://github.com/nativescript-community/ui-material-components/compare/v5.0.3...v5.0.4) (2020-09-21)
 
 
