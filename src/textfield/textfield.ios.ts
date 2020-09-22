@@ -12,9 +12,9 @@ import {
     strokeColorProperty,
     strokeInactiveColorProperty,
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
-import { Background, Color, Property, Screen, Style, backgroundInternalProperty, isAndroid, placeholderColorProperty } from '@nativescript/core';
+import { Background, Color, Property, Screen, Style, _updateCharactersInRangeReplacementString, backgroundInternalProperty, isAndroid, placeholderColorProperty } from '@nativescript/core';
+import { textProperty } from '@nativescript/core/ui/text-base';
 import { TextFieldBase } from './textfield.common';
-
 
 @NativeClass
 class TextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
@@ -104,6 +104,7 @@ export class TextField extends TextFieldBase {
     private _controller: MDCTextInputControllerBase;
     public readonly style: Style & { variant: 'outline' | 'underline' | 'filled' };
     public nsdigits?: NSCharacterSet;
+    firstEdit: boolean;
     public clearFocus() {
         this.dismissSoftInput();
     }
@@ -117,7 +118,44 @@ export class TextField extends TextFieldBase {
         if (this.nsdigits && replacementString.length > 0 && NSString.stringWithString(replacementString).rangeOfCharacterFromSet(this.nsdigits).location === NSNotFound) {
             return false;
         }
-        return super.textFieldShouldChangeCharactersInRangeReplacementString(textField, range, replacementString);
+        if (this.secureWithoutAutofill && !textField.secureTextEntry) {
+            /**
+             * Helps avoid iOS 12+ autofill strong password suggestion prompt
+             * Discussed in several circles but for example:
+             * https://github.com/expo/expo/issues/2571#issuecomment-473347380
+             */
+            textField.secureTextEntry = true;
+        }
+
+        // we need to override this from N as in MDC case the range is 0
+        if (range.length > 0) {
+            const delta = replacementString.length - range.length;
+            if (delta > 0) {
+                if (textField.text.length + delta > this.maxLength) {
+                    return false;
+                }
+            }
+        }
+
+        if (this.updateTextTrigger === 'textChanged') {
+            if (textField.secureTextEntry && this.firstEdit) {
+                textProperty.nativeValueChange(this, replacementString);
+            } else {
+                if (range.location <= textField.text.length) {
+                    const newText = NSString.stringWithString(textField.text).stringByReplacingCharactersInRangeWithString(range, replacementString);
+                    textProperty.nativeValueChange(this, newText);
+                }
+            }
+        }
+
+        if (this.formattedText) {
+            _updateCharactersInRangeReplacementString(this.formattedText, range.location, range.length, replacementString);
+        }
+
+        this.firstEdit = false;
+
+        return true;
+        // return super.textFieldShouldChangeCharactersInRangeReplacementString(textField, range, replacementString);
     }
 
     _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
