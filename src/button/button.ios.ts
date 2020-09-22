@@ -127,26 +127,15 @@ export class Button extends ButtonBase {
         scheme.colorScheme = colorScheme;
         if (this.variant === 'text') {
             view.applyTextThemeWithScheme(scheme);
-            // MDCTextButtonThemer.applySchemeToButton(, view);
-            // if (colorScheme) {
-            // MDCTextButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
-            // }
         } else if (this.variant === 'flat') {
             if (colorScheme) {
                 MDCButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
             }
         } else if (this.variant === 'outline') {
             view.applyOutlinedThemeWithScheme(scheme);
-            // if (colorScheme) {
-            //     MDCOutlinedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
-            // }
         } else {
             // contained
             view.applyContainedThemeWithScheme(scheme);
-            // MDCContainedButtonThemer.applySchemeToButton(getButtonScheme(), view);
-            // if (colorScheme) {
-            //     MDCContainedButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
-            // }
             // we need to set the default through css or user would not be able to overload it through css...
             this.style['css:margin-left'] = 10;
             this.style['css:margin-right'] = 10;
