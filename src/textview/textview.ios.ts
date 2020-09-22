@@ -163,6 +163,11 @@ export class TextView extends TextViewBase {
     public requestFocus() {
         this.focus();
     }
+
+    // N bug fix
+    get ios() {
+        return this.nativeTextViewProtected;
+    }
     get nativeTextViewProtected() {
         return this.nativeViewProtected.textView;
     }
