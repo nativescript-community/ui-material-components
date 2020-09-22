@@ -12,21 +12,8 @@ import {
     strokeInactiveColorProperty,
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
 import { Background, Color, Property, Screen, Style, Utils, View, backgroundInternalProperty, editableProperty, hintProperty, isAndroid, placeholderColorProperty } from '@nativescript/core';
+import { resetSymbol, textProperty } from '@nativescript/core/ui/text-base';
 import { TextViewBase } from './textview.common';
-
-const textProperty = new Property<TextView, string>({
-    name: 'text',
-    defaultValue: '',
-    affectsLayout: isAndroid,
-});
-
-let colorScheme: MDCSemanticColorScheme;
-function getColorScheme() {
-    if (!colorScheme) {
-        colorScheme = MDCSemanticColorScheme.new();
-    }
-    return colorScheme;
-}
 
 @NativeClass
 class MDCMultilineTextInputLayoutDelegateImpl extends NSObject {
@@ -41,7 +28,7 @@ class MDCMultilineTextInputLayoutDelegateImpl extends NSObject {
 
     multilineTextFieldDidChangeContentSize?(multilineTextField: MDCMultilineTextInput, size: CGSize) {
         // called when clicked on background
-        const owner = this._owner.get();
+        const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             owner._onTextFieldDidChangeContentSize && owner._onTextFieldDidChangeContentSize(size);
         }
@@ -169,10 +156,12 @@ export class TextView extends TextViewBase {
     public requestFocus() {
         this.focus();
     }
-
     get nativeTextViewProtected() {
         return this.nativeViewProtected.textView;
     }
+    // get nativeRealTextViewProtected() {
+    //     return this.nativeViewProtected.textView;
+    // }
 
     _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
         const scale = Screen.mainScreen.scale;
@@ -224,19 +213,21 @@ export class TextView extends TextViewBase {
             this._controller.underlineHeightNormal = 0;
         }
 
-        view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;
+        // view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;
 
         return view;
     }
-
+    layoutDelegate: MDCMultilineTextInputLayoutDelegate;
     initNativeView() {
         super.initNativeView();
         const view = this.nativeViewProtected;
         view.layoutDelegate = MDCMultilineTextInputLayoutDelegateImpl.initWithOwner(this);
+        this.layoutDelegate = view.layoutDelegate;
     }
     disposeNativeView() {
         const view = this.nativeViewProtected;
         view.layoutDelegate = null;
+        this.layoutDelegate = null;
         super.disposeNativeView();
     }
 
@@ -254,7 +245,7 @@ export class TextView extends TextViewBase {
     }
 
     public setSelection(start: number, stop?: number) {
-        const view = this.nativeTextViewProtected;
+        const view = this.nativeTextViewProtected as UITextView;
         if (stop !== undefined) {
             const begin = view.beginningOfDocument;
             view.selectedTextRange = view.textRangeFromPositionToPosition(view.positionFromPositionOffset(begin, start), view.positionFromPositionOffset(begin, stop));
@@ -272,7 +263,7 @@ export class TextView extends TextViewBase {
         this._controller.placeholderText = value;
     }
     [editableProperty.setNative](value: boolean) {
-        this.nativeTextViewProtected.editable = value;
+        (this.nativeTextViewProtected as UITextView).editable = value;
     }
     [floatingColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
@@ -336,6 +327,41 @@ export class TextView extends TextViewBase {
             }
         }
     }
-}
+    setFormattedTextDecorationAndTransform() {
+        // this.returnRealTextView = false;
+        super.setFormattedTextDecorationAndTransform();
+        const attributedText = this.nativeTextViewProtected.attributedText;
+        this.nativeTextViewProtected.text = null;
+        this.nativeViewProtected.attributedText = attributedText;
+    }
+    setTextDecorationAndTransform() {
+        super.setTextDecorationAndTransform();
+        if (this.nativeTextViewProtected.attributedText) {
+            const attributedText = this.nativeTextViewProtected.attributedText;
+            this.nativeViewProtected.attributedText = attributedText;
+        } else {
+            const text = this.nativeTextViewProtected.text;
+            this.nativeViewProtected.text = text;
+        }
+    }
+    // [textProperty.setNative](value: string | number | symbol) {
+    //     const reset = value === resetSymbol;
+    //     if (!reset && this.formattedText) {
+    //         return;
+    //     }
 
-textProperty.register(TextView);
+    //     this._setNativeText(reset);
+    //     this._requestLayoutOnTextChanged();
+    // }
+    // public textViewShouldBeginEditing(textView: UITextView): boolean {
+    //     return true;
+    // }
+    // public showHint(hint: string) {
+    //     console.log('showHint');
+    // }
+
+    // public showText() {
+    //     console.log('showText');
+    // }
+    // public _refreshHintState(hint: string, text: string) {}
+}
