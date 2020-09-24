@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.7](https://github.com/nativescript-community/ui-material-components/compare/v5.0.6...v5.0.7) (2020-09-24)
+
+
+### Bug Fixes
+
+* **ios:** prevent crash with Ripple ([01e62d2](https://github.com/nativescript-community/ui-material-components/commit/01e62d2b0305e17f37d4c16180215c45184af6fe))
+
+
+
+
+
 ## [5.0.6](https://github.com/nativescript-community/ui-material-components/compare/v5.0.5...v5.0.6) (2020-09-22)
 
 
