@@ -9,7 +9,7 @@ export class Ripple extends RippleBase {
         this.inkTouchController = MDCRippleTouchController.alloc().initWithView(view);
 
         const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
-        if (colorScheme) {
+        if (colorScheme && colorScheme.primaryColor) {
             this.inkTouchController.rippleView.rippleColor =colorScheme.primaryColor.colorWithAlphaComponent(0.24);
         }
         // this.inkTouchController
