@@ -44,7 +44,6 @@
                 <MDTextField id="textField3" hint="filled" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" margin="10" editable="false" />
                 <MDTextField
                     id="textField4"
-                    maxLength="10"
                     variant="outline"
                     hint="outline"
                     @focus="onFocus"
@@ -55,10 +54,10 @@
                     margin="10"
                     buttonColor="red"
                 >
-                <FormattedString>
+                    <FormattedString>
                         <Span text="Words " color="#00ff00"></Span>
-                        <Span text="with " color="#ff0000" fontAttributes="Bold"></Span>
-                    </FormattedString></MDTextField>
+                        <Span text="with " color="#ff0000" fontAttributes="Bold"></Span> </FormattedString
+                ></MDTextField>
                 <MDTextField
                     id="textField5"
                     variant="outline"
@@ -77,6 +76,7 @@
                     variant="filled"
                     required="true"
                     email="true"
+                     maxLength="10"
                     hint="fill this out..."
                     @focus="onFocus"
                     @blur="onBlur"
