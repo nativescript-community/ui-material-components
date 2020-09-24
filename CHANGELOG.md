@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.1](https://github.com/nativescript-community/ui-material-components/compare/v3.3.0...v3.3.1) (2020-09-24)
+
+
+### Bug Fixes
+
+* build es5 ([3506fcc](https://github.com/nativescript-community/ui-material-components/commit/3506fcc7e13287a0e3d9a5452520037776fb8c59))
+
+
+
+
+
 # [3.3.0](https://github.com/nativescript-community/ui-material-components/compare/v3.2.21...v3.3.0) (2020-08-29)
 
 

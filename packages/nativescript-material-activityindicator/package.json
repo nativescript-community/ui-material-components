@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-activityindicator",
-    "version": "3.3.0",
+    "version": "3.3.1",
     "description": "Material ActivityIndicator component",
     "main": "./activityindicator",
     "sideEffects": false,
@@ -35,7 +35,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^3.3.0"
+        "nativescript-material-core": "^3.3.1"
     },
     "gitHead": "a10882decdeb481771d6c819f4fafa6f80fdfb99"
 }
