@@ -120,11 +120,11 @@ export class Button extends ButtonBase {
                 view.setBackgroundDrawable(value);
             } else {
                 if (value.color) {
-                    if (value.color.android === 0 && this.variant === 'flat') {
-                        view.setBackgroundColor(value.color.android);
-                    } else {
-                        view.setBackgroundTintList(getEnabledColorStateList(value.color.android, this.variant));
-                    }
+                    // if (value.color.android === 0 && this.variant === 'flat') {
+                    view.setBackgroundColor(value.color.android);
+                    // } else {
+                    // view.setBackgroundTintList(getEnabledColorStateList(value.color.android, this.variant));
+                    // }
                 }
                 this.setCornerRadius(value.borderTopLeftRadius);
                 view.setStrokeWidth(value.borderTopWidth);
