@@ -103,7 +103,7 @@ class UIPageViewControllerImpl extends UIPageViewController {
         }
 
         tabBar.tabBarDelegate = this.tabBarDelegate = MDCTabBarViewDelegateImpl.initWithOwner(new WeakRef(owner));
-        if (colorScheme) {
+        if (colorScheme && colorScheme.primaryColor) {
             tabBar.rippleColor = colorScheme.primaryColor.colorWithAlphaComponent(0.24);
             tabBar.tintColor = colorScheme.primaryColor;
             tabBar.selectionIndicatorStrokeColor = colorScheme.primaryColor;
