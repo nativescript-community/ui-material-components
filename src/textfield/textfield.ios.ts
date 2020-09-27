@@ -240,7 +240,10 @@ export class TextField extends TextFieldBase {
             view.selectedTextRange = view.textRangeFromPositionToPosition(pos, pos);
         }
     }
-
+    [editableProperty.setNative](value: boolean) {
+        this.clearFocus();
+        // this.nativeTextViewProtected.enabled = value;
+    }
     [floatingColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.floatingPlaceholderActiveColor = color;
