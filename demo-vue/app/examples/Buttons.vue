@@ -11,10 +11,10 @@
             <StackLayout>
                 <MDButton id="button1" borderRadius="10" fontSize="20" text="raised button" @tap="onTap" />
                 <StackLayout v-show="isEditing">
-                        <MDTextField class="session-details-input" :hint="('name')" />
-                        <MDTextField class="session-details-input" :hint="('description')"/>
-                    </StackLayout>
-                <MDFloatingActionButton src="res://ic_action_add"  @tap="onTap" horizontalAlignment="center" />
+                    <MDTextField class="session-details-input" :hint="'name'" />
+                    <MDTextField class="session-details-input" :hint="'description'" />
+                </StackLayout>
+                <MDFloatingActionButton src="res://ic_action_add" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton id="fab" src="res://ic_action_add" color="white" backgroundColor="blue" size="mini" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton src="res://ic_action_add" text="test expanded" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton src="res://ic_action_add" text="test expanded" :expanded="expanded" @tap="expanded = !expanded" horizontalAlignment="center" />
@@ -28,23 +28,51 @@
                     </FormattedString>
                 </MDButton>
                 <MDButton id="button22" class="bg-red" verticalTextAlignment="center" borderRadius="10" color="red" text="text button" variant="text" @tap="onTap">
-                        <Span text="mdi-magnify" fontSize="20" class="mdi"></Span>
-                        <Span text=" search" fontAttributes="Bold"></Span>
+                    <Span text="mdi-magnify" fontSize="20" class="mdi"></Span>
+                    <Span text=" search" fontAttributes="Bold"></Span>
                 </MDButton>
-                <MDButton id="button3" text="disabled button"  isEnabled="false" @tap="onTap" />
+                <MDButton id="button3" text="disabled button" isEnabled="false" @tap="onTap" />
                 <MDButton id="button4" text="flat button \n test" variant="flat" class="bg-blue" @tap="onTap" />
                 <MDButton id="button5" text="flat transparent button \n test" rippleColor="red" variant="flat" backgroundColor="transparent" @tap="onTap" />
                 <MDButton id="button6" text="flat disabled button" variant="flat" isEnabled="false" backgroundColor="yellow" @tap="onTap" />
                 <MDButton id="button7" text="outline button" rippleColor="red" color="black" width="200" variant="outline" @tap="onTap" />
-                <MDButton id="button8" text="disabled outline button" borderColor="red" borderRadius="2" borderWidth="2" isEnabled="false" width="200" variant="outline" backgroundColor="green" @tap="onTap" />
+                <MDButton
+                    id="button8"
+                    text="disabled outline button"
+                    borderColor="red"
+                    borderRadius="2"
+                    borderWidth="2"
+                    isEnabled="false"
+                    width="200"
+                    variant="outline"
+                    backgroundColor="green"
+                    @tap="onTap"
+                />
                 <MDButton id="button9" text="text button" width="200" color="green" variant="text" @tap="onTap" />
                 <MDButton id="button10" text="text button class" width="200" class="text_class_test" variant="text" @tap="onTap" />
                 <MDButton id="button11" text="disabled text button" isEnabled="false" width="200" variant="text" @tap="onTap" />
                 <MDButton id="button12" class="falseFAb bg-green" text="+" color="white" verticalAlign="center" backgroundColor="#53ba82" @tap="onTap" />
+                <MDButton backgroundColor="red" text="backgroundColor"  isEnabled="false"/>
+                <MDButton class="buttontest" text="buttontest" />
+                <MDButton class="buttontest" text="buttontest" isEnabled="false" />
             </StackLayout>
         </ScrollView>
     </Page>
 </template>
+<style scoped>
+.buttontest {
+    color: blue;
+    background-color: #333;
+}
+.buttontest:disabled {
+    color: red;
+    background-color: yellow;
+}
+.text_class_test {
+    color: red;
+    ripple-color: green;
+}
+</style>
 
 <script lang="ts">
 import * as frameModule from '@nativescript/core/ui/frame';
@@ -57,8 +85,8 @@ export default Vue.extend({
         return {
             name: 'Buttons',
             title: title,
-            isEditing:false,
-            expanded:false
+            isEditing: false,
+            expanded: false
         };
     },
     methods: {
@@ -71,9 +99,3 @@ export default Vue.extend({
     }
 });
 </script>
-<style scoped>
-.text_class_test {
-    color: red;
-    ripple-color: green;
-}
-</style>
