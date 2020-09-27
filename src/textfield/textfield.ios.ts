@@ -10,9 +10,10 @@ import {
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
+    strokeDisabledColorProperty,
     strokeInactiveColorProperty,
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
-import { Background, Color, Property, Screen, Style, _updateCharactersInRangeReplacementString, backgroundInternalProperty, isAndroid, placeholderColorProperty } from '@nativescript/core';
+import { Background, Color, Property, Screen, Style, _updateCharactersInRangeReplacementString, backgroundInternalProperty, editableProperty, isAndroid, placeholderColorProperty } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
 import { TextFieldBase } from './textfield.common';
 
@@ -271,6 +272,10 @@ export class TextField extends TextFieldBase {
         const color = value instanceof Color ? value.ios : value;
         this._controller.normalColor = color;
     }
+    [strokeDisabledColorProperty.setNative](value: Color) {
+        const color = value instanceof Color ? value.ios : value;
+        this._controller.disabledColor = color;
+    }
     [buttonColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         this._controller.textInputClearButtonTintColor = color;
@@ -306,7 +311,7 @@ export class TextField extends TextFieldBase {
                     this._controller.borderFillColor = value.color.ios;
                 }
                 if (value.borderTopColor) {
-                    this._controller.normalColor = value.borderTopColor.ios;
+                    this._controller.activeColor = value.borderTopColor.ios;
                 }
                 break;
             }

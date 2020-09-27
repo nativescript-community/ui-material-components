@@ -9,17 +9,20 @@ import {
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
+    strokeDisabledColorProperty,
     strokeInactiveColorProperty
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
 import { Background, Color, Utils, backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty, profile } from '@nativescript/core';
 import { TextFieldBase } from './textfield.common';
 
-function getColorStateList(activeColor: number, inactiveColor = 1627389952) {
-    const states = Array.create('[I', 2);
+function getColorStateList(activeColor: number, inactiveColor = 1627389952, disabledColor = 1627389952) {
+    const states = Array.create('[I', 3);
     states[0] = stateSets.FOCUSED_STATE_SET;
-    states[1] = Array.create('int', 0);
-    const colors = Array.create('int', 2);
+    states[1] = stateSets.BACKGROUND_DISABLED_STATE;
+    states[2] = Array.create('int', 0);
+    const colors = Array.create('int', 3);
     colors[0] = activeColor;
+    colors[1] = disabledColor;
     colors[1] = inactiveColor;
     return new android.content.res.ColorStateList(states, colors);
 }
@@ -191,6 +194,18 @@ export class TextField extends TextFieldBase {
         }
         // this.editText.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
     }
+    [strokeDisabledColorProperty.setNative](value: Color) {
+        const color = value instanceof Color ? value.android : value;
+        // @ts-ignore This check can be removed once this package is updated to rely on 1.2.0 of material components
+        if (this.layoutView.setBoxStrokeColorStateList) {
+            const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
+            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
+            const colorStateList = getColorStateList(activeColor, color);
+            // @ts-ignore
+            this.layoutView.setBoxStrokeColorStateList(colorStateList);
+        }
+        // this.editText.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
+    }
 
     [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
@@ -230,6 +245,9 @@ export class TextField extends TextFieldBase {
                         this.layoutView.setBoxBackgroundColor(value.color.android);
                     }
                 }
+                if (value.borderTopColor) {
+                    this.nativeViewProtected.setBoxStrokeColor(value.borderTopColor.android);
+                }
                 break;
             case 'outline':
             case 'underline': {
@@ -245,8 +263,7 @@ export class TextField extends TextFieldBase {
                     }
                 }
                 if (value.borderTopColor) {
-                    // TODO: for now no control over border color. it is an attr
-                    // this.nativeViewProtected.setStrokeColor(value.borderTopColor.android);
+                    this.nativeViewProtected.setBoxStrokeColor(value.borderTopColor.android);
                 }
                 break;
             }
