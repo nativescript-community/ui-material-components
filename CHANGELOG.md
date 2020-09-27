@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.9](https://github.com/nativescript-community/ui-material-components/compare/v5.0.8...v5.0.9) (2020-09-27)
+
+
+### Bug Fixes
+
+* **android:** fix backgroundColor in css :disabled ([4053773](https://github.com/nativescript-community/ui-material-components/commit/40537735a897e4bcb9d3adafd7d6793ef30463b3))
+* **ios:** blur on disable ([9527c54](https://github.com/nativescript-community/ui-material-components/commit/9527c546ce92e609a17d742c65109e02f0d19b64))
+* **ios:** crash with no primaryColor ([29a8516](https://github.com/nativescript-community/ui-material-components/commit/29a85166c3c8391d8a15cf53e1eb0fcb6cac7503))
+
+
+### Features
+
+* strokeDisabledColor ([de672c9](https://github.com/nativescript-community/ui-material-components/commit/de672c9a728b553873703cef3c0e4385d4ebcb8e))
+
+
+
+
+
 ## [5.0.8](https://github.com/nativescript-community/ui-material-components/compare/v5.0.7...v5.0.8) (2020-09-24)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
