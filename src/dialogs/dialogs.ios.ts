@@ -28,17 +28,14 @@ const UIViewAutoSizeUIViewAutoSize = (UIView as any).extend({
     systemLayoutSizeFittingSizeWithHorizontalFittingPriorityVerticalFittingPriority(boundsSize: CGSize) {
         const widthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(boundsSize.width), Utils.layout.EXACTLY);
         const heighthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(boundsSize.height), Utils.layout.UNSPECIFIED);
-        const view = this._view;
-        View.measureChild(null, view, widthSpec, heighthSpec);
-        const measuredHeight = view.getMeasuredHeight() + view.effectiveMarginBottom + view.effectiveMarginTop;
-        const size = CGSizeMake(0, Utils.layout.toDeviceIndependentPixels(measuredHeight));
-        const currentSize = this.frame.size;
-
-        if (size.width !== currentSize.width || size.height !== currentSize.height) {
-            setTimeout(() => {
-                View.layoutChild(null, view, 0, 0, Utils.layout.toDevicePixels(this.frame.size.width), Utils.layout.toDevicePixels(this.frame.size.height));
-            }, 0);
-        }
+        const view = this._view as View;
+        const measuredSize = View.measureChild(null, view, widthSpec, heighthSpec);
+        const newWidth = Utils.layout.toDevicePixels(boundsSize.width);
+        view.setMeasuredDimension(newWidth, measuredSize.measuredHeight);
+        const size = CGSizeMake(Utils.layout.toDeviceIndependentPixels(measuredSize.measuredWidth), Utils.layout.toDeviceIndependentPixels(measuredSize.measuredHeight));
+        setTimeout(() => {
+            View.layoutChild(null, view, 0, 0, newWidth, measuredSize.measuredHeight);
+        }, 0);
 
         return size;
     },
@@ -81,8 +78,6 @@ declare class IMDCAlertControllerImpl extends MDCAlertController {
 }
 const MDCAlertControllerImpl = (MDCAlertController as any).extend({
     viewDidAppear() {
-
-
         if (this.autoFocusTextField) {
             this.autoFocusTextField.requestFocus();
             this.view.setNeedsLayout();
@@ -208,7 +203,7 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
     if (options.cornerRadius !== undefined) {
         alertController.cornerRadius = options.cornerRadius;
-    // } else {
+        // } else {
         // alertController.cornerRadius = 2;
     }
     if (options.titleIcon) {
