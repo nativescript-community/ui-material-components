@@ -4,8 +4,7 @@ import { BottomNavigationBar, TabPressedEventData, TabReselectedEventData, TabSe
 @Component({
     moduleId: module.id,
     selector: 'ns-bottom-navigation-bar',
-    templateUrl: './bottom-navigation-bar.component.html',
-    styleUrls: ['./bottom-navigation-bar.component.css']
+    templateUrl: './bottom-navigation-bar.component.html'
 })
 export class BottomNavigationBarComponent {
     @ViewChild('bottomNavigationBar', { read: ElementRef, static: false })

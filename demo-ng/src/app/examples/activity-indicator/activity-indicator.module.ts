@@ -1,5 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { NativeScriptCommonModule } from '@nativescript/angular/common';
+import { NativeScriptCommonModule } from '@nativescript/angular';
 import { NativeScriptMaterialActivityIndicatorModule } from '@nativescript-community/ui-material-activityindicator/angular';
 import { ActivityIndicatorComponent } from './activity-indicator.component';
 
