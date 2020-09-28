@@ -1,5 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { NativeScriptModule } from '@nativescript/angular/nativescript.module';
+import { NativeScriptModule } from "@nativescript/angular";
 import { ExamplesModule } from './examples/examples.module';
 import { HomeModule } from './home/home.module';
 

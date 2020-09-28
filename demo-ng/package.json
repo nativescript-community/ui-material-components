@@ -1,23 +1,16 @@
 {
-    "nativescript": {
-        "id": "org.nativescript.demong",
-        "tns-android": {
-            "version": "6.1.0"
-        }
-    },
     "description": "NativeScript Application",
     "dependencies": {
-        "@angular/animations": "~8.2.12",
-        "@angular/common": "~8.2.12",
-        "@angular/compiler": "~8.2.12",
-        "@angular/core": "~8.2.12",
-        "@angular/forms": "~8.2.12",
-        "@angular/http": "~8.0.0-beta.10",
-        "@angular/platform-browser": "~8.2.12",
-        "@angular/platform-browser-dynamic": "~8.2.12",
-        "@angular/router": "~8.2.12",
-        "@nativescript/core":"rc",
-        "nativescript-angular": "rc",
+        "@angular/animations": "~10.1.3",
+        "@angular/common": "~10.1.3",
+        "@angular/compiler": "~10.1.3",
+        "@angular/core": "~10.1.3",
+        "@angular/forms": "~10.1.3",
+        "@angular/platform-browser": "~10.1.3",
+        "@angular/platform-browser-dynamic": "~10.1.3",
+        "@angular/router": "~10.1.3",
+        "@nativescript/core": "~7.0.7",
+        "@nativescript/angular": "~10.1.5",
         "@nativescript-community/ui-material-activityindicator": "file:../packages/activityindicator",
         "@nativescript-community/ui-material-bottomsheet": "file:../packages/bottomsheet",
         "@nativescript-community/ui-material-bottomnavigationbar": "file:../packages/bottomnavigationbar",
@@ -31,17 +24,19 @@
         "@nativescript-community/ui-material-slider": "file:../packages/slider",
         "@nativescript-community/ui-material-snackbar": "file:../packages/snackbar",
         "@nativescript-community/ui-material-textfield": "file:../packages/textfield",
-        "@nativescript/theme": "~2.3.2",
+        "@nativescript/theme": "~3.0.0",
         "reflect-metadata": "~0.1.13",
-        "rxjs": "~6.5.3",
+        "rxjs": "~6.6.3",
         "zone.js": "~0.10.2"
     },
     "devDependencies": {
-        "@angular/cli": "^8.3.15",
-        "@angular/compiler-cli": "~8.2.12",
-        "@ngtools/webpack": "~8.3.15",
-        "@nativescript/webpack": "rc",
-        "@nativescript/types": "~6.1.2"
+        "@angular/cli": "~10.1.3",
+        "@angular/compiler-cli": "~10.1.3",
+        "@nativescript/android": "7.0.0",
+        "@nativescript/ios": "7.0.0",
+        "@nativescript/types": "~7.0.4",
+        "@nativescript/webpack": "~3.0.5",
+        "@ngtools/webpack": "10.1.3"
     },
     "gitHead": "8ab7726d1ee9991706069c1359c552e67ee0d1a4",
     "readme": "NativeScript Application"
