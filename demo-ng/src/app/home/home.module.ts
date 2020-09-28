@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
-import { NativeScriptRouterModule } from '@nativescript/angular';
-import { NativeScriptCommonModule } from '@nativescript/angular/common';
+import { NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
+import { NativeScriptRouterModule, NativeScriptCommonModule } from '@nativescript/angular';
 
 import { HomeComponent } from './home.component';
 
@@ -8,6 +7,7 @@ import { HomeComponent } from './home.component';
     imports: [NativeScriptCommonModule, NativeScriptRouterModule],
     exports: [],
     declarations: [HomeComponent],
-    providers: []
+    providers: [],
+    schemas : [ NO_ERRORS_SCHEMA ]
 })
 export class HomeModule {}
