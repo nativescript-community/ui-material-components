@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.10](https://github.com/nativescript-community/ui-material-components/compare/v5.0.9...v5.0.10) (2020-09-29)
+
+
+### Bug Fixes
+
+* **demo-ng:** make demo-ng work with Angular 10 ([2cbb380](https://github.com/nativescript-community/ui-material-components/commit/2cbb380c9fcb622c34ede18e5a7c3ab21e200a7f))
+* **demo-ng:** use new nativescript.config.ts ([a5c7b0c](https://github.com/nativescript-community/ui-material-components/commit/a5c7b0ceae036c26b69ed96b251b14d5a4871e35))
+* **ios:** dialog custom view measurement fix ([f153d39](https://github.com/nativescript-community/ui-material-components/commit/f153d39a57ccc7cce7e3f487a704ecdf1c092d17))
+
+
+
+
+
 ## [5.0.9](https://github.com/nativescript-community/ui-material-components/compare/v5.0.8...v5.0.9) (2020-09-27)
 
 
