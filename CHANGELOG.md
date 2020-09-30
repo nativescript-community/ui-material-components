@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.11](https://github.com/nativescript-community/ui-material-components/compare/v5.0.10...v5.0.11) (2020-09-30)
+
+
+### Bug Fixes
+
+* **android:** placeholderColor broken ([5b0f8ca](https://github.com/nativescript-community/ui-material-components/commit/5b0f8ca070501b45e99f581151a2c6394eea33c2))
+
+
+
+
+
 ## [5.0.10](https://github.com/nativescript-community/ui-material-components/compare/v5.0.9...v5.0.10) (2020-09-29)
 
 
