@@ -18,8 +18,8 @@ import { TextFieldBase } from './textfield.common';
 function getColorStateList(activeColor: number, inactiveColor = 1627389952, disabledColor = 1627389952) {
     const states = Array.create('[I', 3);
     states[0] = stateSets.FOCUSED_STATE_SET;
-    states[1] = stateSets.BACKGROUND_DISABLED_STATE;
-    states[2] = Array.create('int', 0);
+    states[1] = Array.create('int', 0);
+    states[2] = stateSets.BACKGROUND_DISABLED_STATE;
     const colors = Array.create('int', 3);
     colors[0] = activeColor;
     colors[1] = disabledColor;
