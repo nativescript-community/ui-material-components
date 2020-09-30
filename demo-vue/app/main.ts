@@ -69,6 +69,9 @@ if (isIOS) {
     themer.setSecondaryColor('#a830d7');
 }
 
+import Theme from '@nativescript/theme';
+
+Theme.setMode(Theme.Dark); // Or Theme.Light
 // import { getExamples } from './examples';
 import * as views from './views';
 
@@ -84,7 +87,7 @@ Vue.config.errorHandler = (e, vm, info) => {
     console.log('vue error', e, e.stack);
 };
 
-Vue.config.warnHandler = function (msg, vm, trace) {
+Vue.config.warnHandler = function(msg, vm, trace) {
     console.warn('[Vue][Warn]', `[${msg}]`);
     // cwarn(msg, trace);
 };
@@ -94,5 +97,5 @@ new Vue({
       <Frame>
         <Home />
       </Frame>
-    `,
+    `
 }).$start();

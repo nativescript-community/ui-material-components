@@ -1,6 +1,5 @@
-
 .mdi {
-    font-family: "materialdesignicons-webfont", "Material Design Icons";
+    font-family: 'materialdesignicons-webfont', 'Material Design Icons';
 }
 mdbutton {
     color: black;
@@ -10,6 +9,15 @@ mdbutton {
 }
 button {
     elevation: 2;
+}
+
+MDButton {
+    color: #000;
+    background-color: #fff;
+    .ns-dark & {
+        color: #fff;
+        background-color: #000;
+    }
 }
 
 .falseFAb {

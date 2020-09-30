@@ -60,6 +60,8 @@
     </Page>
 </template>
 <style scoped>
+
+
 .buttontest {
     color: blue;
     background-color: #333;
