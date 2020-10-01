@@ -320,4 +320,9 @@ export class TextField extends TextFieldBase {
             }
         }
     }
+    [fontInternalProperty.setNative](value: Font | UIFont) {
+        super[fontInternalProperty.setNative](value);
+        const font = value instanceof Font ? value.getUIFont(this._controller.inlinePlaceholderFont) : value;
+        this._controller.inlinePlaceholderFont = font;
+    }
 }
