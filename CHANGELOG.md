@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.13](https://github.com/nativescript-community/ui-material-components/compare/v5.0.12...v5.0.13) (2020-10-01)
+
+
+### Bug Fixes
+
+* **android:** save textfield cursor on secure change ([aafe199](https://github.com/nativescript-community/ui-material-components/commit/aafe199280acead801d273707b43767636094334))
+* **android:** set textfield placejholder font ([a3e15a3](https://github.com/nativescript-community/ui-material-components/commit/a3e15a3cb6020c8fc9cb048899574cdd9a01c8a6))
+
+
+
+
+
 ## [5.0.12](https://github.com/nativescript-community/ui-material-components/compare/v5.0.11...v5.0.12) (2020-10-01)
 
 
