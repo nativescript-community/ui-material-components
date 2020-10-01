@@ -12,7 +12,8 @@ import {
     strokeDisabledColorProperty,
     strokeInactiveColorProperty
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
-import { Background, Color, Utils, backgroundInternalProperty, borderBottomLeftRadiusProperty, hintProperty, placeholderColorProperty, profile } from '@nativescript/core';
+import { Background, Color, Font, Utils, backgroundInternalProperty, borderBottomLeftRadiusProperty, fontInternalProperty, hintProperty, placeholderColorProperty, profile } from '@nativescript/core';
+import { secureProperty } from '@nativescript/core/ui/text-field';
 import { TextFieldBase } from './textfield.common';
 
 function getColorStateList(activeColor: number, inactiveColor = 1627389952, disabledColor = 1627389952) {
@@ -177,6 +178,12 @@ export class TextField extends TextFieldBase {
     [maxLengthProperty.setNative](value: number) {
         this.layoutView.setCounterEnabled(value > 0);
         this.layoutView.setCounterMaxLength(value);
+    }
+
+    [secureProperty.setNative](value) {
+        const cursorPos = this.editText.getSelectionStart();
+        super[secureProperty.setNative](value);
+        this.editText.setSelection(cursorPos);
     }
 
     [floatingProperty.setNative](value: boolean) {
