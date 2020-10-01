@@ -11,6 +11,7 @@ import {
     LoginResult,
     PercentLength,
     PromptResult,
+    Screen,
     StackLayout,
     Utils,
     View,
@@ -26,19 +27,22 @@ export { capitalizationType, inputType };
 
 const UIViewAutoSizeUIViewAutoSize = (UIView as any).extend({
     systemLayoutSizeFittingSizeWithHorizontalFittingPriorityVerticalFittingPriority(boundsSize: CGSize) {
-        const widthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(boundsSize.width), Utils.layout.EXACTLY);
+
+        const actualWidth = Math.min(boundsSize.width,Screen.mainScreen.widthPixels);
+        const widthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(actualWidth), Utils.layout.EXACTLY);
         const heighthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(boundsSize.height), Utils.layout.UNSPECIFIED);
         const view = this._view as View;
         const measuredSize = View.measureChild(null, view, widthSpec, heighthSpec);
-        const newWidth = Utils.layout.toDevicePixels(boundsSize.width);
+        const newWidth = Utils.layout.toDevicePixels(actualWidth);
         view.setMeasuredDimension(newWidth, measuredSize.measuredHeight);
         const size = CGSizeMake(Utils.layout.toDeviceIndependentPixels(measuredSize.measuredWidth), Utils.layout.toDeviceIndependentPixels(measuredSize.measuredHeight));
-        setTimeout(() => {
-            View.layoutChild(null, view, 0, 0, newWidth, measuredSize.measuredHeight);
-        }, 0);
-
         return size;
     },
+    layoutSubviews() {
+        const view = this._view as View;
+        const size = this.frame.size;
+        View.layoutChild(null, view, 0, 0, Utils.layout.toDevicePixels(size.width), size.height);
+    }
 });
 
 function createUIViewAutoSizeUIViewAutoSize(view: View) {
