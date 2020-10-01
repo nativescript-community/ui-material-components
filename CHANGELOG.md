@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.12](https://github.com/nativescript-community/ui-material-components/compare/v5.0.11...v5.0.12) (2020-10-01)
+
+
+### Bug Fixes
+
+* **ios:** textfield allow to force padding ([f68c070](https://github.com/nativescript-community/ui-material-components/commit/f68c07073e2a93b31fe0bd047206e05aaa91b098))
+* mixins fixes ([b54281c](https://github.com/nativescript-community/ui-material-components/commit/b54281c242c0afc428f4b64500b2a52c47fee63f))
+* **android:** disable color fix ([c3c0636](https://github.com/nativescript-community/ui-material-components/commit/c3c063656e221dd7d325df0e4544179586811f09))
+* **ios:** crash on dialogs with custom view ([fe3af9c](https://github.com/nativescript-community/ui-material-components/commit/fe3af9cf830e9f2b7e39cfa16b7bf2583e9f5a62))
+* **ios:** floatingInactiveColor breaking placeholder color ([45ae120](https://github.com/nativescript-community/ui-material-components/commit/45ae1200ec3392553297dd33397631ad4c2a2745))
+* **ios:** font applied to placeholder ([25b7b09](https://github.com/nativescript-community/ui-material-components/commit/25b7b09aeceda71d01e9078c009e42db245a8fac))
+
+
+### Features
+
+* **button:** textTransform support for caps or not ([1cde87a](https://github.com/nativescript-community/ui-material-components/commit/1cde87adb50c352330677bdb98ae352c5a1aec01))
+
+
+
+
+
 ## [5.0.11](https://github.com/nativescript-community/ui-material-components/compare/v5.0.10...v5.0.11) (2020-09-30)
 
 
