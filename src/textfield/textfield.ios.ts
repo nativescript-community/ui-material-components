@@ -13,7 +13,25 @@ import {
     strokeDisabledColorProperty,
     strokeInactiveColorProperty,
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
-import { Background, Color, Property, Screen, Style, _updateCharactersInRangeReplacementString, backgroundInternalProperty, editableProperty, isAndroid, placeholderColorProperty } from '@nativescript/core';
+import {
+    Background,
+    Color,
+    Font,
+    Property,
+    Screen,
+    Style,
+    Utils,
+    _updateCharactersInRangeReplacementString,
+    backgroundInternalProperty,
+    editableProperty,
+    fontInternalProperty,
+    isAndroid,
+    paddingBottomProperty,
+    paddingLeftProperty,
+    paddingRightProperty,
+    paddingTopProperty,
+    placeholderColorProperty,
+} from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
 import { TextFieldBase } from './textfield.common';
 
@@ -26,8 +44,8 @@ class TextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
 
         return delegate;
     }
-    textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
@@ -160,7 +178,9 @@ export class TextField extends TextFieldBase {
     }
 
     _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
-        const scale = Screen.mainScreen.scale;
+
+        const style = this.style;
+
 
         if (this.variant === 'underline' && this._controller.underlineHeightNormal === 0) {
             // if no underline/custom background, remove all insets like on android
@@ -168,11 +188,18 @@ export class TextField extends TextFieldBase {
             insets.bottom = 0;
         }
 
-        insets.left += (this.effectiveBorderLeftWidth + this.effectivePaddingLeft) / scale;
-        insets.top += (this.effectiveBorderTopWidth + this.effectivePaddingTop) / scale;
-        insets.right += (this.effectivePaddingRight + this.effectiveBorderRightWidth) / scale;
-        insets.bottom += (this.effectivePaddingBottom + this.effectiveBorderBottomWidth) / scale;
-
+        if (paddingTopProperty.isSet(style)) {
+            insets.top = Utils.layout.toDeviceIndependentPixels( this.effectivePaddingTop);
+        }
+        if (paddingRightProperty.isSet(style)) {
+            insets.right = Utils.layout.toDeviceIndependentPixels(this.effectivePaddingRight);
+        }
+        if (paddingBottomProperty.isSet(style)) {
+            insets.bottom = Utils.layout.toDeviceIndependentPixels(this.effectivePaddingBottom);
+        }
+        if (paddingLeftProperty.isSet(style)) {
+            insets.left = Utils.layout.toDeviceIndependentPixels(this.effectivePaddingLeft);
+        }
         return insets;
     }
 
@@ -196,6 +223,7 @@ export class TextField extends TextFieldBase {
             // (this._controller as TextInputControllerImpl).applyThemeWithScheme(scheme);
         }
         this._controller.textInput = view;
+
         //theme needs to be applied after setting the textInput
         if (this.style.variant === 'filled') {
             (this._controller as TextInputControllerFilledImpl).applyThemeWithScheme(scheme);
@@ -207,6 +235,7 @@ export class TextField extends TextFieldBase {
             this._controller.underlineHeightActive = 0;
             this._controller.underlineHeightNormal = 0;
         }
+
         view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;
         // this._controller.
         // if (colorScheme) {
