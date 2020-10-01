@@ -22,8 +22,8 @@ function getColorStateList(activeColor: number, inactiveColor = 1627389952, disa
     states[2] = stateSets.BACKGROUND_DISABLED_STATE;
     const colors = Array.create('int', 3);
     colors[0] = activeColor;
-    colors[1] = disabledColor;
     colors[1] = inactiveColor;
+    colors[2] = disabledColor;
     return new android.content.res.ColorStateList(states, colors);
 }
 
