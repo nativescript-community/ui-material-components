@@ -99,6 +99,20 @@
                     strokeColor="red"
                     margin="10"
                 />
+                <MDTextField
+                    id="textField8"
+                    variant="filled"
+                    hint="limited digits 0123456789."
+                    @focus="onFocus"
+                    @blur="onBlur"
+                    floating="false"
+                    @textChange="onTextChange"
+                    @returnPress="onReturnPress"
+                    digits="0123456789."
+                    strokeColor="red"
+                    margin="10"
+                    padding="0"
+                />
             </StackLayout>
         </ScrollView>
     </Page>
