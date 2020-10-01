@@ -251,7 +251,7 @@ export class TextField extends TextFieldBase {
     }
     [floatingInactiveColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
-        this._controller.inlinePlaceholderColor = color;
+        // this._controller.inlinePlaceholderColor = color;
         this._controller.floatingPlaceholderNormalColor = color;
         this._updateAttributedPlaceholder();
     }
