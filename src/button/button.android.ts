@@ -1,6 +1,6 @@
 import { VerticalTextAlignment, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, verticalTextAlignmentProperty } from '@nativescript-community/ui-material-core';
 import { createStateListAnimator, getEnabledColorStateList, getLayout, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
-import { Background, Color, Length, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, profile } from '@nativescript/core';
+import { Background, Color, Length, TextTransform, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, profile, textTransformProperty } from '@nativescript/core';
 import { ButtonBase } from './button-common';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
@@ -112,6 +112,9 @@ export class Button extends ButtonBase {
     setStrokeWidth(value) {
         // const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
         this.nativeViewProtected.setStrokeWidth(value);
+    }
+    [textTransformProperty.setNative](value: TextTransform) {
+        this.nativeViewProtected.setAllCaps((value !== 'none')) ;
     }
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
         const view = this.nativeTextViewProtected;

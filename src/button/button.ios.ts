@@ -4,6 +4,7 @@ import {
     Color,
     Font,
     Screen,
+    TextTransform,
     Utils,
     backgroundInternalProperty,
     borderBottomLeftRadiusProperty,
@@ -11,6 +12,7 @@ import {
     borderTopLeftRadiusProperty,
     borderTopRightRadiusProperty,
     fontInternalProperty,
+    textTransformProperty,
 } from '@nativescript/core';
 import { ButtonBase } from './button-common';
 
@@ -158,6 +160,9 @@ export class Button extends ButtonBase {
         }
     }
 
+    [textTransformProperty.setNative](value: TextTransform) {
+        this.nativeViewProtected.uppercaseTitle = (value !== 'none');
+    }
     [rippleColorProperty.setNative](color: Color) {
         this.nativeViewProtected.inkColor = getRippleColor(color);
     }
