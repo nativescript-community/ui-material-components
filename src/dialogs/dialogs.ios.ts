@@ -41,7 +41,7 @@ const UIViewAutoSizeUIViewAutoSize = (UIView as any).extend({
     layoutSubviews() {
         const view = this._view as View;
         const size = this.frame.size;
-        View.layoutChild(null, view, 0, 0, Utils.layout.toDevicePixels(size.width), size.height);
+        View.layoutChild(null, view, 0, 0, Utils.layout.toDevicePixels(size.width), Utils.layout.toDevicePixels(size.height));
     }
 });
 
