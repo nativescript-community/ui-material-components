@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.14](https://github.com/Akylas/nativescript-material-components/compare/v5.0.13...v5.0.14) (2020-10-02)
+
+
+### Bug Fixes
+
+* **android:** crash on snackbar in background ([bd506bc](https://github.com/Akylas/nativescript-material-components/commit/bd506bc8380492b2afc31cf64cf152991865c65c))
+* **dialogs:** ios custom view measurement fix ([1cf6f89](https://github.com/Akylas/nativescript-material-components/commit/1cf6f892e0efb9c9939e1920c10025248502a127))
+
+
+
+
+
 ## [5.0.13](https://github.com/nativescript-community/ui-material-components/compare/v5.0.12...v5.0.13) (2020-10-01)
 
 
