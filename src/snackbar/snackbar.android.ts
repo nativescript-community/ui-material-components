@@ -150,7 +150,11 @@ export class SnackBar extends SnackBarBase {
                 }
                 (cb as any).nListener = null;
                 if (nCoordinatorLayout) {
-                    (nCoordinatorLayout.getParent() as android.view.ViewGroup).removeView(nCoordinatorLayout);
+                    const parent = nCoordinatorLayout.getParent() as android.view.ViewGroup;
+                    // in case of the view being in background the parent might already be null
+                    if (parent) {
+                        parent.removeView(nCoordinatorLayout);
+                    }
                     (page as any).nCoordinatorLayout = null;
                 }
             },
