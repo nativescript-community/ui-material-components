@@ -41,6 +41,7 @@
     },
     "license": "Apache-2.0",
     "homepage": "https://github.com/Akylas/nativescript-material-components",
+    "repository": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "devDependencies": {
         "@angular/animations": "~10.1.2",
