@@ -2,7 +2,7 @@
 	"name": "@nativescript-community/ui-material-tabs-angular",
 	"main": "index.js",
 	"ngPackage": {
-		"dest":"../../../tempAngular/tabs",
+		"dest":"../../../packages/tabs/angular",
 		"lib": {
 			"entryFile": "index.ts",
 			"umdModuleIds": {
