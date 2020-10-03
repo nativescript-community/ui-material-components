@@ -24,6 +24,7 @@
         "@nativescript-community/ui-material-slider": "file:../packages/slider",
         "@nativescript-community/ui-material-snackbar": "file:../packages/snackbar",
         "@nativescript-community/ui-material-textfield": "file:../packages/textfield",
+        "@nativescript-community/ui-material-tabs": "file:../packages/tabs",
         "@nativescript/theme": "~3.0.0",
         "reflect-metadata": "~0.1.13",
         "rxjs": "~6.6.3",

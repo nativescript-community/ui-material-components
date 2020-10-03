@@ -9,6 +9,7 @@ import { SliderModule } from './slider/slider.module';
 import { ProgressModule } from './progress/progress.module';
 import { ActivityIndicatorModule } from './activity-indicator/activity-indicator.module';
 import { BottomNavigationBarModule } from './bottom-navigation-bar/bottom-navigation-bar.module';
+import { TabsModule } from './tabs/tabs.module';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { BottomNavigationBarModule } from './bottom-navigation-bar/bottom-naviga
         SliderModule,
         ProgressModule,
         ActivityIndicatorModule,
-        BottomNavigationBarModule
+        BottomNavigationBarModule,
+        TabsModule
     ]
 })
 export class ExamplesModule {}

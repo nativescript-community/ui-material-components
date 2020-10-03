@@ -11,6 +11,7 @@ import { SliderComponent } from './slider/slider.component';
 import { ProgressComponent } from './progress/progress.component';
 import { ActivityIndicatorComponent } from './activity-indicator/activity-indicator.component';
 import { BottomNavigationBarComponent } from './bottom-navigation-bar/bottom-navigation-bar.component';
+import { TabsComponent } from './tabs/tabs.component';
 // import { DialogComponent } from './dialog/dialog.component';
 
 const routes: Routes = [
@@ -49,6 +50,10 @@ const routes: Routes = [
     {
         path: 'bottom-navigation-bar',
         component: BottomNavigationBarComponent
+    },
+    {
+        path: 'tabs',
+        component: TabsComponent
     }
 ];
 
