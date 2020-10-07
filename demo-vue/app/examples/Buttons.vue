@@ -1,5 +1,5 @@
 <template>
-    <Page>
+    <Page backgroundColor="red">
         <ActionBar :title="title">
             <StackLayout orientation="horizontal" width="100%">
                 <MDButton v-show="isEditing" variant="flat" text="test" @tap="isEditing = !isEditing" />

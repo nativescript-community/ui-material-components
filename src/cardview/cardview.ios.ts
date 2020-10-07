@@ -73,7 +73,7 @@ export class CardView extends CardViewBase {
             }
             this.nativeViewProtected.setBorderWidthForState(value.borderLeftWidth / scale, MDCCardCellState.Normal);
             this.nativeViewProtected.setBorderColorForState(value.borderTopColor ? value.borderTopColor.ios : null, MDCCardCellState.Normal);
-            this.nativeViewProtected.layer.cornerRadius = value.borderTopLeftRadius / scale;
+            this.nativeViewProtected.cornerRadius = value.borderTopLeftRadius / scale;
         }
     }
     [rippleColorProperty.setNative](color: Color) {

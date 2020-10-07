@@ -27,7 +27,7 @@ export default {
         },
         goToModalExample(item) {
             console.log('goToModalExample');
-            this.$showModal(item.component, { fullscreen: true });
+            this.$showModal(item.component, { });
         }
     }
 };

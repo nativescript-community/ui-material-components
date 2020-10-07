@@ -87,7 +87,7 @@ export class Button extends ButtonBase {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
-            this.nativeViewProtected.setElevation(newValue);
+            androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, newValue);
         }
     }
     [dynamicElevationOffsetProperty.setNative](value: number) {
@@ -95,7 +95,7 @@ export class Button extends ButtonBase {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
-            this.nativeViewProtected.setTranslationZ(newValue);
+            androidx.core.view.ViewCompat.setTranslationZ(this.nativeViewProtected, newValue);
         }
     }
     [androidElevationProperty.setNative](value: number) {
