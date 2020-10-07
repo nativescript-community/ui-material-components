@@ -12,6 +12,7 @@ export class TextView extends EditableTextBase {
     nativeViewProtected: any;
 
     helper: string;
+    helperColor: Color;
     maxLength: number;
     errorColor: Color;
     floating: boolean;
