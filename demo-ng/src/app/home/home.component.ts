@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
         'Ripple',
         'Text Field',
         'Slider',
-        'Progress'
+        'Progress',
+        'Tabs'
     ];
 
     constructor(private router: RouterExtensions) {}
