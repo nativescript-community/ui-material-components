@@ -12,6 +12,7 @@ export class TextField extends NTextField {
     nativeViewProtected: any;
 
     helper: string;
+    helperColor: Color;
     maxLength: number;
     errorColor: Color;
     floating: boolean;
