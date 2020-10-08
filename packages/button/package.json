@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-button",
-    "version": "5.0.14",
+    "version": "5.0.15",
     "description": "Material button component",
     "main": "./button",
     "sideEffects": false,
