@@ -1,7 +1,17 @@
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from '@nativescript-community/ui-material-core';
 import { createStateListAnimator, getLayout, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
-import { Background, Color, Length, TextTransform, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, profile, textTransformProperty } from '@nativescript/core';
+import {
+    Background,
+    Color,
+    Length,
+    TextTransform,
+    androidDynamicElevationOffsetProperty,
+    androidElevationProperty,
+    backgroundInternalProperty,
+    profile,
+    textTransformProperty,
+} from '@nativescript/core';
 import { ButtonBase } from './button-common';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
@@ -9,6 +19,7 @@ let LayoutInflater: typeof android.view.LayoutInflater;
 let textId;
 let containedId;
 let flatId;
+let outlineId;
 let grayColorStateList: android.content.res.ColorStateList;
 
 export class Button extends ButtonBase {
@@ -22,7 +33,7 @@ export class Button extends ButtonBase {
         let layoutId;
         const variant = this.variant;
         // let layoutIdName = 'material_button';
-        if (variant === 'text' || variant === 'outline') {
+        if (variant === 'text') {
             if (!textId) {
                 textId = getLayout('material_button_text');
             }
@@ -32,6 +43,11 @@ export class Button extends ButtonBase {
                 flatId = getLayout('material_button_flat');
             }
             layoutId = flatId;
+        } else if (variant === 'outline') {
+            if (!outlineId) {
+                outlineId = getLayout('material_button_outline');
+            }
+            layoutId = outlineId;
         } else {
             if (!containedId) {
                 containedId = getLayout('material_button');
@@ -48,15 +64,16 @@ export class Button extends ButtonBase {
         if (!LayoutInflater) {
             LayoutInflater = android.view.LayoutInflater;
         }
+        console.log('test', this.variant, layoutId);
         const view = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.button.MaterialButton;
 
-        if (variant === 'outline') {
-            view.setStrokeWidth(1);
-            if (!grayColorStateList) {
-                grayColorStateList = android.content.res.ColorStateList.valueOf(new Color('gray').android);
-            }
-            view.setStrokeColor(grayColorStateList);
-        }
+        // if (variant === 'outline') {
+        //     view.setStrokeWidth(1);
+        //     if (!grayColorStateList) {
+        //         grayColorStateList = android.content.res.ColorStateList.valueOf(new Color('gray').android);
+        //     }
+        //     view.setStrokeColor(grayColorStateList);
+        // }
         return view;
     }
 
@@ -115,7 +132,7 @@ export class Button extends ButtonBase {
         this.nativeViewProtected.setStrokeWidth(value);
     }
     [textTransformProperty.setNative](value: TextTransform) {
-        this.nativeViewProtected.setAllCaps((value !== 'none')) ;
+        this.nativeViewProtected.setAllCaps(value !== 'none');
     }
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
         const view = this.nativeTextViewProtected;

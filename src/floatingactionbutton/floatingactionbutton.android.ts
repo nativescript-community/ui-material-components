@@ -15,7 +15,6 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         }
         const view = new MDCFabButton(this._context);
         this.defaultPadding = view.getPaddingTop();
-        console.log('defaultPadding', this.defaultPadding);
         return view;
     }
 
@@ -93,7 +92,6 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
     }
     [expandedProperty.setNative](value: boolean) {
-        console.log('expandedProperty', value);
         if (value) {
             this.nativeViewProtected.extend();
         } else {
