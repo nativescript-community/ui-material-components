@@ -1,1 +1,1 @@
-export * from './nativescript-material-bottomnavigationbar.module';
+export * from './module';

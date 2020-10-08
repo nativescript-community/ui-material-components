@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
 import { BottomNavigationBar, BottomNavigationTab } from '@nativescript-community/ui-material-bottomnavigationbar';
-import { DIRECTIVES } from './nativescript-material-bottomnavigationbar.directives';
-export { BottomNavigationBarDirective , BottomNavigationTabDirective} from './nativescript-material-bottomnavigationbar.directives';
+import { DIRECTIVES } from './directives';
+export { BottomNavigationBarDirective , BottomNavigationTabDirective} from './directives';
 
 @NgModule({
     declarations: [DIRECTIVES],
