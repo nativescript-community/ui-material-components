@@ -4,6 +4,7 @@ import {
     floatingColorProperty,
     floatingInactiveColorProperty,
     floatingProperty,
+    helperColorProperty,
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
@@ -104,6 +105,10 @@ export class TextView extends TextViewBase {
         this.layoutView.setHint(text);
     }
 
+    [helperColorProperty.setNative](value) {
+        const color = value instanceof Color ? value.android : value;
+        this.layoutView.setHelperTextColor(android.content.res.ColorStateList.valueOf(color));
+    }
     [placeholderColorProperty.setNative](value: Color) {
         const placeholderColor = value instanceof Color ? value.android : value;
         const floatingColor = this.floatingColor instanceof Color ? this.floatingColor.android : placeholderColor;

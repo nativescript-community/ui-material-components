@@ -6,6 +6,7 @@ import {
     floatingColorProperty,
     floatingInactiveColorProperty,
     floatingProperty,
+    helperColorProperty,
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
@@ -130,6 +131,10 @@ export class TextField extends TextFieldBase {
         const floatingColor =
             this.floatingColor instanceof Color ? this.floatingColor.android : this.layoutView.getDefaultHintTextColor().getColorForState(stateSets.FOCUSED_STATE_SET, placeholderColor);
         this.layoutView.setDefaultHintTextColor(getColorStateList(floatingColor, placeholderColor));
+    }
+    [helperColorProperty.setNative](value) {
+        const color = value instanceof Color ? value.android : value;
+        this.layoutView.setHelperTextColor(android.content.res.ColorStateList.valueOf(color));
     }
 
     public requestFocus() {

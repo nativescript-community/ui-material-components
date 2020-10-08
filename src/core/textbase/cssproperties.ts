@@ -12,6 +12,13 @@ export const helperProperty = new CssProperty<Style, string>({
     cssName: 'helper'
 });
 helperProperty.register(Style);
+export const helperColorProperty = new CssProperty<Style, Color>({
+    name: 'helperColor',
+    cssName: 'helper-color',
+    equalityComparer: Color.equals,
+    valueConverter: v => new Color(v),
+});
+helperColorProperty.register(Style);
 export const errorProperty = new CssProperty<Style, string>({
     name: 'error',
     cssName: 'error'
