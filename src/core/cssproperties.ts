@@ -1,5 +1,4 @@
 import { Color, CssProperty, InheritedCssProperty, Length, Style, makeParser, makeValidator } from '@nativescript/core';
-import { VerticalTextAlignment } from '.';
 
 function createGetter(key) {
     return function() {
@@ -48,12 +47,3 @@ export const variantProperty = new CssProperty<Style, string>({
     cssName: 'variant'
 });
 variantProperty.register(Style);
-
-const textAlignmentConverter = makeParser<VerticalTextAlignment>(makeValidator<VerticalTextAlignment>('initial', 'top', 'middle', 'bottom'));
-export const verticalTextAlignmentProperty = new InheritedCssProperty<Style, VerticalTextAlignment>({
-    name: 'verticalTextAlignment',
-    cssName: 'vertical-text-align',
-    defaultValue: 'initial',
-    valueConverter: textAlignmentConverter
-});
-verticalTextAlignmentProperty.register(Style);
