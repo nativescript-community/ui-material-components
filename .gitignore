@@ -71,6 +71,7 @@ packages/**/*.ngsummary.json
 *.tgz
 *.aar
 package-lock.json
+!packages/**/package-lock.json
 
 # IDE
 .idea
