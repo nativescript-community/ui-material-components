@@ -11,6 +11,7 @@ export abstract class TextFieldBase extends NTextField {
     closeOnReturn: boolean;
 
     @cssProperty helper: string;
+    @cssProperty helperColor: Color;
     @cssProperty maxLength: number;
     @cssProperty errorColor: Color;
     @cssProperty floating: boolean;

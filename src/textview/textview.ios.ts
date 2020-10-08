@@ -6,6 +6,7 @@ import {
     floatingColorProperty,
     floatingInactiveColorProperty,
     floatingProperty,
+    helperColorProperty,
     helperProperty,
     maxLengthProperty,
     strokeColorProperty,
@@ -311,6 +312,11 @@ export class TextView extends TextViewBase {
     }
     [helperProperty.setNative](value: string) {
         this._controller.helperText = value;
+    }
+    [helperColorProperty.setNative](value: string | Color) {
+        const temp = typeof value === 'string' ? new Color(value) : value;
+        const color: UIColor = temp.ios;
+        this._controller.leadingUnderlineLabelTextColor = color;
     }
     [maxLengthProperty.setNative](value: number) {
         this._controller.characterCountMax = value;
