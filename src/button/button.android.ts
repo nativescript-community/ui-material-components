@@ -64,7 +64,6 @@ export class Button extends ButtonBase {
         if (!LayoutInflater) {
             LayoutInflater = android.view.LayoutInflater;
         }
-        console.log('test', this.variant, layoutId);
         const view = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.button.MaterialButton;
 
         // if (variant === 'outline') {
