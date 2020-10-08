@@ -57,6 +57,7 @@
         "@commitlint/config-conventional": "^11.0.0",
         "@nativescript/angular": "~10.1.5",
         "@nativescript/hook": "~2.0.0",
+        "@nativescript-community/text": "^1.2.5",
         "nativescript": "7.0.10",
         "@nativescript/core": "7.0.10",
         "@nativescript/types": "7.0.4",

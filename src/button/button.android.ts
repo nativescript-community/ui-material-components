@@ -1,5 +1,6 @@
-import { VerticalTextAlignment, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, verticalTextAlignmentProperty } from '@nativescript-community/ui-material-core';
-import { createStateListAnimator, getEnabledColorStateList, getLayout, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
+import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from '@nativescript-community/ui-material-core';
+import { createStateListAnimator, getLayout, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import { Background, Color, Length, TextTransform, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, profile, textTransformProperty } from '@nativescript/core';
 import { ButtonBase } from './button-common';
 
