@@ -27,8 +27,7 @@ export { capitalizationType, inputType };
 
 const UIViewAutoSizeUIViewAutoSize = (UIView as any).extend({
     systemLayoutSizeFittingSizeWithHorizontalFittingPriorityVerticalFittingPriority(boundsSize: CGSize) {
-
-        const actualWidth = Math.min(boundsSize.width,Screen.mainScreen.widthPixels);
+        const actualWidth = Math.min(boundsSize.width, Screen.mainScreen.widthPixels);
         const widthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(actualWidth), Utils.layout.EXACTLY);
         const heighthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(boundsSize.height), Utils.layout.UNSPECIFIED);
         const view = this._view as View;
@@ -42,7 +41,7 @@ const UIViewAutoSizeUIViewAutoSize = (UIView as any).extend({
         const view = this._view as View;
         const size = this.frame.size;
         View.layoutChild(null, view, 0, 0, Utils.layout.toDevicePixels(size.width), Utils.layout.toDevicePixels(size.height));
-    }
+    },
 });
 
 function createUIViewAutoSizeUIViewAutoSize(view: View) {
@@ -166,7 +165,13 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
 
 function createAlertController(options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
     const alertController = MDCAlertControllerImpl.alloc().init() as IMDCAlertControllerImpl;
-
+    const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
+    const scheme = MDCContainerScheme.alloc().init();
+    if (colorScheme) {
+        scheme.colorScheme = colorScheme;
+    }
+    // Step 3: Apply the container scheme to your component using the desired alert style
+    alertController.applyThemeWithScheme(scheme);
     if (options.title) {
         alertController.title = options.title;
     }
@@ -253,9 +258,9 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
         view.bindingContext = fromObject(context);
         alertController.accessoryView = createUIViewAutoSizeUIViewAutoSize(view);
         // if no title or message disable contentInsets to be like android
-        if (!options.title && !options.message) {
-            (alertController as any).disableContentInsets = true;
-        }
+        // if (!options.title && !options.message) {
+        //     (alertController as any).disableContentInsets = true;
+        // }
         view.viewController = alertController; // needed to prevent a crash in layoutChild
     }
     const dialogPresentationControllerDelegate = MDCDialogPresentationControllerDelegateImpl.initWithCallback(() => {
@@ -301,9 +306,9 @@ export class AlertDialog {
     alertController: MDCAlertController;
     presentingController: UIViewController;
     constructor(private options: any) {}
-    show() {
+    show(resolve?) {
         if (!this.alertController) {
-            this.alertController = createAlertController(this.options);
+            this.alertController = createAlertController(this.options, resolve);
             this.presentingController = showUIAlertController(this.alertController);
         }
     }

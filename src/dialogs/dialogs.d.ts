@@ -118,6 +118,6 @@ export function action(options: ActionOptions & MDCAlertControlerOptions): Promi
 
 export class AlertDialog {
     constructor(options: AlertOptions & MDCAlertControlerOptions);
-    show();
+    show(resolve?);
     hide();
 }

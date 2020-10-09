@@ -274,11 +274,11 @@ export function alert(arg: any): Promise<void> {
 export class AlertDialog {
     dialog: androidx.appcompat.app.AlertDialog;
     constructor(private options: any) {}
-    show() {
+    show(resolve?) {
         if (!this.dialog) {
             const alert = createAlertDialogBuilder(this.options);
             this.dialog = alert.create();
-            this.dialog = prepareAndCreateAlertDialog(alert, this.options, null);
+            this.dialog = prepareAndCreateAlertDialog(alert, this.options, resolve);
             showDialog(this.dialog, this.options);
         }
     }
