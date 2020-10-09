@@ -1,5 +1,0 @@
-module MaterialTextField {
-    umbrella header "TextField.h"
-    export *
-    module * { export * }
-}
