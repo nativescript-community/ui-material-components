@@ -3,7 +3,7 @@
         xmlns:mdct="@nativescript-community/ui-material-textview">
         <mdct:TextView id="textView1" helper="help me!" width="250" backgroundColor="orange" placeholderColor="green"
         hint="i am an hint"/>
-        <mdct:TextView id="textView2" maxLength="10" hint="hint me"/>
+        <mdct:TextView id="textView2" counterMaxLength="10" hint="hint me"/>
         <mdct:TextView id="textView3" variant="outline" hint="outline"/>
         <mdct:TextView  variant="filled" required="true" email="true" hint="fill this out..."/>
         <TextView  hint="fill this out..."/>

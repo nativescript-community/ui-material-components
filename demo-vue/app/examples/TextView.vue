@@ -26,7 +26,7 @@
                         <Span text="with " color="#ff0000" fontAttributes="Bold"></Span>
                     </FormattedString>
                 </MDTextView>
-                <MDTextView id="textView2" editable="false" maxLength="10" hint="hint me" @textChange="onTextChange" @returnPress="onReturnPress" />
+                <MDTextView id="textView2" editable="false" counterMaxLength="10" maxLength="10" hint="hint me" @textChange="onTextChange" @returnPress="onReturnPress" />
                 <MDTextView id="textView3" variant="outline" hint="outline" @textChange="onTextChange" v-model="value" @returnPress="onReturnPress" />
                 <MDTextView variant="filled" required="true" email="true" hint="fill this out..." @textChange="onTextChange" @returnPress="onReturnPress" />
                 <MDTextView hint="fill this out..." />

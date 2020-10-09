@@ -4,7 +4,7 @@
         <mdct:TextField id="textField1" helper="help me!" width="250" backgroundColor="orange" placeholderColor="green" keyboardType="datetime"
         hint="i am an hint" returnKeyType="next" focus="onFocus" blur="{{ onBlur }}"
         textChange="{{ onTextChange }}"/>
-        <mdct:TextField id="textField2" maxLength="10" hint="hint me" returnPress="{{ returnPress }}"/>
+        <mdct:TextField id="textField2" counterMaxLength="10" hint="hint me" returnPress="{{ returnPress }}"/>
         <mdct:TextField id="textField3" variant="outline" hint="outline"/>
         <mdct:TextField  variant="filled" required="true" email="true" hint="fill this out..."/>
         <TextField  hint="fill this out..."/>
