@@ -151,7 +151,7 @@ export class TextField extends TextFieldBase {
         if (range.length > 0) {
             const delta = replacementString.length - range.length;
             if (delta > 0) {
-                if (textField.text.length + delta > this.counterMaxLength) {
+                if (textField.text.length + delta > this.maxLength) {
                     return false;
                 }
             }
