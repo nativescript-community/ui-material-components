@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.20](https://github.com/Akylas/nativescript-material-components/compare/v5.0.19...v5.0.20) (2020-10-09)
+
+
+### Bug Fixes
+
+* important ios fix to get default theme for everything! ([c326907](https://github.com/Akylas/nativescript-material-components/commit/c326907ffff1ef154e2a400b9a6f1773f76ff555))
+
+
+### Features
+
+* resolve action for AlertDialog ([629f68a](https://github.com/Akylas/nativescript-material-components/commit/629f68a65df5b9d9a2361a91cbb321134650be6c))
+
+
+
+
+
 ## [5.0.19](https://github.com/Akylas/nativescript-material-components/compare/v5.0.18...v5.0.19) (2020-10-09)
 
 
