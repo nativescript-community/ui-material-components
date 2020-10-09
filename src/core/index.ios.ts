@@ -16,7 +16,7 @@ export class Themer {
     onSurfaceColor: string | Color;
     constructor() {
         // create a default one to prevent multiple creations on widget side
-        this.appColorScheme = MDCSemanticColorScheme.new();
+        this.appColorScheme = MDCSemanticColorScheme.alloc().init().initWithDefaults(MDCColorSchemeDefaults.Material201804);
         if (this.appColorScheme.primaryColor) {
             this.appColorScheme.primaryColorVariant = this.appColorScheme.primaryColor.colorWithAlphaComponent(0.24);
         }
