@@ -148,14 +148,14 @@ export class TextField extends TextFieldBase {
         }
 
         // we need to override this from N as in MDC case the range is 0
-        if (range.length > 0) {
-            const delta = replacementString.length - range.length;
-            if (delta > 0) {
-                if (textField.text.length + delta > this.maxLength) {
-                    return false;
-                }
+        // if (range.length > 0) {
+        const delta = replacementString.length - range.length;
+        if (delta > 0) {
+            if (textField.text.length + delta > this.maxLength) {
+                return false;
             }
         }
+        // }
 
         if (this.updateTextTrigger === 'textChanged') {
             if (textField.secureTextEntry && this.firstEdit) {
@@ -179,9 +179,7 @@ export class TextField extends TextFieldBase {
     }
 
     _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
-
         const style = this.style;
-
 
         if (this.variant === 'underline' && this._controller.underlineHeightNormal === 0) {
             // if no underline/custom background, remove all insets like on android
@@ -190,7 +188,7 @@ export class TextField extends TextFieldBase {
         }
 
         if (paddingTopProperty.isSet(style)) {
-            insets.top = Utils.layout.toDeviceIndependentPixels( this.effectivePaddingTop);
+            insets.top = Utils.layout.toDeviceIndependentPixels(this.effectivePaddingTop);
         }
         if (paddingRightProperty.isSet(style)) {
             insets.right = Utils.layout.toDeviceIndependentPixels(this.effectivePaddingRight);
