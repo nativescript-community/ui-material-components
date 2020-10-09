@@ -78,6 +78,7 @@ declare class IMDCAlertControllerImpl extends MDCAlertController {
     _resolveFunction?: Function;
     actions: NSArray<any>;
     viewLayedOut: boolean;
+    _disableContentInsets: boolean;
 }
 const MDCAlertControllerImpl = (MDCAlertController as any).extend({
     viewDidAppear() {
@@ -105,7 +106,8 @@ const MDCAlertControllerImpl = (MDCAlertController as any).extend({
     },
     viewDidLoad() {
         this.super.viewDidLoad();
-        if (this.disableContentInsets) {
+        if (this._disableContentInsets) {
+            console.log('removing contentInsets');
             (this.view as MDCAlertControllerView).contentInsets = UIEdgeInsetsZero;
         }
     },
@@ -257,10 +259,16 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
         };
         view.bindingContext = fromObject(context);
         alertController.accessoryView = createUIViewAutoSizeUIViewAutoSize(view);
+
         // if no title or message disable contentInsets to be like android
-        // if (!options.title && !options.message) {
-        //     (alertController as any).disableContentInsets = true;
-        // }
+        if (!options.title && !options.message) {
+            if (alertController.view) {
+                (alertController.view as MDCAlertControllerView).contentInsets = UIEdgeInsetsZero;
+            } else {
+                alertController._disableContentInsets = true;
+
+            }
+        }
         view.viewController = alertController; // needed to prevent a crash in layoutChild
     }
     const dialogPresentationControllerDelegate = MDCDialogPresentationControllerDelegateImpl.initWithCallback(() => {
