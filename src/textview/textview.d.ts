@@ -13,7 +13,7 @@ export class TextView extends EditableTextBase {
 
     helper: string;
     helperColor: Color;
-    maxLength: number;
+    counterMaxLength: number;
     errorColor: Color;
     floating: boolean;
     placeholderColor: Color;

@@ -1,4 +1,5 @@
 import {
+    counterMaxLengthProperty,
     errorColorProperty,
     errorProperty,
     floatingColorProperty,
@@ -6,7 +7,6 @@ import {
     floatingProperty,
     helperColorProperty,
     helperProperty,
-    maxLengthProperty,
     strokeColorProperty,
     strokeInactiveColorProperty,
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
@@ -187,7 +187,7 @@ export class TextView extends TextViewBase {
         this.layoutView.setErrorEnabled(!!value);
     }
 
-    [maxLengthProperty.setNative](value: number) {
+    [counterMaxLengthProperty.setNative](value: number) {
         this.layoutView.setCounterEnabled(value > 0);
         this.layoutView.setCounterMaxLength(value);
     }

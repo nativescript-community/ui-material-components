@@ -1,5 +1,6 @@
 import { getLayout, stateSets } from '@nativescript-community/ui-material-core/android/utils';
 import {
+    counterMaxLengthProperty,
     digitsProperty,
     errorColorProperty,
     errorProperty,
@@ -8,7 +9,6 @@ import {
     floatingProperty,
     helperColorProperty,
     helperProperty,
-    maxLengthProperty,
     strokeColorProperty,
     strokeDisabledColorProperty,
     strokeInactiveColorProperty
@@ -180,7 +180,7 @@ export class TextField extends TextFieldBase {
         this.layoutView.setErrorEnabled(!!value);
     }
 
-    [maxLengthProperty.setNative](value: number) {
+    [counterMaxLengthProperty.setNative](value: number) {
         this.layoutView.setCounterEnabled(value > 0);
         this.layoutView.setCounterMaxLength(value);
     }

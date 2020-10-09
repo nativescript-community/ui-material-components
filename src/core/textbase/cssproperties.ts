@@ -24,12 +24,12 @@ export const errorProperty = new CssProperty<Style, string>({
     cssName: 'error'
 });
 errorProperty.register(Style);
-export const maxLengthProperty = new CssProperty<Style, number>({
-    name: 'maxLength',
-    cssName: 'max-length',
+export const counterMaxLengthProperty = new CssProperty<Style, number>({
+    name: 'counterMaxLength',
+    cssName: 'counter-max-length',
     valueConverter: v => parseFloat(v)
 });
-maxLengthProperty.register(Style);
+counterMaxLengthProperty.register(Style);
 export const floatingProperty = new CssProperty<Style, boolean>({
     name: 'floating',
     cssName: 'floating',

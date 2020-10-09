@@ -1,6 +1,7 @@
 import { themer } from '@nativescript-community/ui-material-core';
 import {
     buttonColorProperty,
+    counterMaxLengthProperty,
     digitsProperty,
     errorColorProperty,
     errorProperty,
@@ -9,7 +10,6 @@ import {
     floatingProperty,
     helperColorProperty,
     helperProperty,
-    maxLengthProperty,
     strokeColorProperty,
     strokeDisabledColorProperty,
     strokeInactiveColorProperty,
@@ -151,7 +151,7 @@ export class TextField extends TextFieldBase {
         if (range.length > 0) {
             const delta = replacementString.length - range.length;
             if (delta > 0) {
-                if (textField.text.length + delta > this.maxLength) {
+                if (textField.text.length + delta > this.counterMaxLength) {
                     return false;
                 }
             }
@@ -321,7 +321,7 @@ export class TextField extends TextFieldBase {
         const color: UIColor = temp.ios;
         this._controller.leadingUnderlineLabelTextColor = color;
     }
-    [maxLengthProperty.setNative](value: number) {
+    [counterMaxLengthProperty.setNative](value: number) {
         this._controller.characterCountMax = value;
     }
     [floatingProperty.setNative](value: boolean) {

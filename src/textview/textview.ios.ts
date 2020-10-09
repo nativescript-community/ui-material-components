@@ -1,6 +1,7 @@
 import { themer } from '@nativescript-community/ui-material-core';
 import {
     buttonColorProperty,
+    counterMaxLengthProperty,
     errorColorProperty,
     errorProperty,
     floatingColorProperty,
@@ -8,7 +9,6 @@ import {
     floatingProperty,
     helperColorProperty,
     helperProperty,
-    maxLengthProperty,
     strokeColorProperty,
     strokeInactiveColorProperty,
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
@@ -318,7 +318,7 @@ export class TextView extends TextViewBase {
         const color: UIColor = temp.ios;
         this._controller.leadingUnderlineLabelTextColor = color;
     }
-    [maxLengthProperty.setNative](value: number) {
+    [counterMaxLengthProperty.setNative](value: number) {
         this._controller.characterCountMax = value;
     }
     [floatingProperty.setNative](value: boolean) {

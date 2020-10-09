@@ -8,7 +8,7 @@ export abstract class TextViewBase extends NSTextView {
 
     @cssProperty helper: string;
     @cssProperty helperColor: Color;
-    @cssProperty maxLength: number;
+    @cssProperty counterMaxLength: number;
     @cssProperty errorColor: Color;
     @cssProperty floating: boolean;
     @cssProperty placeholderColor: Color;
