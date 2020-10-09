@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.18](https://github.com/Akylas/nativescript-material-components/compare/v5.0.17...v5.0.18) (2020-10-09)
+
+
+### Bug Fixes
+
+* **textfield:** ios fix for maxLength ([0218423](https://github.com/Akylas/nativescript-material-components/commit/0218423368e35abb614e9da09d31b7cf481d85c9))
+
+
+
+
+
 ## [5.0.17](https://github.com/Akylas/nativescript-material-components/compare/v5.0.16...v5.0.17) (2020-10-09)
 
 
