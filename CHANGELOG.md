@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.17](https://github.com/Akylas/nativescript-material-components/compare/v5.0.16...v5.0.17) (2020-10-09)
+
+
+### Bug Fixes
+
+* android use correct oultine button now. ([c9780cd](https://github.com/Akylas/nativescript-material-components/commit/c9780cd3e35a76ccfb343983cfac912f73862550))
+* rename maxLength to counterMaxLength ([ae41711](https://github.com/Akylas/nativescript-material-components/commit/ae4171106c2b2f1ca040fd3cd910c1d24be1bfb9))
+
+
+
+
+
 ## [5.0.16](https://github.com/Akylas/nativescript-material-components/compare/v5.0.15...v5.0.16) (2020-10-08)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
