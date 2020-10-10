@@ -12,7 +12,21 @@ import {
     strokeColorProperty,
     strokeInactiveColorProperty,
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
-import { Background, Color, Property, Screen, Style, Utils, View, backgroundInternalProperty, editableProperty, hintProperty, isAndroid, placeholderColorProperty } from '@nativescript/core';
+import {
+    Background,
+    Color,
+    Property,
+    Screen,
+    Style,
+    Utils,
+    View,
+    backgroundInternalProperty,
+    colorProperty,
+    editableProperty,
+    hintProperty,
+    isAndroid,
+    placeholderColorProperty,
+} from '@nativescript/core';
 import { resetSymbol, textProperty } from '@nativescript/core/ui/text-base';
 import { TextViewBase } from './textview.common';
 
@@ -266,6 +280,34 @@ export class TextView extends TextViewBase {
             const begin = view.beginningOfDocument;
             const pos = view.positionFromPositionOffset(begin, start);
             view.selectedTextRange = view.textRangeFromPositionToPosition(pos, pos);
+        }
+    }
+
+    // Override N textview to fix textColor : use nativeViewProtected instead of nativeTextViewProtected
+    _isShowingHint: boolean;
+    _textColor: UIColor;
+    _hintColor: UIColor;
+    _refreshColor() {
+        if (this._isShowingHint) {
+            const placeholderColor = this.style.placeholderColor;
+            const color = this.style.color;
+            if (placeholderColor) {
+                this.nativeViewProtected.textColor = placeholderColor.ios;
+            } else if (color) {
+                // Use semi-transparent version of color for back-compatibility
+                this.nativeViewProtected.textColor = color.ios.colorWithAlphaComponent(0.22);
+            } else {
+                this.nativeViewProtected.textColor = this._hintColor;
+            }
+        } else {
+            const color = this.style.color;
+            if (color) {
+                this.nativeViewProtected.textColor = color.ios;
+                this.nativeViewProtected.tintColor = color.ios;
+            } else {
+                this.nativeViewProtected.textColor = this._textColor;
+                this.nativeViewProtected.tintColor = this._textColor;
+            }
         }
     }
 
