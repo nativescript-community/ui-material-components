@@ -1,24 +1,10 @@
 .mdi {
     font-family: 'materialdesignicons-webfont', 'Material Design Icons';
 }
-mdbutton {
-    color: black;
-    .ns-dark & {
-        color: white;
-    }
-}
 button {
     elevation: 2;
 }
 
-MDButton {
-    color: #000;
-    background-color: #fff;
-    .ns-dark & {
-        color: #fff;
-        background-color: #000;
-    }
-}
 
 .falseFAb {
     elevation: 2;
@@ -31,13 +17,6 @@ MDButton {
 
 .buttonYellow {
     background-color: yellow;
-}
-mdslider {
-    /* track-background-color: #E0E0E0; */
-}
-
-bottomnavigationbar {
-    inactive-color: gray;
 }
 
 .item-with-border {
