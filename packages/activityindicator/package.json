@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-activityindicator",
-    "version": "5.0.20",
+    "version": "5.0.21",
     "description": "Material ActivityIndicator component",
     "main": "./index",
     "sideEffects": false,
@@ -37,7 +37,7 @@
     "repository": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^5.0.20"
+        "@nativescript-community/ui-material-core": "^5.0.21"
     },
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }

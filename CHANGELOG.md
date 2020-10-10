@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.21](https://github.com/Akylas/nativescript-material-components/compare/v5.0.20...v5.0.21) (2020-10-10)
+
+
+### Bug Fixes
+
+* ios default theme update to support dark mode ([fd00548](https://github.com/Akylas/nativescript-material-components/commit/fd00548adfeaba78e1e6af3692c7b863f423c880))
+* ios disableContentInsets fix for dialogs ([a60f2a1](https://github.com/Akylas/nativescript-material-components/commit/a60f2a1b2d4acf93714c902b3e5c4867252f31e6))
+* support dark mode in bottom sheets ([278c405](https://github.com/Akylas/nativescript-material-components/commit/278c405f8b3c49c1347dae0b555779223cce0d40))
+
+
+
+
+
 ## [5.0.20](https://github.com/Akylas/nativescript-material-components/compare/v5.0.19...v5.0.20) (2020-10-09)
 
 
