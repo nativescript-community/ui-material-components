@@ -1,30 +1,7 @@
-// import { knownFolders } from '@nativescript/core/file-system';
-// const currentApp = knownFolders.currentApp();
-// global.process = global.process || {} as any;
-// global.process.cwd = function() {
-//     return '';
-// };
-// require('source-map-support').install({
-//     environment: 'node',
-//     handleUncaughtExceptions: false,
-//     retrieveSourceMap(source) {
-//         const sourceMapPath = source + '.map';
-//         const appPath = currentApp.path;
-//         let sourceMapRelativePath = sourceMapPath
-//             // .replace('file:///', '')
-//             .replace('file://', '')
-//             .replace(appPath + '/', '')
-//             .replace(appPath + '/', '');
-//         if (sourceMapRelativePath.startsWith('app/')) {
-//             sourceMapRelativePath = sourceMapRelativePath.slice(4);
-//         }
-//         // console.log('retrieveSourceMap', source, appPath, sourceMapRelativePath, currentApp.getFile(sourceMapRelativePath).readTextSync());
-//         return {
-//             url: sourceMapRelativePath,
-//             map: currentApp.getFile(sourceMapRelativePath).readTextSync()
-//         };
-//     }
-// });
+
+// import {Trace} from '@nativescript/core';
+// Trace.addCategories(Trace.categories.concat(Trace.categories.All));
+// Trace.enable();
 
 import Vue from 'nativescript-vue';
 import ActivityIndicatorPlugin from '@nativescript-community/ui-material-activityindicator/vue';
@@ -57,6 +34,7 @@ Vue.use(BottomSheetPlugin);
 Vue.use(BottomNavigationBarPlugin);
 Vue.use(TabsPlugin);
 
+Vue.registerElement('Label', () => require('@nativescript-community/ui-label').Label);
 Vue.registerElement('PreviousNextView', () => require('@nativescript/iqkeyboardmanager').PreviousNextView);
 Vue.registerElement('TextViewWithHint', () => require('@nativescript/iqkeyboardmanager').TextViewWithHint);
 

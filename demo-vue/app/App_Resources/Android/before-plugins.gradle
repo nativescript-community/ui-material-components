@@ -1,3 +1,4 @@
 ext {
-    androidXMaterial = "1.2.0"
+    androidXMaterial = "1.2.1"
+    androidXMaterial = "1.2.1"
 }

@@ -10,8 +10,9 @@
         }
     },
     "dependencies": {
-        "@akylas/nativescript":"7.0.3-alpha.4",
+        "@akylas/nativescript": "7.0.3-alpha.4",
         "@mdi/font": "4.9.95",
+        "@nativescript-community/ui-label": "^1.0.47",
         "@nativescript-community/ui-material-activityindicator": "file:../packages/activityindicator",
         "@nativescript-community/ui-material-bottomnavigationbar": "file:../packages/bottomnavigationbar",
         "@nativescript-community/ui-material-bottomsheet": "file:../packages/bottomsheet",
@@ -33,9 +34,9 @@
         "nativescript-vue-template-compiler": "~2.8.1"
     },
     "devDependencies": {
-        "@nativescript/core": "7.0.8",
         "@babel/core": "^7.11.6",
         "@nativescript/android": "7.0.0",
+        "@nativescript/core": "7.0.8",
         "@nativescript/types": "7.0.1",
         "@nativescript/webpack": "3.0.4",
         "babel-loader": "^8.1.0",

@@ -21,7 +21,7 @@
                 <MDFloatingActionButton src="res://ic_action_add" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton id="fab" src="res://ic_action_add" color="white" backgroundColor="blue" size="mini" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton src="res://ic_action_add" text="test expanded" @tap="onTap" horizontalAlignment="center" />
-                <MDFloatingActionButton src="res://ic_action_add" text="test expanded" :expanded="expanded" @tap="expanded = !expanded" horizontalAlignment="center" />
+                <MDFloatingActionButton src="res://ic_action_add" text="test expanded" :expanded="expanded" @tap="switchExpanded" horizontalAlignment="center" />
                 <StackLayout margin="10">
                     <MDButton id="button0" text="default button" @tap="onTap" />
                 </StackLayout>
@@ -101,6 +101,10 @@ export default Vue.extend({
         },
         onTap() {
             console.log('Button tapped');
+        },
+        switchExpanded() {
+            console.log('switchExpanded');
+            this.expanded = !this.expanded
         }
     }
 });

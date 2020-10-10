@@ -6,13 +6,17 @@ export default {
     <Page>
       <ActionBar title="Material Vue">
       </ActionBar>
-      <ListView ref="listView" rowHeight="50" for="example in examples">
+      <StackLayout>
+      <Label paddingLeft="10" heigth="100" text="This is a text"  verticalAlignment="center"/>
+      <ListView ref="listView" rowHeight="60" for="example in examples">
         <v-template>
-          <MDRipple rippleColor="red" @tap="{goToExample(example)}"  @longPress="{goToModalExample(example)}" >
-            <Label paddingLeft="10" :text="example.title" class="title" verticalAlignment="center"/>
-          </MDRipple>
+          <GridLayout rippleColor="red" @tap="{goToExample(example)}"  @longPress="{goToModalExample(example)}" >
+            <Label paddingLeft="10" :text="example.title"  verticalAlignment="center"/>
+          </GridLayout>
         </v-template>
       </ListView>
+      </StackLayout>
+      
     </Page>
     `,
     data() {
