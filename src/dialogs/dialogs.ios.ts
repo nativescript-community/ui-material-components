@@ -167,13 +167,8 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
 
 function createAlertController(options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
     const alertController = MDCAlertControllerImpl.alloc().init() as IMDCAlertControllerImpl;
-    const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
-    const scheme = MDCContainerScheme.alloc().init();
-    if (colorScheme) {
-        scheme.colorScheme = colorScheme;
-    }
-    // Step 3: Apply the container scheme to your component using the desired alert style
-    alertController.applyThemeWithScheme(scheme);
+    alertController.mdc_adjustsFontForContentSizeCategory = true;
+
     if (options.title) {
         alertController.title = options.title;
     }
@@ -266,7 +261,6 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
                 (alertController.view as MDCAlertControllerView).contentInsets = UIEdgeInsetsZero;
             } else {
                 alertController._disableContentInsets = true;
-
             }
         }
         view.viewController = alertController; // needed to prevent a crash in layoutChild
@@ -528,13 +522,12 @@ export function login(arg: any): Promise<LoginResult> {
 
 function showUIAlertController(alertController: MDCAlertController) {
     // themer needs to be applied after actions creation
-
-    const colorScheme: MDCSemanticColorScheme = themer.getAppColorScheme();
+    const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
+    const scheme = MDCContainerScheme.alloc().init();
     if (colorScheme) {
-        MDCAlertColorThemer.applySemanticColorSchemeToAlertController(colorScheme, alertController);
-        // } else {
-        // MDCAlertControllerThemer.applySchemeToAlertController(MDCAlertScheme.alloc().init(), alertController);
+        scheme.colorScheme = colorScheme;
     }
+    alertController.applyThemeWithScheme(scheme);
 
     let currentView = getCurrentPage() || Application.getRootView();
 
@@ -553,7 +546,6 @@ function showUIAlertController(alertController: MDCAlertController) {
                 alertController.popoverPresentationController.sourceRect = CGRectMake(viewController.view.bounds.size.width / 2.0, viewController.view.bounds.size.height / 2.0, 1.0, 1.0);
                 alertController.popoverPresentationController.permittedArrowDirections = 0;
             }
-
             viewController.presentViewControllerAnimatedCompletion(alertController, true, null);
         }
         return viewController;
