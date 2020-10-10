@@ -16,7 +16,7 @@ export class Themer {
     onSurfaceColor: string | Color;
     constructor() {
         // create a default one to prevent multiple creations on widget side
-        this.appColorScheme = MDCSemanticColorScheme.alloc().init().initWithDefaults(MDCColorSchemeDefaults.Material201804);
+        this.appColorScheme = MDCSemanticColorScheme.alloc().init().initWithDefaults(MDCColorSchemeDefaults.Material201907);
         if (this.appColorScheme.primaryColor) {
             this.appColorScheme.primaryColorVariant = this.appColorScheme.primaryColor.colorWithAlphaComponent(0.24);
         }
@@ -34,6 +34,7 @@ export class Themer {
         this.primaryColor = value;
         const colorTheme = this.getOrcreateAppColorScheme();
         const color = value instanceof Color ? value : new Color(value);
+        console.log('setPrimaryColor', color, colorTheme);
         colorTheme.primaryColor = color.ios;
         this.appColorScheme.primaryColorVariant = this.appColorScheme.primaryColor.colorWithAlphaComponent(0.24);
         // colorTheme.primaryColorVariant = new Color(61.2, color.r, color.g, color.b).ios; // default alpha is 0.24
