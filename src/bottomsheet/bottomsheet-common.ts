@@ -45,12 +45,15 @@ export abstract class ViewWithBottomSheetBase extends View {
             eventName: shownInBottomSheetEvent,
             object: this,
             context: this._bottomSheetContext,
-            closeCallback: this._closeBottomSheetCallback
+            closeCallback: this._closeBottomSheetCallback,
         };
 
         this.notify(args);
     }
     public _bottomSheetClosed(): void {
+        const _rootModalViews = this._getRootModalViews();
+        const modalIndex = _rootModalViews.indexOf(this);
+        _rootModalViews.splice(modalIndex);
         this._tearDownUI();
         // if a frame _removeFromFrameStack will be called from _tearDownUI
         // if (this instanceof Frame) {
@@ -63,6 +66,7 @@ export abstract class ViewWithBottomSheetBase extends View {
     }
     protected abstract _showNativeBottomSheet(parent: View, options: BottomSheetOptions);
     protected _commonShowNativeBottomSheet(parent: View, options: BottomSheetOptions) {
+        this._getRootModalViews().push(this);
         options.context = options.context || {};
         this._bottomSheetContext = options.context;
         this._onDismissBottomSheetCallback = (...originalArgs) => {
@@ -84,6 +88,7 @@ export abstract class ViewWithBottomSheetBase extends View {
             if (!this._closeBottomSheetCallback) {
                 return;
             }
+
             // const callback = this._closeBottomSheetCallback;
             this._closeBottomSheetCallback = null;
             if (this._bottomSheetContext) {
@@ -103,7 +108,7 @@ export abstract class ViewWithBottomSheetBase extends View {
             eventName: showingInBottomSheetEvent,
             object: this,
             context: this._bottomSheetContext,
-            closeCallback: this._closeBottomSheetCallback
+            closeCallback: this._closeBottomSheetCallback,
         };
         this.notify(args);
     }
@@ -123,12 +128,15 @@ export abstract class ViewWithBottomSheetBase extends View {
         if (arguments.length === 0) {
             throw new Error('showModal without parameters is deprecated. Please call showModal on a view instance instead.');
         } else {
-            const view = options.view instanceof View ? (options.view as ViewWithBottomSheetBase) : Builder.createViewFromEntry({
-                moduleName: options.view as string
-            }) as ViewWithBottomSheetBase;
+            const view =
+                options.view instanceof View
+                    ? (options.view as ViewWithBottomSheetBase)
+                    : (Builder.createViewFromEntry({
+                        moduleName: options.view as string,
+                    }) as ViewWithBottomSheetBase);
             view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
             const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
-            modalRootViewCssClasses.forEach(c => view.cssClasses.add(c));
+            modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
 
             view._showNativeBottomSheet(this, options);
             return view;
