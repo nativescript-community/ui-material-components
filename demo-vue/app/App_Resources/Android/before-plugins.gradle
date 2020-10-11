@@ -1,4 +1,6 @@
+
 ext {
-    androidXMaterial = "1.2.1"
+    androidxVersion = "1.0.2"
+    androidXAppCompat = "1.0.2"
     androidXMaterial = "1.2.1"
 }

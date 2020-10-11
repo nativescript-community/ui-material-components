@@ -48,7 +48,6 @@ module.exports = (env, params = {}) => {
     const dist = resolve(projectRoot, nsWebpack.getAppPath(platform, projectRoot));
     const appResourcesFullPath = resolve(projectRoot, appResourcesPath);
 
-    config.resolve.alias['@nativescript/core'] = '@akylas/nativescript';
     if (!!development) {
         const srcFullPath = resolve(projectRoot, '..', 'src');
         Object.assign(config.resolve.alias, {

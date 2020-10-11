@@ -1,7 +1,7 @@
 
-// import {Trace} from '@nativescript/core';
-// Trace.addCategories(Trace.categories.concat(Trace.categories.All));
-// Trace.enable();
+import {Trace} from '@nativescript/core';
+Trace.addCategories(Trace.categories.concat(Trace.categories.All));
+Trace.enable();
 
 import Vue from 'nativescript-vue';
 import ActivityIndicatorPlugin from '@nativescript-community/ui-material-activityindicator/vue';
@@ -34,7 +34,7 @@ Vue.use(BottomSheetPlugin);
 Vue.use(BottomNavigationBarPlugin);
 Vue.use(TabsPlugin);
 
-Vue.registerElement('Label', () => require('@nativescript-community/ui-label').Label);
+// Vue.registerElement('Label', () => require('@nativescript-community/ui-label').Label);
 Vue.registerElement('PreviousNextView', () => require('@nativescript/iqkeyboardmanager').PreviousNextView);
 Vue.registerElement('TextViewWithHint', () => require('@nativescript/iqkeyboardmanager').TextViewWithHint);
 
@@ -46,10 +46,10 @@ if (isIOS) {
     themer.setAccentColor('#ff8a39');
     themer.setSecondaryColor('#a830d7');
 }
-
+//
 import Theme from '@nativescript/theme';
 
-Theme.setMode(Theme.Dark); // Or Theme.Light
+Theme.setMode(Theme.Auto); // Or Theme.Light
 // import { getExamples } from './examples';
 import * as views from './views';
 
