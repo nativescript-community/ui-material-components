@@ -40,6 +40,7 @@ export abstract class FloatingActionButtonBase extends Button {
     public src: string | ImageSource;
     public isLoading: boolean;
     public size: 'mini' | 'auto' | 'normal';
+    public expanded: boolean;
 
     /**
      * @internal //copied from image common
