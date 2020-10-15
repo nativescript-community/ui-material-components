@@ -67,6 +67,11 @@ export abstract class ViewWithBottomSheetBase extends View {
     protected abstract _showNativeBottomSheet(parent: View, options: BottomSheetOptions);
     protected _commonShowNativeBottomSheet(parent: View, options: BottomSheetOptions) {
         this._getRootModalViews().push(this);
+        this.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
+        const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
+        modalRootViewCssClasses.forEach((c) => this.cssClasses.add(c));
+
+        // (parent as any)._modal = this;
         options.context = options.context || {};
         this._bottomSheetContext = options.context;
         this._onDismissBottomSheetCallback = (...originalArgs) => {
@@ -134,10 +139,6 @@ export abstract class ViewWithBottomSheetBase extends View {
                     : (Builder.createViewFromEntry({
                         moduleName: options.view as string,
                     }) as ViewWithBottomSheetBase);
-            view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
-            const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
-            modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
-
             view._showNativeBottomSheet(this, options);
             return view;
         }
