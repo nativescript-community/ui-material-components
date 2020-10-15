@@ -1,4 +1,5 @@
 import { themer } from '@nativescript-community/ui-material-core';
+import { busyProperty } from '@nativescript-community/ui-material-progress/progress-common';
 import { Color, Screen, Utils, View, colorProperty } from '@nativescript/core';
 import { ActivityIndicatorBase, indeterminateProperty } from './index-common';
 
