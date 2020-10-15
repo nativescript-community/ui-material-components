@@ -66,6 +66,6 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         this.nativeViewProtected.setTitleForState(value, UIControlState.Normal);
     }
     [expandedProperty.setNative](value: boolean) {
-        this.nativeViewProtected.mode = value ? MDCFloatingButtonMode.Expanded : MDCFloatingButtonMode.Normal;
+        this.nativeViewProtected.setModeAnimated(value ? MDCFloatingButtonMode.Expanded : MDCFloatingButtonMode.Normal, true);
     }
 }
