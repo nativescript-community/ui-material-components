@@ -1,6 +1,6 @@
 import { themer } from '@nativescript-community/ui-material-core';
 import { Color, Screen } from '@nativescript/core';
-import { ProgressBase, progressBackgroundColorProperty, progressColorProperty } from './progress-common';
+import { ProgressBase, busyProperty, indeterminateProperty, progressBackgroundColorProperty, progressColorProperty } from './progress-common';
 
 export class Progress extends ProgressBase {
     nativeViewProtected: MDCProgressView;
@@ -24,5 +24,25 @@ export class Progress extends ProgressBase {
 
     [progressBackgroundColorProperty.setNative](color: Color) {
         this.nativeViewProtected.trackTintColor = color ? color.ios : null;
+    }
+    [indeterminateProperty.setNative](value: boolean) {
+        this.nativeViewProtected.mode = value ? MDCProgressViewMode.Indeterminate : MDCProgressViewMode.Determinate;
+        if (this.busy) {
+            this.nativeViewProtected.startAnimating();
+        }
+    }
+    [busyProperty.setNative](value) {
+        const nativeView = this.nativeViewProtected;
+        if (nativeView.mode === MDCProgressViewMode.Determinate) {
+            return;
+        }
+        if (value) {
+            nativeView.startAnimating();
+        } else {
+            nativeView.stopAnimating();
+        }
+        // if (nativeView.hidesWhenStopped) {
+        //     this.requestLayout();
+        // }
     }
 }
