@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.23](https://github.com/Akylas/nativescript-material-components/compare/v5.0.22...v5.0.23) (2020-10-15)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-snackbar
+
+
+
+
+
 ## [5.0.22](https://github.com/Akylas/nativescript-material-components/compare/v5.0.21...v5.0.22) (2020-10-10)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-snackbar
