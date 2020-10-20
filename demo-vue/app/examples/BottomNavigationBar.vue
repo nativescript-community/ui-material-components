@@ -1,28 +1,29 @@
 <template>
     <Page>
         <ActionBar :title="title">
-            <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap"/>
+            <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
         <GridLayout rows="*, auto" backgroundColor="blue">
             <StackLayout class="page" backgroundColor="white" row="0">
-                <GridLayout class="p-20" v-if="currentTab === 0"> -->
+                <GridLayout class="p-20" v-if="currentTab === 0">
                     <Label class="h1 text-center" text="First tab" textWrap="true"></Label>
-                </GridLayout> -->
+                    <Button text="select third" @tap="selectThird" horizontalAlignment="center" verticalAlignment="bottom" />
+                </GridLayout>
                 <GridLayout class="p-20" v-if="currentTab === 2">
                     <Label class="h1 text-center" text="Third tab" textWrap="true"></Label>
                 </GridLayout>
             </StackLayout>
             <MDBottomNavigationBar
+                ref="bottomBar"
                 row="1"
-                activeColor="red" 
                 @loaded="onbottomNavigationBarLoaded"
                 @tabPressed="onBottomNavigationTabPressed"
                 @tabSelected="onBottomNavigationTabSelected"
-                @tabReselected="onBottomNavigationTabReselected"                
+                @tabReselected="onBottomNavigationTabReselected"
             >
-                <MDBottomNavigationTab title="First" icon="res://ic_home" activeColor="green"/>
+                <MDBottomNavigationTab title="First" icon="res://ic_home" activeColor="green" />
                 <MDBottomNavigationTab title="Second" icon="res://ic_view_list" isSelectable="false" />
-                <MDBottomNavigationTab title="Third" icon="res://ic_menu" inactiveColor="brown"/>
+                <MDBottomNavigationTab title="Third" icon="res://ic_menu" inactiveColor="brown" />
             </MDBottomNavigationBar>
         </GridLayout>
     </Page>
@@ -46,6 +47,9 @@ export default Vue.extend({
         };
     },
     methods: {
+        selectThird() {
+            this.$refs.bottomBar.nativeView.selectTab(2);
+        },
         onNavigationButtonTap() {
             frameModule.Frame.topmost().goBack();
         },

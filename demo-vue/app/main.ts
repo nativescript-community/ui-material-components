@@ -1,7 +1,7 @@
 
-import {Trace} from '@nativescript/core';
-Trace.addCategories(Trace.categories.concat(Trace.categories.All));
-Trace.enable();
+// import {Trace} from '@nativescript/core';
+// Trace.addCategories(Trace.categories.concat(Trace.categories.All));
+// Trace.enable();
 
 import Vue from 'nativescript-vue';
 import ActivityIndicatorPlugin from '@nativescript-community/ui-material-activityindicator/vue';

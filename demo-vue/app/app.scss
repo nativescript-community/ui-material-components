@@ -17,6 +17,13 @@ button {
     height: 64;
     margin: 30;
 }
+bottomnavigationbar {
+    active-color: #1b1edb;
+    inactive-color: #683131;
+    background-color: #ddd;
+    badge-color: green;
+    badge-text-color: yellow;
+}
 
 .buttonYellow {
     background-color: yellow;

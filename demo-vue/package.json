@@ -3,12 +3,6 @@
     "license": "SEE LICENSE IN LICENSE.md",
     "readme": "README.md",
     "repository": "http://www.github.com/NativeScript/nativescript-ui-sidedrawer.git",
-    "nativescript": {
-        "id": "org.nativescript.demovuematerial",
-        "tns-android": {
-            "version": "6.5.3"
-        }
-    },
     "dependencies": {
         "@mdi/font": "4.9.95",
         "@nativescript/core": "7.0.11",
@@ -36,14 +30,14 @@
         "@babel/core": "^7.11.6",
         "@nativescript/android": "7.0.0",
         "@nativescript/types": "7.0.1",
-        "@nativescript/webpack": "3.0.4",
+        "@nativescript/webpack": "3.0.7",
         "babel-loader": "^8.1.0",
         "nativescript-vue-template-compiler": "~2.8.1",
         "sass-loader": "^10.0.2",
         "scss-symbols-parser": "^2.0.1",
         "string-replace-loader": "^2.3.0",
         "tns-android": "6.5.3",
-        "tns-ios": "6.5.2",
+        "tns-ios": "6.5.3",
         "typescript": "^3.9.7",
         "vue": "^2.6.12",
         "vue-i18n": "^8.21.0",
