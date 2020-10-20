@@ -77,7 +77,6 @@ declare class IMDCAlertControllerImpl extends MDCAlertController {
     // _customContentViewContext?: any;
     _resolveFunction?: Function;
     actions: NSArray<any>;
-    viewLayedOut: boolean;
     _disableContentInsets: boolean;
 }
 const MDCAlertControllerImpl = (MDCAlertController as any).extend({
