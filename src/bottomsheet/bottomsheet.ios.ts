@@ -82,6 +82,10 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
     const widthSpec = Utils.layout.makeMeasureSpec(safeAreaWidth, Utils.layout.EXACTLY);
     const heightSpec = Utils.layout.makeMeasureSpec(safeAreaHeight, Utils.layout.UNSPECIFIED);
 
+    owner.iosOverflowSafeArea = true;
+
+    // reset _cachedFrame or it will wrongly move the view on subsequent layouts
+    (owner as any)._cachedFrame = null;
     View.measureChild(null, owner, widthSpec, heightSpec);
     const marginTop = owner.effectiveMarginTop;
     const marginBottom = owner.effectiveMarginBottom;
@@ -90,8 +94,6 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
     const top = marginTop + position.top;
     const width = owner.getMeasuredWidth();
     const height = owner.getMeasuredHeight();
-
-    owner.iosOverflowSafeArea = false;
 
     View.layoutChild(null, owner, position.left, position.top, position.left + width, position.top + height);
 
@@ -135,7 +137,7 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
         owner.parent._layoutParent();
     }
 }
-function getAvailableSpaceFromParent(view: View, frame: CGRect): { safeArea: CGRect; fullscreen: CGRect; inWindow: CGRect } {
+function getAvailableSpaceFromParent(view: View, frame: CGRect): { safeArea: CGRect; fullscreen: CGRect } {
     if (!view) {
         return null;
     }
@@ -170,18 +172,18 @@ function getAvailableSpaceFromParent(view: View, frame: CGRect): { safeArea: CGR
         fullscreen = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height);
     }
 
-    const locationInWindow = view.getLocationInWindow();
-    let inWindowLeft = locationInWindow.x;
-    let inWindowTop = locationInWindow.y;
+    // const locationInWindow = view.getLocationInWindow();
+    // let inWindowLeft = locationInWindow.x;
+    // let inWindowTop = locationInWindow.y;
 
-    if (scrollView) {
-        inWindowLeft += scrollView.contentOffset.x;
-        inWindowTop += scrollView.contentOffset.y;
-    }
+    // if (scrollView) {
+    //     inWindowLeft += scrollView.contentOffset.x;
+    //     inWindowTop += scrollView.contentOffset.y;
+    // }
 
-    const inWindow = CGRectMake(inWindowLeft, inWindowTop, frame.size.width, frame.size.height);
+    // const inWindow = CGRectMake(inWindowLeft, inWindowTop, frame.size.width, frame.size.height);
 
-    return { safeArea, fullscreen, inWindow };
+    return { safeArea, fullscreen };
 }
 
 declare class IUILayoutViewController extends UIViewController {
@@ -210,7 +212,7 @@ class UILayoutViewController extends UIViewController {
         super.viewDidLoad();
 
         // Unify translucent and opaque bars layout
-        // this.edgesForExtendedLayout = UIRectEdgeBottom;
+        this.edgesForExtendedLayout = UIRectEdge.All;
         this.extendedLayoutIncludesOpaqueBars = true;
     }
 
@@ -226,45 +228,45 @@ class UILayoutViewController extends UIViewController {
         super.viewDidLayoutSubviews();
         const owner = this.owner.get();
         if (owner) {
-            if (majorVersion >= 11) {
-                // Handle nested UILayoutViewController safe area application.
-                // Currently, UILayoutViewController can be nested only in a TabView.
-                // The TabView itself is handled by the OS, so we check the TabView's parent (usually a Page, but can be a Layout).
-                const tabViewItem = owner.parent;
-                const tabView = tabViewItem && tabViewItem.parent;
-                let parent = tabView && tabView.parent;
-
-                // Handle Angular scenario where TabView is in a ProxyViewContainer
-                // It is possible to wrap components in ProxyViewContainers indefinitely
-                // Not using instanceof ProxyViewContainer to avoid circular dependency
-                // TODO: Try moving UILayoutViewController out of view module
-                while (parent && !parent.nativeViewProtected) {
-                    parent = parent.parent;
-                }
-                const additionalInsets = { top: 0, left: 0, bottom: 0, right: 0 };
-
-                if (parent) {
-                    const parentPageInsetsTop = parent.nativeViewProtected.safeAreaInsets.top;
-                    const currentInsetsTop = this.view.safeAreaInsets.top;
-                    const additionalInsetsTop = Math.max(parentPageInsetsTop - currentInsetsTop, 0);
-
-                    const parentPageInsetsBottom = parent.nativeViewProtected.safeAreaInsets.bottom;
-                    const currentInsetsBottom = this.view.safeAreaInsets.bottom;
-                    const additionalInsetsBottom = Math.max(parentPageInsetsBottom - currentInsetsBottom, 0);
-
-                    if (additionalInsetsTop > 0 || additionalInsetsBottom > 0) {
-                        additionalInsets.top = additionalInsetsTop;
-                        additionalInsets.bottom = additionalInsetsBottom;
-                    }
-                }
-
-                const insets = new UIEdgeInsets(additionalInsets);
-                this.additionalSafeAreaInsets = insets;
-            }
             layoutView(this, owner);
+            // if (majorVersion >= 11) {
+            //     // Handle nested UILayoutViewController safe area application.
+            //     // Currently, UILayoutViewController can be nested only in a TabView.
+            //     // The TabView itself is handled by the OS, so we check the TabView's parent (usually a Page, but can be a Layout).
+            //     const tabViewItem = owner.parent;
+            //     const tabView = tabViewItem && tabViewItem.parent;
+            //     let parent = tabView && tabView.parent;
+
+            //     // Handle Angular scenario where TabView is in a ProxyViewContainer
+            //     // It is possible to wrap components in ProxyViewContainers indefinitely
+            //     // Not using instanceof ProxyViewContainer to avoid circular dependency
+            //     // TODO: Try moving UILayoutViewController out of view module
+            //     while (parent && !parent.nativeViewProtected) {
+            //         parent = parent.parent;
+            //     }
+            //     const additionalInsets = { top: 0, left: 0, bottom: 0, right: 0 };
+
+            //     if (parent) {
+            //         const parentPageInsetsTop = parent.nativeViewProtected.safeAreaInsets.top;
+            //         const currentInsetsTop = this.view.safeAreaInsets.top;
+            //         const additionalInsetsTop = Math.max(parentPageInsetsTop - currentInsetsTop, 0);
+
+            //         const parentPageInsetsBottom = parent.nativeViewProtected.safeAreaInsets.bottom;
+            //         const currentInsetsBottom = this.view.safeAreaInsets.bottom;
+            //         const additionalInsetsBottom = Math.max(parentPageInsetsBottom - currentInsetsBottom, 0);
+
+            //         if (additionalInsetsTop > 0 || additionalInsetsBottom > 0) {
+            //             additionalInsets.top = additionalInsetsTop;
+            //             additionalInsets.bottom = additionalInsetsBottom;
+            //         }
+            //     }
+
+            //     const insets = new UIEdgeInsets(additionalInsets);
+            //     this.additionalSafeAreaInsets = insets;
+            //     console.log('additionalSafeAreaInsets', insets.left, insets.bottom, insets.right, insets.top);
+            // }
         }
     }
-    viewLayedOut: boolean;
 
     viewWillAppear(animated: boolean): void {
         super.viewWillAppear(animated);
