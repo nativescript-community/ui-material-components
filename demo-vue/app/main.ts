@@ -1,6 +1,6 @@
 
 // import {Trace} from '@nativescript/core';
-// Trace.addCategories(Trace.categories.concat(Trace.categories.All));
+// Trace.addCategories(Trace.categories.concat(Trace.categories.Layout));
 // Trace.enable();
 
 import Vue from 'nativescript-vue';

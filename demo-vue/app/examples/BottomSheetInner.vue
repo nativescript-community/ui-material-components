@@ -1,10 +1,15 @@
 <template>
-    <MDCardView @shownInBottomSheet="onShownInBottomSheet" borderRadius="20" elevation="30" backgroundColor="green">
-        <StackLayout>
-            <MDButton id="test1" text="test1" borderRadius="20" margin="20"  @tap="onButtonTap"/>
-            <MDButton id="test2" text="test2" @tap="onButtonTap"/>
-        </StackLayout>
-    </MDCardView>
+    <!-- <MDCardView @shownInBottomSheet="onShownInBottomSheet" borderRadius="20" elevation="30" backgroundColor="green"> -->
+    <GridLayout id="test1" rows="auto auto" height="300" backgroundColor="yellow">
+        <!-- highlighted in red to demonstrate movement -->
+        <GridLayout id="test2" row="0" backgroundColor="red" verticalAlignment="top">
+            <Button @tap="toggleExtraContent" text="Toggle extra content"></Button>
+        </GridLayout>
+        <GridLayout id="test4" row="1" v-if="showExtraContent">
+            <Label text="Extra content"></Label>
+        </GridLayout>
+    </GridLayout>
+    <!-- </MDCardView> -->
 </template>
 
 <script lang="ts">
@@ -13,7 +18,9 @@ import Vue from 'vue';
 
 export default Vue.extend({
     data() {
-        return {};
+        return {
+            showExtraContent: false
+        };
     },
     methods: {
         onButtonTap(event) {
@@ -21,6 +28,9 @@ export default Vue.extend({
         },
         onShownInBottomSheet(args) {
             console.log('onShownInBottomSheet');
+        },
+        toggleExtraContent() {
+            this.showExtraContent = !this.showExtraContent;
         }
     }
 });

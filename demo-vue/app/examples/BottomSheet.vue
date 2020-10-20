@@ -20,8 +20,8 @@ import { EventData, View, Color } from '@nativescript/core';
 import { StackLayout } from '@nativescript/core';
 import { ActivityIndicator } from '@nativescript/core';
 import { Label } from '@nativescript/core';
-import BottomSheetInner  from './BottomSheetInner.vue';
-import BottomSheetInnerKeyboard  from './BottomSheetInnerKeyboard.vue';
+import BottomSheetInner from './BottomSheetInner.vue';
+import BottomSheetInnerKeyboard from './BottomSheetInnerKeyboard.vue';
 import { NativeScriptVue } from 'nativescript-vue';
 
 export const title = 'BottomSheet sample';
@@ -44,7 +44,7 @@ export default Vue.extend({
             switch (objId) {
                 case 'bottomsheet': {
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
-                        transparent:true,
+                        // transparent: true,
                         closeCallback: (...args) => {
                             console.log('bottom sheet closed', args);
                         }
@@ -53,7 +53,7 @@ export default Vue.extend({
                 }
                 case 'dont_ignore_top_safe_area': {
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
-                        ignoreTopSafeArea:false,
+                        ignoreTopSafeArea: false,
                         // transparent:true,
                         closeCallback: (...args) => {
                             console.log('bottom sheet closed', args);
@@ -64,7 +64,7 @@ export default Vue.extend({
                 case 'ignore_bottom_safe_area': {
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
                         // transparent:true,
-                        ignoreBottomSafeArea:true,
+                        ignoreBottomSafeArea: true,
                         closeCallback: (...args) => {
                             console.log('bottom sheet closed', args);
                         }
@@ -74,8 +74,8 @@ export default Vue.extend({
                 case 'dont_ignore_top_ignore_bottom_safe_area': {
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
                         // transparent:true,
-                        ignoreTopSafeArea:false,
-                        ignoreBottomSafeArea:true,
+                        ignoreTopSafeArea: false,
+                        ignoreBottomSafeArea: true,
                         closeCallback: (...args) => {
                             console.log('bottom sheet closed', args);
                         }
