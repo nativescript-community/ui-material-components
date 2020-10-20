@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.24](https://github.com/Akylas/nativescript-material-components/compare/v5.0.23...v5.0.24) (2020-10-20)
+
+
+### Bug Fixes
+
+* **bottomnavigationbar:** bunch of fixes! ([55b03fc](https://github.com/Akylas/nativescript-material-components/commit/55b03fc74ac7c4a725ba63bb7a4be1614a347ae7))
+* **snackbar:** android fix for app with no actionbar ([a35e3cd](https://github.com/Akylas/nativescript-material-components/commit/a35e3cdde0047b3ecb65b99bdb37c4eb4877342b))
+
+
+
+
+
 ## [5.0.23](https://github.com/Akylas/nativescript-material-components/compare/v5.0.22...v5.0.23) (2020-10-15)
 
 
