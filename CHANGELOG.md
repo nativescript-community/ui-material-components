@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.25](https://github.com/Akylas/nativescript-material-components/compare/v5.0.24...v5.0.25) (2020-10-20)
+
+
+### Bug Fixes
+
+* **bottomsheet:** top safe area sizing issue [#199](https://github.com/Akylas/nativescript-material-components/issues/199) ([c959916](https://github.com/Akylas/nativescript-material-components/commit/c95991607e92bff50b42bf188ff14ed3a074eee2))
+
+
+
+
+
 ## [5.0.24](https://github.com/Akylas/nativescript-material-components/compare/v5.0.23...v5.0.24) (2020-10-20)
 
 
