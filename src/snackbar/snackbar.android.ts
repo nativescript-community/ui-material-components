@@ -53,7 +53,10 @@ export class SnackBar extends SnackBarBase {
             attachView = attachView['_modal'];
         }
         const page = (attachView instanceof Page ? attachView : attachView.page);
-        let nView = (page.nativeViewProtected as android.view.View).getParent().getParent() as any;
+        let nView =  (page.nativeViewProtected as android.view.View).getParent();
+        if ( page.hasActionBar) {
+            nView = nView.getParent();
+        }
         let nCoordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout = (page as any).nCoordinatorLayout;
         if (!nCoordinatorLayout && !(nView instanceof androidx.coordinatorlayout.widget.CoordinatorLayout) && nView instanceof android.view.ViewGroup) {
             nCoordinatorLayout = new androidx.coordinatorlayout.widget.CoordinatorLayout(attachView._context);
@@ -61,7 +64,12 @@ export class SnackBar extends SnackBarBase {
             if (options.view) {
                 const nAttachedView = options.view.nativeViewProtected as android.view.View;
                 const params = new android.widget.FrameLayout.LayoutParams(nAttachedView.getWidth(), nAttachedView.getHeight());
-                params.topMargin = Utils.layout.toDevicePixels(options.view.getLocationRelativeTo(page).y);
+                const myArray = (Array).create('int', 2);
+                nView.getLocationOnScreen(myArray);
+                const otherArray = (Array).create('int', 2);
+                options.view.nativeViewProtected.getLocationOnScreen(otherArray);
+
+                params.topMargin = otherArray[1] - myArray[1];
                 (nView as any).addView(nCoordinatorLayout, params);
             } else {
                 (nView as any).addView(nCoordinatorLayout, new android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT));
@@ -69,10 +77,10 @@ export class SnackBar extends SnackBarBase {
 
             nView = nCoordinatorLayout;
         }
-        this._snackbar = com.google.android.material.snackbar.Snackbar.make(nView, options.message, options.hideDelay);
+        this._snackbar = com.google.android.material.snackbar.Snackbar.make(nView as any, options.message, options.hideDelay);
 
-        this._snackbar.setText(options.message);
-        this._snackbar.setDuration(options.hideDelay);
+        // this._snackbar.setText(options.message);
+        // this._snackbar.setDuration(options.hideDelay);
 
         // set text color of the TextView in the Android SnackBar
         if (options.textColor && Color.isValid(options.textColor)) {
@@ -159,7 +167,9 @@ export class SnackBar extends SnackBarBase {
                 }
             },
 
-            onShown(snackbar: com.google.android.material.snackbar.Snackbar) {},
+            onShown(snackbar: com.google.android.material.snackbar.Snackbar) {
+
+            },
         });
         cb.setListener(callbackListener);
         (cb as any).nListener = callbackListener; // handles the resolve of the promise
