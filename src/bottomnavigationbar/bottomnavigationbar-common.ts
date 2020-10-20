@@ -41,9 +41,9 @@ export interface TabReselectedEventData extends EventData {
  * @enum {number}
  */
 export enum TitleVisibility {
-    Selected = 0,
-    Always = 1,
-    Never = 2,
+    selected = 0,
+    always = 1,
+    never = 2,
 }
 
 @CSSType('BottomNavigationBar')
@@ -54,9 +54,11 @@ export abstract class BottomNavigationBarBase extends View {
 
     @cssProperty activeColor: Color;
     @cssProperty inactiveColor: Color;
+    @cssProperty badgeColor: Color;
+    @cssProperty badgeTextColor: Color;
 
     selectedTabIndex: number = 0;
-    titleVisibility: TitleVisibility = TitleVisibility.Selected;
+    titleVisibility: TitleVisibility = TitleVisibility.always;
 
     protected _items: BottomNavigationTabBase[] = [];
 
@@ -143,8 +145,7 @@ export const titleVisibilityProperty = new Property<BottomNavigationBarBase, Tit
     name: 'titleVisibility',
     equalityComparer: (x, y) => x === y,
     affectsLayout: true,
-    defaultValue: TitleVisibility.Selected,
-    valueConverter: (v) => TitleVisibility[v],
+    valueConverter: (v) => (typeof v === 'string') ? TitleVisibility[v.toLowerCase()]:v ,
 });
 
 titleVisibilityProperty.register(BottomNavigationBarBase);
@@ -153,7 +154,6 @@ export const activeColorCssProperty = new CssProperty<Style, Color>({
     name: 'activeColor',
     cssName: 'active-color',
     equalityComparer: Color.equals,
-    defaultValue: new Color('black'),
     valueConverter: (v) => new Color(v),
 });
 activeColorCssProperty.register(Style);
@@ -162,10 +162,23 @@ export const inactiveColorCssProperty = new CssProperty<Style, Color>({
     name: 'inactiveColor',
     cssName: 'inactive-color',
     equalityComparer: Color.equals,
-    defaultValue: new Color('gray'),
     valueConverter: (v) => new Color(v),
 });
 inactiveColorCssProperty.register(Style);
+export const badgeColorCssProperty = new CssProperty<Style, Color>({
+    name: 'badgeColor',
+    cssName: 'badge-color',
+    equalityComparer: Color.equals,
+    valueConverter: (v) => new Color(v),
+});
+badgeColorCssProperty.register(Style);
+export const badgeTextColorCssProperty = new CssProperty<Style, Color>({
+    name: 'badgeTextColor',
+    cssName: 'badge-text-color',
+    equalityComparer: Color.equals,
+    valueConverter: (v) => new Color(v),
+});
+badgeTextColorCssProperty.register(Style);
 
 // Bottom Navigation Tab
 

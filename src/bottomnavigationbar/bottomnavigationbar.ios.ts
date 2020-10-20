@@ -1,6 +1,6 @@
 import { themer } from '@nativescript-community/ui-material-core';
 import { Application, Color, Screen, Utils, backgroundColorProperty } from '@nativescript/core';
-import { BottomNavigationBarBase, BottomNavigationTabBase, activeColorCssProperty, inactiveColorCssProperty, tabsProperty, titleVisibilityProperty } from './bottomnavigationbar-common';
+import { BottomNavigationBarBase, BottomNavigationTabBase,TitleVisibility,  activeColorCssProperty, badgeColorCssProperty, badgeTextColorCssProperty, inactiveColorCssProperty, tabsProperty, titleVisibilityProperty } from './bottomnavigationbar-common';
 
 @NativeClass
 class BottomNavigationBarDelegate extends NSObject {
@@ -35,8 +35,6 @@ class BottomNavigationBarDelegate extends NSObject {
         }
         return bottomNavigationTab.isSelectable;
     }
-}
-{
 }
 export class BottomNavigationBar extends BottomNavigationBarBase {
     nativeViewProtected: MDCBottomNavigationBar;
@@ -107,12 +105,19 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         this.createTabs(tabs);
     }
 
-    [titleVisibilityProperty.setNative](titleVisibility: MDCBottomNavigationBarTitleVisibility) {
-        this.nativeViewProtected.titleVisibility = titleVisibility;
+    [titleVisibilityProperty.setNative](titleVisibility: TitleVisibility) {
+        this.nativeViewProtected.titleVisibility = titleVisibility as number;
     }
 
     [activeColorCssProperty.setNative](activeColor: Color) {
         this.nativeViewProtected.selectedItemTintColor = activeColor ? activeColor.ios : null;
+    }
+    [badgeColorCssProperty.setNative](color: Color) {
+        this.nativeViewProtected.itemBadgeBackgroundColor = color ? color.ios : null;
+    }
+
+    [badgeTextColorCssProperty.setNative](color: Color) {
+        this.nativeViewProtected.itemBadgeTextColor = color ? color.ios : null;
     }
 
     [inactiveColorCssProperty.setNative](inactiveColor: Color) {
@@ -136,25 +141,41 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         });
         this.nativeViewProtected.items = new NSArray({ array: bottomNavigationTabs });
 
-        this.selectTabNative(this.selectedTabIndex);
+        this.nativeViewProtected.selectedItem = this.nativeViewProtected.items[this.selectedTabIndex];
     }
 
     protected selectTabNative(index: number): void {
         if (this.nativeViewProtected.items.count === 0) {
             return;
         }
-
-        this.nativeViewProtected.selectedItem = this.nativeViewProtected.items[index];
-        this.selectedTabIndex = index;
+        // ios impl does not trigger delegates!
+        const itemToSelect = this.nativeViewProtected.items[index];
+        if (this._delegate.bottomNavigationBarShouldSelectItem(this.nativeViewProtected, itemToSelect)) {
+            this.nativeViewProtected.selectedItem = this.nativeViewProtected.items[index];
+            this._delegate.bottomNavigationBarDidSelectItem(this.nativeViewProtected, itemToSelect);
+            this.selectedTabIndex = index;
+        }
     }
 }
 
 // Bottom Navigation Tab
 
+declare class MDCBottomNavigationItemView extends UIView {
+    selectedItemTintColor: UIColor;
+    unselectedItemTintColor: UIColor;
+    selectedItemTitleColor: UIColor;
+    badgeTextColor: UIColor;
+    badgeColor: UIColor;
+}
+
 export class BottomNavigationTab extends BottomNavigationTabBase {
     nativeViewProtected: UITabBarItem;
     createNativeView() {
-        return UITabBarItem.alloc().initWithTitleImageTag(this.title, this.getNativeIcon(), 0);
+        let icon = this.getNativeIcon() ;
+        if (icon) {
+            icon = icon.imageWithRenderingMode(UIImageRenderingMode.Automatic);
+        }
+        return UITabBarItem.alloc().initWithTitleImageTag(this.title, icon, 0);
     }
 
     getNativeIcon(): UIImage {
@@ -162,19 +183,19 @@ export class BottomNavigationTab extends BottomNavigationTabBase {
     }
 
     getMDView() {
-        return (this.parent as BottomNavigationBar).nativeViewProtected.viewForItem(this.nativeViewProtected) as any;
+        return (this.parent as BottomNavigationBar).nativeViewProtected.viewForItem(this.nativeViewProtected) as MDCBottomNavigationItemView;
     }
 
     [activeColorCssProperty.setNative](activeColor: Color) {
-        // not working for now
-        // const color = activeColor ? activeColor.ios : null;
-        // this.getMDView().selectedItemTintColor = color;
+        const color = activeColor ? activeColor.ios : null;
+        // TODO: it wont work for now as MDCBottomNavigationItemView is not exposed
+        this.getMDView().selectedItemTintColor = color;
     }
 
     [inactiveColorCssProperty.setNative](inactiveColor: Color) {
-        // not working for now
-        // const color = inactiveColor ? inactiveColor.ios : null;
-        // this.getMDView().unselectedItemTintColor = color;
+        const color = inactiveColor ? inactiveColor.ios : null;
+        // TODO: it wont work for now as MDCBottomNavigationItemView is not exposed
+        this.getMDView().unselectedItemTintColor = color;
     }
 
     showBadge(value?: number): void {

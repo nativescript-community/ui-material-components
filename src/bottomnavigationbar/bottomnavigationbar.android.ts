@@ -1,10 +1,12 @@
-import { state } from '@nativescript-community/ui-material-core/android/utils';
+import { state, stateSets } from '@nativescript-community/ui-material-core/android/utils';
 import { Color } from '@nativescript/core';
 import {
     BottomNavigationBarBase,
     BottomNavigationTabBase,
     TitleVisibility,
     activeColorCssProperty,
+    badgeColorCssProperty,
+    badgeTextColorCssProperty,
     inactiveColorCssProperty,
     tabsProperty,
     titleVisibilityProperty
@@ -83,18 +85,18 @@ const getOnTabReselectedListener = () => {
     return OnTabReselectedListener;
 };
 
-function createColorStateList(activeColor: Color, inactiveColor: Color) {
+function createColorStateList(activeColor: number, inactiveColor: number) {
     const stateChecked = Array.create('int', 1);
     stateChecked[0] = state.checked;
     const stateUnChecked = Array.create('int', 0);
 
-    const states = java.lang.reflect.Array.newInstance(stateChecked.getClass() || stateUnChecked.getClass(), 2);
+    const states = Array.create('[I', 2);
     states[0] = stateChecked;
     states[1] = stateUnChecked;
 
     const colors = Array.create('int', 2);
-    colors[0] = activeColor.android;
-    colors[1] = inactiveColor.android;
+    colors[0] = activeColor;
+    colors[1] = inactiveColor;
 
     return new android.content.res.ColorStateList(states, colors);
 }
@@ -133,7 +135,13 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         // showBadge method is available in v1.1.0-alpha07 of material components
         // but NS team has the .d.ts for version 1
         // that's why we need to cast the nativeView to any to avoid typing errors
-        const badge = (this.nativeViewProtected as any).getOrCreateBadge(index);
+        const badge = (this.nativeViewProtected).getOrCreateBadge(index);
+        if (this.badgeColor) {
+            badge.setBackgroundColor(this.badgeColor.android);
+        }
+        if (this.badgeTextColor) {
+            badge.setBadgeTextColor(this.badgeTextColor.android);
+        }
         if (value) {
             badge.setNumber(value);
         }
@@ -155,13 +163,17 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
     }
 
     [activeColorCssProperty.setNative](activeColor: Color) {
-        const colorStateList = createColorStateList(activeColor, this.inactiveColor);
+        const color1 = activeColor instanceof Color ? activeColor.android : activeColor;
+        const color2 = this.inactiveColor instanceof Color ? this.inactiveColor.android : this.nativeViewProtected.getItemTextColor().getColorForState(stateSets.BACKGROUND_DEFAULT_STATE_2, color1);
+        const colorStateList = createColorStateList(color1, color2);
         this.nativeViewProtected.setItemTextColor(colorStateList);
         this.nativeViewProtected.setItemIconTintList(colorStateList);
     }
 
     [inactiveColorCssProperty.setNative](inactiveColor: Color) {
-        const colorStateList = createColorStateList(this.activeColor, inactiveColor);
+        const color2= inactiveColor instanceof Color ? inactiveColor.android : inactiveColor;
+        const color1 = this.activeColor instanceof Color ? this.activeColor.android : (this.nativeViewProtected.getItemTextColor().getColorForState(stateSets.FOCUSED_STATE_SET, color2));
+        const colorStateList = createColorStateList(color1, color2);
         this.nativeViewProtected.setItemTextColor(colorStateList);
         this.nativeViewProtected.setItemIconTintList(colorStateList);
     }
@@ -225,15 +237,19 @@ export class BottomNavigationTab extends BottomNavigationTabBase {
     }
     [activeColorCssProperty.setNative](activeColor: Color) {
         // not working for now
-        // const colorStateList = createColorStateList(activeColor, this.inactiveColor);
+        const color1 = activeColor instanceof Color ? activeColor.android : activeColor;
+        const color2 = this.inactiveColor instanceof Color ? this.inactiveColor.android : (this.nativeViewProtected.getIconTintList()?this.nativeViewProtected.getIconTintList().getColorForState(stateSets.BACKGROUND_DEFAULT_STATE_2, color1): 0);
+        const colorStateList = createColorStateList(color1, color2);
         // this.nativeViewProtected.color(colorStateList); // can we set the text color?
-        // this.nativeViewProtected.setIconTintList(colorStateList);
+        this.nativeViewProtected.setIconTintList(colorStateList);
     }
 
     [inactiveColorCssProperty.setNative](inactiveColor: Color) {
         // not working for now
-        // const colorStateList = createColorStateList(this.activeColor, inactiveColor);
+        const color2= inactiveColor instanceof Color ? inactiveColor.android : inactiveColor;
+        const color1 = this.activeColor instanceof Color ? this.activeColor.android : (this.nativeViewProtected.getIconTintList()?this.nativeViewProtected.getIconTintList().getColorForState(stateSets.FOCUSED_STATE_SET, color2):0);
+        const colorStateList = createColorStateList(color1, color2);
         // this.nativeViewProtected.setText(colorStateList); // can we set the text color?
-        // this.nativeViewProtected.setIconTintList(colorStateList);
+        this.nativeViewProtected.setIconTintList(colorStateList);
     }
 }
