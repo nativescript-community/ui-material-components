@@ -86,7 +86,7 @@ export class Slider extends View {
             ASlider = com.google.android.material.slider.Slider;
         }
         const result = new ASlider(this._context);
-        result.setLabelBehavior(com.google.android.material.slider.LabelFormatter.LABEL_GONE);
+        result.setLabelBehavior(2); // com.google.android.material.slider.LabelFormatter.LABEL_GONE
         return result;
     }
     initNativeView() {
