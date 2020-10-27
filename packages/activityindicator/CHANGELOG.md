@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.27](https://github.com/Akylas/nativescript-material-components/compare/v5.0.26...v5.0.27) (2020-10-27)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-activityindicator
+
+
+
+
+
 ## [5.0.26](https://github.com/Akylas/nativescript-material-components/compare/v5.0.25...v5.0.26) (2020-10-27)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-activityindicator

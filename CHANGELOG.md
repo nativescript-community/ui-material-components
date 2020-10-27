@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.27](https://github.com/Akylas/nativescript-material-components/compare/v5.0.26...v5.0.27) (2020-10-27)
+
+
+### Bug Fixes
+
+* **bottomsheet:** missing correct typings ([2f8365b](https://github.com/Akylas/nativescript-material-components/commit/2f8365b1dd2e148cfedb983a929d55caf8e1f881))
+* **bottomsheet:** resolve wrong params ([878b571](https://github.com/Akylas/nativescript-material-components/commit/878b571744d5b2eeb35f7c19a88b4a69cce4d44e))
+
+
+
+
+
 ## [5.0.26](https://github.com/Akylas/nativescript-material-components/compare/v5.0.25...v5.0.26) (2020-10-27)
 
 
