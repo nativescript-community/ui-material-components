@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.26](https://github.com/Akylas/nativescript-material-components/compare/v5.0.25...v5.0.26) (2020-10-27)
+
+
+### Bug Fixes
+
+* **bottomsheet:** vue showBottomSheet returns a promise ([c622dcd](https://github.com/Akylas/nativescript-material-components/commit/c622dcd6081ff59451160441494589a5e469964b))
+* **slider:** android prevent error on 6.0 ([a32343f](https://github.com/Akylas/nativescript-material-components/commit/a32343fef6e8e36380ac33a1d4f990d00e6abf5d))
+
+
+
+
+
 ## [5.0.25](https://github.com/Akylas/nativescript-material-components/compare/v5.0.24...v5.0.25) (2020-10-20)
 
 

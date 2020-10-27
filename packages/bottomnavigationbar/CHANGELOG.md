@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.26](https://github.com/Akylas/nativescript-material-components/compare/v5.0.25...v5.0.26) (2020-10-27)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-bottomnavigationbar
+
+
+
+
+
 ## [5.0.25](https://github.com/Akylas/nativescript-material-components/compare/v5.0.24...v5.0.25) (2020-10-20)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-bottomnavigationbar
