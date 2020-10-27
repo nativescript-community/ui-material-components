@@ -55,7 +55,7 @@ const BottomSheetPlugin = {
                             resolved = true;
                             if (navEntryInstance && navEntryInstance.nativeView) {
                                 options.closeCallback && options.closeCallback.apply(undefined, args);
-                                resolve(args);
+                                resolve(...args);
                                 navEntryInstance.$emit('bottomsheet:close');
                                 navEntryInstance.$destroy();
                                 navEntryInstance = null;
