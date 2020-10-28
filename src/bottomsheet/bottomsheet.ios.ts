@@ -94,8 +94,7 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
     const top = marginTop + position.top;
     const width = owner.getMeasuredWidth();
     const height = owner.getMeasuredHeight();
-
-    View.layoutChild(null, owner, position.left, position.top, position.left + width, position.top + height);
+    View.layoutChild(null, owner, position.left, top, position.left + width + marginLeft+ marginRight, position.top + height+ marginBottom);
 
     const effectiveWidth = width + marginLeft + marginRight;
     let effectiveHeight = height + top + marginBottom;
@@ -103,8 +102,8 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
         const frame = CGRectMake(
             Utils.layout.toDeviceIndependentPixels(marginLeft),
             Utils.layout.toDeviceIndependentPixels(top),
-            Utils.layout.toDeviceIndependentPixels(effectiveWidth),
-            Utils.layout.toDeviceIndependentPixels(effectiveHeight)
+            Utils.layout.toDeviceIndependentPixels(width),
+            Utils.layout.toDeviceIndependentPixels(height)
         );
         const availableSpace = getAvailableSpaceFromParent(owner, frame);
 
