@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.30](https://github.com/Akylas/nativescript-material-components/compare/v5.0.29...v5.0.30) (2020-11-03)
+
+
+### Bug Fixes
+
+* actual better fix for ios text buttons ([d75a09a](https://github.com/Akylas/nativescript-material-components/commit/d75a09a686aed004a33273fe55a26c687009bc55))
+
+
+
+
+
 ## [5.0.29](https://github.com/Akylas/nativescript-material-components/compare/v5.0.28...v5.0.29) (2020-11-03)
 
 
