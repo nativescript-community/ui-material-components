@@ -130,9 +130,7 @@ export class Button extends ButtonBase {
         if (this.variant === 'text') {
             // fixes a bug where N would set default UILabel system color
             // if no color in style which would break theming
-            if (!this.style.color) {
-                this.style.color = themer.getPrimaryColor() as Color;
-            }
+            this.style['css:color'] = themer.getPrimaryColor() as Color;
             view.applyTextThemeWithScheme(scheme);
         } else if (this.variant === 'flat') {
             if (colorScheme) {
