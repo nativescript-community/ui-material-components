@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.29](https://github.com/Akylas/nativescript-material-components/compare/v5.0.28...v5.0.29) (2020-11-03)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-dialogs
+
+
+
+
+
 ## [5.0.28](https://github.com/Akylas/nativescript-material-components/compare/v5.0.27...v5.0.28) (2020-10-28)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-dialogs
