@@ -34,7 +34,6 @@ export class Themer {
         this.primaryColor = value;
         const colorTheme = this.getOrcreateAppColorScheme();
         const color = value instanceof Color ? value : new Color(value);
-        console.log('setPrimaryColor', color, colorTheme);
         colorTheme.primaryColor = color.ios;
         this.appColorScheme.primaryColorVariant = this.appColorScheme.primaryColor.colorWithAlphaComponent(0.24);
         // colorTheme.primaryColorVariant = new Color(61.2, color.r, color.g, color.b).ios; // default alpha is 0.24
@@ -53,10 +52,10 @@ export class Themer {
     }
 
     setAccentColor(value: string | Color) {
-        this.accentColor = value;
+        this.setSecondaryColor(value);
     }
     getAccentColor(): string | Color {
-        return this.accentColor;
+        return this.getSecondaryColor();
     }
 
     setSurfaceColor(value: string | Color) {

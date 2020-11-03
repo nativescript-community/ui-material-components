@@ -123,11 +123,9 @@ export class Button extends ButtonBase {
     }
 
     setCornerRadius(value) {
-        // const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
         this.nativeViewProtected.setCornerRadius(value);
     }
     setStrokeWidth(value) {
-        // const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
         this.nativeViewProtected.setStrokeWidth(value);
     }
     [textTransformProperty.setNative](value: TextTransform) {
