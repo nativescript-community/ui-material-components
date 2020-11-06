@@ -14,7 +14,6 @@ import {
     colorProperty,
     isUserInteractionEnabledProperty
 } from '@nativescript/core';
-import { FloatingActionButton } from '@nativescript-community/ui-material-floatingactionbutton';
 import { Button } from '@nativescript-community/ui-material-button';
 import { LinearGradient } from '@nativescript/core/ui/styling/gradient';
 import { AnimationCurve } from '@nativescript/core/ui/enums';
