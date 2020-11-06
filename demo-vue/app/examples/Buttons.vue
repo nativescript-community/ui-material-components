@@ -10,6 +10,8 @@
         <ScrollView>
             <StackLayout>
                 <MDButton text="raised button" @tap="onTap" />
+                <MDButton src="res://ic_action_add" text="button with icon" @tap="onTap" />
+                <MDButton variant="text" color="red" src="res://ic_action_add" text="button with icon and tint" @tap="onTap" />
                 <MDButton variant="text" text="text button" @tap="onTap" />
                 <MDButton variant="flat" text="flat button" @tap="onTap" />
                 <MDButton variant="outline" text="outline button" @tap="onTap" />
@@ -19,6 +21,7 @@
                     <MDTextField class="session-details-input" :hint="'description'" />
                 </StackLayout>
                 <MDFloatingActionButton src="res://ic_action_add" @tap="onTap" horizontalAlignment="center" />
+                <MDFloatingActionButton fontSize="26" text="mdi-plus" class="mdi" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton src="res://ic_action_add" color="white" backgroundColor="blue" size="mini" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton src="res://ic_action_add" text="test expanded" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton src="res://ic_action_add" text="test expanded" :expanded="expanded" @tap="switchExpanded" horizontalAlignment="center" />
@@ -45,6 +48,7 @@
                 <MDButton text="text button class" width="200" class="text_class_test" variant="text" @tap="onTap" />
                 <MDButton text="disabled text button" isEnabled="false" width="200" variant="text" @tap="onTap" />
                 <MDButton class="falseFAb bg-green" text="+" color="white" verticalAlign="center" backgroundColor="#53ba82" @tap="onTap" />
+                <MDButton class="falseFAb bg-green" src="res://ic_action_add" @tap="onTap" />
                 <MDButton backgroundColor="red" text="backgroundColor" isEnabled="false" />
                 <MDButton class="buttontest" text="buttontest" />
                 <MDButton class="buttontest" text="buttontest" isEnabled="false" />
