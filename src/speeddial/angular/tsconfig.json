@@ -9,8 +9,8 @@
             "@nativescript-community/ui-material-core/*": ["packages/core/*"],
             "@nativescript-community/ui-material-speeddial": ["packages/speeddial/index"],
             "@nativescript-community/ui-material-speeddial/*": ["packages/speeddial/*"],
-            "@nativescript-community/ui-material-floatingactionbutton": ["packages/floatingactionbutton/floatingactionbutton"],
-            "@nativescript-community/ui-material-floatingactionbutton/*": ["packages/floatingactionbutton/*"]
+            "@nativescript-community/ui-material-button": ["packages/button/button"],
+            "@nativescript-community/ui-material-button/*": ["packages/button/*"]
         }
     },
     "include": ["./**/*.ts", "../../../references.d.ts", "../../references.d.ts"],

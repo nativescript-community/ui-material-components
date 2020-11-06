@@ -26,42 +26,6 @@ Be sure to run a new build after adding plugins to avoid any issues.
 ### Usage
 
 
-## Plain NativeScript
-
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdf="@nativescript-community/ui-material-speeddial"` on the Page element_
-
-### XML
-
-```XML
-<Page xmlns:mdf="@nativescript-community/ui-material-speeddial">
-    <StackLayout horizontalAlignment="center">
-        <mdf:speeddial src="res://ic_action_add"/>
-        <mdf:speeddial elevation="5" src="res://ic_action_add"/>
-   </StackLayout>
-</Page>
-```
-
-### CSS
-
-```CSS
-mdcspeeddial {
-    ripple-color: blue;
-    elevation: 4;
-}
-```
-
-## NativeScript + Angular
-
-```typescript
-import { registerElement } from '@nativescript/angular/element-registry';
-import { speeddial } from '@nativescript-community/ui-material-speeddial';
-registerElement('MDspeeddial', () => speeddial);
-```
-
-```html
-<MDspeeddial rippleColor="blue" src="res://ic_action_add"></MDspeeddial>
-```
-
 ## NativeScript + Vue
 
 ```javascript
@@ -72,23 +36,10 @@ Vue.use(speeddialPlugin);
 ```
 
 ```html
-<MDspeeddial rippleColor="blue" src="res://ic_action_add"/>
+<MDSpeedDial buttonFontSize="26" text="mdi-one-up"  buttonClass="mdi" buttonBackgroundColor="yellow" @tap="onTap">
+    <MDSpeedDialItem icon="res://ic_action_add" title="test1" backgroundColor="red"  @tap="onTap"/>
+    <MDSpeedDialItem text="mdi-card-account-mail" title="test2" buttonClass="mdi" backgroundColor="green"  @tap="onTap"/>
+    <MDSpeedDialItem backgroundImage="~/images/iu.jpg"  backgroundColor="blue"  @tap="onTap"/>
+    <MDSpeedDialItem icon="res://ic_action_add" title="test4" backgroundColor="orange" @tap="onTap"/>
+</MDSpeedDial>
 ```
-
-## Attributes
-
-Inherite from Nativescript [Button](https://docs.nativescript.org/ui/ns-ui-widgets/button) so it already has all the same attributes
-
-## Attributes
-
-* **src** _optional_
-
-An attribute to set the speeddial icon. For now FAB only support images as icon
-
-* **elevation** _optional_
-
-An attribute to set the elevation of the speeddial. This will increase the 'drop-shadow' of the speeddial.
-
-* **rippleColor** _optional_
-
-An attribute to set the ripple color of the speeddial.
