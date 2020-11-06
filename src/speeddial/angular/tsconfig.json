@@ -1,0 +1,20 @@
+{
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "./",
+        "paths": {
+            "tns-core-modules": ["./node_modules/@nativescript/core"],
+            "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
+            "@nativescript-community/ui-material-core": ["packages/core/index"],
+            "@nativescript-community/ui-material-core/*": ["packages/core/*"],
+            "@nativescript-community/ui-material-speeddial": ["packages/speeddial/index"],
+            "@nativescript-community/ui-material-speeddial/*": ["packages/speeddial/*"],
+            "@nativescript-community/ui-material-floatingactionbutton": ["packages/floatingactionbutton/floatingactionbutton"],
+            "@nativescript-community/ui-material-floatingactionbutton/*": ["packages/floatingactionbutton/*"]
+        }
+    },
+    "include": ["./**/*.ts", "../../../references.d.ts", "../../references.d.ts"],
+    "angularCompilerOptions": {
+        "enableIvy": true
+    }
+}

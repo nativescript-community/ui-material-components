@@ -87,6 +87,9 @@ module.exports = (env, params = {}) => {
             '@nativescript-community/ui-material-button/button$': '#/button/button.' + platform,
             '../button$': '#/button/button.' + platform,
 
+            '@nativescript-community/ui-material-speeddial$': '#/speeddial/index',
+            '@nativescript-community/ui-material-speeddial/vue$': '#/speeddial/vue/index',
+
             '@nativescript-community/ui-material-tabs$': '#/tabs/tabs.' + platform,
             '@nativescript-community/ui-material-tabs/vue$': '#/tabs/vue/index',
             '@nativescript-community/ui-material-tabs/tabs$': '#/tabs/button.' + platform,
@@ -94,17 +97,9 @@ module.exports = (env, params = {}) => {
 
             '@nativescript-community/ui-material-textfield$': '#/textfield/textfield',
             '@nativescript-community/ui-material-textfield': '#/textfield',
-            // '@nativescript-community/ui-material-textfield/textfield$': '#/textfield/textfield.' + platform,
-            // '@nativescript-community/ui-material-textfield/textfield_cssproperties$': '#/textfield/textfield_cssproperties',
-            // '@nativescript-community/ui-material-textfield/vue$': '#/textfield/vue/index',
-            // '../textfield$': '#/textfield/textfield.' + platform,
 
             '@nativescript-community/ui-material-textview$': '#/textview/textview',
             '@nativescript-community/ui-material-textview': '#/textview',
-            // '@nativescript-community/ui-material-textview/textview$': '#/textview/textview.' + platform,
-            // '@nativescript-community/ui-material-textview/textview_cssproperties$': '#/textview/textview_cssproperties',
-            // '@nativescript-community/ui-material-textview/vue$': '#/textview/vue/index',
-            // '../textfield$': '#/textview/textview.' + platform,
 
             '@nativescript-community/ui-material-floatingactionbutton$': '#/floatingactionbutton/floatingactionbutton.' + platform,
             '@nativescript-community/ui-material-floatingactionbutton/vue$': '#/floatingactionbutton/vue/index',

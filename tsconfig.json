@@ -54,6 +54,8 @@
             "@nativescript-community/ui-material-textfield/*": ["src/textfield/*"],
             "@nativescript-community/ui-material-textview": ["src/textview/textview"],
             "@nativescript-community/ui-material-textview/*": ["src/textview/*"],
+            "@nativescript-community/ui-material-speeddial": ["src/speeddial/index"],
+            "@nativescript-community/ui-material-speeddial/*": ["src/speeddial/*"],
             "*": ["node_modules/*"]
         },
         "plugins": [

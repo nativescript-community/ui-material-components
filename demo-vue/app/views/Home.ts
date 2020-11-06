@@ -27,7 +27,11 @@ export default {
     methods: {
         goToExample(item) {
             console.log('goToExample');
-            this.$navigateTo(item.component);
+            try {
+                this.$navigateTo(item.component);
+            } catch(err) {
+                console.error(err);
+            }
         },
         goToModalExample(item) {
             console.log('goToModalExample');

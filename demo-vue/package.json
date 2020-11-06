@@ -5,7 +5,8 @@
     "repository": "http://www.github.com/NativeScript/nativescript-ui-sidedrawer.git",
     "dependencies": {
         "@mdi/font": "4.9.95",
-        "@nativescript/core": "7.0.11",
+        "@nativescript/core": "7.0.13",
+        "@nativescript-community/text": "1.3.6",
         "@nativescript-community/ui-material-activityindicator": "file:../packages/activityindicator",
         "@nativescript-community/ui-material-bottomnavigationbar": "file:../packages/bottomnavigationbar",
         "@nativescript-community/ui-material-bottomsheet": "file:../packages/bottomsheet",
@@ -18,6 +19,7 @@
         "@nativescript-community/ui-material-ripple": "file:../packages/ripple",
         "@nativescript-community/ui-material-slider": "file:../packages/slider",
         "@nativescript-community/ui-material-snackbar": "file:../packages/snackbar",
+        "@nativescript-community/ui-material-speeddial": "file:../packages/speeddial",
         "@nativescript-community/ui-material-tabs": "file:../packages/tabs",
         "@nativescript-community/ui-material-textfield": "file:../packages/textfield",
         "@nativescript-community/ui-material-textview": "file:../packages/textview",

@@ -1,0 +1,18 @@
+{
+	"name": "@nativescript-community/ui-material-speeddial-angular",
+	"main": "index.js",
+	"ngPackage": {
+		"dest": "../../../packages/speeddial/angular",
+		"lib": {
+			"entryFile": "index.ts",
+			"umdModuleIds": {
+				"@nativescript/core": "ns-core",
+				"@nativescript/angular": "ns-angular",
+				"@nativescript-community/ui-material-speeddial": "ns-material-speeddial"
+			}
+		},
+		"whitelistedNonPeerDependencies": [
+			"."
+		]
+	}
+}
