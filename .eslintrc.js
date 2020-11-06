@@ -1,15 +1,13 @@
 module.exports = {
-    env: {
-        browser: true
-    },
+    extends: ['plugin:prettier/recommended'],
+    plugins: ['prettier', '@typescript-eslint'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         createDefaultProgram: true,
-        project: 'tsconfig.json',
-        sourceType: 'module'
+        project: './tsconfig.json'
     },
-    plugins: ['@typescript-eslint'],
     rules: {
+        'prettier/prettier': 'warn',
         '@typescript-eslint/adjacent-overload-signatures': 'error',
         '@typescript-eslint/array-type': 'error',
         '@typescript-eslint/await-thenable': 'error',
@@ -33,7 +31,7 @@ module.exports = {
                 FunctionExpression: {
                     parameters: 'first'
                 },
-                SwitchCase:1
+                SwitchCase: 1
             }
         ],
         '@typescript-eslint/interface-name-prefix': 'off',
@@ -143,7 +141,7 @@ module.exports = {
         'no-irregular-whitespace': 'off',
         'no-multiple-empty-lines': 'off',
         'no-new-wrappers': 'error',
-        'no-redeclare': 'error',
+        'no-redeclare': ['error', { builtinGlobals: false }],
         'no-regex-spaces': 'error',
         'no-return-await': 'error',
         'no-shadow': [
