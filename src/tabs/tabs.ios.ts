@@ -1029,7 +1029,6 @@ export class Tabs extends TabsBase {
     }
 
     public setTabBarColor(value: UIColor | Color): void {
-        console.log('setTabBarColor', value);
         const nativeColor = value instanceof Color ? value.ios : value;
         // this._ios.tabBar.setTitleColorForState(nativeColor, UIControlState.Normal);
         this._ios.tabBar.setTitleColorForState(nativeColor, UIControlState.Selected);
@@ -1050,7 +1049,6 @@ export class Tabs extends TabsBase {
     }
 
     public setTabBarSelectedItemColor(value: Color) {
-        console.log('setTabBarSelectedItemColor', value);
         this._selectedItemColor = value;
         this.updateAllItemsColors();
     }
@@ -1060,7 +1058,6 @@ export class Tabs extends TabsBase {
     }
 
     public setTabBarUnSelectedItemColor(value: Color) {
-        console.log('setTabBarUnSelectedItemColor', value);
         this._unSelectedItemColor = value;
         this.updateAllItemsColors();
     }
