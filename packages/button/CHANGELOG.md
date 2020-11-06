@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/Akylas/nativescript-material-components/compare/v5.0.30...v5.1.0) (2020-11-06)
+
+
+### Features
+
+* button basic icon support ([e0f2637](https://github.com/Akylas/nativescript-material-components/commit/e0f263776b372affac44362c58c603d04b7b9b60))
+
+
+
+
+
 ## [5.0.30](https://github.com/Akylas/nativescript-material-components/compare/v5.0.29...v5.0.30) (2020-11-03)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
