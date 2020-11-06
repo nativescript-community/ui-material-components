@@ -1,1 +1,1 @@
-export * from './appbar.ios'
+export * from './appbar.ios';

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActionBarComponent, isInvisibleNode, isView, NgView, ViewClassMeta, ViewExtensions } from '@nativescript/angular';
+import { ActionBarComponent, NgView, ViewClassMeta, ViewExtensions, isInvisibleNode, isView } from '@nativescript/angular';
 import { ActionBar, ActionItem, ActionItems, NavigationButton } from '@nativescript/core';
 
 export function isActionItem(view: any): view is ActionItem {

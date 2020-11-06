@@ -5,17 +5,17 @@ import { textProperty } from '@nativescript/core/ui/text-base';
 export const imageSourceProperty = new Property<FloatingActionButtonBase, ImageSource>({ name: 'imageSource' });
 
 export const srcProperty = new Property<FloatingActionButtonBase, any>({
-    name: 'src',
+    name: 'src'
 });
 
 export const sizeProperty = new Property<FloatingActionButtonBase, string>({
     name: 'size',
-    affectsLayout: true,
+    affectsLayout: true
 });
 
 export const expandedProperty = new Property<FloatingActionButtonBase, boolean>({
     name: 'expanded',
-    affectsLayout: true,
+    affectsLayout: true
 });
 
 @CSSType('MDFloatingActionButton')
@@ -33,15 +33,15 @@ export abstract class FloatingActionButtonBase extends Button {
     @cssProperty rippleColor: Color;
     @cssProperty dynamicElevationOffset: number;
 
-    public srcCompat: string;
     public fabSize: string;
     public fabCustomSize: number;
-    public imageSource: ImageSource;
-    public src: string | ImageSource;
-    public isLoading: boolean;
     public size: 'mini' | 'auto' | 'normal';
     public expanded: boolean;
 
+
+    public imageSource: ImageSource;
+    public src: string | ImageSource;
+    public isLoading: boolean;
     /**
      * @internal //copied from image common
      */
