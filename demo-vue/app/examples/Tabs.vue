@@ -67,7 +67,7 @@ export default Vue.extend({
 <style>
 
 MDTabs {
-  color: gold;
+  /* color: gold; */
 }
 
 TabContentItem.special {
