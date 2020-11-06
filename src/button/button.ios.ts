@@ -3,6 +3,7 @@ import {
     Background,
     Color,
     Font,
+    ImageSource,
     Screen,
     TextTransform,
     Utils,
@@ -11,10 +12,11 @@ import {
     borderBottomRightRadiusProperty,
     borderTopLeftRadiusProperty,
     borderTopRightRadiusProperty,
+    colorProperty,
     fontInternalProperty,
-    textTransformProperty,
+    textTransformProperty
 } from '@nativescript/core';
-import { ButtonBase } from './button-common';
+import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
 
 let buttonScheme: MDCContainerScheme;
 function getButtonScheme() {
@@ -53,7 +55,7 @@ class MDButtonObserverClass extends NSObject {
                             top,
                             left: inset.left,
                             bottom: inset.bottom,
-                            right: inset.right,
+                            right: inset.right
                         };
                         break;
 
@@ -66,7 +68,7 @@ class MDButtonObserverClass extends NSObject {
                             top: top + topCorrect,
                             left: inset.left,
                             bottom: inset.bottom,
-                            right: inset.right,
+                            right: inset.right
                         };
                         break;
                     }
@@ -80,7 +82,7 @@ class MDButtonObserverClass extends NSObject {
                             top: top + bottomCorrect,
                             left: inset.left,
                             bottom: inset.bottom,
-                            right: inset.right,
+                            right: inset.right
                         };
                         break;
                     }
@@ -124,6 +126,8 @@ export class Button extends ButtonBase {
 
     public createNativeView() {
         const view = MDCButton.new();
+        view.imageView.contentMode = UIViewContentMode.ScaleAspectFit;
+
         const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
         const scheme = MDCContainerScheme.new();
         scheme.colorScheme = colorScheme;
@@ -164,7 +168,7 @@ export class Button extends ButtonBase {
     }
 
     [textTransformProperty.setNative](value: TextTransform) {
-        this.nativeViewProtected.uppercaseTitle = (value !== 'none');
+        this.nativeViewProtected.uppercaseTitle = value !== 'none';
     }
     [rippleColorProperty.setNative](color: Color) {
         this.nativeViewProtected.inkColor = getRippleColor(color);
@@ -246,5 +250,20 @@ export class Button extends ButtonBase {
             const font = value instanceof Font ? value.getUIFont(nativeView.font) : value;
             nativeView.setTitleFontForState(font, UIControlState.Normal);
         }
+    }
+    public _setNativeImage(nativeImage: UIImage) {
+        this.nativeViewProtected.setImageForState(nativeImage ? nativeImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate) : nativeImage, UIControlState.Normal);
+    }
+    [imageSourceProperty.setNative](value: ImageSource) {
+        this._setNativeImage(value ? value.ios : null);
+    }
+
+    [srcProperty.setNative](value: any) {
+        this._createImageSourceFromSrc(value);
+    }
+    [colorProperty.setNative](value) {
+        const color = value instanceof Color ? value.ios : value;
+        super[colorProperty.setNative](color);
+        this.nativeViewProtected.setImageTintColorForState(color, UIControlState.Normal);
     }
 }

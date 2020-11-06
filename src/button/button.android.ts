@@ -4,23 +4,23 @@ import { createStateListAnimator, getLayout, isPostLollipop } from '@nativescrip
 import {
     Background,
     Color,
+    Font,
+    ImageSource,
     Length,
     TextTransform,
+    Utils,
     androidDynamicElevationOffsetProperty,
     androidElevationProperty,
     backgroundInternalProperty,
+    colorProperty,
     profile,
-    textTransformProperty,
+    textTransformProperty
 } from '@nativescript/core';
-import { ButtonBase } from './button-common';
+import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
 
-let textId;
-let containedId;
-let flatId;
-let outlineId;
-let grayColorStateList: android.content.res.ColorStateList;
+const layoutIds = {};
 
 export class Button extends ButtonBase {
     nativeViewProtected: com.google.android.material.button.MaterialButton;
@@ -33,26 +33,15 @@ export class Button extends ButtonBase {
         let layoutId;
         const variant = this.variant;
         // let layoutIdName = 'material_button';
+        let layoutStringId: string;
         if (variant === 'text') {
-            if (!textId) {
-                textId = getLayout('material_button_text');
-            }
-            layoutId = textId;
+            layoutStringId = 'material_button_text';
         } else if (variant === 'flat') {
-            if (!flatId) {
-                flatId = getLayout('material_button_flat');
-            }
-            layoutId = flatId;
+            layoutStringId = 'material_button_flat';
         } else if (variant === 'outline') {
-            if (!outlineId) {
-                outlineId = getLayout('material_button_outline');
-            }
-            layoutId = outlineId;
+            layoutStringId = 'material_button_outline';
         } else {
-            if (!containedId) {
-                containedId = getLayout('material_button');
-            }
-            layoutId = containedId;
+            layoutStringId = 'material_button';
             // contained
             // we need to set the default through css or user would not be able to overload it through css...
             this.style['css:margin-left'] = 10;
@@ -60,12 +49,23 @@ export class Button extends ButtonBase {
             this.style['css:margin-top'] = 12;
             this.style['css:margin-bottom'] = 12;
         }
+        if (this.src) {
+            layoutStringId += '_icon';
+        }
+        layoutId = layoutIds[layoutStringId];
+        if (!layoutId) {
+            layoutId = layoutIds[layoutStringId] = getLayout(layoutStringId);
+        }
         // const layoutId = getLayout(layoutIdName);
         if (!LayoutInflater) {
             LayoutInflater = android.view.LayoutInflater;
         }
         const view = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.button.MaterialButton;
-
+        if (this.src) {
+            layoutStringId += '_icon';
+            view.setIconGravity(0x2); //com.google.android.material.button.MaterialButton.ICON_GRAVITY_TEXT_START
+            // view.setIconSize(Utils.layout.toDevicePixels(24));
+        }
         // if (variant === 'outline') {
         //     view.setStrokeWidth(1);
         //     if (!grayColorStateList) {
@@ -169,5 +169,25 @@ export class Button extends ButtonBase {
                 view.setGravity(android.view.Gravity.BOTTOM | horizontalGravity);
                 break;
         }
+    }
+
+    [imageSourceProperty.setNative](value: ImageSource) {
+        const nativeView = this.nativeViewProtected;
+        if (value && value.android) {
+            const fontSize = this.fontSize || nativeView.getTextSize();
+            nativeView.setIconSize(Math.min(value.width, Utils.layout.toDevicePixels(fontSize)));
+            nativeView.setIcon(new android.graphics.drawable.BitmapDrawable(value.android));
+        } else {
+            nativeView.setIcon(null);
+        }
+    }
+
+    [srcProperty.setNative](value: any) {
+        this._createImageSourceFromSrc(value);
+    }
+    [colorProperty.setNative](value) {
+        const color = value instanceof Color ? value.android : value;
+        super[colorProperty.setNative](color);
+        this.nativeViewProtected.setIconTint(android.content.res.ColorStateList.valueOf(color));
     }
 }
