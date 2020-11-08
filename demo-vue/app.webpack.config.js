@@ -39,7 +39,6 @@ module.exports = (env, params = {}) => {
         verbose, // --env.verbose
         uglify // --env.uglify
     } = env;
-    console.log('test', env, development);
     const config = webpackConfig(env, params);
     const mode = production ? 'production' : 'development';
     const platform = env && ((env.android && 'android') || (env.ios && 'ios'));
