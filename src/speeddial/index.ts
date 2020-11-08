@@ -63,12 +63,12 @@ export class SpeedDialItemButton extends Button {
         super();
         this.verticalAlignment = 'middle';
         this.style['css:font-size'] = 26;
-        this.style['css:border-radius'] = 28;
-        this.style['css:width'] = 56;
-        this.style['css:height'] = 56;
-        this.style['css:margin'] = 16;
-        this.style['css:dynamic-elevation-offset'] = 2;
-        this.style['css:font-size'] = 26;
+        // this.style['css:border-radius'] = 28;
+        // this.style['css:width'] = 56;
+        // this.style['css:height'] = 56;
+        // this.style['css:margin'] = 16;
+        // this.style['css:dynamic-elevation-offset'] = 2;
+        // this.style['css:font-size'] = 26;
     }
 }
 @CSSType('MDSpeedDialButton')
@@ -271,8 +271,8 @@ export class SpeedDial extends SpeedDialItemBase {
             this._fabsHolder.isPassThroughParentEnabled = true;
         }
         this._fabsHolder.flexDirection = this.orientation === 'vertical' ? 'column-reverse' : 'row-reverse';
-        this._fabsHolder.backgroundColor = new Color('#00000000');
         this._fabsHolder.visibility = 'hidden';
+        this.backgroundColor = new Color('#00000000');
 
         this._fabMainButton = new SpeedDialItem(null, true);
         this.prepareItem(this._fabMainButton, true);
@@ -284,7 +284,7 @@ export class SpeedDial extends SpeedDialItemBase {
         this.addChild(this._fabsHolder);
     }
 
-    get backDrop () {
+    get backDrop() {
         return this;
     }
 
@@ -425,6 +425,7 @@ export class SpeedDial extends SpeedDialItemBase {
 
         try {
             this._fabsHolder.visibility = 'visible';
+            this.isPassThroughParentEnabled = false;
             await new Animation(params).play();
             fabs.forEach((f) => (f.isUserInteractionEnabled = true));
         } catch (err) {
@@ -457,6 +458,7 @@ export class SpeedDial extends SpeedDialItemBase {
         try {
             fabs.forEach((f) => (f.isUserInteractionEnabled = false));
             await new Animation(params).play();
+            this.isPassThroughParentEnabled = true;
             this._fabsHolder.visibility = 'hidden';
         } catch (err) {
             // console.error(err);
@@ -492,9 +494,6 @@ export class SpeedDial extends SpeedDialItemBase {
     set icon(value: string | ImageSource) {
         this._fabMainButton.icon = value;
     }
-    set buttonIcon(value: string | ImageSource) {
-        this._fabMainButton.icon = value;
-    }
     get buttonClass() {
         return this._fabMainButton.buttonClass;
     }
@@ -516,39 +515,43 @@ export class SpeedDial extends SpeedDialItemBase {
         this._fabMainButton.color = value;
     }
     get text() {
-        return this.text && this._fabMainButton.text;
+        return this._fabMainButton.text;
     }
     set text(value: string) {
-        if (this._fabMainButton) {
-            this._fabMainButton.text = value;
-        }
+        this._fabMainButton.text = value;
     }
     get title() {
-        return this._fabMainButton && this._fabMainButton.title;
+        return this._fabMainButton.title;
     }
     set title(value: string) {
-        if (this._fabMainButton) {
-            this._fabMainButton.title = value;
-        }
+        this._fabMainButton.title = value;
     }
     //@ts-ignore
-    get buttonBackgroundColor() {
-        return this._fabMainButton && this._fabMainButton.backgroundColor;
-    }
-    set buttonBackgroundColor(value: string | Color) {
-        if (this._fabMainButton) {
-            this._fabMainButton.backgroundColor = value;
-        }
-    }
+    // get backgroundColor() {
+    //     return this._fabMainButton.backgroundColor;
+    // }
+    // set backgroundColor(value: string | Color) {
+    //     if (this._fabMainButton) {
+    //         this._fabMainButton.backgroundColor = value;
+    //     }
+    // }
+    // get ['css:background-color']() {
+    //     return this._fabMainButton.backgroundColor;
+    // }
+    // set ['css:background-color'](value: string | Color) {
+    //     if (this._fabMainButton) {
+    //         this._fabMainButton.backgroundColor = value;
+    //     }
+    // }
     //@ts-ignore
-    get buttonBackgroundImage() {
-        return this._fabMainButton && this._fabMainButton.backgroundImage;
-    }
-    set buttonBackgroundImage(value: string | LinearGradient) {
-        if (this._fabMainButton) {
-            this._fabMainButton.backgroundImage = value;
-        }
-    }
+    // get backgroundImage() {
+    //     return this._fabMainButton && this._fabMainButton.backgroundImage;
+    // }
+    // set backgroundImage(value: string | LinearGradient) {
+    //     if (this._fabMainButton) {
+    //         this._fabMainButton.backgroundImage = value;
+    //     }
+    // }
 
     get titleClass() {
         return this._fabMainButton.titleClass;
