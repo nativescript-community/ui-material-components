@@ -18,38 +18,46 @@ import {
     capitalizationType,
     fromObject,
     getCurrentPage,
-    inputType,
+    inputType
 } from '@nativescript/core';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
 
 export { capitalizationType, inputType };
 
-const UIViewAutoSizeUIViewAutoSize = (UIView as any).extend({
+@NativeClass
+class UIViewAutoSizeUIViewAutoSize extends UIView {
+    _view: View;
     systemLayoutSizeFittingSizeWithHorizontalFittingPriorityVerticalFittingPriority(boundsSize: CGSize) {
+        const view = this._view;
+        if (!view) {
+            return CGSizeZero;
+        }
         const actualWidth = Math.min(boundsSize.width, Screen.mainScreen.widthPixels);
         const widthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(actualWidth), Utils.layout.EXACTLY);
         const heighthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(boundsSize.height), Utils.layout.UNSPECIFIED);
-        const view = this._view as View;
         const measuredSize = View.measureChild(null, view, widthSpec, heighthSpec);
         const newWidth = Utils.layout.toDevicePixels(actualWidth);
         view.setMeasuredDimension(newWidth, measuredSize.measuredHeight);
         const size = CGSizeMake(Utils.layout.toDeviceIndependentPixels(measuredSize.measuredWidth), Utils.layout.toDeviceIndependentPixels(measuredSize.measuredHeight));
         return size;
-    },
+    }
     layoutSubviews() {
-        const view = this._view as View;
+        const view = this._view;
+        if (!view) {
+            return;
+        }
         const size = this.frame.size;
         View.layoutChild(null, view, 0, 0, Utils.layout.toDevicePixels(size.width), Utils.layout.toDevicePixels(size.height));
-    },
-});
+    }
+}
 
 function createUIViewAutoSizeUIViewAutoSize(view: View) {
-    const self = UIViewAutoSizeUIViewAutoSize.new() as UIView;
+    const self = UIViewAutoSizeUIViewAutoSize.new() as UIViewAutoSizeUIViewAutoSize;
     view._setupAsRootView({});
     view._isAddedToNativeVisualTree = true;
     view.callLoaded();
-    (self as any)._view = view;
+    self._view = view;
     self.addSubview(view.nativeViewProtected);
     (view.nativeViewProtected as UIView).autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
     return self;
@@ -71,55 +79,36 @@ class MDCDialogPresentationControllerDelegateImpl extends NSObject {
         }
     }
 }
-declare class IMDCAlertControllerImpl extends MDCAlertController {
+@NativeClass
+class MDCAlertControllerImpl extends MDCAlertController {
     autoFocusTextField?: TextField;
-    customContentView?: View;
-    // _customContentViewContext?: any;
     _resolveFunction?: Function;
-    actions: NSArray<any>;
     _disableContentInsets: boolean;
-}
-const MDCAlertControllerImpl = (MDCAlertController as any).extend({
-    viewDidAppear() {
+    viewDidAppear(animated: boolean) {
+        super.viewDidAppear(animated);
         if (this.autoFocusTextField) {
             this.autoFocusTextField.requestFocus();
             this.view.setNeedsLayout();
             this.autoFocusTextField = null;
         }
-    },
-    traitCollectionDidChange(previousTraitCollection: UITraitCollection): void {
-        try {
-            this.super.traitCollectionDidChange(previousTraitCollection);
-        } catch (err) {
-            console.error('error', err);
-        }
-    },
-    viewDidDisappear(animated: boolean) {
-        this.super.viewDidDisappear(animated);
-        if (this.customContentView) {
-            this.customContentView.callUnloaded();
-            this.customContentView._tearDownUI(true);
-            this.customContentView._isAddedToNativeVisualTree = false;
-            this.customContentView = null;
-        }
-    },
+    }
     viewDidLoad() {
-        this.super.viewDidLoad();
+        super.viewDidLoad();
         if (this._disableContentInsets) {
-            console.log('removing contentInsets');
             (this.view as MDCAlertControllerView).contentInsets = UIEdgeInsetsZero;
         }
-    },
+    }
     viewDidUnload() {
-        this.super.viewDidUnload();
-        if (this.customContentView) {
-            this.customContentView.callUnloaded();
-            this.customContentView._tearDownUI(true);
-            this.customContentView._isAddedToNativeVisualTree = false;
-            this.customContentView = null;
+        super.viewDidUnload();
+        if (this.accessoryView instanceof UIViewAutoSizeUIViewAutoSize) {
+            const view = this.accessoryView._view;
+            view.callUnloaded();
+            view._tearDownUI(true);
+            view._isAddedToNativeVisualTree = false;
+            this.accessoryView._view = null;
         }
-    },
-});
+    }
+}
 
 function addButtonsToAlertController(alertController: MDCAlertController, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any): void {
     if (!options) {
@@ -165,7 +154,7 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
 }
 
 function createAlertController(options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
-    const alertController = MDCAlertControllerImpl.alloc().init() as IMDCAlertControllerImpl;
+    const alertController = MDCAlertControllerImpl.alloc().init() as MDCAlertControllerImpl;
     alertController.mdc_adjustsFontForContentSizeCategory = true;
 
     if (options.title) {
@@ -234,14 +223,13 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
             options.view instanceof View
                 ? options.view
                 : Builder.createViewFromEntry({
-                    moduleName: options.view as string,
+                    moduleName: options.view as string
                 });
 
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
         modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
 
-        alertController.customContentView = view;
         alertController._resolveFunction = resolve;
         const context = options.context || {};
         context.closeCallback = function (...originalArgs) {
@@ -286,7 +274,7 @@ export function alert(arg: any): Promise<void> {
         try {
             const defaultOptions = {
                 // title: ALERT,
-                okButtonText: DialogStrings.OK,
+                okButtonText: DialogStrings.OK
             };
             const options = !isDialogOptions(arg) ? Object.assign(defaultOptions, { message: arg + '' }) : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
@@ -328,11 +316,11 @@ export function confirm(arg: any): Promise<boolean> {
             const defaultOptions = {
                 // title: CONFIRM,
                 okButtonText: DialogStrings.OK,
-                cancelButtonText: DialogStrings.CANCEL,
+                cancelButtonText: DialogStrings.CANCEL
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
-                    message: arg + '',
+                    message: arg + ''
                 })
                 : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
@@ -355,7 +343,7 @@ export function prompt(arg: any): Promise<PromptResult> {
         // title: PROMPT,
         okButtonText: DialogStrings.OK,
         cancelButtonText: DialogStrings.CANCEL,
-        inputType: inputType.text,
+        inputType: inputType.text
     };
 
     if (arguments.length === 1) {
@@ -444,7 +432,7 @@ export function login(arg: any): Promise<LoginResult> {
 
     const defaultOptions = {
         okButtonText: DialogStrings.OK,
-        cancelButtonText: DialogStrings.CANCEL,
+        cancelButtonText: DialogStrings.CANCEL
     };
 
     if (arguments.length === 1) {
@@ -500,7 +488,7 @@ export function login(arg: any): Promise<LoginResult> {
                     resolve({
                         result: r,
                         userName: userNameTextField.text,
-                        password: passwordTextField.text,
+                        password: passwordTextField.text
                     });
                 },
                 (r) => ({ result: r, userName: userNameTextField.text, password: passwordTextField.text })
@@ -557,7 +545,7 @@ export function action(): Promise<string> {
 
     const defaultOptions = {
         // title: null,
-        cancelButtonText: DialogStrings.CANCEL,
+        cancelButtonText: DialogStrings.CANCEL
     };
 
     if (arguments.length === 1) {
