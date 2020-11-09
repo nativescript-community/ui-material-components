@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.2](https://github.com/Akylas/nativescript-material-components/compare/v5.1.1...v5.1.2) (2020-11-09)
+
+
+### Bug Fixes
+
+* **dialogs:** ios fix for dialogs when app in background ([bb36cb9](https://github.com/Akylas/nativescript-material-components/commit/bb36cb9bfa3795049ea82e0fa0651cfe1e1e73f1))
+
+
+
+
+
 ## [5.1.1](https://github.com/Akylas/nativescript-material-components/compare/v5.1.0...v5.1.1) (2020-11-08)
 
 
