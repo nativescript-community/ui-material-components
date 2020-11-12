@@ -187,7 +187,7 @@ export class Button extends ButtonBase {
     }
     [colorProperty.setNative](value) {
         const color = value instanceof Color ? value.android : value;
-        super[colorProperty.setNative](color);
+        super[colorProperty.setNative](value);
         this.nativeViewProtected.setIconTint(android.content.res.ColorStateList.valueOf(color));
     }
 }
