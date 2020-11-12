@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-speeddial",
-    "version": "5.1.1",
+    "version": "5.1.3",
     "description": "Material speeddial component",
     "main": "./index",
     "sideEffects": false,
@@ -37,8 +37,8 @@
     "repository": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-button": "^5.1.1",
-        "@nativescript-community/ui-material-core": "^5.1.1"
+        "@nativescript-community/ui-material-button": "^5.1.3",
+        "@nativescript-community/ui-material-core": "^5.1.3"
     },
     "gitHead": "4c4cbf51853396a743eac602ffb6d740d4b77ac2"
 }

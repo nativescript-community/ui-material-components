@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.3](https://github.com/Akylas/nativescript-material-components/compare/v5.1.2...v5.1.3) (2020-11-12)
+
+
+### Bug Fixes
+
+* **button:** broken button color ([3d923ff](https://github.com/Akylas/nativescript-material-components/commit/3d923ff6388220c03cd1148191418571080bff9f))
+* merge fix from N Core ([994b52a](https://github.com/Akylas/nativescript-material-components/commit/994b52a711fc48b0cd0307d74a86830f3ad8ba00))
+
+
+
+
+
 ## [5.1.2](https://github.com/Akylas/nativescript-material-components/compare/v5.1.1...v5.1.2) (2020-11-09)
 
 
