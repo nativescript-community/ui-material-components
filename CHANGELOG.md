@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.4](https://github.com/Akylas/nativescript-material-components/compare/v5.1.3...v5.1.4) (2020-11-13)
+
+
+### Bug Fixes
+
+* default tab select on iOS v8 ([50f9d13](https://github.com/Akylas/nativescript-material-components/commit/50f9d13360db385ffb5acb959abcbee469e7cd27))
+
+
+
+
+
 ## [5.1.3](https://github.com/Akylas/nativescript-material-components/compare/v5.1.2...v5.1.3) (2020-11-12)
 
 
