@@ -141,7 +141,10 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         });
         this.nativeViewProtected.items = new NSArray({ array: bottomNavigationTabs });
 
-        this.nativeViewProtected.selectedItem = this.nativeViewProtected.items[this.selectedTabIndex];
+        // TODO: this is for he v8 runtime. Should not have to need this setTimeout(), find better way.
+        setTimeout(() => {
+            this.nativeViewProtected.selectedItem = this.nativeViewProtected.items[this.selectedTabIndex];
+        }, 0);
     }
 
     protected selectTabNative(index: number): void {
