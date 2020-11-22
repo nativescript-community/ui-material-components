@@ -309,6 +309,16 @@ export class SpeedDial extends SpeedDialItemBase {
             }
         });
     }
+    insertChild(child, index) {
+        if (child !== this._fabMainButton && child instanceof SpeedDialItem) {
+            this.prepareItem(child);
+
+            this.fabs.splice(index, 0, child);
+            this._fabsHolder.insertChild(child, index);
+        } else {
+            super.insertChild(child, index);
+        }
+    }
     addChild(child) {
         // for now we ignore this
         // to make sure we add the view in the property change
@@ -324,15 +334,15 @@ export class SpeedDial extends SpeedDialItemBase {
             super.addChild(child);
         }
     }
-    public _addChildFromBuilder(name: string, value: any) {
-        if (value instanceof SpeedDialItem) {
-            value.fabmenu = new WeakRef(this);
-            this.fabs.push(value);
-            this._fabsHolder._addView(value);
-        } else {
-            this._addView(value);
-        }
-    }
+    // public _addChildFromBuilder(name: string, value: any) {
+    //     if (value instanceof SpeedDialItem) {
+    //         value.fabmenu = new WeakRef(this);
+    //         this.fabs.push(value);
+    //         this._fabsHolder._addView(value);
+    //     } else {
+    //         this._addView(value);
+    //     }
+    // }
     get isLeft() {
         return this.rPosition === 'left';
     }
