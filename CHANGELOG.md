@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.5](https://github.com/Akylas/nativescript-material-components/compare/v5.1.4...v5.1.5) (2020-11-22)
+
+
+### Bug Fixes
+
+* **speeddial:** svelte fix ([215f660](https://github.com/Akylas/nativescript-material-components/commit/215f660326d300c0094820b97ba7c8b6e0921f2b))
+
+
+
+
+
 ## [5.1.4](https://github.com/Akylas/nativescript-material-components/compare/v5.1.3...v5.1.4) (2020-11-13)
 
 
