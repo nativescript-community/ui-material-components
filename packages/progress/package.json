@@ -1,7 +1,7 @@
 {
     "name": "@nativescript-community/ui-material-progress",
-    "version": "5.1.5",
-    "description": "Material progress component",
+    "version": "5.1.6",
+    "description": "Progress view is a linear progress indicator that implements Material Design animation and layout.",
     "main": "./progress",
     "sideEffects": false,
     "typings": "./progress.d.ts",
@@ -23,7 +23,10 @@
         "NativeScript",
         "JavaScript",
         "Android",
-        "iOS"
+        "iOS",
+        "Vue",
+        "Angular",
+        "preview|https://raw.githubusercontent.com/nativescript-community/ui-material-components/master/images/demo-progress.gif"
     ],
     "author": {
         "name": "Martin Guillon",
@@ -33,11 +36,13 @@
         "url": "https://github.com/Akylas/nativescript-material-components/issues"
     },
     "license": "Apache-2.0",
-    "homepage": "https://github.com/Akylas/nativescript-material-components",
-    "repository": "https://github.com/Akylas/nativescript-material-components",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nativescript-community/ui-material-components/tree/master/packages/progress"
+    },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^5.1.5"
+        "@nativescript-community/ui-material-core": "^5.1.6"
     },
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }

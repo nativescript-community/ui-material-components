@@ -1,7 +1,7 @@
 {
     "name": "@nativescript-community/ui-material-dialogs",
-    "version": "5.1.5",
-    "description": "Material Dialogs component",
+    "version": "5.1.6",
+    "description": "Material Design Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.",
     "main": "./dialogs",
     "sideEffects": false,
     "typings": "./dialogs.d.ts",
@@ -22,7 +22,10 @@
         "NativeScript",
         "JavaScript",
         "Android",
-        "iOS"
+        "iOS",
+        "Vue",
+        "Angular",
+        "preview|https://raw.githubusercontent.com/nativescript-community/ui-material-components/master/images/demo-dialogs.png"
     ],
     "author": {
         "name": "Martin Guillon",
@@ -31,13 +34,15 @@
     "bugs": {
         "url": "https://github.com/Akylas/nativescript-material-components/issues"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nativescript-community/ui-material-components/tree/master/packages/dialogs"
+    },
     "license": "Apache-2.0",
-    "homepage": "https://github.com/Akylas/nativescript-material-components",
-    "repository": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^5.1.5",
-        "@nativescript-community/ui-material-textfield": "^5.1.5"
+        "@nativescript-community/ui-material-core": "^5.1.6",
+        "@nativescript-community/ui-material-textfield": "^5.1.6"
     },
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }
