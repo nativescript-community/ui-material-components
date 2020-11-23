@@ -15,6 +15,7 @@
         "build.angular": "lerna run build.angular",
         "build.all": "lerna run build.all",
         "build.win": "lerna run build-win",
+        "doc": "typedoc",
         "force_publish": "lerna publish from-package",
         "increment_version": "lerna version",
         "tsc": "lerna run tsc",
@@ -79,6 +80,8 @@
         "rimraf": "^3.0.2",
         "rxjs": "^6.6.3",
         "ts-patch": "^1.3.0",
+        "typedoc": "^0.19.2",
+        "typedoc-plugin-lerna-packages": "^0.3.1",
         "typescript": "~3.9.7",
         "vue": "^2.6.12"
     },

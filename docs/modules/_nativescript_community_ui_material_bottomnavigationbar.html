@@ -1,0 +1,833 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@nativescript-community/ui-material-bottomnavigationbar | Nativescript UI Material Components</title>
+	<meta name="description" content="Documentation for Nativescript UI Material Components">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">Nativescript UI Material Components</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="_nativescript_community_ui_material_bottomnavigationbar.html">@nativescript-community/ui-material-bottomnavigationbar</a>
+				</li>
+			</ul>
+			<h1>Module @nativescript-community/ui-material-bottomnavigationbar</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<a href="#nativescript-material-bottom-navigation-bar" id="nativescript-material-bottom-navigation-bar" style="color: inherit; text-decoration: none;">
+						<h1>Nativescript Material Bottom Navigation Bar</h1>
+					</a>
+					<p>Nativescript plugin for Android &amp; iOS to have the Bottom Navigation Bar following the Material Design Guidelines.</p>
+					<p><a href="https://www.npmjs.com/package/nativescript-material-bottomnavigationbar"><img src="https://img.shields.io/npm/v/nativescript-material-bottomnavigationbar.svg" alt="npm"></a> <a href="https://www.npmjs.com/package/nativescript-material-bottomnavigationbar"><img src="https://img.shields.io/npm/dt/nativescript-material-bottomnavigationbar.svg?label=npm%20downloads" alt="npm"></a></p>
+					<img alt="iOS" src="screenshots/screenshot-ios.png" width="250">
+					<a href="#contents" id="contents" style="color: inherit; text-decoration: none;">
+						<h2>Contents</h2>
+					</a>
+					<ol>
+						<li> <a href="#installation">Installation</a></li>
+						<li> <a href="#usage">Usage with Javascript</a></li>
+						<li> <a href="#angular">Usage with Angular</a></li>
+						<li> <a href="#vue">Usage with Vue</a></li>
+						<li> <a href="#css-styling">Css Styling</a></li>
+						<li> <a href="#api">API</a></li>
+					</ol>
+					<a href="#prerequisites--requirements" id="prerequisites--requirements" style="color: inherit; text-decoration: none;">
+						<h3>Prerequisites / Requirements</h3>
+					</a>
+					<p>You need the version of NS6 or later to use this plugin.</p>
+					<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+						<h3>Installation</h3>
+					</a>
+					<p>For N 7.0</p>
+					<ul>
+						<li><code>tns plugin add @nativescript-community/ui-material-bottomnavigationbar</code></li>
+					</ul>
+					<p>For N 6.x</p>
+					<ul>
+						<li><code>tns plugin add nativescript-material-bottomnavigationbar</code></li>
+					</ul>
+					<a href="#new-features" id="new-features" style="color: inherit; text-decoration: none;">
+						<h3>NEW FEATURES</h3>
+					</a>
+					<ul>
+						<li><code>Badge</code> now are supported using the method: <code>showBadge(index, value)</code><ul>
+								<li>  NOTE: if you want to show a badge as a red dot no value should be passed to the function.</li>
+							</ul>
+						</li>
+					</ul>
+					<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+						<h3>Usage</h3>
+					</a>
+					<p>Before start using the plugin you need to add the icons for Android &amp; iOS in your <code>App_Resources</code> directory.</p>
+					<a href="#xml" id="xml" style="color: inherit; text-decoration: none;">
+						<h4>XML</h4>
+					</a>
+					<p>You can set the tabs using the <code>tabs</code> property</p>
+					<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Page</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://schemas.nativescript.org/tns.xsd&quot;</span>
+      <span class="hljs-attr">xmlns:mdc</span>=<span class="hljs-string">&quot;@nativescript-community/ui-material-bottomnavigationbar&quot;</span>
+      <span class="hljs-attr">loaded</span>=<span class="hljs-string">&quot;pageLoaded&quot;</span>
+      <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;page&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">&quot;*, auto&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">StackLayout</span> <span class="hljs-attr">row</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">StackLayout</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mdc:BottomNavigationBar</span>
+          <span class="hljs-attr">tabs</span>=<span class="hljs-string">&quot;{{ tabs }}&quot;</span>
+          <span class="hljs-attr">activeColor</span>=<span class="hljs-string">&quot;green&quot;</span>
+          <span class="hljs-attr">inactiveColor</span>=<span class="hljs-string">&quot;red&quot;</span>
+          <span class="hljs-attr">backgroundColor</span>=<span class="hljs-string">&quot;black&quot;</span>
+          <span class="hljs-attr">tabSelected</span>=<span class="hljs-string">&quot;tabSelected&quot;</span>
+          <span class="hljs-attr">row</span>=<span class="hljs-string">&quot;1&quot;</span>
+        &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">mdc:BottomNavigationBar</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Page</span>&gt;</span></code></pre>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { EventData } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nativescript/core/data/observable&#x27;</span>;
+<span class="hljs-keyword">import</span> { Page } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nativescript/core/ui/page&#x27;</span>;
+<span class="hljs-keyword">import</span> { BottomNavigationTab, TabSelectedEventData } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nativescript-community/ui-material-bottomnavigationbar&#x27;</span>;
+
+<span class="hljs-comment">// Event handler for Page &#x27;loaded&#x27; event attached in main-page.xml</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pageLoaded</span>(<span class="hljs-params">args: EventData</span>) </span>{
+    <span class="hljs-comment">// Get the event sender</span>
+    <span class="hljs-keyword">let</span> page = &lt;Page&gt;args.object;
+    page.bindingContext = {
+        <span class="hljs-attr">tabs</span>: [
+            <span class="hljs-keyword">new</span> BottomNavigationTab({ <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;First&#x27;</span>, <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;res://ic_home&#x27;</span> }),
+            <span class="hljs-keyword">new</span> BottomNavigationTab({
+                <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Second&#x27;</span>,
+                <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;res://ic_view_list&#x27;</span>,
+                <span class="hljs-attr">isSelectable</span>: <span class="hljs-literal">false</span>
+            }),
+            <span class="hljs-keyword">new</span> BottomNavigationTab({ <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Third&#x27;</span>, <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;res://ic_menu&#x27;</span> })
+        ]
+    };
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tabSelected</span>(<span class="hljs-params">args: TabSelectedEventData</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;tab selected &#x27;</span> + args.newIndex);
+}</code></pre>
+					<p>or you can add the tabs directly in your xml view</p>
+					<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Page</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://schemas.nativescript.org/tns.xsd&quot;</span>
+      <span class="hljs-attr">xmlns:mdc</span>=<span class="hljs-string">&quot;@nativescript-community/ui-material-bottomnavigationbar&quot;</span>
+      <span class="hljs-attr">loaded</span>=<span class="hljs-string">&quot;pageLoaded&quot;</span>
+      <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;page&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">&quot;*, auto&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">StackLayout</span> <span class="hljs-attr">row</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">StackLayout</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mdc:BottomNavigationBar</span>
+          <span class="hljs-attr">activeColor</span>=<span class="hljs-string">&quot;green&quot;</span>
+          <span class="hljs-attr">inactiveColor</span>=<span class="hljs-string">&quot;red&quot;</span>
+          <span class="hljs-attr">backgroundColor</span>=<span class="hljs-string">&quot;black&quot;</span>
+          <span class="hljs-attr">tabSelected</span>=<span class="hljs-string">&quot;tabSelected&quot;</span>
+          <span class="hljs-attr">row</span>=<span class="hljs-string">&quot;1&quot;</span>
+        &gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">mdc:BottomNavigationTab</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;First&quot;</span> <span class="hljs-attr">icon</span>=<span class="hljs-string">&quot;res://ic_home&quot;</span> /&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">mdc:BottomNavigationTab</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Second&quot;</span> <span class="hljs-attr">icon</span>=<span class="hljs-string">&quot;res://ic_view_list&quot;</span> <span class="hljs-attr">isSelectable</span>=<span class="hljs-string">&quot;false&quot;</span> /&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">mdc:BottomNavigationTab</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Third&quot;</span> <span class="hljs-attr">icon</span>=<span class="hljs-string">&quot;res://ic_menu&quot;</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">mdc:BottomNavigationBar</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Page</span>&gt;</span></code></pre>
+					<a href="#angular" id="angular" style="color: inherit; text-decoration: none;">
+						<h4>Angular</h4>
+					</a>
+					<p>First you need to include the <code>NativeScriptMaterialBottomNavigationBarModule</code> in your <code>app.module.ts</code>`</p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { NativeScriptMaterialBottomNavigationBarModule} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nativescript-community/ui-material-bottomnavigationbar/angular&quot;</span>;
+
+<span class="hljs-meta">@NgModule</span>({
+    <span class="hljs-attr">imports</span>: [
+        NativeScriptMaterialBottomNavigationBarModule
+    ],
+    ...
+})</code></pre>
+					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">&quot;*, auto&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">StackLayout</span> <span class="hljs-attr">row</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">StackLayout</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">BottomNavigationBar</span>
+        [<span class="hljs-attr">tabs</span>]=<span class="hljs-string">&quot;tabs&quot;</span>
+        <span class="hljs-attr">activeColor</span>=<span class="hljs-string">&quot;red&quot;</span>
+        <span class="hljs-attr">inactiveColor</span>=<span class="hljs-string">&quot;yellow&quot;</span>
+        <span class="hljs-attr">backgroundColor</span>=<span class="hljs-string">&quot;black&quot;</span>
+        (<span class="hljs-attr">tabSelected</span>)=<span class="hljs-string">&quot;onBottomNavigationTabSelected($event)&quot;</span>
+        (<span class="hljs-attr">tabPressed</span>)=<span class="hljs-string">&quot;onBottomNavigationTabPressed($event)&quot;</span>
+        <span class="hljs-attr">row</span>=<span class="hljs-string">&quot;1&quot;</span>
+    &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">BottomNavigationBar</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span></code></pre>
+					<p>or you can declare the <code>BottomNavigationTab</code> in your html directly</p>
+					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">&quot;*, auto&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">StackLayout</span> <span class="hljs-attr">row</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">StackLayout</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">BottomNavigationBar</span>
+        <span class="hljs-attr">activeColor</span>=<span class="hljs-string">&quot;red&quot;</span>
+        <span class="hljs-attr">inactiveColor</span>=<span class="hljs-string">&quot;yellow&quot;</span>
+        <span class="hljs-attr">backgroundColor</span>=<span class="hljs-string">&quot;black&quot;</span>
+        (<span class="hljs-attr">tabSelected</span>)=<span class="hljs-string">&quot;onBottomNavigationTabSelected($event)&quot;</span>
+        (<span class="hljs-attr">tabPressed</span>)=<span class="hljs-string">&quot;onBottomNavigationTabPressed($event)&quot;</span>
+        <span class="hljs-attr">row</span>=<span class="hljs-string">&quot;1&quot;</span>
+    &gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">BottomNavigationTab</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;First&quot;</span> <span class="hljs-attr">icon</span>=<span class="hljs-string">&quot;res://ic_home&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">BottomNavigationTab</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">BottomNavigationTab</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Second&quot;</span> <span class="hljs-attr">icon</span>=<span class="hljs-string">&quot;res://ic_view_list&quot;</span> [<span class="hljs-attr">isSelectable</span>]=<span class="hljs-string">&quot;false&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">BottomNavigationTab</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">BottomNavigationTab</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Third&quot;</span> <span class="hljs-attr">icon</span>=<span class="hljs-string">&quot;res://ic_menu&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">BottomNavigationTab</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">BottomNavigationBar</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span></code></pre>
+					<a href="#vue" id="vue" style="color: inherit; text-decoration: none;">
+						<h4>Vue</h4>
+					</a>
+					<p>If you want to use this plugin with Vue, do this in your <code>app.js</code> or <code>main.js</code>:</p>
+					<pre><code class="language-javascript"><span class="hljs-keyword">import</span> BottomNavigationBar <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nativescript-community/ui-material-bottomnavigationbar/vue&#x27;</span>;
+
+Vue.use(BottomNavigationBar);</code></pre>
+					<p>This will install and register <code>BottomNavigationBar</code> and <code>BottomNavigationTab</code> components to your <code>Vue</code> instance and now you can use the plugin as follows:</p>
+					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">&quot;*, auto&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">StackLayout</span> <span class="hljs-attr">row</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">StackLayout</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">MDBottomNavigationBar</span> <span class="hljs-attr">activeColor</span>=<span class="hljs-string">&quot;red&quot;</span> <span class="hljs-attr">inactiveColor</span>=<span class="hljs-string">&quot;yellow&quot;</span> <span class="hljs-attr">backgroundColor</span>=<span class="hljs-string">&quot;black&quot;</span> @<span class="hljs-attr">tabSelected</span>=<span class="hljs-string">&quot;onBottomNavigationTabSelected&quot;</span> <span class="hljs-attr">row</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">MDBottomNavigationTab</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;First&quot;</span> <span class="hljs-attr">icon</span>=<span class="hljs-string">&quot;ic_home&quot;</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">MDBottomNavigationTab</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Second&quot;</span> <span class="hljs-attr">icon</span>=<span class="hljs-string">&quot;ic_view_list&quot;</span> <span class="hljs-attr">isSelectable</span>=<span class="hljs-string">&quot;false&quot;</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">MDBottomNavigationTab</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Third&quot;</span> <span class="hljs-attr">icon</span>=<span class="hljs-string">&quot;ic_menu&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">MDBottomNavigationBar</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span></code></pre>
+					<p>You can find more information of how to use nativescript plugins with Vue <a href="https://nativescript-vue.org/en/docs/getting-started/nativescript-plugins/">Here!</a></p>
+					<a href="#css-styling" id="css-styling" style="color: inherit; text-decoration: none;">
+						<h4>CSS Styling</h4>
+					</a>
+					<p>You can also use your css file to set or change the <code>activeColor</code>, <code>inactiveColor</code> &amp; <code>backgroundColor</code> of the Bottom Navigation Bar.</p>
+					<pre><code class="language-css"><span class="hljs-selector-class">.botom-nav</span> {
+    <span class="hljs-attribute">active-color</span>: green;
+    <span class="hljs-attribute">inactive-color</span>: black;
+    <span class="hljs-attribute">background-color</span>: blue;
+}</code></pre>
+					<a href="#api" id="api" style="color: inherit; text-decoration: none;">
+						<h2>API</h2>
+					</a>
+					<ol>
+						<li><a href="#bottom-navigation-bar">BottomNavigationBar</a></li>
+						<li><a href="#bottom-navigation-tab">BottomNavigationTab</a></li>
+					</ol>
+					<ul>
+						<li>  <strong>Properties (bindable):</strong> Properties settable through XML/HTML</li>
+						<li>  <strong>Properties (internal):</strong> Properties accessible through JS/TS instance</li>
+						<li>  <strong>Events:</strong> Event properties settable thew XML/HTML</li>
+					</ul>
+					<a href="#bottom-navigation-bar" id="bottom-navigation-bar" style="color: inherit; text-decoration: none;">
+						<h1>Bottom Navigation Bar</h1>
+					</a>
+					<a href="#properties-bindable" id="properties-bindable" style="color: inherit; text-decoration: none;">
+						<h4>Properties (bindable)</h4>
+					</a>
+					<p>Properties settable through XML/HTML</p>
+					<table>
+						<thead>
+							<tr>
+								<th>Property</th>
+								<th>Required</th>
+								<th>Default</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody><tr>
+								<td>tabs</td>
+								<td>true</td>
+								<td>[]</td>
+								<td><code>Array&lt;BottomNavigationTab&gt;</code></td>
+								<td>Array containing the tabs for the BottomNavigationBar</td>
+							</tr>
+							<tr>
+								<td>titleVisibility</td>
+								<td>false</td>
+								<td><code>TitleVisibility.Selected</code></td>
+								<td><code>TitleVisibility</code></td>
+								<td>Title Visibility for each BottomNavigationTab</td>
+							</tr>
+							<tr>
+								<td>activeColor</td>
+								<td>false</td>
+								<td>&quot;black&quot;</td>
+								<td><code>String</code></td>
+								<td>Color of the BottomNavigationTab when it&#39;s selected</td>
+							</tr>
+							<tr>
+								<td>inactiveColor</td>
+								<td>false</td>
+								<td>&quot;gray&quot;</td>
+								<td><code>String</code></td>
+								<td>Color of the BottomNavigationTab when it&#39;s not selected</td>
+							</tr>
+							<tr>
+								<td>backgroundColor</td>
+								<td>false</td>
+								<td>&quot;white&quot;</td>
+								<td><code>String</code></td>
+								<td>Color of the BottomNavigation background</td>
+							</tr>
+					</tbody></table>
+					<a href="#properties-internal" id="properties-internal" style="color: inherit; text-decoration: none;">
+						<h4>Properties (internal)</h4>
+					</a>
+					<p>Properties accessible through JS/TS instance</p>
+					<table>
+						<thead>
+							<tr>
+								<th>Property</th>
+								<th>Default</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody><tr>
+								<td>items</td>
+								<td><code>[]</code></td>
+								<td><code>Array&lt;BottomNavigationTab&gt;</code></td>
+								<td>Array containing the tabs for the BottomNavigationBar</td>
+							</tr>
+							<tr>
+								<td>selectedTabIndex</td>
+								<td>0</td>
+								<td><code>Number</code></td>
+								<td>Index of the selected tab</td>
+							</tr>
+							<tr>
+								<td>titleVisibility</td>
+								<td><code>TitleVisibility.Selected</code></td>
+								<td><code>TitleVisibility</code></td>
+								<td>Title Visibility for each BottomNavigationTab</td>
+							</tr>
+							<tr>
+								<td>activeColor</td>
+								<td><code>new Color(&#39;black&#39;)</code></td>
+								<td><code>Color</code></td>
+								<td>Color of the BottomNavigationTab when it&#39;s selected</td>
+							</tr>
+							<tr>
+								<td>inactiveColor</td>
+								<td><code>new Color(&#39;gray&#39;)</code></td>
+								<td><code>Color</code></td>
+								<td>Color of the BottomNavigationTab when it&#39;s not selected</td>
+							</tr>
+							<tr>
+								<td>backgroundColor</td>
+								<td><code>new Color(&#39;white&#39;)</code></td>
+								<td><code>Color</code></td>
+								<td>Color of the BottomNavigation background</td>
+							</tr>
+					</tbody></table>
+					<a href="#events" id="events" style="color: inherit; text-decoration: none;">
+						<h4>Events</h4>
+					</a>
+					<p>Event properties settable thew XML/HTML</p>
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody><tr>
+								<td>tabPressed</td>
+								<td><code>(args: TabPressedEventData): void</code></td>
+								<td>Function fired every time the user tap a tab with <code>isSelectable: false</code></td>
+							</tr>
+							<tr>
+								<td>tabSelected</td>
+								<td><code>(args: TabSelectedEventData): void</code></td>
+								<td>Function fired every time the user select a new tab</td>
+							</tr>
+							<tr>
+								<td>tabReselected</td>
+								<td><code>(args: TabReselectedEventData): void</code></td>
+								<td>Function fired every time the user select a tab that is already selected</td>
+							</tr>
+					</tbody></table>
+					<a href="#methods" id="methods" style="color: inherit; text-decoration: none;">
+						<h4>Methods</h4>
+					</a>
+					<p>Methods accessible through JS/TS instance</p>
+					<table>
+						<thead>
+							<tr>
+								<th>Property</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody><tr>
+								<td><code>selectTab(index: number)</code></td>
+								<td><code>void</code></td>
+								<td>Select a tab programmatically</td>
+							</tr>
+							<tr>
+								<td><code>showBadge(index: number, value?: number)</code></td>
+								<td><code>void</code></td>
+								<td>Show a badge for an specific tab</td>
+							</tr>
+					</tbody></table>
+					<a href="#bottom-navigation-tab" id="bottom-navigation-tab" style="color: inherit; text-decoration: none;">
+						<h1>Bottom Navigation Tab</h1>
+					</a>
+					<a href="#properties-bindable-1" id="properties-bindable-1" style="color: inherit; text-decoration: none;">
+						<h4>Properties (bindable)</h4>
+					</a>
+					<p>Properties settable through XML/HTML</p>
+					<table>
+						<thead>
+							<tr>
+								<th>Property</th>
+								<th>Required</th>
+								<th>Default</th>
+								<th>Type</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody><tr>
+								<td>title</td>
+								<td>true</td>
+								<td>null</td>
+								<td><code>string</code></td>
+								<td>Title of the tab</td>
+							</tr>
+							<tr>
+								<td>icon</td>
+								<td>true</td>
+								<td>null</td>
+								<td><code>string</code></td>
+								<td>Icon of the tab</td>
+							</tr>
+							<tr>
+								<td>isSelectable</td>
+								<td>false</td>
+								<td>true</td>
+								<td><code>boolean</code></td>
+								<td>Determine if the tab can be selected or not</td>
+							</tr>
+					</tbody></table>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>References</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#bottomnavigationbardirective" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Bar<wbr>Directive</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#bottomnavigationbardirective-1" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Bar<wbr>Directive</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#bottomnavigationbardirective-2" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Bar<wbr>Directive</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#bottomnavigationtabdirective" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Tab<wbr>Directive</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#bottomnavigationtabdirective-1" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Tab<wbr>Directive</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#bottomnavigationtabdirective-2" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Tab<wbr>Directive</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#nativescriptmaterialbottomnavigationbarmodule" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Navigation<wbr>Bar<wbr>Module</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#nativescriptmaterialbottomnavigationbarmodule-1" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Navigation<wbr>Bar<wbr>Module</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Enumerations</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/_nativescript_community_ui_material_bottomnavigationbar.titlevisibility.html" class="tsd-kind-icon">Title<wbr>Visibility</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationbar.html" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Bar</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationbarbase.html" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Bar<wbr>Base</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationbardirective-3.html" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Bar<wbr>Directive</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationtab.html" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Tab</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationtabbase.html" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Tab<wbr>Base</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationtabdirective-3.html" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Tab<wbr>Directive</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.nativescriptmaterialbottomnavigationbarmodule-2.html" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Navigation<wbr>Bar<wbr>Module</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_nativescript_community_ui_material_bottomnavigationbar.tabpressedeventdata.html" class="tsd-kind-icon">Tab<wbr>Pressed<wbr>Event<wbr>Data</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_nativescript_community_ui_material_bottomnavigationbar.tabreselectedeventdata.html" class="tsd-kind-icon">Tab<wbr>Reselected<wbr>Event<wbr>Data</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_nativescript_community_ui_material_bottomnavigationbar.tabselectedeventdata.html" class="tsd-kind-icon">Tab<wbr>Selected<wbr>Event<wbr>Data</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#directives" class="tsd-kind-icon">DIRECTIVES</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#activecolorcssproperty" class="tsd-kind-icon">active<wbr>Color<wbr>Css<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#badgecolorcssproperty" class="tsd-kind-icon">badge<wbr>Color<wbr>Css<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#badgetextcolorcssproperty" class="tsd-kind-icon">badge<wbr>Text<wbr>Color<wbr>Css<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#iconproperty" class="tsd-kind-icon">icon<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#inactivecolorcssproperty" class="tsd-kind-icon">inactive<wbr>Color<wbr>Css<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#isselectableproperty" class="tsd-kind-icon">is<wbr>Selectable<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#tabsproperty" class="tsd-kind-icon">tabs<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomnavigationbar.html#titlevisibilityproperty" class="tsd-kind-icon">title<wbr>Visibility<wbr>Property</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>References</h2>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bottomnavigationbardirective" class="tsd-anchor"></a>
+					<h3>Bottom<wbr>Navigation<wbr>Bar<wbr>Directive</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationbardirective-3.html">BottomNavigationBarDirective</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bottomnavigationbardirective-1" class="tsd-anchor"></a>
+					<h3>Bottom<wbr>Navigation<wbr>Bar<wbr>Directive</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationbardirective-3.html">BottomNavigationBarDirective</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bottomnavigationbardirective-2" class="tsd-anchor"></a>
+					<h3>Bottom<wbr>Navigation<wbr>Bar<wbr>Directive</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationbardirective-3.html">BottomNavigationBarDirective</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bottomnavigationtabdirective" class="tsd-anchor"></a>
+					<h3>Bottom<wbr>Navigation<wbr>Tab<wbr>Directive</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationtabdirective-3.html">BottomNavigationTabDirective</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bottomnavigationtabdirective-1" class="tsd-anchor"></a>
+					<h3>Bottom<wbr>Navigation<wbr>Tab<wbr>Directive</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationtabdirective-3.html">BottomNavigationTabDirective</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bottomnavigationtabdirective-2" class="tsd-anchor"></a>
+					<h3>Bottom<wbr>Navigation<wbr>Tab<wbr>Directive</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationtabdirective-3.html">BottomNavigationTabDirective</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="nativescriptmaterialbottomnavigationbarmodule" class="tsd-anchor"></a>
+					<h3>Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Navigation<wbr>Bar<wbr>Module</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.nativescriptmaterialbottomnavigationbarmodule-2.html">NativeScriptMaterialBottomNavigationBarModule</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="nativescriptmaterialbottomnavigationbarmodule-1" class="tsd-anchor"></a>
+					<h3>Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Navigation<wbr>Bar<wbr>Module</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.nativescriptmaterialbottomnavigationbarmodule-2.html">NativeScriptMaterialBottomNavigationBarModule</a>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="directives" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> DIRECTIVES</h3>
+					<div class="tsd-signature tsd-kind-icon">DIRECTIVES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationbardirective-3.html" class="tsd-signature-type">BottomNavigationBarDirective</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/bottomnavigationbar/angular/directives.d.ts:10</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="activecolorcssproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> active<wbr>Color<wbr>Css<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">active<wbr>Color<wbr>Css<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CssProperty</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Style</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Color</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/bottomnavigationbar/bottomnavigationbar-common.d.ts:42</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="badgecolorcssproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> badge<wbr>Color<wbr>Css<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">badge<wbr>Color<wbr>Css<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CssProperty</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Style</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Color</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/bottomnavigationbar/bottomnavigationbar-common.d.ts:44</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="badgetextcolorcssproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> badge<wbr>Text<wbr>Color<wbr>Css<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">badge<wbr>Text<wbr>Color<wbr>Css<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CssProperty</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Style</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Color</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/bottomnavigationbar/bottomnavigationbar-common.d.ts:45</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="iconproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> icon<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">icon<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Property</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationtabbase.html" class="tsd-signature-type">BottomNavigationTabBase</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ImageSource</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/bottomnavigationbar/bottomnavigationbar-common.d.ts:63</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="inactivecolorcssproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> inactive<wbr>Color<wbr>Css<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">inactive<wbr>Color<wbr>Css<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CssProperty</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Style</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Color</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/bottomnavigationbar/bottomnavigationbar-common.d.ts:43</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="isselectableproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> is<wbr>Selectable<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Selectable<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Property</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationtabbase.html" class="tsd-signature-type">BottomNavigationTabBase</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/bottomnavigationbar/bottomnavigationbar-common.d.ts:62</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="tabsproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> tabs<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">tabs<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Property</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationbarbase.html" class="tsd-signature-type">BottomNavigationBarBase</a><span class="tsd-signature-symbol">, </span><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationtabbase.html" class="tsd-signature-type">BottomNavigationTabBase</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/bottomnavigationbar/bottomnavigationbar-common.d.ts:40</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="titlevisibilityproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> title<wbr>Visibility<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">title<wbr>Visibility<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Property</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationbarbase.html" class="tsd-signature-type">BottomNavigationBarBase</a><span class="tsd-signature-symbol">, </span><a href="../enums/_nativescript_community_ui_material_bottomnavigationbar.titlevisibility.html" class="tsd-signature-type">TitleVisibility</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/bottomnavigationbar/bottomnavigationbar-common.d.ts:41</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_activityindicator.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>activityindicator</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>bottomnavigationbar</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>bottomsheet</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_button.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>button</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_cardview.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>cardview</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_core.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>core</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_dialogs.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>dialogs</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_floatingactionbutton.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>floatingactionbutton</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_progress.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>progress</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_ripple.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>ripple</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_slider.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>slider</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_snackbar.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>snackbar</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_speeddial.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>speeddial</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>tabs</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_textfield.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>textfield</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_textview.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>textview</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#bottomnavigationbardirective" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Bar<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#bottomnavigationbardirective-1" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Bar<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#bottomnavigationbardirective-2" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Bar<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#bottomnavigationtabdirective" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Tab<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#bottomnavigationtabdirective-1" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Tab<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#bottomnavigationtabdirective-2" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Tab<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#nativescriptmaterialbottomnavigationbarmodule" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Navigation<wbr>Bar<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#nativescriptmaterialbottomnavigationbarmodule-1" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Navigation<wbr>Bar<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/_nativescript_community_ui_material_bottomnavigationbar.titlevisibility.html" class="tsd-kind-icon">Title<wbr>Visibility</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationbar.html" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Bar</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationbarbase.html" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Bar<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationbardirective-3.html" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Bar<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationtab.html" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Tab</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationtabbase.html" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Tab<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.bottomnavigationtabdirective-3.html" class="tsd-kind-icon">Bottom<wbr>Navigation<wbr>Tab<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_bottomnavigationbar.nativescriptmaterialbottomnavigationbarmodule-2.html" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Navigation<wbr>Bar<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_nativescript_community_ui_material_bottomnavigationbar.tabpressedeventdata.html" class="tsd-kind-icon">Tab<wbr>Pressed<wbr>Event<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_nativescript_community_ui_material_bottomnavigationbar.tabreselectedeventdata.html" class="tsd-kind-icon">Tab<wbr>Reselected<wbr>Event<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_nativescript_community_ui_material_bottomnavigationbar.tabselectedeventdata.html" class="tsd-kind-icon">Tab<wbr>Selected<wbr>Event<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#directives" class="tsd-kind-icon">DIRECTIVES</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#activecolorcssproperty" class="tsd-kind-icon">active<wbr>Color<wbr>Css<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#badgecolorcssproperty" class="tsd-kind-icon">badge<wbr>Color<wbr>Css<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#badgetextcolorcssproperty" class="tsd-kind-icon">badge<wbr>Text<wbr>Color<wbr>Css<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#iconproperty" class="tsd-kind-icon">icon<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#inactivecolorcssproperty" class="tsd-kind-icon">inactive<wbr>Color<wbr>Css<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#isselectableproperty" class="tsd-kind-icon">is<wbr>Selectable<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#tabsproperty" class="tsd-kind-icon">tabs<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html#titlevisibilityproperty" class="tsd-kind-icon">title<wbr>Visibility<wbr>Property</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

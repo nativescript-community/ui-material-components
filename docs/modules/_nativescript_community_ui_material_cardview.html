@@ -1,0 +1,309 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@nativescript-community/ui-material-cardview | Nativescript UI Material Components</title>
+	<meta name="description" content="Documentation for Nativescript UI Material Components">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">Nativescript UI Material Components</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="_nativescript_community_ui_material_cardview.html">@nativescript-community/ui-material-cardview</a>
+				</li>
+			</ul>
+			<h1>Module @nativescript-community/ui-material-cardview</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<p><a href="https://www.npmjs.com/package/nativescript-material-cardview"><img src="https://img.shields.io/npm/v/nativescript-material-cardview.svg" alt="npm"></a>
+						<a href="https://www.npmjs.com/package/nativescript-material-cardview"><img src="https://img.shields.io/npm/dt/nativescript-material-cardview.svg?label=npm%20downloads" alt="npm"></a>
+						<a href="https://github.com/Akylas/nativescript-material-components/network"><img src="https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg" alt="GitHub forks"></a>
+					<a href="https://github.com/Akylas/nativescript-material-components/stargazers"><img src="https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg" alt="GitHub stars"></a></p>
+					<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+						<h2>Installation</h2>
+					</a>
+					<a href="#warning-warning-warning" id="warning-warning-warning" style="color: inherit; text-decoration: none;">
+						<h3>Warning :warning: :warning:</h3>
+					</a>
+					<p>From 5.x using material component will break N tab component on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either <a href="https://www.npmjs.com/package/nativescript-material-bottomnavigationbar">bottomnavigationbar</a> (this one is the best choice, closest to material design) or <a href="https://www.npmjs.com/package/nativescript-material-tabs">tabs</a> (clone of N one, but with a little less features)</p>
+					<p>For N 7.0</p>
+					<ul>
+						<li><code>tns plugin add @nativescript-community/ui-material-cardview</code></li>
+					</ul>
+					<p>For N 6.x</p>
+					<ul>
+						<li><code>tns plugin add nativescript-material-cardview</code></li>
+					</ul>
+					<p>If using <code>tns-core-modules</code></p>
+					<ul>
+						<li><code>tns plugin add nativescript-material-cardview@2.5.4</code></li>
+					</ul>
+					<p>Be sure to run a new build after adding plugins to avoid any issues.</p>
+					<a href="#android-migration-to-androidx" id="android-migration-to-androidx" style="color: inherit; text-decoration: none;">
+						<h2>Android migration to AndroidX</h2>
+					</a>
+					<p>For Material Components to work correctly with {N} 6 and AndroidX you need to update your android app theme.
+					inside <code>App_ressources/android/res/values/styles.xml</code> replace all occurences of <code>Theme.AppCompat</code> with <code>Theme.MaterialComponents</code></p>
+					<hr>
+					<a href="#material-design-spec" id="material-design-spec" style="color: inherit; text-decoration: none;">
+						<h5><a href="https://material.io/design/components/cardviews.html">Material Design Spec</a></h5>
+					</a>
+					<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+						<h3>Usage</h3>
+					</a>
+					<a href="#plain-nativescript" id="plain-nativescript" style="color: inherit; text-decoration: none;">
+						<h2>Plain NativeScript</h2>
+					</a>
+					<p><span style="color:red">IMPORTANT: </span><em>Make sure you include <code>xmlns:mdc=&quot;@nativescript-community/ui-material-cardview&quot;</code> on the Page element</em></p>
+					<a href="#xml" id="xml" style="color: inherit; text-decoration: none;">
+						<h3>XML</h3>
+					</a>
+					<pre><code class="language-XML"><span class="hljs-tag">&lt;<span class="hljs-name">Page</span> <span class="hljs-attr">xmlns:mdc</span>=<span class="hljs-string">&quot;@nativescript-community/ui-material-cardview&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">StackLayout</span> <span class="hljs-attr">horizontalAlignment</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mdc:CardView</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;100&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mdc:CardView</span> <span class="hljs-attr">elevation</span>=<span class="hljs-string">&quot;5&quot;</span> <span class="hljs-attr">rippleColor</span>=<span class="hljs-string">&quot;red&quot;</span>  <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;100&quot;</span>/&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">StackLayout</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Page</span>&gt;</span></code></pre>
+					<a href="#css" id="css" style="color: inherit; text-decoration: none;">
+						<h3>CSS</h3>
+					</a>
+					<pre><code class="language-CSS"><span class="hljs-selector-tag">mdccardview</span> {
+    <span class="hljs-attribute">ripple-color</span>: blue;
+    <span class="hljs-attribute">elevation</span>: <span class="hljs-number">4</span>;
+}</code></pre>
+					<a href="#nativescript--angular" id="nativescript--angular" style="color: inherit; text-decoration: none;">
+						<h2>NativeScript + Angular</h2>
+					</a>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { NativeScriptMaterialCardViewModule } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nativescript-community/ui-material-cardview/angular&quot;</span>;
+
+<span class="hljs-meta">@NgModule</span>({
+    <span class="hljs-attr">imports</span>: [
+        NativeScriptMaterialCardViewModule,
+        ...
+    ],
+    ...
+})</code></pre>
+					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">MDCardView</span> <span class="hljs-attr">rippleColor</span>=<span class="hljs-string">&quot;blue&quot;</span>  <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;100&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">MDCardView</span>&gt;</span></code></pre>
+					<a href="#nativescript--vue" id="nativescript--vue" style="color: inherit; text-decoration: none;">
+						<h2>NativeScript + Vue</h2>
+					</a>
+					<pre><code class="language-javascript"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;nativescript-vue&#x27;</span>;
+<span class="hljs-keyword">import</span> CardViewPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nativescript-community/ui-material-cardview/vue&#x27;</span>;
+
+Vue.use(CardViewPlugin);</code></pre>
+					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">MDCardView</span> <span class="hljs-attr">rippleColor</span>=<span class="hljs-string">&quot;blue&quot;</span>  <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;100&quot;</span>/&gt;</span></code></pre>
+					<a href="#attributes" id="attributes" style="color: inherit; text-decoration: none;">
+						<h2>Attributes</h2>
+					</a>
+					<p>Inherite from Nativescript <a href="https://docs.nativescript.org/ui/layouts/layout-containers#stacklayout-properties">StackLayout</a></p>
+					<a href="#attributes-1" id="attributes-1" style="color: inherit; text-decoration: none;">
+						<h2>Attributes</h2>
+					</a>
+					<ul>
+						<li><strong>elevation</strong> <em>optional</em></li>
+					</ul>
+					<p>An attribute to set the elevation of the cardview. This will increase the &#39;drop-shadow&#39; of the cardview.</p>
+					<ul>
+						<li><strong>rippleColor</strong> <em>optional</em></li>
+					</ul>
+					<p>An attribute to set the ripple color of the cardview.</p>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>References</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_cardview.html#materialcardviewdirective" class="tsd-kind-icon">Material<wbr>Card<wbr>View<wbr>Directive</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_cardview.html#nativescriptmaterialcardviewmodule" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Card<wbr>View<wbr>Module</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_cardview.cardview.html" class="tsd-kind-icon">Card<wbr>View</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_cardview.cardviewbase.html" class="tsd-kind-icon">Card<wbr>View<wbr>Base</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_cardview.materialcardviewdirective-1.html" class="tsd-kind-icon">Material<wbr>Card<wbr>View<wbr>Directive</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_cardview.nativescriptmaterialcardviewmodule-1.html" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Card<wbr>View<wbr>Module</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>References</h2>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="materialcardviewdirective" class="tsd-anchor"></a>
+					<h3>Material<wbr>Card<wbr>View<wbr>Directive</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_cardview.materialcardviewdirective-1.html">MaterialCardViewDirective</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="nativescriptmaterialcardviewmodule" class="tsd-anchor"></a>
+					<h3>Native<wbr>Script<wbr>Material<wbr>Card<wbr>View<wbr>Module</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_cardview.nativescriptmaterialcardviewmodule-1.html">NativeScriptMaterialCardViewModule</a>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_activityindicator.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>activityindicator</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>bottomnavigationbar</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>bottomsheet</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_button.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>button</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="_nativescript_community_ui_material_cardview.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>cardview</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_core.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>core</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_dialogs.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>dialogs</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_floatingactionbutton.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>floatingactionbutton</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_progress.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>progress</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_ripple.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>ripple</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_slider.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>slider</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_snackbar.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>snackbar</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_speeddial.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>speeddial</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>tabs</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_textfield.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>textfield</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_textview.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>textview</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_cardview.html#materialcardviewdirective" class="tsd-kind-icon">Material<wbr>Card<wbr>View<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_cardview.html#nativescriptmaterialcardviewmodule" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Card<wbr>View<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_cardview.cardview.html" class="tsd-kind-icon">Card<wbr>View</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_cardview.cardviewbase.html" class="tsd-kind-icon">Card<wbr>View<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_cardview.materialcardviewdirective-1.html" class="tsd-kind-icon">Material<wbr>Card<wbr>View<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_cardview.nativescriptmaterialcardviewmodule-1.html" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Card<wbr>View<wbr>Module</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

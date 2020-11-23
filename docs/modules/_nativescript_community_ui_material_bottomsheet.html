@@ -1,0 +1,580 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@nativescript-community/ui-material-bottomsheet | Nativescript UI Material Components</title>
+	<meta name="description" content="Documentation for Nativescript UI Material Components">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">Nativescript UI Material Components</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="_nativescript_community_ui_material_bottomsheet.html">@nativescript-community/ui-material-bottomsheet</a>
+				</li>
+			</ul>
+			<h1>Module @nativescript-community/ui-material-bottomsheet</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<p><a href="https://www.npmjs.com/package/nativescript-material-bottomsheet"><img src="https://img.shields.io/npm/v/nativescript-material-bottomsheet.svg" alt="npm"></a>
+						<a href="https://www.npmjs.com/package/nativescript-material-bottomsheet"><img src="https://img.shields.io/npm/dt/nativescript-material-bottomsheet.svg?label=npm%20downloads" alt="npm"></a>
+						<a href="https://github.com/Akylas/nativescript-material-components/network"><img src="https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg" alt="GitHub forks"></a>
+					<a href="https://github.com/Akylas/nativescript-material-components/stargazers"><img src="https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg" alt="GitHub stars"></a></p>
+					<a href="#nativescript-material-bottomsheets" id="nativescript-material-bottomsheets" style="color: inherit; text-decoration: none;">
+						<h1>NativeScript Material BottomSheets</h1>
+					</a>
+					<p>Use the Material Design Bottom Sheets in your {N} app</p>
+					<a href="#material-design-spec" id="material-design-spec" style="color: inherit; text-decoration: none;">
+						<h5><a href="https://material.io/design/components/sheets-bottom.html">Material Design Spec</a></h5>
+					</a>
+					<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+						<h2>Installation</h2>
+					</a>
+					<p>For N 7.0</p>
+					<ul>
+						<li><code>tns plugin add @nativescript-community/ui-material-bottomsheet</code></li>
+					</ul>
+					<p>For N 6.x</p>
+					<ul>
+						<li><code>tns plugin add nativescript-material-bottomsheet</code></li>
+					</ul>
+					<p>If using <code>tns-core-modules</code></p>
+					<ul>
+						<li><code>tns plugin add nativescript-material-bottomsheet@2.5.4</code></li>
+					</ul>
+					<a href="#changelog" id="changelog" style="color: inherit; text-decoration: none;">
+						<h2><a href="./CHANGELOG.md">Changelog</a></h2>
+					</a>
+					<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+						<h2>Usage</h2>
+					</a>
+					<a href="#start-up-wiring-non-angular" id="start-up-wiring-non-angular" style="color: inherit; text-decoration: none;">
+						<h3>Start-up wiring (NON ANGULAR)</h3>
+					</a>
+					<p>We need to do some wiring when your app starts, so open <code>app.js</code> and add this before creating any View/App/Frame:</p>
+					<a href="#javascript" id="javascript" style="color: inherit; text-decoration: none;">
+						<h5>JavaScript</h5>
+					</a>
+					<pre><code class="language-js"><span class="hljs-keyword">var</span> material = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@nativescript-community/ui-material-bottomsheet&quot;</span>);
+
+material.install();</code></pre>
+					<a href="#typescript" id="typescript" style="color: inherit; text-decoration: none;">
+						<h5>TypeScript</h5>
+					</a>
+					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { install } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nativescript-community/ui-material-bottomsheet&quot;</span>;
+install();</code></pre>
+					<p>Uses the same kind of API as <a href="https://docs.nativescript.org/ui/modal-view">Nativescript Modals</a></p>
+					<a href="#ts" id="ts" style="color: inherit; text-decoration: none;">
+						<h5>TS</h5>
+					</a>
+					<pre><code class="language-typescript"><span class="hljs-keyword">const</span> modalViewModulets = <span class="hljs-string">&quot;ns-ui-category/modal-view/basics/modal-ts-view-page&quot;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">openBottomSheet</span>(<span class="hljs-params">args</span>) </span>{
+    <span class="hljs-keyword">const</span> mainView: Button = &lt;Button&gt;args.object;
+    <span class="hljs-keyword">const</span> context = { <span class="hljs-attr">username</span>: <span class="hljs-string">&quot;test_username&quot;</span>, <span class="hljs-attr">password</span>: <span class="hljs-string">&quot;test&quot;</span> };
+    <span class="hljs-keyword">const</span> fullscreen = <span class="hljs-literal">true</span>;
+    mainView.showBottomSheet({
+        <span class="hljs-attr">view</span>: modalViewModulets,
+        context,
+        <span class="hljs-attr">closeCallback</span>: <span class="hljs-function">(<span class="hljs-params">username, password</span>) =&gt;</span> {
+            bottom-sheet
+            alert(<span class="hljs-string">`Username: <span class="hljs-subst">${username}</span> : Password: <span class="hljs-subst">${password}</span>`</span>);
+        },
+        fullscreen
+    });
+}
+</code></pre>
+					<a href="#nativescript--vue" id="nativescript--vue" style="color: inherit; text-decoration: none;">
+						<h3>NativeScript + Vue</h3>
+					</a>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;nativescript-vue&#x27;</span>;
+<span class="hljs-keyword">import</span> BottomSheetPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nativescript-community/ui-material-bottomsheet/vue&#x27;</span>;
+
+Vue.use(BottomSheetPlugin);</code></pre>
+					<p>Then you can show a Vue component:</p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> MyComponent <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;MyComponent.vue&#x27;</span>;
+
+<span class="hljs-comment">//inside another Vue component</span>
+<span class="hljs-keyword">const</span> options: BottomSheetOptions = {
+};
+<span class="hljs-built_in">this</span>.$showBottomSheet(MyComponent, options)</code></pre>
+					<a href="#nativescript--angular" id="nativescript--angular" style="color: inherit; text-decoration: none;">
+						<h3>NativeScript + Angular</h3>
+					</a>
+					<p>First you need to include the <code>NativeScriptMaterialBottomSheetModule</code> in your <code>app.module.ts</code></p>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { NativeScriptMaterialBottomSheetModule} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nativescript-community/ui-material-bottomsheet/angular&quot;</span>;
+
+<span class="hljs-meta">@NgModule</span>({
+    <span class="hljs-attr">imports</span>: [
+        <span class="hljs-comment">// This will call the install method and inject a global service called BottomSheetService</span>
+        NativeScriptMaterialBottomSheetModule.forRoot()
+    ],
+    ...
+})</code></pre>
+					<p>now you can show your custom BottomSheet using the <code>BottomSheetService</code>, this service follows the same implementation as the <code>ModalService</code></p>
+					<a href="#itemcomponent" id="itemcomponent" style="color: inherit; text-decoration: none;">
+						<h5>ItemComponent</h5>
+					</a>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Component,  ViewContainerRef } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
+<span class="hljs-keyword">import</span> { BottomSheetOptions, BottomSheetService } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nativescript-community/ui-material-bottomsheet/angular&#x27;</span>;
+<span class="hljs-keyword">import</span> { ShareOptionsComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./share-options.component&#x27;</span>;
+
+<span class="hljs-meta">@Component</span>({
+    <span class="hljs-attr">selector</span>: <span class="hljs-string">&#x27;ns-item&#x27;</span>,
+    <span class="hljs-attr">templateUrl</span>: <span class="hljs-string">&#x27;./item.component.html&#x27;</span>,
+    <span class="hljs-attr">moduleId</span>: <span class="hljs-built_in">module</span>.id
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ItemComponent</span> </span>{
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">
+        <span class="hljs-keyword">private</span> bottomSheet: BottomSheetService, 
+        <span class="hljs-keyword">private</span> containerRef: ViewContainerRef,
+    </span>)</span> {}
+
+    <span class="hljs-function"><span class="hljs-title">showOptions</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-keyword">const</span> options: BottomSheetOptions = {
+            <span class="hljs-attr">viewContainerRef</span>: <span class="hljs-built_in">this</span>.containerRef,
+            <span class="hljs-attr">context</span>: [<span class="hljs-string">&#x27;Facebook&#x27;</span>, <span class="hljs-string">&#x27;Google&#x27;</span>, <span class="hljs-string">&#x27;Twitter&#x27;</span>]
+        };
+
+        <span class="hljs-built_in">this</span>.bottomSheet.show(ShareOptionsComponent, options).subscribe(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Option selected:&#x27;</span>, result);
+        });
+    }
+}</code></pre>
+					<a href="#shareoptionscomponent" id="shareoptionscomponent" style="color: inherit; text-decoration: none;">
+						<h5>ShareOptionsComponent</h5>
+					</a>
+					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ListView</span>
+    [<span class="hljs-attr">items</span>]=<span class="hljs-string">&quot;options&quot;</span>
+    (<span class="hljs-attr">itemTap</span>)=<span class="hljs-string">&quot;onTap($event)&quot;</span>
+    <span class="hljs-attr">separatorColor</span>=<span class="hljs-string">&quot;white&quot;</span>
+    <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group&quot;</span>
+    <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;200&quot;</span>
+&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ng-template</span> <span class="hljs-attr">let-option</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>
+            <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group-item&quot;</span>
+            [<span class="hljs-attr">text</span>]=<span class="hljs-string">&quot;option&quot;</span>
+        &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ng-template</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ListView</span>&gt;</span></code></pre>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Component, OnInit } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
+<span class="hljs-keyword">import</span> { BottomSheetParams } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nativescript-community/ui-material-bottomsheet/angular&#x27;</span>;
+<span class="hljs-keyword">import</span> { ItemEventData } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nativescript/core/ui/list-view&#x27;</span>;
+
+<span class="hljs-meta">@Component</span>({
+    <span class="hljs-attr">selector</span>: <span class="hljs-string">&#x27;ns-share-options&#x27;</span>,
+    <span class="hljs-attr">templateUrl</span>: <span class="hljs-string">&#x27;share-options.component.html&#x27;</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShareOptionsComponent</span> <span class="hljs-title">implements</span> <span class="hljs-title">OnInit</span> </span>{
+    <span class="hljs-attr">options</span>: <span class="hljs-built_in">string</span>[];
+
+    <span class="hljs-comment">// The BottomSheetService injects the BottomSheetParams to the component</span>
+    <span class="hljs-comment">// so you can get the context and call the closeCallback method from the component displayed in your BottomSheet</span>
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> params: BottomSheetParams</span>)</span> {}
+
+    <span class="hljs-function"><span class="hljs-title">ngOnInit</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">this</span>.options = <span class="hljs-built_in">this</span>.params.context;
+    }
+
+    <span class="hljs-function"><span class="hljs-title">onTap</span>(<span class="hljs-params">{ index }: ItemEventData</span>)</span> {
+        <span class="hljs-built_in">this</span>.params.closeCallback(<span class="hljs-built_in">this</span>.options[index]);
+    }
+}</code></pre>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>References</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#baseshowbottomsheetoptions" class="tsd-kind-icon">Base<wbr>Show<wbr>Bottom<wbr>Sheet<wbr>Options</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#baseshowbottomsheetoptions-1" class="tsd-kind-icon">Base<wbr>Show<wbr>Bottom<wbr>Sheet<wbr>Options</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#bottomsheetoptions" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Options</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#bottomsheetoptions-1" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Options</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#bottomsheetparams" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#bottomsheetparams-1" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Params</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#bottomsheetservice" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Service</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#bottomsheetservice-1" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Service</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#nativescriptmaterialbottomsheetmodule" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Sheet<wbr>Module</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#nativescriptmaterialbottomsheetmodule-1" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Sheet<wbr>Module</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Modules</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-module tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet._nativescript_vue_.html" class="tsd-kind-icon">&quot;nativescript-<wbr>vue&quot;</a></li>
+								<li class="tsd-kind-module tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet._view_.html" class="tsd-kind-icon">&quot;view&quot;</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_bottomsheet.bottomsheetparams-2.html" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Params</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_bottomsheet.bottomsheetservice-2.html" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Service</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_bottomsheet.nativescriptmaterialbottomsheetmodule-2.html" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Sheet<wbr>Module</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_bottomsheet.viewwithbottomsheetbase.html" class="tsd-kind-icon">View<wbr>With<wbr>Bottom<wbr>Sheet<wbr>Base</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_bottomsheet.viewwithbottomsheetbase-1.html" class="tsd-kind-icon">View<wbr>With<wbr>Bottom<wbr>Sheet<wbr>Base</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_nativescript_community_ui_material_bottomsheet.bottomsheetoptions-2.html" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Options</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_nativescript_community_ui_material_bottomsheet.bottomsheetoptions-3.html" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Options</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_nativescript_community_ui_material_bottomsheet.shownbottomsheetdata.html" class="tsd-kind-icon">Shown<wbr>Bottom<wbr>Sheet<wbr>Data</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/_nativescript_community_ui_material_bottomsheet.vuebottomsheetoptions.html" class="tsd-kind-icon">Vue<wbr>Bottom<wbr>Sheet<wbr>Options</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#baseshowbottomsheetoptions-2" class="tsd-kind-icon">Base<wbr>Show<wbr>Bottom<wbr>Sheet<wbr>Options</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#showinginbottomsheetevent" class="tsd-kind-icon">showing<wbr>InBottom<wbr>Sheet<wbr>Event</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#showninbottomsheetevent" class="tsd-kind-icon">shown<wbr>InBottom<wbr>Sheet<wbr>Event</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_nativescript_community_ui_material_bottomsheet.html#install" class="tsd-kind-icon">install</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>References</h2>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="baseshowbottomsheetoptions" class="tsd-anchor"></a>
+					<h3>Base<wbr>Show<wbr>Bottom<wbr>Sheet<wbr>Options</h3>
+					Re-exports <a href="_nativescript_community_ui_material_bottomsheet.html#baseshowbottomsheetoptions-2">BaseShowBottomSheetOptions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="baseshowbottomsheetoptions-1" class="tsd-anchor"></a>
+					<h3>Base<wbr>Show<wbr>Bottom<wbr>Sheet<wbr>Options</h3>
+					Re-exports <a href="_nativescript_community_ui_material_bottomsheet.html#baseshowbottomsheetoptions-2">BaseShowBottomSheetOptions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bottomsheetoptions" class="tsd-anchor"></a>
+					<h3>Bottom<wbr>Sheet<wbr>Options</h3>
+					Re-exports <a href="../interfaces/_nativescript_community_ui_material_bottomsheet.bottomsheetoptions-3.html">BottomSheetOptions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bottomsheetoptions-1" class="tsd-anchor"></a>
+					<h3>Bottom<wbr>Sheet<wbr>Options</h3>
+					Re-exports <a href="../interfaces/_nativescript_community_ui_material_bottomsheet.bottomsheetoptions-3.html">BottomSheetOptions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bottomsheetparams" class="tsd-anchor"></a>
+					<h3>Bottom<wbr>Sheet<wbr>Params</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomsheet.bottomsheetparams-2.html">BottomSheetParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bottomsheetparams-1" class="tsd-anchor"></a>
+					<h3>Bottom<wbr>Sheet<wbr>Params</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomsheet.bottomsheetparams-2.html">BottomSheetParams</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bottomsheetservice" class="tsd-anchor"></a>
+					<h3>Bottom<wbr>Sheet<wbr>Service</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomsheet.bottomsheetservice-2.html">BottomSheetService</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="bottomsheetservice-1" class="tsd-anchor"></a>
+					<h3>Bottom<wbr>Sheet<wbr>Service</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomsheet.bottomsheetservice-2.html">BottomSheetService</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="nativescriptmaterialbottomsheetmodule" class="tsd-anchor"></a>
+					<h3>Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Sheet<wbr>Module</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomsheet.nativescriptmaterialbottomsheetmodule-2.html">NativeScriptMaterialBottomSheetModule</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="nativescriptmaterialbottomsheetmodule-1" class="tsd-anchor"></a>
+					<h3>Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Sheet<wbr>Module</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_bottomsheet.nativescriptmaterialbottomsheetmodule-2.html">NativeScriptMaterialBottomSheetModule</a>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="baseshowbottomsheetoptions-2" class="tsd-anchor"></a>
+					<h3>Base<wbr>Show<wbr>Bottom<wbr>Sheet<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">Base<wbr>Show<wbr>Bottom<wbr>Sheet<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MaterialBottomSheetOptions</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">MaterialBottomSheetOptions</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"closeCallback"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"view"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/bottomsheet/angular/bottomsheet.service.d.ts:5</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="showinginbottomsheetevent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> showing<wbr>InBottom<wbr>Sheet<wbr>Event</h3>
+					<div class="tsd-signature tsd-kind-icon">showing<wbr>InBottom<wbr>Sheet<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"showingInBottomSheet"</span><span class="tsd-signature-symbol"> = &quot;showingInBottomSheet&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/bottomsheet/bottomsheet-common.d.ts:7</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="showninbottomsheetevent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> shown<wbr>InBottom<wbr>Sheet<wbr>Event</h3>
+					<div class="tsd-signature tsd-kind-icon">shown<wbr>InBottom<wbr>Sheet<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"shownInBottomSheet"</span><span class="tsd-signature-symbol"> = &quot;shownInBottomSheet&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/bottomsheet/bottomsheet-common.d.ts:6</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="install" class="tsd-anchor"></a>
+					<h3>install</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">install<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in packages/bottomsheet/bottomsheet.d.ts:23</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_activityindicator.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>activityindicator</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>bottomnavigationbar</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>bottomsheet</a>
+						<ul>
+							<li class=" tsd-kind-module tsd-parent-kind-module">
+								<a href="_nativescript_community_ui_material_bottomsheet._nativescript_vue_.html">&quot;nativescript-<wbr>vue&quot;</a>
+							</li>
+							<li class=" tsd-kind-module tsd-parent-kind-module">
+								<a href="_nativescript_community_ui_material_bottomsheet._view_.html">&quot;view&quot;</a>
+							</li>
+						</ul>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_button.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>button</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_cardview.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>cardview</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_core.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>core</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_dialogs.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>dialogs</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_floatingactionbutton.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>floatingactionbutton</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_progress.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>progress</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_ripple.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>ripple</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_slider.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>slider</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_snackbar.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>snackbar</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_speeddial.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>speeddial</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>tabs</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_textfield.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>textfield</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_textview.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>textview</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#baseshowbottomsheetoptions" class="tsd-kind-icon">Base<wbr>Show<wbr>Bottom<wbr>Sheet<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#baseshowbottomsheetoptions-1" class="tsd-kind-icon">Base<wbr>Show<wbr>Bottom<wbr>Sheet<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#bottomsheetoptions" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#bottomsheetoptions-1" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#bottomsheetparams" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#bottomsheetparams-1" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#bottomsheetservice" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#bottomsheetservice-1" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#nativescriptmaterialbottomsheetmodule" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Sheet<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#nativescriptmaterialbottomsheetmodule-1" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Sheet<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_bottomsheet.bottomsheetparams-2.html" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_bottomsheet.bottomsheetservice-2.html" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_bottomsheet.nativescriptmaterialbottomsheetmodule-2.html" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Bottom<wbr>Sheet<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_bottomsheet.viewwithbottomsheetbase.html" class="tsd-kind-icon">View<wbr>With<wbr>Bottom<wbr>Sheet<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_bottomsheet.viewwithbottomsheetbase-1.html" class="tsd-kind-icon">View<wbr>With<wbr>Bottom<wbr>Sheet<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_nativescript_community_ui_material_bottomsheet.bottomsheetoptions-2.html" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_nativescript_community_ui_material_bottomsheet.bottomsheetoptions-3.html" class="tsd-kind-icon">Bottom<wbr>Sheet<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_nativescript_community_ui_material_bottomsheet.shownbottomsheetdata.html" class="tsd-kind-icon">Shown<wbr>Bottom<wbr>Sheet<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/_nativescript_community_ui_material_bottomsheet.vuebottomsheetoptions.html" class="tsd-kind-icon">Vue<wbr>Bottom<wbr>Sheet<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#baseshowbottomsheetoptions-2" class="tsd-kind-icon">Base<wbr>Show<wbr>Bottom<wbr>Sheet<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#showinginbottomsheetevent" class="tsd-kind-icon">showing<wbr>InBottom<wbr>Sheet<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#showninbottomsheetevent" class="tsd-kind-icon">shown<wbr>InBottom<wbr>Sheet<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html#install" class="tsd-kind-icon">install</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
