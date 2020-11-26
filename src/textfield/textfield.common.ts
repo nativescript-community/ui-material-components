@@ -1,5 +1,6 @@
 import { CSSType, Color, TextField as NTextField } from '@nativescript/core';
 import { cssProperty } from '@nativescript-community/ui-material-core';
+import { VerticalTextAlignment } from '@nativescript-community/text';
 
 @CSSType('MDTextField')
 export abstract class TextFieldBase extends NTextField {
@@ -25,4 +26,5 @@ export abstract class TextFieldBase extends NTextField {
     @cssProperty floatingInactiveColor: Color;
     @cssProperty buttonColor: Color;
     @cssProperty digits: string;
+    @cssProperty verticalTextAlignment: VerticalTextAlignment;
 }

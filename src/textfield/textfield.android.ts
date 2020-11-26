@@ -1,3 +1,4 @@
+import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 import { getLayout, stateSets } from '@nativescript-community/ui-material-core/android/utils';
 import {
     counterMaxLengthProperty,
@@ -62,7 +63,6 @@ export class TextField extends TextFieldBase {
         return this.editText;
     }
 
-    drawingBackground = false;
     // @ts-ignore
     get nativeViewProtected() {
         return this.layoutView;
@@ -317,6 +317,24 @@ export class TextField extends TextFieldBase {
     }
     [paddingLeftProperty.setNative](value: Length) {
         org.nativescript.widgets.ViewHelper.setPaddingLeft(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0));
+    }
+    [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
+        // TODO: not working for now
+        const view = this.nativeTextViewProtected;
+        const horizontalGravity = view.getGravity() & android.view.Gravity.HORIZONTAL_GRAVITY_MASK;
+        switch (value) {
+            case 'initial':
+            case 'top':
+                view.setGravity(android.view.Gravity.TOP | horizontalGravity);
+                break;
+            case 'middle':
+                view.setGravity(android.view.Gravity.CENTER_VERTICAL | horizontalGravity);
+                break;
+
+            case 'bottom':
+                view.setGravity(android.view.Gravity.BOTTOM | horizontalGravity);
+                break;
+        }
     }
 }
 //
