@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.7](https://github.com/Akylas/nativescript-material-components/compare/v5.1.6...v5.1.7) (2020-11-26)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-core
+
+
+
+
+
 ## [5.1.6](https://github.com/Akylas/nativescript-material-components/compare/v5.1.5...v5.1.6) (2020-11-23)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-core

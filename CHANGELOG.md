@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.7](https://github.com/Akylas/nativescript-material-components/compare/v5.1.6...v5.1.7) (2020-11-26)
+
+
+### Bug Fixes
+
+* **textfield:** some padding fixes to be the same on ios/android ([9629e28](https://github.com/Akylas/nativescript-material-components/commit/9629e28554e6e156fe55be9fecbfe2bed0997e0a))
+* **textview:** same padding fixes as textfield ([c287c69](https://github.com/Akylas/nativescript-material-components/commit/c287c6913a475e9cc53c670d4b61b0ea1b464245))
+
+
+
+
+
 ## [5.1.6](https://github.com/Akylas/nativescript-material-components/compare/v5.1.5...v5.1.6) (2020-11-23)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
