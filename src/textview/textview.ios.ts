@@ -10,7 +10,7 @@ import {
     helperColorProperty,
     helperProperty,
     strokeColorProperty,
-    strokeInactiveColorProperty,
+    strokeInactiveColorProperty
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
 import {
     Background,
@@ -25,7 +25,7 @@ import {
     editableProperty,
     hintProperty,
     isAndroid,
-    placeholderColorProperty,
+    placeholderColorProperty
 } from '@nativescript/core';
 import { resetSymbol, textProperty } from '@nativescript/core/ui/text-base';
 import { TextViewBase } from './textview.common';
@@ -66,8 +66,8 @@ class TextViewInputControllerUnderlineImpl extends MDCTextInputControllerUnderli
 
         return delegate;
     }
-    textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
@@ -85,8 +85,8 @@ class TextViewInputControllerImpl extends MDCTextInputControllerBase {
 
         return delegate;
     }
-    textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
@@ -104,8 +104,8 @@ class TextViewInputControllerOutlinedImpl extends MDCTextInputControllerOutlined
 
         return delegate;
     }
-    textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
@@ -123,8 +123,8 @@ class TextViewInputControllerFilledImpl extends MDCTextInputControllerFilled {
 
         return delegate;
     }
-    textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
@@ -180,9 +180,11 @@ export class TextView extends TextViewBase {
     }
 
     // N bug fix
+    // @ts-ignore
     get ios() {
         return this.nativeTextViewProtected;
     }
+    // @ts-ignore
     get nativeTextViewProtected() {
         return this.nativeViewProtected.textView;
     }
