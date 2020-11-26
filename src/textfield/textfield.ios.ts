@@ -64,8 +64,8 @@ class TextInputControllerImpl extends MDCTextInputControllerBase {
 
         return delegate;
     }
-    textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
@@ -83,8 +83,8 @@ class TextInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
 
         return delegate;
     }
-    textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
@@ -102,8 +102,8 @@ class TextInputControllerFilledImpl extends MDCTextInputControllerFilled {
 
         return delegate;
     }
-    textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);

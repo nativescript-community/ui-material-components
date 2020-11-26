@@ -13,7 +13,23 @@ import {
     strokeDisabledColorProperty,
     strokeInactiveColorProperty
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
-import { Background, Color, Font, Utils, backgroundInternalProperty, borderBottomLeftRadiusProperty, fontInternalProperty, hintProperty, placeholderColorProperty, profile } from '@nativescript/core';
+import {
+    Background,
+    Color,
+    Font,
+    Length,
+    Utils,
+    backgroundInternalProperty,
+    borderBottomLeftRadiusProperty,
+    fontInternalProperty,
+    hintProperty,
+    paddingBottomProperty,
+    paddingLeftProperty,
+    paddingRightProperty,
+    paddingTopProperty,
+    placeholderColorProperty,
+    profile
+} from '@nativescript/core';
 import { secureProperty } from '@nativescript/core/ui/text-field';
 import { TextFieldBase } from './textfield.common';
 
@@ -41,11 +57,13 @@ export class TextField extends TextFieldBase {
     constructor() {
         super();
     }
+    // @ts-ignore
     get nativeTextViewProtected() {
         return this.editText;
     }
 
     drawingBackground = false;
+    // @ts-ignore
     get nativeViewProtected() {
         return this.layoutView;
     }
@@ -287,6 +305,18 @@ export class TextField extends TextFieldBase {
         if (!this.formattedText || !(value instanceof Font)) {
             this.nativeViewProtected.setTypeface(value instanceof Font ? value.getAndroidTypeface() : value);
         }
+    }
+    [paddingTopProperty.setNative](value: Length) {
+        org.nativescript.widgets.ViewHelper.setPaddingTop(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0));
+    }
+    [paddingRightProperty.setNative](value: Length) {
+        org.nativescript.widgets.ViewHelper.setPaddingRight(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0));
+    }
+    [paddingBottomProperty.setNative](value: Length) {
+        org.nativescript.widgets.ViewHelper.setPaddingBottom(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0));
+    }
+    [paddingLeftProperty.setNative](value: Length) {
+        org.nativescript.widgets.ViewHelper.setPaddingLeft(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0));
     }
 }
 //
