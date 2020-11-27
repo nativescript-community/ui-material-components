@@ -126,6 +126,7 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
         if (Utils.isFunction(callback)) {
             callback(result);
         }
+        alertController.dismissModalViewControllerAnimated(true);
     }
 
     if (Utils.isString(options.cancelButtonText)) {
