@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.8](https://github.com/Akylas/nativescript-material-components/compare/v5.1.7...v5.1.8) (2020-11-27)
+
+
+### Bug Fixes
+
+* **dialogs:** action was not closing itself ([4e29840](https://github.com/Akylas/nativescript-material-components/commit/4e298408ec293dd770dc5cd370698e7b116d3fdc))
+
+
+
+
+
 ## [5.1.7](https://github.com/Akylas/nativescript-material-components/compare/v5.1.6...v5.1.7) (2020-11-26)
 
 
