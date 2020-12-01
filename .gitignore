@@ -79,3 +79,5 @@ pnpm-lock.yaml
 hooks
 !src/core/hooks
 /tempAngular
+/.gradle
+/.settings
