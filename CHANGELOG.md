@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.9](https://github.com/Akylas/nativescript-material-components/compare/v5.1.8...v5.1.9) (2020-12-01)
+
+
+### Bug Fixes
+
+* **speeddial:** closer to sepcs ([c0353e1](https://github.com/Akylas/nativescript-material-components/commit/c0353e16d96dfc3bf31313809e93d274c19df7e9))
+* android plugins should all be much faster ([1d36644](https://github.com/Akylas/nativescript-material-components/commit/1d3664401104a6482ca5bf5fa4d91aaf7cb55f8c))
+
+
+### Features
+
+* global clearFocus and requestFocus ([1222d90](https://github.com/Akylas/nativescript-material-components/commit/1222d90ce7205c8d50b0dc1ee7376b70eb49d0f3))
+
+
+
+
+
 ## [5.1.8](https://github.com/Akylas/nativescript-material-components/compare/v5.1.7...v5.1.8) (2020-11-27)
 
 

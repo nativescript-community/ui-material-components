@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.9](https://github.com/Akylas/nativescript-material-components/compare/v5.1.8...v5.1.9) (2020-12-01)
+
+
+### Bug Fixes
+
+* android plugins should all be much faster ([1d36644](https://github.com/Akylas/nativescript-material-components/commit/1d3664401104a6482ca5bf5fa4d91aaf7cb55f8c))
+
+
+
+
+
 ## [5.1.8](https://github.com/Akylas/nativescript-material-components/compare/v5.1.7...v5.1.8) (2020-11-27)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-core
