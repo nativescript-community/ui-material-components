@@ -79,7 +79,7 @@ public class Utils {
         }
     }
 
-    static void handleClearFocus(View view) {
+    public static void handleClearFocus(View view) {
         final View root = view.getRootView();
         boolean oldValue = true;
         int oldDesc = ViewGroup.FOCUS_BEFORE_DESCENDANTS;
