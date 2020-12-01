@@ -54,7 +54,7 @@ function initLayoutGuide(controller: UIViewController) {
         layoutGuide.topAnchor.constraintEqualToAnchor(controller.topLayoutGuide.bottomAnchor),
         layoutGuide.bottomAnchor.constraintEqualToAnchor(controller.bottomLayoutGuide.topAnchor),
         layoutGuide.leadingAnchor.constraintEqualToAnchor(rootView.leadingAnchor),
-        layoutGuide.trailingAnchor.constraintEqualToAnchor(rootView.trailingAnchor),
+        layoutGuide.trailingAnchor.constraintEqualToAnchor(rootView.trailingAnchor)
     ] as any);
 
     return layoutGuide;
@@ -94,7 +94,7 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
     const top = marginTop + position.top;
     const width = owner.getMeasuredWidth();
     const height = owner.getMeasuredHeight();
-    View.layoutChild(null, owner, position.left, top, position.left + width + marginLeft+ marginRight, position.top + height+ marginBottom);
+    View.layoutChild(null, owner, position.left, top, position.left + width + marginLeft + marginRight, position.top + height + marginBottom);
 
     const effectiveWidth = width + marginLeft + marginRight;
     let effectiveHeight = height + top + marginBottom;
