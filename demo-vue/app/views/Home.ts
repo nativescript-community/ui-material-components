@@ -11,7 +11,7 @@ export default {
       <ListView ref="listView" rowHeight="60" for="example in examples">
         <v-template>
           <GridLayout rippleColor="red" @tap="{goToExample(example)}"  @longPress="{goToModalExample(example)}" >
-            <Label paddingLeft="10" :text="example.title"  verticalAlignment="center"/>
+            <Label paddingLeft="10" :text="example.title"  verticalAlignment="center" isUserInteractionEnabled="false"/>
           </GridLayout>
         </v-template>
       </ListView>
