@@ -1,6 +1,6 @@
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from '@nativescript-community/ui-material-core';
-import { createStateListAnimator, getLayout, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
+import { createStateListAnimator, getColorStateList, getLayout, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import {
     Background,
     Color,
@@ -60,7 +60,7 @@ export class Button extends ButtonBase {
         if (!LayoutInflater) {
             LayoutInflater = android.view.LayoutInflater;
         }
-        const view = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.button.MaterialButton;
+        const view = LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.button.MaterialButton;
         if (this.src) {
             layoutStringId += '_icon';
             view.setIconGravity(0x2); //com.google.android.material.button.MaterialButton.ICON_GRAVITY_TEXT_START
@@ -88,7 +88,7 @@ export class Button extends ButtonBase {
     //     (<any>nativeView).clickListener = clickListener;
     // }
     [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
+        this.nativeViewProtected.setRippleColor(getColorStateList(color.android));
     }
 
     getDefaultElevation(): number {
@@ -99,9 +99,18 @@ export class Button extends ButtonBase {
         return 6; // 6dp @dimen/mtrl_btn_pressed_z
     }
 
+    createStateListAnimatorTimeout;
+    createStateListAnimator() {
+        if (!this.createStateListAnimatorTimeout) {
+            this.createStateListAnimatorTimeout = setTimeout(() => {
+                this.createStateListAnimatorTimeout = null;
+                createStateListAnimator(this, this.nativeViewProtected);
+            });
+        }
+    }
     [elevationProperty.setNative](value: number) {
         if (isPostLollipop()) {
-            createStateListAnimator(this, this.nativeViewProtected);
+            this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
             androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, newValue);
@@ -109,7 +118,7 @@ export class Button extends ButtonBase {
     }
     [dynamicElevationOffsetProperty.setNative](value: number) {
         if (isPostLollipop()) {
-            createStateListAnimator(this, this.nativeViewProtected);
+            this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
             androidx.core.view.ViewCompat.setTranslationZ(this.nativeViewProtected, newValue);
@@ -138,16 +147,12 @@ export class Button extends ButtonBase {
                 view.setBackgroundDrawable(value);
             } else {
                 if (value.color) {
-                    // if (value.color.android === 0 && this.variant === 'flat') {
                     view.setBackgroundColor(value.color.android);
-                    // } else {
-                    // view.setBackgroundTintList(getEnabledColorStateList(value.color.android, this.variant));
-                    // }
                 }
                 this.setCornerRadius(value.borderTopLeftRadius);
                 view.setStrokeWidth(value.borderTopWidth);
                 if (value.borderTopColor) {
-                    view.setStrokeColor(android.content.res.ColorStateList.valueOf(value.borderTopColor.android));
+                    view.setStrokeColor(getColorStateList(value.borderTopColor.android));
                 }
             }
         }

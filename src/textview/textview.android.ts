@@ -25,17 +25,8 @@ import {
     placeholderColorProperty
 } from '@nativescript/core';
 import { TextViewBase } from './textview.common';
-import { getLayout, stateSets } from '@nativescript-community/ui-material-core/android/utils';
-
-function getColorStateList(activeColor: number, inactiveColor = 1627389952) {
-    const states = Array.create('[I', 2);
-    states[0] = stateSets.FOCUSED_STATE_SET;
-    states[1] = Array.create('int', 0);
-    const colors = Array.create('int', 2);
-    colors[0] = activeColor;
-    colors[1] = inactiveColor;
-    return new android.content.res.ColorStateList(states, colors);
-}
+import { getFullColorStateList, getLayout } from '@nativescript-community/ui-material-core/android/utils';
+import { themer } from '@nativescript-community/ui-material-core';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
 let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
@@ -128,20 +119,19 @@ export class TextView extends TextViewBase {
         const placeholderColor = value instanceof Color ? value.android : value;
         const floatingColor = this.floatingColor instanceof Color ? this.floatingColor.android : placeholderColor;
 
-        this.layoutView.setDefaultHintTextColor(getColorStateList(floatingColor, placeholderColor));
+        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
     }
 
     [floatingColorProperty.setNative](value: Color) {
         const floatingColor = value instanceof Color ? value.android : value;
         const placeholderColor = this.placeholderColor instanceof Color ? this.placeholderColor.android : undefined;
-        this.layoutView.setDefaultHintTextColor(getColorStateList(floatingColor, placeholderColor));
+        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
     }
 
     [floatingInactiveColorProperty.setNative](value: Color) {
         const placeholderColor = value instanceof Color ? value.android : value;
-        const floatingColor =
-            this.floatingColor instanceof Color ? this.floatingColor.android : this.layoutView.getDefaultHintTextColor().getColorForState(stateSets.FOCUSED_STATE_SET, placeholderColor);
-        this.layoutView.setDefaultHintTextColor(getColorStateList(floatingColor, placeholderColor));
+        const floatingColor = (this.floatingColor || (themer.getPrimaryColor() as Color)).android;
+        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
     }
 
     public _configureEditText(editText: android.widget.EditText): void {
@@ -213,28 +203,22 @@ export class TextView extends TextViewBase {
 
     [strokeInactiveColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
-        // @ts-ignore This check can be removed once this package is updated to rely on 1.2.0 of material components
         if (this.layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
-            const colorStateList = getColorStateList(activeColor, color);
-            // @ts-ignore
+            const colorStateList = getFullColorStateList(activeColor, color);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         }
-        // this.editText.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
     }
 
     [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
-        // @ts-ignore This check can be removed once this package is updated to rely on 1.2.0 of material components
         if (this.layoutView.setBoxStrokeColorStateList) {
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
-            const colorStateList = getColorStateList(color, inactiveColor);
-            // @ts-ignore
+            const colorStateList = getFullColorStateList(color, inactiveColor);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         } else {
             this.layoutView.setBoxStrokeColor(color);
         }
-        // this.editText.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
     }
     [backgroundInternalProperty.setNative](value: Background) {
         switch (this.variant) {
@@ -242,7 +226,6 @@ export class TextView extends TextViewBase {
             case 'filled':
                 super[backgroundInternalProperty.setNative](value);
                 if (value.color) {
-                    // this.layoutView.setBackground(null);
                     const background = this.editText.getBackground();
                     if (background instanceof com.google.android.material.shape.MaterialShapeDrawable) {
                         background.setTintList(android.content.res.ColorStateList.valueOf(value.color.android));
@@ -256,7 +239,6 @@ export class TextView extends TextViewBase {
             case 'outline':
             case 'underline': {
                 if (value.color) {
-                    // this.layoutView.setBackground(null);
                     const background = this.editText.getBackground();
                     if (background instanceof com.google.android.material.shape.MaterialShapeDrawable) {
                         background.setTintList(android.content.res.ColorStateList.valueOf(value.color.android));

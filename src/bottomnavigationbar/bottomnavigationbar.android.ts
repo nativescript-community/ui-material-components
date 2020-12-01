@@ -127,7 +127,7 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         this.nativeViewProtected.setOnNavigationItemSelectedListener(null);
         this.reselectListener = null;
         this.selectListener = null;
-        this._items.forEach(item => this._removeView(item));
+        this._items.forEach((item) => this._removeView(item));
         super.disposeNativeView();
     }
 
@@ -135,7 +135,7 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         // showBadge method is available in v1.1.0-alpha07 of material components
         // but NS team has the .d.ts for version 1
         // that's why we need to cast the nativeView to any to avoid typing errors
-        const badge = (this.nativeViewProtected).getOrCreateBadge(index);
+        const badge = this.nativeViewProtected.getOrCreateBadge(index);
         if (this.badgeColor) {
             badge.setBackgroundColor(this.badgeColor.android);
         }
@@ -171,8 +171,8 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
     }
 
     [inactiveColorCssProperty.setNative](inactiveColor: Color) {
-        const color2= inactiveColor instanceof Color ? inactiveColor.android : inactiveColor;
-        const color1 = this.activeColor instanceof Color ? this.activeColor.android : (this.nativeViewProtected.getItemTextColor().getColorForState(stateSets.FOCUSED_STATE_SET, color2));
+        const color2 = inactiveColor instanceof Color ? inactiveColor.android : inactiveColor;
+        const color1 = this.activeColor instanceof Color ? this.activeColor.android : this.nativeViewProtected.getItemTextColor().getColorForState(stateSets.FOCUSED_STATE_SET, color2);
         const colorStateList = createColorStateList(color1, color2);
         this.nativeViewProtected.setItemTextColor(colorStateList);
         this.nativeViewProtected.setItemIconTintList(colorStateList);
@@ -238,7 +238,12 @@ export class BottomNavigationTab extends BottomNavigationTabBase {
     [activeColorCssProperty.setNative](activeColor: Color) {
         // not working for now
         const color1 = activeColor instanceof Color ? activeColor.android : activeColor;
-        const color2 = this.inactiveColor instanceof Color ? this.inactiveColor.android : (this.nativeViewProtected.getIconTintList()?this.nativeViewProtected.getIconTintList().getColorForState(stateSets.BACKGROUND_DEFAULT_STATE_2, color1): 0);
+        const color2 =
+            this.inactiveColor instanceof Color
+                ? this.inactiveColor.android
+                : this.nativeViewProtected.getIconTintList()
+                    ? this.nativeViewProtected.getIconTintList().getColorForState(stateSets.BACKGROUND_DEFAULT_STATE_2, color1)
+                    : 0;
         const colorStateList = createColorStateList(color1, color2);
         // this.nativeViewProtected.color(colorStateList); // can we set the text color?
         this.nativeViewProtected.setIconTintList(colorStateList);
@@ -246,8 +251,13 @@ export class BottomNavigationTab extends BottomNavigationTabBase {
 
     [inactiveColorCssProperty.setNative](inactiveColor: Color) {
         // not working for now
-        const color2= inactiveColor instanceof Color ? inactiveColor.android : inactiveColor;
-        const color1 = this.activeColor instanceof Color ? this.activeColor.android : (this.nativeViewProtected.getIconTintList()?this.nativeViewProtected.getIconTintList().getColorForState(stateSets.FOCUSED_STATE_SET, color2):0);
+        const color2 = inactiveColor instanceof Color ? inactiveColor.android : inactiveColor;
+        const color1 =
+            this.activeColor instanceof Color
+                ? this.activeColor.android
+                : this.nativeViewProtected.getIconTintList()
+                    ? this.nativeViewProtected.getIconTintList().getColorForState(stateSets.FOCUSED_STATE_SET, color2)
+                    : 0;
         const colorStateList = createColorStateList(color1, color2);
         // this.nativeViewProtected.setText(colorStateList); // can we set the text color?
         this.nativeViewProtected.setIconTintList(colorStateList);

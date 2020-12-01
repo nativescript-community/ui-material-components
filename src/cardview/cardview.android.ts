@@ -1,4 +1,4 @@
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
 import { createStateListAnimator, getAttrColor, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import { Color, Length, backgroundInternalProperty } from '@nativescript/core';
 import { CardViewBase } from './cardview-common';
@@ -265,8 +265,10 @@ export class CardView extends CardViewBase {
     }
 
     getCardRippleColor() {
-        const color = this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight'));
-        return color.android;
+        if (this.rippleColor) {
+            return getRippleColor(this.rippleColor);
+        }
+        return getRippleColor(themer.getAccentColor());
     }
     // createForegroundDrawable(view: com.google.android.material.card.MaterialCardView, strokeWidth, strokeColor: Color) {
     //     this.fgDrawable = new android.graphics.drawable.GradientDrawable();

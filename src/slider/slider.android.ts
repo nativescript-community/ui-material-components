@@ -33,7 +33,7 @@ export const valueProperty = new CoercibleProperty<Slider, number>({
 
         return value;
     },
-    valueConverter: (v) => parseFloat(v),
+    valueConverter: (v) => parseFloat(v)
 });
 /**
  * Represents the observable property backing the minValue property of each Slider instance.
@@ -45,7 +45,7 @@ export const minValueProperty = new Property<Slider, number>({
         maxValueProperty.coerce(target);
         valueProperty.coerce(target);
     },
-    valueConverter: (v) => parseFloat(v),
+    valueConverter: (v) => parseFloat(v)
 });
 /**
  * Represents the observable property backing the maxValue property of each Slider instance.
@@ -62,7 +62,7 @@ export const maxValueProperty = new CoercibleProperty<Slider, number>({
         return value;
     },
     valueChanged: (target, oldValue, newValue) => valueProperty.coerce(target),
-    valueConverter: (v) => parseFloat(v),
+    valueConverter: (v) => parseFloat(v)
 });
 export class Slider extends View {
     nativeViewProtected: com.google.android.material.slider.Slider;
@@ -97,7 +97,7 @@ export class Slider extends View {
                 if (fromUser) {
                     valueProperty.nativeValueChange(this as any, value);
                 }
-            },
+            }
         });
         nativeView.addOnChangeListener(this.listener);
     }
@@ -147,7 +147,6 @@ export class Slider extends View {
             // trackFillColor overrides also the thumbColor
             this[thumbColorProperty.setNative](this.thumbColor);
         }
-
     }
     [valueProperty.setNative](value) {
         this.nativeViewProtected.setValueTo(this.maxValue);
@@ -193,7 +192,7 @@ export class Slider extends View {
         this.nativeViewProtected.setTrackInactiveTintList(getEnabledColorStateList(color, 61.2));
     }
     [trackFillColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.setTrackActiveTintList(getEnabledColorStateList(color ));
+        this.nativeViewProtected.setTrackActiveTintList(getEnabledColorStateList(color));
     }
 
     // [elevationProperty.setNative](value: number) {

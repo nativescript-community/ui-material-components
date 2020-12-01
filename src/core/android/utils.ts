@@ -1,4 +1,4 @@
-import { Application, Color, Utils, ViewBase } from '@nativescript/core';
+import { Application, Color, Utils, ViewBase, profile } from '@nativescript/core';
 
 let isPostLollipopVar: boolean;
 export function isPostLollipop() {
@@ -44,7 +44,7 @@ export const state = {
     },
     get checked() {
         return 16842912;
-    },
+    }
 };
 
 function createNativeArray(...args) {
@@ -142,109 +142,57 @@ export const stateSets = {
             this._BACKGROUND_DISABLED_STATE = createNativeArray(-state.enabled);
         }
         return this._BACKGROUND_DISABLED_STATE as native.Array<number>;
-    },
+    }
 };
 
-export function getRippleColorStateList(color: number) {
+let ColorStateList: typeof android.content.res.ColorStateList;
+export function getColorStateList(color: number) {
     if (!color) {
         return null;
     }
-    const states = Array.create('[I', 2);
-    states[0] = stateSets.SELECTED_PRESSED_STATE_SET;
-    states[1] = Array.create('int', 0);
-    // states[1][0] = new java.lang.Integer(state.enabled);
-    // states[1][1] = new java.lang.Integer(-state.pressed);
-    // const states = [
-    //     getSELECTED_PRESSED_STATE_SET(),
-    //     []]
-    // ;
-    const colors = Array.create('int', 2);
-    colors[0] = color;
-    colors[1] = 0;
-    return new android.content.res.ColorStateList(states, colors);
+    if (!ColorStateList) {
+        ColorStateList = android.content.res.ColorStateList;
+    }
+    return ColorStateList.valueOf(color);
+}
+
+export function getFullColorStateList(activeColor: number, inactiveColor = 1627389952, disabledColor = 1627389952) {
+    if (!activeColor) {
+        return null;
+    }
+    if (!NUtils) {
+        NUtils = (com as any).nativescript.material.core.Utils;
+    }
+    return NUtils.getFullColorStateList(activeColor, inactiveColor, disabledColor);
 }
 export function getEnabledColorStateList(color: number, variant: string) {
     if (!color) {
         return null;
     }
-    const states = Array.create('[I', 2);
-    // const SELECTED_PRESSED_STATE_SET = Array.create("int",1);
-    // SELECTED_PRESSED_STATE_SET[0] =  state.enabled;
-    states[0] = Array.create('int', 1);
-    states[0][0] = -state.enabled;
-    states[1] = android.util.StateSet.NOTHING;
-    // states[1][0] = new java.lang.Integer(-state.enabled);
-    // const states = [
-    //     getSELECTED_PRESSED_STATE_SET(),
-    //     []]
-    // ;
-    const colors = Array.create('int', 2);
-    colors[0] = variant === 'text' || variant === 'outline' ? 0 : new Color(30, 0, 0, 0).android;
-    colors[1] = color;
-    return new android.content.res.ColorStateList(states, colors);
-}
-export function getFocusedColorStateList(color: number, variant: string) {
-    if (!color) {
-        return null;
+    if (!NUtils) {
+        NUtils = (com as any).nativescript.material.core.Utils;
     }
-    const states = Array.create('[I', 3);
-
-    states[0] = Array.create('int', 1);
-    states[0][0] = state.pressed;
-    states[1] = Array.create('int', 2);
-    states[1][0] = state.enabled;
-    states[1][1] = state.focused;
-    // states[2] = Array.create('int', 1);
-    // states[2][0] = state.selected;
-    states[2] = android.util.StateSet.NOTHING;
-    const colors = Array.create('int', 4);
-    colors[0] = color;
-    colors[1] = color;
-    colors[2] = color;
-    colors[2] = new Color(255, 160, 160, 160).android;
-    return new android.content.res.ColorStateList(states, colors);
+    return NUtils.getEnabledColorStateList(color, variant);
 }
 
-const shortAnimTime = 17694720; // android.R.integer.config_shortAnimTime
-const statePressed = 16842919; // android.R.attr.state_pressed
-const stateEnabled = 16842910; // android.R.attr.state_enabled
-export function createStateListAnimator(view: ViewBase, nativeView: android.view.View) {
-    const ObjectAnimator = android.animation.ObjectAnimator;
-    const AnimatorSet = android.animation.AnimatorSet;
-
-    const duration = nativeView.getContext().getResources().getInteger(shortAnimTime) / 2;
-
+let NUtils;
+export const createStateListAnimator = profile('createStateListAnimator', function (view: ViewBase, nativeView: android.view.View) {
     let elevation = view['elevation'];
-    if (typeof elevation === 'undefined' || elevation === null) {
+    if (elevation === undefined || elevation === null) {
         elevation = (view as any).getDefaultElevation();
     }
     elevation = Utils.layout.toDevicePixels(elevation);
 
     let pressedZ = view['dynamicElevationOffset'];
-    if (typeof pressedZ === 'undefined' || pressedZ === null) {
+    if (pressedZ === undefined || pressedZ === null) {
         pressedZ = (view as any).getDefaultDynamicElevationOffset();
     }
     pressedZ = Utils.layout.toDevicePixels(pressedZ);
-
-    const pressedSet = new AnimatorSet();
-    pressedSet.playTogether(
-        java.util.Arrays.asList([ObjectAnimator.ofFloat(nativeView, 'translationZ', [pressedZ]).setDuration(duration), ObjectAnimator.ofFloat(nativeView, 'elevation', [elevation]).setDuration(0)])
-    );
-
-    const notPressedSet = new AnimatorSet();
-    notPressedSet.playTogether(
-        java.util.Arrays.asList([ObjectAnimator.ofFloat(nativeView, 'translationZ', [0]).setDuration(duration), ObjectAnimator.ofFloat(nativeView, 'elevation', [elevation]).setDuration(0)])
-    );
-
-    const defaultSet = new AnimatorSet();
-    defaultSet.playTogether(java.util.Arrays.asList([ObjectAnimator.ofFloat(nativeView, 'translationZ', [0]).setDuration(0), ObjectAnimator.ofFloat(nativeView, 'elevation', [0]).setDuration(0)]));
-
-    const stateListAnimator = new android.animation.StateListAnimator();
-    stateListAnimator.addState([statePressed, stateEnabled], pressedSet);
-    stateListAnimator.addState([stateEnabled], notPressedSet);
-    stateListAnimator.addState([], defaultSet);
-    nativeView.setStateListAnimator(stateListAnimator);
-}
+    if (!NUtils) {
+        NUtils = (com as any).nativescript.material.core.Utils;
+    }
+    NUtils.createStateListAnimator(view._context, nativeView, elevation, pressedZ);
+});
 
 export function getAttrColor(context: android.content.Context, name: string) {
     const ta = context.obtainStyledAttributes([Utils.android.resources.getId(':attr/' + name)]);
@@ -254,51 +202,23 @@ export function getAttrColor(context: android.content.Context, name: string) {
 }
 
 function createForegroundShape(radius) {
-    const radii = Array.create('float', 8);
-    java.util.Arrays.fill(radii, radius);
-    const shape = new android.graphics.drawable.shapes.RoundRectShape(radii, null, null);
-    const shapeDrawable = new android.graphics.drawable.ShapeDrawable(shape);
-    return shapeDrawable;
-}
-export function createRippleDrawable(view: android.view.View, rippleColor: number, radius = 0) {
-    const rippleShape = createForegroundShape(radius);
-    let rippleDrawable: android.graphics.drawable.StateListDrawable | android.graphics.drawable.RippleDrawable;
-    if (isPostLollipopMR1()) {
-        //noinspection NewApi
-        rippleDrawable = new android.graphics.drawable.RippleDrawable(android.content.res.ColorStateList.valueOf(rippleColor), null, rippleShape);
-    } else {
-        rippleDrawable = new android.graphics.drawable.StateListDrawable();
-        // const foregroundShape = this.createForegroundShape(this._borderRadius);
-        rippleShape.getPaint().setColor(rippleColor);
-        rippleDrawable.addState([state.pressed], rippleShape);
-        // this.rippleDrawable = this.createCompatRippleDrawable(this.getCardRippleColor());
-        // view.setForeground(this.createCompatRippleDrawable(this.getRippleColor(this.style['rippleColor'])));
+    if (!NUtils) {
+        NUtils = (com as any).nativescript.material.core.Utils;
     }
-    // some classes might need this
-    (rippleDrawable as any).rippleShape = rippleShape;
-    return rippleDrawable;
+    return NUtils.createForegroundShape(radius);
+}
+export function createRippleDrawable(rippleColor: number, radius = 0) {
+    if (!NUtils) {
+        NUtils = (com as any).nativescript.material.core.Utils;
+    }
+    return NUtils.createRippleDrawable(rippleColor, radius);
 }
 
 export function handleClearFocus(view: android.view.View) {
-    const root = view.getRootView();
-    let oldValue = true;
-    let oldDesc = android.view.ViewGroup.FOCUS_BEFORE_DESCENDANTS;
-
-    if (root != null) {
-        if (root instanceof android.view.ViewGroup) {
-            oldDesc = root.getDescendantFocusability();
-            root.setDescendantFocusability(android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS);
-        }
-        oldValue = root.isFocusable();
-        setFocusable(root, false);
+    if (!NUtils) {
+        NUtils = (com as any).nativescript.material.core.Utils;
     }
-    view.clearFocus();
-    if (root != null) {
-        setFocusable(root, oldValue);
-        if (root instanceof android.view.ViewGroup) {
-            root.setDescendantFocusability(oldDesc);
-        }
-    }
+    return NUtils.handleClearFocus(view);
 }
 
 export function setFocusable(view: android.view.View, focusable: boolean) {

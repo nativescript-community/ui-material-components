@@ -37,9 +37,18 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         this.nativeView.hide();
     }
 
+    createStateListAnimatorTimeout;
+    createStateListAnimator() {
+        if (!this.createStateListAnimatorTimeout) {
+            this.createStateListAnimatorTimeout = setTimeout(() => {
+                this.createStateListAnimatorTimeout = null;
+                createStateListAnimator(this, this.nativeViewProtected);
+            });
+        }
+    }
     [elevationProperty.setNative](value: number) {
         if (isPostLollipop()) {
-            createStateListAnimator(this, this.nativeViewProtected);
+            this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
             androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, newValue);
@@ -47,7 +56,7 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     }
     [dynamicElevationOffsetProperty.setNative](value: number) {
         if (isPostLollipop()) {
-            createStateListAnimator(this, this.nativeViewProtected);
+            this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
             androidx.core.view.ViewCompat.setTranslationZ(this.nativeViewProtected, newValue);
