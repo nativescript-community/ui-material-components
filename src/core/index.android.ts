@@ -154,6 +154,13 @@ class ViewWithElevationAndRipple extends View {
             }
         }
     }
+    public requestFocus() {
+        this.focus();
+    }
+    public clearFocus() {
+        handleClearFocus(this.nativeViewProtected);
+        ad.dismissSoftInput(this.nativeViewProtected);
+    }
 
     getDefaultElevation(): number {
         const result = this instanceof Button ? 2 : 0;

@@ -106,9 +106,7 @@ export class Themer {
 
 export const themer = new Themer();
 
-export function install() {
-
-}
+export function install() {}
 
 export function getRippleColor(color: string | Color): UIColor {
     if (color) {
@@ -189,6 +187,13 @@ class ViewWithElevationAndRipple extends View {
             const elevation = this._shadowElevations[state];
             this.shadowLayer.elevation = elevation;
         }
+    }
+
+    public requestFocus() {
+        this.focus();
+    }
+    public clearFocus() {
+        this.nativeViewProtected.resignFirstResponder();
     }
     [rippleColorProperty.setNative](color: Color) {
         this.getOrCreateRippleController();

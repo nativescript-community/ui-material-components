@@ -1,5 +1,12 @@
 import { Color } from '@nativescript/core';
 
+declare module '@nativescript/core/ui/core/view' {
+    interface View {
+        clearFocus();
+        requestFocus();
+    }
+}
+
 export interface TypographyOptions {
     fontFamily?: string;
     fontSize?: number;
