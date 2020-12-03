@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.10](https://github.com/Akylas/nativescript-material-components/compare/v5.1.9...v5.1.10) (2020-12-03)
+
+
+### Bug Fixes
+
+* android function not public ([b6f689c](https://github.com/Akylas/nativescript-material-components/commit/b6f689ca4a0786263b40610a10c86710674603e6))
+
+
+
+
+
 ## [5.1.9](https://github.com/Akylas/nativescript-material-components/compare/v5.1.8...v5.1.9) (2020-12-01)
 
 

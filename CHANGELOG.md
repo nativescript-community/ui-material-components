@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.10](https://github.com/Akylas/nativescript-material-components/compare/v5.1.9...v5.1.10) (2020-12-03)
+
+
+### Bug Fixes
+
+* **button:** faster android button ([653775f](https://github.com/Akylas/nativescript-material-components/commit/653775f48601c6cf43a451f9fc57fe817aa54e25))
+* **slider:** faster android slider ([36f5803](https://github.com/Akylas/nativescript-material-components/commit/36f58030dacfd548fb6072dc0d1a76352b96c639))
+* android function not public ([b6f689c](https://github.com/Akylas/nativescript-material-components/commit/b6f689ca4a0786263b40610a10c86710674603e6))
+
+
+### Features
+
+* **bottomsheet:** android disableDimBackground ([a5e791e](https://github.com/Akylas/nativescript-material-components/commit/a5e791e7c4a7461e21d5a2e5aa0291c72d7427fd))
+
+
+
+
+
 ## [5.1.9](https://github.com/Akylas/nativescript-material-components/compare/v5.1.8...v5.1.9) (2020-12-01)
 
 
