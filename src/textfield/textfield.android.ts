@@ -280,7 +280,7 @@ export class TextField extends TextFieldBase {
     }
 
     [fontInternalProperty.setNative](value: Font | UIFont) {
-        super[fontInternalProperty.setNative](value);
+        // super[fontInternalProperty.setNative](value);
         if (!this.formattedText || !(value instanceof Font)) {
             this.nativeViewProtected.setTypeface(value instanceof Font ? value.getAndroidTypeface() : value);
         }
