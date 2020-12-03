@@ -43,11 +43,10 @@ public class Utils {
         view.setStateListAnimator(stateListAnimator);
     }
 
-    public static ColorStateList getEnabledColorStateList(int color, String variant) {
+    public static ColorStateList getEnabledColorStateList(int color, int disabledColor) {
         int[][] states = new int[][] { new int[] { -android.R.attr.state_enabled }, // enabled
                 android.util.StateSet.NOTHING, // disabled
         };
-        int disabledColor = (variant == "text" || variant == "outline") ? 0 : Color.argb(0.117f, 0f, 0f, 0f);
         int[] colors = new int[] { disabledColor, color };
         return new android.content.res.ColorStateList(states, colors);
     }
