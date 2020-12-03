@@ -1,10 +1,21 @@
 import { Application, Background, Button, Color, Length, View, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, profile } from '@nativescript/core';
 import { createRippleDrawable, createStateListAnimator, getAttrColor, getColorStateList, handleClearFocus, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from './android/utils';
-import { applyMixins } from './index.common';
+import { CornerFamily, applyMixins } from './index.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
 import { ad } from '@nativescript/core/utils';
+import { ShapeProperties } from '.';
 export * from './cssproperties';
 export { applyMixins };
+
+function createCornerTreatment(cornerFamily: CornerFamily): com.google.android.material.shape.CornerTreatment {
+    switch (cornerFamily) {
+        case CornerFamily.CUT:
+            return new com.google.android.material.shape.CutCornerTreatment();
+        default:
+        case CornerFamily.ROUNDED:
+            return new com.google.android.material.shape.RoundedCornerTreatment();
+    }
+}
 
 // stub class as we don't use this on android
 export class Themer {
@@ -78,6 +89,67 @@ export class Themer {
             this.controlHighlightColor = new Color(getAttrColor(Application.android.context, 'colorControlHighlight'));
         }
         return this.controlHighlightColor;
+    }
+
+    _shapes: {
+        [k: string]: com.google.android.material.shape.ShapeAppearanceModel;
+    } = {};
+    getShape(key: string) {
+        return this._shapes[key] || null;
+    }
+    createShape(key: string, options: ShapeProperties) {
+        const builder = com.google.android.material.shape.ShapeAppearanceModel.builder();
+        if (options.cornerFamily) {
+            builder.setAllCorners(createCornerTreatment(options.cornerFamily));
+        }
+        if (options.cornerFamilyBottomRight) {
+            builder.setBottomRightCorner(createCornerTreatment(options.cornerFamilyBottomRight));
+        }
+        if (options.cornerFamilyBottomLeft) {
+            builder.setBottomLeftCorner(createCornerTreatment(options.cornerFamilyBottomLeft));
+        }
+        if (options.cornerFamilyTopLeft) {
+            builder.setTopLeftCorner(createCornerTreatment(options.cornerFamilyTopLeft));
+        }
+        if (options.cornerFamilyTopRight) {
+            builder.setTopRightCorner(createCornerTreatment(options.cornerFamilyTopRight));
+        }
+        if (options.cornerSize !== undefined) {
+            if (typeof options.cornerSize === 'object') {
+                builder.setAllCornerSizes(new com.google.android.material.shape.RelativeCornerSize(options.cornerSize.value));
+            } else {
+                builder.setAllCornerSizes(options.cornerSize);
+            }
+        }
+        if (options.cornerSizeBottomLeft !== undefined) {
+            if (typeof options.cornerSizeBottomLeft === 'object') {
+                builder.setBottomLeftCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeBottomLeft.value));
+            } else {
+                builder.setBottomLeftCornerSize(options.cornerSizeBottomLeft);
+            }
+        }
+        if (options.cornerSizeBottomRight !== undefined) {
+            if (typeof options.cornerSizeBottomRight === 'object') {
+                builder.setBottomRightCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeBottomRight.value));
+            } else {
+                builder.setBottomRightCornerSize(options.cornerSizeBottomRight);
+            }
+        }
+        if (options.cornerSizeTopRight !== undefined) {
+            if (typeof options.cornerSizeTopRight === 'object') {
+                builder.setTopRightCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeTopRight.value));
+            } else {
+                builder.setTopRightCornerSize(options.cornerSizeTopRight);
+            }
+        }
+        if (options.cornerSizeTopLeft !== undefined) {
+            if (typeof options.cornerSizeTopLeft === 'object') {
+                builder.setTopLeftCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeTopLeft.value));
+            } else {
+                builder.setTopLeftCornerSize(options.cornerSizeTopLeft);
+            }
+        }
+        this._shapes[key] = builder.build();
     }
 }
 

@@ -1,5 +1,5 @@
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
 import { createStateListAnimator, getColorStateList, getLayout, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import {
     Background,
@@ -90,6 +90,10 @@ export class Button extends ButtonBase {
     [rippleColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setRippleColor(getColorStateList(color.android));
     }
+    [shapeProperty.setNative](shape: string) {
+        const appearanceModel = themer.getShape(shape);
+        this.nativeViewProtected.setShapeAppearanceModel(appearanceModel);
+    }
 
     getDefaultElevation(): number {
         return 2; // 2dp @dimen/mtrl_btn_elevation
@@ -152,8 +156,12 @@ export class Button extends ButtonBase {
                 if (value.color) {
                     view.setBackgroundColor(value.color.android);
                 }
-                this.setCornerRadius(value.borderTopLeftRadius);
-                view.setStrokeWidth(value.borderTopWidth);
+                if (value.borderTopLeftRadius !== 0) {
+                    this.setCornerRadius(value.borderTopLeftRadius);
+                }
+                if (value.borderTopWidth !== 0) {
+                    view.setStrokeWidth(value.borderTopWidth);
+                }
                 if (value.borderTopColor) {
                     view.setStrokeColor(getColorStateList(value.borderTopColor.android));
                 }
