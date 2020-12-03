@@ -50,10 +50,10 @@ export class SpeedDialItemTitle extends Button {
         this.verticalAlignment = 'middle';
         this.style['css:text-transform'] = 'none';
         this.style['css:background-color'] = defaultSpeedDialItemTitleBackgroundColor;
-        this.style['css:ripple-color'] = defaultSpeedDialItemTitleRippleColor;
+        // this.style['css:ripple-color'] = defaultSpeedDialItemTitleRippleColor;
         this.style['css:color'] = defaultSpeedDialItemTitleRippleColor;
         this.style['css:elevation'] = 1;
-        this.style['css:border-radius'] = 6;
+        // this.style['css:border-radius'] = 6;
         this.style['css:font-size'] = 10;
         this.style['css:min-width'] = 0;
         this.style['css:min-height'] = 0;
@@ -107,12 +107,12 @@ export class SpeedDialItem extends SpeedDialItemBase {
         // this.fabButtonTitle.style['css:elevation'] = 4;this.fabButtonTitle.style['css:elevation'] = 2;
         this.button.col = this.fabButtonCol;
         if (size === 'mini') {
-            this.button.style['css:border-radius'] = 20;
+            // this.button.style['css:border-radius'] = 20;
             this.button.style['css:width'] = 40;
             this.button.style['css:height'] = 40;
             this.button.style['css:margin'] = 16;
         } else {
-            this.button.style['css:border-radius'] = 28;
+            // this.button.style['css:border-radius'] = 28;
             this.button.style['css:width'] = 56;
             this.button.style['css:height'] = 56;
             this.button.style['css:margin'] = 16;
