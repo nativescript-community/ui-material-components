@@ -165,14 +165,14 @@ export function getFullColorStateList(activeColor: number, inactiveColor = 16273
     }
     return NUtils.getFullColorStateList(activeColor, inactiveColor, disabledColor);
 }
-export function getEnabledColorStateList(color: number, variant: string) {
+export function getEnabledColorStateList(color: number, disabledColor: number) {
     if (!color) {
         return null;
     }
     if (!NUtils) {
         NUtils = (com as any).nativescript.material.core.Utils;
     }
-    return NUtils.getEnabledColorStateList(color, variant);
+    return NUtils.getEnabledColorStateList(color, disabledColor);
 }
 
 let NUtils;

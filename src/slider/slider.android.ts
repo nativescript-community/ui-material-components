@@ -1,28 +1,14 @@
 import { cssProperty, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
-import { state } from '@nativescript-community/ui-material-core/android/utils';
+import { getEnabledColorStateList, state } from '@nativescript-community/ui-material-core/android/utils';
 import { CoercibleProperty, Color, Property, View, backgroundColorProperty, backgroundInternalProperty, colorProperty } from '@nativescript/core';
 import { thumbColorProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
 
 let ASlider: typeof com.google.android.material.slider.Slider;
-export function getEnabledColorStateList(color: Color, alpha = 255) {
+export function sliderGetEnabledColorStateList(color: Color, alpha = 255) {
     if (!color) {
         return null;
     }
-    const states = Array.create('[I', 2);
-    // const SELECTED_PRESSED_STATE_SET = Array.create("int",1);
-    // SELECTED_PRESSED_STATE_SET[0] =  state.enabled;
-    states[0] = Array.create('int', 1);
-    states[0][0] = -state.enabled;
-    states[1] = android.util.StateSet.NOTHING;
-    // states[1][0] = new java.lang.Integer(-state.enabled);
-    // const states = [
-    //     getSELECTED_PRESSED_STATE_SET(),
-    //     []]
-    // ;
-    const colors = Array.create('int', 2);
-    colors[0] = new Color(alpha, 158, 158, 158).android;
-    colors[1] = color.android;
-    return new android.content.res.ColorStateList(states, colors);
+    return getEnabledColorStateList(color.android, new Color(alpha, 158, 158, 158).android);
 }
 export const valueProperty = new CoercibleProperty<Slider, number>({
     name: 'value',
@@ -127,7 +113,7 @@ export class Slider extends View {
 
     [colorProperty.setNative](color: Color) {
         if (color) {
-            this.nativeViewProtected.setTrackTintList(getEnabledColorStateList(color));
+            this.nativeViewProtected.setTrackTintList(sliderGetEnabledColorStateList(color));
             if (!this.trackBackgroundColor) {
                 this.trackBackgroundColor = new Color(61.2, color.r, color.g, color.b);
             }
@@ -180,7 +166,7 @@ export class Slider extends View {
         this.nativeViewProtected.setHaloTintList(color ? android.content.res.ColorStateList.valueOf(color.android) : null);
     }
     [thumbColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.setThumbTintList(getEnabledColorStateList(color));
+        this.nativeViewProtected.setThumbTintList(sliderGetEnabledColorStateList(color));
         if (!this.rippleColor) {
             this.rippleColor = color;
         } else {
@@ -189,10 +175,10 @@ export class Slider extends View {
         }
     }
     [trackBackgroundColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.setTrackInactiveTintList(getEnabledColorStateList(color, 61.2));
+        this.nativeViewProtected.setTrackInactiveTintList(sliderGetEnabledColorStateList(color, 61.2));
     }
     [trackFillColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.setTrackActiveTintList(getEnabledColorStateList(color));
+        this.nativeViewProtected.setTrackActiveTintList(sliderGetEnabledColorStateList(color));
     }
 
     // [elevationProperty.setNative](value: number) {
