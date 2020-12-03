@@ -140,6 +140,9 @@ export class Button extends ButtonBase {
     [textTransformProperty.setNative](value: TextTransform) {
         this.nativeViewProtected.setAllCaps(value !== 'none');
     }
+    [backgroundInternalProperty.getDefault]() {
+        return null;
+    }
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
         const view = this.nativeTextViewProtected;
         if (view) {
