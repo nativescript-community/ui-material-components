@@ -96,7 +96,6 @@
                     @textChange="onTextChange"
                     @returnPress="onReturnPress"
                     digits="0123456789."
-                    strokeColor="red"
                     margin="10"
                 />
                 <MDTextField

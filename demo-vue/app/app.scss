@@ -1,10 +1,10 @@
 .mdi {
     font-family: 'materialdesignicons-webfont', 'Material Design Icons';
 }
-button {
-    elevation: 2;
-}
 
+mdbutton,MDFloatingActionButton, MDCardView {
+    shape: cut;
+}
 // page {
 //     background-color: black;
 // }

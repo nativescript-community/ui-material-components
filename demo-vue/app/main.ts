@@ -1,4 +1,3 @@
-
 // import {Trace} from '@nativescript/core';
 // Trace.addCategories(Trace.categories.concat(Trace.categories.Layout));
 // Trace.enable();
@@ -48,10 +47,13 @@ if (isIOS) {
     themer.setAccentColor('#ff8a39');
     themer.setSecondaryColor('#a830d7');
 }
-//
-import Theme from '@nativescript/theme';
-
-Theme.setMode(Theme.Auto); // Or Theme.Light
+themer.createShape('cut', {
+    cornerFamily: 'cut' as any,
+    cornerSize: {
+        value: 0.5,
+        unit: '%'
+    }
+});
 // import { getExamples } from './examples';
 import * as views from './views';
 
@@ -67,7 +69,7 @@ Vue.config.errorHandler = (e, vm, info) => {
     console.log('vue error', e, e.stack);
 };
 
-Vue.config.warnHandler = function(msg, vm, trace) {
+Vue.config.warnHandler = function (msg, vm, trace) {
     console.warn('[Vue][Warn]', `[${msg}]`);
     // cwarn(msg, trace);
 };
