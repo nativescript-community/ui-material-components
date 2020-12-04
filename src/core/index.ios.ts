@@ -1,10 +1,48 @@
-import { Background, Button, Color, ControlStateChangeListener, GestureTypes, TouchAction, TouchGestureEventData, Utils, View, backgroundInternalProperty } from '@nativescript/core';
-import { TypographyOptions } from '.';
-import { applyMixins } from './index.common';
+import {
+    Background,
+    Button,
+    Color,
+    ControlStateChangeListener,
+    GestureTypes,
+    LengthPercentUnit,
+    TouchAction,
+    TouchGestureEventData,
+    Utils,
+    View,
+    backgroundInternalProperty
+} from '@nativescript/core';
+import { ShapeProperties, TypographyOptions } from '.';
+import { CornerFamily, applyMixins } from './index.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
 export * from './cssproperties';
 export { applyMixins };
 
+function createCornerFamily(cornerFamily: CornerFamily): MDCShapeCornerFamily {
+    switch (cornerFamily) {
+        case CornerFamily.CUT:
+            return MDCShapeCornerFamily.Cut;
+        default:
+        case CornerFamily.ROUNDED:
+            return MDCShapeCornerFamily.Rounded;
+    }
+}
+function cornerTreatment(cornerFamily: CornerFamily, cornerSize: number | LengthPercentUnit) {
+    let corner: MDCCornerTreatment;
+    if (typeof cornerSize === 'object') {
+        if (cornerFamily === CornerFamily.CUT) {
+            corner = MDCCornerTreatment.cornerWithCutValueType(cornerSize.value, MDCCornerTreatmentValueType.Percentage);
+        } else {
+            corner = MDCCornerTreatment.cornerWithRadiusValueType(cornerSize.value, MDCCornerTreatmentValueType.Percentage);
+        }
+    } else {
+        if (cornerFamily === CornerFamily.ROUNDED) {
+            corner = MDCCornerTreatment.cornerWithCut(cornerSize);
+        } else {
+            corner = MDCCornerTreatment.cornerWithRadius(cornerSize);
+        }
+    }
+    return corner;
+}
 export class Themer {
     appColorScheme: MDCSemanticColorScheme;
     appTypoScheme: MDCTypographyScheme;
@@ -101,6 +139,42 @@ export class Themer {
         // if (args.fontFamily) {
         //     currentFont = currentFont.withFontFamily(args.fontFamily);
         // }
+    }
+
+    _shapes: {
+        [k: string]: MDCShapeScheme;
+    } = {};
+    getShape(key: string) {
+        return this._shapes[key] || null;
+    }
+    createShape(key: string, options: ShapeProperties) {
+        const shapeScheme = MDCShapeScheme.new();
+        const shapeCategory = MDCShapeCategory.new();
+
+        if (options.cornerFamily && options.cornerSize !== undefined) {
+            const corner = cornerTreatment(options.cornerFamily, options.cornerSize);
+            shapeCategory.bottomLeftCorner = corner;
+            shapeCategory.bottomRightCorner = corner;
+            shapeCategory.topLeftCorner = corner;
+            shapeCategory.topRightCorner = corner;
+        }
+        if (options.cornerFamilyBottomLeft && options.cornerSizeBottomLeft !== undefined) {
+            shapeCategory.bottomLeftCorner = cornerTreatment(options.cornerFamilyBottomLeft, options.cornerSizeBottomLeft);
+        }
+        if (options.cornerFamilyBottomRight && options.cornerSizeBottomRight !== undefined) {
+            shapeCategory.bottomRightCorner = cornerTreatment(options.cornerFamilyBottomRight, options.cornerSizeBottomRight);
+        }
+
+        if (options.cornerFamilyTopLeft && options.cornerSizeTopLeft !== undefined) {
+            shapeCategory.topLeftCorner = cornerTreatment(options.cornerFamilyTopLeft, options.cornerSizeTopLeft);
+        }
+        if (options.cornerFamilyTopRight && options.cornerSizeTopRight !== undefined) {
+            shapeCategory.topRightCorner = cornerTreatment(options.cornerFamilyTopRight, options.cornerSizeTopRight);
+        }
+        shapeScheme.smallComponentShape = shapeCategory;
+        shapeScheme.mediumComponentShape = shapeCategory;
+        shapeScheme.largeComponentShape = shapeCategory;
+        this._shapes[key] = shapeScheme;
     }
 }
 

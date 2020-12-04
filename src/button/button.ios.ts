@@ -1,4 +1,4 @@
-import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
 import {
     Background,
     Color,
@@ -123,6 +123,60 @@ export class Button extends ButtonBase {
         this.setTopRightCornerRadius(value);
         this.applyShapeScheme();
     }
+    shapeScheme: MDCShapeScheme;
+    private getShapeScheme() {
+        if (!this.shapeScheme) {
+            if (this.shape) {
+                // we need to copy it as if we change border radius on this view
+                // it will change for everyone else
+                this.shapeScheme = MDCShapeScheme.new();
+                const shapeScheme = themer.getShape(this.shape);
+                this.shapeScheme.smallComponentShape = shapeScheme.smallComponentShape.copy();
+            } else {
+                this.shapeScheme = MDCShapeScheme.new();
+                const shapeCategory = MDCShapeCategory.new();
+                this.shapeScheme.smallComponentShape = shapeCategory;
+            }
+        }
+        return this.shapeScheme;
+    }
+
+    private setBottomLeftCornerRadius(value: number) {
+        const shapeScheme = this.getShapeScheme();
+        const current = shapeScheme.smallComponentShape.bottomLeftCorner;
+        if (current instanceof MDCCutCornerTreatment) {
+            shapeScheme.smallComponentShape.bottomLeftCorner = MDCCornerTreatment.cornerWithCut(value);
+        } else {
+            shapeScheme.smallComponentShape.bottomLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
+        }
+    }
+    private setBottomRightCornerRadius(value: number) {
+        const shapeScheme = this.getShapeScheme();
+        const current = shapeScheme.smallComponentShape.bottomRightCorner;
+        if (current instanceof MDCCutCornerTreatment) {
+            shapeScheme.smallComponentShape.bottomRightCorner = MDCCornerTreatment.cornerWithCut(value);
+        } else {
+            shapeScheme.smallComponentShape.bottomRightCorner = MDCCornerTreatment.cornerWithRadius(value);
+        }
+    }
+    private setTopLeftCornerRadius(value: number) {
+        const shapeScheme = this.getShapeScheme();
+        const current = shapeScheme.smallComponentShape.topLeftCorner;
+        if (current instanceof MDCCutCornerTreatment) {
+            shapeScheme.smallComponentShape.topLeftCorner = MDCCornerTreatment.cornerWithCut(value);
+        } else {
+            shapeScheme.smallComponentShape.topLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
+        }
+    }
+    private setTopRightCornerRadius(value: number) {
+        const shapeScheme = this.getShapeScheme();
+        const current = shapeScheme.smallComponentShape.topRightCorner;
+        if (current instanceof MDCCutCornerTreatment) {
+            shapeScheme.smallComponentShape.topRightCorner = MDCCornerTreatment.cornerWithCut(value);
+        } else {
+            shapeScheme.smallComponentShape.topRightCorner = MDCCornerTreatment.cornerWithRadius(value);
+        }
+    }
 
     public createNativeView() {
         const view = MDCButton.new();
@@ -210,32 +264,6 @@ export class Button extends ButtonBase {
         }
     }
 
-    shapeScheme: MDCShapeScheme;
-    private getShapeScheme() {
-        if (!this.shapeScheme) {
-            this.shapeScheme = MDCShapeScheme.new();
-            const shapeCategory = MDCShapeCategory.new();
-            this.shapeScheme.smallComponentShape = shapeCategory;
-        }
-        return this.shapeScheme;
-    }
-
-    private setBottomLeftCornerRadius(value: number) {
-        const shapeScheme = this.getShapeScheme();
-        shapeScheme.smallComponentShape.bottomLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
-    }
-    private setBottomRightCornerRadius(value: number) {
-        const shapeScheme = this.getShapeScheme();
-        shapeScheme.smallComponentShape.bottomRightCorner = MDCCornerTreatment.cornerWithRadius(value);
-    }
-    private setTopLeftCornerRadius(value: number) {
-        const shapeScheme = this.getShapeScheme();
-        shapeScheme.smallComponentShape.topLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
-    }
-    private setTopRightCornerRadius(value: number) {
-        const shapeScheme = this.getShapeScheme();
-        shapeScheme.smallComponentShape.topRightCorner = MDCCornerTreatment.cornerWithRadius(value);
-    }
     _setNativeClipToBounds() {
         // const backgroundInternal = this.style.backgroundInternal;
         // this.nativeViewProtected.clipsToBounds =
@@ -265,5 +293,11 @@ export class Button extends ButtonBase {
         const color = value instanceof Color ? value.ios : value;
         super[colorProperty.setNative](value);
         this.nativeViewProtected.setImageTintColorForState(color, UIControlState.Normal);
+    }
+    [shapeProperty.setNative](shape: string) {
+        // TODO: for now we cant change after set
+        // this.shapeScheme = null;
+        this.getShapeScheme();
+        this.applyShapeScheme();
     }
 }

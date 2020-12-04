@@ -1,5 +1,15 @@
 import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
-import { Background, Color, Screen, backgroundInternalProperty, isUserInteractionEnabledProperty } from '@nativescript/core';
+import {
+    Background,
+    Color,
+    Screen,
+    backgroundInternalProperty,
+    borderBottomLeftRadiusProperty,
+    borderBottomRightRadiusProperty,
+    borderTopLeftRadiusProperty,
+    borderTopRightRadiusProperty,
+    isUserInteractionEnabledProperty
+} from '@nativescript/core';
 import { CardViewBase } from './cardview-common';
 
 // use custom class to get the same behavior as android which is
@@ -21,13 +31,18 @@ class Card extends MDCCardCollectionCell {
 
 export class CardView extends CardViewBase {
     nativeViewProtected: Card;
-
+    scheme: MDCContainerScheme;
     public createNativeView() {
         const view = Card.new() as Card;
         const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
         if (colorScheme) {
             const scheme = MDCContainerScheme.alloc().init();
             scheme.colorScheme = colorScheme;
+            this.scheme = scheme;
+            if (this.shape) {
+                this.scheme.shapeScheme = this.getShapeScheme();
+            }
+            console.log('createNativeView', this.scheme.shapeScheme);
             view.applyThemeWithScheme(scheme);
         }
         view.interactable = this.isUserInteractionEnabled;
@@ -44,7 +59,83 @@ export class CardView extends CardViewBase {
     getDefaultDynamicElevationOffset() {
         return 1;
     }
+    applyShapeScheme() {
+        if (this.scheme) {
+            this.scheme.shapeScheme = this.shapeScheme;
+            console.log('applyShapeScheme');
+            this.nativeViewProtected.applyThemeWithScheme(this.scheme);
+        }
+    }
+    [borderBottomLeftRadiusProperty.setNative](value) {
+        this.setBottomLeftCornerRadius(value);
+        this.applyShapeScheme();
+    }
+    [borderBottomRightRadiusProperty.setNative](value) {
+        this.setBottomRightCornerRadius(value);
+        this.applyShapeScheme();
+    }
+    [borderTopLeftRadiusProperty.setNative](value) {
+        this.setTopLeftCornerRadius(value);
+        this.applyShapeScheme();
+    }
+    [borderTopRightRadiusProperty.setNative](value) {
+        this.setTopRightCornerRadius(value);
+        this.applyShapeScheme();
+    }
+    shapeScheme: MDCShapeScheme;
+    private getShapeScheme() {
+        if (!this.shapeScheme) {
+            if (this.shape) {
+                // we need to copy it as if we change border radius on this view
+                // it will change for everyone else
+                this.shapeScheme = MDCShapeScheme.new();
+                const shapeScheme = themer.getShape(this.shape);
+                this.shapeScheme.smallComponentShape = shapeScheme.smallComponentShape.copy();
+            } else {
+                this.shapeScheme = MDCShapeScheme.new();
+                const shapeCategory = MDCShapeCategory.new();
+                this.shapeScheme.smallComponentShape = shapeCategory;
+            }
+        }
+        return this.shapeScheme;
+    }
 
+    private setBottomLeftCornerRadius(value: number) {
+        const shapeScheme = this.getShapeScheme();
+        const current = shapeScheme.smallComponentShape.bottomLeftCorner;
+        if (current instanceof MDCCutCornerTreatment) {
+            shapeScheme.smallComponentShape.bottomLeftCorner = MDCCornerTreatment.cornerWithCut(value);
+        } else {
+            shapeScheme.smallComponentShape.bottomLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
+        }
+    }
+    private setBottomRightCornerRadius(value: number) {
+        const shapeScheme = this.getShapeScheme();
+        const current = shapeScheme.smallComponentShape.bottomRightCorner;
+        if (current instanceof MDCCutCornerTreatment) {
+            shapeScheme.smallComponentShape.bottomRightCorner = MDCCornerTreatment.cornerWithCut(value);
+        } else {
+            shapeScheme.smallComponentShape.bottomRightCorner = MDCCornerTreatment.cornerWithRadius(value);
+        }
+    }
+    private setTopLeftCornerRadius(value: number) {
+        const shapeScheme = this.getShapeScheme();
+        const current = shapeScheme.smallComponentShape.topLeftCorner;
+        if (current instanceof MDCCutCornerTreatment) {
+            shapeScheme.smallComponentShape.topLeftCorner = MDCCornerTreatment.cornerWithCut(value);
+        } else {
+            shapeScheme.smallComponentShape.topLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
+        }
+    }
+    private setTopRightCornerRadius(value: number) {
+        const shapeScheme = this.getShapeScheme();
+        const current = shapeScheme.smallComponentShape.topRightCorner;
+        if (current instanceof MDCCutCornerTreatment) {
+            shapeScheme.smallComponentShape.topRightCorner = MDCCornerTreatment.cornerWithCut(value);
+        } else {
+            shapeScheme.smallComponentShape.topRightCorner = MDCCornerTreatment.cornerWithRadius(value);
+        }
+    }
     // trick to get the same behavior as android (don't disable all children)
     [isUserInteractionEnabledProperty.setNative](value: boolean) {
         this.nativeViewProtected.interactable = value;
@@ -71,9 +162,9 @@ export class CardView extends CardViewBase {
             if (value.color) {
                 this.nativeViewProtected.backgroundColor = value.color ? value.color.ios : null;
             }
-            this.nativeViewProtected.setBorderWidthForState(value.borderLeftWidth / scale, MDCCardCellState.Normal);
-            this.nativeViewProtected.setBorderColorForState(value.borderTopColor ? value.borderTopColor.ios : null, MDCCardCellState.Normal);
-            this.nativeViewProtected.cornerRadius = value.borderTopLeftRadius / scale;
+            // this.nativeViewProtected.setBorderWidthForState(value.borderLeftWidth / scale, MDCCardCellState.Normal);
+            // this.nativeViewProtected.setBorderColorForState(value.borderTopColor ? value.borderTopColor.ios : null, MDCCardCellState.Normal);
+            // this.nativeViewProtected.cornerRadius = value.borderTopLeftRadius / scale;
         }
     }
     [rippleColorProperty.setNative](color: Color) {

@@ -1,4 +1,4 @@
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
 import { createStateListAnimator, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import { Background, Color, ImageSource, Length, backgroundInternalProperty, colorProperty } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
@@ -106,5 +106,9 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         } else {
             this.nativeViewProtected.shrink();
         }
+    }
+    [shapeProperty.setNative](shape: string) {
+        const appearanceModel = themer.getShape(shape);
+        this.nativeViewProtected.setShapeAppearanceModel(appearanceModel);
     }
 }
