@@ -216,6 +216,7 @@ export class TextField extends TextFieldBase {
             this._controller = TextInputControllerUnderlineImpl.initWithOwner(this);
         } else {
             this._controller = TextInputControllerImpl.initWithOwner(this);
+            this._controller.floatingEnabled = false;
             // (this._controller as TextInputControllerImpl).applyThemeWithScheme(scheme);
         }
         this._controller.textInput = view;
