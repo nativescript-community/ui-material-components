@@ -164,9 +164,9 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     if (options.message) {
         alertController.message = options.message;
     }
-    if (options.buttonFont) {
-        alertController.buttonFont = options.buttonFont.getUIFont(alertController.buttonFont);
-    }
+    // if (options.buttonFont) {
+    //     alertController.buttonFont = options.buttonFont.getUIFont(alertController.buttonFont);
+    // }
     if (options.messageFont) {
         alertController.messageFont = options.messageFont.getUIFont(alertController.messageFont);
     }
