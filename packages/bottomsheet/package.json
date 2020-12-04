@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-bottomsheet",
-    "version": "5.1.10",
+    "version": "5.1.11",
     "description": "Material Design Bottom Sheets slide up from the bottom of the screen to reveal more content. Bottom sheets integrate with the app to display supporting content or present deep-linked content from other apps.",
     "main": "./bottomsheet",
     "sideEffects": false,

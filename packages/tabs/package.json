@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-tabs",
-    "version": "5.1.10",
+    "version": "5.1.11",
     "description": "Material Design Tabs organize content across different screens, data sets, and other interactions.",
     "main": "./tabs",
     "sideEffects": false,

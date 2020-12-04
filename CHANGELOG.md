@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.11](https://github.com/Akylas/nativescript-material-components/compare/v5.1.10...v5.1.11) (2020-12-04)
+
+
+### Bug Fixes
+
+* **speeddial:** remove default borderRadius. Should be handled by shape or css ([72765f9](https://github.com/Akylas/nativescript-material-components/commit/72765f9c65906faa42b68f4c7a9953a84865090b))
+* **textfield:** ios none variant disable floating ([7fdebc1](https://github.com/Akylas/nativescript-material-components/commit/7fdebc1891a46778ba4dd1247a0d3e36ab19c5ba))
+
+
+### Features
+
+* android shape suport ([065eadb](https://github.com/Akylas/nativescript-material-components/commit/065eadbba047a04151832830d032ea326a410a13))
+* ios basic shape support ([3638cce](https://github.com/Akylas/nativescript-material-components/commit/3638ccee1cb77b35c4fc450d557064da55b99dca))
+
+
+
+
+
 ## [5.1.10](https://github.com/Akylas/nativescript-material-components/compare/v5.1.9...v5.1.10) (2020-12-03)
 
 

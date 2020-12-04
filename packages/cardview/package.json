@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-cardview",
-    "version": "5.1.10",
+    "version": "5.1.11",
     "description": "Material Design Cards contain content and actions about a single subject.",
     "main": "./cardview",
     "sideEffects": false,
