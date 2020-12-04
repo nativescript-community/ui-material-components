@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.12](https://github.com/Akylas/nativescript-material-components/compare/v5.1.11...v5.1.12) (2020-12-04)
+
+
+### Bug Fixes
+
+* **dialogs:** ios buttonFont should be working again ([fd8b367](https://github.com/Akylas/nativescript-material-components/commit/fd8b367aa2f2d16425edef7f45078be4fdd6c481))
+
+
+
+
+
 ## [5.1.11](https://github.com/Akylas/nativescript-material-components/compare/v5.1.10...v5.1.11) (2020-12-04)
 
 

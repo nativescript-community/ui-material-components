@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.12](https://github.com/nativescript-community/ui-material-components/tree/master/packages/slider/compare/v5.1.11...v5.1.12) (2020-12-04)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-slider
+
+
+
+
+
 ## [5.1.10](https://github.com/nativescript-community/ui-material-components/tree/master/packages/slider/compare/v5.1.9...v5.1.10) (2020-12-03)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-slider
