@@ -128,29 +128,30 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
         }
         alertController.dismissModalViewControllerAnimated(true);
     }
+    let buttonsFont;
+
+    function addButton(title, emphasis, result) {
+        const action = MDCAlertAction.actionWithTitleEmphasisHandler(title, emphasis, () => {
+            raiseCallback(callback, result);
+        });
+        alertController.addAction(action);
+        if (options.buttonFont) {
+            const titleLabel = alertController.buttonForAction(action).titleLabel;
+            if (!buttonsFont) {
+                buttonsFont = options.buttonFont.getUIFont(titleLabel.font);
+            }
+            titleLabel.font = buttonsFont;
+        }
+    }
 
     if (Utils.isString(options.cancelButtonText)) {
-        alertController.addAction(
-            MDCAlertAction.actionWithTitleEmphasisHandler(options.cancelButtonText, MDCActionEmphasis.Low, () => {
-                raiseCallback(callback, false);
-            })
-        );
+        addButton(options.cancelButtonText, MDCActionEmphasis.Low, false);
     }
-
     if (Utils.isString(options.neutralButtonText)) {
-        alertController.addAction(
-            MDCAlertAction.actionWithTitleEmphasisHandler(options.neutralButtonText, MDCActionEmphasis.Low, () => {
-                raiseCallback(callback, undefined);
-            })
-        );
+        addButton(options.neutralButtonText, MDCActionEmphasis.Low, undefined);
     }
-
     if (Utils.isString(options.okButtonText)) {
-        alertController.addAction(
-            MDCAlertAction.actionWithTitleEmphasisHandler(options.okButtonText, MDCActionEmphasis.Low, () => {
-                raiseCallback(callback, true);
-            })
-        );
+        addButton(options.okButtonText, MDCActionEmphasis.Low, true);
     }
 }
 
