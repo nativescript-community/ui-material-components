@@ -15,7 +15,7 @@ export abstract class TextFieldBase extends NTextField {
     @cssProperty helperColor: Color;
     @cssProperty counterMaxLength: number;
     @cssProperty errorColor: Color;
-    @cssProperty floating: boolean;
+    @cssProperty floating: boolean = true;
     @cssProperty placeholderColor: Color;
     @cssProperty variant: 'outline' | 'underline' | 'filled' | 'none' = 'filled';
     @cssProperty error: string;
