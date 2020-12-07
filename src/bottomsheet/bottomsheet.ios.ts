@@ -352,15 +352,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             this.viewController = controller; // store the viewController so that safeArea overflow is applied correctly
         }
 
-        // controller.modalPresentationStyle = UIModalPresentationStyle.FormSheet;
-
-        // this.horizontalAlignment = 'stretch';
-        // this.verticalAlignment = 'stretch';
-
         this._raiseShowingBottomSheetEvent();
-        // const controller = UIViewController.new();
-        // controller.view= MDCTextField.new();
-        // animated = animated === undefined ? true : !!animated;
         const bottomSheet = (this.bottomSheetController = MDCBottomSheetController.alloc().initWithContentViewController(controller));
         this.bottomSheetControllerDelegate = bottomSheet.delegate = MDCBottomSheetControllerDelegateImpl.initWithOwner(this);
         bottomSheet.isScrimAccessibilityElement = true;
@@ -378,7 +370,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         parentController.presentViewControllerAnimatedCompletion(bottomSheet, true, null);
         if (options.transparent === true) {
             controller.view.backgroundColor = UIColor.clearColor;
-            // for it to be more beautiful let s disable elevation
+            // for it to be prettier let s disable elevation
             controller.view['elevation'] = 0;
         } else if (!(this instanceof Page)) {
             controller.view.backgroundColor = majorVersion <= 12 && !UIColor.systemBackgroundColor ? UIColor.whiteColor : UIColor.systemBackgroundColor;
