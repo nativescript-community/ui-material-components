@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.13](https://github.com/Akylas/nativescript-material-components/compare/v5.1.12...v5.1.13) (2020-12-07)
+
+
+### Bug Fixes
+
+* **tabs:** ported N fix ([85cc042](https://github.com/Akylas/nativescript-material-components/commit/85cc042e8f53594ef964c4079e343dccf2c677fa))
+* **textfield:** add missing text dependency ([7d957ef](https://github.com/Akylas/nativescript-material-components/commit/7d957ef6fabca87ef4309116feeb93ab505ba7cd))
+* **textfield:** ios resolve pod issue ([3ee9e62](https://github.com/Akylas/nativescript-material-components/commit/3ee9e6218234c0950fc13630c2f5e17388902201))
+* **textview:** add missing text dependency ([366ef1e](https://github.com/Akylas/nativescript-material-components/commit/366ef1ef1fcdb37cba7c3360c522d0c21a71abeb))
+
+
+
+
+
 ## [5.1.12](https://github.com/Akylas/nativescript-material-components/compare/v5.1.11...v5.1.12) (2020-12-04)
 
 

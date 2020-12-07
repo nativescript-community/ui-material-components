@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-button",
-    "version": "5.1.12",
+    "version": "5.1.13",
     "description": "Material Design Buttons allow users to take actions, and make choices, with a single tap.",
     "main": "./button",
     "sideEffects": false,

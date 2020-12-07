@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.13](https://github.com/nativescript-community/ui-material-components/tree/master/packages/textfield/compare/v5.1.12...v5.1.13) (2020-12-07)
+
+
+### Bug Fixes
+
+* **textfield:** add missing text dependency ([7d957ef](https://github.com/nativescript-community/ui-material-components/tree/master/packages/textfield/commit/7d957ef6fabca87ef4309116feeb93ab505ba7cd))
+* **textfield:** ios resolve pod issue ([3ee9e62](https://github.com/nativescript-community/ui-material-components/tree/master/packages/textfield/commit/3ee9e6218234c0950fc13630c2f5e17388902201))
+
+
+
+
+
 ## [5.1.12](https://github.com/nativescript-community/ui-material-components/tree/master/packages/textfield/compare/v5.1.11...v5.1.12) (2020-12-04)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-textfield
