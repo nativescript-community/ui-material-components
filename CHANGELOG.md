@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.14](https://github.com/Akylas/nativescript-material-components/compare/v5.1.13...v5.1.14) (2020-12-10)
+
+
+### Bug Fixes
+
+* **cardview:** borderRadius regression after shape addition ([3d0d9f2](https://github.com/Akylas/nativescript-material-components/commit/3d0d9f2280b9f9f601085fc052371d18574ce9a2))
+
+
+
+
+
 ## [5.1.13](https://github.com/Akylas/nativescript-material-components/compare/v5.1.12...v5.1.13) (2020-12-07)
 
 
