@@ -518,6 +518,7 @@ export class Tabs extends TabsBase {
         super.onUnloaded();
     }
 
+    //@ts-ignore
     get ios(): UIPageViewController {
         return this._ios;
     }
