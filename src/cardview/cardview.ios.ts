@@ -62,7 +62,6 @@ export class CardView extends CardViewBase {
     applyShapeScheme() {
         if (this.scheme) {
             this.scheme.shapeScheme = this.shapeScheme;
-            console.log('applyShapeScheme');
             this.nativeViewProtected.applyThemeWithScheme(this.scheme);
         }
     }
@@ -90,11 +89,11 @@ export class CardView extends CardViewBase {
                 // it will change for everyone else
                 this.shapeScheme = MDCShapeScheme.new();
                 const shapeScheme = themer.getShape(this.shape);
-                this.shapeScheme.smallComponentShape = shapeScheme.smallComponentShape.copy();
+                this.shapeScheme.mediumComponentShape = shapeScheme.smallComponentShape.copy();
             } else {
                 this.shapeScheme = MDCShapeScheme.new();
                 const shapeCategory = MDCShapeCategory.new();
-                this.shapeScheme.smallComponentShape = shapeCategory;
+                this.shapeScheme.mediumComponentShape = shapeCategory;
             }
         }
         return this.shapeScheme;
@@ -104,36 +103,36 @@ export class CardView extends CardViewBase {
         const shapeScheme = this.getShapeScheme();
         const current = shapeScheme.smallComponentShape.bottomLeftCorner;
         if (current instanceof MDCCutCornerTreatment) {
-            shapeScheme.smallComponentShape.bottomLeftCorner = MDCCornerTreatment.cornerWithCut(value);
+            shapeScheme.mediumComponentShape.bottomLeftCorner = MDCCornerTreatment.cornerWithCut(value);
         } else {
-            shapeScheme.smallComponentShape.bottomLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
+            shapeScheme.mediumComponentShape.bottomLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
         }
     }
     private setBottomRightCornerRadius(value: number) {
         const shapeScheme = this.getShapeScheme();
         const current = shapeScheme.smallComponentShape.bottomRightCorner;
         if (current instanceof MDCCutCornerTreatment) {
-            shapeScheme.smallComponentShape.bottomRightCorner = MDCCornerTreatment.cornerWithCut(value);
+            shapeScheme.mediumComponentShape.bottomRightCorner = MDCCornerTreatment.cornerWithCut(value);
         } else {
-            shapeScheme.smallComponentShape.bottomRightCorner = MDCCornerTreatment.cornerWithRadius(value);
+            shapeScheme.mediumComponentShape.bottomRightCorner = MDCCornerTreatment.cornerWithRadius(value);
         }
     }
     private setTopLeftCornerRadius(value: number) {
         const shapeScheme = this.getShapeScheme();
         const current = shapeScheme.smallComponentShape.topLeftCorner;
         if (current instanceof MDCCutCornerTreatment) {
-            shapeScheme.smallComponentShape.topLeftCorner = MDCCornerTreatment.cornerWithCut(value);
+            shapeScheme.mediumComponentShape.topLeftCorner = MDCCornerTreatment.cornerWithCut(value);
         } else {
-            shapeScheme.smallComponentShape.topLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
+            shapeScheme.mediumComponentShape.topLeftCorner = MDCCornerTreatment.cornerWithRadius(value);
         }
     }
     private setTopRightCornerRadius(value: number) {
         const shapeScheme = this.getShapeScheme();
         const current = shapeScheme.smallComponentShape.topRightCorner;
         if (current instanceof MDCCutCornerTreatment) {
-            shapeScheme.smallComponentShape.topRightCorner = MDCCornerTreatment.cornerWithCut(value);
+            shapeScheme.mediumComponentShape.topRightCorner = MDCCornerTreatment.cornerWithCut(value);
         } else {
-            shapeScheme.smallComponentShape.topRightCorner = MDCCornerTreatment.cornerWithRadius(value);
+            shapeScheme.mediumComponentShape.topRightCorner = MDCCornerTreatment.cornerWithRadius(value);
         }
     }
     // trick to get the same behavior as android (don't disable all children)
