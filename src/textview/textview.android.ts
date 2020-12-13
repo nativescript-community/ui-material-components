@@ -8,15 +8,18 @@ import {
     helperColorProperty,
     helperProperty,
     strokeColorProperty,
+    strokeDisabledColorProperty,
     strokeInactiveColorProperty
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
 import {
     Background,
     Color,
+    Font,
     Length,
     Utils,
     backgroundInternalProperty,
     borderBottomLeftRadiusProperty,
+    fontInternalProperty,
     hintProperty,
     paddingBottomProperty,
     paddingLeftProperty,
@@ -210,6 +213,15 @@ export class TextView extends TextViewBase {
         }
     }
 
+    [strokeDisabledColorProperty.setNative](value: Color) {
+        const color = value instanceof Color ? value.android : value;
+        if (this.layoutView.setBoxStrokeColorStateList) {
+            const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
+            const colorStateList = getFullColorStateList(activeColor, color);
+            this.layoutView.setBoxStrokeColorStateList(colorStateList);
+        }
+    }
+
     [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
         if (this.layoutView.setBoxStrokeColorStateList) {
@@ -235,6 +247,9 @@ export class TextView extends TextViewBase {
                         this.layoutView.setBoxBackgroundColor(value.color.android);
                     }
                 }
+                if (value.borderTopColor) {
+                    this.nativeViewProtected.setBoxStrokeColor(value.borderTopColor.android);
+                }
                 break;
             case 'outline':
             case 'underline': {
@@ -249,11 +264,17 @@ export class TextView extends TextViewBase {
                     }
                 }
                 if (value.borderTopColor) {
-                    // TODO: for now no control over border color. it is an attr
-                    // this.nativeViewProtected.setStrokeColor(value.borderTopColor.android);
+                    this.nativeViewProtected.setBoxStrokeColor(value.borderTopColor.android);
                 }
                 break;
             }
+        }
+    }
+
+    [fontInternalProperty.setNative](value: Font | UIFont) {
+        if (!this.formattedText || !(value instanceof Font)) {
+            this.nativeViewProtected.setTypeface(value instanceof Font ? value.getAndroidTypeface() : value);
+            this.nativeTextViewProtected.setTypeface(value instanceof Font ? value.getAndroidTypeface() : value);
         }
     }
     [paddingTopProperty.setNative](value: Length) {
