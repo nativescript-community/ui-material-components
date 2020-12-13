@@ -1,5 +1,7 @@
 import { ComponentFactoryResolver, ComponentRef, Injectable, Injector, Type, ViewContainerRef } from '@angular/core';
-import { AppHostView, DetachedLoader, once } from '@nativescript/angular';
+import { AppHostView } from '@nativescript/angular/app-host-view';
+import { once } from '@nativescript/angular/common/utils';
+import { DetachedLoader } from '@nativescript/angular';
 import { ProxyViewContainer } from '@nativescript/core';
 import { BottomSheetOptions as MaterialBottomSheetOptions } from 'nativescript-material-bottomsheet'; // ViewWithBottomSheetBase
 import { Observable, Subject } from 'rxjs';
