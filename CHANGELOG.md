@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.15](https://github.com/Akylas/nativescript-material-components/compare/v5.1.14...v5.1.15) (2020-12-13)
+
+
+### Bug Fixes
+
+* **textfield:** android font no applied to both floating and inner textfield ([4ec6140](https://github.com/Akylas/nativescript-material-components/commit/4ec61400a7b5f51df6601735392ffefd56b1583c))
+* **textview:** android font no applied to both floating and inner textfield ([9fb4860](https://github.com/Akylas/nativescript-material-components/commit/9fb4860b52e4745c08a3bbbce1737d699e9e81ec))
+
+
+
+
+
 ## [5.1.14](https://github.com/Akylas/nativescript-material-components/compare/v5.1.13...v5.1.14) (2020-12-10)
 
 
