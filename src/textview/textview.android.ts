@@ -208,7 +208,8 @@ export class TextView extends TextViewBase {
         const color = value instanceof Color ? value.android : value;
         if (this.layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
-            const colorStateList = getFullColorStateList(activeColor, color);
+            const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
+            const colorStateList = getFullColorStateList(activeColor, color, disabledColor);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         }
     }
@@ -217,7 +218,8 @@ export class TextView extends TextViewBase {
         const color = value instanceof Color ? value.android : value;
         if (this.layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
-            const colorStateList = getFullColorStateList(activeColor, color);
+            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
+            const colorStateList = getFullColorStateList(activeColor, inactiveColor, color);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         }
     }
@@ -226,7 +228,8 @@ export class TextView extends TextViewBase {
         const color = value instanceof Color ? value.android : value;
         if (this.layoutView.setBoxStrokeColorStateList) {
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
-            const colorStateList = getFullColorStateList(color, inactiveColor);
+            const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
+            const colorStateList = getFullColorStateList(color, inactiveColor, disabledColor);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         } else {
             this.layoutView.setBoxStrokeColor(color);
