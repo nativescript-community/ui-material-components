@@ -63,6 +63,7 @@ export const strokeInactiveColorProperty = new CssProperty<Style, Color>({
     equalityComparer: Color.equals,
     valueConverter: v => new Color(v)
 });
+strokeInactiveColorProperty.register(Style);
 export const strokeDisabledColorProperty = new CssProperty<Style, Color>({
     name: 'strokeDisabledColor',
     cssName: 'stroke-disabled-color',

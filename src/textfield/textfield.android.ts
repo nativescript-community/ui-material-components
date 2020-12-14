@@ -127,20 +127,19 @@ export class TextField extends TextFieldBase {
     [placeholderColorProperty.setNative](value: Color) {
         const placeholderColor = value instanceof Color ? value.android : value;
         const floatingColor = this.floatingColor instanceof Color ? this.floatingColor.android : placeholderColor;
-
-        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
+        this.layoutView.setHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
     }
 
     [floatingColorProperty.setNative](value: Color) {
         const floatingColor = value instanceof Color ? value.android : value;
-        const placeholderColor = this.placeholderColor instanceof Color ? this.placeholderColor.android : undefined;
+        const placeholderColor = this.floatingInactiveColor instanceof Color ? this.floatingInactiveColor.android : undefined;
         this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
     }
 
     [floatingInactiveColorProperty.setNative](value: Color) {
-        const placeholderColor = value instanceof Color ? value.android : value;
+        const floatingInactiveColor = value instanceof Color ? value.android : value;
         const floatingColor = (this.floatingColor || (themer.getPrimaryColor() as Color)).android;
-        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
+        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, floatingInactiveColor));
     }
     [helperColorProperty.setNative](value) {
         const color = value instanceof Color ? value.android : value;
@@ -208,15 +207,8 @@ export class TextField extends TextFieldBase {
         const color = value instanceof Color ? value.android : value;
         if (this.layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
-            const colorStateList = getFullColorStateList(activeColor, color);
-            this.layoutView.setBoxStrokeColorStateList(colorStateList);
-        }
-    }
-    [strokeDisabledColorProperty.setNative](value: Color) {
-        const color = value instanceof Color ? value.android : value;
-        if (this.layoutView.setBoxStrokeColorStateList) {
-            const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
-            const colorStateList = getFullColorStateList(activeColor, color);
+            const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
+            const colorStateList = getFullColorStateList(activeColor, color, disabledColor);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         }
     }
@@ -225,10 +217,20 @@ export class TextField extends TextFieldBase {
         const color = value instanceof Color ? value.android : value;
         if (this.layoutView.setBoxStrokeColorStateList) {
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
-            const colorStateList = getFullColorStateList(color, inactiveColor);
+            const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
+            const colorStateList = getFullColorStateList(color, inactiveColor, disabledColor);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         } else {
             this.layoutView.setBoxStrokeColor(color);
+        }
+    }
+    [strokeDisabledColorProperty.setNative](value: Color) {
+        const color = value instanceof Color ? value.android : value;
+        if (this.layoutView.setBoxStrokeColorStateList) {
+            const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
+            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
+            const colorStateList = getFullColorStateList(activeColor, inactiveColor, color);
+            this.layoutView.setBoxStrokeColorStateList(colorStateList);
         }
     }
 

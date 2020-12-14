@@ -45,15 +45,15 @@ public class Utils {
 
     public static ColorStateList getEnabledColorStateList(int color, int disabledColor) {
         int[][] states = new int[][] { new int[] { -android.R.attr.state_enabled }, // enabled
-                android.util.StateSet.NOTHING, // disabled
+                android.util.StateSet.WILD_CARD, // disabled
         };
         int[] colors = new int[] { disabledColor, color };
         return new android.content.res.ColorStateList(states, colors);
     }
 
     public static ColorStateList getFullColorStateList(int activeColor, int inactiveColor, int disabledColor) {
-        int[][] states = new int[][] { new int[] { android.R.attr.state_focused }, // focused
-                android.util.StateSet.NOTHING, // other
+        int[][] states = new int[][] { new int[] { android.R.attr.state_focused,  }, // focused
+                android.util.StateSet.WILD_CARD, // other
                 new int[] { -android.R.attr.state_enabled } // disabled
         };
         int[] colors = new int[] { activeColor, inactiveColor, disabledColor };
