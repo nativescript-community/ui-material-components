@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.16](https://github.com/Akylas/nativescript-material-components/compare/v5.1.15...v5.1.16) (2020-12-14)
+
+
+### Bug Fixes
+
+* **textfield:** android fix stroke colors ([74726a8](https://github.com/Akylas/nativescript-material-components/commit/74726a8d59c67335436a64bff2dcfeb2c7cd8e4f))
+
+
+
+
+
 ## [5.1.15](https://github.com/Akylas/nativescript-material-components/compare/v5.1.14...v5.1.15) (2020-12-13)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-core

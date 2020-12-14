@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.16](https://github.com/Akylas/nativescript-material-components/compare/v5.1.15...v5.1.16) (2020-12-14)
+
+
+### Bug Fixes
+
+* **textfield:** android fix stroke colors ([74726a8](https://github.com/Akylas/nativescript-material-components/commit/74726a8d59c67335436a64bff2dcfeb2c7cd8e4f))
+* **textview:** android stroke color fixes ([d1ea1f4](https://github.com/Akylas/nativescript-material-components/commit/d1ea1f4fea2cc6d9d63a515af36f04a22ae70f64))
+
+
+
+
+
 ## [5.1.15](https://github.com/Akylas/nativescript-material-components/compare/v5.1.14...v5.1.15) (2020-12-13)
 
 
