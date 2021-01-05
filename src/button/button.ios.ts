@@ -5,7 +5,6 @@ import {
     Font,
     ImageSource,
     Screen,
-    TextTransform,
     Utils,
     backgroundInternalProperty,
     borderBottomLeftRadiusProperty,
@@ -14,8 +13,8 @@ import {
     borderTopRightRadiusProperty,
     colorProperty,
     fontInternalProperty,
-    textTransformProperty
 } from '@nativescript/core';
+import { TextTransform, textTransformProperty } from '@nativescript/core/ui/text-base';
 import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
 
 let buttonScheme: MDCContainerScheme;
