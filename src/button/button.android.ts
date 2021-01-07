@@ -1,6 +1,6 @@
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
-import { createStateListAnimator, getColorStateList, getLayout, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
+import { createStateListAnimator, getColorStateList, getHorizontalGravity, getLayout, getVerticalGravity, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import {
     Background,
     Color,
@@ -14,8 +14,10 @@ import {
     backgroundInternalProperty,
     colorProperty,
     profile,
+    textAlignmentProperty,
     textTransformProperty
 } from '@nativescript/core';
+import { TextAlignment } from '@nativescript/core/ui/text-base';
 import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
@@ -169,22 +171,11 @@ export class Button extends ButtonBase {
         }
     }
 
+    [textAlignmentProperty.setNative](value: TextAlignment) {
+        this.nativeTextViewProtected.setGravity(getHorizontalGravity(value) | getVerticalGravity(this.verticalTextAlignment));
+    }
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
-        const view = this.nativeTextViewProtected;
-        const horizontalGravity = view.getGravity() & android.view.Gravity.HORIZONTAL_GRAVITY_MASK;
-        switch (value) {
-            case 'initial':
-            case 'top':
-                view.setGravity(android.view.Gravity.TOP | horizontalGravity);
-                break;
-            case 'middle':
-                view.setGravity(android.view.Gravity.CENTER_VERTICAL | horizontalGravity);
-                break;
-
-            case 'bottom':
-                view.setGravity(android.view.Gravity.BOTTOM | horizontalGravity);
-                break;
-        }
+        this.nativeTextViewProtected.setGravity(getHorizontalGravity(this.textAlignment) | getVerticalGravity(value));
     }
 
     [imageSourceProperty.setNative](value: ImageSource) {

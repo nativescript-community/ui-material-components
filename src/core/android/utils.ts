@@ -1,4 +1,6 @@
+import { VerticalTextAlignment } from '@nativescript-community/text';
 import { Application, Color, Utils, ViewBase, profile } from '@nativescript/core';
+import { TextAlignment } from '@nativescript/core/ui/text-base';
 
 let isPostLollipopVar: boolean;
 export function isPostLollipop() {
@@ -249,4 +251,29 @@ export function getAttr(id: string) {
     }
     const context: android.content.Context = Application.android.context;
     return context.getResources().getIdentifier(id, 'attr', context.getPackageName());
+}
+
+export function getHorizontalGravity(textAlignment: TextAlignment) {
+    switch (textAlignment) {
+        case 'initial':
+        case 'left':
+            return 8388611; //Gravity.START
+        case 'center':
+            return 1; //Gravity.CENTER_HORIZONTAL
+        case 'right':
+            return 8388613; //Gravity.END
+    }
+}
+export function getVerticalGravity(textAlignment: VerticalTextAlignment) {
+    switch (textAlignment) {
+        case 'initial':
+        case 'top':
+            return 48; //Gravity.TOP
+        case 'middle':
+        case 'center':
+            return 16; //Gravity.CENTER_VERTICAL
+
+        case 'bottom':
+            return 80; //Gravity.BOTTOM
+    }
 }

@@ -25,11 +25,14 @@ import {
     paddingLeftProperty,
     paddingRightProperty,
     paddingTopProperty,
-    placeholderColorProperty
+    placeholderColorProperty,
+    textAlignmentProperty
 } from '@nativescript/core';
 import { TextViewBase } from './textview.common';
-import { getFullColorStateList, getLayout } from '@nativescript-community/ui-material-core/android/utils';
+import { getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
 import { themer } from '@nativescript-community/ui-material-core';
+import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
+import { TextAlignment } from '@nativescript/core/ui/text-base';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
 let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
@@ -291,6 +294,12 @@ export class TextView extends TextViewBase {
     }
     [paddingLeftProperty.setNative](value: Length) {
         org.nativescript.widgets.ViewHelper.setPaddingLeft(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0));
+    }
+    [textAlignmentProperty.setNative](value: TextAlignment) {
+        this.nativeTextViewProtected.setGravity(getHorizontalGravity(value) | getVerticalGravity(this.verticalTextAlignment));
+    }
+    [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
+        this.nativeTextViewProtected.setGravity(getHorizontalGravity(this.textAlignment) | getVerticalGravity(value));
     }
 }
 //

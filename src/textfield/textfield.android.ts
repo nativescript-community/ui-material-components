@@ -1,6 +1,6 @@
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 import { themer } from '@nativescript-community/ui-material-core';
-import { getFullColorStateList, getLayout } from '@nativescript-community/ui-material-core/android/utils';
+import { getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
 import {
     counterMaxLengthProperty,
     digitsProperty,
@@ -30,8 +30,10 @@ import {
     paddingRightProperty,
     paddingTopProperty,
     placeholderColorProperty,
-    profile
+    profile,
+    textAlignmentProperty
 } from '@nativescript/core';
+import { TextAlignment } from '@nativescript/core/ui/text-base';
 import { secureProperty } from '@nativescript/core/ui/text-field';
 import { TextFieldBase } from './textfield.common';
 
@@ -299,23 +301,12 @@ export class TextField extends TextFieldBase {
     [paddingLeftProperty.setNative](value: Length) {
         org.nativescript.widgets.ViewHelper.setPaddingLeft(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0));
     }
+    [textAlignmentProperty.setNative](value: TextAlignment) {
+        this.nativeTextViewProtected.setGravity(getHorizontalGravity(value) | getVerticalGravity(this.verticalTextAlignment));
+    }
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
         // TODO: not working for now
-        const view = this.nativeTextViewProtected;
-        const horizontalGravity = view.getGravity() & android.view.Gravity.HORIZONTAL_GRAVITY_MASK;
-        switch (value) {
-            case 'initial':
-            case 'top':
-                view.setGravity(android.view.Gravity.TOP | horizontalGravity);
-                break;
-            case 'middle':
-                view.setGravity(android.view.Gravity.CENTER_VERTICAL | horizontalGravity);
-                break;
-
-            case 'bottom':
-                view.setGravity(android.view.Gravity.BOTTOM | horizontalGravity);
-                break;
-        }
+        this.nativeTextViewProtected.setGravity(getHorizontalGravity(this.textAlignment) | getVerticalGravity(value));
     }
 }
 //
