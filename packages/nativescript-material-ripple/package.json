@@ -1,6 +1,6 @@
 {
     "name": "nativescript-material-ripple",
-    "version": "3.3.1",
+    "version": "3.3.2",
     "description": "Material ripple component",
     "main": "./ripple",
     "sideEffects": false,
@@ -35,7 +35,7 @@
     "homepage": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "nativescript-material-core": "^3.3.1"
+        "nativescript-material-core": "^3.3.2"
     },
     "gitHead": "72ff18b67d325539de08d5bcf5370396ea646dfb"
 }
