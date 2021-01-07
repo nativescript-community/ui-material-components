@@ -7,17 +7,14 @@ import {
     Font,
     ImageSource,
     Length,
-    TextTransform,
     Utils,
     androidDynamicElevationOffsetProperty,
     androidElevationProperty,
     backgroundInternalProperty,
     colorProperty,
     profile,
-    textAlignmentProperty,
-    textTransformProperty
 } from '@nativescript/core';
-import { TextAlignment } from '@nativescript/core/ui/text-base';
+import { TextTransform, textAlignmentProperty , textTransformProperty } from '@nativescript/core/ui/text-base';
 import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
 
 let LayoutInflater: typeof android.view.LayoutInflater;

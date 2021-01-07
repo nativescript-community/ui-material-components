@@ -1,6 +1,16 @@
 import { themer } from '@nativescript-community/ui-material-core';
 import { Application, Color, Screen, Utils, backgroundColorProperty } from '@nativescript/core';
-import { BottomNavigationBarBase, BottomNavigationTabBase,TitleVisibility,  activeColorCssProperty, badgeColorCssProperty, badgeTextColorCssProperty, inactiveColorCssProperty, tabsProperty, titleVisibilityProperty } from './bottomnavigationbar-common';
+import {
+    BottomNavigationBarBase,
+    BottomNavigationTabBase,
+    TitleVisibility,
+    activeColorCssProperty,
+    badgeColorCssProperty,
+    badgeTextColorCssProperty,
+    inactiveColorCssProperty,
+    tabsProperty,
+    titleVisibilityProperty
+} from './bottomnavigationbar-common';
 
 @NativeClass
 class BottomNavigationBarDelegate extends NSObject {
@@ -17,11 +27,12 @@ class BottomNavigationBarDelegate extends NSObject {
         if (!owner) {
             return;
         }
-        if (owner.selectedTabIndex === item.tag) {
-            owner._emitTabReselected(item.tag);
+        const tag = item && item.tag ? item.tag : 0;
+        if (owner.selectedTabIndex === tag) {
+            owner._emitTabReselected(tag);
             return;
         }
-        owner._emitTabSelected(item.tag);
+        owner._emitTabSelected(tag);
     }
 
     bottomNavigationBarShouldSelectItem(bottomNavigationBar: MDCBottomNavigationBar, item: UITabBarItem): boolean {
@@ -29,9 +40,10 @@ class BottomNavigationBarDelegate extends NSObject {
         if (!owner) {
             return true;
         }
-        const bottomNavigationTab = owner.items[item.tag];
+        const tag = item && item.tag ? item.tag : 0;
+        const bottomNavigationTab = owner.items[tag];
         if (!bottomNavigationTab.isSelectable) {
-            owner._emitTabPressed(item.tag);
+            owner._emitTabPressed(tag);
         }
         return bottomNavigationTab.isSelectable;
     }
@@ -140,10 +152,9 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
             return tab;
         });
         this.nativeViewProtected.items = new NSArray({ array: bottomNavigationTabs });
-
         // TODO: this is for he v8 runtime. Should not have to need this setTimeout(), find better way.
         setTimeout(() => {
-            this.nativeViewProtected.selectedItem = this.nativeViewProtected.items[this.selectedTabIndex];
+            this.nativeViewProtected.selectedItem = this.nativeViewProtected.items.objectAtIndex(this.selectedTabIndex);
         }, 0);
     }
 
@@ -174,7 +185,7 @@ declare class MDCBottomNavigationItemView extends UIView {
 export class BottomNavigationTab extends BottomNavigationTabBase {
     nativeViewProtected: UITabBarItem;
     createNativeView() {
-        let icon = this.getNativeIcon() ;
+        let icon = this.getNativeIcon();
         if (icon) {
             icon = icon.imageWithRenderingMode(UIImageRenderingMode.Automatic);
         }
