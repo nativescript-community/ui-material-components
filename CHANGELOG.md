@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/Akylas/nativescript-material-components/compare/v5.1.16...v5.2.0) (2021-01-18)
+
+
+### Bug Fixes
+
+* fixes for bottom-navigation and tabs ([89fb903](https://github.com/Akylas/nativescript-material-components/commit/89fb90354dcac33979035f255e3839c2da08c15b))
+* **bottom-navigation:** port of N fix https://github.com/NativeScript/NativeScript/commit/4690162384c731d6d652d90a9347cae06c0a0e0c ([ef7dece](https://github.com/Akylas/nativescript-material-components/commit/ef7dece2edf53c6cb53ecb1fd197d9a149b2661e))
+
+
+### Features
+
+* **bottomnavigation:** new N bottom-navigation replace component ([5e48adf](https://github.com/Akylas/nativescript-material-components/commit/5e48adf9eeb2713bd4e0ceab67d37cae60639c90))
+
+
+
+
+
 ## [5.1.16](https://github.com/Akylas/nativescript-material-components/compare/v5.1.15...v5.1.16) (2020-12-14)
 
 
