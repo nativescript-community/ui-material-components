@@ -28,6 +28,8 @@
             "@nativescript-community/ui-material-activityindicator/*": ["src/activityindicator/*"],
             "@nativescript-community/ui-material-bottomnavigationbar": ["src/bottomnavigationbar/bottomnavigationbar"],
             "@nativescript-community/ui-material-bottomnavigationbar/*": ["src/bottomnavigationbar/*"],
+            "@nativescript-community/ui-material-bottom-navigation": ["src/bottom-navigation/index"],
+            "@nativescript-community/ui-material-bottom-navigation/*": ["src/bottom-navigation/*"],
             "@nativescript-community/ui-material-button": ["src/button/button"],
             "@nativescript-community/ui-material-button/*": ["src/button/*"],
             "@nativescript-community/ui-material-bottomsheet": ["src/bottomsheet/bottomsheet"],
