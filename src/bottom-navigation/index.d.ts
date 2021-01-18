@@ -2,7 +2,9 @@
 import { TabNavigationBase } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { CoercibleProperty, EventData, Property } from '@nativescript/core';
+import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 
+export { TabContentItem, TabStrip, TabStripItem };
 /**
  * Defines the data for the TabView.selectedIndexChanged event.
  */

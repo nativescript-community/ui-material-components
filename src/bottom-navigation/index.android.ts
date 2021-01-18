@@ -6,6 +6,7 @@ import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navig
 // Requires
 import { Application, CSSType, Color, Font, Frame, ImageSource, Utils, View, getIconSpecSize } from '@nativescript/core';
 import { TextTransform, getTransformedText } from '@nativescript/core/ui/text-base';
+export { TabContentItem, TabStrip, TabStripItem };
 
 // TODO: Impl trace
 // import { Trace } from "../../../trace";
@@ -344,19 +345,21 @@ export class BottomNavigation extends TabNavigationBase {
 
         iterateIndexRange(newIndex, offsideItems, lastIndex, (i) => toLoad.push(i));
 
-        items.forEach((item, i) => {
-            const indexOfI = toLoad.indexOf(i);
-            if (indexOfI < 0) {
-                toUnload.push(i);
-            }
-        });
+        if (this.unloadOnTabChange) {
+            items.forEach((item, i) => {
+                const indexOfI = toLoad.indexOf(i);
+                if (indexOfI < 0) {
+                    toUnload.push(i);
+                }
+            });
 
-        toUnload.forEach((index) => {
-            const item = items[index];
-            if (items[index]) {
-                item.unloadView(item.content);
-            }
-        });
+            toUnload.forEach((index) => {
+                const item = items[index];
+                if (items[index]) {
+                    item.unloadView(item.content);
+                }
+            });
+        }
 
         const newItem = items[newIndex];
         const selectedView = newItem && newItem.content;
@@ -417,11 +420,10 @@ export class BottomNavigation extends TabNavigationBase {
             this.setTabStripItems(null);
         }
 
-        const fragmentToDetach = this._currentFragment;
-        if (fragmentToDetach) {
-            this.destroyItem((fragmentToDetach as any).index, fragmentToDetach);
-            this.removeFragment(fragmentToDetach);
-        }
+        this.items.forEach((item, i) => {
+            item.unloadView(item.content);
+        });
+        this.disposeTabFragments();
     }
 
     public disposeNativeView() {
@@ -495,7 +497,12 @@ export class BottomNavigation extends TabNavigationBase {
 
         const fragmentToDetach = this._currentFragment;
         if (fragmentToDetach) {
-            this.destroyItem((fragmentToDetach as any).index, fragmentToDetach);
+            console.log('unloadOnTabChange', this.unloadOnTabChange);
+            if (this.unloadOnTabChange) {
+                this.destroyItem((fragmentToDetach as any).index, fragmentToDetach);
+            } else {
+                this.hideFragment(fragmentToDetach as any);
+            }
         }
 
         const fragment = this.instantiateItem(this._contentView, index);
@@ -532,6 +539,9 @@ export class BottomNavigation extends TabNavigationBase {
             if (fragment != null) {
                 fragment.setMenuVisibility(true);
                 fragment.setUserVisibleHint(true);
+                if (!this.unloadOnTabChange) {
+                    this.showFragment(fragment);
+                }
             }
 
             this._currentFragment = fragment;
@@ -545,7 +555,6 @@ export class BottomNavigation extends TabNavigationBase {
             }
         }
     }
-
     private destroyItem(position: number, fragment: androidx.fragment.app.Fragment): void {
         if (fragment) {
             this.removeFragment(fragment);
@@ -553,9 +562,64 @@ export class BottomNavigation extends TabNavigationBase {
                 this._currentFragment = null;
             }
         }
-
         if (this.items && this.items[position]) {
             this.items[position].canBeLoaded = false;
+        }
+    }
+    private hideFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
+        if (!fragmentManager) {
+            fragmentManager = this._getFragmentManager();
+        }
+        if (fragment) {
+            if (!fragment.isAdded() || fragment.isRemoving()) {
+                // ignore
+                return;
+            } else {
+                const fragmentExitTransition = fragment.getExitTransition();
+                if (fragmentExitTransition && fragmentExitTransition instanceof org.nativescript.widgets.CustomTransition) {
+                    fragmentExitTransition.setResetOnTransitionEnd(true);
+                }
+                if (fragment && fragment.isAdded() && !fragment.isRemoving()) {
+                    const pfm = (fragment as any).getParentFragmentManager ? (fragment as any).getParentFragmentManager() : null;
+                    if (pfm && !pfm.isDestroyed()) {
+                        try {
+                            if (pfm.isStateSaved()) {
+                                pfm.beginTransaction().hide(fragment).commitNowAllowingStateLoss();
+                            } else {
+                                pfm.beginTransaction().hide(fragment).commitNow();
+                            }
+                        } catch (e) {}
+                    }
+                }
+            }
+        }
+    }
+    private showFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
+        if (!fragmentManager) {
+            fragmentManager = this._getFragmentManager();
+        }
+        if (fragment) {
+            if (!fragment.isAdded() || fragment.isRemoving()) {
+                // ignore
+                return;
+            } else {
+                const fragmentExitTransition = fragment.getExitTransition();
+                if (fragmentExitTransition && fragmentExitTransition instanceof org.nativescript.widgets.CustomTransition) {
+                    fragmentExitTransition.setResetOnTransitionEnd(true);
+                }
+                if (fragment && fragment.isAdded() && !fragment.isRemoving()) {
+                    const pfm = (fragment as any).getParentFragmentManager ? (fragment as any).getParentFragmentManager() : null;
+                    if (pfm && !pfm.isDestroyed()) {
+                        try {
+                            if (pfm.isStateSaved()) {
+                                pfm.beginTransaction().show(fragment).commitNowAllowingStateLoss();
+                            } else {
+                                pfm.beginTransaction().show(fragment).commitNow();
+                            }
+                        } catch (e) {}
+                    }
+                }
+            }
         }
     }
     private removeFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {

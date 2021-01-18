@@ -1,7 +1,7 @@
 export default {
     model: {
         prop: 'selectedIndex',
-        event: 'selectedIndexChange',
+        event: 'selectedIndexChange'
     },
 
     render(h) {
@@ -9,7 +9,7 @@ export default {
             'NativeMDTabs',
             {
                 on: this.$listeners,
-                attrs: this.$attrs,
+                attrs: this.$attrs
             },
             this.$slots.default
         );
@@ -23,6 +23,6 @@ export default {
             const items = this.$el.nativeView.items || [];
 
             this.$el.setAttribute('items', items.concat([tabContentItem]));
-        },
-    },
+        }
+    }
 };

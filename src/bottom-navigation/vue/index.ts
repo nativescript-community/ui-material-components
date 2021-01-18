@@ -1,4 +1,4 @@
-import { TabContentItem, TabStrip, TabStripItem, Tabs } from '../tabs';
+import { BottomNavigation, TabContentItem, TabStrip, TabStripItem } from '../';
 
 let installed = false;
 
@@ -6,7 +6,7 @@ export default {
     install(Vue) {
         if (!installed) {
             installed = true;
-            Vue.registerElement('MDTabs', () => Tabs, {
+            Vue.registerElement('MDBottomNavigation', () => BottomNavigation, {
                 model: {
                     prop: 'selectedIndex',
                     event: 'selectedIndexChange'

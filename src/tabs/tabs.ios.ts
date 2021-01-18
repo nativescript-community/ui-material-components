@@ -1,7 +1,12 @@
 ﻿import { rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
-import { Color, Device, Font, Frame, IOSHelper, ImageSource, TabContentItem, TabStrip, TabStripItem, TextTransform, Utils, View, ViewBase, getIconSpecSize } from '@nativescript/core';
-import { itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript/core/ui/tab-navigation-base/tab-navigation-base';
+import { Color, Device, Font, Frame, IOSHelper, ImageSource, Trace, Utils, View, ViewBase, getIconSpecSize } from '@nativescript/core';
 import { TabsBase, swipeEnabledProperty } from './tabs-common';
+
+import { itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
+import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
+import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
+export { TabContentItem, TabStrip, TabStripItem };
 
 // TODO
 // import { profile } from "../../profiling";
@@ -276,7 +281,6 @@ class UIPageViewControllerDataSourceImpl extends NSObject implements UIPageViewC
         // if (traceEnabled()) {
         //     traceWrite("TabView.delegate.SHOULD_select(" + tabBarController + ", " + viewController + ");", traceCategories.Debug);
         // }
-
         const owner = this._owner.get();
         let selectedIndex = owner.selectedIndex;
 
@@ -299,9 +303,8 @@ class UIPageViewControllerDataSourceImpl extends NSObject implements UIPageViewC
     }
 
     public pageViewControllerViewControllerAfterViewController(pageViewController: UIPageViewController, viewController: UIViewController): UIViewController {
-        // TODO
-        // if (traceEnabled()) {
-        //     traceWrite("TabView.delegate.SHOULD_select(" + tabBarController + ", " + viewController + ");", traceCategories.Debug);
+        // if (Trace.isEnabled()) {
+        //     traceWrite('TabView.delegate.SHOULD_select(' + tabBarController + ', ' + viewController + ');', traceCategories.Debug);
         // }
 
         const owner = this._owner.get();
@@ -586,20 +589,21 @@ export class Tabs extends TabsBase {
 
         iterateIndexRange(newIndex, offsideItems, lastIndex, (i) => toLoad.push(i));
 
-        items.forEach((item, i) => {
-            const indexOfI = toLoad.indexOf(i);
-            if (indexOfI < 0) {
-                toUnload.push(i);
-            }
-        });
+        if (this.unloadOnTabChange) {
+            items.forEach((item, i) => {
+                const indexOfI = toLoad.indexOf(i);
+                if (indexOfI < 0) {
+                    toUnload.push(i);
+                }
+            });
 
-        toUnload.forEach((index) => {
-            const item = items[index];
-            if (items[index]) {
-                item.unloadView(item.content);
-            }
-        });
-
+            toUnload.forEach((index) => {
+                const item = items[index];
+                if (items[index]) {
+                    item.unloadView(item.content);
+                }
+            });
+        }
         const newItem = items[newIndex];
         const selectedView = newItem && newItem.content;
         if (selectedView instanceof Frame) {
@@ -705,7 +709,6 @@ export class Tabs extends TabsBase {
                 tabStripItems[this.selectedIndex]._emit(TabStripItem.selectEvent);
             }
         }
-
         items.forEach((item, i) => {
             const controller = this.getViewController(item);
 
@@ -737,6 +740,7 @@ export class Tabs extends TabsBase {
             // TODO: investigate why this call is necessary to actually toggle item appearance
             this.viewController.tabBar.sizeToFit();
             if (this.selectedIndex) {
+                console.log('setSelectedItemAnimated', this.selectedIndex);
                 this.viewController.tabBar.setSelectedItemAnimated(this.tabBarItems[this.selectedIndex], false);
             }
         }
@@ -1084,7 +1088,6 @@ export class Tabs extends TabsBase {
         // if (traceEnabled()) {
         //     traceWrite("TabView._onSelectedIndexPropertyChangedSetNativeValue(" + value + ")", traceCategories.Debug);
         // }
-
         if (value > -1) {
             const item = this.items[value];
             const controllers = NSMutableArray.alloc<UIViewController>().initWithCapacity(1);

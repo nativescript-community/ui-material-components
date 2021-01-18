@@ -72,7 +72,7 @@ export interface TabStripItemEventData extends EventData {
     /**
      * The index of the TabStripItem.
      */
-    index: number;
+    index?: number;
 }
 
 export const iosIconRenderingModeProperty: Property<TabStrip, 'automatic' | 'alwaysOriginal' | 'alwaysTemplate'>;

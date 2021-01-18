@@ -1,0 +1,18 @@
+{
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "./",
+        "paths": {
+            "tns-core-modules": ["./node_modules/@nativescript/core"],
+            "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
+            "@nativescript-community/ui-material-core": ["packages/core/index"],
+            "@nativescript-community/ui-material-core/*": ["packages/core/*"],
+            "@nativescript-community/ui-material-bottomnavigation": ["packages/bottomnavigation/index"],
+            "@nativescript-community/ui-material-bottomnavigation/*": ["packages/bottomnavigation/*"]
+        }
+    },
+    "include": ["./**/*.ts", "../../../references.d.ts", "../../references.d.ts"],
+    "angularCompilerOptions": {
+        "enableIvy": true
+    }
+}

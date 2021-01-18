@@ -1,22 +1,10 @@
-import {
-    Application,
-    CoercibleProperty,
-    Color,
-    Font,
-    Frame,
-    ImageSource,
-    Property,
-    TabContentItem,
-    TabStrip,
-    TabStripItem,
-    TextTransform,
-    Utils,
-    getIconSpecSize,
-    getTransformedText,
-    isIOS,
-    tabStripProperty,
-} from '@nativescript/core';
+import { Application, CoercibleProperty, Color, Font, Frame, ImageSource, Property, TextTransform, Utils, getIconSpecSize, getTransformedText, isIOS } from '@nativescript/core';
+import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
+import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
+import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
 import { TabsBase, animationEnabledProperty, offscreenTabLimitProperty, swipeEnabledProperty } from './tabs-common';
+import { itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+export { TabContentItem, TabStrip, TabStripItem };
 
 export * from './tabs-common';
 
@@ -33,38 +21,6 @@ type PagerAdapter = new (owner: Tabs) => androidx.viewpager.widget.PagerAdapter;
 let PagerAdapter: PagerAdapter;
 let TabsBar: any;
 let appResources: android.content.res.Resources;
-
-const itemsProperty = new Property<Tabs, TabContentItem[]>({
-    name: 'items',
-    valueChanged: (target, oldValue, newValue) => {
-        target.onItemsChanged(oldValue, newValue);
-    },
-});
-const selectedIndexProperty = new CoercibleProperty<Tabs, number>({
-    name: 'selectedIndex',
-    defaultValue: -1,
-    affectsLayout: isIOS,
-    valueChanged: (target, oldValue, newValue) => {
-        target.onSelectedIndexChanged(oldValue, newValue);
-    },
-    coerceValue: (target, value) => {
-        const items = target.items;
-        if (items) {
-            const max = items.length - 1;
-            if (value < 0) {
-                value = 0;
-            }
-            if (value > max) {
-                value = max;
-            }
-        } else {
-            value = -1;
-        }
-
-        return value;
-    },
-    valueConverter: (v) => parseInt(v, 10),
-});
 
 function makeFragmentName(viewId: number, id: number): string {
     return 'android:viewpager:' + viewId + ':' + id;
@@ -968,7 +924,7 @@ export class Tabs extends TabsBase {
     }
     [itemsProperty.setNative](value: TabContentItem[]) {
         this.setItems(value);
-        selectedIndexProperty.coerce(this);
+        selectedIndexProperty.coerce(this as any);
     }
 
     [tabStripProperty.getDefault](): TabStrip {
@@ -1007,6 +963,3 @@ function tryCloneDrawable(value: android.graphics.drawable.Drawable, resources: 
 
     return value;
 }
-
-itemsProperty.register(Tabs);
-selectedIndexProperty.register(Tabs);
