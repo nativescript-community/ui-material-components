@@ -17,6 +17,7 @@ import { install as installBottomSheet } from '@nativescript-community/ui-materi
 import BottomSheetPlugin from '@nativescript-community/ui-material-bottomsheet/vue';
 import BottomNavigationBarPlugin from '@nativescript-community/ui-material-bottomnavigationbar/vue';
 import TabsPlugin from '@nativescript-community/ui-material-tabs/vue';
+import BottomNavigationPlugin from '@nativescript-community/ui-material-bottomnavigation/vue';
 import SpeedDialPlugin from '@nativescript-community/ui-material-speeddial/vue';
 
 installBottomSheet();
@@ -33,6 +34,7 @@ Vue.use(TextFieldPlugin);
 Vue.use(BottomSheetPlugin);
 Vue.use(BottomNavigationBarPlugin);
 Vue.use(TabsPlugin);
+Vue.use(BottomNavigationPlugin);
 Vue.use(SpeedDialPlugin);
 
 // Vue.registerElement('Label', () => require('@nativescript-community/ui-label').Label);

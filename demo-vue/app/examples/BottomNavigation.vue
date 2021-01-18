@@ -4,7 +4,7 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
         
-        <MDTabs selectedIndex="1">
+        <MDBottomNavigation selectedIndex="1" unloadOnTabChange="false">
             <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
             <MDTabStrip>
                 <MDTabStripItem>
@@ -37,7 +37,7 @@
                     <Label text="Search Page" class="h2 text-center"></Label>
                 </GridLayout>
             </MDTabContentItem>
-        </MDTabs>
+        </MDBottomNavigation>
     </Page>
 </template>
 
@@ -48,10 +48,10 @@ import { EventData } from '@nativescript/core';
 
 import Vue from 'vue';
 
-export const title = 'Tabs sample';
+export const title = 'BottomNavigation sample';
 
 export default Vue.extend({
-    name: 'Tabs',
+    name: 'BottomNavigation',
     data() {
         return {
             title: title
