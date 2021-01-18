@@ -12,9 +12,9 @@ import {
     androidElevationProperty,
     backgroundInternalProperty,
     colorProperty,
-    profile,
+    profile
 } from '@nativescript/core';
-import { TextTransform, textAlignmentProperty , textTransformProperty } from '@nativescript/core/ui/text-base';
+import { TextAlignment, TextTransform, textAlignmentProperty, textTransformProperty } from '@nativescript/core/ui/text-base';
 import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
