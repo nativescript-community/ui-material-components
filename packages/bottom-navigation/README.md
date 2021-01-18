@@ -1,36 +1,36 @@
-[![npm](https://img.shields.io/npm/v/nativescript-material-tabs.svg)](https://www.npmjs.com/package/nativescript-material-tabs)
-[![npm](https://img.shields.io/npm/dt/nativescript-material-tabs.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-tabs)
+[![npm](https://img.shields.io/npm/v/nativescript-material-bottom-navigation.svg)](https://www.npmjs.com/package/nativescript-material-bottom-navigation)
+[![npm](https://img.shields.io/npm/dt/nativescript-material-bottom-navigation.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-bottom-navigation)
 [![GitHub forks](https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/network)
 [![GitHub stars](https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/stargazers)
 
 ## Installation
 
 ### Warning :warning: :warning: 
-From 5.x using material component will break N tab component on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/nativescript-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [tabs](https://www.npmjs.com/package/nativescript-material-tabs) (clone of N one, but with a little less features)
+From 5.x using material component will break N tab component on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/nativescript-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [tabs](https://www.npmjs.com/package/nativescript-material-bottom-navigation) (clone of N one, but with a little less features)
 
-* `tns plugin add @nativescript-community/ui-material-tabs`
+* `tns plugin add @nativescript-community/ui-material-bottom-navigation`
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
 ---
 
-##### [Material Design Spec](https://material.io/design/components/tabs.html)
+##### [Material Design Spec](https://material.io/design/components/bottom-navigation.html)
 
 ### Usage
 
 
 ## Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="@nativescript-community/ui-material-tabs"` on the Page element_
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="@nativescript-community/ui-material-bottom-navigation"` on the Page element_
 
 ### XML
 
 ```XML
-<Page xmlns:mdt="@nativescript-community/ui-material-tabs">
+<Page xmlns:mdt="@nativescript-community/ui-material-bottom-navigation">
     <mdt:Tabs selectedIndex="1">
         <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-        <TabStrip>
-            <TabStripItem>
+        <MDTabStrip>
+            <MDTabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
             </TabStripItem>
@@ -45,17 +45,17 @@ Be sure to run a new build after adding plugins to avoid any issues.
         </TabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
-        <TabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
         </TabContentItem>
-        <TabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
         </TabContentItem>
-        <TabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
@@ -67,7 +67,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 ### CSS
 
 ```CSS
-MDTabs.bottom-nav {
+MDBottomNavigation.bottom-nav {
     background-color: orangered;
     color: gold;
     font-size: 18;
@@ -93,7 +93,7 @@ TabContentItem.third-tabcontent {
     background-color: blueviolet;
     color: antiquewhite;
 }
-MDTabs TabStrip {
+MDBottomNavigation TabStrip {
     highlight-color: red;
 }
 ```
@@ -101,7 +101,7 @@ MDTabs TabStrip {
 ## NativeScript + Angular
 
 ```typescript
-import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-material-tabs/angular";
+import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-material-slider/angular";
 
 @NgModule({
     imports: [
@@ -113,10 +113,10 @@ import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-mater
 ```
 
 ```html
-    <MDTabs selectedIndex="1">
+    <MDBottomNavigation selectedIndex="1">
         <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-        <TabStrip>
-            <TabStripItem>
+        <MDTabStrip>
+            <MDTabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
             </TabStripItem>
@@ -131,37 +131,37 @@ import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-mater
         </TabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
-        <TabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
         </TabContentItem>
-        <TabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
         </TabContentItem>
-        <TabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
         </TabContentItem>
-    </MDTabs>
+    </MDBottomNavigation>
 ```
 
 ## NativeScript + Vue
 
 ```javascript
-import TabsPlugin from '@nativescript-community/ui-material-slider/vue';
+import BottomNavigation from '@nativescript-community/ui-material-bottom-navigation/vue';
 
-Vue.use(TabsPlugin);
+Vue.use(BottomNavigation);
 ```
 
 ```html
-<MDTabs selectedIndex="1">
+<MDBottomNavigation selectedIndex="1">
         <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-        <TabStrip>
-            <TabStripItem>
+        <MDTabStrip>
+            <MDTabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
             </TabStripItem>
@@ -176,29 +176,29 @@ Vue.use(TabsPlugin);
         </TabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
-        <TabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
         </TabContentItem>
-        <TabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
         </TabContentItem>
-        <TabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
         </TabContentItem>
-    </MDTabs>
+    </MDBottomNavigation>
 ```
 
 ## Attributes
 
 | Name |Type| Description|
 | ------------- |:-------------:| -----:|
-| items  |	Array<TabContentItem> | 	Gets or sets the items of the BottomNavigation.|
+| items  |	Array<MDTabContentItem> | 	Gets or sets the items of the BottomNavigation.|
 |selectedIndex  |	number | 	Gets or sets the selectedIndex of the BottomNavigation.|
 |swipeEnabled  |	boolean  |	Gets or sets the swipe enabled state of the Tabs.|
 |offscreenTabLimit  |	number  |	Gets or sets the number of offscreen preloaded tabs of the Tabs.|

@@ -17,7 +17,7 @@ import { install as installBottomSheet } from '@nativescript-community/ui-materi
 import BottomSheetPlugin from '@nativescript-community/ui-material-bottomsheet/vue';
 import BottomNavigationBarPlugin from '@nativescript-community/ui-material-bottomnavigationbar/vue';
 import TabsPlugin from '@nativescript-community/ui-material-tabs/vue';
-import BottomNavigationPlugin from '@nativescript-community/ui-material-bottomnavigation/vue';
+import BottomNavigationPlugin from '@nativescript-community/ui-material-bottom-navigation/vue';
 import SpeedDialPlugin from '@nativescript-community/ui-material-speeddial/vue';
 
 installBottomSheet();

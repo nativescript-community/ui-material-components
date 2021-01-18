@@ -1,6 +1,6 @@
 import { Directive, NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-import { BottomNavigation } from '@nativescript-community/ui-material-bottomnavigation';
+import { BottomNavigation } from '@nativescript-community/ui-material-bottom-navigation';
 
 @Directive({ selector: 'MDBottomNavigation' })
 export class MaterialBottomNavigationDirective {}

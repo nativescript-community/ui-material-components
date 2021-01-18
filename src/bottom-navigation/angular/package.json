@@ -1,14 +1,14 @@
 {
-	"name": "@nativescript-community/ui-material-bottomnavigation-angular",
+	"name": "@nativescript-community/ui-material-bottom-navigation-angular",
 	"main": "index.js",
 	"ngPackage": {
-		"dest":"../../../packages/bottomnavigation/angular",
+		"dest": "../../../packages/bottom-navigation/angular",
 		"lib": {
 			"entryFile": "index.ts",
 			"umdModuleIds": {
 				"@nativescript/core": "ns-core",
 				"@nativescript/angular": "ns-angular",
-				"@nativescript-community/ui-material-bottomnavigation": "ns-material-bottomnavigation"
+				"@nativescript-community/ui-material-bottom-navigation": "ns-material-bottom-navigation"
 			}
 		},
 		"whitelistedNonPeerDependencies": [

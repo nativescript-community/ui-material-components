@@ -7,8 +7,8 @@
             "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
             "@nativescript-community/ui-material-core": ["packages/core/index"],
             "@nativescript-community/ui-material-core/*": ["packages/core/*"],
-            "@nativescript-community/ui-material-bottomnavigation": ["packages/bottomnavigation/index"],
-            "@nativescript-community/ui-material-bottomnavigation/*": ["packages/bottomnavigation/*"]
+            "@nativescript-community/ui-material-bottom-navigation": ["packages/bottom-navigation/index"],
+            "@nativescript-community/ui-material-bottom-navigation/*": ["packages/bottom-navigation/*"]
         }
     },
     "include": ["./**/*.ts", "../../../references.d.ts", "../../references.d.ts"],
