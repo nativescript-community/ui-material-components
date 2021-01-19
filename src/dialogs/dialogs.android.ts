@@ -75,7 +75,7 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
     return builder;
 }
 
-function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
+function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOptions & MDCAlertControlerOptions) {
     if (options.titleColor) {
         const textViewId = dlg.getContext().getResources().getIdentifier('android:id/alertTitle', null, null);
         if (textViewId) {
@@ -262,9 +262,9 @@ export function alert(arg: any): Promise<void> {
 
             const alert = createAlertDialogBuilder(options);
 
-            const dlg = prepareAndCreateAlertDialog(alert, options);
+            const dlg = prepareAndCreateAlertDialog(alert, options, resolve);
 
-            showDialog(dlg, options, resolve);
+            showDialog(dlg, options);
         } catch (ex) {
             console.error(ex);
             reject(ex);
@@ -306,7 +306,7 @@ export function confirm(arg: any): Promise<boolean> {
                 : Object.assign(defaultOptions, arg);
             const alert = createAlertDialogBuilder(options);
             const dlg = prepareAndCreateAlertDialog(alert, options, resolve);
-            showDialog(dlg, options, resolve);
+            showDialog(dlg, options);
         } catch (ex) {
             console.error(ex);
             reject(ex);
@@ -396,7 +396,7 @@ export function prompt(arg: any): Promise<PromptResult> {
                 (r) => ({ result: r, text: textField.text })
             );
 
-            showDialog(dlg, options, resolve);
+            showDialog(dlg, options);
             if (!!options.autoFocus) {
                 textField.requestFocus();
             }
@@ -477,7 +477,7 @@ export function login(arg: any): Promise<LoginResult> {
                 },
                 (r) => ({ result: r, userName: userNameTextField.text, password: passwordTextField.text })
             );
-            showDialog(dlg, options, resolve);
+            showDialog(dlg, options);
             if (!!options.autoFocus) {
                 userNameTextField.requestFocus();
             }
@@ -551,7 +551,7 @@ export function action(arg: any): Promise<string> {
                 }
                 resolve(r);
             });
-            showDialog(dlg, options, resolve);
+            showDialog(dlg, options);
         } catch (ex) {
             console.error(ex);
             reject(ex);
