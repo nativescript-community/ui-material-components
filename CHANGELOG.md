@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.1](https://github.com/Akylas/nativescript-material-components/compare/v5.2.0...v5.2.1) (2021-01-19)
+
+
+### Bug Fixes
+
+* **dialogs:** android alert not resolving ([e1e2f4b](https://github.com/Akylas/nativescript-material-components/commit/e1e2f4b52ade7becf8ebd080744eff66cf3bb0b5))
+
+
+
+
+
 # [5.2.0](https://github.com/Akylas/nativescript-material-components/compare/v5.1.16...v5.2.0) (2021-01-18)
 
 
