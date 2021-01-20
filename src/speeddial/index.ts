@@ -17,6 +17,7 @@ import {
 import { Button } from '@nativescript-community/ui-material-button';
 import { LinearGradient } from '@nativescript/core/ui/styling/gradient';
 import { AnimationCurve } from '@nativescript/core/ui/enums';
+import { NotifyData } from '@nativescript/core/data/observable';
 
 export class SpeedDialItemBase extends GridLayout {}
 
@@ -133,11 +134,11 @@ export class SpeedDialItem extends SpeedDialItemBase {
     }
 
     notifyChildEvent(child, superNotifyMethod) {
-        return (event: EventData) => {
-            (event as any).speeddialItem = this;
-            if (event.eventName === 'tap') {
+        return <T extends NotifyData>(data: T) => {
+            (data as any).speeddialItem = this;
+            if (data.eventName === 'tap') {
                 if (this.isMain) {
-                    this.fabmenu.get().onButtonTap(event);
+                    this.fabmenu.get().onButtonTap(data);
                 } else {
                     this.fabmenu.get().active = false;
                 }
