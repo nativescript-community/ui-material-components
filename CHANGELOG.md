@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.2](https://github.com/Akylas/nativescript-material-components/compare/v5.2.1...v5.2.2) (2021-01-20)
+
+
+### Features
+
+* **bottom-navigation:**  iosCustomPositioning to allow positioning within layouts ([d420159](https://github.com/Akylas/nativescript-material-components/commit/d420159cb03d0d3b7e5a235205cc27281e635e6f))
+
+
+
+
+
 ## [5.2.1](https://github.com/Akylas/nativescript-material-components/compare/v5.2.0...v5.2.1) (2021-01-19)
 
 
