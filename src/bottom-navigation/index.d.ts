@@ -66,6 +66,11 @@ export class BottomNavigation extends TabNavigationBase {
      * Raised when the selected index changes.
      */
     on(event: 'selectedIndexChanged', callback: (args: SelectedIndexChangedEventData) => void, thisArg?: any);
+
+
+    // parameter to allow the bottom-navigation to be positioned correcly within layouts and thus not be full size
+    // be careful it will then be influenced by safeArea. Default is false
+    iosCustomPositioning: boolean;
 }
 
 export const itemsProperty: Property<BottomNavigation, TabContentItem[]>;

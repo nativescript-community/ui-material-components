@@ -5,7 +5,7 @@ import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigatio
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 // Types
 // Requires
-import { CSSType, Color, Device, Font, Frame, IOSHelper, ImageSource, Utils, View, getIconSpecSize } from '@nativescript/core';
+import { CSSType, Color, Device, Font, Frame, IOSHelper, ImageSource, Property, Utils, View, booleanConverter, getIconSpecSize } from '@nativescript/core';
 import { TextTransform, getTransformedText } from '@nativescript/core/ui/text-base';
 import { iOSNativeHelper } from '@nativescript/core/utils';
 export { TabContentItem, TabStrip, TabStripItem };
@@ -261,6 +261,13 @@ function updateTitleAndIconPositions(tabStripItem: TabStripItem, tabBarItem: UIT
     }
 }
 
+export const iosCustomPositioningProperty = new Property<BottomNavigation, boolean>({
+    name: 'iosCustomPositioning',
+    defaultValue: false,
+
+    valueConverter: booleanConverter
+});
+
 @CSSType('BottomNavigation')
 export class BottomNavigation extends TabNavigationBase {
     public viewController: UITabBarControllerImpl;
@@ -271,10 +278,10 @@ export class BottomNavigation extends TabNavigationBase {
     private _iconsCache = {};
     private _selectedItemColor: Color;
     private _unSelectedItemColor: Color;
+    public iosCustomPositioning: boolean;
 
     constructor() {
         super();
-
         this.viewController = this._ios = UITabBarControllerImpl.initWithOwner(new WeakRef(this));
         this.nativeViewProtected = this._ios.view;
     }
@@ -326,11 +333,15 @@ export class BottomNavigation extends TabNavigationBase {
     }
 
     public layoutNativeView(left: number, top: number, right: number, bottom: number): void {
-        //
+        if (this.iosCustomPositioning) {
+            super.layoutNativeView(left, top, right, bottom);
+        }
     }
 
     public _setNativeViewFrame(nativeView: UIView, frame: CGRect) {
-        //
+        if (this.iosCustomPositioning) {
+            super._setNativeViewFrame(nativeView, frame);
+        }
     }
 
     public onSelectedIndexChanged(oldIndex: number, newIndex: number): void {
@@ -819,3 +830,4 @@ export class BottomNavigation extends TabNavigationBase {
         }
     }
 }
+iosCustomPositioningProperty.register(BottomNavigation);
