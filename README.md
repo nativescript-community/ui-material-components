@@ -1,6 +1,6 @@
 # Nativescript Material Components
 
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 Build beautiful, usable products using Material Components for NativeScript.
 
