@@ -6,20 +6,20 @@ Build beautiful, usable products using Material Components for NativeScript.
 
 ## Components
 
--   [Button](./packages/button/README.md)
--   [Floating Action Button](./packages/floatingactionbutton/README.md)
--   [TextField](./packages/textfield/README.md)
--   [TextView](./packages/textview/README.md)
--   [CardView](./packages/cardview/README.md)
--   [Slider](./packages/slider/README.md)
--   [Progress](./packages/progress/README.md)
--   [ActivityIndicator](./packages/activityindicator/README.md)
--   [Dialogs](./packages/dialogs/README.md)
--   [Bottom Sheets](./packages/bottomsheet/README.md)
--   [Ripple View](./packages/ripple/README.md)
--   [Snackbar](./packages/snackbar/README.md)
--   [Bottom Navigation Bar](./packages/bottomnavigationbar/README.md)
-
+- ActivityIndicator [README](./packages/activityindicator/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-activityindicator)
+- Bottom Navigation [README](./packages/bottom-navigation/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation)
+- Bottom Navigation Bar [README](./packages/bottomnavigationbar/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar)
+- Bottom Sheets [README](./packages/bottomsheet/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet)
+- Button [README](./packages/button/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-button)
+- CardView [README](./packages/cardview/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-cardview)
+- Dialogs [README](./packages/dialogs/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-dialogs)
+- Floating Action Button [README](./packages/floatingactionbutton/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-floatingactionbutton)
+- Progress [README](./packages/progress/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-progress)
+- Ripple [README](./packages/ripple/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-ripple)
+- Slider [README](./packages/slider/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-slider)
+- Snackbar [README](./packages/snackbar/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-snackbar)
+- TextField [README](./packages/textfield/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-textfield)
+- TextView [README](./packages/textview/README.md) [npm](https://www.npmjs.com/package/@nativescript-community/ui-material-textview)
 
 ## iOS latest versions
 
