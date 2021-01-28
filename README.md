@@ -41,6 +41,13 @@ You can see an example in the demo-vue app.
 
 ##
 
+**Q:** What is the difference between Bottom Navigation and Bottom Navigation Bar component?
+
+**A:** The _Bottom Navigation Bar_ is a new component to draw a bottom navigation bar in material design.
+The _Bottom Navigation_ component is a simple extract of the [eponymous component from NativeScript](https://docs.nativescript.org/ui/components/bottom-navigation), which probably will be removed in the future so this one can be used for easy transition.
+
+##
+
 **Q:** How can I contribute?
 
 **A:**
