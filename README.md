@@ -6,22 +6,22 @@ Build beautiful, usable products using Material Components for NativeScript.
 
 ## Components
 
-| Name | README | npm | Material design spec |
+| Name | README | npm | Material design |
 | :---: | :---: | :---: | :---: |
-| ActivityIndicator | [README.md](./packages/activityindicator/README.md) | [@nativescript-community/ui-material-activityindicator](https://www.npmjs.com/package/@nativescript-community/ui-material-activityindicator) | null |
-| Bottom Navigation | [README.md](./packages/bottom-navigation/README.md) | [@nativescript-community/ui-material-bottom-navigation](https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation) | null |
-| Bottom Navigation Bar | [README.md](./packages/bottomnavigationbar/README.md) | [@nativescript-community/ui-material-bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) | null |
-| Bottom Sheets | [README.md](./packages/bottomsheet/README.md) | [@nativescript-community/ui-material-bottomsheet](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet) | null |
-| Button | [README.md](./packages/button/README.md) | [@nativescript-community/ui-material-button](https://www.npmjs.com/package/@nativescript-community/ui-material-button) | null |
-| CardView | [README.md](./packages/cardview/README.md) | [@nativescript-community/ui-material-cardview](https://www.npmjs.com/package/@nativescript-community/ui-material-cardview) | null |
-| Dialogs | [README.md](./packages/dialogs/README.md) | [@nativescript-community/ui-material-dialogs](https://www.npmjs.com/package/@nativescript-community/ui-material-dialogs) | null |
-| Floating Action Button | [README.md](./packages/floatingactionbutton/README.md) | [@nativescript-community/ui-material-floatingactionbutton](https://www.npmjs.com/package/@nativescript-community/ui-material-floatingactionbutton) | null |
-| Progress | [README.md](./packages/progress/README.md) | [@nativescript-community/ui-material-progress](https://www.npmjs.com/package/@nativescript-community/ui-material-progress) | null |
-| Ripple | [README.md](./packages/ripple/README.md) | [@nativescript-community/ui-material-ripple](https://www.npmjs.com/package/@nativescript-community/ui-material-ripple) | null |
-| Slider | [README.md](./packages/slider/README.md) | [@nativescript-community/ui-material-slider](https://www.npmjs.com/package/@nativescript-community/ui-material-slider) | null |
-| Snackbar | [README.md](./packages/snackbar/README.md) | [@nativescript-community/ui-material-snackbar](https://www.npmjs.com/package/@nativescript-community/ui-material-snackbar) | null |
-| TextField | [README.md](./packages/textfield/README.md) | [@nativescript-community/ui-material-textfield](https://www.npmjs.com/package/@nativescript-community/ui-material-textfield) | null |
-| TextView | [README.md](./packages/textview/README.md) | [@nativescript-community/ui-material-textview](https://www.npmjs.com/package/@nativescript-community/ui-material-textview) | null |
+| ActivityIndicator | [README.md](./packages/activityindicator/README.md) | [@nativescript-community/ui-material-activityindicator](https://www.npmjs.com/package/@nativescript-community/ui-material-activityindicator) | [Circular progress indicators](https://material.io/components/progress-indicators#circular-progress-indicators) |
+| Bottom Navigation | [README.md](./packages/bottom-navigation/README.md) | [@nativescript-community/ui-material-bottom-navigation](https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation) | [Bottom navigation](https://material.io/components/bottom-navigation) |
+| Bottom Navigation Bar | [README.md](./packages/bottomnavigationbar/README.md) | [@nativescript-community/ui-material-bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) | [Bottom navigation](https://material.io/components/bottom-navigation) |
+| Bottom Sheets | [README.md](./packages/bottomsheet/README.md) | [@nativescript-community/ui-material-bottomsheet](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet) | [Sheets: bottom](https://material.io/components/sheets-bottom) |
+| Button | [README.md](./packages/button/README.md) | [@nativescript-community/ui-material-button](https://www.npmjs.com/package/@nativescript-community/ui-material-button) | [Buttons](https://material.io/components/buttons) |
+| CardView | [README.md](./packages/cardview/README.md) | [@nativescript-community/ui-material-cardview](https://www.npmjs.com/package/@nativescript-community/ui-material-cardview) | [Cards](https://material.io/components/cards) |
+| Dialogs | [README.md](./packages/dialogs/README.md) | [@nativescript-community/ui-material-dialogs](https://www.npmjs.com/package/@nativescript-community/ui-material-dialogs) | [Dialogs](https://material.io/components/dialogs) |
+| Floating Action Button | [README.md](./packages/floatingactionbutton/README.md) | [@nativescript-community/ui-material-floatingactionbutton](https://www.npmjs.com/package/@nativescript-community/ui-material-floatingactionbutton) | [Buttons: floating action button](https://material.io/components/buttons-floating-action-button) |
+| Progress | [README.md](./packages/progress/README.md) | [@nativescript-community/ui-material-progress](https://www.npmjs.com/package/@nativescript-community/ui-material-progress) | [Linear progress indicators](https://material.io/components/progress-indicators#linear-progress-indicators) |
+| Ripple | [README.md](./packages/ripple/README.md) | [@nativescript-community/ui-material-ripple](https://www.npmjs.com/package/@nativescript-community/ui-material-ripple) | [Ripple](https://material.io/develop/ios/components/ripple) |
+| Slider | [README.md](./packages/slider/README.md) | [@nativescript-community/ui-material-slider](https://www.npmjs.com/package/@nativescript-community/ui-material-slider) | [Sliders](https://material.io/components/sliders) |
+| Snackbar | [README.md](./packages/snackbar/README.md) | [@nativescript-community/ui-material-snackbar](https://www.npmjs.com/package/@nativescript-community/ui-material-snackbar) | [Snackbars](https://material.io/components/snackbars) |
+| TextField | [README.md](./packages/textfield/README.md) | [@nativescript-community/ui-material-textfield](https://www.npmjs.com/package/@nativescript-community/ui-material-textfield) | [Text fields](https://material.io/components/text-fields) |
+| TextView | [README.md](./packages/textview/README.md) | [@nativescript-community/ui-material-textview](https://www.npmjs.com/package/@nativescript-community/ui-material-textview) | [Material Text View](https://material.io/develop/android/components/material-text-view) |
 
 ## FAQ
 
