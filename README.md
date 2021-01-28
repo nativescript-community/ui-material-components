@@ -23,26 +23,31 @@ Build beautiful, usable products using Material Components for NativeScript.
 | TextField | [README.md](./packages/textfield/README.md) | [@nativescript-community/ui-material-textfield](https://www.npmjs.com/package/@nativescript-community/ui-material-textfield) | null |
 | TextView | [README.md](./packages/textview/README.md) | [@nativescript-community/ui-material-textview](https://www.npmjs.com/package/@nativescript-community/ui-material-textview) | null |
 
-## iOS latest versions
+## FAQ
 
-To get latest versions of Material Components for iOS (> 112.1) you will need to change Pod min version to 10.0
+**Question:** How to use the latest version of this plugin for iOS?
+
+**Answer:** To get latest versions of Material Components for iOS (> 112.1) you will need to change Pod min version to 10.0
 To do that modify or create `App_Resources/iOS/Podfile` to add `platform :ios, '10.0'`.
 You can see an example in the demo-vue app.
 
-## Android migration to AndroidX
+---
 
-For Material Components to work correctly with {N} 6 and AndroidX you need to update your android app theme.
-inside ```App_resources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
+**Q:** How to migrate to AndroidX with this plugin installed (Android only)?
+
+**A:** For Material Components to work correctly with {N} 6 and AndroidX you need to update your android app theme.
+Inside ```App_resources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
 You can see an example in the demo-vue app.
 
-## Contribution
+---
 
+**Q:** How can I contribute?
+
+**A:**
 ```bash
 npm i
-npm run setup // this should happen for every typescript update
+npm run setup # this should happen for every typescript update
 npm run tsc
 npm run demo.ios
 npm run demo.android
 ```
-
-
