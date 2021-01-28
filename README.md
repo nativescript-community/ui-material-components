@@ -31,7 +31,7 @@ Build beautiful, usable products using Material Components for NativeScript.
 To do that modify or create `App_Resources/iOS/Podfile` to add `platform :ios, '10.0'`.
 You can see an example in the demo-vue app.
 
----
+##
 
 **Q:** How to migrate to AndroidX with this plugin installed (Android only)?
 
@@ -39,7 +39,7 @@ You can see an example in the demo-vue app.
 Inside ```App_resources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
 You can see an example in the demo-vue app.
 
----
+##
 
 **Q:** How can I contribute?
 
