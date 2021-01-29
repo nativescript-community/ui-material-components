@@ -21,16 +21,16 @@ For Nativescript 7.0+
 For Nativescript 6.x
 * `tns plugin add nativescript-material-bottomnavigationbar`
 
-### NEW FEATURES
+## New Features
 
 -   `Badge` now are supported using the method: `showBadge(index, value)`
     -   NOTE: if you want to show a badge as a red dot no value should be passed to the function.
 
-### Usage
+## Usage
 
 Before start using the plugin you need to add the icons for Android & iOS in your `App_Resources` directory.
 
-#### XML
+### XML
 
 You can set the tabs using the `tabs` property
 
@@ -108,7 +108,7 @@ or you can add the tabs directly in your xml view
 </Page>
 ```
 
-#### Angular
+### Angular
 
 First you need to include the `NativeScriptMaterialBottomNavigationBarModule` in your `app.module.ts`
 
@@ -162,7 +162,7 @@ or you can declare the `BottomNavigationTab` in your html directly
 </GridLayout>
 ```
 
-#### Vue
+### Vue
 
 If you want to use this plugin with Vue, do this in your `app.js` or `main.js`:
 
@@ -189,7 +189,7 @@ This will install and register `BottomNavigationBar` and `BottomNavigationTab` c
 
 You can find more information of how to use nativescript plugins with Vue [Here!](https://nativescript-vue.org/en/docs/getting-started/nativescript-plugins/)
 
-#### CSS Styling
+### CSS Styling
 
 You can also use your css file to set or change the `activeColor`, `inactiveColor` & `backgroundColor` of the Bottom Navigation Bar.
 
@@ -210,7 +210,7 @@ You can also use your css file to set or change the `activeColor`, `inactiveColo
 -   **Properties (internal):** Properties accessible through JS/TS instance
 -   **Events:** Event properties settable thew XML/HTML
 
-# Bottom Navigation Bar
+### Bottom Navigation Bar
 
 #### Properties (bindable)
 
@@ -256,7 +256,7 @@ Methods accessible through JS/TS instance
 | `selectTab(index: number)`                 | `void` | Select a tab programmatically    |
 | `showBadge(index: number, value?: number)` | `void` | Show a badge for an specific tab |
 
-# Bottom Navigation Tab
+### Bottom Navigation Tab
 
 #### Properties (bindable)
 
