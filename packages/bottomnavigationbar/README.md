@@ -2,7 +2,7 @@
 
 Nativescript plugin for Android & iOS to have the Bottom Navigation Bar following the Material Design Guidelines.
 
-[![npm](https://img.shields.io/npm/v/nativescript-material-bottomnavigationbar.svg)](https://www.npmjs.com/package/nativescript-material-bottomnavigationbar) [![npm](https://img.shields.io/npm/dt/nativescript-material-bottomnavigationbar.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-bottomnavigationbar)
+[![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottomnavigationbar.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottomnavigationbar.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar)
 
 <img alt="iOS" src="screenshots/screenshot-ios.png" width="250">
 
