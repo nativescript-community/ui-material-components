@@ -6,12 +6,14 @@ Nativescript plugin for Android & iOS to have the Bottom Navigation Bar followin
 
 ## Contents
 
-1.  [Installation](#installation)
-2.  [Usage with Javascript](#usage)
-3.  [Usage with Angular](#angular)
-4.  [Usage with Vue](#vue)
-5.  [Css Styling](#css-styling)
-6.  [API](#api)
+1. [Installation](#installation)
+2. [New Features](#new-features)
+3.  [Usage](#usage)
+    - [Plain Nativescript](#plain-nativescript)
+    - [Angular](#angular)
+    - [Vue](#vue)
+    - [CSS Styling](#css-styling)
+4.  [API](#api)
 
 ## Installation
 
@@ -30,7 +32,7 @@ For Nativescript 6.x
 
 Before start using the plugin you need to add the icons for Android & iOS in your `App_Resources` directory.
 
-### XML
+### Plain Nativescript
 
 You can set the tabs using the `tabs` property
 
