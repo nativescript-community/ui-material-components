@@ -6,11 +6,17 @@
 For Nativescript 7.0
 * `tns plugin add @nativescript-community/ui-material-activityindicator`
 
+##
+
 For Nativescript 6.x
 * `tns plugin add nativescript-material-activityindicator`
 
+##
+
 If using ```tns-core-modules```
 * `tns plugin add nativescript-material-activityindicator@2.5.4`
+
+##
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
