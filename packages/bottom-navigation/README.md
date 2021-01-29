@@ -206,9 +206,9 @@ Vue.use(BottomNavigation);
 
 ## Events
 
-|Name |	Description|
-| ------------- |:-------------:| -----:|
-|selectedIndexChanged |	Emitted when the selectedIndex property is changed.
-|loaded |	Emitted when the view is loaded.
-|unloaded |	Emitted when the view is unloaded.
-|layoutChanged |	Emitted when the layout bounds of a view changes due to layout processing.
+| Name | Description |
+| ------------- | -----:|
+| selectedIndexChanged | Emitted when the selectedIndex property is changed. |
+| loaded |	Emitted when the view is loaded. |
+| unloaded | Emitted when the view is unloaded. |
+| layoutChanged | Emitted when the layout bounds of a view changes due to layout processing. |
