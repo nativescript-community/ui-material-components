@@ -28,18 +28,18 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Usage
 
-### Start-up wiring (NON ANGULAR)
+### Plain Nativescript
+
 We need to do some wiring when your app starts, so open `app.js` and add this before creating any View/App/Frame:
 
-
-##### JavaScript
+#### JavaScript
 ```js
 var material = require("@nativescript-community/ui-material-bottomsheet");
 
 material.install();
 ```
 
-##### TypeScript
+#### TypeScript
 ```ts
 import { install } from "@nativescript-community/ui-material-bottomsheet";
 install();
@@ -47,7 +47,7 @@ install();
 
 Uses the same kind of API as [Nativescript Modals](https://docs.nativescript.org/ui/modal-view)
 
-##### TS
+#### TS
 
 ```typescript
 const modalViewModulets = "ns-ui-category/modal-view/basics/modal-ts-view-page";
@@ -68,6 +68,8 @@ export function openBottomSheet(args) {
 
 ```
 
+##
+
 ### NativeScript + Vue
 ```typescript
 import Vue from 'nativescript-vue';
@@ -85,6 +87,7 @@ const options: BottomSheetOptions = {
 this.$showBottomSheet(MyComponent, options)
 ```
 
+##
 
 ### NativeScript + Angular
 First you need to include the `NativeScriptMaterialBottomSheetModule` in your `app.module.ts`
