@@ -4,8 +4,6 @@ Nativescript plugin for Android & iOS to have the Bottom Navigation Bar followin
 
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottomnavigationbar.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottomnavigationbar.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar)
 
-<img alt="iOS" src="screenshots/screenshot-ios.png" width="250">
-
 ## Contents
 
 1.  [Installation](#installation)
@@ -33,7 +31,7 @@ For N 6.x
 
 ### Usage
 
-Before start using the plugin you need to add the icons for Android & iOS in your `App_Resources` directory.
+Before start using the plugin you need to add the icons for Android & iOS in your `App_Resources` directory.
 
 #### XML
 
@@ -115,7 +113,7 @@ or you can add the tabs directly in your xml view
 
 #### Angular
 
-First you need to include the `NativeScriptMaterialBottomNavigationBarModule` in your `app.module.ts``
+First you need to include the `NativeScriptMaterialBottomNavigationBarModule` in your `app.module.ts`
 
 ```typescript
 import { NativeScriptMaterialBottomNavigationBarModule} from "@nativescript-community/ui-material-bottomnavigationbar/angular";
@@ -196,7 +194,7 @@ You can find more information of how to use nativescript plugins with Vue [Here!
 
 #### CSS Styling
 
-You can also use your css file to set or change the `activeColor`, `inactiveColor` & `backgroundColor` of the Bottom Navigation Bar.
+You can also use your css file to set or change the `activeColor`, `inactiveColor` & `backgroundColor` of the Bottom Navigation Bar.
 
 ```css
 .botom-nav {
@@ -224,7 +222,7 @@ Properties settable through XML/HTML
 | Property        | Required | Default                     | Type                         | Description                                             |
 | --------------- | -------- | --------------------------- | ---------------------------- | ------------------------------------------------------- |
 | tabs            | true     | []                          | `Array<BottomNavigationTab>` | Array containing the tabs for the BottomNavigationBar   |
-| titleVisibility | false    | `TitleVisibility.Selected` | `TitleVisibility`            | Title Visibility for each BottomNavigationTab           |
+| titleVisibility | false    | `TitleVisibility.Selected`  | `TitleVisibility`            | Title Visibility for each BottomNavigationTab           |
 | activeColor     | false    | "black"                     | `String`                     | Color of the BottomNavigationTab when it's selected     |
 | inactiveColor   | false    | "gray"                      | `String`                     | Color of the BottomNavigationTab when it's not selected |
 | backgroundColor | false    | "white"                     | `String`                     | Color of the BottomNavigation background                |
@@ -237,7 +235,7 @@ Properties accessible through JS/TS instance
 | ---------------- | --------------------------- | ---------------------------- | ------------------------------------------------------- |
 | items            | `[]`                        | `Array<BottomNavigationTab>` | Array containing the tabs for the BottomNavigationBar   |
 | selectedTabIndex | 0                           | `Number`                     | Index of the selected tab                               |
-| titleVisibility  | `TitleVisibility.Selected` | `TitleVisibility`            | Title Visibility for each BottomNavigationTab           |
+| titleVisibility  | `TitleVisibility.Selected`  | `TitleVisibility`            | Title Visibility for each BottomNavigationTab           |
 | activeColor      | `new Color('black')`        | `Color`                      | Color of the BottomNavigationTab when it's selected     |
 | inactiveColor    | `new Color('gray')`         | `Color`                      | Color of the BottomNavigationTab when it's not selected |
 | backgroundColor  | `new Color('white')`        | `Color`                      | Color of the BottomNavigation background                |
