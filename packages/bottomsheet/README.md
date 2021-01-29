@@ -1,11 +1,9 @@
-[![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottomsheet.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet)
-[![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottomsheet.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet)
-
 # NativeScript Material BottomSheets
 
-Use the Material Design Bottom Sheets in your {N} app
+Material Design's [Bottom Sheet](https://material.io/components/sheets-bottom) component for Nativescript.
 
-##### [Material Design Spec](https://material.io/design/components/sheets-bottom.html)
+[![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottomsheet.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet)
+[![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottomsheet.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet)
 
 ## Installation
 
