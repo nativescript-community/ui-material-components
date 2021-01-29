@@ -3,10 +3,10 @@
 
 ## Installation
 
-For N 7.0
+For Nativescript 7.0
 * `tns plugin add @nativescript-community/ui-material-activityindicator`
 
-For N 6.x
+For Nativescript 6.x
 * `tns plugin add nativescript-material-activityindicator`
 
 If using ```tns-core-modules```
