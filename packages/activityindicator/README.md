@@ -83,6 +83,8 @@ Vue.use(ActivityIndicatorPlugin);
 <MDActivityIndicator busy="true"/>
 ```
 
+##
+
 ### Attributes
 
 Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/activity-indicator) so it already has all the same attributes
