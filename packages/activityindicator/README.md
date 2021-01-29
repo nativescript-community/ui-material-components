@@ -24,14 +24,14 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ##### [Material Design Spec](https://material.io/design/components/progress-indicators.html#circular-progress-indicators)
 
-### Usage
+## Usage
 
 
-## Plain NativeScript
+### Plain NativeScript
 
 <span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mda="@nativescript-community/ui-material-activityindicator"` on the Page element_
 
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mda="@nativescript-community/ui-material-activityindicator">
@@ -41,7 +41,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 mdcactivityindicator {
@@ -49,7 +49,9 @@ mdcactivityindicator {
 }
 ```
 
-## NativeScript + Angular
+##
+
+### NativeScript + Angular
 
 ```typescript
 import { NativeScriptMaterialActivityIndicatorModule } from "@nativescript-community/ui-material-activityindicator/angular";
@@ -67,7 +69,9 @@ import { NativeScriptMaterialActivityIndicatorModule } from "@nativescript-commu
 <MDActivityIndicator busy="true"></MDActivityIndicator>
 ```
 
-## NativeScript + Vue
+##
+
+### NativeScript + Vue
 
 ```javascript
 import Vue from 'nativescript-vue';
@@ -80,6 +84,6 @@ Vue.use(ActivityIndicatorPlugin);
 <MDActivityIndicator busy="true"/>
 ```
 
-## Attributes
+### Attributes
 
 Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/activity-indicator) so it already has all the same attributes
