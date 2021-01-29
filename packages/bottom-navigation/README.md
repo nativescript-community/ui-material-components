@@ -12,16 +12,13 @@ From Nativescript 5.x using this component will break the [Nativescript tab comp
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
----
+## Usage
 
-### Usage
-
-
-## Plain NativeScript
+### Plain NativeScript
 
 <span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="@nativescript-community/ui-material-bottom-navigation"` on the Page element_
 
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mdt="@nativescript-community/ui-material-bottom-navigation">
@@ -62,7 +59,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 MDBottomNavigation.bottom-nav {
@@ -96,7 +93,9 @@ MDBottomNavigation TabStrip {
 }
 ```
 
-## NativeScript + Angular
+##
+
+### NativeScript + Angular
 
 ```typescript
 import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-material-slider/angular";
@@ -147,7 +146,9 @@ import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-mater
     </MDBottomNavigation>
 ```
 
-## NativeScript + Vue
+##
+
+### NativeScript + Vue
 
 ```javascript
 import BottomNavigation from '@nativescript-community/ui-material-bottom-navigation/vue';
@@ -192,7 +193,9 @@ Vue.use(BottomNavigation);
     </MDBottomNavigation>
 ```
 
-## Attributes
+##
+
+### Attributes
 
 | Name |Type| Description|
 | ------------- |:-------------:| -----:|
@@ -204,7 +207,9 @@ Vue.use(BottomNavigation);
 |tabsPosition  |	"top", "bottom"  |	Gets or sets the position state of the Tabs. Default value: top|
 |iOSTabBarItemsAlignment  |	"leading", "justified", "center", "centerSelected" 	 |iOS Only: Gets or set the MDCTabBarAlignment of the tab bar icons in iOS. Default value: justified|
 
-## Events
+##
+
+### Events
 
 | Name | Description |
 | ------------- | -----:|
