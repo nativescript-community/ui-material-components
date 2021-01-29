@@ -21,16 +21,14 @@ If using ```tns-core-modules```
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
----
-
-### Usage
+## Usage
 
 
-## Plain NativeScript
+### Plain NativeScript
 
 <span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdb="@nativescript-community/ui-material-button"` on the Page element_
 
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mdb="@nativescript-community/ui-material-button">
@@ -43,7 +41,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 mdbutton {
@@ -52,7 +50,7 @@ mdbutton {
 }
 ```
 
-## NativeScript + Angular
+### NativeScript + Angular
 
 ```typescript
 import { NativeScriptMaterialButtonModule } from "@nativescript-community/ui-material-button/angular";
@@ -70,7 +68,7 @@ import { NativeScriptMaterialButtonModule } from "@nativescript-community/ui-mat
 <MDButton rippleColor="blue" text="text button"></MDButton>
 ```
 
-## NativeScript + Vue
+### NativeScript + Vue
 
 ```javascript
 import Vue from 'nativescript-vue';
@@ -85,9 +83,7 @@ Vue.use(ButtonPlugin);
 
 ## Attributes
 
-Inherite from Nativescript [Button](https://docs.nativescript.org/ui/ns-ui-widgets/button) so it already has all the same attributes
-
-## Attributes
+Inherite from Nativescript [Button](https://docs.nativescript.org/ui/ns-ui-widgets/button) so it already has all the same attributes.
 
 * **elevation** _optional_
 
