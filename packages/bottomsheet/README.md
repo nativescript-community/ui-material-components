@@ -10,11 +10,19 @@ Material Design's [Bottom Sheet](https://material.io/components/sheets-bottom) c
 For N 7.0
 * `tns plugin add @nativescript-community/ui-material-bottomsheet`
 
+##
+
 For N 6.x
 * `tns plugin add nativescript-material-bottomsheet`
 
+##
+
 If using ```tns-core-modules```
 * `tns plugin add nativescript-material-bottomsheet@2.5.4`
+
+##
+
+Be sure to run a new build after adding plugins to avoid any issues.
 
 ## [Changelog](./CHANGELOG.md)
 
