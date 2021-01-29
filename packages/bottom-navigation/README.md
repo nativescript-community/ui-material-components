@@ -1,6 +1,8 @@
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottom-navigation.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottom-navigation.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation)
 
+Material Design's [Bottom navigation](https://material.io/components/bottom-navigation) component for Nativescript.
+
 ## Installation
 
 ### Warning :warning: :warning: 
@@ -11,8 +13,6 @@ From 5.x using material component will break N tab component on iOS (which is bo
 Be sure to run a new build after adding plugins to avoid any issues.
 
 ---
-
-##### [Material Design Spec](https://material.io/design/components/bottom-navigation.html)
 
 ### Usage
 
