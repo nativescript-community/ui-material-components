@@ -21,18 +21,14 @@ If using ```tns-core-modules```
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
----
-
-##### [Material Design Spec](https://material.io/design/components/progresss.html)
-
-### Usage
+## Usage
 
 
-## Plain NativeScript
+### Plain NativeScript
 
 <span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdp="@nativescript-community/ui-material-progress"` on the Page element_
 
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mdp="@nativescript-community/ui-material-progress">
@@ -42,7 +38,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 mdprogress {
@@ -51,7 +47,7 @@ mdprogress {
 }
 ```
 
-## NativeScript + Angular
+### NativeScript + Angular
 
 ```typescript
 import { NativeScriptMaterialProgressModule } from "@nativescript-community/ui-material-progress/angular";
@@ -69,7 +65,7 @@ import { NativeScriptMaterialProgressModule } from "@nativescript-community/ui-m
 <MDProgress v-model="value" maxValue="100"></MDProgress>
 ```
 
-## NativeScript + Vue
+### NativeScript + Vue
 
 ```typescript
 import ProgressPlugin from '@nativescript-community/ui-material-progress/vue';
@@ -84,8 +80,6 @@ Vue.use(ProgressPlugin);
 ## Attributes
 
 Inherite from Nativescript [Progress](https://docs.nativescript.org/ui/ns-ui-widgets/progress) so it already has all the same attributes
-
-## Attributes
 
 * **elevation** _optional_
 
