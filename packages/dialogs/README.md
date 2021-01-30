@@ -12,12 +12,12 @@ From Nativescript 5.x using this component will break the [Nativescript tab comp
 
 ##
 
-For N 7.0
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-dialogs`
 
 ##
 
-For N 6.x
+For NativeScript 6.x
 * `tns plugin add nativescript-material-dialogs`
 
 ##
@@ -29,10 +29,10 @@ If using ```tns-core-modules```
 
 ## Usage
 
-Uses the same API as [Nativescript Dialogs](https://docs.nativescript.org/ui/dialogs)
+Uses the same API as [Nativescript Dialogs](https://docs.nativescript.org/ui/dialogs).
 
-Adds one option for ```alert```:
-* ```view``` : can be a Nativescript View or a path to to XML component. The custom view will be added to the dialog. Possibilities become endless
+Adds one option for `alert`:
+* `view` : can be a Nativescript View or a path to to XML component. The custom view will be added to the dialog. Possibilities become endless.
 
 ##
 
