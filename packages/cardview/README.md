@@ -10,25 +10,33 @@ Material Design's [Card](https://material.io/components/cards) component for Nat
 ### Warning :warning: :warning: 
 From 5.x using material component will break N tab component on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/nativescript-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [tabs](https://www.npmjs.com/package/nativescript-material-tabs) (clone of N one, but with a little less features)
 
+##
+
 For N 7.0
 * `tns plugin add @nativescript-community/ui-material-cardview`
+
+##
 
 For N 6.x
 * `tns plugin add nativescript-material-cardview`
 
+##
+
 If using ```tns-core-modules```
 * `tns plugin add nativescript-material-cardview@2.5.4`
 
+##
+
 Be sure to run a new build after adding plugins to avoid any issues.
 
-### Usage
+## Usage
 
 
-## Plain NativeScript
+### Plain NativeScript
 
 <span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdc="@nativescript-community/ui-material-cardview"` on the Page element_
 
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mdc="@nativescript-community/ui-material-cardview">
@@ -39,7 +47,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 mdccardview {
@@ -48,7 +56,9 @@ mdccardview {
 }
 ```
 
-## NativeScript + Angular
+##
+
+### NativeScript + Angular
 
 ```typescript
 import { NativeScriptMaterialCardViewModule } from "@nativescript-community/ui-material-cardview/angular";
@@ -66,7 +76,9 @@ import { NativeScriptMaterialCardViewModule } from "@nativescript-community/ui-m
 <MDCardView rippleColor="blue"  width="100" height="100"></MDCardView>
 ```
 
-## NativeScript + Vue
+##
+
+### NativeScript + Vue
 
 ```javascript
 import Vue from 'nativescript-vue';
@@ -82,8 +94,6 @@ Vue.use(CardViewPlugin);
 ## Attributes
 
 Inherite from Nativescript [StackLayout](https://docs.nativescript.org/ui/layouts/layout-containers#stacklayout-properties)
-
-## Attributes
 
 * **elevation** _optional_
 
