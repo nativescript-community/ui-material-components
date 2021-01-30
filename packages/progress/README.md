@@ -10,19 +10,26 @@ Material Design's [Linear progress indicator](https://material.io/components/pro
 ### :warning: Warning :warning:
 From Nativescript 5.x using this component will break the [Nativescript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the Nativescript one, but with a little less features).
 
+##
+
 For N 7.0
 * `tns plugin add @nativescript-community/ui-material-progress`
+
+##
 
 For N 6.x
 * `tns plugin add nativescript-material-progress`
 
+##
+
 If using ```tns-core-modules```
 * `tns plugin add nativescript-material-progress@2.5.4`
+
+##
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Usage
-
 
 ### Plain NativeScript
 
@@ -47,6 +54,8 @@ mdprogress {
 }
 ```
 
+##
+
 ### NativeScript + Angular
 
 ```typescript
@@ -64,6 +73,8 @@ import { NativeScriptMaterialProgressModule } from "@nativescript-community/ui-m
 ```html
 <MDProgress v-model="value" maxValue="100"></MDProgress>
 ```
+
+##
 
 ### NativeScript + Vue
 
