@@ -1,9 +1,9 @@
-[![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-dialogs.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-dialogs)
-[![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-dialogs.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-dialogs)
-
 # NativeScript Material Dialogs
 
-Use the Material Design Dialogs in your {N} app
+Material Design's [Dialogs](https://material.io/components/dialogs) component for Nativescript.
+
+[![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-dialogs.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-dialogs)
+[![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-dialogs.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-dialogs)
 
 ## Installation
 
