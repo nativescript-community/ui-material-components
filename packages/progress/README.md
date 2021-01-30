@@ -1,3 +1,7 @@
+# NativeScript Material Linear progress indicator
+
+Material Design's [Linear progress indicator](https://material.io/components/progress-indicators#linear-progress-indicators) component for Nativescript.
+
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-progress.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-progress)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-progress.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-progress)
 
