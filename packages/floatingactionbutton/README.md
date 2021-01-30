@@ -21,14 +21,14 @@ If using ```tns-core-modules```
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
-### Usage
+## Usage
 
 
-## Plain NativeScript
+### Plain NativeScript
 
 <span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdf="@nativescript-community/ui-material-floatingactionbutton"` on the Page element_
 
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mdf="@nativescript-community/ui-material-floatingactionbutton">
@@ -39,7 +39,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 mdcfloatingactionbutton {
@@ -48,7 +48,7 @@ mdcfloatingactionbutton {
 }
 ```
 
-## NativeScript + Angular
+### NativeScript + Angular
 
 ```typescript
 import { registerElement } from '@nativescript/angular/element-registry';
@@ -60,7 +60,7 @@ registerElement('MDFloatingActionButton', () => FloatingActionButton);
 <MDFloatingActionButton rippleColor="blue" src="res://ic_action_add"></MDFloatingActionButton>
 ```
 
-## NativeScript + Vue
+### NativeScript + Vue
 
 ```javascript
 import Vue from 'nativescript-vue';
@@ -76,8 +76,6 @@ Vue.use(FloatingActionButtonPlugin);
 ## Attributes
 
 Inherite from Nativescript [Button](https://docs.nativescript.org/ui/ns-ui-widgets/button) so it already has all the same attributes
-
-## Attributes
 
 * **src** _optional_
 
