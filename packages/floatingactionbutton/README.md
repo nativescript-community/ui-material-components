@@ -12,12 +12,12 @@ From Nativescript 5.x using this component will break the [Nativescript tab comp
 
 ##
 
-For N 7.0
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-floatingactionbutton`
 
 ##
 
-For N 6.x
+For NativeScript 6.x
 * `tns plugin add nativescript-material-floatingactionbutton`
 
 ##
@@ -86,7 +86,7 @@ Vue.use(FloatingActionButtonPlugin);
 
 ## Attributes
 
-Inherite from Nativescript [Button](https://docs.nativescript.org/ui/ns-ui-widgets/button) so it already has all the same attributes
+Inherite from Nativescript [Button](https://docs.nativescript.org/ui/ns-ui-widgets/button) so it already has all the same attributes.
 
 * **src** _optional_
 
