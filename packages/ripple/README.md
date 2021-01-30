@@ -1,3 +1,7 @@
+# NativeScript Material Ripple
+
+Material Design's [Ripple](https://material.io/design/interaction/states.html#pressed) component for Nativescript.
+
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-ripple.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-ripple)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-ripple.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-ripple)
 
@@ -16,10 +20,6 @@ If using ```tns-core-modules```
 * `tns plugin add nativescript-material-ripple@2.5.4`
 
 Be sure to run a new build after adding plugins to avoid any issues.
-
----
-
-##### [Material Design Spec](https://material.io/design/interaction/states.html#usage)
 
 ### Usage
 
