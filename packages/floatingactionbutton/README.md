@@ -10,19 +10,26 @@ Material Design's [Floating Action Button](https://material.io/components/button
 ### :warning: Warning :warning:
 From Nativescript 5.x using this component will break the [Nativescript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the Nativescript one, but with a little less features).
 
+##
+
 For N 7.0
 * `tns plugin add @nativescript-community/ui-material-floatingactionbutton`
+
+##
 
 For N 6.x
 * `tns plugin add nativescript-material-floatingactionbutton`
 
+##
+
 If using ```tns-core-modules```
 * `tns plugin add nativescript-material-floatingactionbutton@2.5.4`
+
+##
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Usage
-
 
 ### Plain NativeScript
 
@@ -48,6 +55,8 @@ mdcfloatingactionbutton {
 }
 ```
 
+##
+
 ### NativeScript + Angular
 
 ```typescript
@@ -59,6 +68,8 @@ registerElement('MDFloatingActionButton', () => FloatingActionButton);
 ```html
 <MDFloatingActionButton rippleColor="blue" src="res://ic_action_add"></MDFloatingActionButton>
 ```
+
+##
 
 ### NativeScript + Vue
 
