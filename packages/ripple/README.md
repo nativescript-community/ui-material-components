@@ -21,14 +21,14 @@ If using ```tns-core-modules```
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
-### Usage
+## Usage
 
 
-## Plain NativeScript
+### Plain NativeScript
 
 <span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdr="@nativescript-community/ui-material-ripple"` on the Page element_
 
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mdr="@nativescript-community/ui-material-ripple">
@@ -38,7 +38,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 mdcripple {
@@ -46,7 +46,7 @@ mdcripple {
 }
 ```
 
-## NativeScript + Angular
+### NativeScript + Angular
 
 ```typescript
 import { NativeScriptMaterialRippleModule } from "@nativescript-community/ui-material-ripple/angular";
@@ -64,7 +64,7 @@ import { NativeScriptMaterialRippleModule } from "@nativescript-community/ui-mat
 <MDRipple rippleColor="green" width="100" height="100"></MDRipple>
 ```
 
-## NativeScript + Vue
+### NativeScript + Vue
 
 ```javascript
 import Vue from 'nativescript-vue';
@@ -80,8 +80,6 @@ Vue.use(RipplePlugin);
 ## Attributes
 
 Inherite from Nativescript [StackLayout](https://docs.nativescript.org/ui/layouts/layout-containers#stacklayout-properties)
-
-## Attributes
 
 * **rippleColor** _optional_
 
