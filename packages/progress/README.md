@@ -12,12 +12,12 @@ From Nativescript 5.x using this component will break the [Nativescript tab comp
 
 ##
 
-For N 7.0
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-progress`
 
 ##
 
-For N 6.x
+For NativeScript 6.x
 * `tns plugin add nativescript-material-progress`
 
 ##
@@ -90,7 +90,7 @@ Vue.use(ProgressPlugin);
 
 ## Attributes
 
-Inherite from Nativescript [Progress](https://docs.nativescript.org/ui/ns-ui-widgets/progress) so it already has all the same attributes
+Inherite from Nativescript [Progress](https://docs.nativescript.org/ui/components/progress) so it already has all the same attributes.
 
 * **elevation** _optional_
 
