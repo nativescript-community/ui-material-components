@@ -5,6 +5,17 @@ Material Design's [Card](https://material.io/components/cards) component for Nat
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-cardview.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-cardview)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-cardview.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-cardview)
 
+## Contents
+
+1. [Installation](#installation)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4.  [Usage](#usage)
+    - [Plain NativeScript](#plain-nativescript)
+    - [Angular](#nativescript--angular)
+    - [Vue](#nativescript--vue)
+5.  [API](#api)
+
 ## Installation
 
 ### :warning: Warning :warning:
@@ -29,8 +40,11 @@ If using ```tns-core-modules```
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
-## Usage
+## [Changelog](./CHANGELOG.md)
 
+## [FAQ](../../README.md#faq)
+
+## Usage
 
 ### Plain NativeScript
 
@@ -91,7 +105,9 @@ Vue.use(CardViewPlugin);
 <MDCardView rippleColor="blue"  width="100" height="100"/>
 ```
 
-## Attributes
+## API
+
+### Attributes
 
 Inherite from NativeScript [StackLayout](https://docs.nativescript.org/ui/layouts/layout-containers#stacklayout-properties)
 
