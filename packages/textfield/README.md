@@ -108,7 +108,7 @@ Also, you can bind the text to some instance data using the `v-model` directive:
 
 ## Attributes
 
-Inherite from Nativescript [TextField](https://docs.nativescript.org/ui/components/text-field) so it already has all the same attributes.
+Inherite from NativeScript [TextField](https://docs.nativescript.org/ui/components/text-field) so it already has all the same attributes.
 
 * **variant** _optional_
 
