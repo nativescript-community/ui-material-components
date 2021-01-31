@@ -15,6 +15,8 @@ NativeScript plugin for Android & iOS to have the Bottom Navigation Bar followin
     - [Vue](#vue)
     - [CSS Styling](#css-styling)
 5.  [API](#api)
+    - [BottomNavigationBar](#bottom-navigation-bar)
+    - [BottomNavigationTab](#bottom-navigation-tab)
 
 ## Installation
 
@@ -204,9 +206,6 @@ You can also use your css file to set or change the `activeColor`, `inactiveColo
 ```
 
 ## API
-
-1. [BottomNavigationBar](#bottom-navigation-bar)
-2. [BottomNavigationTab](#bottom-navigation-tab)
 
 -   **Properties (bindable):** Properties settable through XML/HTML
 -   **Properties (internal):** Properties accessible through JS/TS instance
