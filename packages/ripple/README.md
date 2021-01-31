@@ -1,6 +1,6 @@
 # NativeScript Material Ripple
 
-Material Design's [Ripple](https://material.io/design/interaction/states.html#pressed) component for Nativescript.
+Material Design's [Ripple](https://material.io/design/interaction/states.html#pressed) component for NativeScript.
 
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-ripple.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-ripple)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-ripple.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-ripple)
@@ -8,7 +8,7 @@ Material Design's [Ripple](https://material.io/design/interaction/states.html#pr
 ## Installation
 
 ### :warning: Warning :warning:
-From Nativescript 5.x using this component will break the [Nativescript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the Nativescript one, but with a little less features).
+From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
 
 ##
 
@@ -90,7 +90,7 @@ Vue.use(RipplePlugin);
 
 ## Attributes
 
-Inherite from Nativescript [StackLayout](https://docs.nativescript.org/ui/layouts/layout-containers#stacklayout-properties).
+Inherite from NativeScript [StackLayout](https://docs.nativescript.org/ui/layouts/layout-containers#stacklayout-properties).
 
 * **rippleColor** _optional_
 
