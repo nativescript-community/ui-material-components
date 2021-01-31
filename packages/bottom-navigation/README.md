@@ -5,6 +5,17 @@ Material Design's [Bottom navigation](https://material.io/components/bottom-navi
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottom-navigation.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottom-navigation.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation)
 
+## Contents
+
+1. [Installation](#installation)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4.  [Usage](#usage)
+    - [Plain NativeScript](#plain-nativescript)
+    - [Angular](#nativescript--angular)
+    - [Vue](#nativescript--vue)
+5.  [API](#api)
+
 ## Installation
 
 ### :warning: Warning :warning:
@@ -17,6 +28,10 @@ ns plugin add @nativescript-community/ui-material-bottom-navigation
 ```
 
 Be sure to run a new build after adding plugins to avoid any issues.
+
+## [Changelog](./CHANGELOG.md)
+
+## [FAQ](../../README.md#faq)
 
 ## Usage
 
@@ -199,7 +214,7 @@ Vue.use(BottomNavigation);
     </MDBottomNavigation>
 ```
 
-##
+## API
 
 ### Attributes
 
@@ -212,8 +227,6 @@ Vue.use(BottomNavigation);
 |tabStrip 	 |TabStrip  |	Gets or sets the tab strip of the BottomNavigation.|
 |tabsPosition  |	"top", "bottom"  |	Gets or sets the position state of the Tabs. Default value: top|
 |iOSTabBarItemsAlignment  |	"leading", "justified", "center", "centerSelected" 	 |iOS Only: Gets or set the MDCTabBarAlignment of the tab bar icons in iOS. Default value: justified|
-
-##
 
 ### Events
 
