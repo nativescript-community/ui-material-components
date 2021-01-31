@@ -16,14 +16,14 @@ ns plugin add @nativescript-community/ui-material-tabs
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
-### Usage
+## Usage
 
 
-## Plain NativeScript
+### Plain NativeScript
 
 <span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="@nativescript-community/ui-material-tabs"` on the Page element_
 
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mdt="@nativescript-community/ui-material-tabs">
@@ -64,7 +64,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 MDTabs.bottom-nav {
@@ -98,7 +98,7 @@ MDTabs TabStrip {
 }
 ```
 
-## NativeScript + Angular
+### NativeScript + Angular
 
 ```typescript
 import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-material-tabs/angular";
@@ -149,7 +149,7 @@ import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-mater
     </MDTabs>
 ```
 
-## NativeScript + Vue
+### NativeScript + Vue
 
 ```javascript
 import TabsPlugin from '@nativescript-community/ui-material-slider/vue';
