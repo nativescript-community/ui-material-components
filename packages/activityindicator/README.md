@@ -1,8 +1,9 @@
+# NativeScript Material Circular progress indicator
+
+Material Design's [Circular progress indicator](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) component for NativeScript.
+
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-activityindicator.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-activityindicator)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-activityindicator.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-activityindicator)
-
-Material Design's [Circular progress indicator](https://material.io/design/components/progress-indicators.html#circular-progress-indicators
-) component for Nativescript.
 
 ## Installation
 
