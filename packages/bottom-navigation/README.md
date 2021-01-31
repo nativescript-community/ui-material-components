@@ -1,7 +1,9 @@
+# NativeScript Material Bottom navigation
+
+Material Design's [Bottom navigation](https://material.io/components/bottom-navigation) component for NativeScript.
+
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottom-navigation.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottom-navigation.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation)
-
-Material Design's [Bottom navigation](https://material.io/components/bottom-navigation) component for Nativescript.
 
 ## Installation
 
