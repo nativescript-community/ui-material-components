@@ -1,6 +1,6 @@
-# Nativescript Material Card
+# NativeScript Material Card
 
-Material Design's [Card](https://material.io/components/cards) component for Nativescript.
+Material Design's [Card](https://material.io/components/cards) component for NativeScript.
 
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-cardview.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-cardview)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-cardview.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-cardview)
@@ -8,7 +8,7 @@ Material Design's [Card](https://material.io/components/cards) component for Nat
 ## Installation
 
 ### :warning: Warning :warning:
-From Nativescript 5.x using this component will break the [Nativescript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the Nativescript one, but with a little less features).
+From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
 
 ##
 
@@ -93,7 +93,7 @@ Vue.use(CardViewPlugin);
 
 ## Attributes
 
-Inherite from Nativescript [StackLayout](https://docs.nativescript.org/ui/layouts/layout-containers#stacklayout-properties)
+Inherite from NativeScript [StackLayout](https://docs.nativescript.org/ui/layouts/layout-containers#stacklayout-properties)
 
 * **elevation** _optional_
 
