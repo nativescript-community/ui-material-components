@@ -1,3 +1,7 @@
+# NativeScript Material Text field
+
+Material Design's [Text field](https://material.io/components/text-fields) component for NativeScript.
+
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-textfield.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-textfield)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-textfield.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-textfield)
 
@@ -16,10 +20,6 @@ If using ```tns-core-modules```
 * `tns plugin add nativescript-material-textfield@2.5.4`
 
 Be sure to run a new build after adding plugins to avoid any issues.
-
----
-
-##### [Material Design Spec](https://material.io/design/components/text-fields.html)
 
 ### Usage
 
