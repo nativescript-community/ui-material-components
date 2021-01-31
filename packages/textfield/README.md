@@ -10,14 +10,22 @@ Material Design's [Text field](https://material.io/components/text-fields) compo
 ### :warning: Warning :warning:
 From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
 
+##
+
 For N 7.0
 * `tns plugin add @nativescript-community/ui-material-textfield`
+
+##
 
 For N 6.x
 * `tns plugin add nativescript-material-textfield`
 
+##
+
 If using ```tns-core-modules```
 * `tns plugin add nativescript-material-textfield@2.5.4`
+
+##
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
@@ -54,6 +62,8 @@ mdctextfield {
 }
 ```
 
+##
+
 ### NativeScript + Angular
 
 ```typescript
@@ -74,6 +84,8 @@ import { NativeScriptMaterialTextFieldModule } from "@nativescript-community/ui-
         (textChange)="onTextChange($event)"></MDTextField>
 ```
 
+##
+
 ### NativeScript + Vue
 
 ```javascript
@@ -93,7 +105,6 @@ Also, you can bind the text to some instance data using the `v-model` directive:
 ```html
 <MDTextField v-model="value" />
 ```
-
 
 ## Attributes
 
