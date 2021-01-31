@@ -5,6 +5,17 @@ Material Design's [Text field](https://material.io/components/text-fields) compo
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-textfield.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-textfield)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-textfield.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-textfield)
 
+## Contents
+
+1. [Installation](#installation)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4. [Usage](#usage)
+    - [Plain NativeScript](#plain-nativescript)
+    - [Angular](#nativescript--angular)
+    - [Vue](#nativescript--vue)
+5.  [API](#api)
+
 ## Installation
 
 ### :warning: Warning :warning:
@@ -29,8 +40,11 @@ If using ```tns-core-modules```
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
-## Usage
+## [Changelog](./CHANGELOG.md)
 
+## [FAQ](../../README.md#faq)
+
+## Usage
 
 ### Plain NativeScript
 
@@ -106,7 +120,9 @@ Also, you can bind the text to some instance data using the `v-model` directive:
 <MDTextField v-model="value" />
 ```
 
-## Attributes
+## API
+
+### Attributes
 
 Inherite from NativeScript [TextField](https://docs.nativescript.org/ui/components/text-field) so it already has all the same attributes.
 
