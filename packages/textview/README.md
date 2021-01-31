@@ -21,14 +21,14 @@ If using ```tns-core-modules```
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
-### Usage
+## Usage
 
 
-## Plain NativeScript
+### Plain NativeScript
 
 <span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdt="@nativescript-community/ui-material-textview"` on the Page element_
 
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mdt="@nativescript-community/ui-material-textview">
@@ -41,7 +41,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 mdctextview {
@@ -54,7 +54,7 @@ mdctextview {
 }
 ```
 
-## NativeScript + Angular
+### NativeScript + Angular
 
 ```typescript
 import { NativeScriptMaterialTextViewModule } from "@nativescript-community/ui-material-textview/angular";
@@ -74,7 +74,7 @@ import { NativeScriptMaterialTextViewModule } from "@nativescript-community/ui-m
         (textChange)="onTextChange($event)"></MDTextView>
 ```
 
-## NativeScript + Vue
+### NativeScript + Vue
 
 ```javascript
 import TextViewPlugin from '@nativescript-community/ui-material-textview/vue';
@@ -98,8 +98,6 @@ Also, you can bind the text to some instance data using the `v-model` directive:
 ## Attributes
 
 Inherite from Nativescript [TextView](https://docs.nativescript.org/ui/ns-ui-widgets/text-view) so it already has all the same attributes
-
-## Attributes
 
 * **variant** _optional_
 
