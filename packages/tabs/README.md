@@ -1,3 +1,7 @@
+# NativeScript Material Tabs
+
+Material Design's [Tabs](https://material.io/components/tabs) component for NativeScript.
+
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-tabs.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-tabs.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs)
 
@@ -9,10 +13,6 @@ From 5.x using material component will break N tab component on iOS (which is bo
 * `tns plugin add @nativescript-community/ui-material-tabs`
 
 Be sure to run a new build after adding plugins to avoid any issues.
-
----
-
-##### [Material Design Spec](https://material.io/design/components/tabs.html)
 
 ### Usage
 
