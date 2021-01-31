@@ -5,6 +5,13 @@ Material Design's [Dialogs](https://material.io/components/dialogs) component fo
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-dialogs.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-dialogs)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-dialogs.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-dialogs)
 
+## Contents
+
+1. [Installation](#installation)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4. [Usage](#usage)
+
 ## Installation
 
 ### :warning: Warning :warning:
@@ -26,6 +33,8 @@ If using ```tns-core-modules```
 * `tns plugin add nativescript-material-dialogs@2.5.4`
 
 ## [Changelog](./CHANGELOG.md)
+
+## [FAQ](../../README.md#faq)
 
 ## Usage
 
