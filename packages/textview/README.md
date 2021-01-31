@@ -12,12 +12,12 @@ From NativeScript 5.x using this component will break the [NativeScript tab comp
 
 ##
 
-For N 7.0
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-textview`
 
 ##
 
-For N 6.x
+For NativeScript 6.x
 * `tns plugin add nativescript-material-textview`
 
 ##
@@ -33,7 +33,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ### Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdt="@nativescript-community/ui-material-textview"` on the Page element_
+IMPORTANT: _Make sure you include `xmlns:mdt="@nativescript-community/ui-material-textview"` on the Page element._
 
 #### XML
 
@@ -54,10 +54,10 @@ Be sure to run a new build after adding plugins to avoid any issues.
 mdctextview {
     ripple-color: blue;
     elevation: 4;
-    stroke-color: blue;             // the border color when active
-    stroke-inactive-color: green;   // the border color when inactive
-    floating-color: blue;           // the floating placeholder color when active
-    floating-inactive-color: green; // the floating placeholder color when inactive
+    stroke-color: blue;             /* the border color when active */
+    stroke-inactive-color: green;   /* the border color when inactive */
+    floating-color: blue;           /* the floating placeholder color when active */
+    floating-inactive-color: green; /* the floating placeholder color when inactive */
 }
 ```
 
@@ -108,7 +108,7 @@ Also, you can bind the text to some instance data using the `v-model` directive:
 
 ## Attributes
 
-Inherite from Nativescript [TextView](https://docs.nativescript.org/ui/ns-ui-widgets/text-view) so it already has all the same attributes
+Inherite from Nativescript [TextView](https://docs.nativescript.org/ui/components/text-view) so it already has all the same attributes.
 
 * **variant** _optional_
 
