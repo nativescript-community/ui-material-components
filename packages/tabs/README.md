@@ -194,21 +194,21 @@ Vue.use(TabsPlugin);
 
 ## Attributes
 
-| Name |Type| Description|
-| ------------- |:-------------:| -----:|
-| items  |	Array<TabContentItem> | 	Gets or sets the items of the BottomNavigation.|
-|selectedIndex  |	number | 	Gets or sets the selectedIndex of the BottomNavigation.|
-|swipeEnabled  |	boolean  |	Gets or sets the swipe enabled state of the Tabs.|
-|offscreenTabLimit  |	number  |	Gets or sets the number of offscreen preloaded tabs of the Tabs.|
-|tabStrip 	 |TabStrip  |	Gets or sets the tab strip of the BottomNavigation.|
-|tabsPosition  |	"top", "bottom"  |	Gets or sets the position state of the Tabs. Default value: top|
-|iOSTabBarItemsAlignment  |	"leading", "justified", "center", "centerSelected" 	 |iOS Only: Gets or set the MDCTabBarAlignment of the tab bar icons in iOS. Default value: justified|
+| Name                      | Type                  | Description                                                               |
+| -------------             | :-------------:       | -----:                                                                    |
+| items                     | Array<TabContentItem> | 	Gets or sets the items of the BottomNavigation.                         |
+|selectedIndex              | number                | 	Gets or sets the selectedIndex of the BottomNavigation.                 |
+|swipeEnabled               | boolean               |	Gets or sets the swipe enabled state of the Tabs.                       |
+|offscreenTabLimit          | number                |	Gets or sets the number of offscreen preloaded tabs of the Tabs.        |
+|tabStrip 	                | TabStrip              |	Gets or sets the tab strip of the BottomNavigation.                     |
+|tabsPosition               | "top", "bottom"       |	Gets or sets the position state of the Tabs. Default value: top         |
+|iOSTabBarItemsAlignment    | "leading", "justified", "center", "centerSelected" | iOS Only: Gets or set the MDCTabBarAlignment of the tab bar icons in iOS. Default value: justified |
 
 ## Events
 
-|Name |	Description|
-| ------------- |:-------------:| -----:|
-|selectedIndexChanged |	Emitted when the selectedIndex property is changed.
-|loaded |	Emitted when the view is loaded.
-|unloaded |	Emitted when the view is unloaded.
-|layoutChanged |	Emitted when the layout bounds of a view changes due to layout processing.
+| Name                      | Description                                                                   |
+| -------------             | -------------:                                                                |
+| selectedIndexChanged      | Emitted when the selectedIndex property is changed.                           |
+| loaded                    | Emitted when the view is loaded.                                              |
+| unloaded                  | Emitted when the view is unloaded.                                            |
+| layoutChanged             | Emitted when the layout bounds of a view changes due to layout processing.    |
