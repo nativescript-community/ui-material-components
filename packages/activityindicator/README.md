@@ -5,6 +5,17 @@ Material Design's [Circular progress indicator](https://material.io/design/compo
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-activityindicator.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-activityindicator)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-activityindicator.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-activityindicator)
 
+## Contents
+
+1. [Installation](#installation)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4.  [Usage](#usage)
+    - [Plain NativeScript](#plain-nativescript)
+    - [Angular](#nativescript--angular)
+    - [Vue](#nativescript--vue)
+5.  [API](#api)
+
 ## Installation
 
 For NativeScript 7.0+
@@ -24,8 +35,11 @@ If using ```tns-core-modules```
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
-## Usage
+## [Changelog](./CHANGELOG.md)
 
+## [FAQ](../../README.md#faq)
+
+## Usage
 
 ### Plain NativeScript
 
@@ -84,7 +98,7 @@ Vue.use(ActivityIndicatorPlugin);
 <MDActivityIndicator busy="true"/>
 ```
 
-##
+## API
 
 ### Attributes
 
