@@ -16,10 +16,10 @@ $ ns plugin add @nativescript-community/ui-material-speeddial
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
-### Usage
+## Usage
 
 
-## NativeScript + Vue
+### NativeScript + Vue
 
 ```javascript
 import Vue from 'nativescript-vue';
