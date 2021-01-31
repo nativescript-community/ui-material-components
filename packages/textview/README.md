@@ -108,7 +108,7 @@ Also, you can bind the text to some instance data using the `v-model` directive:
 
 ## Attributes
 
-Inherite from Nativescript [TextView](https://docs.nativescript.org/ui/components/text-view) so it already has all the same attributes.
+Inherite from NativeScript [TextView](https://docs.nativescript.org/ui/components/text-view) so it already has all the same attributes.
 
 * **variant** _optional_
 
