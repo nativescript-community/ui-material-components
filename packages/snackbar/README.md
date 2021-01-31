@@ -13,12 +13,12 @@ From Nativescript 5.x using this component will break the [Nativescript tab comp
 
 ##
 
-For N 7.0
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-snackbar`
 
 ##
 
-For N 6.x
+For NativeScript 6.x
 * `tns plugin add nativescript-material-snackbar`
 
 ##
@@ -32,7 +32,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Usage
 
-### TS
+### TypeScript
 
 ```typescript
 import { SnackBar } from '@nativescript-community/ui-material-snackbar';
