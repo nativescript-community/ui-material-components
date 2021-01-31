@@ -8,12 +8,14 @@ NativeScript plugin for Android & iOS to have the Bottom Navigation Bar followin
 
 1. [Installation](#installation)
 2. [New Features](#new-features)
-3.  [Usage](#usage)
+3. [Changelog](#changelog)
+4. [FAQ](#faq)
+5.  [Usage](#usage)
     - [Plain NativeScript](#plain-nativescript)
     - [Angular](#angular)
     - [Vue](#vue)
     - [CSS Styling](#css-styling)
-4.  [API](#api)
+6.  [API](#api)
 
 ## Installation
 
@@ -27,6 +29,10 @@ For NativeScript 6.x
 
 -   `Badge` now are supported using the method: `showBadge(index, value)`
     -   NOTE: if you want to show a badge as a red dot no value should be passed to the function.
+
+## [Changelog](./CHANGELOG.md)
+
+## [FAQ](../../README.md#faq)
 
 ## Usage
 
