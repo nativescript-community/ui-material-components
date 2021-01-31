@@ -7,12 +7,12 @@ Material Design's [Circular progress indicator](https://material.io/design/compo
 
 ## Installation
 
-For Nativescript 7.0+
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-activityindicator`
 
 ##
 
-For Nativescript 6.x
+For NativeScript 6.x
 * `tns plugin add nativescript-material-activityindicator`
 
 ##
@@ -88,4 +88,4 @@ Vue.use(ActivityIndicatorPlugin);
 
 ### Attributes
 
-Inherite from Nativescript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/activity-indicator) so it already has all the same attributes
+Inherite from NativeScript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/activity-indicator) so it already has all the same attributes
