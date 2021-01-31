@@ -1,6 +1,6 @@
 # NativeScript Material Linear progress indicator
 
-Material Design's [Linear progress indicator](https://material.io/components/progress-indicators#linear-progress-indicators) component for Nativescript.
+Material Design's [Linear progress indicator](https://material.io/components/progress-indicators#linear-progress-indicators) component for NativeScript.
 
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-progress.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-progress)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-progress.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-progress)
@@ -8,7 +8,7 @@ Material Design's [Linear progress indicator](https://material.io/components/pro
 ## Installation
 
 ### :warning: Warning :warning:
-From Nativescript 5.x using this component will break the [Nativescript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the Nativescript one, but with a little less features).
+From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
 
 ##
 
@@ -90,7 +90,7 @@ Vue.use(ProgressPlugin);
 
 ## Attributes
 
-Inherite from Nativescript [Progress](https://docs.nativescript.org/ui/components/progress) so it already has all the same attributes.
+Inherite from NativeScript [Progress](https://docs.nativescript.org/ui/components/progress) so it already has all the same attributes.
 
 * **elevation** _optional_
 
