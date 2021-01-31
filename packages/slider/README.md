@@ -21,14 +21,14 @@ If using ```tns-core-modules```
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
-### Usage
+## Usage
 
 
-## Plain NativeScript
+### Plain NativeScript
 
 <span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="@nativescript-community/ui-material-slider"` on the Page element_
 
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mds="@nativescript-community/ui-material-slider">
@@ -38,7 +38,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 mdslider {
@@ -47,7 +47,7 @@ mdslider {
 }
 ```
 
-## NativeScript + Angular
+### NativeScript + Angular
 
 ```typescript
 import { NativeScriptMaterialSliderModule } from "@nativescript-community/ui-material-slider/angular";
@@ -65,7 +65,7 @@ import { NativeScriptMaterialSliderModule } from "@nativescript-community/ui-mat
 <MDSlider value="50" minValue="0" maxValue="100"></MDSlider>
 ```
 
-## NativeScript + Vue
+### NativeScript + Vue
 
 ```javascript
 import SliderPlugin from '@nativescript-community/ui-material-slider/vue';
@@ -86,8 +86,6 @@ Or you can bind the value to some instance data using the `v-model` directive:
 ## Attributes
 
 Inherite from Nativescript [Slider](https://docs.nativescript.org/ui/ns-ui-widgets/slider) so it already has all the same attributes
-
-## Attributes
 
 * **elevation** _optional_
 
