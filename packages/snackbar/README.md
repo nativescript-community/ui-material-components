@@ -1,11 +1,10 @@
+# Nativescript Material Snackbar
+
+Material Design's [Snackbar](https://material.io/components/snackbars) component for Nativescript.
+
+
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-snackbar.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-snackbar)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-snackbar.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-snackbar)
-
-# Nativescript Material SnackBar
-
-Use the Material Design Snackbars in your {N} app
-
-##### [Material Design Spec](https://material.io/design/components/snackbars.html)
 
 ## Installation
 
