@@ -12,12 +12,12 @@ From Nativescript 5.x using this component will break the [Nativescript tab comp
 
 ##
 
-For N 7.0
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-slider`
 
 ##
 
-For N 6.x
+For NativeScript 6.x
 * `tns plugin add nativescript-material-slider`
 
 ##
@@ -33,7 +33,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ### Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="@nativescript-community/ui-material-slider"` on the Page element_
+IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-material-slider"` on the Page element._
 
 #### XML
 
@@ -96,7 +96,7 @@ Or you can bind the value to some instance data using the `v-model` directive:
 
 ## Attributes
 
-Inherite from Nativescript [Slider](https://docs.nativescript.org/ui/ns-ui-widgets/slider) so it already has all the same attributes
+Inherite from Nativescript [Slider](https://docs.nativescript.org/ui/ns-ui-widgets/slider) so it already has all the same attributes.
 
 * **elevation** _optional_
 
