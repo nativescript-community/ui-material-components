@@ -1,3 +1,7 @@
+# NativeScript Material Text view
+
+Material Design's [Text view](https://material.io/develop/android/components/material-text-view) component for NativeScript.
+
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-textview.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-textview)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-textview.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-textview)
 
@@ -16,10 +20,6 @@ If using ```tns-core-modules```
 * `tns plugin add nativescript-material-textview@2.5.4`
 
 Be sure to run a new build after adding plugins to avoid any issues.
-
----
-
-##### [Material Design Spec](https://material.io/design/components/text-fields.html)
 
 ### Usage
 
