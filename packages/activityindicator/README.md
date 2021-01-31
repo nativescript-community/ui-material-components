@@ -7,7 +7,7 @@ Material Design's [Circular progress indicator](https://material.io/design/compo
 
 ## Installation
 
-For Nativescript 7.0
+For Nativescript 7.0+
 * `tns plugin add @nativescript-community/ui-material-activityindicator`
 
 ##
@@ -29,7 +29,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ### Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mda="@nativescript-community/ui-material-activityindicator"` on the Page element_
+IMPORTANT: _Make sure you include `xmlns:mda="@nativescript-community/ui-material-activityindicator"` on the Page element._
 
 #### XML
 
