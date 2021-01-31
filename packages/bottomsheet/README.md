@@ -1,4 +1,4 @@
-# NativeScript Material BottomSheets
+# NativeScript Material BottomSheet
 
 Material Design's [Bottom Sheet](https://material.io/components/sheets-bottom) component for NativeScript.
 
@@ -7,12 +7,12 @@ Material Design's [Bottom Sheet](https://material.io/components/sheets-bottom) c
 
 ## Installation
 
-For N 7.0
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-bottomsheet`
 
 ##
 
-For N 6.x
+For NativeScript 6.x
 * `tns plugin add nativescript-material-bottomsheet`
 
 ##
@@ -45,7 +45,7 @@ import { install } from "@nativescript-community/ui-material-bottomsheet";
 install();
 ```
 
-Uses the same kind of API as [NativeScript Modals](https://docs.nativescript.org/ui/modal-view)
+Uses the same kind of API as [NativeScript Modals](https://docs.nativescript.org/ui/modal-view).
 
 #### TS
 
@@ -105,7 +105,7 @@ import { NativeScriptMaterialBottomSheetModule} from "@nativescript-community/ui
 ```
 now you can show your custom BottomSheet using the `BottomSheetService`, this service follows the same implementation as the `ModalService`
 
-##### ItemComponent
+#### ItemComponent
 ```typescript
 import { Component,  ViewContainerRef } from '@angular/core';
 import { BottomSheetOptions, BottomSheetService } from '@nativescript-community/ui-material-bottomsheet/angular';
@@ -134,7 +134,7 @@ export class ItemComponent {
     }
 }
 ```
-##### ShareOptionsComponent
+#### ShareOptionsComponent
 ```html
 <ListView
     [items]="options"
