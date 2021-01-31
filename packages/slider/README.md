@@ -1,6 +1,6 @@
 # NativeScript Material Slider
 
-Material Design's [Slider](https://material.io/components/sliders) component for Nativescript.
+Material Design's [Slider](https://material.io/components/sliders) component for NativeScript.
 
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-slider.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-slider)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-slider.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-slider)
@@ -8,7 +8,7 @@ Material Design's [Slider](https://material.io/components/sliders) component for
 ## Installation
 
 ### :warning: Warning :warning:
-From Nativescript 5.x using this component will break the [Nativescript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the Nativescript one, but with a little less features).
+From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
 
 ##
 
@@ -96,7 +96,7 @@ Or you can bind the value to some instance data using the `v-model` directive:
 
 ## Attributes
 
-Inherite from Nativescript [Slider](https://docs.nativescript.org/ui/ns-ui-widgets/slider) so it already has all the same attributes.
+Inherite from NativeScript [Slider](https://docs.nativescript.org/ui/ns-ui-widgets/slider) so it already has all the same attributes.
 
 * **elevation** _optional_
 
