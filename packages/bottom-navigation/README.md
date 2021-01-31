@@ -12,7 +12,9 @@ From Nativescript 5.x using this component will break the [Nativescript tab comp
 
 ##
 
-* `tns plugin add @nativescript-community/ui-material-bottom-navigation`
+```bash
+ns plugin add @nativescript-community/ui-material-bottom-navigation
+```
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
@@ -20,7 +22,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ### Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="@nativescript-community/ui-material-bottom-navigation"` on the Page element_
+IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-material-bottom-navigation"` on the Page element._
 
 #### XML
 
