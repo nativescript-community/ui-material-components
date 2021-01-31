@@ -10,6 +10,8 @@ Material Design's [Tabs](https://material.io/components/tabs) component for Nati
 ### :warning: Warning :warning:
 From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
 
+##
+
 ```
 ns plugin add @nativescript-community/ui-material-tabs
 ```
@@ -17,7 +19,6 @@ ns plugin add @nativescript-community/ui-material-tabs
 Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Usage
-
 
 ### Plain NativeScript
 
@@ -98,6 +99,8 @@ MDTabs TabStrip {
 }
 ```
 
+##
+
 ### NativeScript + Angular
 
 ```typescript
@@ -148,6 +151,8 @@ import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-mater
         </TabContentItem>
     </MDTabs>
 ```
+
+##
 
 ### NativeScript + Vue
 
