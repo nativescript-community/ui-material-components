@@ -22,7 +22,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ### Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="@nativescript-community/ui-material-tabs"` on the Page element_
+IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-material-tabs"` on the Page element._
 
 #### XML
 
