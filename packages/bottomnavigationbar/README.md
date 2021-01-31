@@ -7,15 +7,14 @@ NativeScript plugin for Android & iOS to have the Bottom Navigation Bar followin
 ## Contents
 
 1. [Installation](#installation)
-2. [New Features](#new-features)
-3. [Changelog](#changelog)
-4. [FAQ](#faq)
-5.  [Usage](#usage)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4.  [Usage](#usage)
     - [Plain NativeScript](#plain-nativescript)
     - [Angular](#angular)
     - [Vue](#vue)
     - [CSS Styling](#css-styling)
-6.  [API](#api)
+5.  [API](#api)
 
 ## Installation
 
@@ -24,11 +23,6 @@ For NativeScript 7.0+
 
 For NativeScript 6.x
 * `tns plugin add nativescript-material-bottomnavigationbar`
-
-## New Features
-
--   `Badge` now are supported using the method: `showBadge(index, value)`
-    -   NOTE: if you want to show a badge as a red dot no value should be passed to the function.
 
 ## [Changelog](./CHANGELOG.md)
 
@@ -262,7 +256,7 @@ Methods accessible through JS/TS instance
 | Property                                   | Type   | Description                      |
 | ------------------------------------------ | ------ | -------------------------------- |
 | `selectTab(index: number)`                 | `void` | Select a tab programmatically    |
-| `showBadge(index: number, value?: number)` | `void` | Show a badge for an specific tab |
+| `showBadge(index: number, value?: number)` | `void` | Show a badge for an specific tab, if you want to show a badge as a red dot no value should be passed to the function |
 
 ### Bottom Navigation Tab
 
