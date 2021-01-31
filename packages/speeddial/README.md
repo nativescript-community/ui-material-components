@@ -1,3 +1,7 @@
+# NativeScript Material Speed dial
+
+Material Design's [Speed dial](https://material.io/components/buttons-floating-action-button#types-of-transitions) component for NativeScript.
+
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-speeddial.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-speeddial)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-speeddial.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-speeddial)
 
@@ -16,10 +20,6 @@ If using ```tns-core-modules```
 * `tns plugin add nativescript-material-speeddial@2.5.4`
 
 Be sure to run a new build after adding plugins to avoid any issues.
-
----
-
-##### [Material Design Spec](https://material.io/design/components/speeddials.html)
 
 ### Usage
 
