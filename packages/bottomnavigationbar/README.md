@@ -1,6 +1,6 @@
-# Nativescript Material Bottom Navigation Bar
+# NativeScript Material Bottom Navigation Bar
 
-Nativescript plugin for Android & iOS to have the Bottom Navigation Bar following the [Material Design Guidelines](https://material.io/components/bottom-navigation).
+NativeScript plugin for Android & iOS to have the Bottom Navigation Bar following the [Material Design Guidelines](https://material.io/components/bottom-navigation).
 
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottomnavigationbar.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottomnavigationbar.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar)
 
@@ -9,7 +9,7 @@ Nativescript plugin for Android & iOS to have the Bottom Navigation Bar followin
 1. [Installation](#installation)
 2. [New Features](#new-features)
 3.  [Usage](#usage)
-    - [Plain Nativescript](#plain-nativescript)
+    - [Plain NativeScript](#plain-nativescript)
     - [Angular](#angular)
     - [Vue](#vue)
     - [CSS Styling](#css-styling)
@@ -17,10 +17,10 @@ Nativescript plugin for Android & iOS to have the Bottom Navigation Bar followin
 
 ## Installation
 
-For Nativescript 7.0+
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-bottomnavigationbar`
 
-For Nativescript 6.x
+For NativeScript 6.x
 * `tns plugin add nativescript-material-bottomnavigationbar`
 
 ## New Features
@@ -32,7 +32,7 @@ For Nativescript 6.x
 
 Before start using the plugin you need to add the icons for Android & iOS in your `App_Resources` directory.
 
-### Plain Nativescript
+### Plain NativeScript
 
 You can set the tabs using the `tabs` property
 
