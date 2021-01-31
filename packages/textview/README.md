@@ -5,6 +5,17 @@ Material Design's [Text view](https://material.io/develop/android/components/mat
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-textview.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-textview)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-textview.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-textview)
 
+## Contents
+
+1. [Installation](#installation)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4. [Usage](#usage)
+    - [Plain NativeScript](#plain-nativescript)
+    - [Angular](#nativescript--angular)
+    - [Vue](#nativescript--vue)
+5.  [API](#api)
+
 ## Installation
 
 ### :warning: Warning :warning:
@@ -28,6 +39,10 @@ If using ```tns-core-modules```
 ##
 
 Be sure to run a new build after adding plugins to avoid any issues.
+
+## [Changelog](./CHANGELOG.md)
+
+## [FAQ](../../README.md#faq)
 
 ## Usage
 
@@ -105,8 +120,9 @@ Also, you can bind the text to some instance data using the `v-model` directive:
 <MDTextView v-model="value" />
 ```
 
+## API
 
-## Attributes
+### Attributes
 
 Inherite from NativeScript [TextView](https://docs.nativescript.org/ui/components/text-view) so it already has all the same attributes.
 
