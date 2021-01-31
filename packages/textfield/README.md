@@ -55,10 +55,10 @@ IMPORTANT: _Make sure you include `xmlns:mdt="@nativescript-community/ui-materia
 mdctextfield {
     ripple-color: blue;
     elevation: 4;
-    stroke-color: blue;             // the border color when active
-    stroke-inactive-color: green;   // the border color when inactive
-    floating-color: blue;           // the floating placeholder color when active
-    floating-inactive-color: green; // the floating placeholder color when inactive
+    stroke-color: blue;             /* the border color when active */
+    stroke-inactive-color: green;   /* the border color when inactive */
+    floating-color: blue;           /* the floating placeholder color when active */
+    floating-inactive-color: green; /* the floating placeholder color when inactive */
 }
 ```
 
