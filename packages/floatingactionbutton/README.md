@@ -1,6 +1,6 @@
 # NativeScript Material Floating Action Button
 
-Material Design's [Floating Action Button](https://material.io/components/buttons-floating-action-button) component for Nativescript.
+Material Design's [Floating Action Button](https://material.io/components/buttons-floating-action-button) component for NativeScript.
 
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-floatingactionbutton.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-floatingactionbutton)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-floatingactionbutton.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-floatingactionbutton)
@@ -8,7 +8,7 @@ Material Design's [Floating Action Button](https://material.io/components/button
 ## Installation
 
 ### :warning: Warning :warning:
-From Nativescript 5.x using this component will break the [Nativescript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the Nativescript one, but with a little less features).
+From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
 
 ##
 
@@ -86,7 +86,7 @@ Vue.use(FloatingActionButtonPlugin);
 
 ## Attributes
 
-Inherite from Nativescript [Button](https://docs.nativescript.org/ui/ns-ui-widgets/button) so it already has all the same attributes.
+Inherite from NativeScript [Button](https://docs.nativescript.org/ui/ns-ui-widgets/button) so it already has all the same attributes.
 
 * **src** _optional_
 
