@@ -12,12 +12,12 @@ From NativeScript 5.x using this component will break the [NativeScript tab comp
 
 ##
 
-For N 7.0
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-textfield`
 
 ##
 
-For N 6.x
+For NativeScript 6.x
 * `tns plugin add nativescript-material-textfield`
 
 ##
@@ -34,7 +34,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ### Plain NativeScript
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdt="@nativescript-community/ui-material-textfield"` on the Page element_
+IMPORTANT: _Make sure you include `xmlns:mdt="@nativescript-community/ui-material-textfield"` on the Page element._
 
 #### XML
 
@@ -108,7 +108,7 @@ Also, you can bind the text to some instance data using the `v-model` directive:
 
 ## Attributes
 
-Inherite from Nativescript [TextField](https://docs.nativescript.org/ui/ns-ui-widgets/text-field) so it already has all the same attributes
+Inherite from Nativescript [TextField](https://docs.nativescript.org/ui/components/text-field) so it already has all the same attributes.
 
 * **variant** _optional_
 
