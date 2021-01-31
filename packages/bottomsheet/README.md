@@ -1,6 +1,6 @@
 # NativeScript Material BottomSheets
 
-Material Design's [Bottom Sheet](https://material.io/components/sheets-bottom) component for Nativescript.
+Material Design's [Bottom Sheet](https://material.io/components/sheets-bottom) component for NativeScript.
 
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottomsheet.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottomsheet.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet)
@@ -28,7 +28,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## Usage
 
-### Plain Nativescript
+### Plain NativeScript
 
 We need to do some wiring when your app starts, so open `app.js` and add this before creating any View/App/Frame:
 
@@ -45,7 +45,7 @@ import { install } from "@nativescript-community/ui-material-bottomsheet";
 install();
 ```
 
-Uses the same kind of API as [Nativescript Modals](https://docs.nativescript.org/ui/modal-view)
+Uses the same kind of API as [NativeScript Modals](https://docs.nativescript.org/ui/modal-view)
 
 #### TS
 
