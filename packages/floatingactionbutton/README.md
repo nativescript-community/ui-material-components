@@ -1,6 +1,6 @@
-# NativeScript Material Floating Action Button
+# NativeScript Material Floating action button
 
-Material Design's [Floating Action Button](https://material.io/components/buttons-floating-action-button) component for NativeScript.
+Material Design's [Floating action button](https://material.io/components/buttons-floating-action-button) component for NativeScript.
 
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-floatingactionbutton.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-floatingactionbutton)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-floatingactionbutton.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-floatingactionbutton)
