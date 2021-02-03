@@ -1,6 +1,6 @@
-# NativeScript Material BottomSheet
+# NativeScript Material Bottom sheet
 
-Material Design's [Bottom Sheet](https://material.io/components/sheets-bottom) component for NativeScript.
+Material Design's [Bottom sheet](https://material.io/components/sheets-bottom) component for NativeScript.
 
 [![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottomsheet.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet)
 [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottomsheet.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet)
