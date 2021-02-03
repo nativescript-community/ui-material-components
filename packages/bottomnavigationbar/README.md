@@ -26,6 +26,10 @@ For NativeScript 7.0+
 For NativeScript 6.x
 * `tns plugin add nativescript-material-bottomnavigationbar`
 
+##
+
+Be sure to run a new build after adding plugins to avoid any issues.
+
 ## [Changelog](./CHANGELOG.md)
 
 ## [FAQ](../../README.md#faq)
