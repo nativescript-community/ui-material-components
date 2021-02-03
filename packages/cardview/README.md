@@ -1,42 +1,56 @@
-[![npm](https://img.shields.io/npm/v/nativescript-material-cardview.svg)](https://www.npmjs.com/package/nativescript-material-cardview)
-[![npm](https://img.shields.io/npm/dt/nativescript-material-cardview.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-cardview)
-[![GitHub forks](https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/network)
-[![GitHub stars](https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/stargazers)
+# NativeScript Material Card
+
+Material Design's [Card](https://material.io/components/cards) component for NativeScript.
+
+[![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-cardview.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-cardview)
+[![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-cardview.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-cardview)
+
+## Contents
+
+1. [Installation](#installation)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4.  [Usage](#usage)
+    - [Plain NativeScript](#plain-nativescript)
+    - [Angular](#nativescript--angular)
+    - [Vue](#nativescript--vue)
+5.  [API](#api)
 
 ## Installation
 
-### Warning :warning: :warning: 
-From 5.x using material component will break N tab component on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/nativescript-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [tabs](https://www.npmjs.com/package/nativescript-material-tabs) (clone of N one, but with a little less features)
+### :warning: Warning :warning:
+From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
+
+##
 
 For N 7.0
 * `tns plugin add @nativescript-community/ui-material-cardview`
 
+##
+
 For N 6.x
 * `tns plugin add nativescript-material-cardview`
+
+##
 
 If using ```tns-core-modules```
 * `tns plugin add nativescript-material-cardview@2.5.4`
 
+##
+
 Be sure to run a new build after adding plugins to avoid any issues.
 
+## [Changelog](./CHANGELOG.md)
 
-## Android migration to AndroidX
+## [FAQ](../../README.md#faq)
 
-For Material Components to work correctly with {N} 6 and AndroidX you need to update your android app theme.
-inside ```App_ressources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
+## Usage
 
----
-
-##### [Material Design Spec](https://material.io/design/components/cardviews.html)
-
-### Usage
-
-
-## Plain NativeScript
+### Plain NativeScript
 
 <span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdc="@nativescript-community/ui-material-cardview"` on the Page element_
 
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mdc="@nativescript-community/ui-material-cardview">
@@ -47,7 +61,7 @@ inside ```App_ressources/android/res/values/styles.xml``` replace all occurences
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 mdccardview {
@@ -56,7 +70,9 @@ mdccardview {
 }
 ```
 
-## NativeScript + Angular
+##
+
+### NativeScript + Angular
 
 ```typescript
 import { NativeScriptMaterialCardViewModule } from "@nativescript-community/ui-material-cardview/angular";
@@ -74,7 +90,9 @@ import { NativeScriptMaterialCardViewModule } from "@nativescript-community/ui-m
 <MDCardView rippleColor="blue"  width="100" height="100"></MDCardView>
 ```
 
-## NativeScript + Vue
+##
+
+### NativeScript + Vue
 
 ```javascript
 import Vue from 'nativescript-vue';
@@ -87,11 +105,11 @@ Vue.use(CardViewPlugin);
 <MDCardView rippleColor="blue"  width="100" height="100"/>
 ```
 
-## Attributes
+## API
 
-Inherite from Nativescript [StackLayout](https://docs.nativescript.org/ui/layouts/layout-containers#stacklayout-properties)
+### Attributes
 
-## Attributes
+Inherite from NativeScript [StackLayout](https://docs.nativescript.org/ui/layouts/layout-containers#stacklayout-properties)
 
 * **elevation** _optional_
 

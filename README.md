@@ -1,46 +1,62 @@
 # Nativescript Material Components
 
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 Build beautiful, usable products using Material Components for NativeScript.
 
 ## Components
 
--   [Button](./packages/button/README.md)
--   [Floating Action Button](./packages/floatingactionbutton/README.md)
--   [TextField](./packages/textfield/README.md)
--   [TextView](./packages/textview/README.md)
--   [CardView](./packages/cardview/README.md)
--   [Slider](./packages/slider/README.md)
--   [Progress](./packages/progress/README.md)
--   [ActivityIndicator](./packages/activityindicator/README.md)
--   [Dialogs](./packages/dialogs/README.md)
--   [Bottom Sheets](./packages/bottomsheet/README.md)
--   [Ripple View](./packages/ripple/README.md)
--   [Snackbar](./packages/snackbar/README.md)
--   [Bottom Navigation Bar](./packages/bottomnavigationbar/README.md)
+| Name | README | npm | Material design |
+| :---: | :---: | :---: | :---: |
+| Circular progress indicator | [README.md](./packages/activityindicator/README.md) | [@nativescript-community/ui-material-activityindicator](https://www.npmjs.com/package/@nativescript-community/ui-material-activityindicator) | [Circular progress indicators](https://material.io/components/progress-indicators#circular-progress-indicators) |
+| Bottom navigation | [README.md](./packages/bottom-navigation/README.md) | [@nativescript-community/ui-material-bottom-navigation](https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation) | [Bottom navigation](https://material.io/components/bottom-navigation) |
+| Bottom navigation bar | [README.md](./packages/bottomnavigationbar/README.md) | [@nativescript-community/ui-material-bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) | [Bottom navigation](https://material.io/components/bottom-navigation) |
+| Bottom sheet | [README.md](./packages/bottomsheet/README.md) | [@nativescript-community/ui-material-bottomsheet](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet) | [Sheets: bottom](https://material.io/components/sheets-bottom) |
+| Button | [README.md](./packages/button/README.md) | [@nativescript-community/ui-material-button](https://www.npmjs.com/package/@nativescript-community/ui-material-button) | [Buttons](https://material.io/components/buttons) |
+| Card | [README.md](./packages/cardview/README.md) | [@nativescript-community/ui-material-cardview](https://www.npmjs.com/package/@nativescript-community/ui-material-cardview) | [Cards](https://material.io/components/cards) |
+| Dialogs | [README.md](./packages/dialogs/README.md) | [@nativescript-community/ui-material-dialogs](https://www.npmjs.com/package/@nativescript-community/ui-material-dialogs) | [Dialogs](https://material.io/components/dialogs) |
+| Floating action button | [README.md](./packages/floatingactionbutton/README.md) | [@nativescript-community/ui-material-floatingactionbutton](https://www.npmjs.com/package/@nativescript-community/ui-material-floatingactionbutton) | [Buttons: floating action button](https://material.io/components/buttons-floating-action-button) |
+| Linear progress indicator | [README.md](./packages/progress/README.md) | [@nativescript-community/ui-material-progress](https://www.npmjs.com/package/@nativescript-community/ui-material-progress) | [Linear progress indicators](https://material.io/components/progress-indicators#linear-progress-indicators) |
+| Ripple | [README.md](./packages/ripple/README.md) | [@nativescript-community/ui-material-ripple](https://www.npmjs.com/package/@nativescript-community/ui-material-ripple) | [Ripple](https://material.io/design/interaction/states.html#pressed) |
+| Slider | [README.md](./packages/slider/README.md) | [@nativescript-community/ui-material-slider](https://www.npmjs.com/package/@nativescript-community/ui-material-slider) | [Sliders](https://material.io/components/sliders) |
+| Snackbar | [README.md](./packages/snackbar/README.md) | [@nativescript-community/ui-material-snackbar](https://www.npmjs.com/package/@nativescript-community/ui-material-snackbar) | [Snackbars](https://material.io/components/snackbars) |
+| Speed dial | [README.md](./packages/speeddial/README.md) | [@nativescript-community/ui-material-speeddial](https://www.npmjs.com/package/@nativescript-community/ui-material-speeddial) | [Speed dial](https://material.io/components/buttons-floating-action-button#types-of-transitions) |
+| Tabs | [README.md](./packages/tabs/README.md) | [@nativescript-community/ui-material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) | [Tabs](https://material.io/components/tabs) |
+| Text field | [README.md](./packages/textfield/README.md) | [@nativescript-community/ui-material-textfield](https://www.npmjs.com/package/@nativescript-community/ui-material-textfield) | [Text fields](https://material.io/components/text-fields) |
+| Text view | [README.md](./packages/textview/README.md) | [@nativescript-community/ui-material-textview](https://www.npmjs.com/package/@nativescript-community/ui-material-textview) | [Material Text View](https://material.io/develop/android/components/material-text-view) |
 
+## FAQ
 
-## iOS latest versions
+**Question:** How to use the latest version of this plugin for iOS?
 
-To get latest versions of Material Components for iOS (> 112.1) you will need to change Pod min version to 10.0
+**Answer:** To get latest versions of Material Components for iOS (> 112.1) you will need to change Pod min version to 10.0
 To do that modify or create `App_Resources/iOS/Podfile` to add `platform :ios, '10.0'`.
 You can see an example in the demo-vue app.
 
-## Android migration to AndroidX
+##
 
-For Material Components to work correctly with {N} 6 and AndroidX you need to update your android app theme.
-inside ```App_resources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
+**Q:** How to migrate to AndroidX with this plugin installed (Android only)?
+
+**A:** For Material Components to work correctly with {N} 6 and AndroidX you need to update your android app theme.
+Inside ```App_resources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
 You can see an example in the demo-vue app.
 
-## Contribution
+##
 
+**Q:** What is the difference between Bottom Navigation and Bottom Navigation Bar component?
+
+**A:** The _Bottom Navigation Bar_ is a new component to draw a bottom navigation bar in material design.
+The _Bottom Navigation_ component is a simple extract of the [eponymous component from NativeScript](https://docs.nativescript.org/ui/components/bottom-navigation), which probably will be removed in the future so this one can be used for easy transition.
+
+##
+
+**Q:** How can I contribute?
+
+**A:**
 ```bash
 npm i
-npm run setup // this should happen for every typescript update
+npm run setup # this should happen for every typescript update
 npm run tsc
 npm run demo.ios
 npm run demo.android
 ```
-
-

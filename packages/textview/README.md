@@ -1,36 +1,56 @@
-[![npm](https://img.shields.io/npm/v/nativescript-material-textview.svg)](https://www.npmjs.com/package/nativescript-material-textview)
-[![npm](https://img.shields.io/npm/dt/nativescript-material-textview.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-textview)
-[![GitHub forks](https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/network)
-[![GitHub stars](https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/stargazers)
+# NativeScript Material Text view
+
+Material Design's [Text view](https://material.io/develop/android/components/material-text-view) component for NativeScript.
+
+[![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-textview.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-textview)
+[![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-textview.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-textview)
+
+## Contents
+
+1. [Installation](#installation)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4. [Usage](#usage)
+    - [Plain NativeScript](#plain-nativescript)
+    - [Angular](#nativescript--angular)
+    - [Vue](#nativescript--vue)
+5.  [API](#api)
 
 ## Installation
 
-### Warning :warning: :warning: 
-From 5.x using material component will break N tab component on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/nativescript-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [tabs](https://www.npmjs.com/package/nativescript-material-tabs) (clone of N one, but with a little less features)
+### :warning: Warning :warning:
+From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
 
-For N 7.0
+##
+
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-textview`
 
-For N 6.x
+##
+
+For NativeScript 6.x
 * `tns plugin add nativescript-material-textview`
+
+##
 
 If using ```tns-core-modules```
 * `tns plugin add nativescript-material-textview@2.5.4`
 
+##
+
 Be sure to run a new build after adding plugins to avoid any issues.
 
----
+## [Changelog](./CHANGELOG.md)
 
-##### [Material Design Spec](https://material.io/design/components/text-fields.html)
+## [FAQ](../../README.md#faq)
 
-### Usage
+## Usage
 
+### Plain NativeScript
 
-## Plain NativeScript
+IMPORTANT: _Make sure you include `xmlns:mdt="@nativescript-community/ui-material-textview"` on the Page element._
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdt="@nativescript-community/ui-material-textview"` on the Page element_
-
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mdt="@nativescript-community/ui-material-textview">
@@ -43,20 +63,22 @@ Be sure to run a new build after adding plugins to avoid any issues.
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 mdctextview {
     ripple-color: blue;
     elevation: 4;
-    stroke-color: blue;             // the border color when active
-    stroke-inactive-color: green;   // the border color when inactive
-    floating-color: blue;           // the floating placeholder color when active
-    floating-inactive-color: green; // the floating placeholder color when inactive
+    stroke-color: blue;             /* the border color when active */
+    stroke-inactive-color: green;   /* the border color when inactive */
+    floating-color: blue;           /* the floating placeholder color when active */
+    floating-inactive-color: green; /* the floating placeholder color when inactive */
 }
 ```
 
-## NativeScript + Angular
+##
+
+### NativeScript + Angular
 
 ```typescript
 import { NativeScriptMaterialTextViewModule } from "@nativescript-community/ui-material-textview/angular";
@@ -76,7 +98,9 @@ import { NativeScriptMaterialTextViewModule } from "@nativescript-community/ui-m
         (textChange)="onTextChange($event)"></MDTextView>
 ```
 
-## NativeScript + Vue
+##
+
+### NativeScript + Vue
 
 ```javascript
 import TextViewPlugin from '@nativescript-community/ui-material-textview/vue';
@@ -96,12 +120,11 @@ Also, you can bind the text to some instance data using the `v-model` directive:
 <MDTextView v-model="value" />
 ```
 
+## API
 
-## Attributes
+### Attributes
 
-Inherite from Nativescript [TextView](https://docs.nativescript.org/ui/ns-ui-widgets/text-view) so it already has all the same attributes
-
-## Attributes
+Inherite from NativeScript [TextView](https://docs.nativescript.org/ui/components/text-view) so it already has all the same attributes.
 
 * **variant** _optional_
 

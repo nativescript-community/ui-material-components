@@ -1,49 +1,65 @@
-[![npm](https://img.shields.io/npm/v/nativescript-material-bottomsheet.svg)](https://www.npmjs.com/package/nativescript-material-bottomsheet)
-[![npm](https://img.shields.io/npm/dt/nativescript-material-bottomsheet.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-bottomsheet)
-[![GitHub forks](https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/network)
-[![GitHub stars](https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/stargazers)
+# NativeScript Material Bottom sheet
 
-# NativeScript Material BottomSheets
+Material Design's [Bottom sheet](https://material.io/components/sheets-bottom) component for NativeScript.
 
-Use the Material Design Bottom Sheets in your {N} app
+[![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottomsheet.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet)
+[![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottomsheet.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet)
 
-##### [Material Design Spec](https://material.io/design/components/sheets-bottom.html)
+## Contents
+
+1. [Installation](#installation)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4.  [Usage](#usage)
+    - [Plain NativeScript](#plain-nativescript)
+    - [Angular](#nativescript--angular)
+    - [Vue](#nativescript--vue)
 
 ## Installation
 
-For N 7.0
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-bottomsheet`
 
-For N 6.x
+##
+
+For NativeScript 6.x
 * `tns plugin add nativescript-material-bottomsheet`
+
+##
 
 If using ```tns-core-modules```
 * `tns plugin add nativescript-material-bottomsheet@2.5.4`
 
+##
+
+Be sure to run a new build after adding plugins to avoid any issues.
+
 ## [Changelog](./CHANGELOG.md)
+
+## [FAQ](../../README.md#faq)
 
 ## Usage
 
-### Start-up wiring (NON ANGULAR)
+### Plain NativeScript
+
 We need to do some wiring when your app starts, so open `app.js` and add this before creating any View/App/Frame:
 
-
-##### JavaScript
+#### JavaScript
 ```js
 var material = require("@nativescript-community/ui-material-bottomsheet");
 
 material.install();
 ```
 
-##### TypeScript
+#### TypeScript
 ```ts
 import { install } from "@nativescript-community/ui-material-bottomsheet";
 install();
 ```
 
-Uses the same kind of API as [Nativescript Modals](https://docs.nativescript.org/ui/modal-view)
+Uses the same kind of API as [NativeScript Modals](https://docs.nativescript.org/ui/modal-view).
 
-##### TS
+#### TS
 
 ```typescript
 const modalViewModulets = "ns-ui-category/modal-view/basics/modal-ts-view-page";
@@ -64,6 +80,8 @@ export function openBottomSheet(args) {
 
 ```
 
+##
+
 ### NativeScript + Vue
 ```typescript
 import Vue from 'nativescript-vue';
@@ -81,6 +99,7 @@ const options: BottomSheetOptions = {
 this.$showBottomSheet(MyComponent, options)
 ```
 
+##
 
 ### NativeScript + Angular
 First you need to include the `NativeScriptMaterialBottomSheetModule` in your `app.module.ts`
@@ -98,7 +117,7 @@ import { NativeScriptMaterialBottomSheetModule} from "@nativescript-community/ui
 ```
 now you can show your custom BottomSheet using the `BottomSheetService`, this service follows the same implementation as the `ModalService`
 
-##### ItemComponent
+#### ItemComponent
 ```typescript
 import { Component,  ViewContainerRef } from '@angular/core';
 import { BottomSheetOptions, BottomSheetService } from '@nativescript-community/ui-material-bottomsheet/angular';
@@ -127,7 +146,7 @@ export class ItemComponent {
     }
 }
 ```
-##### ShareOptionsComponent
+#### ShareOptionsComponent
 ```html
 <ListView
     [items]="options"
