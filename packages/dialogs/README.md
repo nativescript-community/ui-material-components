@@ -32,6 +32,10 @@ For NativeScript 6.x
 If using ```tns-core-modules```
 * `tns plugin add nativescript-material-dialogs@2.5.4`
 
+##
+
+Be sure to run a new build after adding plugins to avoid any issues.
+
 ## [Changelog](./CHANGELOG.md)
 
 ## [FAQ](../../README.md#faq)
