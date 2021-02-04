@@ -61,7 +61,7 @@ export function alert(message: string | number | boolean): Promise<void>;
  * The alert() method displays an alert box with a specified message.
  * @param options Specifies the options for the alert box.
  */
-export function alert(options: AlertOptions & MDCAlertControlerOptions): Promise<void>;
+export function alert(options: AlertOptions & MDCAlertControlerOptions): Promise<any>;
 
 /**
  * The confirm() method displays a dialog box with a specified message.

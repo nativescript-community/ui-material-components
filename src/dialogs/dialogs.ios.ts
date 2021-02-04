@@ -271,8 +271,8 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     return alertController;
 }
 
-export function alert(arg: any): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
+export function alert(arg: any): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
         try {
             const defaultOptions = {
                 // title: ALERT,
