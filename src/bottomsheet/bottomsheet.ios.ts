@@ -215,7 +215,6 @@ class UILayoutViewController extends UIViewController {
         }
         if (!owner.parent) {
             owner.callLoaded();
-            console.log('callLoaded done');
         }
         // Unify translucent and opaque bars layout
         this.edgesForExtendedLayout = UIRectEdge.All;
