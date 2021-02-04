@@ -171,7 +171,10 @@ export class TextField extends TextFieldBase {
         }
 
         this.firstEdit = false;
-
+        if (this.width === 'auto') {
+            // if the textfield is in auto size we need to request a layout to take the new text width into account
+            this.requestLayout();
+        }
         return true;
         // return super.textFieldShouldChangeCharactersInRangeReplacementString(textField, range, replacementString);
     }
