@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.4](https://github.com/Akylas/nativescript-material-components/compare/v5.2.3...v5.2.4) (2021-02-04)
+
+
+### Bug Fixes
+
+* **bottomsheet:** ios ensure view is loaded before the first viewDidLayoutSubviews call ([f34e418](https://github.com/Akylas/nativescript-material-components/commit/f34e418d29881db5f48dd419ae1e686a8af2f956))
+* **dialogs:** typings fix for alert with custom view ([c8467e1](https://github.com/Akylas/nativescript-material-components/commit/c8467e1d413c5dc332db1e3463b7d0b2fda31bcb))
+* **textfield:** ios allow textfield  auto size ([826252e](https://github.com/Akylas/nativescript-material-components/commit/826252e77bbbae65733bbdd00bfade97376b4f61))
+
+
+
+
+
 ## [5.2.3](https://github.com/Akylas/nativescript-material-components/compare/v5.2.2...v5.2.3) (2021-01-23)
 
 
