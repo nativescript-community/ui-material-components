@@ -209,7 +209,14 @@ class UILayoutViewController extends UIViewController {
 
     viewDidLoad(): void {
         super.viewDidLoad();
-
+        const owner = this.owner.get();
+        if (!owner) {
+            return;
+        }
+        if (!owner.parent) {
+            owner.callLoaded();
+            console.log('callLoaded done');
+        }
         // Unify translucent and opaque bars layout
         this.edgesForExtendedLayout = UIRectEdge.All;
         this.extendedLayoutIncludesOpaqueBars = true;
@@ -276,9 +283,10 @@ class UILayoutViewController extends UIViewController {
 
         IOSHelper.updateAutoAdjustScrollInsets(this, owner);
 
-        if (!owner.parent) {
-            owner.callLoaded();
-        }
+        // if (!owner.parent) {
+        //     owner.callLoaded();
+        //     console.log('callLoaded done');
+        // }
     }
 
     viewDidDisappear(animated: boolean): void {
