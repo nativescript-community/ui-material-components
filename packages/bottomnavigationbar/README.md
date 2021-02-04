@@ -1,41 +1,44 @@
-# Nativescript Material Bottom Navigation Bar
+# NativeScript Material Bottom navigation bar
 
-Nativescript plugin for Android & iOS to have the Bottom Navigation Bar following the Material Design Guidelines.
+Material Design's [Bottom navigation](https://material.io/components/bottom-navigation) component for NativeScript.
 
-[![npm](https://img.shields.io/npm/v/nativescript-material-bottomnavigationbar.svg)](https://www.npmjs.com/package/nativescript-material-bottomnavigationbar) [![npm](https://img.shields.io/npm/dt/nativescript-material-bottomnavigationbar.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-bottomnavigationbar)
-
-<img alt="iOS" src="screenshots/screenshot-ios.png" width="250">
+[![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottomnavigationbar.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) [![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottomnavigationbar.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar)
 
 ## Contents
 
-1.  [Installation](#installation)
-2.  [Usage with Javascript](#usage)
-3.  [Usage with Angular](#angular)
-4.  [Usage with Vue](#vue)
-5.  [Css Styling](#css-styling)
-6.  [API](#api)
+1. [Installation](#installation)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4.  [Usage](#usage)
+    - [Plain NativeScript](#plain-nativescript)
+    - [Angular](#angular)
+    - [Vue](#vue)
+    - [CSS Styling](#css-styling)
+5.  [API](#api)
+    - [BottomNavigationBar](#bottom-navigation-bar)
+    - [BottomNavigationTab](#bottom-navigation-tab)
 
-### Prerequisites / Requirements
+## Installation
 
-You need the version of NS6 or later to use this plugin.
-
-### Installation
-For N 7.0
+For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-bottomnavigationbar`
 
-For N 6.x
+For NativeScript 6.x
 * `tns plugin add nativescript-material-bottomnavigationbar`
 
-### NEW FEATURES
+##
 
--   `Badge` now are supported using the method: `showBadge(index, value)`
-    -   NOTE: if you want to show a badge as a red dot no value should be passed to the function.
+Be sure to run a new build after adding plugins to avoid any issues.
 
-### Usage
+## [Changelog](./CHANGELOG.md)
 
-Before start using the plugin you need to add the icons for Android & iOS in your `App_Resources` directory.
+## [FAQ](../../README.md#faq)
 
-#### XML
+## Usage
+
+Before start using the plugin you need to add the icons for Android & iOS in your `App_Resources` directory.
+
+### Plain NativeScript
 
 You can set the tabs using the `tabs` property
 
@@ -113,9 +116,9 @@ or you can add the tabs directly in your xml view
 </Page>
 ```
 
-#### Angular
+### Angular
 
-First you need to include the `NativeScriptMaterialBottomNavigationBarModule` in your `app.module.ts``
+First you need to include the `NativeScriptMaterialBottomNavigationBarModule` in your `app.module.ts`
 
 ```typescript
 import { NativeScriptMaterialBottomNavigationBarModule} from "@nativescript-community/ui-material-bottomnavigationbar/angular";
@@ -167,7 +170,7 @@ or you can declare the `BottomNavigationTab` in your html directly
 </GridLayout>
 ```
 
-#### Vue
+### Vue
 
 If you want to use this plugin with Vue, do this in your `app.js` or `main.js`:
 
@@ -194,9 +197,9 @@ This will install and register `BottomNavigationBar` and `BottomNavigationTab` c
 
 You can find more information of how to use nativescript plugins with Vue [Here!](https://nativescript-vue.org/en/docs/getting-started/nativescript-plugins/)
 
-#### CSS Styling
+### CSS Styling
 
-You can also use your css file to set or change the `activeColor`, `inactiveColor` & `backgroundColor` of the Bottom Navigation Bar.
+You can also use your css file to set or change the `activeColor`, `inactiveColor` & `backgroundColor` of the Bottom Navigation Bar.
 
 ```css
 .botom-nav {
@@ -208,14 +211,11 @@ You can also use your css file to set or change the `activeColor`, `inactiveCol
 
 ## API
 
-1. [BottomNavigationBar](#bottom-navigation-bar)
-2. [BottomNavigationTab](#bottom-navigation-tab)
-
 -   **Properties (bindable):** Properties settable through XML/HTML
 -   **Properties (internal):** Properties accessible through JS/TS instance
 -   **Events:** Event properties settable thew XML/HTML
 
-# Bottom Navigation Bar
+### Bottom Navigation Bar
 
 #### Properties (bindable)
 
@@ -224,7 +224,7 @@ Properties settable through XML/HTML
 | Property        | Required | Default                     | Type                         | Description                                             |
 | --------------- | -------- | --------------------------- | ---------------------------- | ------------------------------------------------------- |
 | tabs            | true     | []                          | `Array<BottomNavigationTab>` | Array containing the tabs for the BottomNavigationBar   |
-| titleVisibility | false    | `TitleVisibility.Selected` | `TitleVisibility`            | Title Visibility for each BottomNavigationTab           |
+| titleVisibility | false    | `TitleVisibility.Selected`  | `TitleVisibility`            | Title Visibility for each BottomNavigationTab           |
 | activeColor     | false    | "black"                     | `String`                     | Color of the BottomNavigationTab when it's selected     |
 | inactiveColor   | false    | "gray"                      | `String`                     | Color of the BottomNavigationTab when it's not selected |
 | backgroundColor | false    | "white"                     | `String`                     | Color of the BottomNavigation background                |
@@ -237,7 +237,7 @@ Properties accessible through JS/TS instance
 | ---------------- | --------------------------- | ---------------------------- | ------------------------------------------------------- |
 | items            | `[]`                        | `Array<BottomNavigationTab>` | Array containing the tabs for the BottomNavigationBar   |
 | selectedTabIndex | 0                           | `Number`                     | Index of the selected tab                               |
-| titleVisibility  | `TitleVisibility.Selected` | `TitleVisibility`            | Title Visibility for each BottomNavigationTab           |
+| titleVisibility  | `TitleVisibility.Selected`  | `TitleVisibility`            | Title Visibility for each BottomNavigationTab           |
 | activeColor      | `new Color('black')`        | `Color`                      | Color of the BottomNavigationTab when it's selected     |
 | inactiveColor    | `new Color('gray')`         | `Color`                      | Color of the BottomNavigationTab when it's not selected |
 | backgroundColor  | `new Color('white')`        | `Color`                      | Color of the BottomNavigation background                |
@@ -259,9 +259,9 @@ Methods accessible through JS/TS instance
 | Property                                   | Type   | Description                      |
 | ------------------------------------------ | ------ | -------------------------------- |
 | `selectTab(index: number)`                 | `void` | Select a tab programmatically    |
-| `showBadge(index: number, value?: number)` | `void` | Show a badge for an specific tab |
+| `showBadge(index: number, value?: number)` | `void` | Show a badge for an specific tab, if you want to show a badge as a red dot no value should be passed to the function |
 
-# Bottom Navigation Tab
+### Bottom Navigation Tab
 
 #### Properties (bindable)
 

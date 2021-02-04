@@ -1,29 +1,45 @@
-[![npm](https://img.shields.io/npm/v/nativescript-material-bottom-navigation.svg)](https://www.npmjs.com/package/nativescript-material-bottom-navigation)
-[![npm](https://img.shields.io/npm/dt/nativescript-material-bottom-navigation.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-material-bottom-navigation)
-[![GitHub forks](https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/network)
-[![GitHub stars](https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg)](https://github.com/Akylas/nativescript-material-components/stargazers)
+# NativeScript Material Bottom navigation
+
+Material Design's [Bottom navigation](https://material.io/components/bottom-navigation) component for NativeScript.
+
+[![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-bottom-navigation.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation)
+[![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-bottom-navigation.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation)
+
+## Contents
+
+1. [Installation](#installation)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4.  [Usage](#usage)
+    - [Plain NativeScript](#plain-nativescript)
+    - [Angular](#nativescript--angular)
+    - [Vue](#nativescript--vue)
+5.  [API](#api)
 
 ## Installation
 
-### Warning :warning: :warning: 
-From 5.x using material component will break N tab component on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/nativescript-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [tabs](https://www.npmjs.com/package/nativescript-material-bottom-navigation) (clone of N one, but with a little less features)
+### :warning: Warning :warning:
+From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
 
-* `tns plugin add @nativescript-community/ui-material-bottom-navigation`
+##
+
+```bash
+ns plugin add @nativescript-community/ui-material-bottom-navigation
+```
 
 Be sure to run a new build after adding plugins to avoid any issues.
 
----
+## [Changelog](./CHANGELOG.md)
 
-##### [Material Design Spec](https://material.io/design/components/bottom-navigation.html)
+## [FAQ](../../README.md#faq)
 
-### Usage
+## Usage
 
+### Plain NativeScript
 
-## Plain NativeScript
+IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-material-bottom-navigation"` on the Page element._
 
-<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mds="@nativescript-community/ui-material-bottom-navigation"` on the Page element_
-
-### XML
+#### XML
 
 ```XML
 <Page xmlns:mdt="@nativescript-community/ui-material-bottom-navigation">
@@ -64,7 +80,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 </Page>
 ```
 
-### CSS
+#### CSS
 
 ```CSS
 MDBottomNavigation.bottom-nav {
@@ -98,7 +114,9 @@ MDBottomNavigation TabStrip {
 }
 ```
 
-## NativeScript + Angular
+##
+
+### NativeScript + Angular
 
 ```typescript
 import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-material-slider/angular";
@@ -149,7 +167,9 @@ import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-mater
     </MDBottomNavigation>
 ```
 
-## NativeScript + Vue
+##
+
+### NativeScript + Vue
 
 ```javascript
 import BottomNavigation from '@nativescript-community/ui-material-bottom-navigation/vue';
@@ -194,7 +214,9 @@ Vue.use(BottomNavigation);
     </MDBottomNavigation>
 ```
 
-## Attributes
+## API
+
+### Attributes
 
 | Name |Type| Description|
 | ------------- |:-------------:| -----:|
@@ -206,11 +228,11 @@ Vue.use(BottomNavigation);
 |tabsPosition  |	"top", "bottom"  |	Gets or sets the position state of the Tabs. Default value: top|
 |iOSTabBarItemsAlignment  |	"leading", "justified", "center", "centerSelected" 	 |iOS Only: Gets or set the MDCTabBarAlignment of the tab bar icons in iOS. Default value: justified|
 
-## Events
+### Events
 
-|Name |	Description|
-| ------------- |:-------------:| -----:|
-|selectedIndexChanged |	Emitted when the selectedIndex property is changed.
-|loaded |	Emitted when the view is loaded.
-|unloaded |	Emitted when the view is unloaded.
-|layoutChanged |	Emitted when the layout bounds of a view changes due to layout processing.
+| Name | Description |
+| ------------- | -----:|
+| selectedIndexChanged | Emitted when the selectedIndex property is changed. |
+| loaded |	Emitted when the view is loaded. |
+| unloaded | Emitted when the view is unloaded. |
+| layoutChanged | Emitted when the layout bounds of a view changes due to layout processing. |
