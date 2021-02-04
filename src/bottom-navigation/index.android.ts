@@ -497,7 +497,6 @@ export class BottomNavigation extends TabNavigationBase {
 
         const fragmentToDetach = this._currentFragment;
         if (fragmentToDetach) {
-            console.log('unloadOnTabChange', this.unloadOnTabChange);
             if (this.unloadOnTabChange) {
                 this.destroyItem((fragmentToDetach as any).index, fragmentToDetach);
             } else {
