@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.6](https://github.com/nativescript-community/ui-material-components/tree/master/packages/textview/compare/v5.2.5...v5.2.6) (2021-02-10)
+
+
+### Bug Fixes
+
+* **android:** fix keyboard not hiding on back button ([0e6e51a](https://github.com/nativescript-community/ui-material-components/tree/master/packages/textview/commit/0e6e51aee2ce046bd9168ecf4989de54fcb2acd0))
+
+
+
+
+
 ## [5.2.5](https://github.com/nativescript-community/ui-material-components/tree/master/packages/textview/compare/v5.2.4...v5.2.5) (2021-02-04)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-textview
