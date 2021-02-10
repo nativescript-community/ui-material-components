@@ -58,7 +58,7 @@ public class TextInputEditText extends com.google.android.material.textfield.Tex
         if (imm != null && imm.isActive() && event.getAction() == android.view.KeyEvent.ACTION_UP
                 && event.getKeyCode() == android.view.KeyEvent.KEYCODE_BACK) {
             // when hiding the keyboard with the back button also blur
-            clearFocus();
+            fullClearFocus();
             return true;
         }
         return super.dispatchKeyEventPreIme(event);
