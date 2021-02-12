@@ -114,7 +114,7 @@ export abstract class BottomNavigationBarBase extends View {
     }
 
     _addChildFromBuilder(name: string, value: BottomNavigationTabBase): void {
-        if (name === 'BottomNavigationTab') {
+        if (value instanceof BottomNavigationTabBase) {
             if (!this._items) {
                 this._items = [];
             }
