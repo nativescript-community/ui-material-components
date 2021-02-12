@@ -32,6 +32,7 @@ export abstract class FloatingActionButtonBase extends Button {
     @cssProperty color: Color;
     @cssProperty rippleColor: Color;
     @cssProperty dynamicElevationOffset: number;
+    @cssProperty shape: string;
 
     public fabSize: string;
     public fabCustomSize: number;

@@ -40,7 +40,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 this.bindingContext = fromObject(options.context);
                 this._raiseShownBottomSheetEvent();
             },
-            dismissCallback: () => this._onDismissBottomSheetCallback(),
+            dismissCallback: () => this._onDismissBottomSheetCallback()
         };
         const dfListener = new com.nativescript.material.bottomsheet.BottomSheetDialogFragment.BottomSheetDialogFragmentListener({
             onCreateDialog(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment, savedInstanceState: android.os.Bundle): android.app.Dialog {
@@ -58,7 +58,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                             eventName: 'activityBackPressed',
                             object: owner,
                             activity: owner._context,
-                            cancel: false,
+                            cancel: false
                         } as AndroidActivityBackPressedEventData;
 
                         // Fist fire application.android global event
@@ -69,7 +69,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
                         owner.notify(args);
                         return args.cancel || owner.onBackPressed();
-                    },
+                    }
                 });
                 const dialog = new com.nativescript.material.bottomsheet.BottomSheetDialog(fragment.getActivity(), theme);
                 dialog.setListener(dialogListener);
@@ -78,6 +78,9 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     const creationOptions = bottomSheetOptions.options;
                     if (creationOptions.dismissOnBackgroundTap !== undefined) {
                         dialog.setCanceledOnTouchOutside(creationOptions.dismissOnBackgroundTap);
+                    }
+                    if (creationOptions.disableDimBackground === true) {
+                        dialog.getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                     }
                 }
                 return dialog;
@@ -146,7 +149,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     owner._isAddedToNativeVisualTree = false;
                     owner._tearDownUI(true);
                 }
-            },
+            }
         });
         const df = new com.nativescript.material.bottomsheet.BottomSheetDialogFragment();
         df.setListener(dfListener);

@@ -3,7 +3,7 @@
         <ActionBar :title="title">
             <StackLayout orientation="horizontal" width="100%">
                 <MDButton v-show="isEditing" variant="flat" text="test" @tap="isEditing = !isEditing" />
-                <MDButton variant="flat" text="save" @tap="isEditing = !isEditing" />
+                <MDButton text="save" @tap="isEditing = !isEditing" />
             </StackLayout>
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap"></NavigationButton>
         </ActionBar>

@@ -1,21 +1,20 @@
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from '@nativescript-community/ui-material-core';
-import { createStateListAnimator, getLayout, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
+import { createStateListAnimator, getColorStateList, getHorizontalGravity, getLayout, getVerticalGravity, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import {
     Background,
     Color,
     Font,
     ImageSource,
     Length,
-    TextTransform,
     Utils,
     androidDynamicElevationOffsetProperty,
     androidElevationProperty,
     backgroundInternalProperty,
     colorProperty,
-    profile,
-    textTransformProperty
+    profile
 } from '@nativescript/core';
+import { TextAlignment, TextTransform, textAlignmentProperty, textTransformProperty } from '@nativescript/core/ui/text-base';
 import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
@@ -60,7 +59,7 @@ export class Button extends ButtonBase {
         if (!LayoutInflater) {
             LayoutInflater = android.view.LayoutInflater;
         }
-        const view = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.button.MaterialButton;
+        const view = LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.button.MaterialButton;
         if (this.src) {
             layoutStringId += '_icon';
             view.setIconGravity(0x2); //com.google.android.material.button.MaterialButton.ICON_GRAVITY_TEXT_START
@@ -88,7 +87,11 @@ export class Button extends ButtonBase {
     //     (<any>nativeView).clickListener = clickListener;
     // }
     [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
+        this.nativeViewProtected.setRippleColor(getColorStateList(color.android));
+    }
+    [shapeProperty.setNative](shape: string) {
+        const appearanceModel = themer.getShape(shape);
+        this.nativeViewProtected.setShapeAppearanceModel(appearanceModel);
     }
 
     getDefaultElevation(): number {
@@ -99,9 +102,18 @@ export class Button extends ButtonBase {
         return 6; // 6dp @dimen/mtrl_btn_pressed_z
     }
 
+    createStateListAnimatorTimeout;
+    createStateListAnimator() {
+        if (!this.createStateListAnimatorTimeout) {
+            this.createStateListAnimatorTimeout = setTimeout(() => {
+                this.createStateListAnimatorTimeout = null;
+                createStateListAnimator(this, this.nativeViewProtected);
+            });
+        }
+    }
     [elevationProperty.setNative](value: number) {
         if (isPostLollipop()) {
-            createStateListAnimator(this, this.nativeViewProtected);
+            this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
             androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, newValue);
@@ -109,7 +121,7 @@ export class Button extends ButtonBase {
     }
     [dynamicElevationOffsetProperty.setNative](value: number) {
         if (isPostLollipop()) {
-            createStateListAnimator(this, this.nativeViewProtected);
+            this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
             androidx.core.view.ViewCompat.setTranslationZ(this.nativeViewProtected, newValue);
@@ -131,6 +143,9 @@ export class Button extends ButtonBase {
     [textTransformProperty.setNative](value: TextTransform) {
         this.nativeViewProtected.setAllCaps(value !== 'none');
     }
+    [backgroundInternalProperty.getDefault]() {
+        return null;
+    }
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
         const view = this.nativeTextViewProtected;
         if (view) {
@@ -138,37 +153,26 @@ export class Button extends ButtonBase {
                 view.setBackgroundDrawable(value);
             } else {
                 if (value.color) {
-                    // if (value.color.android === 0 && this.variant === 'flat') {
                     view.setBackgroundColor(value.color.android);
-                    // } else {
-                    // view.setBackgroundTintList(getEnabledColorStateList(value.color.android, this.variant));
-                    // }
                 }
-                this.setCornerRadius(value.borderTopLeftRadius);
-                view.setStrokeWidth(value.borderTopWidth);
+                if (value.borderTopLeftRadius !== 0) {
+                    this.setCornerRadius(value.borderTopLeftRadius);
+                }
+                if (value.borderTopWidth !== 0) {
+                    view.setStrokeWidth(value.borderTopWidth);
+                }
                 if (value.borderTopColor) {
-                    view.setStrokeColor(android.content.res.ColorStateList.valueOf(value.borderTopColor.android));
+                    view.setStrokeColor(getColorStateList(value.borderTopColor.android));
                 }
             }
         }
     }
 
+    [textAlignmentProperty.setNative](value: TextAlignment) {
+        this.nativeTextViewProtected.setGravity(getHorizontalGravity(value) | getVerticalGravity(this.verticalTextAlignment));
+    }
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
-        const view = this.nativeTextViewProtected;
-        const horizontalGravity = view.getGravity() & android.view.Gravity.HORIZONTAL_GRAVITY_MASK;
-        switch (value) {
-            case 'initial':
-            case 'top':
-                view.setGravity(android.view.Gravity.TOP | horizontalGravity);
-                break;
-            case 'middle':
-                view.setGravity(android.view.Gravity.CENTER_VERTICAL | horizontalGravity);
-                break;
-
-            case 'bottom':
-                view.setGravity(android.view.Gravity.BOTTOM | horizontalGravity);
-                break;
-        }
+        this.nativeTextViewProtected.setGravity(getHorizontalGravity(this.textAlignment) | getVerticalGravity(value));
     }
 
     [imageSourceProperty.setNative](value: ImageSource) {

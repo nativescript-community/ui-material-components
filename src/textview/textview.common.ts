@@ -1,3 +1,4 @@
+import { VerticalTextAlignment } from '@nativescript-community/text';
 import { cssProperty } from '@nativescript-community/ui-material-core';
 import { CSSType, Color, TextView as NSTextView } from '@nativescript/core';
 
@@ -16,7 +17,9 @@ export abstract class TextViewBase extends NSTextView {
     @cssProperty error: string;
     @cssProperty strokeColor: Color;
     @cssProperty strokeInactiveColor: Color;
+    @cssProperty strokeDisabledColor: Color;
     @cssProperty floatingColor: Color;
     @cssProperty floatingInactiveColor: Color;
     @cssProperty buttonColor: Color;
+    @cssProperty verticalTextAlignment: VerticalTextAlignment;
 }

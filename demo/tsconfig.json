@@ -1,16 +1,17 @@
 {
     "extends": "../tsconfig",
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
+        "target": "es2017",
+        "module": "esnext",
         "declaration": false,
-        "removeComments": true,
+        "removeComments": false,
         "noLib": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": [
             "es6",
-            "dom"
+            "dom",
+            "es2017"
         ],
         "pretty": true,
         "allowUnreachableCode": false,
@@ -29,7 +30,8 @@
             "~/*": [
                 "app/*"
             ]
-        }
+        },
+        "moduleResolution": "node"
     },
     "exclude": [
         "node_modules",

@@ -5,9 +5,10 @@ import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigatio
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 // Types
 // Requires
-import { Application, CSSType, Color, Device, Font, Frame, IOSHelper, ImageSource, Utils, View, getIconSpecSize } from '@nativescript/core';
+import { CSSType, Color, Device, Font, Frame, IOSHelper, ImageSource, Property, Utils, View, booleanConverter, getIconSpecSize } from '@nativescript/core';
 import { TextTransform, getTransformedText } from '@nativescript/core/ui/text-base';
 import { iOSNativeHelper } from '@nativescript/core/utils';
+export { TabContentItem, TabStrip, TabStripItem };
 
 // TODO:
 // import { profile } from "../../profiling";
@@ -79,10 +80,14 @@ class UITabBarControllerImpl extends UITabBarController {
 
         if (majorVersion >= 13) {
             const owner = this._owner.get();
-            if (owner && this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection && this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection(previousTraitCollection)) {
+            if (
+                owner &&
+                this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection &&
+                this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection(previousTraitCollection)
+            ) {
                 owner.notify({
                     eventName: IOSHelper.traitCollectionColorAppearanceChangedEvent,
-                    object: owner,
+                    object: owner
                 });
             }
         }
@@ -125,7 +130,7 @@ class UITabBarControllerDelegateImpl extends NSObject implements UITabBarControl
                         tabStrip.notify({
                             eventName: TabStrip.itemTapEvent,
                             object: tabStrip,
-                            index: position,
+                            index: position
                         });
                     }
                 }
@@ -230,7 +235,7 @@ function updateTitleAndIconPositions(tabStripItem: TabStripItem, tabBarItem: UIT
         if (isIconAboveTitle) {
             tabBarItem.titlePositionAdjustment = {
                 horizontal: 0,
-                vertical: -20,
+                vertical: -20
             };
         } else {
             tabBarItem.titlePositionAdjustment = { horizontal: 0, vertical: 0 };
@@ -243,18 +248,25 @@ function updateTitleAndIconPositions(tabStripItem: TabStripItem, tabBarItem: UIT
                 top: 6,
                 left: 0,
                 bottom: -6,
-                right: 0,
+                right: 0
             });
         } else {
             tabBarItem.imageInsets = new UIEdgeInsets({
                 top: 0,
                 left: 0,
                 bottom: 0,
-                right: 0,
+                right: 0
             });
         }
     }
 }
+
+export const iosCustomPositioningProperty = new Property<BottomNavigation, boolean>({
+    name: 'iosCustomPositioning',
+    defaultValue: false,
+
+    valueConverter: booleanConverter
+});
 
 @CSSType('BottomNavigation')
 export class BottomNavigation extends TabNavigationBase {
@@ -266,10 +278,10 @@ export class BottomNavigation extends TabNavigationBase {
     private _iconsCache = {};
     private _selectedItemColor: Color;
     private _unSelectedItemColor: Color;
+    public iosCustomPositioning: boolean;
 
     constructor() {
         super();
-
         this.viewController = this._ios = UITabBarControllerImpl.initWithOwner(new WeakRef(this));
         this.nativeViewProtected = this._ios.view;
     }
@@ -303,24 +315,33 @@ export class BottomNavigation extends TabNavigationBase {
         }
 
         this._ios.delegate = this._delegate;
+        this.onSelectedIndexChanged(selectedIndex, selectedIndex);
     }
 
     public onUnloaded() {
         this._ios.delegate = null;
         this._ios.moreNavigationController.delegate = null;
         super.onUnloaded();
+        this.items.forEach((item, i) => {
+            item.unloadView(item.content);
+        });
     }
 
+    // @ts-ignore
     get ios(): UITabBarController {
         return this._ios;
     }
 
     public layoutNativeView(left: number, top: number, right: number, bottom: number): void {
-        //
+        if (this.iosCustomPositioning) {
+            super.layoutNativeView(left, top, right, bottom);
+        }
     }
 
     public _setNativeViewFrame(nativeView: UIView, frame: CGRect) {
-        //
+        if (this.iosCustomPositioning) {
+            super._setNativeViewFrame(nativeView, frame);
+        }
     }
 
     public onSelectedIndexChanged(oldIndex: number, newIndex: number): void {
@@ -328,11 +349,12 @@ export class BottomNavigation extends TabNavigationBase {
         if (!items) {
             return;
         }
-
-        const oldItem = items[oldIndex];
-        if (oldItem) {
-            oldItem.canBeLoaded = false;
-            oldItem.unloadView(oldItem.content);
+        if (this.unloadOnTabChange) {
+            const oldItem = items[oldIndex];
+            if (oldItem) {
+                oldItem.canBeLoaded = false;
+                oldItem.unloadView(oldItem.content);
+            }
         }
 
         const newItem = items[newIndex];
@@ -704,7 +726,7 @@ export class BottomNavigation extends TabNavigationBase {
 
         const iconSpecSize = getIconSpecSize({
             width: inWidth,
-            height: inHeight,
+            height: inHeight
         });
 
         const widthPts = iconSpecSize.width;
@@ -743,7 +765,6 @@ export class BottomNavigation extends TabNavigationBase {
         // if (Trace.isEnabled()) {
         //     Trace.write("TabView._onSelectedIndexPropertyChangedSetNativeValue(" + value + ")", Trace.categories.Debug);
         // }
-
         if (value > -1) {
             (this._ios as any)._willSelectViewController = this._ios.viewControllers[value];
             this._ios.selectedIndex = value;
@@ -809,3 +830,4 @@ export class BottomNavigation extends TabNavigationBase {
         }
     }
 }
+iosCustomPositioningProperty.register(BottomNavigation);

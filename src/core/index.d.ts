@@ -1,12 +1,33 @@
-import { Color } from '@nativescript/core';
+import { Color, LengthPercentUnit, PercentLength } from '@nativescript/core';
+
+declare module '@nativescript/core/ui/core/view' {
+    interface View {
+        clearFocus();
+        requestFocus();
+    }
+}
 
 export interface TypographyOptions {
     fontFamily?: string;
     fontSize?: number;
 }
 
+import { CornerFamily } from './index.common';
+export { CornerFamily };
+export interface ShapeProperties {
+    cornerSize?: number | LengthPercentUnit;
+    cornerSizeTopRight?: number | LengthPercentUnit;
+    cornerSizeBottomLeft?: number | LengthPercentUnit;
+    cornerSizeTopLeft?: number | LengthPercentUnit;
+    cornerSizeBottomRight?: number | LengthPercentUnit;
+    cornerFamily?: CornerFamily;
+    cornerFamilyTopLeft?: CornerFamily;
+    cornerFamilyTopRight?: CornerFamily;
+    cornerFamilyBottomRight?: CornerFamily;
+    cornerFamilyBottomLeft?: CornerFamily;
+}
+
 export class Themer {
-    // appColorScheme: MDCSemanticColorScheme;
     getOrcreateAppColorScheme();
     getAppColorScheme();
     setPrimaryColor(value: string | Color);
@@ -21,6 +42,8 @@ export class Themer {
     getSurfaceColor(): string | Color;
     setOnSurfaceColor(value: string | Color);
     getOnSurfaceColor(): string | Color;
+    createShape(key: string, options: ShapeProperties);
+    getShape(key: string): any;
 }
 
 export let themer: Themer;
@@ -31,7 +54,6 @@ export * from './cssproperties';
 export function install();
 export function installMixins();
 export function getRippleColor(color: string | Color): any;
-
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 export function mixin<T1 extends Constructor, T2 extends Constructor>(mix1: T1, mix2: T2): (new (...args: any[]) => InstanceType<T1> & InstanceType<T2>) & T1 & T2;

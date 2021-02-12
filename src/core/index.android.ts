@@ -1,9 +1,21 @@
-import { Application, Background, Button, Color, Length, View, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty } from '@nativescript/core';
-import { createRippleDrawable, createStateListAnimator, getAttrColor, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from './android/utils';
-import { applyMixins } from './index.common';
+import { Application, Background, Button, Color, Length, View, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, profile } from '@nativescript/core';
+import { createRippleDrawable, createStateListAnimator, getAttrColor, getColorStateList, handleClearFocus, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from './android/utils';
+import { CornerFamily, applyMixins } from './index.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
+import { ad } from '@nativescript/core/utils';
+import { ShapeProperties } from '.';
 export * from './cssproperties';
 export { applyMixins };
+
+function createCornerTreatment(cornerFamily: CornerFamily): com.google.android.material.shape.CornerTreatment {
+    switch (cornerFamily) {
+        case CornerFamily.CUT:
+            return new com.google.android.material.shape.CutCornerTreatment();
+        default:
+        case CornerFamily.ROUNDED:
+            return new com.google.android.material.shape.RoundedCornerTreatment();
+    }
+}
 
 // stub class as we don't use this on android
 export class Themer {
@@ -71,18 +83,83 @@ export class Themer {
     getSecondaryColor(): string | Color {
         return this.secondaryColor;
     }
+    controlHighlightColor: Color;
+    getControlHighlightColor(): Color {
+        if (!this.controlHighlightColor) {
+            this.controlHighlightColor = new Color(getAttrColor(Application.android.context, 'colorControlHighlight'));
+        }
+        return this.controlHighlightColor;
+    }
+
+    _shapes: {
+        [k: string]: com.google.android.material.shape.ShapeAppearanceModel;
+    } = {};
+    getShape(key: string) {
+        return this._shapes[key] || null;
+    }
+    createShape(key: string, options: ShapeProperties) {
+        const builder = com.google.android.material.shape.ShapeAppearanceModel.builder();
+        if (options.cornerFamily) {
+            builder.setAllCorners(createCornerTreatment(options.cornerFamily));
+        }
+        if (options.cornerFamilyBottomRight) {
+            builder.setBottomRightCorner(createCornerTreatment(options.cornerFamilyBottomRight));
+        }
+        if (options.cornerFamilyBottomLeft) {
+            builder.setBottomLeftCorner(createCornerTreatment(options.cornerFamilyBottomLeft));
+        }
+        if (options.cornerFamilyTopLeft) {
+            builder.setTopLeftCorner(createCornerTreatment(options.cornerFamilyTopLeft));
+        }
+        if (options.cornerFamilyTopRight) {
+            builder.setTopRightCorner(createCornerTreatment(options.cornerFamilyTopRight));
+        }
+        if (options.cornerSize !== undefined) {
+            if (typeof options.cornerSize === 'object') {
+                builder.setAllCornerSizes(new com.google.android.material.shape.RelativeCornerSize(options.cornerSize.value));
+            } else {
+                builder.setAllCornerSizes(options.cornerSize);
+            }
+        }
+        if (options.cornerSizeBottomLeft !== undefined) {
+            if (typeof options.cornerSizeBottomLeft === 'object') {
+                builder.setBottomLeftCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeBottomLeft.value));
+            } else {
+                builder.setBottomLeftCornerSize(options.cornerSizeBottomLeft);
+            }
+        }
+        if (options.cornerSizeBottomRight !== undefined) {
+            if (typeof options.cornerSizeBottomRight === 'object') {
+                builder.setBottomRightCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeBottomRight.value));
+            } else {
+                builder.setBottomRightCornerSize(options.cornerSizeBottomRight);
+            }
+        }
+        if (options.cornerSizeTopRight !== undefined) {
+            if (typeof options.cornerSizeTopRight === 'object') {
+                builder.setTopRightCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeTopRight.value));
+            } else {
+                builder.setTopRightCornerSize(options.cornerSizeTopRight);
+            }
+        }
+        if (options.cornerSizeTopLeft !== undefined) {
+            if (typeof options.cornerSizeTopLeft === 'object') {
+                builder.setTopLeftCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeTopLeft.value));
+            } else {
+                builder.setTopLeftCornerSize(options.cornerSizeTopLeft);
+            }
+        }
+        this._shapes[key] = builder.build();
+    }
 }
 
 export const themer = new Themer();
 
-export function install() {
-
-}
+export function install() {}
 
 export function getRippleColor(color: string | Color) {
     if (color) {
         const temp = typeof color === 'string' ? new Color(color) : color;
-        // return android.graphics.Color.argb(temp.a !== 255 ? temp.a / 255 : 0.14, temp.r / 255, temp.g / 255, temp.b); // default alpha is 0.14
         return new Color(temp.a !== 255 ? temp.a : 61.5, temp.r, temp.g, temp.b).android; // default alpha is 0.24
     }
     return null;
@@ -94,14 +171,15 @@ class ViewWithElevationAndRipple extends View {
     @cssProperty rippleColor: Color;
     rippleDrawable: android.graphics.drawable.Drawable;
     getRippleColor() {
-        return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight')));
+        if (this.rippleColor) {
+            return getRippleColor(this.rippleColor);
+        }
+        return getRippleColor(themer.getAccentColor());
     }
-    getCornerRadius() {
-        return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight')));
-    }
+
     setRippleDrawable(view: android.view.View, radius = 0) {
         if (!this.rippleDrawable) {
-            this.rippleDrawable = createRippleDrawable(view, this.getRippleColor(), radius);
+            this.rippleDrawable = createRippleDrawable(this.getRippleColor(), radius);
             if (isPostMarshmallow()) {
                 view.setForeground(this.rippleDrawable);
             }
@@ -109,26 +187,30 @@ class ViewWithElevationAndRipple extends View {
     }
     [rippleColorProperty.setNative](color: Color) {
         const rippleColor = getRippleColor(color);
+        const nativeViewProtected = this.nativeViewProtected;
         if (this instanceof Button) {
-            const foreground = (this.nativeViewProtected as android.widget.Button).getForeground();
+            const foreground = (nativeViewProtected as android.widget.Button).getForeground();
             if (foreground instanceof android.graphics.drawable.RippleDrawable) {
-                foreground.setColor(android.content.res.ColorStateList.valueOf(rippleColor));
+                foreground.setColor(getColorStateList(rippleColor));
                 return;
             }
-            const background = (this.nativeViewProtected as android.widget.Button).getBackground();
+            const background = (nativeViewProtected as android.widget.Button).getBackground();
             if (background instanceof android.graphics.drawable.RippleDrawable) {
-                background.setColor(android.content.res.ColorStateList.valueOf(rippleColor));
+                background.setColor(getColorStateList(rippleColor));
                 return;
             }
         }
-        this.nativeViewProtected.setClickable(this.isUserInteractionEnabled);
-        this.setRippleDrawable(this.nativeViewProtected, Length.toDevicePixels(this.style.borderTopLeftRadius));
-        if (isPostLollipopMR1()) {
-            (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(rippleColor));
+        nativeViewProtected.setClickable(this.isUserInteractionEnabled);
+        const rippleDrawable = this.rippleDrawable;
+        if (!rippleDrawable) {
+            this.setRippleDrawable(nativeViewProtected, Length.toDevicePixels(this.style.borderTopLeftRadius));
         } else {
-            (this.rippleDrawable as any).rippleShape.getPaint().setColor(rippleColor);
+            if (isPostLollipopMR1()) {
+                (rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(getColorStateList(rippleColor));
+            } else {
+                (rippleDrawable as any).rippleShape.getPaint().setColor(rippleColor);
+            }
         }
-        // }
     }
 
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
@@ -144,13 +226,14 @@ class ViewWithElevationAndRipple extends View {
             }
         }
     }
+    public requestFocus() {
+        this.focus();
+    }
+    public clearFocus() {
+        handleClearFocus(this.nativeViewProtected);
+        ad.dismissSoftInput(this.nativeViewProtected);
+    }
 
-    // [elevationProperty.setNative](value: number) {
-    //     this.style.androidElevation = value;
-    // }
-    // [dynamicElevationOffsetProperty.setNative](value: number) {
-    //     this.style.androidDynamicElevationOffset = value;
-    // }
     getDefaultElevation(): number {
         const result = this instanceof Button ? 2 : 0;
         return result;
@@ -161,29 +244,35 @@ class ViewWithElevationAndRipple extends View {
         return result;
     }
 
-    // [elevationProperty.getDefault](): number {
-    //     return this.getDefaultElevation();
-    // }
     [elevationProperty.setNative](value: number) {
         if (isPostLollipop()) {
-            createStateListAnimator(this, this.nativeViewProtected);
+            this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
             androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, newValue);
         }
     }
-    // [dynamicElevationOffsetProperty.getDefault](): number {
-    //     return this.getDefaultDynamicElevationOffset();
-    // }
+
+    createStateListAnimatorTimeout;
+    createStateListAnimator() {
+        if (!this.createStateListAnimatorTimeout) {
+            this.createStateListAnimatorTimeout = setTimeout(() => {
+                this.createStateListAnimatorTimeout = null;
+                createStateListAnimator(this, this.nativeViewProtected);
+            });
+        }
+    }
     [dynamicElevationOffsetProperty.setNative](value: number) {
         this.nativeViewProtected.setClickable(this.isUserInteractionEnabled);
         if (isPostLollipop()) {
-            createStateListAnimator(this, this.nativeViewProtected);
+            this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
             androidx.core.view.ViewCompat.setTranslationZ(this.nativeViewProtected, newValue);
         }
     }
+}
+class ViewOverride extends View {
     [androidElevationProperty.setNative](value: number) {
         // override to prevent override of elevation
     }
@@ -196,6 +285,7 @@ let mixinInstalled = false;
 export function overrideViewBase() {
     const NSView = require('@nativescript/core').View;
     applyMixins(NSView, [ViewWithElevationAndRipple]);
+    applyMixins(NSView, [ViewOverride], { override: true });
 }
 
 export function installMixins() {

@@ -1,7 +1,7 @@
 {
     "name": "@nativescript-community/ui-material-ripple",
-    "version": "5.1.4",
-    "description": "Material ripple component",
+    "version": "5.2.5",
+    "description": "The Material Design Ripple component provides a radial action in the form of a visual ripple expanding outward from the user's touch. Ripple is a visual form of feedback for touch events providing users a clear signal that an element is being touched.",
     "main": "./ripple",
     "sideEffects": false,
     "typings": "./ripple.d.ts",
@@ -23,7 +23,10 @@
         "NativeScript",
         "JavaScript",
         "Android",
-        "iOS"
+        "iOS",
+        "Vue",
+        "Angular",
+        "preview|https://raw.githubusercontent.com/nativescript-community/ui-material-components/master/images/demo-ripple.gif"
     ],
     "author": {
         "name": "Martin Guillon",
@@ -33,11 +36,13 @@
         "url": "https://github.com/Akylas/nativescript-material-components/issues"
     },
     "license": "Apache-2.0",
-    "homepage": "https://github.com/Akylas/nativescript-material-components",
-    "repository": "https://github.com/Akylas/nativescript-material-components",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nativescript-community/ui-material-components/tree/master/packages/ripple"
+    },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^5.1.4"
+        "@nativescript-community/ui-material-core": "^5.2.5"
     },
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }

@@ -1,0 +1,624 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@nativescript-community/ui-material-tabs | Nativescript UI Material Components</title>
+	<meta name="description" content="Documentation for Nativescript UI Material Components">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">Nativescript UI Material Components</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="_nativescript_community_ui_material_tabs.html">@nativescript-community/ui-material-tabs</a>
+				</li>
+			</ul>
+			<h1>Module @nativescript-community/ui-material-tabs</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<p><a href="https://www.npmjs.com/package/nativescript-material-tabs"><img src="https://img.shields.io/npm/v/nativescript-material-tabs.svg" alt="npm"></a>
+						<a href="https://www.npmjs.com/package/nativescript-material-tabs"><img src="https://img.shields.io/npm/dt/nativescript-material-tabs.svg?label=npm%20downloads" alt="npm"></a>
+						<a href="https://github.com/Akylas/nativescript-material-components/network"><img src="https://img.shields.io/github/forks/Akylas/nativescript-material-components.svg" alt="GitHub forks"></a>
+					<a href="https://github.com/Akylas/nativescript-material-components/stargazers"><img src="https://img.shields.io/github/stars/Akylas/nativescript-material-components.svg" alt="GitHub stars"></a></p>
+					<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+						<h2>Installation</h2>
+					</a>
+					<a href="#warning-warning-warning" id="warning-warning-warning" style="color: inherit; text-decoration: none;">
+						<h3>Warning :warning: :warning:</h3>
+					</a>
+					<p>From 5.x using material component will break N tab component on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either <a href="https://www.npmjs.com/package/nativescript-material-bottomnavigationbar">bottomnavigationbar</a> (this one is the best choice, closest to material design) or <a href="https://www.npmjs.com/package/nativescript-material-tabs">tabs</a> (clone of N one, but with a little less features)</p>
+					<ul>
+						<li><code>tns plugin add @nativescript-community/ui-material-tabs</code></li>
+					</ul>
+					<p>Be sure to run a new build after adding plugins to avoid any issues.</p>
+					<hr>
+					<a href="#material-design-spec" id="material-design-spec" style="color: inherit; text-decoration: none;">
+						<h5><a href="https://material.io/design/components/tabs.html">Material Design Spec</a></h5>
+					</a>
+					<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+						<h3>Usage</h3>
+					</a>
+					<a href="#plain-nativescript" id="plain-nativescript" style="color: inherit; text-decoration: none;">
+						<h2>Plain NativeScript</h2>
+					</a>
+					<p><span style="color:red">IMPORTANT: </span><em>Make sure you include <code>xmlns:mds=&quot;@nativescript-community/ui-material-tabs&quot;</code> on the Page element</em></p>
+					<a href="#xml" id="xml" style="color: inherit; text-decoration: none;">
+						<h3>XML</h3>
+					</a>
+					<pre><code class="language-XML"><span class="hljs-tag">&lt;<span class="hljs-name">Page</span> <span class="hljs-attr">xmlns:mdt</span>=<span class="hljs-string">&quot;@nativescript-community/ui-material-tabs&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">mdt:Tabs</span> <span class="hljs-attr">selectedIndex</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)--&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TabStrip</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TabStripItem</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Home&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;font://<span class="hljs-symbol">&amp;#xf015;</span>&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">TabStripItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TabStripItem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;special&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Account&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;font://<span class="hljs-symbol">&amp;#xf007;</span>&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">TabStripItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TabStripItem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;special&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Search&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;font://<span class="hljs-symbol">&amp;#xf00e;</span>&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">TabStripItem</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TabStrip</span>&gt;</span>
+
+        <span class="hljs-comment">&lt;!-- The number of TabContentItem components should corespond to the number of TabStripItem components --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TabContentItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Home Page&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h2 text-center&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TabContentItem</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TabContentItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Account Page&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h2 text-center&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TabContentItem</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TabContentItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Search Page&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h2 text-center&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TabContentItem</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Tabs</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Page</span>&gt;</span></code></pre>
+					<a href="#css" id="css" style="color: inherit; text-decoration: none;">
+						<h3>CSS</h3>
+					</a>
+					<pre><code class="language-CSS"><span class="hljs-selector-tag">MDTabs</span><span class="hljs-selector-class">.bottom-nav</span> {
+    <span class="hljs-attribute">background-color</span>: orangered;
+    <span class="hljs-attribute">color</span>: gold;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18</span>;
+}
+
+<span class="hljs-selector-tag">TabStripItem</span><span class="hljs-selector-class">.tabstripitem-active</span> {
+    <span class="hljs-attribute">background-color</span>: teal;
+}
+
+<span class="hljs-selector-tag">TabStripItem</span><span class="hljs-selector-class">.tabstripitem-active</span><span class="hljs-selector-pseudo">:active</span> {
+    <span class="hljs-attribute">background-color</span>: yellowgreen;
+}
+
+<span class="hljs-selector-tag">TabContentItem</span><span class="hljs-selector-class">.first-tabcontent</span> {
+    <span class="hljs-attribute">background-color</span>: seashell;
+    <span class="hljs-attribute">color</span>: olive;
+}
+<span class="hljs-selector-tag">TabContentItem</span><span class="hljs-selector-class">.second-tabcontent</span> {
+    <span class="hljs-attribute">background-color</span>: slategray;
+    <span class="hljs-attribute">color</span>: aquamarine;
+}
+<span class="hljs-selector-tag">TabContentItem</span><span class="hljs-selector-class">.third-tabcontent</span> {
+    <span class="hljs-attribute">background-color</span>: blueviolet;
+    <span class="hljs-attribute">color</span>: antiquewhite;
+}
+<span class="hljs-selector-tag">MDTabs</span> <span class="hljs-selector-tag">TabStrip</span> {
+    <span class="hljs-attribute">highlight-color</span>: red;
+}</code></pre>
+					<a href="#nativescript--angular" id="nativescript--angular" style="color: inherit; text-decoration: none;">
+						<h2>NativeScript + Angular</h2>
+					</a>
+					<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { NativeScriptMaterialTabsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@nativescript-community/ui-material-slider/angular&quot;</span>;
+
+<span class="hljs-meta">@NgModule</span>({
+    <span class="hljs-attr">imports</span>: [
+        NativeScriptMaterialTabsModule,
+        ...
+    ],
+    ...
+})</code></pre>
+					<pre><code class="language-html">    <span class="hljs-tag">&lt;<span class="hljs-name">MDTabs</span> <span class="hljs-attr">selectedIndex</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)--&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TabStrip</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TabStripItem</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Home&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;font://<span class="hljs-symbol">&amp;#xf015;</span>&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">TabStripItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TabStripItem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;special&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Account&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;font://<span class="hljs-symbol">&amp;#xf007;</span>&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">TabStripItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TabStripItem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;special&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Search&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;font://<span class="hljs-symbol">&amp;#xf00e;</span>&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">TabStripItem</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TabStrip</span>&gt;</span>
+
+        <span class="hljs-comment">&lt;!-- The number of TabContentItem components should corespond to the number of TabStripItem components --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TabContentItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Home Page&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h2 text-center&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TabContentItem</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TabContentItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Account Page&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h2 text-center&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TabContentItem</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TabContentItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Search Page&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h2 text-center&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TabContentItem</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">MDTabs</span>&gt;</span></code></pre>
+					<a href="#nativescript--vue" id="nativescript--vue" style="color: inherit; text-decoration: none;">
+						<h2>NativeScript + Vue</h2>
+					</a>
+					<pre><code class="language-javascript"><span class="hljs-keyword">import</span> TabsPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@nativescript-community/ui-material-slider/vue&#x27;</span>;
+
+Vue.use(TabsPlugin);</code></pre>
+					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">MDTabs</span> <span class="hljs-attr">selectedIndex</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)--&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TabStrip</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TabStripItem</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Home&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;font://<span class="hljs-symbol">&amp;#xf015;</span>&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">TabStripItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TabStripItem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;special&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Account&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;font://<span class="hljs-symbol">&amp;#xf007;</span>&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">TabStripItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">TabStripItem</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;special&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Search&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;font://<span class="hljs-symbol">&amp;#xf00e;</span>&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">TabStripItem</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TabStrip</span>&gt;</span>
+
+        <span class="hljs-comment">&lt;!-- The number of TabContentItem components should corespond to the number of TabStripItem components --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TabContentItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Home Page&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h2 text-center&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TabContentItem</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TabContentItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Account Page&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h2 text-center&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TabContentItem</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TabContentItem</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">GridLayout</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">Label</span> <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;Search Page&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;h2 text-center&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Label</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">GridLayout</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">TabContentItem</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">MDTabs</span>&gt;</span></code></pre>
+					<a href="#attributes" id="attributes" style="color: inherit; text-decoration: none;">
+						<h2>Attributes</h2>
+					</a>
+					<p>Inherite from Nativescript <a href="https://docs.nativescript.org/ui/ns-ui-widgets/slider">Tabs</a> so it already has all the same attributes</p>
+					<a href="#attributes-1" id="attributes-1" style="color: inherit; text-decoration: none;">
+						<h2>Attributes</h2>
+					</a>
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th align="center">Type</th>
+								<th align="right">Description</th>
+							</tr>
+						</thead>
+						<tbody><tr>
+								<td>items</td>
+								<td align="center">Array<TabContentItem></td>
+								<td align="right">Gets or sets the items of the BottomNavigation.</td>
+							</tr>
+							<tr>
+								<td>selectedIndex</td>
+								<td align="center">number</td>
+								<td align="right">Gets or sets the selectedIndex of the BottomNavigation.</td>
+							</tr>
+							<tr>
+								<td>swipeEnabled</td>
+								<td align="center">boolean</td>
+								<td align="right">Gets or sets the swipe enabled state of the Tabs.</td>
+							</tr>
+							<tr>
+								<td>offscreenTabLimit</td>
+								<td align="center">number</td>
+								<td align="right">Gets or sets the number of offscreen preloaded tabs of the Tabs.</td>
+							</tr>
+							<tr>
+								<td>tabStrip</td>
+								<td align="center">TabStrip</td>
+								<td align="right">Gets or sets the tab strip of the BottomNavigation.</td>
+							</tr>
+							<tr>
+								<td>tabsPosition</td>
+								<td align="center">&quot;top&quot;, &quot;bottom&quot;</td>
+								<td align="right">Gets or sets the position state of the Tabs. Default value: top</td>
+							</tr>
+							<tr>
+								<td>iOSTabBarItemsAlignment</td>
+								<td align="center">&quot;leading&quot;, &quot;justified&quot;, &quot;center&quot;, &quot;centerSelected&quot;</td>
+								<td align="right">iOS Only: Gets or set the MDCTabBarAlignment of the tab bar icons in iOS. Default value: justified</td>
+							</tr>
+					</tbody></table>
+					<a href="#events" id="events" style="color: inherit; text-decoration: none;">
+						<h2>Events</h2>
+					</a>
+					<p>|Name |    Description|
+						| ------------- |:-------------:| -----:|
+						|selectedIndexChanged |    Emitted when the selectedIndex property is changed.
+						|loaded |    Emitted when the view is loaded.
+						|unloaded |    Emitted when the view is unloaded.
+					|layoutChanged |    Emitted when the layout bounds of a view changes due to layout processing.</p>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>References</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_tabs.html#materialtabsdirective" class="tsd-kind-icon">Material<wbr>Tabs<wbr>Directive</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="_nativescript_community_ui_material_tabs.html#nativescriptmaterialtabsmodule" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Tabs<wbr>Module</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Namespaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-namespace tsd-parent-kind-module"><a href="_nativescript_community_ui_material_tabs.knowncollections.html" class="tsd-kind-icon">known<wbr>Collections</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_tabs.materialtabsdirective-1.html" class="tsd-kind-icon">Material<wbr>Tabs<wbr>Directive</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_tabs.nativescriptmaterialtabsmodule-1.html" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Tabs<wbr>Module</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_tabs.tabs.html" class="tsd-kind-icon">Tabs</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/_nativescript_community_ui_material_tabs.tabsbase.html" class="tsd-kind-icon">Tabs<wbr>Base</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="_nativescript_community_ui_material_tabs.html#iostabbaritemsalignment" class="tsd-kind-icon">IOSTab<wbr>Bar<wbr>Items<wbr>Alignment</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_tabs.html#animationenabledproperty" class="tsd-kind-icon">animation<wbr>Enabled<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_tabs.html#itemsproperty" class="tsd-kind-icon">items<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_tabs.html#offscreentablimitproperty" class="tsd-kind-icon">offscreen<wbr>Tab<wbr>Limit<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_tabs.html#selectedindexproperty" class="tsd-kind-icon">selected<wbr>Index<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_tabs.html#swipeenabledproperty" class="tsd-kind-icon">swipe<wbr>Enabled<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_tabs.html#tabstripproperty" class="tsd-kind-icon">tab<wbr>Strip<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_tabs.html#tabspositionproperty" class="tsd-kind-icon">tabs<wbr>Position<wbr>Property</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_nativescript_community_ui_material_tabs.html#tracecategory" class="tsd-kind-icon">trace<wbr>Category</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>References</h2>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="materialtabsdirective" class="tsd-anchor"></a>
+					<h3>Material<wbr>Tabs<wbr>Directive</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_tabs.materialtabsdirective-1.html">MaterialTabsDirective</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="nativescriptmaterialtabsmodule" class="tsd-anchor"></a>
+					<h3>Native<wbr>Script<wbr>Material<wbr>Tabs<wbr>Module</h3>
+					Re-exports <a href="../classes/_nativescript_community_ui_material_tabs.nativescriptmaterialtabsmodule-1.html">NativeScriptMaterialTabsModule</a>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="iostabbaritemsalignment" class="tsd-anchor"></a>
+					<h3>IOSTab<wbr>Bar<wbr>Items<wbr>Alignment</h3>
+					<div class="tsd-signature tsd-kind-icon">IOSTab<wbr>Bar<wbr>Items<wbr>Alignment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"leading"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"justified"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"center"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"centerSelected"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/tabs/tabs.d.ts:80</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>IOS Alignment of the Tabs TabStrip to use.</p>
+							<ul>
+								<li><code>leading</code> - tab items are aligned to the left</li>
+								<li><code>justified</code> - tab strip is split equally to all the tab items</li>
+								<li><code>center</code> - tabs items are aligned in the center</li>
+								<li><code>centerSelected</code> - tab items move to make the selected tab in the center</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="animationenabledproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> animation<wbr>Enabled<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">animation<wbr>Enabled<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Property</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_nativescript_community_ui_material_tabs.tabsbase.html" class="tsd-signature-type">TabsBase</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/tabs/tabs-common.d.ts:17</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="itemsproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> items<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">items<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Property</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_nativescript_community_ui_material_tabs.tabs.html" class="tsd-signature-type">Tabs</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TabContentItem</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/tabs/tabs.d.ts:69</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="offscreentablimitproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> offscreen<wbr>Tab<wbr>Limit<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">offscreen<wbr>Tab<wbr>Limit<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Property</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_nativescript_community_ui_material_tabs.tabsbase.html" class="tsd-signature-type">TabsBase</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/tabs/tabs-common.d.ts:15</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="selectedindexproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> selected<wbr>Index<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">selected<wbr>Index<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Property</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_nativescript_community_ui_material_tabs.tabs.html" class="tsd-signature-type">Tabs</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/tabs/tabs.d.ts:71</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="swipeenabledproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> swipe<wbr>Enabled<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">swipe<wbr>Enabled<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Property</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_nativescript_community_ui_material_tabs.tabsbase.html" class="tsd-signature-type">TabsBase</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/tabs/tabs-common.d.ts:14</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="tabstripproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> tab<wbr>Strip<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">tab<wbr>Strip<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Property</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_nativescript_community_ui_material_tabs.tabs.html" class="tsd-signature-type">Tabs</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TabStrip</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/tabs/tabs.d.ts:70</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="tabspositionproperty" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> tabs<wbr>Position<wbr>Property</h3>
+					<div class="tsd-signature tsd-kind-icon">tabs<wbr>Position<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Property</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_nativescript_community_ui_material_tabs.tabsbase.html" class="tsd-signature-type">TabsBase</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"top"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"bottom"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/tabs/tabs-common.d.ts:16</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="tracecategory" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> trace<wbr>Category</h3>
+					<div class="tsd-signature tsd-kind-icon">trace<wbr>Category<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"TabView"</span><span class="tsd-signature-symbol"> = &quot;TabView&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in packages/tabs/tabs-common.d.ts:3</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_activityindicator.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>activityindicator</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_bottomnavigationbar.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>bottomnavigationbar</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_bottomsheet.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>bottomsheet</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_button.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>button</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_cardview.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>cardview</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_core.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>core</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_dialogs.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>dialogs</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_floatingactionbutton.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>floatingactionbutton</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_progress.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>progress</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_ripple.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>ripple</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_slider.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>slider</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_snackbar.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>snackbar</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_speeddial.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>speeddial</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>tabs</a>
+						<ul>
+							<li class=" tsd-kind-namespace tsd-parent-kind-module">
+								<a href="_nativescript_community_ui_material_tabs.knowncollections.html">known<wbr>Collections</a>
+							</li>
+						</ul>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_textfield.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>textfield</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_nativescript_community_ui_material_textview.html">@nativescript-<wbr>community/ui-<wbr>material-<wbr>textview</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html#materialtabsdirective" class="tsd-kind-icon">Material<wbr>Tabs<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html#nativescriptmaterialtabsmodule" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Tabs<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_tabs.materialtabsdirective-1.html" class="tsd-kind-icon">Material<wbr>Tabs<wbr>Directive</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_tabs.nativescriptmaterialtabsmodule-1.html" class="tsd-kind-icon">Native<wbr>Script<wbr>Material<wbr>Tabs<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_tabs.tabs.html" class="tsd-kind-icon">Tabs</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-module">
+						<a href="../classes/_nativescript_community_ui_material_tabs.tabsbase.html" class="tsd-kind-icon">Tabs<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html#iostabbaritemsalignment" class="tsd-kind-icon">IOSTab<wbr>Bar<wbr>Items<wbr>Alignment</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html#animationenabledproperty" class="tsd-kind-icon">animation<wbr>Enabled<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html#itemsproperty" class="tsd-kind-icon">items<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html#offscreentablimitproperty" class="tsd-kind-icon">offscreen<wbr>Tab<wbr>Limit<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html#selectedindexproperty" class="tsd-kind-icon">selected<wbr>Index<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html#swipeenabledproperty" class="tsd-kind-icon">swipe<wbr>Enabled<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html#tabstripproperty" class="tsd-kind-icon">tab<wbr>Strip<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html#tabspositionproperty" class="tsd-kind-icon">tabs<wbr>Position<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_nativescript_community_ui_material_tabs.html#tracecategory" class="tsd-kind-icon">trace<wbr>Category</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

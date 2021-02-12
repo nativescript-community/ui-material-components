@@ -1,13 +1,4 @@
 {
-    "nativescript": {
-        "id": "org.nativescript.demo",
-        "tns-android": {
-            "version": "6.3.0"
-        },
-        "tns-ios": {
-            "version": "6.2.0"
-        }
-    },
     "dependencies": {
         "@nativescript/core": "rc",
         "@nativescript-community/ui-material-activityindicator": "file:../packages/activityindicator",
@@ -24,7 +15,7 @@
         "@nativescript-community/ui-material-snackbar": "file:../packages/snackbar",
         "@nativescript-community/ui-material-textfield": "file:../packages/textfield",
         "@nativescript-community/ui-material-textview": "file:../packages/textview",
-        "@nativescript/theme": "rc",
+        "@nativescript/theme": "3.0.0",
         "nativescript-ui-listview": "7.1.0"
     },
     "devDependencies": {
@@ -41,10 +32,10 @@
         "node-sass": "^4.13.0",
         "resolve-url-loader": "~3.1.0",
         "sass-loader": "^8.0.0",
-        "@nativescript/types": "rc",
+        "@nativescript/types": "7.0.0",
         "ts-loader": "^6.2.1",
         "tslint": "~5.20.0",
-        "typescript": "3.6.4",
+        "typescript": "3.9.7",
         "webpack": "~4.41.2",
         "webpack-bundle-analyzer": "^3.6.0",
         "webpack-sources": "~1.4.3"
@@ -52,5 +43,6 @@
     "scripts": {
         "build.plugin": "cd ./ && npm run build.plugin",
         "ci.tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'"
-    }
+    },
+    "main": "app.js"
 }

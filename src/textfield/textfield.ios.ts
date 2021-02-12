@@ -1,3 +1,4 @@
+import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 import { themer } from '@nativescript-community/ui-material-core';
 import {
     buttonColorProperty,
@@ -12,26 +13,23 @@ import {
     helperProperty,
     strokeColorProperty,
     strokeDisabledColorProperty,
-    strokeInactiveColorProperty,
+    strokeInactiveColorProperty
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
 import {
     Background,
     Color,
     Font,
-    Property,
-    Screen,
     Style,
     Utils,
     _updateCharactersInRangeReplacementString,
     backgroundInternalProperty,
     editableProperty,
     fontInternalProperty,
-    isAndroid,
     paddingBottomProperty,
     paddingLeftProperty,
     paddingRightProperty,
     paddingTopProperty,
-    placeholderColorProperty,
+    placeholderColorProperty
 } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
 import { TextFieldBase } from './textfield.common';
@@ -64,8 +62,8 @@ class TextInputControllerImpl extends MDCTextInputControllerBase {
 
         return delegate;
     }
-    textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
@@ -83,8 +81,8 @@ class TextInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
 
         return delegate;
     }
-    textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
@@ -102,8 +100,8 @@ class TextInputControllerFilledImpl extends MDCTextInputControllerFilled {
 
         return delegate;
     }
-    textInsets(defaultValue) {
-        let result = super.textInsets(defaultValue);
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
             result = owner._getTextInsetsForBounds(result);
@@ -173,14 +171,16 @@ export class TextField extends TextFieldBase {
         }
 
         this.firstEdit = false;
-
+        if (this.width === 'auto') {
+            // if the textfield is in auto size we need to request a layout to take the new text width into account
+            this.requestLayout();
+        }
         return true;
         // return super.textFieldShouldChangeCharactersInRangeReplacementString(textField, range, replacementString);
     }
 
     _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
         const style = this.style;
-
         if (this.variant === 'underline' && this._controller.underlineHeightNormal === 0) {
             // if no underline/custom background, remove all insets like on android
             insets.top = 0;
@@ -219,6 +219,7 @@ export class TextField extends TextFieldBase {
             this._controller = TextInputControllerUnderlineImpl.initWithOwner(this);
         } else {
             this._controller = TextInputControllerImpl.initWithOwner(this);
+            this._controller.floatingEnabled = false;
             // (this._controller as TextInputControllerImpl).applyThemeWithScheme(scheme);
         }
         this._controller.textInput = view;
@@ -357,5 +358,25 @@ export class TextField extends TextFieldBase {
         super[fontInternalProperty.setNative](value);
         const font = value instanceof Font ? value.getUIFont(this._controller.inlinePlaceholderFont) : value;
         this._controller.inlinePlaceholderFont = font;
+    }
+
+    [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
+        // TODO: not working for now
+        const view = this.nativeTextViewProtected;
+        view.backgroundColor = UIColor.redColor;
+        switch (value) {
+            case 'initial':
+            case 'top':
+                view.contentVerticalAlignment = UIControlContentVerticalAlignment.Top;
+                break;
+            case 'middle':
+                view.contentVerticalAlignment = UIControlContentVerticalAlignment.Center;
+
+                break;
+
+            case 'bottom':
+                view.contentVerticalAlignment = UIControlContentVerticalAlignment.Bottom;
+                break;
+        }
     }
 }

@@ -1,4 +1,4 @@
-import { Tabs } from '../tabs';
+import { TabContentItem, TabStrip, TabStripItem, Tabs } from '../tabs';
 
 let installed = false;
 
@@ -9,10 +9,13 @@ export default {
             Vue.registerElement('MDTabs', () => Tabs, {
                 model: {
                     prop: 'selectedIndex',
-                    event: 'selectedIndexChange',
+                    event: 'selectedIndexChange'
                 },
-                component: require('./tabsComponent').default,
+                component: require('./component').default
             });
+            Vue.registerElement('MDTabContentItem', () => TabContentItem, {});
+            Vue.registerElement('MDTabStripItem', () => TabStripItem, {});
+            Vue.registerElement('MDTabStrip', () => TabStrip, {});
         }
-    },
+    }
 };

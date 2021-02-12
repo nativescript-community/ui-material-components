@@ -1,0 +1,18 @@
+apply plugin: 'java'
+
+// Use maven repository
+repositories {
+    mavenCentral()
+    google()
+}
+dependencies {
+    implementation files('/Volumes/dev/androidSDK/platforms/android-28/android.jar')
+    implementation "androidx.annotation:annotation:1.1.0"
+}
+sourceSets {
+    main {
+        java {
+            srcDirs = ["packages/core/platforms/android/java"]
+        }
+    }
+}

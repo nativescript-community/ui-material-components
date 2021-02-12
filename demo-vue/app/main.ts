@@ -1,4 +1,3 @@
-
 // import {Trace} from '@nativescript/core';
 // Trace.addCategories(Trace.categories.concat(Trace.categories.Layout));
 // Trace.enable();
@@ -18,6 +17,7 @@ import { install as installBottomSheet } from '@nativescript-community/ui-materi
 import BottomSheetPlugin from '@nativescript-community/ui-material-bottomsheet/vue';
 import BottomNavigationBarPlugin from '@nativescript-community/ui-material-bottomnavigationbar/vue';
 import TabsPlugin from '@nativescript-community/ui-material-tabs/vue';
+import BottomNavigationPlugin from '@nativescript-community/ui-material-bottom-navigation/vue';
 import SpeedDialPlugin from '@nativescript-community/ui-material-speeddial/vue';
 
 installBottomSheet();
@@ -34,6 +34,7 @@ Vue.use(TextFieldPlugin);
 Vue.use(BottomSheetPlugin);
 Vue.use(BottomNavigationBarPlugin);
 Vue.use(TabsPlugin);
+Vue.use(BottomNavigationPlugin);
 Vue.use(SpeedDialPlugin);
 
 // Vue.registerElement('Label', () => require('@nativescript-community/ui-label').Label);
@@ -48,10 +49,13 @@ if (isIOS) {
     themer.setAccentColor('#ff8a39');
     themer.setSecondaryColor('#a830d7');
 }
-//
-import Theme from '@nativescript/theme';
-
-Theme.setMode(Theme.Auto); // Or Theme.Light
+themer.createShape('cut', {
+    cornerFamily: 'cut' as any,
+    cornerSize: {
+        value: 0.5,
+        unit: '%'
+    }
+});
 // import { getExamples } from './examples';
 import * as views from './views';
 
@@ -67,7 +71,7 @@ Vue.config.errorHandler = (e, vm, info) => {
     console.log('vue error', e, e.stack);
 };
 
-Vue.config.warnHandler = function(msg, vm, trace) {
+Vue.config.warnHandler = function (msg, vm, trace) {
     console.warn('[Vue][Warn]', `[${msg}]`);
     // cwarn(msg, trace);
 };

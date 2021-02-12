@@ -223,27 +223,29 @@ export class Ripple extends RippleBase {
     }
     rippleDrawable: android.graphics.drawable.Drawable;
     getRippleColor() {
-        return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : themer.getPrimaryColor());
+        if (this.rippleColor) {
+            return getRippleColor(this.rippleColor);
+        }
+        return getRippleColor(themer.getAccentColor());
     }
-    // getCornerRadius() {
-    //     return getRippleColor(this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight')));
-    // }
     setRippleDrawable(view: android.view.View, radius = 0) {
         if (!this.rippleDrawable) {
-            this.rippleDrawable = createRippleDrawable(view, this.getRippleColor(), radius);
+            this.rippleDrawable = createRippleDrawable(this.getRippleColor(), radius);
             if (isPostMarshmallow()) {
                 view.setForeground(this.rippleDrawable);
             }
         }
     }
     [rippleColorProperty.setNative](color: Color) {
-        this.setRippleDrawable(this.nativeViewProtected);
-        if (isPostLollipopMR1()) {
-            (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(color.android));
+        if (!this.rippleDrawable) {
+            this.setRippleDrawable(this.nativeViewProtected);
         } else {
-            (this.rippleDrawable as any).rippleShape.getPaint().setColor(getRippleColor(color));
+            if (isPostLollipopMR1()) {
+                (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(color.android));
+            } else {
+                (this.rippleDrawable as any).rippleShape.getPaint().setColor(getRippleColor(color));
+            }
         }
-        // }
     }
 
     [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {

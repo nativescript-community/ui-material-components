@@ -1,4 +1,4 @@
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
 import { createStateListAnimator, getAttrColor, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import { Color, Length, backgroundInternalProperty } from '@nativescript/core';
 import { CardViewBase } from './cardview-common';
@@ -253,7 +253,7 @@ export class CardView extends CardViewBase {
         view.setClickable(this.isUserInteractionEnabled);
         // view.setUseCompatPadding(true)
         // store the default radius
-        this._borderRadius = view.getRadius();
+        // this._borderRadius = view.getRadius();
 
         // set the view outline
         // view.setClipToOutline(false);
@@ -265,8 +265,10 @@ export class CardView extends CardViewBase {
     }
 
     getCardRippleColor() {
-        const color = this.style['rippleColor'] ? this.style['rippleColor'] : new Color(getAttrColor(this._context, 'colorControlHighlight'));
-        return color.android;
+        if (this.rippleColor) {
+            return getRippleColor(this.rippleColor);
+        }
+        return getRippleColor(themer.getAccentColor());
     }
     // createForegroundDrawable(view: com.google.android.material.card.MaterialCardView, strokeWidth, strokeColor: Color) {
     //     this.fgDrawable = new android.graphics.drawable.GradientDrawable();
@@ -301,7 +303,10 @@ export class CardView extends CardViewBase {
             if (value instanceof android.graphics.drawable.Drawable) {
                 this.nativeViewProtected.setBackgroundDrawable(value);
             } else {
-                this._strokeWidth = value.borderTopWidth;
+                if (this._strokeWidth !== value.borderTopWidth) {
+                    this._strokeWidth = value.borderTopWidth;
+                    this._strokeWidth = value.borderTopWidth;
+                }
                 this.nativeViewProtected.setStrokeWidth(this._strokeWidth);
                 if (value.color) {
                     this.nativeViewProtected.setCardBackgroundColor(value.color.android);
@@ -310,7 +315,6 @@ export class CardView extends CardViewBase {
                     this.nativeViewProtected.setStrokeColor(value.borderTopColor.android);
                     // this.fgDrawable.setStroke(this._strokeWidth, value.borderTopColor.android);
                 }
-
                 if (this._borderRadius !== value.borderTopLeftRadius) {
                     this._borderRadius = value.borderTopLeftRadius;
                     this.nativeViewProtected.setRadius(this._borderRadius);
@@ -318,6 +322,11 @@ export class CardView extends CardViewBase {
                 }
             }
         }
+    }
+
+    [shapeProperty.setNative](shape: string) {
+        const appearanceModel = themer.getShape(shape);
+        this.nativeViewProtected.setShapeAppearanceModel(appearanceModel);
     }
 
     [elevationProperty.setNative](value: number) {

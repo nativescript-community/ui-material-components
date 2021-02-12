@@ -1,7 +1,7 @@
 {
     "name": "@nativescript-community/ui-material-floatingactionbutton",
-    "version": "5.1.4",
-    "description": "Material floatingactionbutton component",
+    "version": "5.2.5",
+    "description": "Material Design FAB performs the primary, or most common, action on a screen. It appears in front of all screen content, typically as a circular shape with an icon in its center.",
     "main": "./floatingactionbutton",
     "sideEffects": false,
     "typings": "./floatingactionbutton.d.ts",
@@ -23,7 +23,10 @@
         "NativeScript",
         "JavaScript",
         "Android",
-        "iOS"
+        "iOS",
+        "Vue",
+        "Angular",
+        "preview|https://raw.githubusercontent.com/nativescript-community/ui-material-components/master/images/demo-floatingactionbutton.png"
     ],
     "author": {
         "name": "Martin Guillon",
@@ -32,12 +35,14 @@
     "bugs": {
         "url": "https://github.com/Akylas/nativescript-material-components/issues"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nativescript-community/ui-material-components/tree/master/packages/floatingactionbutton"
+    },
     "license": "Apache-2.0",
-    "homepage": "https://github.com/Akylas/nativescript-material-components",
-    "repository": "https://github.com/Akylas/nativescript-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^5.1.4"
+        "@nativescript-community/ui-material-core": "^5.2.5"
     },
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }

@@ -1,2 +1,2 @@
 pod 'MaterialComponents/BottomNavigation+Theming'
-pod 'MaterialComponents/Tabs+TabBarView'
+pod 'MaterialComponents/Tabs+TabBarViewTheming'

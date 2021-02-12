@@ -5,7 +5,7 @@ import { TabNavigationBase } from '../tab-navigation-base';
 
 export const traceCategory = 'TabView';
 
-@CSSType('TabContentItem')
+@CSSType('MDTabContentItem')
 export abstract class TabContentItemBase extends ContentView implements TabContentItemDefinition, AddChildFromBuilder {
     public eachChild(callback: (child: View) => boolean) {
         if (this.content) {

@@ -1,16 +1,16 @@
 .mdi {
     font-family: 'materialdesignicons-webfont', 'Material Design Icons';
 }
-button {
-    elevation: 2;
-}
 
+mdbutton,MDFloatingActionButton, MDCardView {
+    shape: cut;
+}
 // page {
 //     background-color: black;
 // }
 
 .falseFAb {
-    elevation: 2;
+    elevation: 6;
     font-size: 26;
     border-radius: 28;
     width: 56;
@@ -51,4 +51,12 @@ bottomnavigationbar {
     dynamic-elevation-offset: 5;
     ripple-color: red;
     background-color: white;
+}
+
+.md-textfield-outline {
+    floating-color: blue;
+    floating-inactive-color: yellow;
+    stroke-color: green;
+    stroke-inactive-color: red;
+    placeholder-color: #757575;
 }

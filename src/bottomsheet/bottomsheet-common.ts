@@ -28,6 +28,7 @@ export interface BottomSheetOptions {
     transparent?: boolean; // optional parameter to make the bottomsheet transparent
     ignoreTopSafeArea?: boolean; // optional ios parameter to top safe area. Default is true
     ignoreBottomSafeArea?: boolean; // optional ios parameter to bottom safe area. Default is false
+    disableDimBackground?: boolean; // optional parameter to remove the dim background
 }
 
 export abstract class ViewWithBottomSheetBase extends View {

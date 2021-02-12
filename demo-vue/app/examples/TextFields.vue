@@ -41,6 +41,7 @@
                         floating="false"
                     />
                 </GridLayout>
+                <MDTextField id="textField34" hint="test" class="md-textfield-outline" variant="outline"/>
                 <MDTextField id="textField3" hint="filled" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" margin="10" editable="false" />
                 <MDTextField
                     id="textField4"
@@ -96,7 +97,6 @@
                     @textChange="onTextChange"
                     @returnPress="onReturnPress"
                     digits="0123456789."
-                    strokeColor="red"
                     margin="10"
                 />
                 <MDTextField

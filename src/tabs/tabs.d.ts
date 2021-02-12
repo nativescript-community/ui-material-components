@@ -3,8 +3,12 @@
  * @module "ui/tabs"
  */ /** */
 
-import { Property, TabContentItem, TabNavigationBase, TabStrip } from '@nativescript/core';
-
+import { Property } from '@nativescript/core';
+import { TabNavigationBase } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
+import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
+import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
+export { TabContentItem, TabStrip, TabStripItem };
 /**
  * Represents a swipeable tabs view.
  */

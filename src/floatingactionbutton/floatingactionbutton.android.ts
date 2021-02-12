@@ -1,4 +1,4 @@
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
 import { createStateListAnimator, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import { Background, Color, ImageSource, Length, backgroundInternalProperty, colorProperty } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
@@ -37,9 +37,18 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         this.nativeView.hide();
     }
 
+    createStateListAnimatorTimeout;
+    createStateListAnimator() {
+        if (!this.createStateListAnimatorTimeout) {
+            this.createStateListAnimatorTimeout = setTimeout(() => {
+                this.createStateListAnimatorTimeout = null;
+                createStateListAnimator(this, this.nativeViewProtected);
+            });
+        }
+    }
     [elevationProperty.setNative](value: number) {
         if (isPostLollipop()) {
-            createStateListAnimator(this, this.nativeViewProtected);
+            this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
             androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, newValue);
@@ -47,7 +56,7 @@ export class FloatingActionButton extends FloatingActionButtonBase {
     }
     [dynamicElevationOffsetProperty.setNative](value: number) {
         if (isPostLollipop()) {
-            createStateListAnimator(this, this.nativeViewProtected);
+            this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
             androidx.core.view.ViewCompat.setTranslationZ(this.nativeViewProtected, newValue);
@@ -97,5 +106,9 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         } else {
             this.nativeViewProtected.shrink();
         }
+    }
+    [shapeProperty.setNative](shape: string) {
+        const appearanceModel = themer.getShape(shape);
+        this.nativeViewProtected.setShapeAppearanceModel(appearanceModel);
     }
 }

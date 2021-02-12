@@ -1,12 +1,12 @@
 import { Color, CssProperty, InheritedCssProperty, Length, Style, makeParser, makeValidator } from '@nativescript/core';
 
 function createGetter(key) {
-    return function() {
+    return function () {
         return this.style[key];
     };
 }
 function createSetter(key) {
-    return function(newVal) {
+    return function (newVal) {
         this.style[key] = newVal;
     };
 }
@@ -24,7 +24,7 @@ export const rippleColorProperty = new CssProperty<Style, Color>({
     name: 'rippleColor',
     cssName: 'ripple-color',
     equalityComparer: Color.equals,
-    valueConverter: v => new Color(v)
+    valueConverter: (v) => new Color(v)
 });
 rippleColorProperty.register(Style);
 export const elevationProperty = new CssProperty<Style, Length>({
@@ -47,3 +47,9 @@ export const variantProperty = new CssProperty<Style, string>({
     cssName: 'variant'
 });
 variantProperty.register(Style);
+
+export const shapeProperty = new CssProperty<Style, string>({
+    name: 'shape',
+    cssName: 'shape'
+});
+shapeProperty.register(Style);

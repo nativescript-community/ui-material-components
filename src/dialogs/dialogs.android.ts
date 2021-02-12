@@ -14,7 +14,7 @@ import {
     View,
     capitalizationType,
     fromObject,
-    inputType,
+    inputType
 } from '@nativescript/core';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
@@ -35,12 +35,14 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
     }
     if (options && options.cancelable === false) {
         builder.setCancelable(false);
-        builder.setOnKeyListener(new android.content.DialogInterface.OnKeyListener({
-            onKey( dialog,  keyCode,  event) {
-                // Prevent dialog close on back press button
-                return keyCode === android.view.KeyEvent.KEYCODE_BACK;
-            }
-        }));
+        builder.setOnKeyListener(
+            new android.content.DialogInterface.OnKeyListener({
+                onKey(dialog, keyCode, event) {
+                    // Prevent dialog close on back press button
+                    return keyCode === android.view.KeyEvent.KEYCODE_BACK;
+                }
+            })
+        );
     }
     if (options.titleIcon) {
         builder.setIcon(options.titleIcon.android);
@@ -53,7 +55,7 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
             options.view instanceof View
                 ? options.view
                 : Builder.createViewFromEntry({
-                    moduleName: options.view as string,
+                    moduleName: options.view as string
                 });
 
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
@@ -73,7 +75,7 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
     return builder;
 }
 
-function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
+function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOptions & MDCAlertControlerOptions) {
     if (options.titleColor) {
         const textViewId = dlg.getContext().getResources().getIdentifier('android:id/alertTitle', null, null);
         if (textViewId) {
@@ -159,7 +161,6 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
         callback && callback(result);
     };
 
-    const activity = Application.android.foregroundActivity || (Application.android.startActivity as globalAndroid.app.Activity);
     builder.setOnDismissListener(
         new android.content.DialogInterface.OnDismissListener({
             onDismiss() {
@@ -171,7 +172,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
                     view._isAddedToNativeVisualTree = false;
                     (builder as any)._currentModalCustomView = null;
                 }
-            },
+            }
         })
     );
     const dlg = builder.create();
@@ -198,7 +199,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
             new android.content.DialogInterface.OnClickListener({
                 onClick(dialog: android.content.DialogInterface, id: number) {
                     onDone(true, dialog);
-                },
+                }
             })
         );
         // alert.setPositiveButton(
@@ -214,7 +215,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
             new android.content.DialogInterface.OnClickListener({
                 onClick(dialog: android.content.DialogInterface, id: number) {
                     onDone(false, dialog);
-                },
+                }
             })
         );
         // alert.setNegativeButton(
@@ -235,7 +236,7 @@ function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog
             new android.content.DialogInterface.OnClickListener({
                 onClick(dialog: android.content.DialogInterface, id: number) {
                     onDone(undefined, dialog);
-                },
+                }
             })
         );
         // alert.setNeutralButton(
@@ -255,15 +256,15 @@ export function alert(arg: any): Promise<void> {
         try {
             const defaultOptions = {
                 title: DialogStrings.ALERT,
-                okButtonText: DialogStrings.OK,
+                okButtonText: DialogStrings.OK
             };
             const options = !isDialogOptions(arg) ? Object.assign(defaultOptions, { message: arg + '' }) : Object.assign(defaultOptions, arg);
 
             const alert = createAlertDialogBuilder(options);
 
-            const dlg = prepareAndCreateAlertDialog(alert, options);
+            const dlg = prepareAndCreateAlertDialog(alert, options, resolve);
 
-            showDialog(dlg, options, resolve);
+            showDialog(dlg, options);
         } catch (ex) {
             console.error(ex);
             reject(ex);
@@ -296,16 +297,16 @@ export function confirm(arg: any): Promise<boolean> {
             const defaultOptions = {
                 title: DialogStrings.CONFIRM,
                 okButtonText: DialogStrings.OK,
-                cancelButtonText: DialogStrings.CANCEL,
+                cancelButtonText: DialogStrings.CANCEL
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
-                    message: arg + '',
+                    message: arg + ''
                 })
                 : Object.assign(defaultOptions, arg);
             const alert = createAlertDialogBuilder(options);
             const dlg = prepareAndCreateAlertDialog(alert, options, resolve);
-            showDialog(dlg, options, resolve);
+            showDialog(dlg, options);
         } catch (ex) {
             console.error(ex);
             reject(ex);
@@ -320,7 +321,7 @@ export function prompt(arg: any): Promise<PromptResult> {
         title: DialogStrings.PROMPT,
         okButtonText: DialogStrings.OK,
         cancelButtonText: DialogStrings.CANCEL,
-        inputType: inputType.text,
+        inputType: inputType.text
     };
 
     if (arguments.length === 1) {
@@ -395,7 +396,7 @@ export function prompt(arg: any): Promise<PromptResult> {
                 (r) => ({ result: r, text: textField.text })
             );
 
-            showDialog(dlg, options, resolve);
+            showDialog(dlg, options);
             if (!!options.autoFocus) {
                 textField.requestFocus();
             }
@@ -411,7 +412,7 @@ export function login(arg: any): Promise<LoginResult> {
     const defaultOptions = {
         title: DialogStrings.LOGIN,
         okButtonText: DialogStrings.OK,
-        cancelButtonText: DialogStrings.CANCEL,
+        cancelButtonText: DialogStrings.CANCEL
     };
 
     if (arguments.length === 1) {
@@ -471,12 +472,12 @@ export function login(arg: any): Promise<LoginResult> {
                     resolve({
                         result: r,
                         userName: userNameTextField.text,
-                        password: passwordTextField.text,
+                        password: passwordTextField.text
                     });
                 },
                 (r) => ({ result: r, userName: userNameTextField.text, password: passwordTextField.text })
             );
-            showDialog(dlg, options, resolve);
+            showDialog(dlg, options);
             if (!!options.autoFocus) {
                 userNameTextField.requestFocus();
             }
@@ -539,7 +540,7 @@ export function action(arg: any): Promise<string> {
                     new android.content.DialogInterface.OnClickListener({
                         onClick(dialog: android.content.DialogInterface, which: number) {
                             resolve(options.actions[which]);
-                        },
+                        }
                     })
                 );
             }
@@ -550,7 +551,7 @@ export function action(arg: any): Promise<string> {
                 }
                 resolve(r);
             });
-            showDialog(dlg, options, resolve);
+            showDialog(dlg, options);
         } catch (ex) {
             console.error(ex);
             reject(ex);

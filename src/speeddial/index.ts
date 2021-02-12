@@ -17,6 +17,7 @@ import {
 import { Button } from '@nativescript-community/ui-material-button';
 import { LinearGradient } from '@nativescript/core/ui/styling/gradient';
 import { AnimationCurve } from '@nativescript/core/ui/enums';
+import { NotifyData } from '@nativescript/core/data/observable';
 
 export class SpeedDialItemBase extends GridLayout {}
 
@@ -40,21 +41,31 @@ function transformAnimationValues(values: AnimationDefinition[]) {
     });
 }
 
+const defaultSpeedDialItemTitleRippleColor = new Color('#797979');
+const defaultSpeedDialItemTitleBackgroundColor = new Color('white');
+
 @CSSType('MDSpeedDialItemTitle')
 export class SpeedDialItemTitle extends Button {
     constructor() {
         super();
         this.verticalAlignment = 'middle';
         this.style['css:text-transform'] = 'none';
-        this.style['css:background-color'] = 'white';
-        this.style['css:ripple-color'] = '#797979';
-        this.style['css:color'] = '#797979';
-        this.style['css:elevation'] = 2;
-        this.style['css:border-radius'] = 6;
+        this.style['css:background-color'] = defaultSpeedDialItemTitleBackgroundColor;
+        // this.style['css:ripple-color'] = defaultSpeedDialItemTitleRippleColor;
+        this.style['css:color'] = defaultSpeedDialItemTitleRippleColor;
+        this.style['css:elevation'] = 1;
+        // this.style['css:border-radius'] = 6;
         this.style['css:font-size'] = 10;
         this.style['css:min-width'] = 0;
         this.style['css:min-height'] = 0;
         this.style['css:padding'] = 4;
+    }
+    getDefaultElevation(): number {
+        return 1;
+    }
+
+    getDefaultDynamicElevationOffset(): number {
+        return 2;
     }
 }
 @CSSType('MDSpeedDialItemButton')
@@ -63,18 +74,20 @@ export class SpeedDialItemButton extends Button {
         super();
         this.verticalAlignment = 'middle';
         this.style['css:font-size'] = 26;
-        // this.style['css:border-radius'] = 28;
-        // this.style['css:width'] = 56;
-        // this.style['css:height'] = 56;
-        // this.style['css:margin'] = 16;
-        // this.style['css:dynamic-elevation-offset'] = 2;
-        // this.style['css:font-size'] = 26;
+        this.style['css:elevation'] = 6;
+        // this.style['css:dynamic-elevation-offset'] = 6;
+    }
+    getDefaultElevation(): number {
+        return 6;
+    }
+
+    getDefaultDynamicElevationOffset(): number {
+        return 6;
     }
 }
 @CSSType('MDSpeedDialButton')
-export class SpeedDialButton extends SpeedDialItemButton {
+export class SpeedDialButton extends SpeedDialItemButton {}
 
-}
 @CSSType('MDSpeedDialItem')
 export class SpeedDialItem extends SpeedDialItemBase {
     public actualActive: boolean = false;
@@ -95,17 +108,15 @@ export class SpeedDialItem extends SpeedDialItemBase {
         // this.fabButtonTitle.style['css:elevation'] = 4;this.fabButtonTitle.style['css:elevation'] = 2;
         this.button.col = this.fabButtonCol;
         if (size === 'mini') {
-            this.button.style['css:border-radius'] = 20;
+            // this.button.style['css:border-radius'] = 20;
             this.button.style['css:width'] = 40;
             this.button.style['css:height'] = 40;
             this.button.style['css:margin'] = 16;
-            this.button.style['css:dynamic-elevation-offset'] = 2;
         } else {
-            this.button.style['css:border-radius'] = 28;
+            // this.button.style['css:border-radius'] = 28;
             this.button.style['css:width'] = 56;
             this.button.style['css:height'] = 56;
             this.button.style['css:margin'] = 16;
-            this.button.style['css:dynamic-elevation-offset'] = 4;
         }
         (this as any).columns = this.fabColumns;
         this.addChild(this.titleView);
@@ -123,11 +134,11 @@ export class SpeedDialItem extends SpeedDialItemBase {
     }
 
     notifyChildEvent(child, superNotifyMethod) {
-        return (event: EventData) => {
-            (event as any).speeddialItem = this;
-            if (event.eventName === 'tap') {
+        return <T extends NotifyData>(data: T) => {
+            (data as any).speeddialItem = this;
+            if (data.eventName === 'tap') {
                 if (this.isMain) {
-                    this.fabmenu.get().onButtonTap(event);
+                    this.fabmenu.get().onButtonTap(data);
                 } else {
                     this.fabmenu.get().active = false;
                 }
@@ -309,6 +320,16 @@ export class SpeedDial extends SpeedDialItemBase {
             }
         });
     }
+    insertChild(child, index) {
+        if (child !== this._fabMainButton && child instanceof SpeedDialItem) {
+            this.prepareItem(child);
+
+            this.fabs.splice(index, 0, child);
+            this._fabsHolder.insertChild(child, index);
+        } else {
+            super.insertChild(child, index);
+        }
+    }
     addChild(child) {
         // for now we ignore this
         // to make sure we add the view in the property change
@@ -324,15 +345,15 @@ export class SpeedDial extends SpeedDialItemBase {
             super.addChild(child);
         }
     }
-    public _addChildFromBuilder(name: string, value: any) {
-        if (value instanceof SpeedDialItem) {
-            value.fabmenu = new WeakRef(this);
-            this.fabs.push(value);
-            this._fabsHolder._addView(value);
-        } else {
-            this._addView(value);
-        }
-    }
+    // public _addChildFromBuilder(name: string, value: any) {
+    //     if (value instanceof SpeedDialItem) {
+    //         value.fabmenu = new WeakRef(this);
+    //         this.fabs.push(value);
+    //         this._fabsHolder._addView(value);
+    //     } else {
+    //         this._addView(value);
+    //     }
+    // }
     get isLeft() {
         return this.rPosition === 'left';
     }

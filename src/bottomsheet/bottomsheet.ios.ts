@@ -54,7 +54,7 @@ function initLayoutGuide(controller: UIViewController) {
         layoutGuide.topAnchor.constraintEqualToAnchor(controller.topLayoutGuide.bottomAnchor),
         layoutGuide.bottomAnchor.constraintEqualToAnchor(controller.bottomLayoutGuide.topAnchor),
         layoutGuide.leadingAnchor.constraintEqualToAnchor(rootView.leadingAnchor),
-        layoutGuide.trailingAnchor.constraintEqualToAnchor(rootView.trailingAnchor),
+        layoutGuide.trailingAnchor.constraintEqualToAnchor(rootView.trailingAnchor)
     ] as any);
 
     return layoutGuide;
@@ -94,7 +94,7 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
     const top = marginTop + position.top;
     const width = owner.getMeasuredWidth();
     const height = owner.getMeasuredHeight();
-    View.layoutChild(null, owner, position.left, top, position.left + width + marginLeft+ marginRight, position.top + height+ marginBottom);
+    View.layoutChild(null, owner, position.left, top, position.left + width + marginLeft + marginRight, position.top + height + marginBottom);
 
     const effectiveWidth = width + marginLeft + marginRight;
     let effectiveHeight = height + top + marginBottom;
@@ -209,7 +209,13 @@ class UILayoutViewController extends UIViewController {
 
     viewDidLoad(): void {
         super.viewDidLoad();
-
+        const owner = this.owner.get();
+        if (!owner) {
+            return;
+        }
+        if (!owner.parent) {
+            owner.callLoaded();
+        }
         // Unify translucent and opaque bars layout
         this.edgesForExtendedLayout = UIRectEdge.All;
         this.extendedLayoutIncludesOpaqueBars = true;
@@ -276,9 +282,10 @@ class UILayoutViewController extends UIViewController {
 
         IOSHelper.updateAutoAdjustScrollInsets(this, owner);
 
-        if (!owner.parent) {
-            owner.callLoaded();
-        }
+        // if (!owner.parent) {
+        //     owner.callLoaded();
+        //     console.log('callLoaded done');
+        // }
     }
 
     viewDidDisappear(animated: boolean): void {
@@ -352,15 +359,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             this.viewController = controller; // store the viewController so that safeArea overflow is applied correctly
         }
 
-        // controller.modalPresentationStyle = UIModalPresentationStyle.FormSheet;
-
-        // this.horizontalAlignment = 'stretch';
-        // this.verticalAlignment = 'stretch';
-
         this._raiseShowingBottomSheetEvent();
-        // const controller = UIViewController.new();
-        // controller.view= MDCTextField.new();
-        // animated = animated === undefined ? true : !!animated;
         const bottomSheet = (this.bottomSheetController = MDCBottomSheetController.alloc().initWithContentViewController(controller));
         this.bottomSheetControllerDelegate = bottomSheet.delegate = MDCBottomSheetControllerDelegateImpl.initWithOwner(this);
         bottomSheet.isScrimAccessibilityElement = true;
@@ -378,7 +377,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         parentController.presentViewControllerAnimatedCompletion(bottomSheet, true, null);
         if (options.transparent === true) {
             controller.view.backgroundColor = UIColor.clearColor;
-            // for it to be more beautiful let s disable elevation
+            // for it to be prettier let s disable elevation
             controller.view['elevation'] = 0;
         } else if (!(this instanceof Page)) {
             controller.view.backgroundColor = majorVersion <= 12 && !UIColor.systemBackgroundColor ? UIColor.whiteColor : UIColor.systemBackgroundColor;

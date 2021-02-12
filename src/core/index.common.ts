@@ -1,3 +1,8 @@
+export enum CornerFamily {
+    CUT = 'cut',
+    ROUNDED = 'rounded'
+}
+
 export function applyMixins(
     derivedCtor: any,
     baseCtors: any[],
@@ -8,8 +13,8 @@ export function applyMixins(
     }
 ) {
     const omits = options && options.omit ? options.omit : [];
-    baseCtors.forEach(baseCtor => {
-        Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+    baseCtors.forEach((baseCtor) => {
+        Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
             if (omits.indexOf(name) !== -1) {
                 return;
             }
@@ -23,7 +28,7 @@ export function applyMixins(
                 if (!oldImpl) {
                     derivedCtor.prototype[name] = baseCtor.prototype[name];
                 } else {
-                    derivedCtor.prototype[name] = function(...args) {
+                    derivedCtor.prototype[name] = function (...args) {
                         if (options) {
                             if (!!options.override) {
                                 return baseCtor.prototype[name].apply(this, args);
@@ -42,7 +47,7 @@ export function applyMixins(
                 }
             }
         });
-        Object.getOwnPropertySymbols(baseCtor.prototype).forEach(symbol => {
+        Object.getOwnPropertySymbols(baseCtor.prototype).forEach((symbol) => {
             if (omits.indexOf(symbol) !== -1) {
                 return;
             }
@@ -50,7 +55,7 @@ export function applyMixins(
             if (!oldImpl) {
                 derivedCtor.prototype[symbol] = baseCtor.prototype[symbol];
             } else {
-                derivedCtor.prototype[symbol] = function(...args) {
+                derivedCtor.prototype[symbol] = function (...args) {
                     if (options) {
                         if (!!options.override) {
                             return baseCtor.prototype[symbol].apply(this, args);

@@ -54,7 +54,6 @@ node_modules
 platforms
 !plugin/platforms
 lib
-*.css
 !webpack.*.js
 report
 *.log
@@ -80,3 +79,5 @@ pnpm-lock.yaml
 hooks
 !src/core/hooks
 /tempAngular
+/.gradle
+/.settings

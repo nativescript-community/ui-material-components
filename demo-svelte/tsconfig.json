@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "es2017",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": false,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "noEmitHelpers": true,
+        "noEmitOnError": true,
+        "skipLibCheck": true,
+        "lib": [
+            "es6",
+            "dom",
+            "es2017"
+        ],
+        "types": [
+          "svelte"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "~/*": [
+                "app/*"
+            ]
+        }
+    },
+    "include": [
+      "app/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "platforms"
+    ]
+}

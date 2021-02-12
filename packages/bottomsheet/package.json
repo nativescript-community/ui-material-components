@@ -1,7 +1,7 @@
 {
     "name": "@nativescript-community/ui-material-bottomsheet",
-    "version": "5.1.4",
-    "description": "Material bottomsheet component",
+    "version": "5.2.5",
+    "description": "Material Design Bottom Sheets slide up from the bottom of the screen to reveal more content. Bottom sheets integrate with the app to display supporting content or present deep-linked content from other apps.",
     "main": "./bottomsheet",
     "sideEffects": false,
     "typings": "./bottomsheet.d.ts",
@@ -23,7 +23,10 @@
         "NativeScript",
         "JavaScript",
         "Android",
-        "iOS"
+        "iOS",
+        "Vue",
+        "Angular",
+        "preview|https://raw.githubusercontent.com/nativescript-community/ui-material-components/master/images/demo-bottom-sheet.png"
     ],
     "author": {
         "name": "Martin Guillon",
@@ -33,11 +36,13 @@
         "url": "https://github.com/Akylas/nativescript-material-components/issues"
     },
     "license": "Apache-2.0",
-    "homepage": "https://github.com/Akylas/nativescript-material-components",
-    "repository": "https://github.com/Akylas/nativescript-material-components",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nativescript-community/ui-material-components/tree/master/packages/bottomsheet"
+    },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^5.1.4"
+        "@nativescript-community/ui-material-core": "^5.2.5"
     },
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }

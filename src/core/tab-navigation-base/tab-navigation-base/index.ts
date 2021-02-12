@@ -1,5 +1,5 @@
 ﻿// Types
-import { AddArrayFromBuilder, AddChildFromBuilder, CoercibleProperty, Color, EventData, Property, View, ViewBase } from '@nativescript/core';
+import { AddArrayFromBuilder, AddChildFromBuilder, CoercibleProperty, Color, EventData, Property, View, ViewBase, booleanConverter } from '@nativescript/core';
 import { TabNavigationBase as TabNavigationBaseDefinition } from '.';
 import { TabContentItem } from '../tab-content-item';
 import { TabStrip } from '../tab-strip';
@@ -26,6 +26,7 @@ export interface SelectedIndexChangedEventData extends EventData {
 export class TabNavigationBase extends View implements TabNavigationBaseDefinition, AddChildFromBuilder, AddArrayFromBuilder {
     public static selectedIndexChangedEvent = 'selectedIndexChanged';
 
+    public unloadOnTabChange: boolean;
     public items: TabContentItem[];
     public tabStrip: TabStrip;
     public selectedIndex: number;
@@ -117,7 +118,7 @@ export class TabNavigationBase extends View implements TabNavigationBaseDefiniti
             eventName: TabNavigationBase.selectedIndexChangedEvent,
             object: this,
             oldIndex,
-            newIndex,
+            newIndex
         } as SelectedIndexChangedEventData);
     }
 
@@ -248,7 +249,6 @@ export class TabNavigationBase extends View implements TabNavigationBaseDefiniti
     }
 }
 
-
 const MIN_ICON_SIZE = 24;
 const MAX_ICON_WIDTH = 31;
 const MAX_ICON_HEIGHT = 28;
@@ -301,7 +301,7 @@ export const selectedIndexProperty = new CoercibleProperty<TabNavigationBase, nu
 
         return value;
     },
-    valueConverter: (v) => parseInt(v, 10),
+    valueConverter: (v) => parseInt(v, 10)
 });
 selectedIndexProperty.register(TabNavigationBase);
 
@@ -311,7 +311,7 @@ export const itemsProperty = new Property<TabNavigationBase, TabContentItem[]>({
     name: 'items',
     valueChanged: (target, oldValue, newValue) => {
         target.onItemsChanged(oldValue, newValue);
-    },
+    }
 });
 itemsProperty.register(TabNavigationBase);
 
@@ -319,6 +319,13 @@ export const tabStripProperty = new Property<TabNavigationBase, TabStrip>({
     name: 'tabStrip',
     valueChanged: (target, oldValue, newValue) => {
         target.onTabStripChanged(oldValue, newValue);
-    },
+    }
 });
 tabStripProperty.register(TabNavigationBase);
+
+export const unloadOnTabChangeProperty = new Property<TabNavigationBase, boolean>({
+    name: 'unloadOnTabChange',
+    defaultValue: true,
+    valueConverter: booleanConverter
+});
+unloadOnTabChangeProperty.register(TabNavigationBase);

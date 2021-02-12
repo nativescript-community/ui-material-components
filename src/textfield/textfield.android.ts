@@ -1,4 +1,6 @@
-import { getLayout, stateSets } from '@nativescript-community/ui-material-core/android/utils';
+import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
+import { themer } from '@nativescript-community/ui-material-core';
+import { getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
 import {
     counterMaxLengthProperty,
     digitsProperty,
@@ -13,27 +15,34 @@ import {
     strokeDisabledColorProperty,
     strokeInactiveColorProperty
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
-import { Background, Color, Font, Utils, backgroundInternalProperty, borderBottomLeftRadiusProperty, fontInternalProperty, hintProperty, placeholderColorProperty, profile } from '@nativescript/core';
+import {
+    Background,
+    Color,
+    Font,
+    Length,
+    Utils,
+    backgroundInternalProperty,
+    borderBottomLeftRadiusProperty,
+    fontInternalProperty,
+    hintProperty,
+    paddingBottomProperty,
+    paddingLeftProperty,
+    paddingRightProperty,
+    paddingTopProperty,
+    placeholderColorProperty,
+    profile,
+    textAlignmentProperty
+} from '@nativescript/core';
+import { TextAlignment } from '@nativescript/core/ui/text-base';
 import { secureProperty } from '@nativescript/core/ui/text-field';
 import { TextFieldBase } from './textfield.common';
-
-function getColorStateList(activeColor: number, inactiveColor = 1627389952, disabledColor = 1627389952) {
-    const states = Array.create('[I', 3);
-    states[0] = stateSets.FOCUSED_STATE_SET;
-    states[1] = Array.create('int', 0);
-    states[2] = stateSets.BACKGROUND_DISABLED_STATE;
-    const colors = Array.create('int', 3);
-    colors[0] = activeColor;
-    colors[1] = inactiveColor;
-    colors[2] = disabledColor;
-    return new android.content.res.ColorStateList(states, colors);
-}
 
 let LayoutInflater: typeof android.view.LayoutInflater;
 let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
 let filledId;
 let outlineId;
 let noneId;
+let inflater;
 export class TextField extends TextFieldBase {
     editText: com.nativescript.material.textfield.TextInputEditText;
     layoutView: com.google.android.material.textfield.TextInputLayout;
@@ -41,11 +50,12 @@ export class TextField extends TextFieldBase {
     constructor() {
         super();
     }
+    // @ts-ignore
     get nativeTextViewProtected() {
         return this.editText;
     }
 
-    drawingBackground = false;
+    // @ts-ignore
     get nativeViewProtected() {
         return this.layoutView;
     }
@@ -55,7 +65,7 @@ export class TextField extends TextFieldBase {
 
     @profile
     public createNativeView() {
-        let layoutId;
+        let layoutId = 0;
         const variant = this.variant;
         let needsTransparent = false;
         if (variant === 'filled') {
@@ -82,7 +92,10 @@ export class TextField extends TextFieldBase {
             if (!LayoutInflater) {
                 LayoutInflater = android.view.LayoutInflater;
             }
-            layoutView = this.layoutView = LayoutInflater.from(this._context).inflate(layoutId, null) as com.google.android.material.textfield.TextInputLayout;
+            if (!inflater) {
+                inflater = LayoutInflater.from(this._context);
+            }
+            layoutView = this.layoutView = inflater.inflate(layoutId, null) as com.google.android.material.textfield.TextInputLayout;
             editText = this.editText = layoutView.getEditText() as com.nativescript.material.textfield.TextInputEditText;
         } else {
             layoutView = this.layoutView = new com.google.android.material.textfield.TextInputLayout(this._context);
@@ -116,21 +129,19 @@ export class TextField extends TextFieldBase {
     [placeholderColorProperty.setNative](value: Color) {
         const placeholderColor = value instanceof Color ? value.android : value;
         const floatingColor = this.floatingColor instanceof Color ? this.floatingColor.android : placeholderColor;
-
-        this.layoutView.setDefaultHintTextColor(getColorStateList(floatingColor, placeholderColor));
+        this.layoutView.setHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
     }
 
     [floatingColorProperty.setNative](value: Color) {
         const floatingColor = value instanceof Color ? value.android : value;
-        const placeholderColor = this.placeholderColor instanceof Color ? this.placeholderColor.android : undefined;
-        this.layoutView.setDefaultHintTextColor(getColorStateList(floatingColor, placeholderColor));
+        const placeholderColor = this.floatingInactiveColor instanceof Color ? this.floatingInactiveColor.android : undefined;
+        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
     }
 
     [floatingInactiveColorProperty.setNative](value: Color) {
-        const placeholderColor = value instanceof Color ? value.android : value;
-        const floatingColor =
-            this.floatingColor instanceof Color ? this.floatingColor.android : this.layoutView.getDefaultHintTextColor().getColorForState(stateSets.FOCUSED_STATE_SET, placeholderColor);
-        this.layoutView.setDefaultHintTextColor(getColorStateList(floatingColor, placeholderColor));
+        const floatingInactiveColor = value instanceof Color ? value.android : value;
+        const floatingColor = (this.floatingColor || (themer.getPrimaryColor() as Color)).android;
+        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, floatingInactiveColor));
     }
     [helperColorProperty.setNative](value) {
         const color = value instanceof Color ? value.android : value;
@@ -147,7 +158,6 @@ export class TextField extends TextFieldBase {
             setTimeout(() => {
                 this.layoutView.setDescendantFocusability(oldDesc);
                 Utils.android.showSoftInput(this.nativeTextViewProtected);
-                // this.focus();
             }, 0);
         }
 
@@ -197,40 +207,33 @@ export class TextField extends TextFieldBase {
 
     [strokeInactiveColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
-        // @ts-ignore This check can be removed once this package is updated to rely on 1.2.0 of material components
         if (this.layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
-            const colorStateList = getColorStateList(activeColor, color);
-            // @ts-ignore
+            const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
+            const colorStateList = getFullColorStateList(activeColor, color, disabledColor);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         }
-        // this.editText.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
-    }
-    [strokeDisabledColorProperty.setNative](value: Color) {
-        const color = value instanceof Color ? value.android : value;
-        // @ts-ignore This check can be removed once this package is updated to rely on 1.2.0 of material components
-        if (this.layoutView.setBoxStrokeColorStateList) {
-            const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
-            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
-            const colorStateList = getColorStateList(activeColor, color);
-            // @ts-ignore
-            this.layoutView.setBoxStrokeColorStateList(colorStateList);
-        }
-        // this.editText.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
     }
 
     [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
-        // @ts-ignore This check can be removed once this package is updated to rely on 1.2.0 of material components
         if (this.layoutView.setBoxStrokeColorStateList) {
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
-            const colorStateList = getColorStateList(color, inactiveColor);
-            // @ts-ignore
+            const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
+            const colorStateList = getFullColorStateList(color, inactiveColor, disabledColor);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         } else {
             this.layoutView.setBoxStrokeColor(color);
         }
-        // this.editText.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
+    }
+    [strokeDisabledColorProperty.setNative](value: Color) {
+        const color = value instanceof Color ? value.android : value;
+        if (this.layoutView.setBoxStrokeColorStateList) {
+            const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
+            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
+            const colorStateList = getFullColorStateList(activeColor, inactiveColor, color);
+            this.layoutView.setBoxStrokeColorStateList(colorStateList);
+        }
     }
 
     [digitsProperty.setNative](value: string) {
@@ -247,7 +250,6 @@ export class TextField extends TextFieldBase {
             case 'filled':
                 super[backgroundInternalProperty.setNative](value);
                 if (value.color) {
-                    // this.layoutView.setBackground(null);
                     const background = this.editText.getBackground();
                     if (background instanceof com.google.android.material.shape.MaterialShapeDrawable) {
                         background.setTintList(android.content.res.ColorStateList.valueOf(value.color.android));
@@ -264,7 +266,6 @@ export class TextField extends TextFieldBase {
             case 'outline':
             case 'underline': {
                 if (value.color) {
-                    // this.layoutView.setBackground(null);
                     const background = this.editText.getBackground();
                     if (background instanceof com.google.android.material.shape.MaterialShapeDrawable) {
                         background.setTintList(android.content.res.ColorStateList.valueOf(value.color.android));
@@ -283,10 +284,29 @@ export class TextField extends TextFieldBase {
     }
 
     [fontInternalProperty.setNative](value: Font | UIFont) {
-        super[fontInternalProperty.setNative](value);
         if (!this.formattedText || !(value instanceof Font)) {
             this.nativeViewProtected.setTypeface(value instanceof Font ? value.getAndroidTypeface() : value);
+            this.nativeTextViewProtected.setTypeface(value instanceof Font ? value.getAndroidTypeface() : value);
         }
+    }
+    [paddingTopProperty.setNative](value: Length) {
+        org.nativescript.widgets.ViewHelper.setPaddingTop(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0));
+    }
+    [paddingRightProperty.setNative](value: Length) {
+        org.nativescript.widgets.ViewHelper.setPaddingRight(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0));
+    }
+    [paddingBottomProperty.setNative](value: Length) {
+        org.nativescript.widgets.ViewHelper.setPaddingBottom(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0));
+    }
+    [paddingLeftProperty.setNative](value: Length) {
+        org.nativescript.widgets.ViewHelper.setPaddingLeft(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0));
+    }
+    [textAlignmentProperty.setNative](value: TextAlignment) {
+        this.nativeTextViewProtected.setGravity(getHorizontalGravity(value) | getVerticalGravity(this.verticalTextAlignment));
+    }
+    [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
+        // TODO: not working for now
+        this.nativeTextViewProtected.setGravity(getHorizontalGravity(this.textAlignment) | getVerticalGravity(value));
     }
 }
 //

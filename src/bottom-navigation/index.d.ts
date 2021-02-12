@@ -2,7 +2,9 @@
 import { TabNavigationBase } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { CoercibleProperty, EventData, Property } from '@nativescript/core';
+import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 
+export { TabContentItem, TabStrip, TabStripItem };
 /**
  * Defines the data for the TabView.selectedIndexChanged event.
  */
@@ -64,6 +66,11 @@ export class BottomNavigation extends TabNavigationBase {
      * Raised when the selected index changes.
      */
     on(event: 'selectedIndexChanged', callback: (args: SelectedIndexChangedEventData) => void, thisArg?: any);
+
+
+    // parameter to allow the bottom-navigation to be positioned correcly within layouts and thus not be full size
+    // be careful it will then be influenced by safeArea. Default is false
+    iosCustomPositioning: boolean;
 }
 
 export const itemsProperty: Property<BottomNavigation, TabContentItem[]>;

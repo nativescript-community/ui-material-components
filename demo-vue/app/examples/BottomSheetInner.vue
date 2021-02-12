@@ -1,5 +1,4 @@
 <template>
-    <!-- <MDCardView @shownInBottomSheet="onShownInBottomSheet" borderRadius="20" elevation="30" backgroundColor="green"> -->
     <GridLayout id="test1" rows="auto auto" height="300" backgroundColor="yellow">
         <!-- highlighted in red to demonstrate movement -->
         <GridLayout id="test2" row="0" backgroundColor="red" verticalAlignment="top">

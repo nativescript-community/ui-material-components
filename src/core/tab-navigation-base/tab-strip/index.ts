@@ -13,30 +13,20 @@ export const traceCategory = 'TabView';
 export const highlightColorProperty = new Property<TabStrip, Color>({
     name: 'highlightColor',
     equalityComparer: Color.equals,
-    valueConverter: (v) => new Color(v),
+    valueConverter: (v) => new Color(v)
 });
 export const selectedItemColorProperty = new Property<TabStrip, Color>({
     name: 'selectedItemColor',
     equalityComparer: Color.equals,
-    valueConverter: (v) => new Color(v),
+    valueConverter: (v) => new Color(v)
 });
 export const unSelectedItemColorProperty = new Property<TabStrip, Color>({
     name: 'unSelectedItemColor',
     equalityComparer: Color.equals,
-    valueConverter: (v) => new Color(v),
+    valueConverter: (v) => new Color(v)
 });
 
-/**
- * Event data containing information for the TabStripItem's index.
- */
-export interface TabStripItemEventData extends EventData {
-    /**
-     * The index of the TabStripItem.
-     */
-    index: number;
-}
-
-@CSSType('TabStrip')
+@CSSType('MDTabStrip')
 export class TabStrip extends View implements TabStripDefinition, AddChildFromBuilder, AddArrayFromBuilder {
     public static itemTapEvent = 'itemTap';
     public items: TabStripItem[];
@@ -175,7 +165,7 @@ const itemsProperty = new Property<TabStrip, TabStripItem[]>({
     name: 'items',
     valueChanged: (target, oldValue, newValue) => {
         target.onItemsChanged(oldValue, newValue);
-    },
+    }
 });
 itemsProperty.register(TabStrip);
 
@@ -185,7 +175,7 @@ iosIconRenderingModeProperty.register(TabStrip);
 export const isIconSizeFixedProperty = new Property<TabStrip, boolean>({
     name: 'isIconSizeFixed',
     defaultValue: true,
-    valueConverter: booleanConverter,
+    valueConverter: booleanConverter
 });
 isIconSizeFixedProperty.register(TabStrip);
 

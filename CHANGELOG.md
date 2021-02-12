@@ -3,6 +3,243 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.6](https://github.com/Akylas/nativescript-material-components/compare/v5.2.5...v5.2.6) (2021-02-10)
+
+
+### Bug Fixes
+
+* **android:** fix keyboard not hiding on back button ([0e6e51a](https://github.com/Akylas/nativescript-material-components/commit/0e6e51aee2ce046bd9168ecf4989de54fcb2acd0))
+
+
+
+
+
+## [5.2.5](https://github.com/Akylas/nativescript-material-components/compare/v5.2.4...v5.2.5) (2021-02-04)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+
+
+
+
+## [5.2.4](https://github.com/Akylas/nativescript-material-components/compare/v5.2.3...v5.2.4) (2021-02-04)
+
+
+### Bug Fixes
+
+* **bottomsheet:** ios ensure view is loaded before the first viewDidLayoutSubviews call ([f34e418](https://github.com/Akylas/nativescript-material-components/commit/f34e418d29881db5f48dd419ae1e686a8af2f956))
+* **dialogs:** typings fix for alert with custom view ([c8467e1](https://github.com/Akylas/nativescript-material-components/commit/c8467e1d413c5dc332db1e3463b7d0b2fda31bcb))
+* **textfield:** ios allow textfield  auto size ([826252e](https://github.com/Akylas/nativescript-material-components/commit/826252e77bbbae65733bbdd00bfade97376b4f61))
+
+
+
+
+
+## [5.2.3](https://github.com/Akylas/nativescript-material-components/compare/v5.2.2...v5.2.3) (2021-01-23)
+
+
+### Bug Fixes
+
+* **cardview:** ios fix for elevation+borderRadius ([cf16772](https://github.com/Akylas/nativescript-material-components/commit/cf167724a9775ffdefd5231d8bcddc3a1b61b34c))
+
+
+
+
+
+## [5.2.2](https://github.com/Akylas/nativescript-material-components/compare/v5.2.1...v5.2.2) (2021-01-20)
+
+
+### Features
+
+* **bottom-navigation:**  iosCustomPositioning to allow positioning within layouts ([d420159](https://github.com/Akylas/nativescript-material-components/commit/d420159cb03d0d3b7e5a235205cc27281e635e6f))
+
+
+
+
+
+## [5.2.1](https://github.com/Akylas/nativescript-material-components/compare/v5.2.0...v5.2.1) (2021-01-19)
+
+
+### Bug Fixes
+
+* **dialogs:** android alert not resolving ([e1e2f4b](https://github.com/Akylas/nativescript-material-components/commit/e1e2f4b52ade7becf8ebd080744eff66cf3bb0b5))
+
+
+
+
+
+# [5.2.0](https://github.com/Akylas/nativescript-material-components/compare/v5.1.16...v5.2.0) (2021-01-18)
+
+
+### Bug Fixes
+
+* fixes for bottom-navigation and tabs ([89fb903](https://github.com/Akylas/nativescript-material-components/commit/89fb90354dcac33979035f255e3839c2da08c15b))
+* **bottom-navigation:** port of N fix https://github.com/NativeScript/NativeScript/commit/4690162384c731d6d652d90a9347cae06c0a0e0c ([ef7dece](https://github.com/Akylas/nativescript-material-components/commit/ef7dece2edf53c6cb53ecb1fd197d9a149b2661e))
+
+
+### Features
+
+* **bottomnavigation:** new N bottom-navigation replace component ([5e48adf](https://github.com/Akylas/nativescript-material-components/commit/5e48adf9eeb2713bd4e0ceab67d37cae60639c90))
+
+
+
+
+
+## [5.1.16](https://github.com/Akylas/nativescript-material-components/compare/v5.1.15...v5.1.16) (2020-12-14)
+
+
+### Bug Fixes
+
+* **textfield:** android fix stroke colors ([74726a8](https://github.com/Akylas/nativescript-material-components/commit/74726a8d59c67335436a64bff2dcfeb2c7cd8e4f))
+* **textview:** android stroke color fixes ([d1ea1f4](https://github.com/Akylas/nativescript-material-components/commit/d1ea1f4fea2cc6d9d63a515af36f04a22ae70f64))
+
+
+
+
+
+## [5.1.15](https://github.com/Akylas/nativescript-material-components/compare/v5.1.14...v5.1.15) (2020-12-13)
+
+
+### Bug Fixes
+
+* **textfield:** android font no applied to both floating and inner textfield ([4ec6140](https://github.com/Akylas/nativescript-material-components/commit/4ec61400a7b5f51df6601735392ffefd56b1583c))
+* **textview:** android font no applied to both floating and inner textfield ([9fb4860](https://github.com/Akylas/nativescript-material-components/commit/9fb4860b52e4745c08a3bbbce1737d699e9e81ec))
+
+
+
+
+
+## [5.1.14](https://github.com/Akylas/nativescript-material-components/compare/v5.1.13...v5.1.14) (2020-12-10)
+
+
+### Bug Fixes
+
+* **cardview:** borderRadius regression after shape addition ([3d0d9f2](https://github.com/Akylas/nativescript-material-components/commit/3d0d9f2280b9f9f601085fc052371d18574ce9a2))
+
+
+
+
+
+## [5.1.13](https://github.com/Akylas/nativescript-material-components/compare/v5.1.12...v5.1.13) (2020-12-07)
+
+
+### Bug Fixes
+
+* **tabs:** ported N fix ([85cc042](https://github.com/Akylas/nativescript-material-components/commit/85cc042e8f53594ef964c4079e343dccf2c677fa))
+* **textfield:** add missing text dependency ([7d957ef](https://github.com/Akylas/nativescript-material-components/commit/7d957ef6fabca87ef4309116feeb93ab505ba7cd))
+* **textfield:** ios resolve pod issue ([3ee9e62](https://github.com/Akylas/nativescript-material-components/commit/3ee9e6218234c0950fc13630c2f5e17388902201))
+* **textview:** add missing text dependency ([366ef1e](https://github.com/Akylas/nativescript-material-components/commit/366ef1ef1fcdb37cba7c3360c522d0c21a71abeb))
+
+
+
+
+
+## [5.1.12](https://github.com/Akylas/nativescript-material-components/compare/v5.1.11...v5.1.12) (2020-12-04)
+
+
+### Bug Fixes
+
+* **dialogs:** ios buttonFont should be working again ([fd8b367](https://github.com/Akylas/nativescript-material-components/commit/fd8b367aa2f2d16425edef7f45078be4fdd6c481))
+
+
+
+
+
+## [5.1.11](https://github.com/Akylas/nativescript-material-components/compare/v5.1.10...v5.1.11) (2020-12-04)
+
+
+### Bug Fixes
+
+* **speeddial:** remove default borderRadius. Should be handled by shape or css ([72765f9](https://github.com/Akylas/nativescript-material-components/commit/72765f9c65906faa42b68f4c7a9953a84865090b))
+* **textfield:** ios none variant disable floating ([7fdebc1](https://github.com/Akylas/nativescript-material-components/commit/7fdebc1891a46778ba4dd1247a0d3e36ab19c5ba))
+
+
+### Features
+
+* android shape suport ([065eadb](https://github.com/Akylas/nativescript-material-components/commit/065eadbba047a04151832830d032ea326a410a13))
+* ios basic shape support ([3638cce](https://github.com/Akylas/nativescript-material-components/commit/3638ccee1cb77b35c4fc450d557064da55b99dca))
+
+
+
+
+
+## [5.1.10](https://github.com/Akylas/nativescript-material-components/compare/v5.1.9...v5.1.10) (2020-12-03)
+
+
+### Bug Fixes
+
+* **button:** faster android button ([653775f](https://github.com/Akylas/nativescript-material-components/commit/653775f48601c6cf43a451f9fc57fe817aa54e25))
+* **slider:** faster android slider ([36f5803](https://github.com/Akylas/nativescript-material-components/commit/36f58030dacfd548fb6072dc0d1a76352b96c639))
+* android function not public ([b6f689c](https://github.com/Akylas/nativescript-material-components/commit/b6f689ca4a0786263b40610a10c86710674603e6))
+
+
+### Features
+
+* **bottomsheet:** android disableDimBackground ([a5e791e](https://github.com/Akylas/nativescript-material-components/commit/a5e791e7c4a7461e21d5a2e5aa0291c72d7427fd))
+
+
+
+
+
+## [5.1.9](https://github.com/Akylas/nativescript-material-components/compare/v5.1.8...v5.1.9) (2020-12-01)
+
+
+### Bug Fixes
+
+* **speeddial:** closer to sepcs ([c0353e1](https://github.com/Akylas/nativescript-material-components/commit/c0353e16d96dfc3bf31313809e93d274c19df7e9))
+* android plugins should all be much faster ([1d36644](https://github.com/Akylas/nativescript-material-components/commit/1d3664401104a6482ca5bf5fa4d91aaf7cb55f8c))
+
+
+### Features
+
+* global clearFocus and requestFocus ([1222d90](https://github.com/Akylas/nativescript-material-components/commit/1222d90ce7205c8d50b0dc1ee7376b70eb49d0f3))
+
+
+
+
+
+## [5.1.8](https://github.com/Akylas/nativescript-material-components/compare/v5.1.7...v5.1.8) (2020-11-27)
+
+
+### Bug Fixes
+
+* **dialogs:** action was not closing itself ([4e29840](https://github.com/Akylas/nativescript-material-components/commit/4e298408ec293dd770dc5cd370698e7b116d3fdc))
+
+
+
+
+
+## [5.1.7](https://github.com/Akylas/nativescript-material-components/compare/v5.1.6...v5.1.7) (2020-11-26)
+
+
+### Bug Fixes
+
+* **textfield:** some padding fixes to be the same on ios/android ([9629e28](https://github.com/Akylas/nativescript-material-components/commit/9629e28554e6e156fe55be9fecbfe2bed0997e0a))
+* **textview:** same padding fixes as textfield ([c287c69](https://github.com/Akylas/nativescript-material-components/commit/c287c6913a475e9cc53c670d4b61b0ea1b464245))
+
+
+
+
+
+## [5.1.6](https://github.com/Akylas/nativescript-material-components/compare/v5.1.5...v5.1.6) (2020-11-23)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+
+
+
+
+## [5.1.5](https://github.com/Akylas/nativescript-material-components/compare/v5.1.4...v5.1.5) (2020-11-22)
+
+
+### Bug Fixes
+
+* **speeddial:** svelte fix ([215f660](https://github.com/Akylas/nativescript-material-components/commit/215f660326d300c0094820b97ba7c8b6e0921f2b))
+
+
+
+
+
 ## [5.1.4](https://github.com/Akylas/nativescript-material-components/compare/v5.1.3...v5.1.4) (2020-11-13)
 
 

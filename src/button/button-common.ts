@@ -9,6 +9,7 @@ export abstract class ButtonBase extends Button {
     @cssProperty dynamicElevationOffset: number;
     @cssProperty rippleColor: Color;
     @cssProperty verticalTextAlignment: VerticalTextAlignment;
+    @cssProperty shape: string;
 
     public imageSource: ImageSource;
     public src: string | ImageSource;

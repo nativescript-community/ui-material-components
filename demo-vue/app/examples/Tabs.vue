@@ -3,39 +3,40 @@
         <ActionBar :title="title">
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
+        
         <MDTabs selectedIndex="1">
-            <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-            <TabStrip>
-                <TabStripItem>
+            <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
+            <MDTabStrip>
+                <MDTabStripItem>
                     <Label text="Home"/>
                     <Image src="font://mdi-home" class="mdi"/>
-                </TabStripItem>
-                <TabStripItem class="special">
+                </MDTabStripItem>
+                <MDTabStripItem class="special">
                     <Label text="Account"/>
                     <Image src="font://mdi-account" class="mdi"/>
-                </TabStripItem>
-                <TabStripItem class="special">
+                </MDTabStripItem>
+                <MDTabStripItem class="special">
                     <Label text="Search"/>
                     <Image src="font://mdi-magnify" class="mdi"/>
-                </TabStripItem>
-            </TabStrip>
+                </MDTabStripItem>
+            </MDTabStrip>
 
-            <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
-            <TabContentItem>
-                <GridLayout backgroundColor="red">
+            <!-- The number of MDTabContentItem components should corespond to the number of MDTabStripItem components -->
+            <MDTabContentItem>
+                <GridLayout backgroundColor="red" @loaded="onLoaded('red')">
                     <Label text="Home Page" class="h2 text-center"></Label>
                 </GridLayout>
-            </TabContentItem>
-            <TabContentItem>
-                <GridLayout backgroundColor="green">
+            </MDTabContentItem>
+            <MDTabContentItem>
+                <GridLayout backgroundColor="green" @loaded="onLoaded('green')">
                     <Label text="Account Page" class="h2 text-center"></Label>
                 </GridLayout>
-            </TabContentItem>
-            <TabContentItem>
-                <GridLayout backgroundColor="yellow">
+            </MDTabContentItem>
+            <MDTabContentItem>
+                <GridLayout backgroundColor="yellow" @loaded="onLoaded('yellow')">
                     <Label text="Search Page" class="h2 text-center"></Label>
                 </GridLayout>
-            </TabContentItem>
+            </MDTabContentItem>
         </MDTabs>
     </Page>
 </template>
@@ -59,6 +60,9 @@ export default Vue.extend({
     methods: {
         onNavigationButtonTap() {
             frameModule.Frame.topmost().goBack();
+        },
+        onLoaded(name) {
+            console.log('onTabLoaded', name)
         }
     }
 });
@@ -70,27 +74,27 @@ MDTabs {
   /* color: gold; */
 }
 
-TabContentItem.special {
+MDTabContentItem.special {
   color: green;
 }
 
-TabStrip {
+MDTabStrip {
   color: skyblue;
 }
 
-TabStripItem.special {
+MDTabStripItem.special {
   color: teal;
 }
 
-TabStripItem.special:active {
+MDTabStripItem.special:active {
   color: yellowgreen;
 }
 
-TabStripItem.nested Label {
+MDTabStripItem.nested Label {
   color: teal;
 }
 
-TabStripItem.nested:active Label {
+MDTabStripItem.nested:active Label {
   color: yellowgreen;
 }
 

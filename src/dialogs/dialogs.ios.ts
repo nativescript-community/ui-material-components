@@ -126,30 +126,32 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
         if (Utils.isFunction(callback)) {
             callback(result);
         }
+        alertController.dismissModalViewControllerAnimated(true);
+    }
+    let buttonsFont;
+
+    function addButton(title, emphasis, result) {
+        const action = MDCAlertAction.actionWithTitleEmphasisHandler(title, emphasis, () => {
+            raiseCallback(callback, result);
+        });
+        alertController.addAction(action);
+        if (options.buttonFont) {
+            const titleLabel = alertController.buttonForAction(action).titleLabel;
+            if (!buttonsFont) {
+                buttonsFont = options.buttonFont.getUIFont(titleLabel.font);
+            }
+            titleLabel.font = buttonsFont;
+        }
     }
 
     if (Utils.isString(options.cancelButtonText)) {
-        alertController.addAction(
-            MDCAlertAction.actionWithTitleEmphasisHandler(options.cancelButtonText, MDCActionEmphasis.Low, () => {
-                raiseCallback(callback, false);
-            })
-        );
+        addButton(options.cancelButtonText, MDCActionEmphasis.Low, false);
     }
-
     if (Utils.isString(options.neutralButtonText)) {
-        alertController.addAction(
-            MDCAlertAction.actionWithTitleEmphasisHandler(options.neutralButtonText, MDCActionEmphasis.Low, () => {
-                raiseCallback(callback, undefined);
-            })
-        );
+        addButton(options.neutralButtonText, MDCActionEmphasis.Low, undefined);
     }
-
     if (Utils.isString(options.okButtonText)) {
-        alertController.addAction(
-            MDCAlertAction.actionWithTitleEmphasisHandler(options.okButtonText, MDCActionEmphasis.Low, () => {
-                raiseCallback(callback, true);
-            })
-        );
+        addButton(options.okButtonText, MDCActionEmphasis.Low, true);
     }
 }
 
@@ -163,9 +165,9 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     if (options.message) {
         alertController.message = options.message;
     }
-    if (options.buttonFont) {
-        alertController.buttonFont = options.buttonFont.getUIFont(alertController.buttonFont);
-    }
+    // if (options.buttonFont) {
+    //     alertController.buttonFont = options.buttonFont.getUIFont(alertController.buttonFont);
+    // }
     if (options.messageFont) {
         alertController.messageFont = options.messageFont.getUIFont(alertController.messageFont);
     }
@@ -269,8 +271,8 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     return alertController;
 }
 
-export function alert(arg: any): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
+export function alert(arg: any): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
         try {
             const defaultOptions = {
                 // title: ALERT,

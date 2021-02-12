@@ -7,7 +7,7 @@ import { TabNavigationBase } from '../tab-navigation-base';
 import { TabStrip } from '../tab-strip';
 
 
-@CSSType('TabStripItem')
+@CSSType('MDTabStripItem')
 export class TabStripItem extends View implements TabStripItemDefinition, AddChildFromBuilder {
     public static tapEvent = 'tap';
     public static selectEvent = 'select';
