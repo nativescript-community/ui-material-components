@@ -20,6 +20,7 @@ function createCornerTreatment(cornerFamily: CornerFamily): com.google.android.m
 // stub class as we don't use this on android
 export class Themer {
     primaryColor: string | Color;
+    onPrimaryColor: string | Color;
     accentColor: string | Color;
     secondaryColor: string | Color;
     primaryColorVariant: string | Color;
@@ -43,6 +44,16 @@ export class Themer {
             this.primaryColor = new Color(getAttrColor(Application.android.startActivity, 'colorPrimary'));
         }
         return this.primaryColor;
+    }
+
+    setOnPrimaryColor(value) {
+        this.onPrimaryColor = value;
+    }
+    getOnPrimaryColor() {
+        if (!this.onPrimaryColor) {
+            this.onPrimaryColor = new Color(getAttrColor(Application.android.startActivity, 'colorOnPrimary'));
+        }
+        return this.onPrimaryColor;
     }
 
     setAccentColor(value: string | Color) {

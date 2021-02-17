@@ -47,6 +47,7 @@ export class Themer {
     appColorScheme: MDCSemanticColorScheme;
     appTypoScheme: MDCTypographyScheme;
     primaryColor: string | Color;
+    onPrimaryColor: string | Color;
     secondaryColor: string | Color;
     accentColor: string | Color;
     primaryColorVariant: string | Color;
@@ -74,10 +75,19 @@ export class Themer {
         const color = value instanceof Color ? value : new Color(value);
         colorTheme.primaryColor = color.ios;
         this.appColorScheme.primaryColorVariant = this.appColorScheme.primaryColor.colorWithAlphaComponent(0.24);
-        // colorTheme.primaryColorVariant = new Color(61.2, color.r, color.g, color.b).ios; // default alpha is 0.24
     }
     getPrimaryColor(): string | Color {
         return this.primaryColor;
+    }
+
+    setOnPrimaryColor(value) {
+        this.onPrimaryColor = value;
+        const colorTheme = this.getOrcreateAppColorScheme();
+        const color = value instanceof Color ? value : new Color(value);
+        colorTheme.onPrimaryColor = color.ios;
+    }
+    getOnPrimaryColor() {
+        return this.onPrimaryColor;
     }
     setSecondaryColor(value: string | Color) {
         this.secondaryColor = value;
