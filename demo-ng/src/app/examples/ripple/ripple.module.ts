@@ -1,4 +1,4 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { NativeScriptCommonModule } from '@nativescript/angular';
 import { NativeScriptMaterialRippleModule } from '@nativescript-community/ui-material-ripple/angular';
 import { RippleComponent } from './ripple.component';
