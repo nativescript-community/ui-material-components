@@ -170,7 +170,7 @@ export function install() {}
 
 export function getRippleColor(color: string | Color) {
     if (color) {
-        const temp = typeof color === 'string' ? new Color(color) : color;
+        const temp = color instanceof Color ? color : new Color(color);
         return new Color(temp.a !== 255 ? temp.a : 61.5, temp.r, temp.g, temp.b).android; // default alpha is 0.24
     }
     return null;

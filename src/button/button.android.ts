@@ -86,8 +86,9 @@ export class Button extends ButtonBase {
     //     nativeView.setOnClickListener(clickListener);
     //     (<any>nativeView).clickListener = clickListener;
     // }
-    [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.setRippleColor(getColorStateList(color.android));
+    [rippleColorProperty.setNative](value: Color) {
+        const color = !value || value instanceof Color ? value : new Color(value);
+        this.nativeViewProtected.setRippleColor(color ? getColorStateList(color.android) : null);
     }
     [shapeProperty.setNative](shape: string) {
         const appearanceModel = themer.getShape(shape);
