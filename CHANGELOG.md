@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.7](https://github.com/Akylas/nativescript-material-components/compare/v5.2.6...v5.2.7) (2021-02-22)
+
+
+### Bug Fixes
+
+* **android:** crash on null rippleColor ([0932a12](https://github.com/Akylas/nativescript-material-components/commit/0932a122d5844a16ae0befde216691a68a672ba2))
+
+
+### Features
+
+* **core:** onPrimaryColor ([ca30f73](https://github.com/Akylas/nativescript-material-components/commit/ca30f73a9a65350d01dfa51716904b9b0b1a9557))
+
+
+
+
+
 ## [5.2.6](https://github.com/Akylas/nativescript-material-components/compare/v5.2.5...v5.2.6) (2021-02-10)
 
 
