@@ -67,12 +67,17 @@ public class Utils {
     }
 
     public static Drawable createRippleDrawable(int rippleColor, float radius) {
-        ShapeDrawable rippleShape = radius != 0 ? createForegroundShape(radius) : null;
         if (Build.VERSION.SDK_INT >= 22) {
+            ShapeDrawable rippleShape = radius != 0 ? createForegroundShape(radius) : null;
             return new RippleDrawable(ColorStateList.valueOf(rippleColor), null, rippleShape);
         } else {
+            ShapeDrawable rippleShape = createForegroundShape(radius);
             StateListDrawable rippleDrawable = new StateListDrawable();
-            rippleShape.getPaint().setColor(rippleColor);
+            if (rippleShape != null) {
+                rippleShape.getPaint().setColor(rippleColor);
+            } else {
+
+            }
             rippleDrawable.addState(new int[] { statePressed }, rippleShape);
             return rippleShape;
         }
