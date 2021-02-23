@@ -228,6 +228,8 @@ Properties settable through XML/HTML
 | activeColor     | false    | "black"                     | `String`                     | Color of the BottomNavigationTab when it's selected     |
 | inactiveColor   | false    | "gray"                      | `String`                     | Color of the BottomNavigationTab when it's not selected |
 | backgroundColor | false    | "white"                     | `String`                     | Color of the BottomNavigation background                |
+| badgeColor      | false    | "red"                       | `String`                     | Color of the BottomNavigationTab badge background       |
+| badgeTextColor  | false    | "white"                     | `String`                     | Color of the BottomNavigationTab badge text             |
 
 #### Properties (internal)
 
@@ -241,6 +243,8 @@ Properties accessible through JS/TS instance
 | activeColor      | `new Color('black')`        | `Color`                      | Color of the BottomNavigationTab when it's selected     |
 | inactiveColor    | `new Color('gray')`         | `Color`                      | Color of the BottomNavigationTab when it's not selected |
 | backgroundColor  | `new Color('white')`        | `Color`                      | Color of the BottomNavigation background                |
+| badgeColor       | `new Color('red')`          | `Color`                      | Color of the BottomNavigationTab badge background       |
+| badgeTextColor   | `new Color('white')`        | `Color`                      | Color of the BottomNavigationTab badge text             |
 
 #### Events
 
