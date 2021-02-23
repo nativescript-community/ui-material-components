@@ -42,6 +42,8 @@ export class Themer {
     getSurfaceColor(): string | Color;
     setOnSurfaceColor(value: string | Color);
     getOnSurfaceColor(): string | Color;
+    setOnPrimaryColor(value: string | Color);
+    getOnPrimaryColor(): string | Color;
     createShape(key: string, options: ShapeProperties);
     getShape(key: string): any;
 }
