@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.8](https://github.com/Akylas/nativescript-material-components/compare/v5.2.7...v5.2.8) (2021-02-24)
+
+
+### Bug Fixes
+
+* **core:** fix aandroid crash with ripple on < 22 ([8355a2a](https://github.com/Akylas/nativescript-material-components/commit/8355a2a1d49aaf0ea945c04f25081a5f6b195fce))
+
+
+
+
+
 ## [5.2.7](https://github.com/Akylas/nativescript-material-components/compare/v5.2.6...v5.2.7) (2021-02-22)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-core
