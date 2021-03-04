@@ -86,6 +86,8 @@ export function openBottomSheet(args) {
 ```typescript
 import Vue from 'nativescript-vue';
 import BottomSheetPlugin from '@nativescript-community/ui-material-bottomsheet/vue';
+import { install } from "@nativescript-community/ui-material-bottomsheet";
+install();
 
 Vue.use(BottomSheetPlugin);
 ```
