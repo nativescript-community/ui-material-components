@@ -206,21 +206,6 @@ export class Ripple extends RippleBase {
         return view;
     }
 
-    forceSetOnTouchListener = false;
-    hasGestureObservers() {
-        if (this.forceSetOnTouchListener) {
-            return true;
-        }
-        return super.hasGestureObservers();
-    }
-    initNativeView() {
-        // we need to force the touch listener even i there is no tap gesture.
-        this.forceSetOnTouchListener = true;
-        this.setOnTouchListener();
-        this.forceSetOnTouchListener = false;
-        // this.nativeView.setClickable(false);
-        super.initNativeView();
-    }
     rippleDrawable: android.graphics.drawable.Drawable;
     getRippleColor() {
         if (this.rippleColor) {
