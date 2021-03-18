@@ -227,8 +227,7 @@ module.exports = (env, params = {}) => {
     config.plugins = config.plugins.filter(p => ['CopyWebpackPlugin'].indexOf(p.constructor.name) === -1);
     // we add our rules
     config.plugins.unshift(
-        new CopyWebpackPlugin({
-            patterns: [
+        new CopyWebpackPlugin([
                 { from: 'fonts/!(ios|android)/**/*', to: 'fonts', flatten: true, noErrorOnMissing: true },
                 { from: 'fonts/*', to: 'fonts', flatten: true, noErrorOnMissing: true },
                 { from: `fonts/${platform}/**/*`, to: 'fonts', flatten: true, noErrorOnMissing: true },
@@ -245,8 +244,7 @@ module.exports = (env, params = {}) => {
                     to: 'fonts',
                     noErrorOnMissing: true
                 }
-            ]
-        })
+            ])
     );
 
     if (!!production) {

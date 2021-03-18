@@ -19,8 +19,9 @@
                   minValue="0" maxValue="100"
                   :value="value" @valueChange="onValueChanged" />
         <MDSlider
-                  minValue="0" maxValue="100"
+                  minValue="5" maxValue="200"
                   rippleColor="red"
+                  backgroundColor="black"
                   :value="value" @valueChange="onValueChanged" />
         <MDSlider
                   minValue="0" maxValue="100"
