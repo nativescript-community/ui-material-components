@@ -66,17 +66,17 @@ export class TextView extends TextViewBase {
         let needsTransparent = false;
         if (variant === 'filled') {
             if (!filledId) {
-                filledId = getLayout('material_text_view_filled');
+                filledId = getLayout(this._context, 'material_text_view_filled');
             }
             layoutId = filledId;
         } else if (variant === 'outline') {
             if (!outlineId) {
-                outlineId = getLayout('material_text_view_outline');
+                outlineId = getLayout(this._context, 'material_text_view_outline');
             }
             layoutId = outlineId;
         } else {
             if (!noneId) {
-                noneId = getLayout('material_text_view');
+                noneId = getLayout(this._context, 'material_text_view');
             }
             layoutId = noneId;
             needsTransparent = true;

@@ -53,9 +53,8 @@ export class Button extends ButtonBase {
         }
         layoutId = layoutIds[layoutStringId];
         if (!layoutId) {
-            layoutId = layoutIds[layoutStringId] = getLayout(layoutStringId);
+            layoutId = layoutIds[layoutStringId] = getLayout(this._context, layoutStringId);
         }
-        // const layoutId = getLayout(layoutIdName);
         if (!LayoutInflater) {
             LayoutInflater = android.view.LayoutInflater;
         }
