@@ -216,9 +216,9 @@ class ViewWithElevationAndRipple extends View {
         if (!rippleDrawable) {
             this.setRippleDrawable(nativeViewProtected, Length.toDevicePixels(this.style.borderTopLeftRadius));
         } else {
-            if (isPostLollipopMR1()) {
+            if (isPostLollipop()) {
                 (rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(getColorStateList(rippleColor));
-            } else {
+            } else if ((rippleDrawable as any).rippleShape) {
                 (rippleDrawable as any).rippleShape.getPaint().setColor(rippleColor);
             }
         }

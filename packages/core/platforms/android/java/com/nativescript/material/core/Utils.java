@@ -52,7 +52,7 @@ public class Utils {
     }
 
     public static ColorStateList getFullColorStateList(int activeColor, int inactiveColor, int disabledColor) {
-        int[][] states = new int[][] { new int[] { android.R.attr.state_focused,  }, // focused
+        int[][] states = new int[][] { new int[] { android.R.attr.state_focused, }, // focused
                 android.util.StateSet.WILD_CARD, // other
                 new int[] { -android.R.attr.state_enabled } // disabled
         };
@@ -67,7 +67,7 @@ public class Utils {
     }
 
     public static Drawable createRippleDrawable(int rippleColor, float radius) {
-        if (Build.VERSION.SDK_INT >= 22) {
+        if (Build.VERSION.SDK_INT >= 21) {
             ShapeDrawable rippleShape = radius != 0 ? createForegroundShape(radius) : null;
             return new RippleDrawable(ColorStateList.valueOf(rippleColor), null, rippleShape);
         } else {
@@ -75,11 +75,9 @@ public class Utils {
             StateListDrawable rippleDrawable = new StateListDrawable();
             if (rippleShape != null) {
                 rippleShape.getPaint().setColor(rippleColor);
-            } else {
-
             }
             rippleDrawable.addState(new int[] { statePressed }, rippleShape);
-            return rippleShape;
+            return rippleDrawable;
         }
     }
 
