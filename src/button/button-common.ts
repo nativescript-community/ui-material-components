@@ -73,10 +73,6 @@ export abstract class ButtonBase extends Button {
     }
 }
 
-export const variantProperty = new Property<ButtonBase, string>({
-    name: 'variant'
-});
-variantProperty.register(ButtonBase);
 export const imageSourceProperty = new Property<ButtonBase, ImageSource>({ name: 'imageSource' });
 
 export const srcProperty = new Property<ButtonBase, any>({
