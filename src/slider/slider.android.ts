@@ -86,6 +86,8 @@ export class Slider extends View {
             }
         });
         nativeView.addOnChangeListener(this.listener);
+        nativeView.setValueFrom(this.minValue);
+        nativeView.setValueTo(this.maxValue);
     }
     disposeNativeView() {
         if (this.listener) {
@@ -135,7 +137,7 @@ export class Slider extends View {
         }
     }
     [valueProperty.setNative](value) {
-        this.nativeViewProtected.setValueTo(this.maxValue);
+        // this.nativeViewProtected.setValueTo(this.maxValue);
         this.nativeViewProtected.setValue(value);
     }
     [minValueProperty.setNative](value) {
