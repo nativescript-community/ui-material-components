@@ -199,7 +199,7 @@ class ViewWithElevationAndRipple extends View {
     [rippleColorProperty.setNative](color: Color) {
         const rippleColor = getRippleColor(color);
         const nativeViewProtected = this.nativeViewProtected;
-        if (this instanceof Button) {
+        if (this instanceof Button && isPostMarshmallow()) {
             const foreground = (nativeViewProtected as android.widget.Button).getForeground();
             if (foreground instanceof android.graphics.drawable.RippleDrawable) {
                 foreground.setColor(getColorStateList(rippleColor));
