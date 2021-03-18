@@ -1,5 +1,5 @@
 import { elevationProperty, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
-import { Color, colorProperty } from '@nativescript/core';
+import { backgroundColorProperty, Color, colorProperty } from '@nativescript/core';
 import { thumbColorProperty, thumbHollowAtStartProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
 import { SliderBase } from './slider-common';
 
@@ -43,6 +43,9 @@ export class Slider extends SliderBase {
         if (!this.rippleColor) {
             this.rippleColor = color;
         }
+    }
+    [backgroundColorProperty.setNative](value) {
+        this[trackBackgroundColorProperty.setNative](value);
     }
     [trackBackgroundColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setTrackBackgroundColorForState(color ? color.ios : null, UIControlState.Normal);
