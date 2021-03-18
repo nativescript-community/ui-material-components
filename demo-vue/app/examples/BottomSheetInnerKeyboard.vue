@@ -1,5 +1,8 @@
 <template>
     <StackLayout>
+        <Stacklayout id="test2" row="0" backgroundColor="red" verticalAlignment="top">
+            <Button id="innerButtonK" @tap="onButtonTap" text="close with result k"></Button>
+        </Stacklayout>
         <MDTextField margin="10" variant="filled" hint="Working TextView hint 🤪" />
         <PreviousNextView />
     </StackLayout>
@@ -16,6 +19,9 @@ export default Vue.extend({
     methods: {
         onShownInBottomSheet(args) {
             console.log('onShownInBottomSheet');
+        },
+        onButtonTap(event) {
+            this.$closeBottomSheet(event.object.id);
         }
     }
 });
