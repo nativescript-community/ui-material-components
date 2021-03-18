@@ -1,5 +1,5 @@
 import { elevationProperty, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
-import { backgroundColorProperty, Color, colorProperty } from '@nativescript/core';
+import { Color, backgroundColorProperty, colorProperty } from '@nativescript/core';
 import { thumbColorProperty, thumbHollowAtStartProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
 import { SliderBase } from './slider-common';
 
