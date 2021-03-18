@@ -32,6 +32,7 @@ import {
     placeholderColorProperty
 } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
+import { layout } from '@nativescript/core/utils';
 import { TextFieldBase } from './textfield.common';
 
 @NativeClass
@@ -171,12 +172,18 @@ export class TextField extends TextFieldBase {
         }
 
         this.firstEdit = false;
-        if (this.width === 'auto') {
+        if (this.mCanAutoSize) {
             // if the textfield is in auto size we need to request a layout to take the new text width into account
             this.requestLayout();
         }
         return true;
         // return super.textFieldShouldChangeCharactersInRangeReplacementString(textField, range, replacementString);
+    }
+    private mCanAutoSize = false;
+    public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
+        const widthMode = layout.getMeasureSpecMode(widthMeasureSpec);
+        this.mCanAutoSize = widthMode !== layout.EXACTLY;
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
