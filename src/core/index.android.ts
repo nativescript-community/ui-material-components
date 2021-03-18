@@ -285,10 +285,12 @@ class ViewWithElevationAndRipple extends View {
 }
 class ViewOverride extends View {
     [androidElevationProperty.setNative](value: number) {
-        // override to prevent override of elevation
+        // override to prevent override of dynamicElevationOffset
+        this[elevationProperty.setNative](value);
     }
     [androidDynamicElevationOffsetProperty.setNative](value: number) {
-        // override to prevent override of dynamicElevationOffset
+        // override to prevent override of elevation
+        this[dynamicElevationOffsetProperty.setNative](value);
     }
 }
 
