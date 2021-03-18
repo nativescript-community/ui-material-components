@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.9](https://github.com/Akylas/nativescript-material-components/compare/v5.2.8...v5.2.9) (2021-03-18)
+
+
+### Bug Fixes
+
+* **core:** some lollipop carsh fixes ([1222a0f](https://github.com/Akylas/nativescript-material-components/commit/1222a0f86c78f92c8cd2fd253458cfdec18c2757))
+* **slider:** ios background color not working ([712a860](https://github.com/Akylas/nativescript-material-components/commit/712a8608f83bbe18e40494a0a50142e32f5c542a))
+* **textfield:** ensure we request layout only when necessary ([3aa93f0](https://github.com/Akylas/nativescript-material-components/commit/3aa93f0e95883f921bba9de3934ae398b0fb69d8))
+
+
+
+
+
 ## [5.2.8](https://github.com/Akylas/nativescript-material-components/compare/v5.2.7...v5.2.8) (2021-02-24)
 
 
