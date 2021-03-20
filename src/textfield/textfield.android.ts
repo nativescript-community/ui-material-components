@@ -184,10 +184,10 @@ export class TextField extends TextFieldBase {
     }
 
     [helperProperty.setNative](value: string) {
-        (this.layoutView as any).setHelperText(!!value ? value : null);
+        (this.layoutView as any).setHelperText(value ? value : null);
     }
     [errorProperty.setNative](value: string) {
-        this.layoutView.setError(!!value ? value : null);
+        this.layoutView.setError(value ? value : null);
         this.layoutView.setErrorEnabled(!!value);
     }
 

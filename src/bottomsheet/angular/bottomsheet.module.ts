@@ -6,7 +6,7 @@ import { install } from '@nativescript-community/ui-material-bottomsheet';
 @NgModule()
 export class NativeScriptMaterialBottomSheetModule {
     // This flag help us to avoid problems when using the new development workflow
-    private static initialized: boolean = false;
+    private static initialized = false;
 
     static forRoot(): ModuleWithProviders<NativeScriptMaterialBottomSheetModule> {
         return {

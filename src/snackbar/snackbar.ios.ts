@@ -121,7 +121,7 @@ export class SnackBar extends SnackBarBase {
 
     public dismiss(): Promise<any> {
         return new Promise((resolve, reject) => {
-            if (!!SnackBar._snackbarManager) {
+            if (SnackBar._snackbarManager) {
                 try {
                     SnackBar._snackbarManager.dismissAndCallCompletionBlocksWithCategory(null);
                     this._dismissReason = DismissReasons.MANUAL;

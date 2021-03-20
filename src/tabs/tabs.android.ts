@@ -362,7 +362,7 @@ export class Tabs extends TabsBase {
     private _tabsBar: org.nativescript.widgets.TabsBar;
     private _viewPager: org.nativescript.widgets.TabViewPager;
     private _pagerAdapter: androidx.viewpager.widget.PagerAdapter;
-    private _androidViewId: number = -1;
+    private _androidViewId = -1;
     public _originalBackground: any;
     private _textTransform: Enums.TextTransformType = 'uppercase';
     private _selectedItemColor: Color;

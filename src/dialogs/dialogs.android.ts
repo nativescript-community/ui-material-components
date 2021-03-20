@@ -397,7 +397,7 @@ export function prompt(arg: any): Promise<PromptResult> {
             );
 
             showDialog(dlg, options);
-            if (!!options.autoFocus) {
+            if (options.autoFocus) {
                 textField.requestFocus();
             }
         } catch (ex) {
@@ -462,7 +462,7 @@ export function login(arg: any): Promise<LoginResult> {
 
             const alert = createAlertDialogBuilder(options);
 
-            if (!!options.beforeShow) {
+            if (options.beforeShow) {
                 options.beforeShow(options, userNameTextField, passwordTextField);
             }
             const dlg = prepareAndCreateAlertDialog(
@@ -478,7 +478,7 @@ export function login(arg: any): Promise<LoginResult> {
                 (r) => ({ result: r, userName: userNameTextField.text, password: passwordTextField.text })
             );
             showDialog(dlg, options);
-            if (!!options.autoFocus) {
+            if (options.autoFocus) {
                 userNameTextField.requestFocus();
             }
         } catch (ex) {

@@ -970,7 +970,7 @@ export class Tabs extends TabsBase {
         }
     }
 
-    private setIconColor(tabStripItem: TabStripItem, forceReload: boolean = false): void {
+    private setIconColor(tabStripItem: TabStripItem, forceReload = false): void {
         // if there is no change in the css color and there is no item color set
         // we don't need to reload the icon
         if (!forceReload && !this._selectedItemColor && !this._unSelectedItemColor) {
@@ -1210,7 +1210,7 @@ export class Tabs extends TabsBase {
     //     this.viewController.tabBar.alignment = alignment;
     // }
 
-    private setViewTextAttributes(view: View, setSelected: boolean = false): any {
+    private setViewTextAttributes(view: View, setSelected = false): any {
         if (!view) {
             return null;
         }

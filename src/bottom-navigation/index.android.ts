@@ -243,7 +243,7 @@ function iterateIndexRange(index: number, eps: number, lastIndex: number, callba
 @CSSType('BottomNavigation')
 export class BottomNavigation extends TabNavigationBase {
     private _contentView: org.nativescript.widgets.ContentLayout;
-    private _contentViewId: number = -1;
+    private _contentViewId = -1;
     private _bottomNavigationBar: org.nativescript.widgets.BottomNavigationBar;
     private _currentFragment: androidx.fragment.app.Fragment;
     private _currentTransaction: androidx.fragment.app.FragmentTransaction;
