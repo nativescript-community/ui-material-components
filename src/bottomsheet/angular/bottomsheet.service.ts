@@ -1,52 +1,51 @@
 import { ComponentFactoryResolver, ComponentRef, Injectable, Injector, Type, ViewContainerRef } from '@angular/core';
+import type { BottomSheetOptions as MaterialBottomSheetOptions } from '@nativescript-community/ui-material-bottomsheet';
 import { AppHostView, DetachedLoader, once } from '@nativescript/angular';
-import { ProxyViewContainer } from '@nativescript/core';
+import { LayoutBase, ProxyViewContainer, View } from '@nativescript/core';
 import { Observable, Subject } from 'rxjs';
 import { filter, first, map } from 'rxjs/operators';
-import { BottomSheetOptions as MaterialBottomSheetOptions } from '@nativescript-community/ui-material-bottomsheet'; // ViewWithBottomSheetBase
 
-export type BaseShowBottomSheetOptions = Pick<MaterialBottomSheetOptions, Exclude<keyof MaterialBottomSheetOptions, 'closeCallback' | 'view'>>;
+export type BaseShowBottomSheetOptions = Omit<MaterialBottomSheetOptions, 'closeCallback' | 'view'>;
 
 export interface BottomSheetOptions extends BaseShowBottomSheetOptions {
     viewContainerRef?: ViewContainerRef;
 }
 
 export class BottomSheetParams {
-    context: any;
-    closeCallback: (...args) => void;
-
-    constructor(context, closeCallback) {
-        this.context = context;
-        this.closeCallback = closeCallback;
-    }
+    public constructor(public readonly context: any, public readonly closeCallback: (...args) => void) {}
 }
+
+type ViewWithDialogRoot = View & { _ngDialogRoot?: View };
 
 @Injectable({
     providedIn: 'root'
 })
 export class BottomSheetService {
-    private detachedLoader: ComponentRef<DetachedLoader>;
-    private componentView: any;//ViewWithBottomSheetBase;
-    private subject$: Subject<{ requestId: number; result: any }> = new Subject();
-    private currentId = 0;
+    private readonly results$ = new Subject<{ sheetId: number; result: any }>();
 
-    show<T = any>(type: Type<any>, options: BottomSheetOptions): Observable<T> {
+    private detachedLoader: ComponentRef<DetachedLoader>;
+
+    private componentView: View;
+
+    private nextSheetId = 0;
+
+    public show<T = any>(type: Type<any>, options: BottomSheetOptions): Observable<T> {
         return this.showWithCloseCallback(type, options).observable;
     }
 
-    showWithCloseCallback<T = any>(type: Type<any>, options: BottomSheetOptions): { observable: Observable<T>; closeCallback: () => void } {
+    public showWithCloseCallback<T = any>(type: Type<any>, options: BottomSheetOptions): { observable: Observable<T>; closeCallback: () => void } {
         if (!options.viewContainerRef) {
             throw new Error('No viewContainerRef: Make sure you pass viewContainerRef in BottomSheetOptions.');
         }
-        this.currentId++;
-        const requestId = this.currentId;
+
+        const sheetId = this.nextSheetId++;
         const parentView = this.getParentView(options.viewContainerRef);
         const factoryResolver = this.getFactoryResolver(options.viewContainerRef);
-        const bottomSheetParams = this.getBottomSheetParams(options.context, requestId);
+        const bottomSheetParams = this.getBottomSheetParams(options.context, sheetId);
 
         this.detachedLoader = this.createDetachedLoader(factoryResolver, bottomSheetParams, options.viewContainerRef);
 
-        this.loadComponent(type).then(componentView => {
+        this.loadComponent(type).then((componentView) => {
             parentView.showBottomSheet({
                 ...options,
                 ...bottomSheetParams,
@@ -55,17 +54,17 @@ export class BottomSheetService {
         });
 
         return {
-            observable: this.subject$.pipe(
-                filter(item => item && item.requestId === requestId),
-                map(item => item.result),
+            observable: this.results$.pipe(
+                filter((item) => item && item.sheetId === sheetId),
+                map((item) => item.result),
                 first()
             ),
             closeCallback: bottomSheetParams.closeCallback
         };
     }
 
-    private getParentView(viewContainerRef: ViewContainerRef): any {//ViewWithBottomSheetBase {
-        let parentView = viewContainerRef.element.nativeElement;
+    private getParentView(viewContainerRef: ViewContainerRef): View {
+        let parentView = viewContainerRef.element.nativeElement as View;
 
         if (parentView instanceof AppHostView && parentView.ngAppRoot) {
             parentView = parentView.ngAppRoot;
@@ -74,8 +73,8 @@ export class BottomSheetService {
         // _ngDialogRoot is the first child of the previously detached proxy.
         // It should have 'viewController' (iOS) or '_dialogFragment' (Android) available for
         // presenting future bottomSheets views.
-        if (parentView._ngDialogRoot) {
-            parentView = parentView._ngDialogRoot;
+        if ((parentView as ViewWithDialogRoot)._ngDialogRoot) {
+            parentView = (parentView as ViewWithDialogRoot)._ngDialogRoot;
         }
 
         return parentView;
@@ -87,7 +86,7 @@ export class BottomSheetService {
         return componentContainer.injector.get(ComponentFactoryResolver);
     }
 
-    private createChildInjector(bottomSheetParams: BottomSheetParams, containerRef: ViewContainerRef) {
+    private createChildInjector(bottomSheetParams: BottomSheetParams, containerRef: ViewContainerRef): Injector {
         return Injector.create({
             providers: [
                 {
@@ -99,15 +98,16 @@ export class BottomSheetService {
         });
     }
 
-    private getBottomSheetParams(context: any, requestId: number) {
-        const closeCallback = once(args => {
-            this.subject$.next({ result: args, requestId });
+    private getBottomSheetParams(context: any, sheetId: number): BottomSheetParams {
+        const closeCallback = once((args) => {
+            this.results$.next({ result: args, sheetId });
 
             if (!this.componentView) {
                 return;
             }
 
             this.componentView.closeBottomSheet();
+
             this.detachedLoader.instance.detectChanges();
             this.detachedLoader.destroy();
         });
@@ -122,7 +122,7 @@ export class BottomSheetService {
         return viewContainerRef.createComponent(detachedLoaderFactory, 0, childInjector, null);
     }
 
-    private async loadComponent(type: Type<any>): Promise<any> {//ViewWithBottomSheetBase> {
+    private async loadComponent(type: Type<any>): Promise<View> {
         try {
             const componentRef = await this.detachedLoader.instance.loadComponent(type);
             const detachedProxy = componentRef.location.nativeElement as ProxyViewContainer;
@@ -131,16 +131,17 @@ export class BottomSheetService {
                 throw new Error('BottomSheet content has more than one root view.');
             }
 
-            this.componentView = detachedProxy.getChildAt(0) as any;//ViewWithBottomSheetBase;
+            this.componentView = detachedProxy.getChildAt(0);
 
-            if (this.componentView.parent) {
-                (this.componentView.parent)._ngDialogRoot = this.componentView;
-                (this.componentView.parent).removeChild(this.componentView);
+            if (this.componentView.parent instanceof LayoutBase) {
+                (this.componentView.parent as ViewWithDialogRoot)._ngDialogRoot = this.componentView;
+                this.componentView.parent.removeChild(this.componentView);
             }
 
             return this.componentView;
-        } catch (e) {
-            console.error(e);
+        } catch (err) {
+            console.error(err);
+
             return null;
         }
     }
