@@ -5,6 +5,6 @@
         "sourceMap": false,
         "plugins": []
     },
-    "include":["packages/**/*.d.ts"],
-    "exclude": ["**/*android*", "**/*ios*"]
+    "include": ["src/**/*.d.ts"],
+    "exclude": ["**/*android*", "**/*ios*", "**/typings/*"]
 }
