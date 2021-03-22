@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.10](https://github.com/nativescript-community/ui-material-components/compare/v5.2.9...v5.2.10) (2021-03-22)
+
+
+### Bug Fixes
+
+* **bottomsheet:** maintain multiple modal instances at the same time ([169a388](https://github.com/nativescript-community/ui-material-components/commit/169a38899f1e8f6ef2647166dce96834ef60130a)), closes [#250](https://github.com/nativescript-community/ui-material-components/issues/250)
+* bring back androidElevation and androidDynamicElevation. Should work too ([ea5c995](https://github.com/nativescript-community/ui-material-components/commit/ea5c99574b575e6ed73636e7e5e4047879bf1361))
+* marshmallow fix ([2005dab](https://github.com/nativescript-community/ui-material-components/commit/2005dab1e84898d624d1c230249cf891460e42cd))
+
+
+
+
+
 ## [5.2.9](https://github.com/nativescript-community/ui-material-components/compare/v5.2.8...v5.2.9) (2021-03-18)
 
 
