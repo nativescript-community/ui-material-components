@@ -1,3 +1,8 @@
+/**
+ * Material Dialogs component
+ * @module @nativescript-community/ui-material-dialogs
+ */
+
 /* eslint-disable no-redeclare */
 /* eslint-disable @typescript-eslint/unified-signatures */
 import { ActionOptions, AlertOptions, ConfirmOptions, LoginResult, PromptResult, LoginOptions as TNSLoginOptions, PromptOptions as TNSPromptOptions } from '@nativescript/core';

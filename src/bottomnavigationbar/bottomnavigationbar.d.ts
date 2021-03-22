@@ -1,3 +1,8 @@
+/**
+ * Material BottomNavigationBar component
+ * @module @nativescript-community/ui-material-bottomnavigationbar
+ */
+
 import { Color, EventData, ImageSource } from '@nativescript/core';
 import { BottomNavigationBarBase, BottomNavigationTabBase, TabPressedEventData, TabReselectedEventData, TabSelectedEventData, TitleVisibility } from './bottomnavigationbar-common';
 
@@ -9,6 +14,7 @@ export declare class BottomNavigationBar extends BottomNavigationBarBase {
     static tabReselectedEvent: string;
     readonly ios: any;
     readonly android: any;
+    //@ts-ignore
     readonly items: BottomNavigationTab[];
     selectedTabIndex: number;
     titleVisibility: TitleVisibility;
@@ -23,6 +29,9 @@ export declare class BottomNavigationBar extends BottomNavigationBarBase {
     on(event: 'tabReselected', callback: (args: TabReselectedEventData) => void, thisArg?: any): void;
 
     // Needed when 'on' method is overriden.
+    /**
+     * @hidden
+     */
     on(eventNames: string, callback: (data: EventData) => void, thisArg?: any): void;
     protected createTabs(tabs?: BottomNavigationTab[]): void;
     protected selectTabNative(index: number): void;

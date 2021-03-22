@@ -1,3 +1,8 @@
+/**
+ * Material SpeedDial component
+ * @module @nativescript-community/ui-material-speedial
+ */
+
 import {
     Animation,
     AnimationDefinition,

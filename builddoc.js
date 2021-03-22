@@ -17,7 +17,7 @@ const createTypeScriptApiDocs = exports.createTypeScriptApiDocs = async ({ entry
   const app = new td.Application();
   app.options.addReader(new td.TSConfigReader());
     console.log('createTypeScriptApiDocs', typeDocOptions);
-    let files = await globby(['src/**/*.d.ts', '!**/page', '!**/typings', '!**/angular'], {
+    let files = await globby(['src/**/*.d.ts', 'src/**/index.ts', '!**/references.d.ts', '!**/appbar', '!**/page', '!**/typings', '!**/angular', '!**/vue', '!**/react'], {
         absolute: true,
         cwd: path.join(process.cwd())
       })

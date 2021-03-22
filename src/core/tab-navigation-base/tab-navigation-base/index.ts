@@ -1,4 +1,6 @@
-﻿// Types
+﻿/**
+ * @hidden
+*/
 import { AddArrayFromBuilder, AddChildFromBuilder, CoercibleProperty, Color, EventData, Property, View, ViewBase, booleanConverter } from '@nativescript/core';
 import { TabNavigationBase as TabNavigationBaseDefinition } from '.';
 import { TabContentItem } from '../tab-content-item';

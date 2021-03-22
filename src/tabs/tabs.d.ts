@@ -1,7 +1,7 @@
 ﻿/**
  * Contains the Tabs class, which represents a tab navigation component.
- * @module "ui/tabs"
- */ /** */
+ * @module @nativescript-community/ui-material-tabs
+ */
 
 import { Property } from '@nativescript/core';
 import { TabNavigationBase } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';

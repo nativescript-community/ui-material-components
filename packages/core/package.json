@@ -39,11 +39,11 @@
         "email": "martin@akylas.fr"
     },
     "bugs": {
-        "url": "https://github.com/Akylas/nativescript-material-components/issues"
+        "url": "https://github.com/nativescript-community/ui-material-components/issues"
     },
     "license": "Apache-2.0",
-    "homepage": "https://github.com/Akylas/nativescript-material-components",
-    "repository": "https://github.com/Akylas/nativescript-material-components",
+    "homepage": "https://github.com/nativescript-community/ui-material-components",
+    "repository": "https://github.com/nativescript-community/ui-material-components",
     "readmeFilename": "README.md",
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc",
     "dependencies": {

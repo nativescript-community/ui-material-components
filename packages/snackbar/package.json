@@ -32,7 +32,7 @@
         "email": "martin@akylas.fr"
     },
     "bugs": {
-        "url": "https://github.com/Akylas/nativescript-material-components/issues"
+        "url": "https://github.com/nativescript-community/ui-material-components/issues"
     },
     "license": "Apache-2.0",
     "repository": {

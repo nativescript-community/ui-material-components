@@ -1,3 +1,8 @@
+/**
+ * Material TextView component
+ * @module @nativescript-community/ui-material-textview
+ */
+
 import { Color, EditableTextBase } from '@nativescript/core';
 
 type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];

@@ -1,3 +1,8 @@
+/**
+ * Material SnackBar component
+ * @module @nativescript-community/ui-material-snackbar
+ */
+
 import { View } from '@nativescript/core';
 
 export declare class SnackBar {

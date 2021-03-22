@@ -1,4 +1,6 @@
-﻿// Types
+﻿/**
+ * @module @nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item
+*/
 import { AddChildFromBuilder, CSSType, Color, Image, Label, PropertyChangeData, PseudoClassHandler, View, ViewBase } from '@nativescript/core';
 import { backgroundColorProperty, backgroundInternalProperty } from '@nativescript/core/ui/styling/style-properties';
 import { TextTransform, textTransformProperty } from '@nativescript/core/ui/text-base';

@@ -1,3 +1,8 @@
+/**
+ * Material Core component
+ * @module @nativescript-community/ui-material-core
+ */
+
 import { Color, LengthPercentUnit, PercentLength } from '@nativescript/core';
 
 declare module '@nativescript/core/ui/core/view' {

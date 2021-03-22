@@ -1,3 +1,9 @@
+
+/**
+ * Material BottomSheet component
+ * @module @nativescript-community/ui-material-bottomsheet
+ */
+
 import { View, ViewBase } from '@nativescript/core';
 import { BottomSheetOptions } from './bottomsheet-common';
 
@@ -9,32 +15,43 @@ export declare abstract class ViewWithBottomSheetBase extends View {
      * @hidden
      */
      protected _closeBottomSheetCallback: Function;
+
     // used when the bottomSheet is dismissed
     /**
      * @hidden
      */
      public _onDismissBottomSheetCallback: Function;
+
     /**
      * @hidden
      */
      _bottomSheetFragment: any; // com.google.android.material.bottomsheet.BottomSheetDialogFragment
+
     /**
      * @hidden
      */
      protected abstract _hideNativeBottomSheet(parent: any, whenClosedCallback: any): void;
+
     /**
      * @hidden
      */
      protected _bottomSheetContext: any;
+
     /**
      * @hidden
      */
     _raiseShownBottomSheetEvent(): void;
+
+    /**
+     * @hidden
+     */
     public _bottomSheetClosed(): void;
+
     /**
      * @hidden
      */
     protected abstract _showNativeBottomSheet(parent: View, options: BottomSheetOptions): void;
+
     /**
      * @hidden
      */

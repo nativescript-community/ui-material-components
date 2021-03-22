@@ -1,3 +1,8 @@
+/**
+ * Material TextField component
+ * @module @nativescript-community/ui-material-textfield
+ */
+
 import { Color, TextField as NTextField } from '@nativescript/core';
 
 type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
