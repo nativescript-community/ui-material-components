@@ -77,13 +77,13 @@ export declare abstract class ViewWithBottomSheetBase extends View {
      * @param {BottomSheetOptions} options
      * @returns {View} view - the view shown in the BottomSheet
      */
-    public showBottomSheet(options: BottomSheetOptions): View;
+    public showBottomSheet(options: BottomSheetOptions): ViewBase;
 }
 export function install(): void;
 
 declare module '@nativescript/core/ui/core/view' {
     interface View {
         closeBottomSheet(...args: any): void;
-        showBottomSheet(options: BottomSheetOptions): View;
+        showBottomSheet(options: BottomSheetOptions): ViewBase;
     }
 }
