@@ -29,6 +29,7 @@ export const progressBackgroundColorProperty = new CssProperty<Style, Color>({
 });
 export const busyProperty = new Property<ProgressBase, boolean>({
     name: 'busy',
+    defaultValue: false,
     valueConverter: booleanConverter
 });
 export const indeterminateProperty = new Property<ProgressBase, boolean>({

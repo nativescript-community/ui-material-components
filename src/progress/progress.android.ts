@@ -1,5 +1,5 @@
 import { themer } from '@nativescript-community/ui-material-core';
-import { Color, colorProperty, visibilityProperty } from '@nativescript/core';
+import { Color, PercentLength, colorProperty, heightProperty, visibilityProperty } from '@nativescript/core';
 import { Visibility } from '@nativescript/core/ui/enums';
 import { ProgressBase, busyProperty, indeterminateProperty, progressBackgroundColorProperty, progressColorProperty } from './progress-common';
 
@@ -8,7 +8,13 @@ export class Progress extends ProgressBase {
         super();
         this.color = themer.getPrimaryColor() as Color;
     }
-    nativeViewProtected: android.widget.ProgressBar;
+    nativeViewProtected: com.google.android.material.progressindicator.LinearProgressIndicator;
+
+
+    // added in 1.3.0
+    createNativeView() {
+        return new com.google.android.material.progressindicator.LinearProgressIndicator(this._context);
+    }
 
     [progressColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setProgressTintList(color ? android.content.res.ColorStateList.valueOf(color.android) : null);
@@ -23,9 +29,10 @@ export class Progress extends ProgressBase {
         return false;
     }
     [busyProperty.setNative](value) {
-        // if (value) {
         this.nativeViewProtected.setVisibility(value ? android.view.View.VISIBLE : android.view.View.INVISIBLE);
-        // }
+    }
+    [heightProperty.setNative](value) {
+        this.nativeViewProtected.setTrackThickness(PercentLength.toDevicePixels(value));
     }
     // [visibilityProperty.setNative](value) {
     //     switch (value) {
