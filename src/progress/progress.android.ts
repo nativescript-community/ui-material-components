@@ -10,7 +10,6 @@ export class Progress extends ProgressBase {
     }
     nativeViewProtected: com.google.android.material.progressindicator.LinearProgressIndicator;
 
-
     // added in 1.3.0
     createNativeView() {
         return new com.google.android.material.progressindicator.LinearProgressIndicator(this._context);
