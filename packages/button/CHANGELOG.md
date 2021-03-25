@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.11](https://github.com/nativescript-community/ui-material-components/tree/master/packages/button/compare/v5.2.10...v5.2.11) (2021-03-25)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-button
+
+
+
+
+
 ## [5.2.10](https://github.com/nativescript-community/ui-material-components/tree/master/packages/button/compare/v5.2.9...v5.2.10) (2021-03-22)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button

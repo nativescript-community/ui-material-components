@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.11](https://github.com/nativescript-community/ui-material-components/compare/v5.2.10...v5.2.11) (2021-03-25)
+
+
+### Bug Fixes
+
+* **progress:** upgraded material lib to improve the progress component. Now you can change its height ([f88ff37](https://github.com/nativescript-community/ui-material-components/commit/f88ff378f0c68f1db3c2902e0f3c7a0cb40831af))
+
+
+
+
+
 ## [5.2.10](https://github.com/nativescript-community/ui-material-components/compare/v5.2.9...v5.2.10) (2021-03-22)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-core
