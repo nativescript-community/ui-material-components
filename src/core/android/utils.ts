@@ -58,91 +58,55 @@ export const stateSets = {
         if (!this._PRESSED_STATE_SET) {
             this._PRESSED_STATE_SET = createNativeArray(state.pressed);
         }
-<<<<<<< HEAD
         return this._PRESSED_STATE_SET as Array<number>;
-=======
-        return this._PRESSED_STATE_SET as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get HOVERED_FOCUSED_STATE_SET() {
         if (!this._HOVERED_FOCUSED_STATE_SET) {
             this._HOVERED_FOCUSED_STATE_SET = createNativeArray(state.hovered, state.focused);
         }
-<<<<<<< HEAD
         return this._PRESSED_STATE_SET as Array<number>;
-=======
-        return this._PRESSED_STATE_SET as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get FOCUSED_STATE_SET() {
         if (!this._FOCUSED_STATE_SET) {
             this._FOCUSED_STATE_SET = createNativeArray(state.focused);
         }
-<<<<<<< HEAD
         return this._FOCUSED_STATE_SET as Array<number>;
-=======
-        return this._FOCUSED_STATE_SET as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get HOVERED_STATE_SET() {
         if (!this._HOVERED_STATE_SET) {
             this._HOVERED_STATE_SET = createNativeArray(state.hovered);
         }
-<<<<<<< HEAD
         return this._HOVERED_STATE_SET as Array<number>;
-=======
-        return this._HOVERED_STATE_SET as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get SELECTED_PRESSED_STATE_SET() {
         if (!this._SELECTED_PRESSED_STATE_SET) {
             this._SELECTED_PRESSED_STATE_SET = createNativeArray(state.enabled, state.pressed);
         }
-<<<<<<< HEAD
         return this._SELECTED_PRESSED_STATE_SET as Array<number>;
-=======
-        return this._SELECTED_PRESSED_STATE_SET as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get SELECTED_HOVERED_FOCUSED_STATE_SET() {
         if (!this._SELECTED_HOVERED_FOCUSED_STATE_SET) {
             this._SELECTED_HOVERED_FOCUSED_STATE_SET = createNativeArray(state.selected, state.hovered, state.focused);
         }
-<<<<<<< HEAD
         return this._SELECTED_HOVERED_FOCUSED_STATE_SET as Array<number>;
-=======
-        return this._SELECTED_HOVERED_FOCUSED_STATE_SET as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get SELECTED_FOCUSED_STATE_SET() {
         if (!this._SELECTED_FOCUSED_STATE_SET) {
             this._SELECTED_FOCUSED_STATE_SET = createNativeArray(state.selected, state.focused);
         }
-<<<<<<< HEAD
         return this._SELECTED_FOCUSED_STATE_SET as Array<number>;
-=======
-        return this._SELECTED_FOCUSED_STATE_SET as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get SELECTED_HOVERED_STATE_SET() {
         if (!this._SELECTED_HOVERED_STATE_SET) {
             this._SELECTED_HOVERED_STATE_SET = createNativeArray(state.selected, state.hovered);
         }
-<<<<<<< HEAD
         return this._SELECTED_HOVERED_STATE_SET as Array<number>;
-=======
-        return this._SELECTED_HOVERED_STATE_SET as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get SELECTED_STATE_SET() {
         if (!this._SELECTED_STATE_SET) {
             this._SELECTED_STATE_SET = createNativeArray(state.selected);
         }
-<<<<<<< HEAD
         return this._SELECTED_STATE_SET as Array<number>;
-=======
-        return this._SELECTED_STATE_SET as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get BACKGROUND_DEFAULT_STATE_1() {
         if (!this._BACKGROUND_DEFAULT_STATE_1) {
@@ -154,51 +118,31 @@ export const stateSets = {
         if (!this._BACKGROUND_DEFAULT_STATE_1_SET) {
             this._BACKGROUND_DEFAULT_STATE_1_SET = createNativeArray(state.enabled);
         }
-<<<<<<< HEAD
         return this._BACKGROUND_DEFAULT_STATE_1_SET as Array<number>;
-=======
-        return this._BACKGROUND_DEFAULT_STATE_1_SET as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get BACKGROUND_SELECTED_STATE() {
         if (!this._BACKGROUND_SELECTED_STATE) {
             this._BACKGROUND_SELECTED_STATE = createNativeArray(state.window_focused, state.enabled, state.pressed);
         }
-<<<<<<< HEAD
         return this._BACKGROUND_SELECTED_STATE as Array<number>;
-=======
-        return this._BACKGROUND_SELECTED_STATE as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get BACKGROUND_CHECKED_STATE() {
         if (!this._BACKGROUND_CHECKED_STATE) {
             this._BACKGROUND_CHECKED_STATE = createNativeArray(state.window_focused, state.enabled, state.checked);
         }
-<<<<<<< HEAD
         return this._BACKGROUND_CHECKED_STATE as Array<number>;
-=======
-        return this._BACKGROUND_CHECKED_STATE as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get BACKGROUND_FOCUSED_STATE() {
         if (!this._BACKGROUND_FOCUSED_STATE) {
             this._BACKGROUND_FOCUSED_STATE = createNativeArray(state.focused, state.window_focused, state.enabled);
         }
-<<<<<<< HEAD
         return this._BACKGROUND_FOCUSED_STATE as Array<number>;
-=======
-        return this._BACKGROUND_FOCUSED_STATE as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     },
     get BACKGROUND_DISABLED_STATE() {
         if (!this._BACKGROUND_DISABLED_STATE) {
             this._BACKGROUND_DISABLED_STATE = createNativeArray(-state.enabled);
         }
-<<<<<<< HEAD
         return this._BACKGROUND_DISABLED_STATE as Array<number>;
-=======
-        return this._BACKGROUND_DISABLED_STATE as androidNative.Array<number>;
->>>>>>> chore: NativeScript 8 cleanup
     }
 };
 

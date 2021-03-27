@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 /**
  * Material Core component
  * @module @nativescript-community/ui-material-core
  */
 
-import { Color, LengthPercentUnit, PercentLength } from '@nativescript/core';
-=======
 import { Color, CoreTypes, PercentLength } from '@nativescript/core';
->>>>>>> chore: NativeScript 8 cleanup
 
 declare module '@nativescript/core/ui/core/view' {
     interface View {
