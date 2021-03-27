@@ -1,10 +1,10 @@
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
-import { TabNavigationBase, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+import { TabNavigationBase, itemsProperty, selectedIndexProperty, tabStripProperty, getIconSpecSize } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 // Types
 // Requires
-import { Application, CSSType, Color, Font, Frame, ImageSource, Utils, View, getIconSpecSize, Enums } from '@nativescript/core';
+import { Application, CSSType, Color, Font, Frame, ImageSource, Utils, View, Enums } from '@nativescript/core';
 import { getTransformedText } from '@nativescript/core/ui/text-base';
 export { TabContentItem, TabStrip, TabStripItem };
 

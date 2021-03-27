@@ -4,7 +4,7 @@ import {
     Color,
     ControlStateChangeListener,
     GestureTypes,
-    LengthPercentUnit,
+    CoreTypes,
     TouchAction,
     TouchGestureEventData,
     Utils,
@@ -26,7 +26,7 @@ function createCornerFamily(cornerFamily: CornerFamily): MDCShapeCornerFamily {
             return MDCShapeCornerFamily.Rounded;
     }
 }
-function cornerTreatment(cornerFamily: CornerFamily, cornerSize: number | LengthPercentUnit) {
+function cornerTreatment(cornerFamily: CornerFamily, cornerSize: number | CoreTypes.LengthPercentUnit) {
     let corner: MDCCornerTreatment;
     if (typeof cornerSize === 'object') {
         if (cornerFamily === CornerFamily.CUT) {

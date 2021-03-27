@@ -1,9 +1,9 @@
-import { Application, CoercibleProperty, Color, Font, Frame, ImageSource, Property, Enums, Utils, getIconSpecSize, getTransformedText, isIOS } from '@nativescript/core';
+import { Application, CoercibleProperty, Color, Font, Frame, ImageSource, Property, Enums, Utils, getTransformedText, isIOS } from '@nativescript/core';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
 import { TabsBase, animationEnabledProperty, offscreenTabLimitProperty, swipeEnabledProperty } from './tabs-common';
-import { itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+import { itemsProperty, selectedIndexProperty, tabStripProperty, getIconSpecSize } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 export { TabContentItem, TabStrip, TabStripItem };
 
 export * from './tabs-common';

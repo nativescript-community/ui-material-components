@@ -5,7 +5,7 @@
     "repository": "http://www.github.com/NativeScript/nativescript-ui-sidedrawer.git",
     "dependencies": {
         "@mdi/font": "4.9.95",
-        "@nativescript/core": "8.0.0-alpha.2",
+        "@nativescript/core": "8.0.0-alpha.8",
         "@nativescript-community/text": "1.4.9",
         "@nativescript-community/ui-material-activityindicator": "file:../packages/activityindicator",
         "@nativescript-community/ui-material-bottom-navigation": "file:../packages/bottom-navigation",

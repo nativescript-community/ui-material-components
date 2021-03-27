@@ -1,8 +1,8 @@
 ﻿import { rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
-import { Color, Device, Font, Frame, IOSHelper, ImageSource, Trace, Utils, View, ViewBase, getIconSpecSize } from '@nativescript/core';
+import { Color, Device, Font, Frame, IOSHelper, ImageSource, Trace, Utils, View, ViewBase } from '@nativescript/core';
 import { TabsBase, swipeEnabledProperty } from './tabs-common';
 
-import { itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+import { itemsProperty, selectedIndexProperty, tabStripProperty, getIconSpecSize } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
