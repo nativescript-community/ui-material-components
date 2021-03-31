@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.12](https://github.com/nativescript-community/ui-material-components/compare/v5.2.11...v5.2.12) (2021-03-31)
+
+
+### Bug Fixes
+
+* **progress:** prevent error on indeterminate change ([5a6b2b4](https://github.com/nativescript-community/ui-material-components/commit/5a6b2b45bffb86fbaad525490937e407b3f2176f))
+
+
+
+
+
 ## [5.2.11](https://github.com/nativescript-community/ui-material-components/compare/v5.2.10...v5.2.11) (2021-03-25)
 
 
