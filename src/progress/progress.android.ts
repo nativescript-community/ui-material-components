@@ -22,7 +22,13 @@ export class Progress extends ProgressBase {
         this.nativeViewProtected.setProgressBackgroundTintList(color ? android.content.res.ColorStateList.valueOf(color.android) : null);
     }
     [indeterminateProperty.setNative](value: boolean) {
-        this.nativeViewProtected.setIndeterminate(value);
+        if (this.nativeViewProtected.getVisibility() === android.view.View.VISIBLE) {
+            this.nativeViewProtected.setVisibility(android.view.View.GONE);
+            this.nativeViewProtected.setIndeterminate(value);
+            this.nativeViewProtected.setVisibility(android.view.View.VISIBLE);
+        } else {
+            this.nativeViewProtected.setIndeterminate(value);
+        }
     }
     [busyProperty.getDefault]() {
         return false;
