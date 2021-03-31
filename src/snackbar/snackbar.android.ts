@@ -52,9 +52,9 @@ export class SnackBar extends SnackBarBase {
         while (attachView['_modal']) {
             attachView = attachView['_modal'];
         }
-        const page = (attachView instanceof Page ? attachView : attachView.page);
-        let nView =  (page.nativeViewProtected as android.view.View).getParent();
-        if ( page.hasActionBar) {
+        const page = attachView instanceof Page ? attachView : attachView.page;
+        let nView = (page.nativeViewProtected as android.view.View).getParent();
+        if (page.hasActionBar) {
             nView = nView.getParent();
         }
         let nCoordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout = (page as any).nCoordinatorLayout;
@@ -64,9 +64,9 @@ export class SnackBar extends SnackBarBase {
             if (options.view) {
                 const nAttachedView = options.view.nativeViewProtected as android.view.View;
                 const params = new android.widget.FrameLayout.LayoutParams(nAttachedView.getWidth(), nAttachedView.getHeight());
-                const myArray = (Array).create('int', 2);
+                const myArray = Array.create('int', 2);
                 nView.getLocationOnScreen(myArray);
-                const otherArray = (Array).create('int', 2);
+                const otherArray = Array.create('int', 2);
                 options.view.nativeViewProtected.getLocationOnScreen(otherArray);
 
                 params.topMargin = otherArray[1] - myArray[1];
@@ -130,14 +130,14 @@ export class SnackBar extends SnackBarBase {
                     resolve({
                         command: SnackBarAction.ACTION,
                         reason: _getReason(1),
-                        event: args,
+                        event: args
                     });
                     if (this._snackbarCallback) {
                         this._snackbarCallback.cb = null;
                         this._snackbarCallback = null;
                     }
                     this._snackbar = null;
-                },
+                }
             });
 
             // set the action text, click listener
@@ -152,7 +152,7 @@ export class SnackBar extends SnackBarBase {
                     resolve({
                         command: SnackBarAction.DISMISS,
                         reason: _getReason(event),
-                        event,
+                        event
                     });
                     (cb as any).resolve.resolve = null;
                 }
@@ -167,9 +167,7 @@ export class SnackBar extends SnackBarBase {
                 }
             },
 
-            onShown(snackbar: com.google.android.material.snackbar.Snackbar) {
-
-            },
+            onShown(snackbar: com.google.android.material.snackbar.Snackbar) {}
         });
         cb.setListener(callbackListener);
         (cb as any).nListener = callbackListener; // handles the resolve of the promise
@@ -207,7 +205,7 @@ export class SnackBar extends SnackBarBase {
                     setTimeout(() => {
                         resolve({
                             action: SnackBarAction.DISMISS,
-                            reason: _getReason(3),
+                            reason: _getReason(3)
                         });
                     }, 200);
                     this._snackbar = null;
@@ -217,7 +215,7 @@ export class SnackBar extends SnackBarBase {
             } else {
                 resolve({
                     action: SnackBarAction.NONE,
-                    message: 'No actionbar to dismiss',
+                    message: 'No actionbar to dismiss'
                 });
             }
         });
