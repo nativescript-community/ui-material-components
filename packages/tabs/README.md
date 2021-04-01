@@ -45,37 +45,37 @@ IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-materia
 <Page xmlns:mdt="@nativescript-community/ui-material-tabs">
     <mdt:Tabs selectedIndex="1">
         <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-        <TabStrip>
-            <TabStripItem>
+        <MDTabStrip>
+            <MDTabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
-            </TabStripItem>
-            <TabStripItem class="special">
+            </MDTabStripItem>
+            <MDTabStrip>Item class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
-            </TabStripItem>
-            <TabStripItem class="special">
+            </MDTabStripItem>
+            <MDTabStrip>Item class="special">
                 <Label text="Search"></Label>
                 <Image src="font://&#xf00e;" class="fas"></Image>
-            </TabStripItem>
-        </TabStrip>
+            </MDTabStripItem>
+        </MDTabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
-        <TabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
-        <TabContentItem>
+        </MDTabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
-        <TabContentItem>
+        </MDTabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
+        </MDTabContentItem>
     </Tabs>
 </Page>
 ```
@@ -133,37 +133,37 @@ import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-mater
 ```html
     <MDTabs selectedIndex="1">
         <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-        <TabStrip>
-            <TabStripItem>
+        <MDTabStrip>
+            <MDTabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
-            </TabStripItem>
-            <TabStripItem class="special">
+            </MDTabStripItem>
+            <MDTabStrip>Item class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
-            </TabStripItem>
-            <TabStripItem class="special">
+            </MDTabStripItem>
+            <MDTabStrip>Item class="special">
                 <Label text="Search"></Label>
                 <Image src="font://&#xf00e;" class="fas"></Image>
-            </TabStripItem>
-        </TabStrip>
+            </MDTabStripItem>
+        </MDTabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
-        <TabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
-        <TabContentItem>
+        </MDTabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
-        <TabContentItem>
+        </MDTabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
+        </MDTabContentItem>
     </MDTabs>
 ```
 
@@ -180,37 +180,37 @@ Vue.use(TabsPlugin);
 ```html
 <MDTabs selectedIndex="1">
         <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-        <TabStrip>
-            <TabStripItem>
+        <MDTabStrip>
+            <MDTabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
-            </TabStripItem>
-            <TabStripItem class="special">
+            </MDTabStripItem>
+            <MDTabStrip>Item class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
-            </TabStripItem>
-            <TabStripItem class="special">
+            </MDTabStripItem>
+            <MDTabStrip>Item class="special">
                 <Label text="Search"></Label>
                 <Image src="font://&#xf00e;" class="fas"></Image>
-            </TabStripItem>
-        </TabStrip>
+            </MDTabStripItem>
+        </MDTabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
-        <TabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
-        <TabContentItem>
+        </MDTabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
-        <TabContentItem>
+        </MDTabContentItem>
+        <MDTabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
+        </MDTabContentItem>
     </MDTabs>
 ```
 
@@ -220,7 +220,7 @@ Vue.use(TabsPlugin);
 
 | Name                      | Type                  | Description                                                               |
 | -------------             | :-------------:       | -----:                                                                    |
-| items                     | Array<TabContentItem> | 	Gets or sets the items of the BottomNavigation.                         |
+| items                     | Array<MDTabContentItem> | 	Gets or sets the items of the BottomNavigation.                         |
 |selectedIndex              | number                | 	Gets or sets the selectedIndex of the BottomNavigation.                 |
 |swipeEnabled               | boolean               |	Gets or sets the swipe enabled state of the Tabs.                       |
 |offscreenTabLimit          | number                |	Gets or sets the number of offscreen preloaded tabs of the Tabs.        |
