@@ -3,8 +3,12 @@ module.exports = {
     plugins: ['prettier', '@typescript-eslint', '@nativescript'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
-        createDefaultProgram: true,
-        project: './tsconfig.json'
+        ecmaVersion: 2018,
+        sourceType: 'module',
+        parser: '@typescript-eslint/parser',
+        project: 'tsconfig.eslint.json',
+        warnOnUnsupportedTypeScriptVersion: false,
+        tsconfigRootDir: __dirname,
     },
     rules: {
         'prettier/prettier': 'warn',

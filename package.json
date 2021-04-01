@@ -60,7 +60,7 @@
         "@nativescript-community/text": "^1.4.9",
         "@nativescript/angular": "ns8",
         "@nativescript/core": "8.0.0-alpha.8",
-        "@nativescript/eslint-plugin": "0.0.1",
+        "@nativescript/eslint-plugin": "0.0.4",
         "@nativescript/hook": "~2.0.0",
         "@nativescript/types": "7.3.0",
         "@nativescript/webpack": "~4.0.1",
