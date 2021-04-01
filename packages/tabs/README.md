@@ -45,37 +45,37 @@ IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-materia
 <Page xmlns:mdt="@nativescript-community/ui-material-tabs">
     <mdt:Tabs selectedIndex="1">
         <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-        <MDTabStrip>
-            <MDTabStripItem>
+        <mdt:TabStrip>
+            <mdt:TabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
-            </MDTabStripItem>
-            <MDTabStrip>Item class="special">
+            </TabStripItem>
+            <mdt:TabStripItem>Item class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
-            </MDTabStripItem>
-            <MDTabStrip>Item class="special">
+            </TabStripItem>
+            <mdt:TabStripItem>Item class="special">
                 <Label text="Search"></Label>
                 <Image src="font://&#xf00e;" class="fas"></Image>
-            </MDTabStripItem>
-        </MDTabStrip>
+            </TabStripItem>
+        </TabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
-        <MDTabContentItem>
+        <mdt:TabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
-        </MDTabContentItem>
-        <MDTabContentItem>
+        </TabContentItem>
+        <mdt:TabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
-        </MDTabContentItem>
-        <MDTabContentItem>
+        </TabContentItem>
+        <mdt:TabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
-        </MDTabContentItem>
+        </TabContentItem>
     </Tabs>
 </Page>
 ```
