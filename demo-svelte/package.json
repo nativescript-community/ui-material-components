@@ -29,7 +29,7 @@
   "dependencies": {
     "@nativescript-community/ui-material-button": "file:../packages/button",
     "@nativescript-community/ui-material-speeddial": "file:../packages/speeddial",
-    "@nativescript/core": "~7.0.0",
+    "@nativescript/core": "8.0.0-alpha.8",
     "@nativescript/theme": "~2.3.0",
     "svelte-native": "~0.9.4"
   },

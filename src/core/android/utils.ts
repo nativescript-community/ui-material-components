@@ -1,6 +1,5 @@
 import { VerticalTextAlignment } from '@nativescript-community/text';
-import { Application, Color, Utils, ViewBase, profile } from '@nativescript/core';
-import { TextAlignment } from '@nativescript/core/ui/text-base';
+import { Application, Color, Utils, ViewBase, profile, Enums } from '@nativescript/core';
 
 let isPostLollipopVar: boolean;
 export function isPostLollipop() {
@@ -250,7 +249,7 @@ export function getAttr(context: android.content.Context, id: string) {
     return context.getResources().getIdentifier(id, 'attr', context.getPackageName());
 }
 
-export function getHorizontalGravity(textAlignment: TextAlignment) {
+export function getHorizontalGravity(textAlignment: Enums.TextAlignmentType) {
     switch (textAlignment) {
         case 'initial':
         case 'left':

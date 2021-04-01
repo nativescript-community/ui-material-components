@@ -13,8 +13,9 @@ import {
     borderTopRightRadiusProperty,
     colorProperty,
     fontInternalProperty,
+    Enums,
 } from '@nativescript/core';
-import { TextTransform, textTransformProperty } from '@nativescript/core/ui/text-base';
+import { textTransformProperty } from '@nativescript/core/ui/text-base';
 import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
 
 let buttonScheme: MDCContainerScheme;
@@ -220,7 +221,7 @@ export class Button extends ButtonBase {
         }
     }
 
-    [textTransformProperty.setNative](value: TextTransform) {
+    [textTransformProperty.setNative](value: Enums.TextTransformType) {
         this.nativeViewProtected.uppercaseTitle = value !== 'none';
     }
     [rippleColorProperty.setNative](color: Color) {

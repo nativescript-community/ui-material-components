@@ -95,7 +95,7 @@ export class SpeedDialButton extends SpeedDialItemButton {}
 
 @CSSType('MDSpeedDialItem')
 export class SpeedDialItem extends SpeedDialItemBase {
-    public actualActive: boolean = false;
+    public actualActive = false;
     titleView: SpeedDialItemTitle;
     button: SpeedDialItemButton;
     fabmenu: WeakRef<SpeedDial>;

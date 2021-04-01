@@ -4,7 +4,7 @@ import { VerticalTextAlignment } from '@nativescript-community/text';
 
 @CSSType('MDButton')
 export abstract class ButtonBase extends Button {
-    public variant: string = 'contained';
+    public variant = 'contained';
     @cssProperty elevation: number;
     @cssProperty dynamicElevationOffset: number;
     @cssProperty rippleColor: Color;

@@ -57,7 +57,7 @@ export abstract class BottomNavigationBarBase extends View {
     @cssProperty badgeColor: Color;
     @cssProperty badgeTextColor: Color;
 
-    selectedTabIndex: number = 0;
+    selectedTabIndex = 0;
     titleVisibility: TitleVisibility = TitleVisibility.always;
 
     protected _items: BottomNavigationTabBase[] = [];

@@ -177,8 +177,8 @@ export function getRippleColor(color: string | Color) {
 }
 
 class ViewWithElevationAndRipple extends View {
-    @cssProperty elevation: number = 0;
-    @cssProperty dynamicElevationOffset: number = 0;
+    @cssProperty elevation = 0;
+    @cssProperty dynamicElevationOffset = 0;
     @cssProperty rippleColor: Color;
     rippleDrawable: android.graphics.drawable.Drawable;
     getRippleColor() {

@@ -1,11 +1,11 @@
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
-import { TabNavigationBase, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+import { TabNavigationBase, itemsProperty, selectedIndexProperty, tabStripProperty, getIconSpecSize } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 // Types
 // Requires
-import { Application, CSSType, Color, Font, Frame, ImageSource, Utils, View, getIconSpecSize } from '@nativescript/core';
-import { TextTransform, getTransformedText } from '@nativescript/core/ui/text-base';
+import { Application, CSSType, Color, Font, Frame, ImageSource, Utils, View, Enums } from '@nativescript/core';
+import { getTransformedText } from '@nativescript/core/ui/text-base';
 export { TabContentItem, TabStrip, TabStripItem };
 
 // TODO: Impl trace
@@ -243,13 +243,13 @@ function iterateIndexRange(index: number, eps: number, lastIndex: number, callba
 @CSSType('BottomNavigation')
 export class BottomNavigation extends TabNavigationBase {
     private _contentView: org.nativescript.widgets.ContentLayout;
-    private _contentViewId: number = -1;
+    private _contentViewId = -1;
     private _bottomNavigationBar: org.nativescript.widgets.BottomNavigationBar;
     private _currentFragment: androidx.fragment.app.Fragment;
     private _currentTransaction: androidx.fragment.app.FragmentTransaction;
     private _attachedToWindow = false;
     public _originalBackground: any;
-    private _textTransform: TextTransform = 'none';
+    private _textTransform: Enums.TextTransformType = 'none';
     private _selectedItemColor: Color;
     private _unSelectedItemColor: Color;
 
@@ -675,9 +675,9 @@ export class BottomNavigation extends TabNavigationBase {
         });
     }
 
-    private getItemLabelTextTransform(tabStripItem: TabStripItem): TextTransform {
+    private getItemLabelTextTransform(tabStripItem: TabStripItem): Enums.TextTransformType {
         const nestedLabel = tabStripItem.label;
-        let textTransform: TextTransform = null;
+        let textTransform: Enums.TextTransformType = null;
         if (nestedLabel && nestedLabel.style.textTransform !== 'initial') {
             textTransform = nestedLabel.style.textTransform;
         } else if (tabStripItem.style.textTransform !== 'initial') {
@@ -924,17 +924,17 @@ export class BottomNavigation extends TabNavigationBase {
         tabStripItem.nativeViewProtected.setTypeface(value.getAndroidTypeface());
     }
 
-    public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: TextTransform): void {
+    public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: Enums.TextTransformType): void {
         const titleLabel = tabStripItem.label;
         const title = getTransformedText(titleLabel.text, value);
         tabStripItem.nativeViewProtected.setText(title);
     }
 
-    public getTabBarTextTransform(): TextTransform {
+    public getTabBarTextTransform(): Enums.TextTransformType {
         return this._textTransform;
     }
 
-    public setTabBarTextTransform(value: TextTransform): void {
+    public setTabBarTextTransform(value: Enums.TextTransformType): void {
         const items = this.tabStrip && this.tabStrip.items;
         if (items) {
             items.forEach((tabStripItem) => {

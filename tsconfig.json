@@ -18,6 +18,8 @@
         "noImplicitReturns": true,
         "noImplicitUseStrict": true,
         "noFallthroughCasesInSwitch": true,
+        "skipDefaultLibCheck": true,
+        "skipLibCheck": true,
         "sourceRoot": "../src",
         "baseUrl": ".",
         "outDir": "./plugin",

@@ -12,9 +12,10 @@ import {
     androidElevationProperty,
     backgroundInternalProperty,
     colorProperty,
-    profile
+    profile,
+    Enums
 } from '@nativescript/core';
-import { TextAlignment, TextTransform, textAlignmentProperty, textTransformProperty } from '@nativescript/core/ui/text-base';
+import { textAlignmentProperty, textTransformProperty } from '@nativescript/core/ui/text-base';
 import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
@@ -140,7 +141,7 @@ export class Button extends ButtonBase {
     setStrokeWidth(value) {
         this.nativeViewProtected.setStrokeWidth(value);
     }
-    [textTransformProperty.setNative](value: TextTransform) {
+    [textTransformProperty.setNative](value: Enums.TextTransformType) {
         this.nativeViewProtected.setAllCaps(value !== 'none');
     }
     [backgroundInternalProperty.getDefault]() {
@@ -168,7 +169,7 @@ export class Button extends ButtonBase {
         }
     }
 
-    [textAlignmentProperty.setNative](value: TextAlignment) {
+    [textAlignmentProperty.setNative](value: Enums.TextAlignmentType) {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(value) | getVerticalGravity(this.verticalTextAlignment));
     }
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {

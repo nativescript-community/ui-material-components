@@ -419,7 +419,7 @@ export function prompt(arg: any): Promise<PromptResult> {
                 },
                 (r) => ({ result: r, text: textField.text })
             );
-            if (!!options.autoFocus) {
+            if (options.autoFocus) {
                 alertController.autoFocusTextField = textField;
             }
             showUIAlertController(alertController);
@@ -496,11 +496,11 @@ export function login(arg: any): Promise<LoginResult> {
                 (r) => ({ result: r, userName: userNameTextField.text, password: passwordTextField.text })
             );
 
-            if (!!options.beforeShow) {
+            if (options.beforeShow) {
                 options.beforeShow(options, userNameTextField, passwordTextField);
             }
             showUIAlertController(alertController);
-            if (!!options.autoFocus) {
+            if (options.autoFocus) {
                 alertController.autoFocusTextField = userNameTextField;
             }
         } catch (ex) {

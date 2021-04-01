@@ -30,9 +30,9 @@ export function applyMixins(
                 } else {
                     derivedCtor.prototype[name] = function (...args) {
                         if (options) {
-                            if (!!options.override) {
+                            if (options.override) {
                                 return baseCtor.prototype[name].apply(this, args);
-                            } else if (!!options.after) {
+                            } else if (options.after) {
                                 oldImpl.apply(this, args);
                                 return baseCtor.prototype[name].apply(this, args);
                             } else {
@@ -57,9 +57,9 @@ export function applyMixins(
             } else {
                 derivedCtor.prototype[symbol] = function (...args) {
                     if (options) {
-                        if (!!options.override) {
+                        if (options.override) {
                             return baseCtor.prototype[symbol].apply(this, args);
-                        } else if (!!options.after) {
+                        } else if (options.after) {
                             oldImpl.apply(this, args);
                             return baseCtor.prototype[symbol].apply(this, args);
                         } else {

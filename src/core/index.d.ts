@@ -3,7 +3,7 @@
  * @module @nativescript-community/ui-material-core
  */
 
-import { Color, LengthPercentUnit, PercentLength } from '@nativescript/core';
+import { Color, CoreTypes, PercentLength } from '@nativescript/core';
 
 declare module '@nativescript/core/ui/core/view' {
     interface View {
@@ -20,11 +20,11 @@ export interface TypographyOptions {
 import { CornerFamily } from './index.common';
 export { CornerFamily };
 export interface ShapeProperties {
-    cornerSize?: number | LengthPercentUnit;
-    cornerSizeTopRight?: number | LengthPercentUnit;
-    cornerSizeBottomLeft?: number | LengthPercentUnit;
-    cornerSizeTopLeft?: number | LengthPercentUnit;
-    cornerSizeBottomRight?: number | LengthPercentUnit;
+    cornerSize?: number | CoreTypes.LengthPercentUnit;
+    cornerSizeTopRight?: number | CoreTypes.LengthPercentUnit;
+    cornerSizeBottomLeft?: number | CoreTypes.LengthPercentUnit;
+    cornerSizeTopLeft?: number | CoreTypes.LengthPercentUnit;
+    cornerSizeBottomRight?: number | CoreTypes.LengthPercentUnit;
     cornerFamily?: CornerFamily;
     cornerFamilyTopLeft?: CornerFamily;
     cornerFamilyTopRight?: CornerFamily;

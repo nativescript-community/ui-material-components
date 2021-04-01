@@ -1,8 +1,8 @@
 ﻿import { rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
-import { Color, Device, Font, Frame, IOSHelper, ImageSource, Trace, Utils, View, ViewBase, getIconSpecSize } from '@nativescript/core';
+import { Color, Device, Font, Frame, IOSHelper, ImageSource, Trace, Utils, View, ViewBase } from '@nativescript/core';
 import { TabsBase, swipeEnabledProperty } from './tabs-common';
 
-import { itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+import { itemsProperty, selectedIndexProperty, tabStripProperty, getIconSpecSize } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
@@ -970,7 +970,7 @@ export class Tabs extends TabsBase {
         }
     }
 
-    private setIconColor(tabStripItem: TabStripItem, forceReload: boolean = false): void {
+    private setIconColor(tabStripItem: TabStripItem, forceReload = false): void {
         // if there is no change in the css color and there is no item color set
         // we don't need to reload the icon
         if (!forceReload && !this._selectedItemColor && !this._unSelectedItemColor) {
@@ -1210,7 +1210,7 @@ export class Tabs extends TabsBase {
     //     this.viewController.tabBar.alignment = alignment;
     // }
 
-    private setViewTextAttributes(view: View, setSelected: boolean = false): any {
+    private setViewTextAttributes(view: View, setSelected = false): any {
         if (!view) {
             return null;
         }

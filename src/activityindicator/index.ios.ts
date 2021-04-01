@@ -76,12 +76,12 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     // }
 
     [colorProperty.setNative](value: UIColor | Color) {
-        const color = value instanceof Color ? value.ios : value;;
+        const color = value instanceof Color ? value.ios : value;
         this.nativeViewProtected.cycleColors  = color ? NSArray.arrayWithObject(color) : null;
         // this.getColorThemer().primaryColor = value instanceof Color ? value.ios : value;
         // MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(this.getColorThemer(), this.nativeViewProtected);
     }
     [indeterminateProperty.setNative](value: boolean) {
-        this.nativeViewProtected.indicatorMode = !!value ? MDCActivityIndicatorMode.Indeterminate : MDCActivityIndicatorMode.Determinate;
+        this.nativeViewProtected.indicatorMode = value ? MDCActivityIndicatorMode.Indeterminate : MDCActivityIndicatorMode.Determinate;
     }
 }
