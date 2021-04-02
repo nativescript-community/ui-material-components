@@ -8,6 +8,7 @@ repositories {
 dependencies {
     implementation files('/Volumes/dev/androidSDK/platforms/android-28/android.jar')
     implementation "androidx.annotation:annotation:1.1.0"
+	implementation "androidx.viewpager:viewpager:1.0.0"
 }
 sourceSets {
     main {
