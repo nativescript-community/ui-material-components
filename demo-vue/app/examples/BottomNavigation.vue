@@ -23,7 +23,7 @@
 
             <!-- The number of MDTabContentItem components should corespond to the number of MDTabStripItem components -->
             <MDTabContentItem>
-                <GridLayout backgroundColor="red" @loaded="onLoaded('red')">
+                <GridLayout backgroundColor="red" @loaded="onLoaded('red')" @tap="navigateToTabsSample">
                     <Label text="Home Page" class="h2 text-center"></Label>
                 </GridLayout>
             </MDTabContentItem>
@@ -43,8 +43,8 @@
 
 <script lang="ts">
 import * as frameModule from '@nativescript/core/ui/frame';
-import { Tabs } from '@nativescript-community/ui-material-tabs';
 import { EventData } from '@nativescript/core';
+import Tabs from './Tabs.vue';
 
 import Vue from 'vue';
 
@@ -63,6 +63,10 @@ export default Vue.extend({
         },
         onLoaded(name) {
             console.log('onTabLoaded', name)
+        },
+        navigateToTabsSample() {
+                this.$navigateTo(Tabs);
+
         }
     }
 });
