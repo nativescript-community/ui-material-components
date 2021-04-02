@@ -1,10 +1,10 @@
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
-import { TabNavigationBase, itemsProperty, selectedIndexProperty, tabStripProperty, getIconSpecSize } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+import { TabNavigationBase, getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 // Types
 // Requires
-import { Application, CSSType, Color, Font, Frame, ImageSource, Utils, View, Enums } from '@nativescript/core';
+import { Application, CSSType, Color, Enums, Font, Frame, ImageSource, Utils, View } from '@nativescript/core';
 import { getTransformedText } from '@nativescript/core/ui/text-base';
 export { TabContentItem, TabStrip, TabStripItem };
 
@@ -138,7 +138,7 @@ function initializeNativeClasses() {
     }
 
     @NativeClass
-    class BottomNavigationBarImplementation extends org.nativescript.widgets.BottomNavigationBar {
+    class BottomNavigationBarImplementation extends com.nativescript.material.core.BottomNavigationBar {
         constructor(context: android.content.Context, public owner: BottomNavigation) {
             super(context);
 
@@ -222,7 +222,7 @@ function initializeNativeClasses() {
     appResources = Application.android.context.getResources();
 }
 
-function setElevation(bottomNavigationBar: org.nativescript.widgets.BottomNavigationBar) {
+function setElevation(bottomNavigationBar: com.nativescript.material.core.BottomNavigationBar) {
     const compat = androidx.core.view.ViewCompat;
     if (compat.setElevation) {
         const val = DEFAULT_ELEVATION * Utils.layout.getDisplayDensity();
@@ -244,7 +244,7 @@ function iterateIndexRange(index: number, eps: number, lastIndex: number, callba
 export class BottomNavigation extends TabNavigationBase {
     private _contentView: org.nativescript.widgets.ContentLayout;
     private _contentViewId = -1;
-    private _bottomNavigationBar: org.nativescript.widgets.BottomNavigationBar;
+    private _bottomNavigationBar: com.nativescript.material.core.BottomNavigationBar;
     private _currentFragment: androidx.fragment.app.Fragment;
     private _currentTransaction: androidx.fragment.app.FragmentTransaction;
     private _attachedToWindow = false;
@@ -252,6 +252,7 @@ export class BottomNavigation extends TabNavigationBase {
     private _textTransform: Enums.TextTransformType = 'none';
     private _selectedItemColor: Color;
     private _unSelectedItemColor: Color;
+    fragments: androidx.fragment.app.Fragment[] = [];
 
     constructor() {
         super();
@@ -423,7 +424,6 @@ export class BottomNavigation extends TabNavigationBase {
         this.items.forEach((item, i) => {
             item.unloadView(item.content);
         });
-        this.disposeTabFragments();
     }
 
     public disposeNativeView() {
@@ -434,6 +434,7 @@ export class BottomNavigation extends TabNavigationBase {
         this.nativeViewProtected[ownerSymbol] = null;
 
         super.disposeNativeView();
+        this.disposeTabFragments();
     }
 
     public _onRootViewReset(): void {
@@ -447,11 +448,11 @@ export class BottomNavigation extends TabNavigationBase {
     }
 
     private disposeTabFragments(): void {
-        const fragmentManager = this._getFragmentManager();
-        const fragments = fragmentManager.getFragments().toArray();
+        const fragments = this.fragments;
         for (let i = 0; i < fragments.length; i++) {
             this.removeFragment(fragments[i]);
         }
+        this.fragments = [];
     }
     private attachFragment(fragment: androidx.fragment.app.Fragment, id?: number, name?: string): void {
         const fragmentManager = this._getFragmentManager();
@@ -505,9 +506,8 @@ export class BottomNavigation extends TabNavigationBase {
         }
 
         const fragment = this.instantiateItem(this._contentView, index);
-        this.setPrimaryItem(index, fragment);
+        this.setPrimaryItem(index, fragment, true);
     }
-
     private instantiateItem(container: android.view.ViewGroup, position: number): androidx.fragment.app.Fragment {
         const name = makeFragmentName(container.getId(), position);
 
@@ -517,6 +517,7 @@ export class BottomNavigation extends TabNavigationBase {
             this.attachFragment(fragment);
         } else {
             fragment = TabFragment.newInstance(this._domId, position);
+            this.fragments.push(fragment);
             this.attachFragment(fragment, container.getId(), name);
         }
 
@@ -528,8 +529,8 @@ export class BottomNavigation extends TabNavigationBase {
         return fragment;
     }
 
-    private setPrimaryItem(position: number, fragment: androidx.fragment.app.Fragment): void {
-        if (fragment !== this._currentFragment) {
+    private setPrimaryItem(position: number, fragment: androidx.fragment.app.Fragment, force = false): void {
+        if (fragment !== this._currentFragment || force) {
             if (this._currentFragment != null) {
                 this._currentFragment.setMenuVisibility(false);
                 this._currentFragment.setUserVisibleHint(false);
@@ -557,6 +558,10 @@ export class BottomNavigation extends TabNavigationBase {
     private destroyItem(position: number, fragment: androidx.fragment.app.Fragment): void {
         if (fragment) {
             this.removeFragment(fragment);
+            const index = this.fragments.indexOf(fragment);
+            if (index !== -1) {
+                this.fragments.splice(index, 1);
+            }
             if (this._currentFragment === fragment) {
                 this._currentFragment = null;
             }
@@ -657,7 +662,7 @@ export class BottomNavigation extends TabNavigationBase {
             return;
         }
 
-        const tabItems = new Array<org.nativescript.widgets.TabItemSpec>();
+        const tabItems = new Array<com.nativescript.material.core.TabItemSpec>();
         items.forEach((tabStripItem, i, arr) => {
             tabStripItem._index = i;
             if (items[i]) {
@@ -687,8 +692,8 @@ export class BottomNavigation extends TabNavigationBase {
         return textTransform || this._textTransform;
     }
 
-    private createTabItemSpec(tabStripItem: TabStripItem): org.nativescript.widgets.TabItemSpec {
-        const tabItemSpec = new org.nativescript.widgets.TabItemSpec();
+    private createTabItemSpec(tabStripItem: TabStripItem): com.nativescript.material.core.TabItemSpec {
+        const tabItemSpec = new com.nativescript.material.core.TabItemSpec();
 
         if (tabStripItem.isLoaded) {
             const titleLabel = tabStripItem.label;
@@ -797,7 +802,7 @@ export class BottomNavigation extends TabNavigationBase {
         return scaledImage;
     }
 
-    public updateAndroidItemAt(index: number, spec: org.nativescript.widgets.TabItemSpec) {
+    public updateAndroidItemAt(index: number, spec: com.nativescript.material.core.TabItemSpec) {
         this._bottomNavigationBar.updateItemAt(index, spec);
     }
 

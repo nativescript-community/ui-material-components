@@ -9,7 +9,7 @@ export * from './tab-content-item-common';
 
 export class TabContentItem extends TabContentItemBase {
     public nativeViewProtected: org.nativescript.widgets.GridLayout;
-    public tabItemSpec: org.nativescript.widgets.TabItemSpec;
+    public tabItemSpec: com.nativescript.material.core.TabItemSpec;
     public index: number;
 
     get _hasFragments(): boolean {

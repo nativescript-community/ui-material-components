@@ -1,9 +1,9 @@
-import { Application, CoercibleProperty, Color, Font, Frame, ImageSource, Property, Enums, Utils, getTransformedText, isIOS } from '@nativescript/core';
+import { Application, CoercibleProperty, Color, Enums, Font, Frame, ImageSource, Property, Utils, getTransformedText, isIOS } from '@nativescript/core';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
 import { TabsBase, animationEnabledProperty, offscreenTabLimitProperty, swipeEnabledProperty } from './tabs-common';
-import { itemsProperty, selectedIndexProperty, tabStripProperty, getIconSpecSize } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 export { TabContentItem, TabStrip, TabStripItem };
 
 export * from './tabs-common';
@@ -172,6 +172,7 @@ function initializeNativeClasses() {
                 this.mCurTransaction.attach(fragment);
             } else {
                 fragment = TabFragmentImplementation.newInstance(this.owner._domId, position);
+                this.owner.fragments.push(fragment);
                 this.mCurTransaction.add(container.getId(), fragment, name);
             }
 
@@ -200,6 +201,11 @@ function initializeNativeClasses() {
             }
 
             const fragment: androidx.fragment.app.Fragment = object as androidx.fragment.app.Fragment;
+
+            const index = this.owner.fragments.indexOf(fragment);
+            if (index !== -1) {
+                this.owner.fragments.splice(index, 1);
+            }
             this.mCurTransaction.detach(fragment);
 
             if (this.mCurrentPrimaryItem === fragment) {
@@ -272,7 +278,7 @@ function initializeNativeClasses() {
     }
 
     @NativeClass
-    class TabsBarImplementation extends org.nativescript.widgets.TabsBar {
+    class TabsBarImplementation extends com.nativescript.material.core.TabsBar {
         constructor(context: android.content.Context, public owner: Tabs) {
             super(context);
 
@@ -335,7 +341,7 @@ function getDefaultAccentColor(context: android.content.Context): number {
     return defaultAccentColor;
 }
 
-function setElevation(grid: org.nativescript.widgets.GridLayout, tabsBar: org.nativescript.widgets.TabsBar, tabsPosition: string) {
+function setElevation(grid: org.nativescript.widgets.GridLayout, tabsBar: com.nativescript.material.core.TabsBar, tabsPosition: string) {
     const compat = androidx.core.view.ViewCompat as any;
     if (compat.setElevation) {
         const val = DEFAULT_ELEVATION * Utils.layout.getDisplayDensity();
@@ -359,14 +365,15 @@ function iterateIndexRange(index: number, eps: number, lastIndex: number, callba
 }
 
 export class Tabs extends TabsBase {
-    private _tabsBar: org.nativescript.widgets.TabsBar;
-    private _viewPager: org.nativescript.widgets.TabViewPager;
+    private _tabsBar: com.nativescript.material.core.TabsBar;
+    private _viewPager: com.nativescript.material.core.TabViewPager;
     private _pagerAdapter: androidx.viewpager.widget.PagerAdapter;
     private _androidViewId = -1;
     public _originalBackground: any;
     private _textTransform: Enums.TextTransformType = 'uppercase';
     private _selectedItemColor: Color;
     private _unSelectedItemColor: Color;
+    fragments: androidx.fragment.app.Fragment[] = [];
 
     constructor() {
         super();
@@ -398,7 +405,7 @@ export class Tabs extends TabsBase {
 
         const context: android.content.Context = this._context;
         const nativeView = new org.nativescript.widgets.GridLayout(context);
-        const viewPager = new org.nativescript.widgets.TabViewPager(context);
+        const viewPager = new com.nativescript.material.core.TabViewPager(context);
         const tabsBar = new TabsBar(context, this);
         const lp = new org.nativescript.widgets.CommonLayoutParams();
         const primaryColor = Utils.android.resources.getPaletteColor(PRIMARY_COLOR, context);
@@ -534,6 +541,7 @@ export class Tabs extends TabsBase {
         this._tabsBar = null;
         this._viewPager = null;
         super.disposeNativeView();
+        this.disposeCurrentFragments();
     }
 
     public _onRootViewReset(): void {
@@ -549,11 +557,13 @@ export class Tabs extends TabsBase {
     private disposeCurrentFragments(): void {
         const fragmentManager = this._getFragmentManager();
         const transaction = fragmentManager.beginTransaction();
-        const fragments = fragmentManager.getFragments().toArray();
+
+        const fragments = this.fragments;
         for (let i = 0; i < fragments.length; i++) {
             transaction.remove(fragments[i]);
         }
         transaction.commitNowAllowingStateLoss();
+        this.fragments = [];
     }
 
     private shouldUpdateAdapter(items: TabContentItem[]) {
@@ -611,7 +621,7 @@ export class Tabs extends TabsBase {
             return;
         }
 
-        const tabItems = new Array<org.nativescript.widgets.TabItemSpec>();
+        const tabItems = new Array<com.nativescript.material.core.TabItemSpec>();
         items.forEach((tabStripItem: TabStripItem, i, arr) => {
             tabStripItem._index = i;
             const tabItemSpec = this.createTabItemSpec(tabStripItem);
@@ -641,8 +651,8 @@ export class Tabs extends TabsBase {
         return textTransform || this._textTransform;
     }
 
-    private createTabItemSpec(tabStripItem: TabStripItem): org.nativescript.widgets.TabItemSpec {
-        const tabItemSpec = new org.nativescript.widgets.TabItemSpec();
+    private createTabItemSpec(tabStripItem: TabStripItem): com.nativescript.material.core.TabItemSpec {
+        const tabItemSpec = new com.nativescript.material.core.TabItemSpec();
 
         if (tabStripItem.isLoaded) {
             const nestedLabel = tabStripItem.label;
@@ -749,7 +759,7 @@ export class Tabs extends TabsBase {
     //             return;
     //         }
 
-    //         const tabItems = new Array<org.nativescript.widgets.TabItemSpec>();
+    //         const tabItems = new Array<com.nativescript.material.core.TabItemSpec>();
     //         items.forEach((item: TabStripItem, i, arr) => {
     //             const tabItemSpec = createTabItemSpec(item);
     //             (item as any).index = i;
@@ -768,7 +778,7 @@ export class Tabs extends TabsBase {
     //     }
     // }
 
-    public updateAndroidItemAt(index: number, spec: org.nativescript.widgets.TabItemSpec) {
+    public updateAndroidItemAt(index: number, spec: com.nativescript.material.core.TabItemSpec) {
         this._tabsBar.updateItemAt(index, spec);
     }
 
