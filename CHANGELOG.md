@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.14](https://github.com/nativescript-community/ui-material-components/compare/v5.2.13...v5.2.14) (2021-04-02)
+
+
+### Bug Fixes
+
+* fix fragments for Tabs And BottomNavigation ([0c3e743](https://github.com/nativescript-community/ui-material-components/commit/0c3e74301b5c3a11ab9e74b024785d72914175c2))
+
+
+
+
+
 ## [5.2.13](https://github.com/nativescript-community/ui-material-components/compare/v5.2.12...v5.2.13) (2021-04-01)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.14](https://github.com/nativescript-community/ui-material-components/tree/master/packages/bottom-navigation/compare/v5.2.13...v5.2.14) (2021-04-02)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-bottom-navigation
+
+
+
+
+
 ## [5.2.13](https://github.com/nativescript-community/ui-material-components/tree/master/packages/bottom-navigation/compare/v5.2.12...v5.2.13) (2021-04-01)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-bottom-navigation
