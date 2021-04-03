@@ -49,33 +49,33 @@ IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-materia
             <MDTabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
-            </TabStripItem>
-            <TabStripItem class="special">
+            </MDTabStripItem>
+            <MDTabStripItem class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
-            </TabStripItem>
-            <TabStripItem class="special">
+            </MDTabStripItem>
+            <MDTabStripItem class="special">
                 <Label text="Search"></Label>
                 <Image src="font://&#xf00e;" class="fas"></Image>
-            </TabStripItem>
-        </TabStrip>
+            </MDTabStripItem>
+        </MDTabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
         <MDTabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
+        </MDTabContentItem>
         <MDTabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
+        </MDTabContentItem>
         <MDTabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
+        </MDTabContentItem>
     </Tabs>
 </Page>
 ```
@@ -137,33 +137,33 @@ import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-mater
             <MDTabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
-            </TabStripItem>
-            <TabStripItem class="special">
+            </MDTabStripItem>
+            <MDTabStripItem class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
-            </TabStripItem>
-            <TabStripItem class="special">
+            </MDTabStripItem>
+            <MDTabStripItem class="special">
                 <Label text="Search"></Label>
                 <Image src="font://&#xf00e;" class="fas"></Image>
-            </TabStripItem>
-        </TabStrip>
+            </MDTabStripItem>
+        </MDTabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
         <MDTabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
+        </MDTabContentItem>
         <MDTabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
+        </MDTabContentItem>
         <MDTabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
+        </MDTabContentItem>
     </MDBottomNavigation>
 ```
 
@@ -184,33 +184,33 @@ Vue.use(BottomNavigation);
             <MDTabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
-            </TabStripItem>
-            <TabStripItem class="special">
+            </MDTabStripItem>
+            <MDTabStripItem class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
-            </TabStripItem>
-            <TabStripItem class="special">
+            </MDTabStripItem>
+            <MDTabStripItem class="special">
                 <Label text="Search"></Label>
                 <Image src="font://&#xf00e;" class="fas"></Image>
-            </TabStripItem>
-        </TabStrip>
+            </MDTabStripItem>
+        </MDTabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
         <MDTabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
+        </MDTabContentItem>
         <MDTabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
+        </MDTabContentItem>
         <MDTabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
-        </TabContentItem>
+        </MDTabContentItem>
     </MDBottomNavigation>
 ```
 
