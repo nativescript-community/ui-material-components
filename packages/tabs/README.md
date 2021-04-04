@@ -189,7 +189,7 @@ Vue.use(TabsPlugin);
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
             </MDTabStripItem>
-            <MDTabStrip>Item class="special">
+            <MDTabStripItem class="special">
                 <Label text="Search"></Label>
                 <Image src="font://&#xf00e;" class="fas"></Image>
             </MDTabStripItem>
