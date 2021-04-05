@@ -452,6 +452,7 @@ export class BottomNavigation extends TabNavigationBase {
         for (let i = 0; i < fragments.length; i++) {
             this.removeFragment(fragments[i]);
         }
+        this._currentFragment = null;
         this.fragments = [];
     }
     private attachFragment(fragment: androidx.fragment.app.Fragment, id?: number, name?: string): void {
@@ -492,7 +493,7 @@ export class BottomNavigation extends TabNavigationBase {
     public changeTab(index: number) {
         // index is -1 when there are no items
         // bot nav is not attached if you change the tab too early
-        if (index === -1 || !this._attachedToWindow) {
+        if (index === -1 || (this._currentFragment && index === this.selectedIndex) || !this._attachedToWindow) {
             return;
         }
 
