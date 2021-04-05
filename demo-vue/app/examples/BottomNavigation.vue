@@ -4,7 +4,7 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
         
-        <MDBottomNavigation selectedIndex="1" unloadOnTabChange="false">
+        <MDBottomNavigation selectedIndex="1" unloadOnTabChange="true">
             <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
             <MDTabStrip>
                 <MDTabStripItem>

@@ -7,7 +7,7 @@
             <StackLayout class="page" backgroundColor="white" row="0">
                 <GridLayout class="p-20" v-if="currentTab === 0">
                     <Label class="h1 text-center" text="First tab" textWrap="true"></Label>
-                    <Button text="select third" @tap="selectThird" horizontalAlignment="center" verticalAlignment="bottom" />
+                    <Button text="select sthird" @tap="selectThird" horizontalAlignment="center" verticalAlignment="bottom" />
                 </GridLayout>
                 <GridLayout class="p-20" v-if="currentTab === 2">
                     <Label class="h1 text-center" text="Third tab" textWrap="true"></Label>
