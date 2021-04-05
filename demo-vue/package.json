@@ -2,10 +2,10 @@
     "description": "NativeScript Material Design Demo for Vue",
     "license": "SEE LICENSE IN LICENSE.md",
     "readme": "README.md",
-    "repository": "http://www.github.com/NativeScript/nativescript-ui-sidedrawer.git",
+    "main": "app/main",
     "dependencies": {
         "@mdi/font": "4.9.95",
-        "@nativescript/core": "8.0.0-alpha.8",
+        "@nativescript/core": "8.0.0",
         "@nativescript-community/text": "1.4.9",
         "@nativescript-community/ui-material-activityindicator": "file:../packages/activityindicator",
         "@nativescript-community/ui-material-bottom-navigation": "file:../packages/bottom-navigation",
@@ -26,17 +26,17 @@
         "@nativescript-community/ui-material-textview": "file:../packages/textview",
         "@nativescript/iqkeyboardmanager": "^2.0.0",
         "@nativescript/theme": "3.0.1",
-        "nativescript-vue": "~2.8.4",
-        "nativescript-vue-template-compiler": "~2.8.4"
+        "nativescript-vue": "~2.9.0",
+        "nativescript-vue-template-compiler": "~2.9.0"
     },
     "devDependencies": {
-        "@babel/core": "^7.13.10",
-        "@nativescript/android": "7.0.1",
-        "@nativescript/types": "7.3.0",
-        "@nativescript/webpack": "4.1.0",
+        "@babel/core": "^7.13.14",
+        "@nativescript/android": "8.0.0",
+        "@nativescript/types": "8.0.0",
+        "@nativescript/webpack": "5.0.0-beta.3",
         "babel-loader": "^8.2.2",
-        "nativescript-vue-template-compiler": "~2.8.4",
-        "sass-loader": "^10.0.2",
+        "nativescript-vue-template-compiler": "~2.9.0",
+        "sass-loader": "^11.0.1",
         "scss-symbols-parser": "^2.0.1",
         "string-replace-loader": "^3.0.1",
         "tns-ios":"6.5.4",
@@ -45,8 +45,8 @@
         "vue-i18n": "^8.24.1",
         "vue-loader": "^15.9.6",
         "vue-property-decorator": "^8.5.1",
-        "webpack": "^4.46.0",
-        "webpack-cli": "^3.3.12"
+        "webpack": "^5.30.0",
+        "webpack-cli": "^4.6.0"
     },
     "scripts": {
         "tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'"

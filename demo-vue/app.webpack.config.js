@@ -44,7 +44,6 @@ module.exports = (env, params = {}) => {
     const platform = env && ((env.android && 'android') || (env.ios && 'ios'));
     const tsconfig = 'tsconfig.json';
     const projectRoot = params.projectRoot || __dirname;
-    const dist = resolve(projectRoot, nsWebpack.getAppPath(platform, projectRoot));
     const appResourcesFullPath = resolve(projectRoot, appResourcesPath);
 
     if (!!development) {
@@ -141,12 +140,10 @@ module.exports = (env, params = {}) => {
     // }, {});
     const scssPrepend = `$mdi-fontFamily: ${platform === 'android' ? 'materialdesignicons-webfont' : 'Material Design Icons'};`;
 
-    const css2jsonLoaderRuleIndex = config.module.rules.findIndex(r => r.use && r.use.loader === 'css-loader');
-    const scssLoaderRuleIndex = config.module.rules.findIndex(r => Array.isArray(r.use) && r.use.indexOf('sass-loader') !== -1);
-    config.module.rules.splice(scssLoaderRuleIndex, 1);
+    const scssLoaderRuleIndex = config.module.rules.findIndex((r) => r.test && r.test.toString().indexOf('scss') !== -1);
     config.module.rules.splice(
-        css2jsonLoaderRuleIndex,
-        0,
+        scssLoaderRuleIndex,
+        1,
         {
             test: /\.scss$/,
             exclude: /\.module\.scss$/,
@@ -178,29 +175,6 @@ module.exports = (env, params = {}) => {
             ]
         }
     );
-    const indexOfTsLoaderRule = config.module.rules.findIndex(r => r.loader === 'ts-loader');
-    config.module.rules[indexOfTsLoaderRule].options.transpileOnly = true;
-    // config.module.rules[indexOfTsLoaderRule].use.options.getCustomTransformers = (program) => ({
-    //     before: [nativeClassTransformer],
-    // });
-    // const mjsRule = {
-    //     test: /\.m?js$/,
-    //     use: {
-    //         loader: 'babel-loader',
-    //         options: {
-    //             presets: [
-    //                 [
-    //                     '@babel/preset-env',
-    //                     {
-    //                         useBuiltIns: 'entry',
-    //                         exclude: ['@babel/plugin-transform-regenerator'],
-    //                         modules:'commonjs',
-    //                     },
-    //                 ],
-    //             ],
-    //         },
-    //     },
-    // };
 
     config.module.rules.push({
         // rules to replace mdi icons and not use nativescript-font-icon
@@ -224,38 +198,29 @@ module.exports = (env, params = {}) => {
     });
 
     // // we remove default rules
-    config.plugins = config.plugins.filter(p => ['CopyWebpackPlugin'].indexOf(p.constructor.name) === -1);
+    config.plugins = config.plugins.filter((p) => ['CopyPlugin'].indexOf(p.constructor.name) === -1);
     // we add our rules
-    config.plugins.unshift(
-        new CopyWebpackPlugin([
-                { from: 'fonts/!(ios|android)/**/*', to: 'fonts', flatten: true, noErrorOnMissing: true },
-                { from: 'fonts/*', to: 'fonts', flatten: true, noErrorOnMissing: true },
-                { from: `fonts/${platform}/**/*`, to: 'fonts', flatten: true, noErrorOnMissing: true },
-                {
-                    from: '**/*.+(jpg|png)',
-                    globOptions: {
-                        ignore: [`${relative(appPath, appResourcesFullPath)}/**`]
-                    },
-                    noErrorOnMissing: true
-                },
-                { from: 'assets/**/*', noErrorOnMissing: true },
-                {
-                    from: '../node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf',
-                    to: 'fonts',
-                    noErrorOnMissing: true
-                }
-            ])
-    );
+    const globOptions = { dot: false, ignore: [`**/${relative(appPath, appResourcesFullPath)}/**`] };
+    const context = nsWebpack.Utils.platform.getEntryDirPath();
+    const copyPatterns = [
+        { context, from: 'fonts/!(ios|android)/**/*', to: 'fonts/[name][ext]', noErrorOnMissing: true, globOptions },
+        { context, from: 'fonts/*', to: 'fonts/[name][ext]', noErrorOnMissing: true, globOptions },
+        { context, from: `fonts/${platform}/**/*`, to: 'fonts/[name][ext]', noErrorOnMissing: true, globOptions },
+        { context, from: '**/*.jpg', noErrorOnMissing: true, globOptions },
+        { context, from: '**/*.png', noErrorOnMissing: true, globOptions },
+        { context, from: 'assets/**/*', noErrorOnMissing: true, globOptions },
+        {
+            from: 'node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf',
+            to: 'fonts',
+            globOptions
+        }
+    ];
+    config.plugins.unshift(new CopyWebpackPlugin({ patterns: copyPatterns }));
 
     if (!!production) {
         config.plugins.push(
             new ForkTsCheckerWebpackPlugin({
-                tsconfig: resolve(tsconfig),
-                async: false,
-                useTypescriptIncrementalApi: true,
-                checkSyntacticErrors: true,
-                memoryLimit: 4096,
-                workers: 1
+                tsconfig: resolve(tsconfig)
             })
         );
     }
