@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.15](https://github.com/nativescript-community/ui-material-components/compare/v5.2.14...v5.2.15) (2021-04-05)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** prevent error on “home” ([014d520](https://github.com/nativescript-community/ui-material-components/commit/014d5201fb16e50b503823672066c03156312a8e))
+* **speeddial:** crash on notify ([a822d89](https://github.com/nativescript-community/ui-material-components/commit/a822d895b4dc1a89dbea7cf9bfbcab431b1eae7b))
+
+
+
+
+
 ## [5.2.14](https://github.com/nativescript-community/ui-material-components/compare/v5.2.13...v5.2.14) (2021-04-02)
 
 
