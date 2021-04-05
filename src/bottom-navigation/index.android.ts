@@ -397,6 +397,7 @@ export class BottomNavigation extends TabNavigationBase {
 
     _onAttachedToWindow(): void {
         super._onAttachedToWindow();
+        console.log('_onAttachedToWindow', new Error().stack)
 
         // _onAttachedToWindow called from OS again after it was detach
         // TODO: Consider testing and removing it when update to androidx.fragment:1.2.0
@@ -410,7 +411,7 @@ export class BottomNavigation extends TabNavigationBase {
 
     _onDetachedFromWindow(): void {
         super._onDetachedFromWindow();
-
+        this.disposeTabFragments();
         this._attachedToWindow = false;
     }
 
@@ -448,11 +449,16 @@ export class BottomNavigation extends TabNavigationBase {
     }
 
     private disposeTabFragments(): void {
+        console.log('disposeTabFragsments');
         const fragments = this.fragments;
         for (let i = 0; i < fragments.length; i++) {
             this.removeFragment(fragments[i]);
         }
-        this._currentFragment = null;
+        // const items = this.items;
+        // items.forEach((item, i) => {
+        //     item.unloadView(item.content);
+        // });
+        // this._currentFragment = null;
         this.fragments = [];
     }
     private attachFragment(fragment: androidx.fragment.app.Fragment, id?: number, name?: string): void {
@@ -493,7 +499,7 @@ export class BottomNavigation extends TabNavigationBase {
     public changeTab(index: number) {
         // index is -1 when there are no items
         // bot nav is not attached if you change the tab too early
-        if (index === -1 || (this._currentFragment && index === this.selectedIndex) || !this._attachedToWindow) {
+        if (index === -1 || !this._attachedToWindow) {
             return;
         }
 
@@ -522,10 +528,10 @@ export class BottomNavigation extends TabNavigationBase {
             this.attachFragment(fragment, container.getId(), name);
         }
 
-        if (fragment !== this._currentFragment) {
-            fragment.setMenuVisibility(false);
-            fragment.setUserVisibleHint(false);
-        }
+        // if (fragment !== this._currentFragment) {
+        //     fragment.setMenuVisibility(false);
+        //     fragment.setUserVisibleHint(false);
+        // }
 
         return fragment;
     }
@@ -533,10 +539,12 @@ export class BottomNavigation extends TabNavigationBase {
     private setPrimaryItem(position: number, fragment: androidx.fragment.app.Fragment, force = false): void {
         if (fragment !== this._currentFragment || force) {
             if (this._currentFragment != null) {
+                console.log('setPrimaryItem hiding curret', this.selectedIndex,this._currentFragment);
                 this._currentFragment.setMenuVisibility(false);
                 this._currentFragment.setUserVisibleHint(false);
             }
 
+            console.log('setPrimaryItem', position,fragment);
             if (fragment != null) {
                 fragment.setMenuVisibility(true);
                 fragment.setUserVisibleHint(true);

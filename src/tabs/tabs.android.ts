@@ -1,4 +1,4 @@
-import { Application, CoercibleProperty, Color, Enums, Font, Frame, ImageSource, Property, Utils, getTransformedText, isIOS } from '@nativescript/core';
+import { Application, CoercibleProperty, Color, Enums, Font, Frame, ImageSource, Property, Utils, getTransformedText, isIOS, View } from '@nativescript/core';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
@@ -14,6 +14,7 @@ const DEFAULT_ELEVATION = 4;
 
 const TABID = '_tabId';
 const INDEX = '_index';
+const ownerSymbol = Symbol('_owner');
 
 type PagerAdapter = new (owner: Tabs) => androidx.viewpager.widget.PagerAdapter;
 
@@ -21,6 +22,7 @@ type PagerAdapter = new (owner: Tabs) => androidx.viewpager.widget.PagerAdapter;
 let PagerAdapter: PagerAdapter;
 let TabsBar: any;
 let appResources: android.content.res.Resources;
+let AttachStateChangeListener: any;
 
 function makeFragmentName(viewId: number, id: number): string {
     return 'android:viewpager:' + viewId + ':' + id;
@@ -326,8 +328,33 @@ function initializeNativeClasses() {
         }
     }
 
+    @NativeClass
+    @Interfaces([android.view.View.OnAttachStateChangeListener])
+    class AttachListener extends java.lang.Object implements android.view.View.OnAttachStateChangeListener {
+        constructor() {
+            super();
+
+            return global.__native(this);
+        }
+
+        onViewAttachedToWindow(view: android.view.View): void {
+            const owner: View = view[ownerSymbol];
+            if (owner) {
+                owner._onAttachedToWindow();
+            }
+        }
+
+        onViewDetachedFromWindow(view: android.view.View): void {
+            const owner: View = view[ownerSymbol];
+            if (owner) {
+                owner._onDetachedFromWindow();
+            }
+        }
+    }
+
     PagerAdapter = FragmentPagerAdapter;
     TabsBar = TabsBarImplementation;
+    AttachStateChangeListener = new AttachListener();
     appResources = Application.android.context.getResources();
 }
 
@@ -374,6 +401,7 @@ export class Tabs extends TabsBase {
     private _selectedItemColor: Color;
     private _unSelectedItemColor: Color;
     fragments: androidx.fragment.app.Fragment[] = [];
+    private _attachedToWindow = false;
 
     constructor() {
         super();
@@ -457,11 +485,34 @@ export class Tabs extends TabsBase {
         const nativeView: any = this.nativeViewProtected;
         this._tabsBar = nativeView.tabsBar;
 
+        // nativeView.addOnAttachStateChangeListener(AttachStateChangeListener);
+        nativeView[ownerSymbol] = this;
+
         const viewPager = nativeView.viewPager;
         viewPager.setId(this._androidViewId);
         this._viewPager = viewPager;
         this._pagerAdapter = viewPager.adapter;
         (this._pagerAdapter as any).owner = this;
+    }
+
+    _onAttachedToWindow(): void {
+        super._onAttachedToWindow();
+
+        // _onAttachedToWindow called from OS again after it was detach
+        // TODO: Consider testing and removing it when update to androidx.fragment:1.2.0
+        if (this._manager && this._manager.isDestroyed()) {
+            return;
+        }
+
+        this._attachedToWindow = true;
+        this._viewPager.setCurrentItem(this.selectedIndex, false);
+    }
+
+    _onDetachedFromWindow(): void {
+        super._onDetachedFromWindow();
+        this.disposeCurrentFragments();
+
+        this._attachedToWindow = false;
     }
 
     public _loadUnloadTabItems(newIndex: number) {
@@ -537,6 +588,9 @@ export class Tabs extends TabsBase {
         this._tabsBar.setItems(null, null);
         (this._pagerAdapter as any).owner = null;
         this._pagerAdapter = null;
+
+        this.nativeViewProtected.removeOnAttachStateChangeListener(AttachStateChangeListener);
+        this.nativeViewProtected[ownerSymbol] = null;
 
         this._tabsBar = null;
         this._viewPager = null;
