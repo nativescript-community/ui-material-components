@@ -148,7 +148,7 @@ export class SpeedDialItem extends SpeedDialItemBase {
                     this.fabmenu.get().active = false;
                 }
             }
-            superNotifyMethod.call(child, event);
+            superNotifyMethod.call(child, data);
         };
     }
     get fabButtonCol() {
