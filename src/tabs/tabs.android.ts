@@ -1,4 +1,4 @@
-import { Application, CoercibleProperty, Color, Enums, Font, Frame, ImageSource, Property, Utils, getTransformedText, isIOS, View } from '@nativescript/core';
+import { Application, CoercibleProperty, Color, Enums, Font, Frame, ImageSource, Property, Utils, View, getTransformedText, isIOS } from '@nativescript/core';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
