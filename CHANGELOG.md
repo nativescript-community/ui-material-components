@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.17](https://github.com/nativescript-community/ui-material-components/compare/v5.2.16...v5.2.17) (2021-04-06)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** remove unwanted android logs ([35ca6d2](https://github.com/nativescript-community/ui-material-components/commit/35ca6d2079e7abbcefefa20b43ccf65c87067f45))
+
+
+
+
+
 ## [5.2.16](https://github.com/nativescript-community/ui-material-components/compare/v5.2.15...v5.2.16) (2021-04-05)
 
 
