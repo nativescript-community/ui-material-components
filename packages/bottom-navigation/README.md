@@ -43,40 +43,40 @@ IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-materia
 
 ```XML
 <Page xmlns:mdt="@nativescript-community/ui-material-bottom-navigation">
-    <mdt:Tabs selectedIndex="1">
+    <mdt:BottomNavigation selectedIndex="1">
         <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-        <MDTabStrip>
-            <MDTabStripItem>
+        <mdt:TabStrip>
+            <mdt:TabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
-            </MDTabStripItem>
-            <MDTabStripItem class="special">
+            </mdt:TabStripItem>
+            <mdt:TabStripItem class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
-            </MDTabStripItem>
-            <MDTabStripItem class="special">
+            </mdt:TabStripItem>
+            <mdt:TabStripItem class="special">
                 <Label text="Search"></Label>
                 <Image src="font://&#xf00e;" class="fas"></Image>
-            </MDTabStripItem>
-        </MDTabStrip>
+            </mdt:TabStripItem>
+        </mdt:TabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
-        <MDTabContentItem>
+        <mdt:TabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
-        </MDTabContentItem>
-        <MDTabContentItem>
+        </mdt:TabContentItem>
+        <mdt:TabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
-        </MDTabContentItem>
-        <MDTabContentItem>
+        </mdt:TabContentItem>
+        <mdt:TabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
-        </MDTabContentItem>
-    </Tabs>
+        </mdt:TabContentItem>
+    </mdt:BottomNavigation>
 </Page>
 ```
 
