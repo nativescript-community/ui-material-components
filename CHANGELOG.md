@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.18](https://github.com/nativescript-community/ui-material-components/compare/v5.2.17...v5.2.18) (2021-04-07)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** missing angular registerElement ([f0c073e](https://github.com/nativescript-community/ui-material-components/commit/f0c073e844436afcf248a2d4585d03237ffa02f6))
+* **progress:** indeterminate default value ([f46d725](https://github.com/nativescript-community/ui-material-components/commit/f46d7259ed6633d82adfd1a764fe5b81a5ff0d44))
+* **tabs:** missing angular registerElement ([716376b](https://github.com/nativescript-community/ui-material-components/commit/716376b5af3f0ab58b253e3080b90e6d45e2c623))
+
+
+
+
+
 ## [5.2.17](https://github.com/nativescript-community/ui-material-components/compare/v5.2.16...v5.2.17) (2021-04-06)
 
 
