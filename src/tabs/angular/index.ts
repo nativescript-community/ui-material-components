@@ -1,7 +1,6 @@
 import { Directive, NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-import { Tabs } from '@nativescript-community/ui-material-tabs';
-
+import { TabContentItem, TabStrip, TabStripItem, Tabs } from '@nativescript-community/ui-material-tabs';
 
 @Directive({ selector: 'MDTabs' })
 export class MaterialTabsDirective {}
@@ -13,3 +12,6 @@ export class MaterialTabsDirective {}
 export class NativeScriptMaterialTabsModule {}
 
 registerElement('MDTabs', () => Tabs);
+registerElement('MDTabStrip', () => TabStrip);
+registerElement('MDTabStripItem', () => TabStripItem);
+registerElement('MDTabContentItem', () => TabContentItem);
