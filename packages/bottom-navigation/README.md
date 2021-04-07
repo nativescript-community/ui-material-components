@@ -123,7 +123,7 @@ import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-mater
 
 @NgModule({
     imports: [
-        NativeScriptMaterialTabsModule,
+        NativeScriptMaterialBottomNavigationModule,
         ...
     ],
     ...
