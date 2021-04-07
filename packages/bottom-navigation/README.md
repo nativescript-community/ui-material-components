@@ -119,11 +119,11 @@ MDBottomNavigation TabStrip {
 ### NativeScript + Angular
 
 ```typescript
-import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-material-slider/angular";
+import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-material-bottom-navigation/angular";
 
 @NgModule({
     imports: [
-        NativeScriptMaterialTabsModule,
+        NativeScriptMaterialBottomNavigationModule,
         ...
     ],
     ...
