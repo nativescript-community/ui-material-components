@@ -34,6 +34,7 @@ export const busyProperty = new Property<ProgressBase, boolean>({
 });
 export const indeterminateProperty = new Property<ProgressBase, boolean>({
     name: 'indeterminate',
+    defaultValue: false,
     valueConverter: booleanConverter
 });
 busyProperty.register(ProgressBase);
