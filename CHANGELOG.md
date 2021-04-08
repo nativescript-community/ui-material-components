@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.19](https://github.com/nativescript-community/ui-material-components/compare/v5.2.18...v5.2.19) (2021-04-08)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** Fix usage doc for Plain NS ([c1d897d](https://github.com/nativescript-community/ui-material-components/commit/c1d897d4db3e1084bbfe5eb43befd3cc1fd17ecf))
+* **bottom-navigation:** pseudo class broken on iOS ([822c170](https://github.com/nativescript-community/ui-material-components/commit/822c170a178c8f136816be49f1446b08edca8f65))
+
+
+
+
+
 ## [5.2.18](https://github.com/nativescript-community/ui-material-components/compare/v5.2.17...v5.2.18) (2021-04-07)
 
 
