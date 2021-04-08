@@ -1,13 +1,12 @@
 /**
  * @module @nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item
-*/
-import { AddChildFromBuilder, CSSType, Color, Image, Label, PropertyChangeData, PseudoClassHandler, View, ViewBase, Enums } from '@nativescript/core';
+ */
+import { AddChildFromBuilder, CSSType, Color, Enums, Image, Label, PropertyChangeData, PseudoClassHandler, View, ViewBase } from '@nativescript/core';
 import { backgroundColorProperty, backgroundInternalProperty } from '@nativescript/core/ui/styling/style-properties';
 import { textTransformProperty } from '@nativescript/core/ui/text-base';
 import { TabStripItem as TabStripItemDefinition } from '.';
 import { TabNavigationBase } from '../tab-navigation-base';
 import { TabStrip } from '../tab-strip';
-
 
 @CSSType('MDTabStripItem')
 export class TabStripItem extends View implements TabStripItemDefinition, AddChildFromBuilder {
@@ -102,73 +101,73 @@ export class TabStripItem extends View implements TabStripItemDefinition, AddChi
         super.onLoaded();
 
         this._labelColorHandler =
-			this._labelColorHandler ||
-			((args: PropertyChangeData) => {
-			    const parent = this.parent as TabStrip;
-			    const tabStripParent = parent && parent.parent as TabNavigationBase;
+            this._labelColorHandler ||
+            ((args: PropertyChangeData) => {
+                const parent = this.parent as TabStrip;
+                const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
-			    return tabStripParent && tabStripParent.setTabBarItemColor(this, args.value);
-			});
+                return tabStripParent && tabStripParent.setTabBarItemColor(this, args.value);
+            });
         this.label.style.on('colorChange', this._labelColorHandler);
 
         this._labelFontHandler =
-			this._labelFontHandler ||
-			((args: PropertyChangeData) => {
-			    const parent = this.parent as TabStrip;
-			    const tabStripParent = parent && parent.parent as TabNavigationBase;
+            this._labelFontHandler ||
+            ((args: PropertyChangeData) => {
+                const parent = this.parent as TabStrip;
+                const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
-			    return tabStripParent && tabStripParent.setTabBarItemFontInternal(this, args.value);
-			});
+                return tabStripParent && tabStripParent.setTabBarItemFontInternal(this, args.value);
+            });
         this.label.style.on('fontInternalChange', this._labelFontHandler);
 
         this._labelTextTransformHandler =
-			this._labelTextTransformHandler ||
-			((args: PropertyChangeData) => {
-			    const parent = this.parent as TabStrip;
-			    const tabStripParent = parent && parent.parent as TabNavigationBase;
+            this._labelTextTransformHandler ||
+            ((args: PropertyChangeData) => {
+                const parent = this.parent as TabStrip;
+                const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
-			    return tabStripParent && tabStripParent.setTabBarItemTextTransform(this, args.value);
-			});
+                return tabStripParent && tabStripParent.setTabBarItemTextTransform(this, args.value);
+            });
         this.label.style.on('textTransformChange', this._labelTextTransformHandler);
 
         this._labelTextHandler =
-			this._labelTextHandler ||
-			((args: PropertyChangeData) => {
-			    const parent = this.parent as TabStrip;
-			    const tabStripParent = parent && parent.parent as TabNavigationBase;
+            this._labelTextHandler ||
+            ((args: PropertyChangeData) => {
+                const parent = this.parent as TabStrip;
+                const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
-			    return tabStripParent && tabStripParent.setTabBarItemTitle(this, args.value);
-			});
+                return tabStripParent && tabStripParent.setTabBarItemTitle(this, args.value);
+            });
         this.label.on('textChange', this._labelTextHandler);
 
         this._imageColorHandler =
-			this._imageColorHandler ||
-			((args: PropertyChangeData) => {
-			    const parent = this.parent as TabStrip;
-			    const tabStripParent = parent && parent.parent as TabNavigationBase;
+            this._imageColorHandler ||
+            ((args: PropertyChangeData) => {
+                const parent = this.parent as TabStrip;
+                const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
-			    return tabStripParent && tabStripParent.setTabBarIconColor(this, args.value);
-			});
+                return tabStripParent && tabStripParent.setTabBarIconColor(this, args.value);
+            });
         this.image.style.on('colorChange', this._imageColorHandler);
 
         this._imageFontHandler =
-			this._imageFontHandler ||
-			((args: PropertyChangeData) => {
-			    const parent = this.parent as TabStrip;
-			    const tabStripParent = parent && parent.parent as TabNavigationBase;
+            this._imageFontHandler ||
+            ((args: PropertyChangeData) => {
+                const parent = this.parent as TabStrip;
+                const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
-			    return tabStripParent && tabStripParent.setTabBarIconColor(this, args.value);
-			});
+                return tabStripParent && tabStripParent.setTabBarIconColor(this, args.value);
+            });
         this.image.style.on('fontInternalChange', this._imageFontHandler);
 
         this._imageSrcHandler =
-			this._imageSrcHandler ||
-			((args: PropertyChangeData) => {
-			    const parent = this.parent as TabStrip;
-			    const tabStripParent = parent && parent.parent as TabNavigationBase;
+            this._imageSrcHandler ||
+            ((args: PropertyChangeData) => {
+                const parent = this.parent as TabStrip;
+                const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
-			    return tabStripParent && tabStripParent.setTabBarIconSource(this, args.value);
-			});
+                return tabStripParent && tabStripParent.setTabBarIconSource(this, args.value);
+            });
         this.image.on('srcChange', this._imageSrcHandler);
     }
 
@@ -198,15 +197,15 @@ export class TabStripItem extends View implements TabStripItemDefinition, AddChi
     public _addChildFromBuilder(name: string, value: any): void {
         if (value instanceof Image) {
             this.image = value;
-            this.iconSource = (value).src;
-            this.iconClass = (value).className;
+            this.iconSource = value.src;
+            this.iconClass = value.className;
             this._addView(value);
             // selectedIndexProperty.coerce(this);
         }
 
         if (value instanceof Label) {
             this.label = value;
-            this.title = (value).text;
+            this.title = value.text;
             this._addView(value);
             // selectedIndexProperty.coerce(this);
         }
@@ -224,22 +223,22 @@ export class TabStripItem extends View implements TabStripItemDefinition, AddChi
     _updateTabStateChangeHandler(subscribe: boolean) {
         if (subscribe) {
             this._highlightedHandler =
-				this._highlightedHandler ||
-				(() => {
-				    this._goToVisualState('highlighted');
-				});
+                this._highlightedHandler ||
+                (() => {
+                    this._goToVisualState('highlighted');
+                });
 
             this._normalHandler =
-				this._normalHandler ||
-				(() => {
-				    this._goToVisualState('normal');
-				});
+                this._normalHandler ||
+                (() => {
+                    this._goToVisualState('normal');
+                });
 
             this.on(TabStripItem.selectEvent, this._highlightedHandler);
             this.on(TabStripItem.unselectEvent, this._normalHandler);
 
             const parent = this.parent as TabStrip;
-            const tabStripParent = parent && parent.parent as TabNavigationBase;
+            const tabStripParent = parent && (parent.parent as TabNavigationBase);
             if (this._index === tabStripParent.selectedIndex && !(global.isIOS && tabStripParent.cssType.toLowerCase() === 'tabs')) {
                 // HACK: tabStripParent instanceof Tabs creates a circular dependency
                 // HACK: tabStripParent.cssType === "Tabs" is a hacky workaround
@@ -253,26 +252,26 @@ export class TabStripItem extends View implements TabStripItemDefinition, AddChi
 
     [backgroundColorProperty.getDefault](): Color {
         const parent = this.parent as TabStrip;
-        const tabStripParent = parent && parent.parent as TabNavigationBase;
+        const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
         return tabStripParent && tabStripParent.getTabBarBackgroundColor();
     }
     [backgroundColorProperty.setNative](value: Color) {
         const parent = this.parent as TabStrip;
-        const tabStripParent = parent && parent.parent as TabNavigationBase;
+        const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
         return tabStripParent && tabStripParent.setTabBarItemBackgroundColor(this, value);
     }
 
     [textTransformProperty.getDefault](): Enums.TextTransformType {
         const parent = this.parent as TabStrip;
-        const tabStripParent = parent && parent.parent as TabNavigationBase;
+        const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
         return tabStripParent && tabStripParent.getTabBarItemTextTransform(this);
     }
     [textTransformProperty.setNative](value: Enums.TextTransformType) {
         const parent = this.parent as TabStrip;
-        const tabStripParent = parent && parent.parent as TabNavigationBase;
+        const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
         return tabStripParent && tabStripParent.setTabBarItemTextTransform(this, value);
     }
