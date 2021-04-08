@@ -373,8 +373,7 @@ export class BottomNavigation extends TabNavigationBase {
             if (tabStripItems[newIndex]) {
                 tabStripItems[newIndex]._emit(TabStripItem.selectEvent);
             }
-
-            if (tabStripItems[oldIndex]) {
+            if (oldIndex !== newIndex && tabStripItems[oldIndex]) {
                 tabStripItems[oldIndex]._emit(TabStripItem.unselectEvent);
             }
         }
