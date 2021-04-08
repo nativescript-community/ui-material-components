@@ -90,15 +90,12 @@ MDTabStripItem.special {
   color: teal;
 }
 
-MDTabStripItem.special:active {
-  color: yellowgreen;
-}
-
-MDTabStripItem.nested Label {
+MDTabStripItem.nested {
   color: teal;
 }
 
-MDTabStripItem.nested:active Label {
+MDTabStripItem:highlighted {
+    background-color: red;
   color: yellowgreen;
 }
 
