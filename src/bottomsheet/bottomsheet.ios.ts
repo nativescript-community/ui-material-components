@@ -291,7 +291,7 @@ class UILayoutViewController extends UIViewController {
     viewDidDisappear(animated: boolean): void {
         super.viewDidDisappear(animated);
         const owner = this.owner.get();
-        if (owner && !owner.parent) {
+        if (owner && !owner.parent && !owner.modal) {
             owner.callUnloaded();
         }
     }
