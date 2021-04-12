@@ -90,7 +90,11 @@ export class TabNavigationBase extends View implements TabNavigationBaseDefiniti
 
     public onItemsChanged(oldItems: TabContentItem[], newItems: TabContentItem[]): void {
         if (oldItems) {
-            oldItems.forEach((item) => this._removeView(item));
+            oldItems.forEach((item) => {
+                if (newItems.indexOf(item) === -1) {
+                    this._removeView(item);
+                }
+            });
         }
 
         if (newItems) {
@@ -99,7 +103,9 @@ export class TabNavigationBase extends View implements TabNavigationBaseDefiniti
                     throw new Error('TabContentItem must have a content (view).');
                 }
 
-                this._addView(item);
+                if (oldItems.indexOf(item) === -1) {
+                    this._addView(item);
+                }
             });
         }
     }

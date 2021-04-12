@@ -392,8 +392,20 @@ class UIPageViewControllerDelegateImpl extends NSObject implements UIPageViewCon
         const nextViewControllerIndex = ownerViewControllers.indexOf(nextViewController);
 
         if (selectedIndex !== nextViewControllerIndex) {
+            // let s not animate again on selectedIndex change
+            // or it will create weird behaviors
+            owner._animateNextChange = false;
             owner.selectedIndex = nextViewControllerIndex;
             owner._canSelectItem = true;
+        }
+        // HACK: UIPageViewController fix; see https://stackoverflow.com/questions/15325891
+        if (owner._needsCacheUpdate) {
+            invokeOnRunLoop(() => {
+                owner._needsCacheUpdate = false;
+                const viewController = owner.viewController;
+                viewController.dataSource = null;
+                viewController.dataSource = (owner as any)._dataSource;
+            });
         }
     }
 }
@@ -474,6 +486,9 @@ export class Tabs extends TabsBase {
     private _selectedItemColor: Color;
     private _unSelectedItemColor: Color;
     public animationEnabled: boolean;
+
+    public _needsCacheUpdate = false;
+    public _animateNextChange = true;
 
     constructor() {
         super();
@@ -740,10 +755,19 @@ export class Tabs extends TabsBase {
             this.viewController.tabBar.items = NSArray.arrayWithArray(this.tabBarItems);
             // TODO: investigate why this call is necessary to actually toggle item appearance
             this.viewController.tabBar.sizeToFit();
-            if (this.selectedIndex) {
-                console.log('setSelectedItemAnimated', this.selectedIndex);
-                this.viewController.tabBar.setSelectedItemAnimated(this.tabBarItems[this.selectedIndex], false);
-            }
+            // if (this.selectedIndex) {
+            this.viewController.tabBar.setSelectedItemAnimated(this.tabBarItems[this.selectedIndex], false);
+            // }
+        }
+    }
+
+    public onItemsChanged(oldItems: TabContentItem[], newItems: TabContentItem[]): void {
+        this._needsCacheUpdate = true;
+        super.onItemsChanged(oldItems, newItems);
+        if (oldItems) {
+            this._canSelectItem = true;
+            this._setCanBeLoaded(this.selectedIndex);
+            this._loadUnloadTabItems(this.selectedIndex);
         }
     }
 
@@ -1119,27 +1143,29 @@ export class Tabs extends TabsBase {
                 this._setCanBeLoaded(value);
                 this._loadUnloadTabItems(value);
             };
+            if (this._animateNextChange) {
+                invokeOnRunLoop(() => {
+                    this.viewController.setViewControllersDirectionAnimatedCompletion(controllers, navigationDirection, this.animationEnabled, (finished: boolean) => {
+                        if (finished) {
+                            if (this.animationEnabled) {
+                                // HACK: UIPageViewController fix; see https://stackoverflow.com/a/17330606
+                                // Prior Hack fails on iOS 10.3 during tests with v8 engine...
+                                // Leaving the above link in case we need to special case this for only iOS > 10.3?
 
-            invokeOnRunLoop(() =>
-                this.viewController.setViewControllersDirectionAnimatedCompletion(controllers, navigationDirection, this.animationEnabled, (finished: boolean) => {
-                    if (finished) {
-                        if (this.animationEnabled) {
-                            // HACK: UIPageViewController fix; see https://stackoverflow.com/a/17330606
-                            // Prior Hack fails on iOS 10.3 during tests with v8 engine...
-                            // Leaving the above link in case we need to special case this for only iOS > 10.3?
-
-                            // HACK: UIPageViewController fix; see https://stackoverflow.com/questions/15325891
-                            invokeOnRunLoop(() => {
-                                this.viewController.dataSource = null;
-                                (this.viewController as any).dataSource = this.viewController;
+                                // HACK: UIPageViewController fix; see https://stackoverflow.com/questions/15325891
+                                invokeOnRunLoop(() => {
+                                    doneAnimating();
+                                });
+                            } else {
                                 doneAnimating();
-                            });
-                        } else {
-                            doneAnimating();
+                            }
                         }
-                    }
-                })
-            );
+                    });
+                });
+            } else {
+                this._animateNextChange = true;
+                doneAnimating();
+            }
 
             if (this.tabBarItems && this.tabBarItems.length && this.viewController && this.viewController.tabBar) {
                 this.viewController.tabBar.setSelectedItemAnimated(this.tabBarItems[value], this.animationEnabled);
@@ -1159,7 +1185,6 @@ export class Tabs extends TabsBase {
                 (item as any).index = i;
             });
         }
-
         this.setViewControllers(value);
         selectedIndexProperty.coerce(this);
     }
