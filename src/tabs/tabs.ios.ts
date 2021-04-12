@@ -2,13 +2,12 @@
 import { Color, Device, Font, Frame, IOSHelper, ImageSource, Trace, Utils, View, ViewBase } from '@nativescript/core';
 import { TabsBase, swipeEnabledProperty } from './tabs-common';
 
-import { itemsProperty, selectedIndexProperty, tabStripProperty, getIconSpecSize } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
 export { TabContentItem, TabStrip, TabStripItem };
 
-// TODO
 // import { profile } from "../../profiling";
 
 const majorVersion = Utils.ios.MajorVersion;
@@ -223,6 +222,8 @@ class UIPageViewControllerImpl extends UIPageViewController {
 
             if (!owner.swipeEnabled) {
                 scrollView.scrollEnabled = false;
+            } else {
+                scrollView.scrollEnabled = true;
             }
 
             scrollView.frame = CGRectMake(0, scrollViewTop, this.view.bounds.size.width, scrollViewHeight); //this.view.bounds;
