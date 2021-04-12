@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.20](https://github.com/nativescript-community/ui-material-components/compare/v5.2.19...v5.2.20) (2021-04-12)
+
+
+### Bug Fixes
+
+* **bottomsheet:** prevent unload while presenting over ([a590bf2](https://github.com/nativescript-community/ui-material-components/commit/a590bf2288b76aaf17915993fc1d6f9208ad6044))
+* **dialog:** android fix for titleIcon ([2b54e99](https://github.com/nativescript-community/ui-material-components/commit/2b54e9912c9ef7e8d029e8b87fed6dc761a98b12))
+* **tabs:** fix ios swiping and wrong animations ([921f9f5](https://github.com/nativescript-community/ui-material-components/commit/921f9f5d5bcb7220ff98ef6cd3ea7eefdfe138b5))
+
+
+
+
+
 ## [5.2.19](https://github.com/nativescript-community/ui-material-components/compare/v5.2.18...v5.2.19) (2021-04-08)
 
 
