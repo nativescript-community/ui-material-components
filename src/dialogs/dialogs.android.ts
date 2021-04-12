@@ -31,7 +31,7 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
     builder.setTitle(options && isString(options.title) ? options.title : null);
     builder.setMessage(options && isString(options.message) ? options.message : null);
     if (options.titleIcon) {
-        builder.setIcon(options.titleIcon.android);
+        builder.setIcon(new android.graphics.drawable.BitmapDrawable(options.titleIcon.android));
     }
     if (options && options.cancelable === false) {
         builder.setCancelable(false);
@@ -43,9 +43,6 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
                 }
             })
         );
-    }
-    if (options.titleIcon) {
-        builder.setIcon(options.titleIcon.android);
     }
     if (options.customTitleView) {
         builder.setCustomTitle(options.customTitleView.nativeViewProtected);
