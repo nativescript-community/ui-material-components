@@ -4,7 +4,7 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
         
-        <MDTabs selectedIndex="1">
+        <MDTabs ref="tabs" unloadOnTabChange="false">
             <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
             <MDTabStrip>
                 <MDTabStripItem>
@@ -29,22 +29,18 @@
             </MDTabContentItem>
             <MDTabContentItem>
                 <GridLayout backgroundColor="green" @loaded="onLoaded('green')">
-                    <Label text="Account Page" class="h2 text-center"></Label>
+                    <Label text="Account Page" class="h2 text-center" @tap="addPage"></Label>
                 </GridLayout>
             </MDTabContentItem>
-            <MDTabContentItem>
-                <GridLayout backgroundColor="yellow" @loaded="onLoaded('yellow')">
-                    <Label text="Search Page" class="h2 text-center"></Label>
-                </GridLayout>
-            </MDTabContentItem>
+            
         </MDTabs>
     </Page>
 </template>
 
 <script lang="ts">
 import * as frameModule from '@nativescript/core/ui/frame';
-import { Tabs } from '@nativescript-community/ui-material-tabs';
-import { EventData } from '@nativescript/core';
+import { TabContentItem, Tabs } from '@nativescript-community/ui-material-tabs';
+import { Color, EventData, GridLayout, Label, StackLayout } from '@nativescript/core';
 
 import Vue from 'vue';
 
@@ -54,15 +50,38 @@ export default Vue.extend({
     name: 'Tabs',
     data() {
         return {
-            title: title
+            title: title,
+            addThirdItem:false
         };
     },
     methods: {
         onNavigationButtonTap() {
             frameModule.Frame.topmost().goBack();
         },
+
         onLoaded(name) {
             console.log('onTabLoaded', name)
+        },
+         createContent(index: number) {
+    const label = new Label();
+    label.text = `${index === 0 ? "Home" : (index === 1 ? "Account" : "Search")}`;
+    label.className = "h2 text-center";
+    const stack = new GridLayout();
+    stack.backgroundColor ="yellow";
+    stack.addChild(label);
+
+    return stack;
+},
+        addPage() {
+            console.log('addPage')
+            this.addThirdItem = true;
+
+            const items = this.$refs.tabs.nativeView.items.slice(0);
+             const item: TabContentItem = new TabContentItem();
+        // The createContent is a custom method that returns a StackLayout with a Label as a chils
+            item.content = this.createContent(index);
+        items.push(item);
+           this.$refs.tabs.nativeView.items = items.slice(0)
         }
     }
 });
@@ -70,8 +89,7 @@ export default Vue.extend({
 
 <style>
 
-MDTabs {
-  /* color: gold; */
+/* MDTabs {
 }
 
 MDTabContentItem.special {
@@ -96,6 +114,6 @@ MDTabStripItem.nested Label {
 
 MDTabStripItem.nested:active Label {
   color: yellowgreen;
-}
+} */
 
 </style>
