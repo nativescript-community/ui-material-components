@@ -290,10 +290,13 @@ class UILayoutViewController extends UIViewController {
 
     viewDidDisappear(animated: boolean): void {
         super.viewDidDisappear(animated);
-        const owner = this.owner.get();
-        if (owner && !owner.parent) {
-            owner.callUnloaded();
-        }
+        // let s not call callUnloaded here in case
+        // another modal / sheet is shown on top
+        // will be called on dismiss
+        // const owner = this.owner.get();
+        // if (owner && !owner.parent) {
+        //     owner.callUnloaded();
+        // }
     }
 
     // Mind implementation for other controllers
