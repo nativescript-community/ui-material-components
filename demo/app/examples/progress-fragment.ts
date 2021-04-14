@@ -1,4 +1,4 @@
-import { Observable, Page, PropertyChangeData } from '@nativescript/core/ui/page';
+import { Observable, Page, PropertyChangeData } from '@nativescript/core';
 import { Progress } from '@nativescript-community/ui-material-progress';
 
 export function onNavigatingTo(args) {

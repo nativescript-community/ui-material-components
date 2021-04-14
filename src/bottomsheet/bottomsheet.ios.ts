@@ -1,4 +1,4 @@
-import { IOSHelper, Page, Trace, Utils, View, fromObject } from '@nativescript/core';
+import { IOSHelper, Page, Trace, Utils, View, fromObject, Screen } from '@nativescript/core';
 import { applyMixins } from '@nativescript-community/ui-material-core';
 import { BottomSheetOptions } from './bottomsheet';
 import { ViewWithBottomSheetBase } from './bottomsheet-common';
@@ -92,11 +92,11 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
     const marginLeft = owner.effectiveMarginLeft + position.left;
     const marginRight = owner.effectiveMarginRight;
     const top = marginTop + position.top;
-    const width = owner.getMeasuredWidth();
+    const width = Screen.mainScreen.widthPixels;
     const height = owner.getMeasuredHeight();
-    View.layoutChild(null, owner, position.left, top, position.left + width + marginLeft + marginRight, position.top + height + marginBottom);
+    View.layoutChild(null, owner, marginLeft, top, width - marginLeft - marginRight, position.top + height + marginBottom);
 
-    const effectiveWidth = width + marginLeft + marginRight;
+    const effectiveWidth = width;
     let effectiveHeight = height + top + marginBottom;
     if (controller.ignoreTopSafeArea || controller.ignoreBottomSafeArea) {
         const frame = CGRectMake(
@@ -113,15 +113,28 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
 
         const adjustedPosition = startPos;
 
+        const topDelta = safeAreaPosition.top - fullscreenPosition.top;
+        // move content upwards, because safearea is handled in this view and the child view
+        adjustedPosition.top -= topDelta;
+        console.log("safeAreaPosition.top, fullscreenPosition.top", safeAreaPosition.top, fullscreenPosition.top);
+        console.log("topDelta", topDelta);
+
+        const bottomDelta = fullscreenPosition.bottom - safeAreaPosition.bottom;
+        // extend background behind bottom bar on landscape
+        adjustedPosition.bottom += Math.max(bottomDelta - topDelta, 0);
+        console.log("Math.max(bottomDelta - topDelta, 0)", Math.max(bottomDelta - topDelta, 0));
+        console.log("safeAreaPosition.bottom, fullscreenPosition.bottom", safeAreaPosition.bottom, fullscreenPosition.bottom);
+        console.log("bottom delta", bottomDelta);
+
+        adjustedPosition.right = adjustedPosition.right - adjustedPosition.left;
+        adjustedPosition.left = 0;
+
         if (controller.ignoreTopSafeArea) {
-            const delta = safeAreaPosition.top - fullscreenPosition.top;
-            effectiveHeight -= delta;
-            adjustedPosition.bottom -= delta;
-            adjustedPosition.top -= delta;
+            effectiveHeight -= topDelta;
+            adjustedPosition.top -= topDelta;
         }
         if (controller.ignoreBottomSafeArea) {
-            const delta = fullscreenPosition.bottom - safeAreaPosition.bottom;
-            effectiveHeight -= delta;
+            effectiveHeight -= bottomDelta;
         }
         owner.nativeViewProtected.frame = CGRectMake(
             Utils.layout.toDeviceIndependentPixels(adjustedPosition.left),

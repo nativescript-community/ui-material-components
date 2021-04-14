@@ -1,4 +1,4 @@
-import { EventData, View } from '@nativescript/core/ui/core/view';
+import { EventData, View } from '@nativescript/core';
 
 // let closeCallback
 
