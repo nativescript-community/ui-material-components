@@ -29,7 +29,10 @@
 		<activity
 			android:name="com.tns.NativeScriptActivity"
 			android:label="@string/title_activity_kimera"
-			android:theme="@style/LaunchScreenTheme">
+			android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout|locale|uiMode"
+			android:theme="@style/LaunchScreenTheme"
+			android:windowSoftInputMode="stateHidden|adjustPan"
+			android:launchMode="singleTask">
 
 			<meta-data android:name="SET_THEME_ON_LAUNCH" android:resource="@style/AppTheme" />
 
