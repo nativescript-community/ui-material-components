@@ -84,6 +84,10 @@ MDTabContentItem.special {
 
 MDTabStrip {
   color: skyblue;
+    selected-item-color: white;
+    un-selected-item-color: blue;
+    highlight-color: yellow;
+    background-color: green;
 }
 
 MDTabStripItem.special {
