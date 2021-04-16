@@ -68,7 +68,10 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                         }
 
                         owner.notify(args);
-                        return args.cancel || owner.onBackPressed();
+                        if (!args.cancel) {
+                            args.cancel = owner.onBackPressed();
+                        }
+                        return args.cancel;
                     }
                 });
                 const dialog = new com.nativescript.material.bottomsheet.BottomSheetDialog(fragment.getActivity(), theme);
