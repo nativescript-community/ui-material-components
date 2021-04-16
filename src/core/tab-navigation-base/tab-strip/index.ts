@@ -18,13 +18,15 @@ export const highlightColorProperty = new CssProperty<Style, Color>({
     equalityComparer: Color.equals,
     valueConverter: (v) => new Color(v)
 });
-export const selectedItemColorProperty = new Property<TabStrip, Color>({
+export const selectedItemColorProperty = new CssProperty<Style, Color>({
     name: 'selectedItemColor',
+    cssName: 'selected-item-color',
     equalityComparer: Color.equals,
     valueConverter: (v) => new Color(v)
 });
-export const unSelectedItemColorProperty = new Property<TabStrip, Color>({
+export const unSelectedItemColorProperty = new CssProperty<Style, Color>({
     name: 'unSelectedItemColor',
+    cssName: 'un-selected-item-color',
     equalityComparer: Color.equals,
     valueConverter: (v) => new Color(v)
 });
@@ -35,7 +37,6 @@ export class TabStrip extends View implements TabStripDefinition, AddChildFromBu
     public items: TabStripItem[];
     public isIconSizeFixed: boolean;
     public iosIconRenderingMode: 'automatic' | 'alwaysOriginal' | 'alwaysTemplate';
-
 
     /**
      * defines the highlight color of the TabStrip item
@@ -153,6 +154,7 @@ export class TabStrip extends View implements TabStripDefinition, AddChildFromBu
         return parent && parent.getTabBarSelectedItemColor();
     }
     [selectedItemColorProperty.setNative](value: Color) {
+        console.log('selectedItemColorProperty', value, new Error().stack);
         const parent = this.parent as TabNavigationBase;
 
         return parent && parent.setTabBarSelectedItemColor(value);
@@ -189,5 +191,5 @@ export const isIconSizeFixedProperty = new Property<TabStrip, boolean>({
 isIconSizeFixedProperty.register(TabStrip);
 
 highlightColorProperty.register(Style);
-selectedItemColorProperty.register(TabStrip);
-unSelectedItemColorProperty.register(TabStrip);
+selectedItemColorProperty.register(Style);
+unSelectedItemColorProperty.register(Style);
