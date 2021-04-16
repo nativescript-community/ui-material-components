@@ -45,8 +45,11 @@ export class TabStrip extends View implements TabStripDefinition, AddChildFromBu
     public highlightColor: Color;
     public selectedItemColor: Color;
     public unSelectedItemColor: Color;
-    protected _hasImage: boolean;
-    protected _hasTitle: boolean;
+
+    /** @hidden */
+    _hasImage: boolean;
+    /** @hidden */
+    _hasTitle: boolean;
 
     public eachChild(callback: (child: ViewBase) => boolean) {
         const items = this.items;
