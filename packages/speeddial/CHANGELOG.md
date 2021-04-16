@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.21](https://github.com/nativescript-community/ui-material-components/tree/master/packages/speeddial/compare/v5.2.20...v5.2.21) (2021-04-16)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-speeddial
+
+
+
+
+
 ## [5.2.20](https://github.com/nativescript-community/ui-material-components/tree/master/packages/speeddial/compare/v5.2.19...v5.2.20) (2021-04-12)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-speeddial

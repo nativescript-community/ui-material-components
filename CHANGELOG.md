@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.21](https://github.com/nativescript-community/ui-material-components/compare/v5.2.20...v5.2.21) (2021-04-16)
+
+
+### Bug Fixes
+
+* highlightColor as css property too ([d8dc4fd](https://github.com/nativescript-community/ui-material-components/commit/d8dc4fd3b69c5dbbb38ee498ebf3cae4af0d8785))
+* make all tab strip props css ([a273379](https://github.com/nativescript-community/ui-material-components/commit/a273379cf7379288f85e4590844e3d85ea8e41c9))
+* **bottomnavigationbar:** ios dont depend on tag as the native side changes it ([2bf6601](https://github.com/nativescript-community/ui-material-components/commit/2bf66016e10298f3f63e505e8046b4b664d6619e))
+
+
+
+
+
 ## [5.2.20](https://github.com/nativescript-community/ui-material-components/compare/v5.2.19...v5.2.20) (2021-04-12)
 
 
