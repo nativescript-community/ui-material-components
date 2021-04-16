@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.22](https://github.com/nativescript-community/ui-material-components/compare/v5.2.21...v5.2.22) (2021-04-16)
+
+
+### Bug Fixes
+
+* **bottomsheet:** android prevent crash on back button ([1245713](https://github.com/nativescript-community/ui-material-components/commit/12457132196c02c52b1792d7696a243cfacd329f))
+
+
+
+
+
 ## [5.2.21](https://github.com/nativescript-community/ui-material-components/compare/v5.2.20...v5.2.21) (2021-04-16)
 
 
