@@ -27,12 +27,12 @@ class BottomNavigationBarDelegate extends NSObject {
         if (!owner) {
             return;
         }
-        const tag = item && item.tag ? item.tag : 0;
-        if (owner.selectedTabIndex === tag) {
-            owner._emitTabReselected(tag);
+        const barIndex = item && (item as any).barIndex ? (item as any).barIndex : 0;
+        if (owner.selectedTabIndex === barIndex) {
+            owner._emitTabReselected(barIndex);
             return;
         }
-        owner._emitTabSelected(tag);
+        owner._emitTabSelected(barIndex);
     }
 
     bottomNavigationBarShouldSelectItem(bottomNavigationBar: MDCBottomNavigationBar, item: UITabBarItem): boolean {
@@ -40,10 +40,10 @@ class BottomNavigationBarDelegate extends NSObject {
         if (!owner) {
             return true;
         }
-        const tag = item && item.tag ? item.tag : 0;
-        const bottomNavigationTab = owner.items[tag];
+        const barIndex = item && (item as any).barIndex ? (item as any).barIndex : 0;
+        const bottomNavigationTab = owner.items[barIndex];
         if (!bottomNavigationTab.isSelectable) {
-            owner._emitTabPressed(tag);
+            owner._emitTabPressed(barIndex);
         }
         return bottomNavigationTab.isSelectable;
     }
@@ -144,15 +144,14 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         if (tabs) {
             this._items = tabs;
         }
-
         const bottomNavigationTabs = this._items.map((item, index) => {
             this._addView(item);
             const tab = item.nativeViewProtected;
-            tab.tag = index;
+            (tab as any).barIndex = index;
             return tab;
         });
         this.nativeViewProtected.items = new NSArray({ array: bottomNavigationTabs });
-        
+
         // TODO: this is for he v8 runtime. Should not have to need this setTimeout(), find better way.
         setTimeout(() => {
             this.nativeViewProtected.selectedItem = this.nativeViewProtected.items[this.selectedTabIndex];
