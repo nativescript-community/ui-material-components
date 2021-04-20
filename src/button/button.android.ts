@@ -13,7 +13,7 @@ import {
     backgroundInternalProperty,
     colorProperty,
     profile,
-    Enums
+    CoreTypes
 } from '@nativescript/core';
 import { textAlignmentProperty, textTransformProperty } from '@nativescript/core/ui/text-base';
 import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
@@ -141,7 +141,7 @@ export class Button extends ButtonBase {
     setStrokeWidth(value) {
         this.nativeViewProtected.setStrokeWidth(value);
     }
-    [textTransformProperty.setNative](value: Enums.TextTransformType) {
+    [textTransformProperty.setNative](value: CoreTypes.TextTransformType) {
         this.nativeViewProtected.setAllCaps(value !== 'none');
     }
     [backgroundInternalProperty.getDefault]() {
@@ -169,7 +169,7 @@ export class Button extends ButtonBase {
         }
     }
 
-    [textAlignmentProperty.setNative](value: Enums.TextAlignmentType) {
+    [textAlignmentProperty.setNative](value: CoreTypes.TextAlignmentType) {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(value) | getVerticalGravity(this.verticalTextAlignment));
     }
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {

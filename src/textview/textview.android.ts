@@ -28,7 +28,7 @@ import {
     placeholderColorProperty,
     textAlignmentProperty,
     LengthType,
-    Enums
+    CoreTypes
 } from '@nativescript/core';
 import { TextViewBase } from './textview.common';
 import { getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
@@ -296,7 +296,7 @@ export class TextView extends TextViewBase {
     [paddingLeftProperty.setNative](value: LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingLeft(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0));
     }
-    [textAlignmentProperty.setNative](value: Enums.TextAlignmentType) {
+    [textAlignmentProperty.setNative](value: CoreTypes.TextAlignmentType) {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(value) | getVerticalGravity(this.verticalTextAlignment));
     }
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {

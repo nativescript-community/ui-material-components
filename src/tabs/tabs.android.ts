@@ -1,4 +1,4 @@
-import { Application, CoercibleProperty, Color, Enums, Font, Frame, ImageSource, Property, Utils, View, getTransformedText, isIOS } from '@nativescript/core';
+import { Application, CoercibleProperty, Color, CoreTypes, Font, Frame, ImageSource, Property, Utils, View, getTransformedText, isIOS } from '@nativescript/core';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
@@ -397,7 +397,7 @@ export class Tabs extends TabsBase {
     private _pagerAdapter: androidx.viewpager.widget.PagerAdapter;
     private _androidViewId = -1;
     public _originalBackground: any;
-    private _textTransform: Enums.TextTransformType = 'uppercase';
+    private _textTransform: CoreTypes.TextTransformType = 'uppercase';
     private _selectedItemColor: Color;
     private _unSelectedItemColor: Color;
     fragments: androidx.fragment.app.Fragment[] = [];
@@ -693,9 +693,9 @@ export class Tabs extends TabsBase {
         });
     }
 
-    private getItemLabelTextTransform(tabStripItem: TabStripItem): Enums.TextTransformType {
+    private getItemLabelTextTransform(tabStripItem: TabStripItem): CoreTypes.TextTransformType {
         const nestedLabel = tabStripItem.label;
-        let textTransform: Enums.TextTransformType = null;
+        let textTransform: CoreTypes.TextTransformType = null;
         if (nestedLabel && nestedLabel.style.textTransform !== 'initial') {
             textTransform = nestedLabel.style.textTransform;
         } else if (tabStripItem.style.textTransform !== 'initial') {
@@ -946,21 +946,21 @@ export class Tabs extends TabsBase {
         tabStripItem.nativeViewProtected.setTypeface(value.getAndroidTypeface());
     }
 
-    public getTabBarItemTextTransform(tabStripItem: TabStripItem): Enums.TextTransformType {
+    public getTabBarItemTextTransform(tabStripItem: TabStripItem): CoreTypes.TextTransformType {
         return this.getItemLabelTextTransform(tabStripItem);
     }
 
-    public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: Enums.TextTransformType): void {
+    public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: CoreTypes.TextTransformType): void {
         const nestedLabel = tabStripItem.label;
         const title = getTransformedText(nestedLabel.text, value);
         tabStripItem.nativeViewProtected.setText(title);
     }
 
-    public getTabBarTextTransform(): Enums.TextTransformType {
+    public getTabBarTextTransform(): CoreTypes.TextTransformType {
         return this._textTransform;
     }
 
-    public setTabBarTextTransform(value: Enums.TextTransformType): void {
+    public setTabBarTextTransform(value: CoreTypes.TextTransformType): void {
         const items = this.tabStrip && this.tabStrip.items;
         if (items) {
             items.forEach((tabStripItem) => {
