@@ -461,6 +461,7 @@ export class BottomNavigation extends TabNavigationBase {
         this.fragments = [];
     }
     private attachFragment(fragment: androidx.fragment.app.Fragment, id?: number, name?: string): void {
+        //@ts-ignore
         const fragmentManager = this._getRootFragmentManager();
         if (fragment) {
             if (fragment.isAdded() || fragment.isRemoving()) {
@@ -517,6 +518,7 @@ export class BottomNavigation extends TabNavigationBase {
     private instantiateItem(container: android.view.ViewGroup, position: number): androidx.fragment.app.Fragment {
         const name = makeFragmentName(container.getId(), position);
 
+        //@ts-ignore
         const fragmentManager = this._getRootFragmentManager();
         let fragment: androidx.fragment.app.Fragment = fragmentManager.findFragmentByTag(name);
         if (fragment != null) {
@@ -578,6 +580,7 @@ export class BottomNavigation extends TabNavigationBase {
     }
     private hideFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
+            //@ts-ignore
             fragmentManager = this._getRootFragmentManager();
         }
         if (fragment) {
@@ -606,6 +609,7 @@ export class BottomNavigation extends TabNavigationBase {
     }
     private showFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
+            //@ts-ignore
             fragmentManager = this._getRootFragmentManager();
         }
         if (fragment) {
@@ -634,6 +638,7 @@ export class BottomNavigation extends TabNavigationBase {
     }
     private removeFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
+            //@ts-ignore
             fragmentManager = this._getRootFragmentManager();
         }
         if (fragment) {

@@ -159,7 +159,8 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         (df as any).nListener = dfListener;
         this._bottomSheetFragment = df;
         this._raiseShowingBottomSheetEvent();
-        df.show((parent as any)._getRootFragmentManager(), domId.toString());
+        //@ts-ignore
+        df.show(parent._getRootFragmentManager(), domId.toString());
     }
 }
 
