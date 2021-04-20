@@ -461,7 +461,7 @@ export class BottomNavigation extends TabNavigationBase {
         this.fragments = [];
     }
     private attachFragment(fragment: androidx.fragment.app.Fragment, id?: number, name?: string): void {
-        const fragmentManager = this._getFragmentManager();
+        const fragmentManager = this._getRootFragmentManager();
         if (fragment) {
             if (fragment.isAdded() || fragment.isRemoving()) {
                 // ignore
@@ -517,7 +517,7 @@ export class BottomNavigation extends TabNavigationBase {
     private instantiateItem(container: android.view.ViewGroup, position: number): androidx.fragment.app.Fragment {
         const name = makeFragmentName(container.getId(), position);
 
-        const fragmentManager = this._getFragmentManager();
+        const fragmentManager = this._getRootFragmentManager();
         let fragment: androidx.fragment.app.Fragment = fragmentManager.findFragmentByTag(name);
         if (fragment != null) {
             this.attachFragment(fragment);
@@ -578,7 +578,7 @@ export class BottomNavigation extends TabNavigationBase {
     }
     private hideFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
-            fragmentManager = this._getFragmentManager();
+            fragmentManager = this._getRootFragmentManager();
         }
         if (fragment) {
             if (!fragment.isAdded() || fragment.isRemoving()) {
@@ -606,7 +606,7 @@ export class BottomNavigation extends TabNavigationBase {
     }
     private showFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
-            fragmentManager = this._getFragmentManager();
+            fragmentManager = this._getRootFragmentManager();
         }
         if (fragment) {
             if (!fragment.isAdded() || fragment.isRemoving()) {
@@ -634,7 +634,7 @@ export class BottomNavigation extends TabNavigationBase {
     }
     private removeFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
-            fragmentManager = this._getFragmentManager();
+            fragmentManager = this._getRootFragmentManager();
         }
         if (fragment) {
             if (!fragment.isAdded() || fragment.isRemoving()) {
