@@ -161,7 +161,7 @@ function initializeNativeClasses() {
         }
 
         instantiateItem(container: android.view.ViewGroup, position: number): java.lang.Object {
-            const fragmentManager = this.owner._getFragmentManager();
+            const fragmentManager = this.owner._getRootFragmentManager();
             if (!this.mCurTransaction) {
                 this.mCurTransaction = fragmentManager.beginTransaction();
             }
@@ -198,16 +198,16 @@ function initializeNativeClasses() {
 
         destroyItem(container: android.view.ViewGroup, position: number, object: java.lang.Object): void {
             if (!this.mCurTransaction) {
-                const fragmentManager = this.owner._getFragmentManager();
+                const fragmentManager = this.owner._getRootFragmentManager();
                 this.mCurTransaction = fragmentManager.beginTransaction();
             }
 
             const fragment: androidx.fragment.app.Fragment = object as androidx.fragment.app.Fragment;
 
             const index = this.owner.fragments.indexOf(fragment);
-            if (index !== -1) {
-                this.owner.fragments.splice(index, 1);
-            }
+            // if (index !== -1) {
+            //     this.owner.fragments.splice(index, 1);
+            // }
             this.mCurTransaction.detach(fragment);
 
             if (this.mCurrentPrimaryItem === fragment) {
@@ -586,6 +586,7 @@ export class Tabs extends TabsBase {
     }
 
     public disposeNativeView() {
+        console.log('disposeNativeView');
         this._tabsBar.setItems(null, null);
         (this._pagerAdapter as any).owner = null;
         this._pagerAdapter = null;
@@ -610,10 +611,11 @@ export class Tabs extends TabsBase {
     }
 
     private disposeCurrentFragments(): void {
-        const fragmentManager = this._getFragmentManager();
+        const fragmentManager = this._getRootFragmentManager();
         const transaction = fragmentManager.beginTransaction();
 
         const fragments = this.fragments;
+        console.log('disposeCurrentFragments', fragments.length);
         for (let i = 0; i < fragments.length; i++) {
             transaction.remove(fragments[i]);
         }
