@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.24](https://github.com/nativescript-community/ui-material-components/compare/v5.2.23...v5.2.24) (2021-04-20)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** android fix for issue while navigating ([6e5da28](https://github.com/nativescript-community/ui-material-components/commit/6e5da2808ab3977606b0f8da2688e5026df9ea14))
+* **tabs:** android fix for issue while navigating ([f6d28e5](https://github.com/nativescript-community/ui-material-components/commit/f6d28e58c0621762221417a305c5209d3bdcfafb))
+
+
+
+
+
 ## [5.2.23](https://github.com/nativescript-community/ui-material-components/compare/v5.2.22...v5.2.23) (2021-04-20)
 
 
