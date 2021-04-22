@@ -4,7 +4,7 @@ import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigatio
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 // Types
 // Requires
-import { Application, CSSType, Color, Enums, Font, Frame, ImageSource, Utils, View } from '@nativescript/core';
+import { Application, CSSType, Color, CoreTypes, Font, Frame, ImageSource, Utils, View } from '@nativescript/core';
 import { getTransformedText } from '@nativescript/core/ui/text-base';
 export { TabContentItem, TabStrip, TabStripItem };
 
@@ -249,7 +249,7 @@ export class BottomNavigation extends TabNavigationBase {
     private _currentTransaction: androidx.fragment.app.FragmentTransaction;
     private _attachedToWindow = false;
     public _originalBackground: any;
-    private _textTransform: Enums.TextTransformType = 'none';
+    private _textTransform: CoreTypes.TextTransformType = 'none';
     private _selectedItemColor: Color;
     private _unSelectedItemColor: Color;
     fragments: androidx.fragment.app.Fragment[] = [];
@@ -399,8 +399,9 @@ export class BottomNavigation extends TabNavigationBase {
         super._onAttachedToWindow();
 
         // _onAttachedToWindow called from OS again after it was detach
-        // TODO: Consider testing and removing it when update to androidx.fragment:1.2.0
-        if (this._manager && this._manager.isDestroyed()) {
+        // still happens with androidx.fragment:1.3.2
+        const activity = Application.android.foregroundActivity;
+        if ((this._manager && this._manager.isDestroyed()) || !activity.getLifecycle().getCurrentState().isAtLeast(androidx.lifecycle.Lifecycle.State.STARTED)) {
             return;
         }
 
@@ -460,7 +461,8 @@ export class BottomNavigation extends TabNavigationBase {
         this.fragments = [];
     }
     private attachFragment(fragment: androidx.fragment.app.Fragment, id?: number, name?: string): void {
-        const fragmentManager = this._getFragmentManager();
+        //@ts-ignore
+        const fragmentManager = this._getRootFragmentManager();
         if (fragment) {
             if (fragment.isAdded() || fragment.isRemoving()) {
                 // ignore
@@ -516,7 +518,8 @@ export class BottomNavigation extends TabNavigationBase {
     private instantiateItem(container: android.view.ViewGroup, position: number): androidx.fragment.app.Fragment {
         const name = makeFragmentName(container.getId(), position);
 
-        const fragmentManager = this._getFragmentManager();
+        //@ts-ignore
+        const fragmentManager = this._getRootFragmentManager();
         let fragment: androidx.fragment.app.Fragment = fragmentManager.findFragmentByTag(name);
         if (fragment != null) {
             this.attachFragment(fragment);
@@ -577,7 +580,8 @@ export class BottomNavigation extends TabNavigationBase {
     }
     private hideFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
-            fragmentManager = this._getFragmentManager();
+            //@ts-ignore
+            fragmentManager = this._getRootFragmentManager();
         }
         if (fragment) {
             if (!fragment.isAdded() || fragment.isRemoving()) {
@@ -605,7 +609,8 @@ export class BottomNavigation extends TabNavigationBase {
     }
     private showFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
-            fragmentManager = this._getFragmentManager();
+            //@ts-ignore
+            fragmentManager = this._getRootFragmentManager();
         }
         if (fragment) {
             if (!fragment.isAdded() || fragment.isRemoving()) {
@@ -633,7 +638,8 @@ export class BottomNavigation extends TabNavigationBase {
     }
     private removeFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
-            fragmentManager = this._getFragmentManager();
+            //@ts-ignore
+            fragmentManager = this._getRootFragmentManager();
         }
         if (fragment) {
             if (!fragment.isAdded() || fragment.isRemoving()) {
@@ -685,9 +691,9 @@ export class BottomNavigation extends TabNavigationBase {
         });
     }
 
-    private getItemLabelTextTransform(tabStripItem: TabStripItem): Enums.TextTransformType {
+    private getItemLabelTextTransform(tabStripItem: TabStripItem): CoreTypes.TextTransformType {
         const nestedLabel = tabStripItem.label;
-        let textTransform: Enums.TextTransformType = null;
+        let textTransform: CoreTypes.TextTransformType = null;
         if (nestedLabel && nestedLabel.style.textTransform !== 'initial') {
             textTransform = nestedLabel.style.textTransform;
         } else if (tabStripItem.style.textTransform !== 'initial') {
@@ -934,17 +940,17 @@ export class BottomNavigation extends TabNavigationBase {
         tabStripItem.nativeViewProtected.setTypeface(value.getAndroidTypeface());
     }
 
-    public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: Enums.TextTransformType): void {
+    public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: CoreTypes.TextTransformType): void {
         const titleLabel = tabStripItem.label;
         const title = getTransformedText(titleLabel.text, value);
         tabStripItem.nativeViewProtected.setText(title);
     }
 
-    public getTabBarTextTransform(): Enums.TextTransformType {
+    public getTabBarTextTransform(): CoreTypes.TextTransformType {
         return this._textTransform;
     }
 
-    public setTabBarTextTransform(value: Enums.TextTransformType): void {
+    public setTabBarTextTransform(value: CoreTypes.TextTransformType): void {
         const items = this.tabStrip && this.tabStrip.items;
         if (items) {
             items.forEach((tabStripItem) => {

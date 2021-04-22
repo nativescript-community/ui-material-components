@@ -1,7 +1,7 @@
 /**
  * @module @nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item
  */
-import { AddChildFromBuilder, CSSType, Color, Enums, Image, Label, PropertyChangeData, PseudoClassHandler, View, ViewBase } from '@nativescript/core';
+import { AddChildFromBuilder, CSSType, Color, CoreTypes, Image, Label, PropertyChangeData, PseudoClassHandler, View, ViewBase } from '@nativescript/core';
 import { backgroundColorProperty, backgroundInternalProperty } from '@nativescript/core/ui/styling/style-properties';
 import { textTransformProperty } from '@nativescript/core/ui/text-base';
 import { TabStripItem as TabStripItemDefinition } from '.';
@@ -263,13 +263,13 @@ export class TabStripItem extends View implements TabStripItemDefinition, AddChi
         return tabStripParent && tabStripParent.setTabBarItemBackgroundColor(this, value);
     }
 
-    [textTransformProperty.getDefault](): Enums.TextTransformType {
+    [textTransformProperty.getDefault](): CoreTypes.TextTransformType {
         const parent = this.parent as TabStrip;
         const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
         return tabStripParent && tabStripParent.getTabBarItemTextTransform(this);
     }
-    [textTransformProperty.setNative](value: Enums.TextTransformType) {
+    [textTransformProperty.setNative](value: CoreTypes.TextTransformType) {
         const parent = this.parent as TabStrip;
         const tabStripParent = parent && (parent.parent as TabNavigationBase);
 

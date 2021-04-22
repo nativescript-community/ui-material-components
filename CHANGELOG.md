@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.25](https://github.com/nativescript-community/ui-material-components/compare/v5.2.24...v5.2.25) (2021-04-22)
+
+
+### Bug Fixes
+
+* **speeddial:** horizontalAlignment support ([48cd144](https://github.com/nativescript-community/ui-material-components/commit/48cd144eef0c08b5de4018e8c7cb9ae9838bbada))
+
+
+
+
+
+## [5.2.24](https://github.com/nativescript-community/ui-material-components/compare/v5.2.23...v5.2.24) (2021-04-20)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** android fix for issue while navigating ([6e5da28](https://github.com/nativescript-community/ui-material-components/commit/6e5da2808ab3977606b0f8da2688e5026df9ea14))
+* **tabs:** android fix for issue while navigating ([f6d28e5](https://github.com/nativescript-community/ui-material-components/commit/f6d28e58c0621762221417a305c5209d3bdcfafb))
+
+
+
+
+
+## [5.2.23](https://github.com/nativescript-community/ui-material-components/compare/v5.2.22...v5.2.23) (2021-04-20)
+
+
+### Bug Fixes
+
+* **android:** prevent crash on app going to background ([89d1611](https://github.com/nativescript-community/ui-material-components/commit/89d16111ad2c91ad95a7d3e28db0629860f5633b))
+
+
+
+
+
+## [5.2.22](https://github.com/nativescript-community/ui-material-components/compare/v5.2.21...v5.2.22) (2021-04-16)
+
+
+### Bug Fixes
+
+* **bottomsheet:** android prevent crash on back button ([1245713](https://github.com/nativescript-community/ui-material-components/commit/12457132196c02c52b1792d7696a243cfacd329f))
+
+
+
+
+
+## [5.2.21](https://github.com/nativescript-community/ui-material-components/compare/v5.2.20...v5.2.21) (2021-04-16)
+
+
+### Bug Fixes
+
+* highlightColor as css property too ([d8dc4fd](https://github.com/nativescript-community/ui-material-components/commit/d8dc4fd3b69c5dbbb38ee498ebf3cae4af0d8785))
+* make all tab strip props css ([a273379](https://github.com/nativescript-community/ui-material-components/commit/a273379cf7379288f85e4590844e3d85ea8e41c9))
+* **bottomnavigationbar:** ios dont depend on tag as the native side changes it ([2bf6601](https://github.com/nativescript-community/ui-material-components/commit/2bf66016e10298f3f63e505e8046b4b664d6619e))
+
+
+
+
+
 ## [5.2.20](https://github.com/nativescript-community/ui-material-components/compare/v5.2.19...v5.2.20) (2021-04-12)
 
 

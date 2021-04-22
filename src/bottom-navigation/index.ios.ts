@@ -5,7 +5,7 @@ import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigatio
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 // Types
 // Requires
-import { CSSType, Color, Device, Enums, Font, Frame, IOSHelper, ImageSource, Property, Utils, View, booleanConverter } from '@nativescript/core';
+import { CSSType, Color, Device, CoreTypes, Font, Frame, IOSHelper, ImageSource, Property, Utils, View, booleanConverter } from '@nativescript/core';
 import { getTransformedText } from '@nativescript/core/ui/text-base';
 import { iOSNativeHelper } from '@nativescript/core/utils';
 export { TabContentItem, TabStrip, TabStripItem };
@@ -439,7 +439,7 @@ export class BottomNavigation extends TabNavigationBase {
         this.setViewAttributes(tabStripItem.nativeView, tabStripItem.label);
     }
 
-    public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: Enums.TextTransformType): void {
+    public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: CoreTypes.TextTransformType): void {
         tabStripItem.nativeView.title = getTransformedText(tabStripItem.label.text, value);
     }
 

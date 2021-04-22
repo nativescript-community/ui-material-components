@@ -62,9 +62,7 @@
             "@nativescript-community/ui-material-speeddial/*": ["src/speeddial/*"],
             "*": ["node_modules/*"]
         },
-        "plugins": [
-          { "transform": "../../node_modules/@nativescript/webpack/transformers/ns-transform-native-classes", "type": "raw" }
-        ]
+        "plugins": [{ "transform": "@nativescript/webpack/dist/transformers/NativeClass", "type": "raw" }]
     },
     "include": ["src/**/*", "./references.d.ts"],
     "exclude": ["node_modules", "platforms", "dist", "packages"],

@@ -1,4 +1,4 @@
-import { Application, CoercibleProperty, Color, Enums, Font, Frame, ImageSource, Property, Utils, View, getTransformedText, isIOS } from '@nativescript/core';
+import { Application, CoercibleProperty, Color, CoreTypes, Font, Frame, ImageSource, Property, Utils, View, getTransformedText, isIOS } from '@nativescript/core';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
@@ -161,7 +161,8 @@ function initializeNativeClasses() {
         }
 
         instantiateItem(container: android.view.ViewGroup, position: number): java.lang.Object {
-            const fragmentManager = this.owner._getFragmentManager();
+            //@ts-ignore
+            const fragmentManager = this.owner._getRootFragmentManager();
             if (!this.mCurTransaction) {
                 this.mCurTransaction = fragmentManager.beginTransaction();
             }
@@ -198,16 +199,17 @@ function initializeNativeClasses() {
 
         destroyItem(container: android.view.ViewGroup, position: number, object: java.lang.Object): void {
             if (!this.mCurTransaction) {
-                const fragmentManager = this.owner._getFragmentManager();
+                //@ts-ignore
+                const fragmentManager = this.owner._getRootFragmentManager();
                 this.mCurTransaction = fragmentManager.beginTransaction();
             }
 
             const fragment: androidx.fragment.app.Fragment = object as androidx.fragment.app.Fragment;
 
             const index = this.owner.fragments.indexOf(fragment);
-            if (index !== -1) {
-                this.owner.fragments.splice(index, 1);
-            }
+            // if (index !== -1) {
+            //     this.owner.fragments.splice(index, 1);
+            // }
             this.mCurTransaction.detach(fragment);
 
             if (this.mCurrentPrimaryItem === fragment) {
@@ -397,7 +399,7 @@ export class Tabs extends TabsBase {
     private _pagerAdapter: androidx.viewpager.widget.PagerAdapter;
     private _androidViewId = -1;
     public _originalBackground: any;
-    private _textTransform: Enums.TextTransformType = 'uppercase';
+    private _textTransform: CoreTypes.TextTransformType = 'uppercase';
     private _selectedItemColor: Color;
     private _unSelectedItemColor: Color;
     fragments: androidx.fragment.app.Fragment[] = [];
@@ -499,8 +501,9 @@ export class Tabs extends TabsBase {
         super._onAttachedToWindow();
 
         // _onAttachedToWindow called from OS again after it was detach
-        // TODO: Consider testing and removing it when update to androidx.fragment:1.2.0
-        if (this._manager && this._manager.isDestroyed()) {
+        // still happens with androidx.fragment:1.3.2
+        const activity = Application.android.foregroundActivity;
+        if ((this._manager && this._manager.isDestroyed()) || !activity.getLifecycle().getCurrentState().isAtLeast(androidx.lifecycle.Lifecycle.State.STARTED)) {
             return;
         }
 
@@ -585,6 +588,7 @@ export class Tabs extends TabsBase {
     }
 
     public disposeNativeView() {
+        console.log('disposeNativeView');
         this._tabsBar.setItems(null, null);
         (this._pagerAdapter as any).owner = null;
         this._pagerAdapter = null;
@@ -609,10 +613,12 @@ export class Tabs extends TabsBase {
     }
 
     private disposeCurrentFragments(): void {
-        const fragmentManager = this._getFragmentManager();
+        //@ts-ignore
+        const fragmentManager = this._getRootFragmentManager();
         const transaction = fragmentManager.beginTransaction();
 
         const fragments = this.fragments;
+        console.log('disposeCurrentFragments', fragments.length);
         for (let i = 0; i < fragments.length; i++) {
             transaction.remove(fragments[i]);
         }
@@ -693,9 +699,9 @@ export class Tabs extends TabsBase {
         });
     }
 
-    private getItemLabelTextTransform(tabStripItem: TabStripItem): Enums.TextTransformType {
+    private getItemLabelTextTransform(tabStripItem: TabStripItem): CoreTypes.TextTransformType {
         const nestedLabel = tabStripItem.label;
-        let textTransform: Enums.TextTransformType = null;
+        let textTransform: CoreTypes.TextTransformType = null;
         if (nestedLabel && nestedLabel.style.textTransform !== 'initial') {
             textTransform = nestedLabel.style.textTransform;
         } else if (tabStripItem.style.textTransform !== 'initial') {
@@ -946,21 +952,21 @@ export class Tabs extends TabsBase {
         tabStripItem.nativeViewProtected.setTypeface(value.getAndroidTypeface());
     }
 
-    public getTabBarItemTextTransform(tabStripItem: TabStripItem): Enums.TextTransformType {
+    public getTabBarItemTextTransform(tabStripItem: TabStripItem): CoreTypes.TextTransformType {
         return this.getItemLabelTextTransform(tabStripItem);
     }
 
-    public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: Enums.TextTransformType): void {
+    public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: CoreTypes.TextTransformType): void {
         const nestedLabel = tabStripItem.label;
         const title = getTransformedText(nestedLabel.text, value);
         tabStripItem.nativeViewProtected.setText(title);
     }
 
-    public getTabBarTextTransform(): Enums.TextTransformType {
+    public getTabBarTextTransform(): CoreTypes.TextTransformType {
         return this._textTransform;
     }
 
-    public setTabBarTextTransform(value: Enums.TextTransformType): void {
+    public setTabBarTextTransform(value: CoreTypes.TextTransformType): void {
         const items = this.tabStrip && this.tabStrip.items;
         if (items) {
             items.forEach((tabStripItem) => {

@@ -33,7 +33,7 @@ import {
     profile,
     textAlignmentProperty,
     LengthType,
-    Enums
+    CoreTypes
 } from '@nativescript/core';
 import { secureProperty } from '@nativescript/core/ui/text-field';
 import { TextFieldBase } from './textfield.common';
@@ -302,7 +302,7 @@ export class TextField extends TextFieldBase {
     [paddingLeftProperty.setNative](value: LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingLeft(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0));
     }
-    [textAlignmentProperty.setNative](value: Enums.TextAlignmentType) {
+    [textAlignmentProperty.setNative](value: CoreTypes.TextAlignmentType) {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(value) | getVerticalGravity(this.verticalTextAlignment));
     }
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {

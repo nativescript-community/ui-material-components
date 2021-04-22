@@ -65,7 +65,8 @@ export class TabContentItem extends TabContentItemBase {
             // }
 
             // TODO: fix d.ts in view module
-            return (tabView as any)._getRootFragmentManager();
+            //@ts-ignore
+            return tabView._getRootFragmentManager();
         }
 
         return tabFragment.getChildFragmentManager();

@@ -1,7 +1,7 @@
 /**
  * @module @nativescript-community/ui-material-core/tab-navigation-base/tab-strip
-*/
-import { AddArrayFromBuilder, AddChildFromBuilder, CSSType, Color, EventData, Property, View, ViewBase, booleanConverter } from '@nativescript/core';
+ */
+import { AddArrayFromBuilder, AddChildFromBuilder, CSSType, Color, CssProperty, Property, Style, View, ViewBase, booleanConverter } from '@nativescript/core';
 import { backgroundColorProperty, backgroundInternalProperty, colorProperty, fontInternalProperty } from '@nativescript/core/ui/styling/style-properties';
 import { textTransformProperty } from '@nativescript/core/ui/text-base';
 import { TabNavigationBase } from '../tab-navigation-base';
@@ -12,18 +12,21 @@ export const traceCategory = 'TabView';
 
 // Place this on top because the webpack ts-loader doesn't work when export
 // is after reference
-export const highlightColorProperty = new Property<TabStrip, Color>({
+export const highlightColorProperty = new CssProperty<Style, Color>({
     name: 'highlightColor',
+    cssName: 'highlight-color',
     equalityComparer: Color.equals,
     valueConverter: (v) => new Color(v)
 });
-export const selectedItemColorProperty = new Property<TabStrip, Color>({
+export const selectedItemColorProperty = new CssProperty<Style, Color>({
     name: 'selectedItemColor',
+    cssName: 'selected-item-color',
     equalityComparer: Color.equals,
     valueConverter: (v) => new Color(v)
 });
-export const unSelectedItemColorProperty = new Property<TabStrip, Color>({
+export const unSelectedItemColorProperty = new CssProperty<Style, Color>({
     name: 'unSelectedItemColor',
+    cssName: 'un-selected-item-color',
     equalityComparer: Color.equals,
     valueConverter: (v) => new Color(v)
 });
@@ -34,11 +37,19 @@ export class TabStrip extends View implements TabStripDefinition, AddChildFromBu
     public items: TabStripItem[];
     public isIconSizeFixed: boolean;
     public iosIconRenderingMode: 'automatic' | 'alwaysOriginal' | 'alwaysTemplate';
+
+    /**
+     * defines the highlight color of the TabStrip item
+     * can be defined through css `highlight-color`
+     */
     public highlightColor: Color;
     public selectedItemColor: Color;
     public unSelectedItemColor: Color;
-    public _hasImage: boolean;
-    public _hasTitle: boolean;
+
+    /** @hidden */
+    _hasImage: boolean;
+    /** @hidden */
+    _hasTitle: boolean;
 
     public eachChild(callback: (child: ViewBase) => boolean) {
         const items = this.items;
@@ -146,6 +157,7 @@ export class TabStrip extends View implements TabStripDefinition, AddChildFromBu
         return parent && parent.getTabBarSelectedItemColor();
     }
     [selectedItemColorProperty.setNative](value: Color) {
+        console.log('selectedItemColorProperty', value, new Error().stack);
         const parent = this.parent as TabNavigationBase;
 
         return parent && parent.setTabBarSelectedItemColor(value);
@@ -181,6 +193,6 @@ export const isIconSizeFixedProperty = new Property<TabStrip, boolean>({
 });
 isIconSizeFixedProperty.register(TabStrip);
 
-highlightColorProperty.register(TabStrip);
-selectedItemColorProperty.register(TabStrip);
-unSelectedItemColorProperty.register(TabStrip);
+highlightColorProperty.register(Style);
+selectedItemColorProperty.register(Style);
+unSelectedItemColorProperty.register(Style);

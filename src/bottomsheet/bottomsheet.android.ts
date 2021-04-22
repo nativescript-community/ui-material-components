@@ -68,7 +68,10 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                         }
 
                         owner.notify(args);
-                        return args.cancel || owner.onBackPressed();
+                        if (!args.cancel) {
+                            args.cancel = owner.onBackPressed();
+                        }
+                        return args.cancel;
                     }
                 });
                 const dialog = new com.nativescript.material.bottomsheet.BottomSheetDialog(fragment.getActivity(), theme);
@@ -156,7 +159,8 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         (df as any).nListener = dfListener;
         this._bottomSheetFragment = df;
         this._raiseShowingBottomSheetEvent();
-        df.show((parent as any)._getRootFragmentManager(), domId.toString());
+        //@ts-ignore
+        df.show(parent._getRootFragmentManager(), domId.toString());
     }
 }
 

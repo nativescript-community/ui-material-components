@@ -7,8 +7,9 @@ import { Color, CoreTypes, PercentLength } from '@nativescript/core';
 
 declare module '@nativescript/core/ui/core/view' {
     interface View {
-        clearFocus():void;
-        requestFocus():void;
+        _getRootFragmentManager(): androidx.fragment.app.FragmentManager;
+        clearFocus(): void;
+        requestFocus(): void;
     }
 }
 

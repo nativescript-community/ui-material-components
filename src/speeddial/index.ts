@@ -294,8 +294,6 @@ export class SpeedDial extends SpeedDialItemBase {
         this.prepareItem(this._fabMainButton, true);
         this._fabMainButton.row = 3;
 
-        this._fabsHolder.horizontalAlignment = this.rPosition as HorizontalAlignment;
-
         this.addChild(this._fabMainButton);
         this.addChild(this._fabsHolder);
     }
@@ -551,6 +549,13 @@ export class SpeedDial extends SpeedDialItemBase {
     }
     set title(value: string) {
         this._fabMainButton.title = value;
+    }
+    //@ts-ignore
+    get horizontalAlignment() {
+        return this._fabsHolder.horizontalAlignment;
+    }
+    set horizontalAlignment(value) {
+        this._fabsHolder.horizontalAlignment = value;
     }
     //@ts-ignore
     // get backgroundColor() {

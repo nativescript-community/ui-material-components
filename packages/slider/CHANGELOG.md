@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.25](https://github.com/nativescript-community/ui-material-components/tree/master/packages/slider/compare/v5.2.24...v5.2.25) (2021-04-22)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-slider
+
+
+
+
+
+## [5.2.24](https://github.com/nativescript-community/ui-material-components/tree/master/packages/slider/compare/v5.2.23...v5.2.24) (2021-04-20)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-slider
+
+
+
+
+
+## [5.2.23](https://github.com/nativescript-community/ui-material-components/tree/master/packages/slider/compare/v5.2.22...v5.2.23) (2021-04-20)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-slider
+
+
+
+
+
+## [5.2.22](https://github.com/nativescript-community/ui-material-components/tree/master/packages/slider/compare/v5.2.21...v5.2.22) (2021-04-16)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-slider
+
+
+
+
+
+## [5.2.21](https://github.com/nativescript-community/ui-material-components/tree/master/packages/slider/compare/v5.2.20...v5.2.21) (2021-04-16)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-slider
+
+
+
+
+
 ## [5.2.20](https://github.com/nativescript-community/ui-material-components/tree/master/packages/slider/compare/v5.2.19...v5.2.20) (2021-04-12)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-slider
