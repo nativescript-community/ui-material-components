@@ -577,12 +577,12 @@ export class Tabs extends TabsBase {
         if (tabStripItems) {
             if (tabStripItems[newIndex]) {
                 tabStripItems[newIndex]._emit(TabStripItem.selectEvent);
-                this.updateItemColors(tabStripItems[newIndex]);
+//                this.updateItemColors(tabStripItems[newIndex]);
             }
 
             if (tabStripItems[oldIndex]) {
                 tabStripItems[oldIndex]._emit(TabStripItem.unselectEvent);
-                this.updateItemColors(tabStripItems[oldIndex]);
+ //               this.updateItemColors(tabStripItems[oldIndex]);
             }
         }
 
@@ -1003,9 +1003,18 @@ export class Tabs extends TabsBase {
         }
 
         // if selectedItemColor or unSelectedItemColor is set we don't respect the color from the style
-        const tabStripColor = this.selectedIndex === tabStripItem._index ? this._selectedItemColor : this._unSelectedItemColor;
-        const image = this.getIcon(tabStripItem, tabStripColor);
-        tabStripItem.nativeView.image = image;
+
+        if(this._selectedItemColor){
+            const image = this.getIcon(tabStripItem, this._selectedItemColor);
+            tabStripItem.nativeView.selectedImage = image;
+
+        }
+
+        if(this._unSelectedItemColor){
+            const image = this.getIcon(tabStripItem, this._unSelectedItemColor);
+            tabStripItem.nativeView.image = image;
+        }
+
     }
 
     public setTabBarIconColor(tabStripItem: TabStripItem, value: UIColor | Color): void {
