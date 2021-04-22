@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.25](https://github.com/nativescript-community/ui-material-components/tree/master/packages/ripple/compare/v5.2.24...v5.2.25) (2021-04-22)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-ripple
+
+
+
+
+
 ## [5.2.24](https://github.com/nativescript-community/ui-material-components/tree/master/packages/ripple/compare/v5.2.23...v5.2.24) (2021-04-20)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-ripple
