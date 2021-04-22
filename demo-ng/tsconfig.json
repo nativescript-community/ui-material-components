@@ -1,29 +1,22 @@
 {
     "compilerOptions": {
-        "module": "esnext",
-        "target": "es2017",
-        "moduleResolution": "node",
-        "removeComments": true,
-        "declaration": false,
-        "noLib": false,
-        "skipLibCheck": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "noEmitHelpers": true,
-        "noEmitOnError": true,
-        "lib": [
-            "es2017",
-            "dom"
-        ],
-        "baseUrl": ".",
-        "paths": {
-            "~/*": [
-                "src/*"
-            ]
-        }
+      "module": "esnext",
+      "target": "es2017",
+      "moduleResolution": "node",
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "noEmitHelpers": true,
+      "noEmitOnError": true,
+      "skipLibCheck": true,
+      "lib": ["es2017", "dom"],
+      "baseUrl": ".",
+      "paths": {
+        "~/*": ["src/*"],
+        "@/*": ["src/*"]
+      }
     },
-    "exclude": [
-        "node_modules",
-        "platforms"
-    ]
-}
+    "include": ["src/tests/**/*.ts", "src/**/*.ios.ts", "src/**/*.android.ts"],
+    "files": ["./src/main.ts", "./references.d.ts"],
+    "exclude": ["node_modules", "platforms", "e2e"]
+  }
+  

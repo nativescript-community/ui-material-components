@@ -14,6 +14,7 @@
         "publish": "npm run setup && npm run build.all && lerna publish --create-release=github --force-publish",
         "build": "lerna run build",
         "build.angular": "lerna run build.angular",
+        "build.angular.win": "lerna run build.angular.win",
         "build.all": "lerna run build.all",
         "build.win": "lerna run build-win",
         "doc": "node builddoc && git add docs/* && git commit -m \"chore:doc\"",
@@ -46,6 +47,7 @@
     "repository": "https://github.com/nativescript-community/ui-material-components",
     "readmeFilename": "README.md",
     "devDependencies": {
+        "@nativescript-community/ui-material-core": "^5.2.24",
         "@angular/animations": "~11.2.0",
         "@angular/common": "~11.2.0",
         "@angular/compiler": "~11.2.0",

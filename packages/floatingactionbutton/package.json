@@ -11,6 +11,7 @@
         "build": "npm run tsc",
         "build.all": "npm run build && npm run build.angular",
         "build.angular": "../../node_modules/.bin/ng-packagr -p ../../src/floatingactionbutton/angular/package.json -c ../../src/floatingactionbutton/angular/tsconfig.json",
+        "build.angular.win": "..\\..\\node_modules\\.bin\\ng-packagr -p ..\\..\\src\\floatingactionbutton\\angular\\package.json -c ..\\..\\src\\floatingactionbutton\\angular\\tsconfig.json",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {
