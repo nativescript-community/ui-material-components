@@ -7,7 +7,7 @@
     "typings": "./index.d.ts",
     "scripts": {
         "tsc": "../../node_modules/.bin/cpy ../../src/activityindicator/index.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
-        "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\activityindicator\\index.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
+        "tsc-win": "..\\..\\node_modules\\.bin\\cpy ..\\..\\src\\activityindicator\\index.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
         "build": "npm run tsc",
         "build.all": "npm run build && npm run build.angular",
         "build.angular": "../../node_modules/.bin/ng-packagr -p ../../src/activityindicator/angular/package.json -c ../../src/activityindicator/angular/tsconfig.json",
