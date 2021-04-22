@@ -1,2 +1,8 @@
 @import '@nativescript/theme/css/core.css';
 @import '@nativescript/theme/css/default.css';
+
+MDTabStrip {
+    selected-item-color: #FFFFFF;
+    un-selected-item-color: #404040;
+    highlight-color: #4CFFFF;
+}
