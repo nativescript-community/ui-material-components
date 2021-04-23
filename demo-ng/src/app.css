@@ -1,6 +1,8 @@
 @import '@nativescript/theme/css/core.css';
 @import '@nativescript/theme/css/default.css';
-
+.mdi {
+    font-family: 'materialdesignicons-webfont', 'Material Design Icons';
+}
 MDTabStrip {
     selected-item-color: #FFFFFF;
     un-selected-item-color: #404040;

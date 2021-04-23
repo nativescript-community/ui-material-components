@@ -2,6 +2,7 @@
     "description": "NativeScript Application",
     "main": "src/main.ts",
     "dependencies": {
+        "@mdi/font": "4.9.95",
         "@angular/animations": "~11.2.7",
         "@angular/common": "~11.2.7",
         "@angular/compiler": "~11.2.7",
