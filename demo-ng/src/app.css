@@ -4,7 +4,7 @@
     font-family: 'materialdesignicons-webfont', 'Material Design Icons';
 }
 MDTabStrip {
-    selected-item-color: #FFFFFF;
+    selected-item-color: #bff937;
     un-selected-item-color: #404040;
     highlight-color: #4CFFFF;
 }

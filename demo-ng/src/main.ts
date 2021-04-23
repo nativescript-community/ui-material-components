@@ -5,9 +5,7 @@ import { AppModule } from './app/app.module';
 
 if (global.isIOS) {
     themer.setPrimaryColor('#bff937');
-    themer.setPrimaryColorVariant('#33B5E5');
-    themer.setAccentColor('#ff8a39');
-    themer.setSecondaryColor('#a830d7');
+   
 }
 
 // A traditional NativeScript application starts by initializing global objects,

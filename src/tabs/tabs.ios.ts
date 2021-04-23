@@ -577,12 +577,12 @@ export class Tabs extends TabsBase {
         if (tabStripItems) {
             if (tabStripItems[newIndex]) {
                 tabStripItems[newIndex]._emit(TabStripItem.selectEvent);
-//                this.updateItemColors(tabStripItems[newIndex]);
+                this.updateItemColors(tabStripItems[newIndex]);
             }
 
             if (tabStripItems[oldIndex]) {
                 tabStripItems[oldIndex]._emit(TabStripItem.unselectEvent);
- //               this.updateItemColors(tabStripItems[oldIndex]);
+                this.updateItemColors(tabStripItems[oldIndex]);
             }
         }
 
