@@ -1,14 +1,9 @@
-import { NavigationButton } from '@nativescript/core/ui/action-bar/action-bar';
-import { EventData, Frame, View } from '@nativescript/core/ui/frame/frame';
+import { NavigationButton, EventData, Frame, View, ObservableArray, StackLayout, Label, Builder } from '@nativescript/core';
 import { alert, AlertDialog, login, prompt } from '@nativescript-community/ui-material-dialogs';
-import { ObservableArray } from '@nativescript/core/data/observable-array/observable-array';
-const builder = require('@nativescript/core/ui/builder');
+
 // importing adds the View augmentation
 import { BottomSheetOptions } from '@nativescript-community/ui-material-bottomsheet';
-import { StackLayout } from '@nativescript/core/ui/layouts/stack-layout/stack-layout';
 import { ActivityIndicator } from '@nativescript-community/ui-material-activityindicator';
-import { Label } from '@nativescript/core/ui/label/label';
-import { Button } from '@nativescript/core/ui/button/button';
 
 function getObjectClass(obj) {
     if (typeof obj !== 'object' || obj === null) return false;
@@ -82,9 +77,47 @@ class Model {
                 }).then(result => console.log('login result', result));
                 break;
             }
-            case 'bottomsheet1': {
+            case 'bottomsheet1none': {
                 obj.showBottomSheet({
                     view: 'examples/bottomsheetinner1-fragment',
+                    ignoreBottomSafeArea: false,
+                    ignoreTopSafeArea: false,
+                    context: {},
+                    closeCallback: objId => {
+                        alert(`bottomsheet closed ${objId}`);
+                    }
+                });
+                break;
+            }
+            case 'bottomsheet1top': {
+                obj.showBottomSheet({
+                    view: 'examples/bottomsheetinner1-fragment',
+                    ignoreBottomSafeArea: false,
+                    ignoreTopSafeArea: true,
+                    context: {},
+                    closeCallback: objId => {
+                        alert(`bottomsheet closed ${objId}`);
+                    }
+                });
+                break;
+            }
+            case 'bottomsheet1bottom': {
+                obj.showBottomSheet({
+                    view: 'examples/bottomsheetinner1-fragment',
+                    ignoreBottomSafeArea: true,
+                    ignoreTopSafeArea: false,
+                    context: {},
+                    closeCallback: objId => {
+                        alert(`bottomsheet closed ${objId}`);
+                    }
+                });
+                break;
+            }
+            case 'bottomsheet1both': {
+                obj.showBottomSheet({
+                    view: 'examples/bottomsheetinner1-fragment',
+                    ignoreBottomSafeArea: true,
+                    ignoreTopSafeArea: true,
                     context: {},
                     closeCallback: objId => {
                         alert(`bottomsheet closed ${objId}`);
@@ -112,6 +145,62 @@ class Model {
                     context: {
                         dataItems: this.dataItems
                     },
+                    closeCallback: objId => {
+                        alert(`bottomsheet closed ${objId}`);
+                    }
+                });
+                break;
+            }
+            case 'bottomsheet4none': {
+                obj.showBottomSheet({
+                    view: 'examples/bottomsheetinner4-fragment',
+                    trackingScrollView: 'webview',
+                    dismissOnDraggingDownSheet: false,
+                    ignoreBottomSafeArea: false,
+                    ignoreTopSafeArea: false,
+                    context: {},
+                    closeCallback: objId => {
+                        alert(`bottomsheet closed ${objId}`);
+                    }
+                });
+                break;
+            }
+            case 'bottomsheet4top': {
+                obj.showBottomSheet({
+                    view: 'examples/bottomsheetinner4-fragment',
+                    trackingScrollView: 'webview',
+                    dismissOnDraggingDownSheet: false,
+                    ignoreBottomSafeArea: false,
+                    ignoreTopSafeArea: true,
+                    context: {},
+                    closeCallback: objId => {
+                        alert(`bottomsheet closed ${objId}`);
+                    }
+                });
+                break;
+            }
+            case 'bottomsheet4bottom': {
+                obj.showBottomSheet({
+                    view: 'examples/bottomsheetinner4-fragment',
+                    trackingScrollView: 'webview',
+                    dismissOnDraggingDownSheet: false,
+                    ignoreBottomSafeArea: true,
+                    ignoreTopSafeArea: false,
+                    context: {},
+                    closeCallback: objId => {
+                        alert(`bottomsheet closed ${objId}`);
+                    }
+                });
+                break;
+            }
+            case 'bottomsheet4both': {
+                obj.showBottomSheet({
+                    view: 'examples/bottomsheetinner4-fragment',
+                    trackingScrollView: 'webview',
+                    dismissOnDraggingDownSheet: false,
+                    ignoreBottomSafeArea: true,
+                    ignoreTopSafeArea: true,
+                    context: {},
                     closeCallback: objId => {
                         alert(`bottomsheet closed ${objId}`);
                     }
@@ -171,10 +260,10 @@ export function onNavigatingTo(args) {
         // some-fragment.xml registered via bundle-config.ts, because it's postfixed with "fragment"
         // so it already exist in bundle.js as module
         console.log('loading xml', `./${exampleTitle}-fragment.xml`);
-        innerComponent = builder.parse(require(`./${exampleTitle}-fragment.xml`) as string, theModule);
+        innerComponent = Builder.parse(require(`./${exampleTitle}-fragment.xml`) as string, theModule);
     } else {
         console.log('loading xml', `${__dirname}/${exampleTitle}-fragment.xml`);
-        innerComponent = builder.load(`${__dirname}/${exampleTitle}-fragment.xml`, theModule);
+        innerComponent = Builder.load(`${__dirname}/${exampleTitle}-fragment.xml`, theModule);
     }
 
     container.addChild(innerComponent);

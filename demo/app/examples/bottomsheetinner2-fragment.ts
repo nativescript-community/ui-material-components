@@ -1,5 +1,4 @@
-import { EventData, View } from '@nativescript/core/ui/core/view';
-import { ItemEventData } from '@nativescript/core/ui/list-view/list-view';
+import { EventData, View, ItemEventData } from '@nativescript/core';
 
 export function onTap(args: ItemEventData) {
     const bindingContext = (args.object as View).bindingContext;

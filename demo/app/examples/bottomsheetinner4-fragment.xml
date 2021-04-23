@@ -1,0 +1,1 @@
+<WebView id="webview" height="300" src="https://github.com/nativescript-community/ui-material-components/blob/master/packages/bottomsheet/README.md" backgroundColor="red" padding="0" margin="0"></WebView>

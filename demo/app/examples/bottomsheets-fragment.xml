@@ -1,7 +1,20 @@
 <StackLayout xmlns:mdb="@nativescript-community/ui-material-button">
-    <mdb:Button id="bottomsheet1" text="bottomsheet" tap="{{ onTap }}"/>
-    <mdb:Button id="bottomsheet2" text="bottomsheet listview" tap="{{ onTap }}"/>
-    <mdb:Button id="bottomsheet3" text="bottomsheet without drag to close" tap="{{ onTap }}"/>
+    <ScrollView>
+        <StackLayout>
+            <mdb:Button id="bottomsheet1none" text="bottomsheet buttons\nignoreSafeArea: none" tap="{{ onTap }}" textWrap="true"/>
+            <mdb:Button id="bottomsheet1top" text="bottomsheet buttons\nignoreSafeArea: top (default)" tap="{{ onTap }}" textWrap="true"/>
+            <mdb:Button id="bottomsheet1bottom" text="bottomsheet buttons\nignoreSafeArea: bottom" tap="{{ onTap }}" textWrap="true"/>
+            <mdb:Button id="bottomsheet1both" text="bottomsheet buttons\nignoreSafeArea: both" tap="{{ onTap }}" textWrap="true"/>
+
+            <mdb:Button id="bottomsheet2" text="bottomsheet listview" tap="{{ onTap }}"/>
+            <mdb:Button id="bottomsheet3" text="bottomsheet without drag to close" tap="{{ onTap }}"/>
+
+            <mdb:Button id="bottomsheet4none" text="bottomsheet webview\nignoreSafeArea: none" tap="{{ onTap }}" textWrap="true"/>
+            <mdb:Button id="bottomsheet4top" text="bottomsheet webview\nignoreSafeArea: top (default)" tap="{{ onTap }}" textWrap="true"/>
+            <mdb:Button id="bottomsheet4bottom" text="bottomsheet webview\nignoreSafeArea: bottom" tap="{{ onTap }}" textWrap="true"/>
+            <mdb:Button id="bottomsheet4both" text="bottomsheet webview\nignoreSafeArea: both" tap="{{ onTap }}" textWrap="true"/>
+        </StackLayout>
+    </ScrollView>
 
     <StackLayout backgroundColor="red" xmlns:mdb="@nativescript-community/ui-material-button"  layoutChanged="onViewTestLayoutChanged">
         <mdb:Button id="test1" text="test1"/>

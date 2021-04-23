@@ -1,4 +1,6 @@
-import { IOSHelper, Page, Trace, Utils, View, fromObject } from '@nativescript/core';
+import { Application, IOSHelper, Page, Screen, Trace, Utils, View, fromObject } from '@nativescript/core';
+import { iOSNativeHelper } from '@nativescript/core/utils';
+import { iosIgnoreSafeAreaProperty } from '@nativescript/core/ui/core/view/view-common';
 import { applyMixins } from '@nativescript-community/ui-material-core';
 import { BottomSheetOptions } from './bottomsheet';
 import { ViewWithBottomSheetBase } from './bottomsheet-common';
@@ -92,11 +94,11 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
     const marginLeft = owner.effectiveMarginLeft + position.left;
     const marginRight = owner.effectiveMarginRight;
     const top = marginTop + position.top;
-    const width = owner.getMeasuredWidth();
+    const width = Screen.mainScreen.widthPixels;
     const height = owner.getMeasuredHeight();
-    View.layoutChild(null, owner, position.left, top, position.left + width + marginLeft + marginRight, position.top + height + marginBottom);
+    View.layoutChild(null, owner, marginLeft, top, width - marginLeft - marginRight, position.top + height + marginBottom);
 
-    const effectiveWidth = width + marginLeft + marginRight;
+    const effectiveWidth = width;
     let effectiveHeight = height + top + marginBottom;
     if (controller.ignoreTopSafeArea || controller.ignoreBottomSafeArea) {
         const frame = CGRectMake(
@@ -113,14 +115,40 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
 
         const adjustedPosition = startPos;
 
+        const orientation = UIDevice.currentDevice.orientation;
+        const isLandscape = Application.orientation() === 'landscape';
+
+        // there are still some issues in landscape Right but they seem to come from N
+
+        owner.iosIgnoreSafeArea = !isLandscape;
         if (controller.ignoreTopSafeArea) {
-            const delta = safeAreaPosition.top - fullscreenPosition.top;
+            let key = 'top';
+            let oppositeKey = 'bottom';
+            if (orientation === UIDeviceOrientation.LandscapeLeft) {
+                key = 'left';
+                oppositeKey = 'right';
+            } else if (orientation === UIDeviceOrientation.LandscapeRight) {
+                key = 'right';
+                oppositeKey = 'left';
+            } else if (orientation === UIDeviceOrientation.PortraitUpsideDown) {
+                key = 'bottom';
+                oppositeKey = 'top';
+            }
+            const delta = safeAreaPosition[key] - fullscreenPosition[key];
             effectiveHeight -= delta;
-            adjustedPosition.bottom -= delta;
-            adjustedPosition.top -= delta;
+            adjustedPosition[oppositeKey] -= delta;
+            adjustedPosition[key] -= delta;
         }
         if (controller.ignoreBottomSafeArea) {
-            const delta = fullscreenPosition.bottom - safeAreaPosition.bottom;
+            let key = 'bottom';
+            if (orientation === UIDeviceOrientation.LandscapeLeft) {
+                key = 'right';
+            } else if (orientation === UIDeviceOrientation.LandscapeRight) {
+                key = 'left';
+            } else if (orientation === UIDeviceOrientation.PortraitUpsideDown) {
+                key = 'top';
+            }
+            const delta = fullscreenPosition[key] - safeAreaPosition[key];
             effectiveHeight -= delta;
         }
         owner.nativeViewProtected.frame = CGRectMake(

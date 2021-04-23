@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.25](https://github.com/nativescript-community/ui-material-components/compare/v5.2.24...v5.2.25) (2021-04-22)
+
+
+### Bug Fixes
+
+* **speeddial:** horizontalAlignment support ([48cd144](https://github.com/nativescript-community/ui-material-components/commit/48cd144eef0c08b5de4018e8c7cb9ae9838bbada))
+
+
+
+
+
 ## [5.2.24](https://github.com/nativescript-community/ui-material-components/compare/v5.2.23...v5.2.24) (2021-04-20)
 
 

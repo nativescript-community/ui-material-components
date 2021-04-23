@@ -46,7 +46,7 @@ export abstract class ViewWithBottomSheetBase extends View {
             eventName: shownInBottomSheetEvent,
             object: this,
             context: this._bottomSheetContext,
-            closeCallback: this._closeBottomSheetCallback,
+            closeCallback: this._closeBottomSheetCallback
         };
 
         this.notify(args);
@@ -114,7 +114,7 @@ export abstract class ViewWithBottomSheetBase extends View {
             eventName: showingInBottomSheetEvent,
             object: this,
             context: this._bottomSheetContext,
-            closeCallback: this._closeBottomSheetCallback,
+            closeCallback: this._closeBottomSheetCallback
         };
         this.notify(args);
     }
@@ -138,7 +138,7 @@ export abstract class ViewWithBottomSheetBase extends View {
                 options.view instanceof View
                     ? (options.view as ViewWithBottomSheetBase)
                     : (Builder.createViewFromEntry({
-                        moduleName: options.view as string,
+                        moduleName: options.view as string
                     }) as ViewWithBottomSheetBase);
             view._showNativeBottomSheet(this, options);
             return view;
