@@ -47,7 +47,6 @@
     "repository": "https://github.com/nativescript-community/ui-material-components",
     "readmeFilename": "README.md",
     "devDependencies": {
-        "@nativescript-community/ui-material-core": "^5.2.24",
         "@angular/animations": "~11.2.0",
         "@angular/common": "~11.2.0",
         "@angular/compiler": "~11.2.0",
