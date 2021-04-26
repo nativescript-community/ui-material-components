@@ -1,5 +1,5 @@
 ﻿import './bundle-config';
-import * as app from '@nativescript/core/application';
+import { Application } from '@nativescript/core';
 
 import { installMixins, themer } from '@nativescript-community/ui-material-core';
 import { install } from '@nativescript-community/ui-material-bottomsheet';
@@ -9,4 +9,4 @@ installMixins();
 // themer.setPrimaryColor('red');
 // themer.setPrimaryColorVariant('#3cff0000');
 
-app.run({ moduleName: 'app-root' });
+Application.run({ moduleName: 'app-root' });

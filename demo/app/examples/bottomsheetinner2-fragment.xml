@@ -1,8 +1,6 @@
-<StackLayout 
-    xmlns:lv="nativescript-ui-listview"
-    xmlns:mdcr="@nativescript-community/ui-material-ripple" 
-    >
-    <ListView id="listview" height="200" items="{{ dataItems }}" itemTap="onTap" class="list-group" backgroundColor="transparent">
+<StackLayout xmlns:lv="nativescript-ui-listview" xmlns:mdcr="@nativescript-community/ui-material-ripple">
+    <Label text="Please select a value" backgroundColor="lightgrey" class="p-10"></Label>
+    <ListView id="listview" height="200" items="{{ dataItems }}" itemTap="onTap" class="list-group" backgroundColor="grey">
         <ListView.itemTemplate>
             <mdcr:Ripple class="list-group-item item-with-border">
                 <Label text="{{ title }}" textWrap="true" class="title"/>

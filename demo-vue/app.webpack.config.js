@@ -149,7 +149,7 @@ module.exports = (env, params = {}) => {
             exclude: /\.module\.scss$/,
             use: [
                 {
-                    loader: '@nativescript/webpack/helpers/css2json-loader',
+                    loader: '@nativescript/webpack/dist/loaders/css2json-loader',
                     options: { useForImports: true }
                 },
                 {

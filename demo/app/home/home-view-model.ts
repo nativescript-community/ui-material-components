@@ -1,5 +1,4 @@
-import { Frame } from '@nativescript/core/ui/frame/frame';
-import { ItemEventData } from '@nativescript/core/ui/list-view';
+import { Frame, ItemEventData } from '@nativescript/core';
 const examples = ['buttons', 'cardview', 'ripple', 'textfields', 'textviews', 'sliders', 'progress', 'activityindicators', 'dialogs', 'bottomsheets', 'mixins', 'snackbar', 'bottomnavigationbar'];
 
 export class ViewModel {
