@@ -17,7 +17,7 @@ export abstract class ButtonBase extends Button {
     /**
      * @internal //copied from image common
      */
-    protected async _createImageSourceFromSrc(value: string | ImageSource | ImageAsset) {
+    protected async _createImageSourceFromSrc(value: string | ImageSource | ImageAsset, asIcon = true) {
         const originalValue = value;
         if (typeof value === 'string' || value instanceof String) {
             value = value.trim();
@@ -29,10 +29,10 @@ export abstract class ButtonBase extends Button {
             let source: ImageSource;
             const imageLoaded = () => {
                 const currentValue = this.src;
-                if (currentValue !== originalValue) {
+                if (asIcon && currentValue !== originalValue) {
                     return;
                 }
-                this.imageSource = source;
+                this.setImageSource(source, asIcon);
                 this.isLoading = false;
             };
 
@@ -58,18 +58,22 @@ export abstract class ButtonBase extends Button {
             }
         } else if (value instanceof ImageSource) {
             // Support binding the imageSource trough the src property
-            this.imageSource = value;
+            this.setImageSource(value, asIcon);
             this.isLoading = false;
         } else if (value instanceof ImageAsset) {
             ImageSource.fromAsset(value).then((result) => {
-                this.imageSource = result;
+                this.setImageSource(result, asIcon);
                 this.isLoading = false;
             });
         } else {
             // native source
-            this.imageSource = new ImageSource(value);
+            this.setImageSource(new ImageSource(value), asIcon);
             this.isLoading = false;
         }
+    }
+
+    setImageSource(value, asIcon = true) {
+        this.imageSource = value;
     }
 }
 
