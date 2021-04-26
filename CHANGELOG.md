@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.26](https://github.com/nativescript-community/ui-material-components/compare/v5.2.25...v5.2.26) (2021-04-26)
+
+
+### Bug Fixes
+
+* **speeddial:** multiple fixes ([d0d85a0](https://github.com/nativescript-community/ui-material-components/commit/d0d85a0f4a9eedac2aeb896f5cdaa870473dfa69))
+
+
+
+
+
 ## [5.2.25](https://github.com/nativescript-community/ui-material-components/compare/v5.2.24...v5.2.25) (2021-04-22)
 
 
