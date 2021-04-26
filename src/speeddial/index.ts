@@ -78,8 +78,9 @@ export class SpeedDialItemButton extends Button {
     constructor() {
         super();
         this.verticalAlignment = 'middle';
-        this.style['css:font-size'] = 26;
+        this.style['css:font-size'] = 24;
         this.style['css:elevation'] = 6;
+        this.style['css:padding'] = 2;
         // this.style['css:dynamic-elevation-offset'] = 6;
     }
     getDefaultElevation(): number {
@@ -126,6 +127,10 @@ export class SpeedDialItem extends SpeedDialItemBase {
         (this as any).columns = this.fabColumns;
         this.addChild(this.titleView);
         this.addChild(this.button);
+    }
+    updateAlignment() {
+        (this as any).columns = this.fabColumns;
+        this.button.col = this.fabButtonCol;
     }
     initNativeView() {
         super.initNativeView();
@@ -226,12 +231,10 @@ export class SpeedDialItem extends SpeedDialItemBase {
 
     //@ts-ignore
     get backgroundImage() {
-        return this.button && this.button.backgroundImage;
+        return this.button.backgroundImage;
     }
     set backgroundImage(value: string | LinearGradient) {
-        if (this.button) {
-            this.button.backgroundImage = value;
-        }
+        this.button.backgroundImage = value;
     }
     //@ts-ignore
     get color() {
@@ -266,7 +269,6 @@ export class SpeedDial extends SpeedDialItemBase {
     private _fabsHolder: FlexboxLayout;
     rows: string;
     columns: string;
-    rPosition = 'left';
     orientation = 'vertical';
     isActive = false;
     actualActive = false;
@@ -281,7 +283,7 @@ export class SpeedDial extends SpeedDialItemBase {
         this.style['css:padding-right'] = 8;
         this._fabsHolder = new FlexboxLayout();
         this._fabsHolder.row = 2;
-        this._fabsHolder.horizontalAlignment = this.rPosition as HorizontalAlignment;
+        this._fabsHolder.horizontalAlignment = this.horizontalAlignment;
         this.isPassThroughParentEnabled = true;
         if (global.isIOS) {
             this._fabsHolder.isPassThroughParentEnabled = true;
@@ -358,10 +360,10 @@ export class SpeedDial extends SpeedDialItemBase {
     //     }
     // }
     get isLeft() {
-        return this.rPosition === 'left';
+        return this.horizontalAlignment === 'left';
     }
     get isRight() {
-        return this.rPosition === 'right';
+        return this.horizontalAlignment === 'right';
     }
     onButtonTap(args) {
         this.active = !this.active;
@@ -517,6 +519,7 @@ export class SpeedDial extends SpeedDialItemBase {
     }
     set icon(value: string | ImageSource) {
         this._fabMainButton.icon = value;
+        this._fabMainButton.padding = 0;
     }
     get buttonClass() {
         return this._fabMainButton.buttonClass;
@@ -556,6 +559,13 @@ export class SpeedDial extends SpeedDialItemBase {
     }
     set horizontalAlignment(value) {
         this._fabsHolder.horizontalAlignment = value;
+        this._fabMainButton.updateAlignment();
+        this._fabsHolder.eachChild((c) => {
+            if (c instanceof SpeedDialItem) {
+                c.updateAlignment();
+            }
+            return true;
+        });
     }
     //@ts-ignore
     // get backgroundColor() {

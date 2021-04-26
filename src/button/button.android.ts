@@ -4,6 +4,7 @@ import { createStateListAnimator, getColorStateList, getHorizontalGravity, getLa
 import {
     Background,
     Color,
+    CoreTypes,
     Font,
     ImageSource,
     Length,
@@ -12,8 +13,7 @@ import {
     androidElevationProperty,
     backgroundInternalProperty,
     colorProperty,
-    profile,
-    CoreTypes
+    profile
 } from '@nativescript/core';
 import { textAlignmentProperty, textTransformProperty } from '@nativescript/core/ui/text-base';
 import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
@@ -165,6 +165,9 @@ export class Button extends ButtonBase {
                 if (value.borderTopColor) {
                     view.setStrokeColor(getColorStateList(value.borderTopColor.android));
                 }
+                if (value.image) {
+                    this._createImageSourceFromSrc(value.image as any, false);
+                }
             }
         }
     }
@@ -176,15 +179,32 @@ export class Button extends ButtonBase {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(this.textAlignment) | getVerticalGravity(value));
     }
 
+    settingImageSourceAsIcon = false;
     [imageSourceProperty.setNative](value: ImageSource) {
         const nativeView = this.nativeViewProtected;
         if (value && value.android) {
-            const fontSize = this.fontSize || nativeView.getTextSize();
-            nativeView.setIconSize(Math.min(value.width, Utils.layout.toDevicePixels(fontSize)));
+            if (this.settingImageSourceAsIcon) {
+                const fontSize = this.fontSize || nativeView.getTextSize();
+                nativeView.setIconSize(Math.min(value.width, Utils.layout.toDevicePixels(fontSize)));
+                // nativeView.setIconGravity(android.view.Gravity.RIGHT);
+                nativeView.setIconPadding(0);
+            } else {
+                // nativeView.setIconGravity(android.view.Gravity.CENTER);
+                nativeView.setIconPadding(0);
+                // nativeView.setPadding(0, 0, 0, 0);
+                nativeView.setIconTint(null);
+                // nativeView.setText(null);
+                nativeView.setIconSize(Math.max(Utils.layout.toDevicePixels(this.getMeasuredWidth()), Utils.layout.toDevicePixels(this.getMeasuredHeight())));
+            }
             nativeView.setIcon(new android.graphics.drawable.BitmapDrawable(value.android));
         } else {
             nativeView.setIcon(null);
         }
+    }
+
+    setImageSource(value, asIcon = true) {
+        this.settingImageSourceAsIcon = asIcon;
+        this.imageSource = value;
     }
 
     [srcProperty.setNative](value: any) {
