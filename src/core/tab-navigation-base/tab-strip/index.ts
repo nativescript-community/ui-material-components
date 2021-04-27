@@ -157,7 +157,6 @@ export class TabStrip extends View implements TabStripDefinition, AddChildFromBu
         return parent && parent.getTabBarSelectedItemColor();
     }
     [selectedItemColorProperty.setNative](value: Color) {
-        console.log('selectedItemColorProperty', value, new Error().stack);
         const parent = this.parent as TabNavigationBase;
 
         return parent && parent.setTabBarSelectedItemColor(value);

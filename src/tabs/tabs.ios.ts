@@ -419,9 +419,12 @@ function iterateIndexRange(index: number, eps: number, lastIndex: number, callba
 }
 
 function updateBackgroundPositions(tabStrip: TabStrip, tabStripItem: TabStripItem, color: UIColor = null) {
+    if (!tabStrip.nativeView || tabStripItem._index === undefined) {
+        return;
+    }
     let bgView = (tabStripItem as any).bgView;
     const index = tabStripItem._index;
-    const width = tabStrip.nativeView.frame.size.width / tabStrip.items.length;
+    const width = tabStrip.nativeView.frame.size.width / (tabStrip.items.filter(s=>s._index!== undefined).length);
     const frame = CGRectMake(width * index, 0, width, tabStrip.nativeView.frame.size.width);
     if (!bgView) {
         bgView = UIView.alloc().initWithFrame(frame);
@@ -926,7 +929,11 @@ export class Tabs extends TabsBase {
     }
 
     public setTabBarItemTitle(tabStripItem: TabStripItem, value: string): void {
-        tabStripItem.nativeView.title = value;
+        const nativeView = tabStripItem.nativeView;
+        if (!nativeView) {
+            return;
+        }
+        nativeView.title = value;
     }
 
     private equalUIColor(first: UIColor, second: UIColor): boolean {
@@ -952,7 +959,7 @@ export class Tabs extends TabsBase {
     }
 
     public setTabBarItemBackgroundColor(tabStripItem: TabStripItem, value: UIColor | Color): void {
-        if (!this.tabStrip || !tabStripItem) {
+        if (!this.tabStrip || !tabStripItem || !tabStripItem.nativeView) {
             return;
         }
 
@@ -996,6 +1003,10 @@ export class Tabs extends TabsBase {
     }
 
     private setIconColor(tabStripItem: TabStripItem, forceReload = false): void {
+        const nativeView = tabStripItem.nativeView;
+        if (!nativeView) {
+            return;
+        }
         // if there is no change in the css color and there is no item color set
         // we don't need to reload the icon
         if (!forceReload && !this._selectedItemColor && !this._unSelectedItemColor) {
@@ -1004,17 +1015,15 @@ export class Tabs extends TabsBase {
 
         // if selectedItemColor or unSelectedItemColor is set we don't respect the color from the style
 
-        if(this._selectedItemColor){
+        if (this._selectedItemColor) {
             const image = this.getIcon(tabStripItem, this._selectedItemColor);
-            tabStripItem.nativeView.selectedImage = image;
-
+            nativeView.selectedImage = image;
         }
 
-        if(this._unSelectedItemColor){
+        if (this._unSelectedItemColor) {
             const image = this.getIcon(tabStripItem, this._unSelectedItemColor);
-            tabStripItem.nativeView.image = image;
+            nativeView.image = image;
         }
-
     }
 
     public setTabBarIconColor(tabStripItem: TabStripItem, value: UIColor | Color): void {

@@ -480,8 +480,8 @@ export class Tabs extends TabsBase {
 
         return nativeView;
     }
-    onSelectedIndexChanged(oldIndex: number, newIndex:number) {
-        const tabBarImplementation = (this._tabsBar as unknown ) as PositionChanger;
+    onSelectedIndexChanged(oldIndex: number, newIndex: number) {
+        const tabBarImplementation = (this._tabsBar as unknown) as PositionChanger;
         tabBarImplementation.onSelectedPositionChange(oldIndex, newIndex);
         super.onSelectedIndexChanged(oldIndex, newIndex);
     }
@@ -903,6 +903,9 @@ export class Tabs extends TabsBase {
     }
 
     public _setItemColor(tabStripItem: TabStripItem) {
+        if (!tabStripItem.nativeViewProtected) {
+            return;
+        }
         const itemColor = tabStripItem._index === this.selectedIndex ? this._selectedItemColor : this._unSelectedItemColor;
         if (!itemColor) {
             return;
@@ -916,6 +919,9 @@ export class Tabs extends TabsBase {
     }
 
     private setIconColor(tabStripItem: TabStripItem, color?: Color) {
+        if (!tabStripItem.nativeViewProtected) {
+            return;
+        }
         const tabBarItem = this._tabsBar.getViewForItemAt(tabStripItem._index);
 
         const drawable = this.getIcon(tabStripItem, color);
