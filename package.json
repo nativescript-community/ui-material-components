@@ -14,6 +14,7 @@
         "publish": "npm run setup && npm run build.all && lerna publish --create-release=github --force-publish",
         "build": "lerna run build",
         "build.angular": "lerna run build.angular",
+        "build.angular.win": "lerna run build.angular.win",
         "build.all": "lerna run build.all",
         "build.win": "lerna run build-win",
         "doc": "node builddoc && git add docs/* && git commit -m \"chore:doc\"",

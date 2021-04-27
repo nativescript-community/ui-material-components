@@ -7,10 +7,11 @@
     "typings": "./button.d.ts",
     "scripts": {
         "tsc": "../../node_modules/.bin/cpy ../../src/button/button.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
-        "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\button\\button.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
+        "tsc-win": "..\\..\\node_modules\\.bin\\cpy ..\\..\\src\\button\\button.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
         "build": "npm run tsc",
         "build.all": "npm run build && npm run build.angular",
         "build.angular": "../../node_modules/.bin/ng-packagr -p ../../src/button/angular/package.json -c ../../src/button/angular/tsconfig.json",
+        "build.angular.win": "..\\..\\node_modules\\.bin\\ng-packagr -p ..\\..\\src\\button\\angular\\package.json -c ..\\..\\src\\button\\angular\\tsconfig.json",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {

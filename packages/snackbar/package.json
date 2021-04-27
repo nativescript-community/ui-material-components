@@ -7,7 +7,7 @@
     "typings": "./snackbar.d.ts",
     "scripts": {
         "tsc": "../../node_modules/.bin/cpy ../../src/snackbar/snackbar.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
-        "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\snackbar\\snackbar.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
+        "tsc-win": "..\\..\\node_modules\\.bin\\cpy ..\\..\\src\\snackbar\\snackbar.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
         "build": "npm run tsc",
         "build.all": "npm run build",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"

@@ -9,7 +9,7 @@
         "preuninstall": "node preuninstall.js",
         "postinstall": "node postinstall.js",
         "tsc": "../../node_modules/.bin/cpy '**/*.d.ts' '../../packages/core' --cwd=../../src/core --parents && ../../node_modules/.bin/tsc --skipLibCheck -d",
-        "tsc-win": "../../node_modules/.bin/cpy ..\\..\\src\\core\\core.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
+        "tsc-win": "..\\..\\node_modules\\.bin\\cpy '**/*.d.ts' '..\\..\\packages\\core' --cwd=..\\..\\src\\core --parents && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
         "build": "npm run tsc && npm run build.hooks",
         "build.hooks": " tsc -skipLibCheck -p tsconfig.hooks.json",
         "build.all": "npm run build",

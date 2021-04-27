@@ -37,6 +37,9 @@ function getTabById(id: number): Tabs {
 
     return ref && ref.get();
 }
+interface PositionChanger {
+    onSelectedPositionChange(position: number, prevPosition: number);
+}
 
 function initializeNativeClasses() {
     if (PagerAdapter) {
@@ -282,7 +285,7 @@ function initializeNativeClasses() {
     }
 
     @NativeClass
-    class TabsBarImplementation extends com.nativescript.material.core.TabsBar {
+    class TabsBarImplementation extends com.nativescript.material.core.TabsBar implements PositionChanger {
         constructor(context: android.content.Context, public owner: Tabs) {
             super(context);
 
@@ -476,6 +479,11 @@ export class Tabs extends TabsBase {
         }
 
         return nativeView;
+    }
+    onSelectedIndexChanged(oldIndex: number, newIndex:number) {
+        const tabBarImplementation = (this._tabsBar as unknown ) as PositionChanger;
+        tabBarImplementation.onSelectedPositionChange(oldIndex, newIndex);
+        super.onSelectedIndexChanged(oldIndex, newIndex);
     }
 
     public initNativeView(): void {
