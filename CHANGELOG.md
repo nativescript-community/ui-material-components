@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.29](https://github.com/nativescript-community/ui-material-components/compare/v5.2.28...v5.2.29) (2021-04-28)
+
+
+### Bug Fixes
+
+* **tabs ios:** Unselected color css crashing app ([6f6898b](https://github.com/nativescript-community/ui-material-components/commit/6f6898b8788c21d53e064c7d7e26db6df2e5339e))
+
+
+
+
+
 ## [5.2.28](https://github.com/nativescript-community/ui-material-components/compare/v5.2.27...v5.2.28) (2021-04-28)
 
 
