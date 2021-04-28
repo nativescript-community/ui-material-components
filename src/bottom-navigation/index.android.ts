@@ -370,7 +370,7 @@ export class BottomNavigation extends TabNavigationBase {
 
         toLoad.forEach((index) => {
             const item = items[index];
-            if (this.isLoaded && items[index]) {
+            if (this.isLoaded && item) {
                 item.loadView(item.content);
             }
         });
@@ -392,7 +392,9 @@ export class BottomNavigation extends TabNavigationBase {
             this._bottomNavigationBar.setVisibility(android.view.View.GONE);
         }
 
-        this.changeTab(this.selectedIndex);
+        if (this._attachedToWindow) {
+            this.changeTab(this.selectedIndex);
+        }
     }
 
     _onAttachedToWindow(): void {
@@ -406,7 +408,12 @@ export class BottomNavigation extends TabNavigationBase {
         }
 
         this._attachedToWindow = true;
-        this.changeTab(this.selectedIndex);
+        // add a small delay or the getRootFragmentManager wont be the right one
+        // when "opening" the bottomnavigation page.
+        // this should be removed once we dont need to use the root fragmentmanager
+        setTimeout(() => {
+            this.changeTab(this.selectedIndex);
+        }, 0);
     }
 
     _onDetachedFromWindow(): void {
