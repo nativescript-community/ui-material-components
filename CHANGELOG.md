@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.28](https://github.com/nativescript-community/ui-material-components/compare/v5.2.27...v5.2.28) (2021-04-28)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** fix first fragment not being visible ([e0d4597](https://github.com/nativescript-community/ui-material-components/commit/e0d4597eea27a54b64fbe3864d5d0d3c86347f2f))
+
+
+
+
+
 ## [5.2.27](https://github.com/nativescript-community/ui-material-components/compare/v5.2.26...v5.2.27) (2021-04-27)
 
 
