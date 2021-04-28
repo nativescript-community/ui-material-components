@@ -998,7 +998,7 @@ export class Tabs extends TabsBase {
             this.viewController.tabBar.setTitleColorForState(this._selectedItemColor.ios, UIControlState.Selected);
         }
         if (this._unSelectedItemColor) {
-            this.viewController.tabBar.setTitleColorForState(this._selectedItemColor.ios, UIControlState.Normal);
+            this.viewController.tabBar.setTitleColorForState(this._unSelectedItemColor.ios, UIControlState.Normal);
         }
     }
 
