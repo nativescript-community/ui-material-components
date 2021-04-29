@@ -1,4 +1,4 @@
-﻿import { rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
+﻿import { themer } from '@nativescript-community/ui-material-core';
 import { Color, Device, Font, Frame, IOSHelper, ImageSource, Trace, Utils, View, ViewBase } from '@nativescript/core';
 import { TabsBase, swipeEnabledProperty } from './tabs-common';
 
@@ -492,6 +492,8 @@ export class Tabs extends TabsBase {
 
     public _needsCacheUpdate = false;
     public _animateNextChange = true;
+    private _selectionIndicatorColor: Color;
+    private _rippleColor: Color;
 
     constructor() {
         super();
@@ -1084,13 +1086,13 @@ export class Tabs extends TabsBase {
         this._ios.tabBar.setImageTintColorForState(nativeColor, UIControlState.Selected);
     }
 
-    public getTabBarHighlightColor(): UIColor {
-        return this._ios.tabBar.tintColor;
+    public getTabBarHighlightColor(): Color {
+        return this._selectionIndicatorColor;
     }
 
-    public setTabBarHighlightColor(value: UIColor | Color) {
-        const nativeColor = value instanceof Color ? value.ios : value;
-        this._ios.tabBar.tintColor = nativeColor;
+    public setTabBarHighlightColor(value: Color) {
+        this._selectionIndicatorColor = value;
+        this._ios.tabBar.selectionIndicatorStrokeColor = value.ios;
     }
 
     public getTabBarSelectedItemColor(): Color {
@@ -1122,8 +1124,13 @@ export class Tabs extends TabsBase {
         });
     }
 
-    [rippleColorProperty.setNative](value: UIColor | Color) {
-        this.setTabBarHighlightColor(value);
+    public setTabBarRippleColor(value: Color) {
+        this._rippleColor = value;
+        this._ios.tabBar.rippleColor = value.ios;
+    }
+
+    public getTabBarRippleColor(): Color {
+        return this._rippleColor;
     }
 
     [selectedIndexProperty.setNative](value: number) {

@@ -255,6 +255,15 @@ export class TabNavigationBase extends View implements TabNavigationBaseDefiniti
     public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: any): void {
         // overridden by inheritors
     }
+
+    public setTabBarRippleColor(value: Color) {
+        // overridden by inheritors
+    }
+
+    public getTabBarRippleColor() {
+        // overridden by inheritors
+        return null;
+    }
 }
 
 const MIN_ICON_SIZE = 24;

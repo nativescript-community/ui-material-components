@@ -1,6 +1,7 @@
 /**
  * @module @nativescript-community/ui-material-core/tab-navigation-base/tab-strip
  */
+import { rippleColorProperty } from '../../cssproperties';
 import { AddArrayFromBuilder, AddChildFromBuilder, CSSType, Color, CssProperty, Property, Style, View, ViewBase, booleanConverter } from '@nativescript/core';
 import { backgroundColorProperty, backgroundInternalProperty, colorProperty, fontInternalProperty } from '@nativescript/core/ui/styling/style-properties';
 import { textTransformProperty } from '@nativescript/core/ui/text-base';
@@ -171,6 +172,18 @@ export class TabStrip extends View implements TabStripDefinition, AddChildFromBu
         const parent = this.parent as TabNavigationBase;
 
         return parent && parent.setTabBarUnSelectedItemColor(value);
+    }
+
+    [rippleColorProperty.getDefault](): Color {
+        const parent = this.parent as TabNavigationBase;
+
+        return parent && parent.getTabBarRippleColor();
+    }
+
+    [rippleColorProperty.setNative](value: Color) {
+        const parent = this.parent as TabNavigationBase;
+
+        return parent && parent.setTabBarRippleColor(value);
     }
 }
 
