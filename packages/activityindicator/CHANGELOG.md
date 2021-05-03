@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.30](https://github.com/nativescript-community/ui-material-components/tree/master/packages/activityindicator/compare/v5.2.29...v5.2.30) (2021-05-03)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-activityindicator
+
+
+
+
+
 ## [5.2.29](https://github.com/nativescript-community/ui-material-components/tree/master/packages/activityindicator/compare/v5.2.28...v5.2.29) (2021-04-28)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-activityindicator

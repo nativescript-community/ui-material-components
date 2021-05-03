@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.30](https://github.com/nativescript-community/ui-material-components/compare/v5.2.29...v5.2.30) (2021-05-03)
+
+
+### Bug Fixes
+
+* **tabs ios:** selector and ripple color css ([b6b0125](https://github.com/nativescript-community/ui-material-components/commit/b6b0125cebc205204b64def43b492569ed8524e0))
+
+
+
+
+
 ## [5.2.29](https://github.com/nativescript-community/ui-material-components/compare/v5.2.28...v5.2.29) (2021-04-28)
 
 
