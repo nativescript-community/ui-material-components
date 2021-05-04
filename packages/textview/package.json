@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-textview",
-    "version": "5.2.30",
+    "version": "5.2.31",
     "description": "Material Design Text views allow users to input text into your app.",
     "main": "./textview",
     "sideEffects": false,
@@ -44,7 +44,7 @@
     "readmeFilename": "README.md",
     "dependencies": {
         "@nativescript-community/text": "^1.3.10",
-        "@nativescript-community/ui-material-core": "^5.2.30"
+        "@nativescript-community/ui-material-core": "^5.2.31"
     },
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }

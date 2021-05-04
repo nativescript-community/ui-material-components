@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-dialogs",
-    "version": "5.2.30",
+    "version": "5.2.31",
     "description": "Material Design Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.",
     "main": "./dialogs",
     "sideEffects": false,
@@ -41,8 +41,8 @@
     "license": "Apache-2.0",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^5.2.30",
-        "@nativescript-community/ui-material-textfield": "^5.2.30"
+        "@nativescript-community/ui-material-core": "^5.2.31",
+        "@nativescript-community/ui-material-textfield": "^5.2.31"
     },
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }

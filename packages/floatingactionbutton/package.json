@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-floatingactionbutton",
-    "version": "5.2.30",
+    "version": "5.2.31",
     "description": "Material Design FAB performs the primary, or most common, action on a screen. It appears in front of all screen content, typically as a circular shape with an icon in its center.",
     "main": "./floatingactionbutton",
     "sideEffects": false,
@@ -43,7 +43,7 @@
     "license": "Apache-2.0",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^5.2.30"
+        "@nativescript-community/ui-material-core": "^5.2.31"
     },
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.31](https://github.com/nativescript-community/ui-material-components/compare/v5.2.30...v5.2.31) (2021-05-04)
+
+
+### Bug Fixes
+
+* **speeddial:** back drop color fix for N 8 ([8789b2f](https://github.com/nativescript-community/ui-material-components/commit/8789b2fcf6ed2a9ba74604d2aca896bef273c5b4))
+
+
+
+
+
 ## [5.2.30](https://github.com/nativescript-community/ui-material-components/compare/v5.2.29...v5.2.30) (2021-05-03)
 
 
