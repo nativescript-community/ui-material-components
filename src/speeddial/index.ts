@@ -443,7 +443,7 @@ export class SpeedDial extends SpeedDialItemBase {
             .concat([
                 {
                     target: this.backDrop,
-                    backgroundColor: new Color('#99000000'),
+                    backgroundColor: new Color('#00000099'),
                     curve: AnimationCurve.easeInOut,
                     duration
                 }
