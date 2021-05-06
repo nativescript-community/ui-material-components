@@ -89,7 +89,6 @@ export abstract class BottomNavigationBarBase extends View {
             index,
         };
         this.notify(eventData);
-        this.removeBadge(index);
     }
 
     _emitTabSelected(index: number) {
@@ -101,7 +100,6 @@ export abstract class BottomNavigationBarBase extends View {
         };
         this.selectedTabIndex = index;
         this.notify(eventData);
-        this.removeBadge(index);
     }
 
     _emitTabReselected(index: number) {
