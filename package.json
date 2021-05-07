@@ -80,6 +80,7 @@
         "ng-packagr": "~11.2.0",
         "prettier": "^2.2.1",
         "prompt": "^1.1.0",
+        "react-nativescript": "^3.0.0-beta.1",
         "rimraf": "^3.0.2",
         "rxjs": "^6.6.6",
         "ts-patch": "^1.3.2",

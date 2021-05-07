@@ -214,6 +214,63 @@ Vue.use(BottomNavigation);
     </MDBottomNavigation>
 ```
 
+##
+
+### NativeScript + React
+
+First, register the component before any of your React NativeScript app renders. A good place to put this code is in your entrypoint file (which may be called `src/app.ts` or similar), before the `ReactNativeScript.start` function is called. Here's how to install it:
+
+```ts
+import { registerBottomNavigation } from '@nativescript-community/ui-material-bottom-navigation/react';
+
+registerBottomNavigation();
+```
+
+When available (I've not implemented it at the time of writing, but intend to in time), it would be best to use this component via the `bottomNavigationNavigatorFactory()` API exported by [React NativeScript Navigation](https://github.com/shirakaba/react-nativescript-navigation/tree/master/react-nativescript-navigation), but here's how to use it directly:
+
+```tsx
+import * as React from "react";
+
+function ExampleTabs(){
+    return (
+        <bottomNavigation selectedIndex={1}>
+            {/* The bottomTab UI is created via tabStrip (the container) and tabStripItem (for each tab) */}
+            <tabStrip>
+                <tabStripItem>
+                    <label>Home</label>
+                    <image src="font://&#xf015;" className="fas"/>
+                </tabStripItem>
+                <tabStripItem className="special">
+                    <label>Account</label>
+                    <image src="font://&#xf007;" className="fas"/>
+                </tabStripItem>
+                <tabStripItem className="special">
+                    <label>Search</label>
+                    <image src="font://&#xf00e;" className="fas"/>
+                </tabStripItem>
+            </tabStrip>
+
+            {/* The number of tabContentItem components should corespond to the number of TabStripItem components */}
+            <tabContentItem>
+                <gridLayout>
+                    <label className="h2 text-center">Home Page</label>
+                </gridLayout>
+            </tabContentItem>
+            <tabContentItem>
+                <gridLayout>
+                    <label className="h2 text-center">Account Page</label>
+                </gridLayout>
+            </tabContentItem>
+            <tabContentItem>
+                <gridLayout>
+                    <label className="h2 text-center">Search Page</label>
+                </gridLayout>
+            </tabContentItem>
+        </bottomNavigation>
+    );
+}
+```
+
 ## API
 
 ### Attributes
