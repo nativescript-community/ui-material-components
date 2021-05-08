@@ -1,5 +1,5 @@
 import { NSVElement, NativeScriptProps, registerElement } from 'react-nativescript';
-import { warn } from 'react-nativescript/dist/shared/logger';
+import { warn } from 'react-nativescript/dist/shared/Logger';
 import { BottomNavigation, SelectedIndexChangedEventData, TabContentItem, TabStrip } from '../';
 import { TabNavigationBaseAttributes } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base/react';
 

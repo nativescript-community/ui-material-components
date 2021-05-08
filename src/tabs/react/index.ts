@@ -1,6 +1,6 @@
 import { ContentViewAttributes, NSVElement, NSVViewFlags, NativeScriptProps, ViewAttributes, registerElement } from 'react-nativescript';
 import { Color, EventData, Image, Label, PropertyChangeData } from '@nativescript/core';
-import { warn } from 'react-nativescript/dist/shared/logger';
+import { warn } from 'react-nativescript/dist/shared/Logger';
 import { TabContentItem, TabStrip, TabStripItem, Tabs } from '../tabs';
 import { TabNavigationBaseAttributes } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base/react';
 import { SelectedIndexChangedEventData } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
