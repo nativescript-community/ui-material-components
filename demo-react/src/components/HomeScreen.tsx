@@ -31,17 +31,17 @@ export function ExampleTabs() {
 
                 {/* The number of tabContentItem components should corespond to the number of TabStripItem components */}
                 <tabContentItem nodeRole="items">
-                    <gridLayout nodeRole="content" style={{ ...styles.fullSize, backgroundColor: 'blue' }}>
+                    <gridLayout style={{ ...styles.fullSize, backgroundColor: 'blue' }}>
                         <label style={{ color: 'white' }}>Home Page</label>
                     </gridLayout>
                 </tabContentItem>
                 <tabContentItem nodeRole="items">
-                    <gridLayout nodeRole="content" style={{ ...styles.fullSize, backgroundColor: 'cyan' }}>
+                    <gridLayout style={{ ...styles.fullSize, backgroundColor: 'cyan' }}>
                         <label style={{ color: 'black' }}>Account Page</label>
                     </gridLayout>
                 </tabContentItem>
                 <tabContentItem nodeRole="items">
-                    <gridLayout nodeRole="content" style={{ ...styles.fullSize, backgroundColor: 'magenta' }}>
+                    <gridLayout style={{ ...styles.fullSize, backgroundColor: 'magenta' }}>
                         <label style={{ color: 'black' }}>Search Page</label>
                     </gridLayout>
                 </tabContentItem>
