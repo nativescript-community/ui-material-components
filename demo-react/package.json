@@ -38,10 +38,10 @@
     "template"
   ],
   "dependencies": {
-    "@nativescript/core": "8.0.0-alpha.8",
     "@nativescript-community/ui-material-activityindicator": "file:../packages/activityindicator",
-    "@nativescript-community/ui-material-bottomsheet": "file:../packages/bottomsheet",
+    "@nativescript-community/ui-material-bottom-navigation": "file:../packages/bottom-navigation",
     "@nativescript-community/ui-material-bottomnavigationbar": "file:../packages/bottomnavigationbar",
+    "@nativescript-community/ui-material-bottomsheet": "file:../packages/bottomsheet",
     "@nativescript-community/ui-material-button": "file:../packages/button",
     "@nativescript-community/ui-material-cardview": "file:../packages/cardview",
     "@nativescript-community/ui-material-core": "file:../packages/core",
@@ -51,8 +51,10 @@
     "@nativescript-community/ui-material-ripple": "file:../packages/ripple",
     "@nativescript-community/ui-material-slider": "file:../packages/slider",
     "@nativescript-community/ui-material-snackbar": "file:../packages/snackbar",
+    "@nativescript-community/ui-material-tabs": "file:../packages/tabs",
     "@nativescript-community/ui-material-textfield": "file:../packages/textfield",
     "@nativescript-community/ui-material-textview": "file:../packages/textview",
+    "@nativescript/core": "8.0.0-alpha.8",
     "@nativescript/theme": "3.0.0",
     "nativescript-ui-listview": "9.1.0",
     "react": "~16.13.1",
