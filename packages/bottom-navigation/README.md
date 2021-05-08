@@ -279,6 +279,20 @@ export function BottomNavigation() {
 }
 ```
 
+**Troubleshooting**
+
+If you see an error like this when writing e.g. `<bottomNavigation>` into your JSX:
+
+> Property 'bottomNavigation' does not exist on type 'JSX.IntrinsicElements'.ts(2339)
+
+Make sure that you have:
+
+1. Installed the `react-nativescript` npm module.
+2. Installed the `@types/react` npm module, strictly with the exact version provided in the [React NativeScript starter template](https://github.com/NativeScript/nativescript-app-templates/tree/master/packages/template-blank-react).
+3. Run the postinstall script that comes with the React NativeScript template – `npm run postinstall` – to patch `@types/react`.
+4. Registered the component as described above (i.e. import and run the `registerBottomNavigation()` method).
+5. If using Visual Studio Code, option-click the import `@nativescript-community/ui-material-bottom-navigation/react` to jump to the file; opening the file will force it to load its provided typings.
+
 ## API
 
 ### Attributes
