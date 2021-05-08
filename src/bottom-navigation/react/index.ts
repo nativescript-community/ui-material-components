@@ -66,15 +66,9 @@ export function registerBottomNavigation(): void {
                         if (typeof atIndex === 'undefined' || atIndex === items.length) {
                             bottomNavigation._addChildFromBuilder('items', child.nativeView as TabContentItem);
                         } else {
-                            items.forEach((item) => {
-                                bottomNavigation._removeView(item);
-                            });
                             const itemsClone = items.slice();
                             itemsClone.splice(atIndex, 0, child.nativeView as TabContentItem);
                             bottomNavigation.items = itemsClone;
-                            itemsClone.forEach((item) => {
-                                bottomNavigation._addView(item);
-                            });
                         }
                     } else if (child.nodeRole === 'item') {
                         if (__DEV__) {

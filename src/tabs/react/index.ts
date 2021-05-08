@@ -105,15 +105,9 @@ export function registerTabs(): void {
                             tabStrip._addChildFromBuilder('items', child.nativeView as TabStripItem);
                         } else {
                             // console.log(`[tabStrip.insert] 2b [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
-                            items.forEach((item) => {
-                                tabStrip._removeView(item);
-                            });
                             const itemsClone = items.slice();
                             itemsClone.splice(atIndex, 0, child.nativeView as TabStripItem);
                             tabStrip.items = itemsClone;
-                            itemsClone.forEach((item) => {
-                                tabStrip._addView(item);
-                            });
                         }
                     } else if (child.nodeRole === 'item') {
                         if (__DEV__) {
@@ -133,7 +127,6 @@ export function registerTabs(): void {
 
                     if (child.nodeRole === 'items') {
                         tabStrip.items = (tabStrip.items || []).filter((i) => i !== child.nativeView);
-                        tabStrip._removeView(child.nativeView);
                     } else if (child.nodeRole === 'item') {
                         if (__DEV__) {
                             warn(`Unable to remove child "${child.nativeView.constructor.name}" from <tabStrip> as it had the nodeRole "item"; please correct it to "items".`);
@@ -164,7 +157,7 @@ export function registerTabs(): void {
                     //       keep these good practices in case it's ever refactored.
 
                     if (child.nodeRole === 'label') {
-                        console.log(`[tabStrip.insert] LABEL [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
+                        console.log(`[tabStripItem.insert] LABEL [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
                         if (child.nativeView instanceof Label === false) {
                             if (__DEV__) {
                                 warn(`Unable to add child "${child.nativeView.constructor.name}" to the items of <tabStripItem> as it is not an instance of Label.`);
@@ -174,7 +167,7 @@ export function registerTabs(): void {
 
                         tabStripItem.label = child.nativeView as Label;
                     } else if (child.nodeRole === 'image') {
-                        console.log(`[tabStrip.insert] IMAGE [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
+                        console.log(`[tabStripItem.insert] IMAGE [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
                         if (child.nativeView instanceof Image === false) {
                             if (__DEV__) {
                                 warn(`Unable to add child "${child.nativeView.constructor.name}" to the items of <tabStripItem> as it is not an instance of Image.`);
@@ -184,7 +177,7 @@ export function registerTabs(): void {
 
                         tabStripItem.image = child.nativeView as Image;
                     } else {
-                        console.log(`[tabStrip.insert] OTHER [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
+                        console.log(`[tabStripItem.insert] OTHER [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
                         if (__DEV__) {
                             warn(
                                 `Unable to add child "${child.nativeView.constructor.name}" to <tabStripItem> as it does not have a nodeRole specified; ` +
@@ -245,15 +238,9 @@ export function registerTabs(): void {
                         if (typeof atIndex === 'undefined' || atIndex === items.length) {
                             tabs._addChildFromBuilder('items', child.nativeView as TabContentItem);
                         } else {
-                            items.forEach((item) => {
-                                tabs._removeView(item);
-                            });
                             const itemsClone = items.slice();
                             itemsClone.splice(atIndex, 0, child.nativeView as TabContentItem);
                             tabs.items = itemsClone;
-                            itemsClone.forEach((item) => {
-                                tabs._addView(item);
-                            });
                         }
                     } else if (child.nodeRole === 'item') {
                         if (__DEV__) {
@@ -274,7 +261,6 @@ export function registerTabs(): void {
                         tabs.tabStrip = null; // Anything falsy should work.
                     } else if (child.nodeRole === 'items') {
                         tabs.items = (tabs.items || []).filter((i) => i !== child.nativeView);
-                        tabs._removeView(child.nativeView);
                     } else if (child.nodeRole === 'item') {
                         if (__DEV__) {
                             warn(`Unable to remove child "${child.nativeView.constructor.name}" from <tabs> as it had the nodeRole "item"; please correct it to "items".`);
