@@ -226,44 +226,52 @@ import { registerTabs } from '@nativescript-community/ui-material-tabs/react';
 registerTabs();
 ```
 
-Normally it would be best to use this component via the `tabNavigatorFactory()` API exported by [React NativeScript Navigation](https://github.com/shirakaba/react-nativescript-navigation/tree/master/react-nativescript-navigation), but here's how to use it directly:
+Normally it would be best to use this component via the `tabNavigatorFactory()` API exported by [React NativeScript Navigation](https://github.com/shirakaba/react-nativescript-navigation/tree/master/react-nativescript-navigation), as it makes nested navigation easy, but here's how to use it directly:
 
 ```tsx
-import * as React from "react";
+import * as React from 'react';
 
-function ExampleTabs(){
+export function Tabs() {
+    const [selectedIndex, setSelectedIndex] = React.useState(0);
+
     return (
-        <tabs selectedIndex={1}>
+        <tabs
+            selectedIndex={selectedIndex}
+            onSelectedIndexChanged={(args) => {
+                setSelectedIndex(args.newIndex);
+            }}
+            style={{ backgroundColor: 'orange' }}
+        >
             {/* The bottomTab UI is created via tabStrip (the container) and tabStripItem (for each tab) */}
-            <tabStrip>
-                <tabStripItem>
-                    <label>Home</label>
-                    <image src="font://&#xf015;" className="fas"/>
+            <tabStrip nodeRole="tabStrip" style={{ backgroundColor: 'red' }}>
+                <tabStripItem nodeRole="items">
+                    <label nodeRole="label">Home</label>
+                    <image nodeRole="image" src="font://&#xf015;" className="fas" />
                 </tabStripItem>
-                <tabStripItem className="special">
-                    <label>Account</label>
-                    <image src="font://&#xf007;" className="fas"/>
+                <tabStripItem nodeRole="items">
+                    <label nodeRole="label">Account</label>
+                    <image nodeRole="image" src="font://&#xf007;" className="fas" />
                 </tabStripItem>
-                <tabStripItem className="special">
-                    <label>Search</label>
-                    <image src="font://&#xf00e;" className="fas"/>
+                <tabStripItem nodeRole="items">
+                    <label nodeRole="label">Search</label>
+                    <image nodeRole="image" src="font://&#xf00e;" className="fas" />
                 </tabStripItem>
             </tabStrip>
 
             {/* The number of tabContentItem components should corespond to the number of TabStripItem components */}
-            <tabContentItem>
-                <gridLayout>
-                    <label className="h2 text-center">Home Page</label>
+            <tabContentItem nodeRole="items">
+                <gridLayout style={{ backgroundColor: 'blue' }}>
+                    <label style={{ color: 'white' }}>Home Page</label>
                 </gridLayout>
             </tabContentItem>
-            <tabContentItem>
-                <gridLayout>
-                    <label className="h2 text-center">Account Page</label>
+            <tabContentItem nodeRole="items">
+                <gridLayout style={{ backgroundColor: 'cyan' }}>
+                    <label style={{ color: 'black' }}>Account Page</label>
                 </gridLayout>
             </tabContentItem>
-            <tabContentItem>
-                <gridLayout>
-                    <label className="h2 text-center">Search Page</label>
+            <tabContentItem nodeRole="items">
+                <gridLayout style={{ backgroundColor: 'magenta' }}>
+                    <label style={{ color: 'black' }}>Search Page</label>
                 </gridLayout>
             </tabContentItem>
         </tabs>
