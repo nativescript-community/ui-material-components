@@ -14,6 +14,7 @@ Material Design's [Tabs](https://material.io/components/tabs) component for Nati
     - [Plain NativeScript](#plain-nativescript)
     - [Angular](#nativescript--angular)
     - [Vue](#nativescript--vue)
+    - [React](#nativescript--react)
 5.  [API](#api)
 
 ## Installation
