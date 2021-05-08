@@ -221,8 +221,10 @@ Vue.use(TabsPlugin);
 First, register the component before any of your React NativeScript app renders. A good place to put this code is in your entrypoint file (which may be called `src/app.ts` or similar), before the `ReactNativeScript.start` function is called. Here's how to install it:
 
 ```ts
+import { registerTabNavigationBase } from '@nativescript-community/ui-material-core/tab-navigation-base/react';
 import { registerTabs } from '@nativescript-community/ui-material-tabs/react';
 
+registerTabNavigationBase();
 registerTabs();
 ```
 
@@ -290,7 +292,7 @@ Make sure that you have:
 1. Installed the `react-nativescript` npm module.
 2. Installed the `@types/react` npm module, strictly with the exact version provided in the [React NativeScript starter template](https://github.com/NativeScript/nativescript-app-templates/tree/master/packages/template-blank-react).
 3. Run the postinstall script that comes with the React NativeScript template – `npm run postinstall` – to patch `@types/react`.
-4. Registered the component as described above (i.e. import and run the `registerTabs()` method).
+4. Registered the component as described above (i.e. import and run the `registerTabNavigationBase()` and `registerTabs()` methods).
 5. If using Visual Studio Code, option-click the import `@nativescript-community/ui-material-tabs/react` to jump to the file; opening the file will force it to load its provided typings.
 
 ## API
