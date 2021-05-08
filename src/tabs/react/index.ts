@@ -100,13 +100,20 @@ export function registerTabs(): void {
                         // console.log(`[tabStrip.insert] 1 [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
 
                         const items = tabStrip.items || []; // Annoyingly, it's the consumer's responsibility to ensure there's an array there!
-
                         if (typeof atIndex === 'undefined' || atIndex === items.length) {
                             // console.log(`[tabStrip.insert] 2a [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
-                            tabStrip.items = items.concat(child.nativeView as TabStripItem);
+                            tabStrip._addChildFromBuilder('items', child.nativeView as TabStripItem);
                         } else {
                             // console.log(`[tabStrip.insert] 2b [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
-                            tabStrip.items = items.slice().splice(atIndex, 0, child.nativeView as TabStripItem);
+                            items.forEach((item) => {
+                                tabStrip._removeView(item);
+                            });
+                            const itemsClone = items.slice();
+                            itemsClone.splice(atIndex, 0, child.nativeView as TabStripItem);
+                            tabStrip.items = itemsClone;
+                            itemsClone.forEach((item) => {
+                                tabStrip._addView(item);
+                            });
                         }
                     } else if (child.nodeRole === 'item') {
                         if (__DEV__) {
@@ -122,10 +129,11 @@ export function registerTabs(): void {
                     }
                 },
                 remove(child: NSVElement, parent: NSVElement<TabStrip>): void {
-                    const tabs = parent.nativeView;
+                    const tabStrip = parent.nativeView;
 
                     if (child.nodeRole === 'items') {
-                        tabs.items = (tabs.items || []).filter((i) => i !== child.nativeView);
+                        tabStrip.items = (tabStrip.items || []).filter((i) => i !== child.nativeView);
+                        tabStrip._removeView(child.nativeView);
                     } else if (child.nodeRole === 'item') {
                         if (__DEV__) {
                             warn(`Unable to remove child "${child.nativeView.constructor.name}" from <tabStrip> as it had the nodeRole "item"; please correct it to "items".`);
