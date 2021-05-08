@@ -75,7 +75,7 @@ interface RegisterTabsOptions {
     enableDebugLogging?: boolean;
 }
 
-export function registerTabs(opts: RegisterTabsOptions): void {
+export function registerTabs(opts: RegisterTabsOptions = {}): void {
     const { enableDebugLogging = false } = opts;
 
     if (installed) {
