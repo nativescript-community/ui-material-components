@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 /* Controls react-nativescript log verbosity. true: all logs; false: only error logs. */
-Object.defineProperty(global, '__DEV__', { value: false });
+Object.defineProperty(global, '__DEV__', { value: true });
 
 /*
 In NativeScript, the app.ts file is the entry point to your application.
@@ -13,7 +13,7 @@ import * as ReactNativeScript from 'react-nativescript';
 import { ExampleTabs as AppContainer } from './components/HomeScreen';
 import { registerTabs } from '@nativescript-community/ui-material-tabs/react';
 
-registerTabs();
+registerTabs({ enableDebugLogging: true });
 ReactNativeScript.start(React.createElement(AppContainer, {}, null));
 
 /*
