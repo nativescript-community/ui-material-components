@@ -10,10 +10,14 @@ purpose of the file is to pass control to the app’s first module.
 */
 
 import * as ReactNativeScript from 'react-nativescript';
-import { ExampleTabs as AppContainer } from './components/HomeScreen';
 import { registerTabs } from '@nativescript-community/ui-material-tabs/react';
+import { registerBottomNavigation } from '@nativescript-community/ui-material-bottom-navigation/react';
+import { AppContainer } from './components/AppContainer';
+// import { ExampleTabs as AppContainer } from './components/TabsScreen';
+// import { ExampleBottomNavigation as AppContainer } from './components/BottomNavigationScreen';
 
 registerTabs({ enableDebugLogging: true });
+registerBottomNavigation({ enableDebugLogging: true });
 ReactNativeScript.start(React.createElement(AppContainer, {}, null));
 
 /*
