@@ -5,10 +5,6 @@ import { TabContentItem, TabStrip, TabStripItem, Tabs } from '../tabs';
 import { TabNavigationBaseAttributes } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base/react';
 import { SelectedIndexChangedEventData } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 
-// Global compile-time constant (for some reason not exported by RNS itself)
-// eslint-disable-next-line no-var
-declare var __DEV__: boolean;
-
 // ui/tabs/tabs.d.ts
 export type TabsAttributes = TabNavigationBaseAttributes & {
     android?: any;
@@ -75,7 +71,13 @@ declare global {
 }
 let installed: boolean = false;
 
-export function registerTabs(): void {
+interface RegisterTabsOptions {
+    enableDebugLogging?: boolean;
+}
+
+export function registerTabs(opts: RegisterTabsOptions): void {
+    const { enableDebugLogging = false } = opts;
+
     if (installed) {
         return;
     }
@@ -91,7 +93,7 @@ export function registerTabs(): void {
 
                     if (child.nodeRole === 'items') {
                         if (child.nativeView instanceof TabStripItem === false) {
-                            if (__DEV__) {
+                            if (enableDebugLogging) {
                                 warn(`Unable to add child "${child.nativeView.constructor.name}" to the items of <tabStrip> as it is not an instance of TabStripItem.`);
                             }
                             return;
@@ -110,11 +112,11 @@ export function registerTabs(): void {
                             tabStrip.items = itemsClone;
                         }
                     } else if (child.nodeRole === 'item') {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(`Unable to add child "${child.nativeView.constructor.name}" to <tabStrip> as it had the nodeRole "item"; please correct it to "items".`);
                         }
                     } else {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(
                                 `Unable to add child "${child.nativeView.constructor.name}" to <tabStrip> as it does not have a nodeRole specified; ` +
                                     'please set a nodeRole of "tabStrip", or "items".'
@@ -128,11 +130,11 @@ export function registerTabs(): void {
                     if (child.nodeRole === 'items') {
                         tabStrip.items = (tabStrip.items || []).filter((i) => i !== child.nativeView);
                     } else if (child.nodeRole === 'item') {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(`Unable to remove child "${child.nativeView.constructor.name}" from <tabStrip> as it had the nodeRole "item"; please correct it to "items".`);
                         }
                     } else {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(
                                 `Unable to remove child "${child.nativeView.constructor.name}" from <tabStrip> as it does not have a nodeRole specified; ` +
                                     'please set a nodeRole of "tabStrip", or "items"'
@@ -159,7 +161,7 @@ export function registerTabs(): void {
                     if (child.nodeRole === 'label') {
                         console.log(`[tabStripItem.insert] LABEL [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
                         if (child.nativeView instanceof Label === false) {
-                            if (__DEV__) {
+                            if (enableDebugLogging) {
                                 warn(`Unable to add child "${child.nativeView.constructor.name}" to the items of <tabStripItem> as it is not an instance of Label.`);
                             }
                             return;
@@ -169,7 +171,7 @@ export function registerTabs(): void {
                     } else if (child.nodeRole === 'image') {
                         console.log(`[tabStripItem.insert] IMAGE [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
                         if (child.nativeView instanceof Image === false) {
-                            if (__DEV__) {
+                            if (enableDebugLogging) {
                                 warn(`Unable to add child "${child.nativeView.constructor.name}" to the items of <tabStripItem> as it is not an instance of Image.`);
                             }
                             return;
@@ -178,7 +180,7 @@ export function registerTabs(): void {
                         tabStripItem.image = child.nativeView as Image;
                     } else {
                         console.log(`[tabStripItem.insert] OTHER [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(
                                 `Unable to add child "${child.nativeView.constructor.name}" to <tabStripItem> as it does not have a nodeRole specified; ` +
                                     'please set a nodeRole of "label", or "image".'
@@ -196,7 +198,7 @@ export function registerTabs(): void {
                         // WARNING: It is not evident from the implementation that TabStripItem supports removing image at all!
                         tabStripItem.image = null;
                     } else {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(
                                 `Unable to remove child "${child.nativeView.constructor.name}" from <tabStripItem> as it does not have a nodeRole specified; ` +
                                     'please set a nodeRole of "label", or "image"'
@@ -222,13 +224,13 @@ export function registerTabs(): void {
                         if (child.nativeView instanceof TabStrip) {
                             tabs.tabStrip = child.nativeView;
                         } else {
-                            if (__DEV__) {
+                            if (enableDebugLogging) {
                                 warn(`Unable to add child "${child.nativeView.constructor.name}" as the tabStrip of <tabs> as it is not an instance of TabStrip.`);
                             }
                         }
                     } else if (child.nodeRole === 'items') {
                         if (child.nativeView instanceof TabContentItem === false) {
-                            if (__DEV__) {
+                            if (enableDebugLogging) {
                                 warn(`Unable to add child "${child.nativeView.constructor.name}" to the items of <tabs> as it is not an instance of TabContentItem.`);
                             }
                             return;
@@ -243,11 +245,11 @@ export function registerTabs(): void {
                             tabs.items = itemsClone;
                         }
                     } else if (child.nodeRole === 'item') {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(`Unable to add child "${child.nativeView.constructor.name}" to <tabs> as it had the nodeRole "item"; please correct it to "items".`);
                         }
                     } else {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(
                                 `Unable to add child "${child.nativeView.constructor.name}" to <tabs> as it does not have a nodeRole specified; ` + 'please set a nodeRole of "tabStrip", or "items".'
                             );
@@ -262,11 +264,11 @@ export function registerTabs(): void {
                     } else if (child.nodeRole === 'items') {
                         tabs.items = (tabs.items || []).filter((i) => i !== child.nativeView);
                     } else if (child.nodeRole === 'item') {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(`Unable to remove child "${child.nativeView.constructor.name}" from <tabs> as it had the nodeRole "item"; please correct it to "items".`);
                         }
                     } else {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(
                                 `Unable to remove child "${child.nativeView.constructor.name}" from <tabs> as it does not have a nodeRole specified; ` +
                                     'please set a nodeRole of "tabStrip", or "items"'

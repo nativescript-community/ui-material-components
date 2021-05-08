@@ -3,10 +3,6 @@ import { warn } from 'react-nativescript/dist/shared/Logger';
 import { BottomNavigation, SelectedIndexChangedEventData, TabContentItem, TabStrip } from '../';
 import { TabNavigationBaseAttributes } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base/react';
 
-// Global compile-time constant (for some reason not exported by RNS itself)
-// eslint-disable-next-line no-var
-declare var __DEV__: boolean;
-
 // ui/bottom-navigation/bottom-navigation.d.ts
 export type BottomNavigationAttributes = TabNavigationBaseAttributes & {
     android?: any;
@@ -31,7 +27,13 @@ declare global {
 
 let installed: boolean = false;
 
-export function registerBottomNavigation(): void {
+interface RegisterBottomNavigationOptions {
+    enableDebugLogging?: boolean;
+}
+
+export function registerBottomNavigation(opts: RegisterBottomNavigationOptions = {}): void {
+    const { enableDebugLogging = false } = opts;
+
     if (installed) {
         return;
     }
@@ -49,13 +51,13 @@ export function registerBottomNavigation(): void {
                         if (child.nativeView instanceof TabStrip) {
                             bottomNavigation.tabStrip = child.nativeView;
                         } else {
-                            if (__DEV__) {
+                            if (enableDebugLogging) {
                                 warn(`Unable to add child "${child.nativeView.constructor.name}" as the tabStrip of <bottomNavigation> as it is not an instance of TabStrip.`);
                             }
                         }
                     } else if (child.nodeRole === 'items') {
                         if (child.nativeView instanceof TabContentItem === false) {
-                            if (__DEV__) {
+                            if (enableDebugLogging) {
                                 warn(`Unable to add child "${child.nativeView.constructor.name}" to the items of <bottomNavigation> as it is not an instance of TabContentItem.`);
                             }
                             return;
@@ -71,11 +73,11 @@ export function registerBottomNavigation(): void {
                             bottomNavigation.items = itemsClone;
                         }
                     } else if (child.nodeRole === 'item') {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(`Unable to add child "${child.nativeView.constructor.name}" to <bottomNavigation> as it had the nodeRole "item"; please correct it to "items".`);
                         }
                     } else {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(
                                 `Unable to add child "${child.nativeView.constructor.name}" to <bottomNavigation> as it does not have a nodeRole specified; ` +
                                     'please set a nodeRole of "tabStrip", or "items".'
@@ -91,11 +93,11 @@ export function registerBottomNavigation(): void {
                     } else if (child.nodeRole === 'items') {
                         tabs.items = (tabs.items || []).filter((i) => i !== child.nativeView);
                     } else if (child.nodeRole === 'item') {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(`Unable to remove child "${child.nativeView.constructor.name}" from <bottomNavigation> as it had the nodeRole "item"; please correct it to "items".`);
                         }
                     } else {
-                        if (__DEV__) {
+                        if (enableDebugLogging) {
                             warn(
                                 `Unable to remove child "${child.nativeView.constructor.name}" from <bottomNavigation> as it does not have a nodeRole specified; ` +
                                     'please set a nodeRole of "tabStrip", or "items"'
