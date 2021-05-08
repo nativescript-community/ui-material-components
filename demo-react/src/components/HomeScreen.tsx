@@ -1,37 +1,42 @@
-import * as React from "react";
-import { RouteProp } from '@react-navigation/core';
-import { Dialogs } from '@nativescript/core';
-import { FrameNavigationProp } from "react-nativescript-navigation";
-import { StyleSheet } from "react-nativescript";
-import { MainStackParamList } from "./NavigationParamList";
+import * as React from 'react';
+import { StyleSheet } from 'react-nativescript';
 
-type HomeScreenProps = {
-    route: RouteProp<MainStackParamList, "Home">,
-    navigation: FrameNavigationProp<MainStackParamList, "Home">,
-}
-
-export function HomeScreen({ navigation }: HomeScreenProps) {
+export function ExampleTabs(){
     return (
-        <flexboxLayout style={styles.container}>
-            <label
-                className="fas"
-                style={styles.text}
-            >
-                &#xf135; Hello World!
-            </label>
-            <button
-                style={styles.button}
-                onTap={() => Dialogs.alert("Tapped!")}
-            >
-                Tap me for an alert
-            </button>
-            <button
-                style={styles.button}
-                onTap={() => navigation.navigate('Secondary')}
-            >
-                Go to next screen
-            </button>
-        </flexboxLayout>
+        <tabs selectedIndex={1}>
+            {/* The bottomTab UI is created via tabStrip (the container) and tabStripItem (for each tab) */}
+            <tabStrip>
+                <tabStripItem>
+                    <label>Home</label>
+                    <image src="font://&#xf015;" className="fas"/>
+                </tabStripItem>
+                <tabStripItem className="special">
+                    <label>Account</label>
+                    <image src="font://&#xf007;" className="fas"/>
+                </tabStripItem>
+                <tabStripItem className="special">
+                    <label>Search</label>
+                    <image src="font://&#xf00e;" className="fas"/>
+                </tabStripItem>
+            </tabStrip>
+
+            {/* The number of tabContentItem components should corespond to the number of TabStripItem components */}
+            <tabContentItem>
+                <gridLayout>
+                    <label className="h2 text-center">Home Page</label>
+                </gridLayout>
+            </tabContentItem>
+            <tabContentItem>
+                <gridLayout>
+                    <label className="h2 text-center">Account Page</label>
+                </gridLayout>
+            </tabContentItem>
+            <tabContentItem>
+                <gridLayout>
+                    <label className="h2 text-center">Search Page</label>
+                </gridLayout>
+            </tabContentItem>
+        </tabs>
     );
 }
 
