@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-export function ExampleTabs() {
+export function BottomNavigation() {
     const [selectedIndex, setSelectedIndex] = React.useState(0);
 
     return (
-        <tabs
+        <bottomNavigation
             selectedIndex={selectedIndex}
             onSelectedIndexChanged={(args) => {
                 setSelectedIndex(args.newIndex);
@@ -43,6 +43,6 @@ export function ExampleTabs() {
                     <label style={{ color: 'black' }}>Search Page</label>
                 </gridLayout>
             </tabContentItem>
-        </tabs>
+        </bottomNavigation>
     );
 }
