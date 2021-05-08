@@ -1,0 +1,59 @@
+{
+  "name": "@nativescript/template-blank-react",
+  "version": "8.0.1",
+  "description": "NativeScript Application",
+  "author": "Jamie Birch <14055146+shirakaba@users.noreply.github.com>",
+  "main": "src/app.ts",
+  "scripts": {
+    "postinstall": "patch-package",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch"
+  },
+  "license": "SEE LICENSE IN <your-license-filename>",
+  "repository": "<fill-your-repository-here>",
+  "homepage": "https://github.com/NativeScript/nativescript-app-templates",
+  "bugs": {
+    "url": "https://github.com/NativeScript/NativeScript/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "App_Resources",
+    "hooks",
+    "patches",
+    "src",
+    "tools",
+    "!tools/assets",
+    ".editorconfig",
+    "references.d.ts",
+    "tsconfig.json"
+  ],
+  "keywords": [
+    "mobile",
+    "nativescript",
+    "{N}",
+    "react",
+    "react-nativescript",
+    "template"
+  ],
+  "dependencies": {
+    "@nativescript/core": "~8.0.0",
+    "@react-navigation/core": "~5.13.2",
+    "react": "~16.13.1",
+    "react-nativescript": "~2.2.0",
+    "react-nativescript-navigation": "~2.0.1",
+    "react-refresh": "~0.8.3"
+  },
+  "devDependencies": {
+    "@nativescript/types": "~8.0.0",
+    "@nativescript/webpack": "beta",
+    "@pmmmwh/react-refresh-webpack-plugin": "~0.4.0-beta.5",
+    "@types/react": "16.9.34",
+    "patch-package": "~6.2.2",
+    "typescript": "~4.0.0"
+  },
+  "gitHead": "1350d382fb4b0ed4c6e9685df909518b2688e004",
+  "readme": "NativeScript Application",
+  "private": "true"
+}
