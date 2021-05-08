@@ -235,9 +235,17 @@ export function registerTabs(): void {
 
                         const items = tabs.items || []; // Annoyingly, it's the consumer's responsibility to ensure there's an array there!
                         if (typeof atIndex === 'undefined' || atIndex === items.length) {
-                            tabs.items = items.concat(child.nativeView as TabContentItem);
+                            tabs._addChildFromBuilder('items', child.nativeView as TabContentItem);
                         } else {
-                            tabs.items = items.slice().splice(atIndex, 0, child.nativeView as TabContentItem);
+                            items.forEach((item) => {
+                                tabs._removeView(item);
+                            });
+                            const itemsClone = items.slice();
+                            itemsClone.splice(atIndex, 0, child.nativeView as TabContentItem);
+                            tabs.items = itemsClone;
+                            itemsClone.forEach((item) => {
+                                tabs._addView(item);
+                            });
                         }
                     } else if (child.nodeRole === 'item') {
                         if (__DEV__) {
@@ -258,6 +266,7 @@ export function registerTabs(): void {
                         tabs.tabStrip = null; // Anything falsy should work.
                     } else if (child.nodeRole === 'items') {
                         tabs.items = (tabs.items || []).filter((i) => i !== child.nativeView);
+                        tabs._removeView(child.nativeView);
                     } else if (child.nodeRole === 'item') {
                         if (__DEV__) {
                             warn(`Unable to remove child "${child.nativeView.constructor.name}" from <tabs> as it had the nodeRole "item"; please correct it to "items".`);

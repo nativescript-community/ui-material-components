@@ -64,9 +64,17 @@ export function registerBottomNavigation(): void {
                         const items = bottomNavigation.items || []; // Annoyingly, it's the consumer's responsibility to ensure there's an array there!
 
                         if (typeof atIndex === 'undefined' || atIndex === items.length) {
-                            bottomNavigation.items = items.concat(child.nativeView as TabContentItem);
+                            bottomNavigation._addChildFromBuilder('items', child.nativeView as TabContentItem);
                         } else {
-                            bottomNavigation.items = items.slice().splice(atIndex, 0, child.nativeView as TabContentItem);
+                            items.forEach((item) => {
+                                bottomNavigation._removeView(item);
+                            });
+                            const itemsClone = items.slice();
+                            itemsClone.splice(atIndex, 0, child.nativeView as TabContentItem);
+                            bottomNavigation.items = itemsClone;
+                            itemsClone.forEach((item) => {
+                                bottomNavigation._addView(item);
+                            });
                         }
                     } else if (child.nodeRole === 'item') {
                         if (__DEV__) {
