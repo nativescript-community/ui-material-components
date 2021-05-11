@@ -34,6 +34,7 @@ export interface TabSelectedEventData extends EventData {
 export interface TabReselectedEventData extends EventData {
     index: number;
 }
+
 /**
  * Enum for Title Visibility options
  *
@@ -59,6 +60,7 @@ export abstract class BottomNavigationBarBase extends View {
 
     selectedTabIndex = 0;
     titleVisibility: TitleVisibility = TitleVisibility.always;
+    autoClearBadge: boolean;
 
     protected _items: BottomNavigationTabBase[] = [];
 
@@ -89,6 +91,10 @@ export abstract class BottomNavigationBarBase extends View {
             index,
         };
         this.notify(eventData);
+
+        if (this.autoClearBadge) {
+            this.removeBadge(index);
+        }
     }
 
     _emitTabSelected(index: number) {
@@ -100,6 +106,10 @@ export abstract class BottomNavigationBarBase extends View {
         };
         this.selectedTabIndex = index;
         this.notify(eventData);
+
+        if (this.autoClearBadge) {
+            this.removeBadge(index);
+        }
     }
 
     _emitTabReselected(index: number) {
@@ -147,6 +157,14 @@ export const titleVisibilityProperty = new Property<BottomNavigationBarBase, Tit
 });
 
 titleVisibilityProperty.register(BottomNavigationBarBase);
+
+export const autoClearBadgeProperty = new Property<BottomNavigationBarBase, boolean>({
+    name: 'autoClearBadge',
+    defaultValue: true,
+    valueConverter: booleanConverter,
+});
+
+autoClearBadgeProperty.register(BottomNavigationBarBase);
 
 export const activeColorCssProperty = new CssProperty<Style, Color>({
     name: 'activeColor',
