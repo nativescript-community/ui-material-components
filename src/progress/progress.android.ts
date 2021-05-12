@@ -24,7 +24,7 @@ export class Progress extends ProgressBase {
         if (this.nativeViewProtected.getVisibility() === android.view.View.VISIBLE) {
             this.nativeViewProtected.setVisibility(android.view.View.GONE);
             this.nativeViewProtected.setIndeterminate(value);
-            this.nativeViewProtected.setVisibility(android.view.View.VISIBLE);
+            this.nativeViewProtected.setVisibility(this.busy ? android.view.View.VISIBLE : android.view.View.INVISIBLE);
         } else {
             this.nativeViewProtected.setIndeterminate(value);
         }
