@@ -14,6 +14,7 @@ Material Design's [Tabs](https://material.io/components/tabs) component for Nati
     - [Plain NativeScript](#plain-nativescript)
     - [Angular](#nativescript--angular)
     - [Vue](#nativescript--vue)
+    - [React](#nativescript--react)
 5.  [API](#api)
 
 ## Installation
@@ -213,6 +214,87 @@ Vue.use(TabsPlugin);
         </MDTabContentItem>
     </MDTabs>
 ```
+
+##
+
+### NativeScript + React
+
+First, register the component before any of your React NativeScript app renders. A good place to put this code is in your entrypoint file (which may be called `src/app.ts` or similar), before the `ReactNativeScript.start` function is called. Here's how to install it:
+
+```ts
+import { registerTabNavigationBase } from '@nativescript-community/ui-material-core/tab-navigation-base/react';
+import { registerTabs } from '@nativescript-community/ui-material-tabs/react';
+
+registerTabNavigationBase();
+registerTabs();
+```
+
+Normally it would be best to use this component via the `tabNavigatorFactory()` API exported by [React NativeScript Navigation](https://github.com/shirakaba/react-nativescript-navigation/tree/master/react-nativescript-navigation), as it makes nested navigation easy, but here's how to use it directly:
+
+```tsx
+import * as React from 'react';
+
+export function Tabs() {
+    const [selectedIndex, setSelectedIndex] = React.useState(0);
+
+    return (
+        <tabs
+            selectedIndex={selectedIndex}
+            onSelectedIndexChanged={(args) => {
+                setSelectedIndex(args.newIndex);
+            }}
+            style={{ backgroundColor: 'orange' }}
+        >
+            {/* The bottomTab UI is created via tabStrip (the container) and tabStripItem (for each tab) */}
+            <tabStrip nodeRole="tabStrip" style={{ backgroundColor: 'red' }}>
+                <tabStripItem nodeRole="items">
+                    <label nodeRole="label">Home</label>
+                    <image nodeRole="image" src="font://&#xf015;" className="fas" />
+                </tabStripItem>
+                <tabStripItem nodeRole="items">
+                    <label nodeRole="label">Account</label>
+                    <image nodeRole="image" src="font://&#xf007;" className="fas" />
+                </tabStripItem>
+                <tabStripItem nodeRole="items">
+                    <label nodeRole="label">Search</label>
+                    <image nodeRole="image" src="font://&#xf00e;" className="fas" />
+                </tabStripItem>
+            </tabStrip>
+
+            {/* The number of tabContentItem components should corespond to the number of TabStripItem components */}
+            <tabContentItem nodeRole="items">
+                <gridLayout style={{ backgroundColor: 'blue' }}>
+                    <label style={{ color: 'white' }}>Home Page</label>
+                </gridLayout>
+            </tabContentItem>
+            <tabContentItem nodeRole="items">
+                <gridLayout style={{ backgroundColor: 'cyan' }}>
+                    <label style={{ color: 'black' }}>Account Page</label>
+                </gridLayout>
+            </tabContentItem>
+            <tabContentItem nodeRole="items">
+                <gridLayout style={{ backgroundColor: 'magenta' }}>
+                    <label style={{ color: 'black' }}>Search Page</label>
+                </gridLayout>
+            </tabContentItem>
+        </tabs>
+    );
+}
+```
+
+**Troubleshooting**
+
+If you see an error like this when writing e.g. `<tabs>` into your JSX:
+
+> Property 'tabs' does not exist on type 'JSX.IntrinsicElements'.ts(2339)
+
+Make sure that you have:
+
+1. Installed the `react-nativescript` npm module.
+2. Installed the `@types/react` npm module, strictly with the exact version provided in the [React NativeScript starter template](https://github.com/NativeScript/nativescript-app-templates/tree/master/packages/template-blank-react).
+3. Run the postinstall script that comes with the React NativeScript template – `npm run postinstall` – to patch `@types/react`.
+4. Registered the component as described above (i.e. import and run the `registerTabNavigationBase()` and `registerTabs()` methods).
+5. If using Visual Studio Code, option-click the import `@nativescript-community/ui-material-tabs/react` to jump to the file; opening the file will force it to load its provided typings.
 
 ## API
 
