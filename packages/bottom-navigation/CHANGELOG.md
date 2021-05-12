@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/nativescript-community/ui-material-components/tree/master/packages/bottom-navigation/compare/v5.2.31...v5.3.0) (2021-05-12)
+
+
+### Features
+
+* **react:** Tabs, TabStrip, TabStripItem, BottomNavigation, and TabContentItem for NativeScript 8 ([8b2674f](https://github.com/nativescript-community/ui-material-components/tree/master/packages/bottom-navigation/commit/8b2674fa7b7e9b90b2a08b64f48f9c54f828a661))
+
+
+
+
+
 ## [5.2.31](https://github.com/nativescript-community/ui-material-components/tree/master/packages/bottom-navigation/compare/v5.2.30...v5.2.31) (2021-05-04)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-bottom-navigation
