@@ -24,17 +24,17 @@ export default {
         };
     },
     methods: {
-        goToExample(item) {
-            console.log('goToExample');
+        async goToExample(item) {
+            console.log('goToExample', item.title);
             try {
-                this.$navigateTo(item.component);
-            } catch(err) {
+                await this.$navigateTo(item.component);
+            } catch (err) {
                 console.error(err);
             }
         },
         goToModalExample(item) {
             console.log('goToModalExample');
-            this.$showModal(item.component, { });
+            this.$showModal(item.component, {});
         }
     }
 };

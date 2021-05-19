@@ -21,6 +21,7 @@
                     <MDTextField class="session-details-input" :hint="'description'" />
                 </StackLayout>
                 <MDFloatingActionButton src="res://ic_action_add" @tap="onTap" horizontalAlignment="center" />
+                <MDButton fontSize="26" text="mdi-plus" class="mdi" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton fontSize="26" text="mdi-plus" class="mdi" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton src="res://ic_action_add" color="white" backgroundColor="blue" size="mini" @tap="onTap" horizontalAlignment="center" />
                 <MDFloatingActionButton src="res://ic_action_add" text="test expanded" @tap="onTap" horizontalAlignment="center" />
