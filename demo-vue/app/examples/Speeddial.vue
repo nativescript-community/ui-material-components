@@ -2,27 +2,40 @@
     <Page>
         <ActionBar :title="title">
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
+<ActionItem>
+            <Label  :fontSize="13">
+                        <Span  text="mdi-account" class="mdi" fontSize="50"/>
+                        <Span  :text="'\n' + 'Text'" />
+                    </Label>
+</ActionItem>
         </ActionBar>
         <MDTabs>
             <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-            <TabStrip>
-                <TabStripItem>
-                    <Label text="Home" />
-                    <Image src="font://mdi-home" class="mdi" />
-                </TabStripItem>
-                <TabStripItem class="special">
+            <MDTabStrip>
+                <MDTabStripItem>
+                    <Label  :fontSize="13" class="mdi">
+                        <Span  :text="'mdi-account' +  '\n'" class="mdi" style="font-size:50;"/>
+                        <Span  text="Text" style="font-size:10;"/>
+                    </Label>
+                    <!-- <Image src="font://mdi-home" class="mdi" /> -->
+                </MDTabStripItem>
+                <MDTabStripItem class="special">
                     <Label text="Account" />
                     <Image src="font://mdi-account" class="mdi" />
-                </TabStripItem>
-                <TabStripItem class="special">
+                </MDTabStripItem>
+                <MDTabStripItem class="special">
                     <Label text="Search" />
                     <Image src="font://mdi-magnify" class="mdi" />
-                </TabStripItem>
-            </TabStrip>
+                </MDTabStripItem>
+            </MDTabStrip>
 
-            <TabContentItem>
+            <MDTabContentItem>
                 <GridLayout>
                     <DockLayout width="100%" height="100%">
+                        <Label  :fontSize="13">
+                        <Span  text="mdi-account" class="mdi" fontSize="50"/>
+                        <Span  :text="'\n' + 'Text'" />
+                    </Label>
                         <MDButton dock="top" text="test" />
                         <MDButton dock="left" text="test1" />
                         <MDButton dock="bottom" text="test2" />
@@ -35,17 +48,17 @@
                         <MDSpeedDialItem icon="res://ic_action_add" title="test4" backgroundColor="orange" @tap="onTap" />
                     </MDSpeedDial>
                 </GridLayout>
-            </TabContentItem>
-            <TabContentItem>
+            </MDTabContentItem>
+            <MDTabContentItem>
                 <GridLayout backgroundColor="green">
                     <Label text="Account Page" class="h2 text-center"></Label>
                 </GridLayout>
-            </TabContentItem>
-            <TabContentItem>
+            </MDTabContentItem>
+            <MDTabContentItem>
                 <GridLayout backgroundColor="yellow">
                     <Label text="Search Page" class="h2 text-center"></Label>
                 </GridLayout>
-            </TabContentItem>
+            </MDTabContentItem>
         </MDTabs>
     </Page>
 </template>
