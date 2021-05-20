@@ -21,6 +21,7 @@ export declare class BottomNavigationBar extends BottomNavigationBarBase {
     activeColor: Color;
     inactiveColor: Color;
     backgroundColor: Color;
+    autoClearBadge: Boolean;
     selectTab(index: number): void;
     showBadge(index: number, value?: number): void;
     removeBadge(index: number): void;
