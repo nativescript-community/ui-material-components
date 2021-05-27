@@ -2,6 +2,7 @@ import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, ripp
 import {
     Background,
     Color,
+    CoreTypes,
     Font,
     ImageSource,
     Screen,
@@ -12,8 +13,7 @@ import {
     borderTopLeftRadiusProperty,
     borderTopRightRadiusProperty,
     colorProperty,
-    fontInternalProperty,
-    CoreTypes,
+    fontInternalProperty
 } from '@nativescript/core';
 import { textTransformProperty } from '@nativescript/core/ui/text-base';
 import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
