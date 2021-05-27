@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.1](https://github.com/nativescript-community/ui-material-components/compare/v5.3.0...v5.3.1) (2021-05-27)
+
+
+### Bug Fixes
+
+* prevent error in release builds with webpack 5 ([4b348d4](https://github.com/nativescript-community/ui-material-components/commit/4b348d43ac71c865662d27d844651b0ea8c8279a))
+
+
+
+
+
 # [5.3.0](https://github.com/nativescript-community/ui-material-components/compare/v5.2.31...v5.3.0) (2021-05-12)
 
 
