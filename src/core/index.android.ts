@@ -176,128 +176,127 @@ export function getRippleColor(color: string | Color) {
     return null;
 }
 
-class ViewWithElevationAndRipple extends View {
-    @cssProperty elevation = 0;
-    @cssProperty dynamicElevationOffset = 0;
-    @cssProperty rippleColor: Color;
-    rippleDrawable: android.graphics.drawable.Drawable;
-    getRippleColor() {
-        if (this.rippleColor) {
-            return getRippleColor(this.rippleColor);
-        }
-        return getRippleColor(themer.getAccentColor());
-    }
-
-    setRippleDrawable(view: android.view.View, radius = 0) {
-        if (!this.rippleDrawable) {
-            this.rippleDrawable = createRippleDrawable(this.getRippleColor(), radius);
-            if (isPostMarshmallow()) {
-                view.setForeground(this.rippleDrawable);
-            }
-        }
-    }
-    [rippleColorProperty.setNative](color: Color) {
-        const rippleColor = getRippleColor(color);
-        const nativeViewProtected = this.nativeViewProtected;
-        if (this instanceof Button && isPostMarshmallow()) {
-            const foreground = (nativeViewProtected as android.widget.Button).getForeground();
-            if (foreground instanceof android.graphics.drawable.RippleDrawable) {
-                foreground.setColor(getColorStateList(rippleColor));
-                return;
-            }
-            const background = (nativeViewProtected as android.widget.Button).getBackground();
-            if (background instanceof android.graphics.drawable.RippleDrawable) {
-                background.setColor(getColorStateList(rippleColor));
-                return;
-            }
-        }
-        nativeViewProtected.setClickable(this.isUserInteractionEnabled);
-        const rippleDrawable = this.rippleDrawable;
-        if (!rippleDrawable) {
-            this.setRippleDrawable(nativeViewProtected, Length.toDevicePixels(this.style.borderTopLeftRadius));
-        } else {
-            if (isPostLollipop()) {
-                (rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(getColorStateList(rippleColor));
-            } else if ((rippleDrawable as any).rippleShape) {
-                (rippleDrawable as any).rippleShape.getPaint().setColor(rippleColor);
-            }
-        }
-    }
-
-    [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
-        if (this.nativeViewProtected) {
-            if (value instanceof android.graphics.drawable.Drawable) {
-            } else {
-                // we recreate the ripple drawable if necessary.
-                // native button have on the background. Setting color will remove the ripple!
-                if (this.rippleDrawable || (value.color && this instanceof Button && this.rippleColor)) {
-                    this.rippleDrawable = null;
-                    this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius);
-                }
-            }
-        }
-    }
-    public requestFocus() {
-        this.focus();
-    }
-    public clearFocus() {
-        handleClearFocus(this.nativeViewProtected);
-        ad.dismissSoftInput(this.nativeViewProtected);
-    }
-
-    getDefaultElevation(): number {
-        const result = this instanceof Button ? 2 : 0;
-        return result;
-    }
-
-    getDefaultDynamicElevationOffset() {
-        const result = this instanceof Button ? 6 : 0;
-        return result;
-    }
-
-    [elevationProperty.setNative](value: number) {
-        if (isPostLollipop()) {
-            this.createStateListAnimator();
-        } else {
-            const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
-            androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, newValue);
-        }
-    }
-
-    createStateListAnimatorTimeout;
-    createStateListAnimator() {
-        if (!this.createStateListAnimatorTimeout) {
-            this.createStateListAnimatorTimeout = setTimeout(() => {
-                this.createStateListAnimatorTimeout = null;
-                createStateListAnimator(this, this.nativeViewProtected);
-            });
-        }
-    }
-    [dynamicElevationOffsetProperty.setNative](value: number) {
-        this.nativeViewProtected.setClickable(this.isUserInteractionEnabled);
-        if (isPostLollipop()) {
-            this.createStateListAnimator();
-        } else {
-            const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
-            androidx.core.view.ViewCompat.setTranslationZ(this.nativeViewProtected, newValue);
-        }
-    }
-}
-class ViewOverride extends View {
-    [androidElevationProperty.setNative](value: number) {
-        // override to prevent override of dynamicElevationOffset
-        this[elevationProperty.setNative](value);
-    }
-    [androidDynamicElevationOffsetProperty.setNative](value: number) {
-        // override to prevent override of elevation
-        this[dynamicElevationOffsetProperty.setNative](value);
-    }
-}
-
 let mixinInstalled = false;
 export function overrideViewBase() {
     const NSView = require('@nativescript/core').View;
+    class ViewWithElevationAndRipple extends View {
+        @cssProperty elevation = 0;
+        @cssProperty dynamicElevationOffset = 0;
+        @cssProperty rippleColor: Color;
+        rippleDrawable: android.graphics.drawable.Drawable;
+        getRippleColor() {
+            if (this.rippleColor) {
+                return getRippleColor(this.rippleColor);
+            }
+            return getRippleColor(themer.getAccentColor());
+        }
+
+        setRippleDrawable(view: android.view.View, radius = 0) {
+            if (!this.rippleDrawable) {
+                this.rippleDrawable = createRippleDrawable(this.getRippleColor(), radius);
+                if (isPostMarshmallow()) {
+                    view.setForeground(this.rippleDrawable);
+                }
+            }
+        }
+        [rippleColorProperty.setNative](color: Color) {
+            const rippleColor = getRippleColor(color);
+            const nativeViewProtected = this.nativeViewProtected;
+            if (this instanceof Button && isPostMarshmallow()) {
+                const foreground = (nativeViewProtected as android.widget.Button).getForeground();
+                if (foreground instanceof android.graphics.drawable.RippleDrawable) {
+                    foreground.setColor(getColorStateList(rippleColor));
+                    return;
+                }
+                const background = (nativeViewProtected as android.widget.Button).getBackground();
+                if (background instanceof android.graphics.drawable.RippleDrawable) {
+                    background.setColor(getColorStateList(rippleColor));
+                    return;
+                }
+            }
+            nativeViewProtected.setClickable(this.isUserInteractionEnabled);
+            const rippleDrawable = this.rippleDrawable;
+            if (!rippleDrawable) {
+                this.setRippleDrawable(nativeViewProtected, Length.toDevicePixels(this.style.borderTopLeftRadius));
+            } else {
+                if (isPostLollipop()) {
+                    (rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(getColorStateList(rippleColor));
+                } else if ((rippleDrawable as any).rippleShape) {
+                    (rippleDrawable as any).rippleShape.getPaint().setColor(rippleColor);
+                }
+            }
+        }
+
+        [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
+            if (this.nativeViewProtected) {
+                if (value instanceof android.graphics.drawable.Drawable) {
+                } else {
+                    // we recreate the ripple drawable if necessary.
+                    // native button have on the background. Setting color will remove the ripple!
+                    if (this.rippleDrawable || (value.color && this instanceof Button && this.rippleColor)) {
+                        this.rippleDrawable = null;
+                        this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius);
+                    }
+                }
+            }
+        }
+        public requestFocus() {
+            this.focus();
+        }
+        public clearFocus() {
+            handleClearFocus(this.nativeViewProtected);
+            ad.dismissSoftInput(this.nativeViewProtected);
+        }
+
+        getDefaultElevation(): number {
+            const result = this instanceof Button ? 2 : 0;
+            return result;
+        }
+
+        getDefaultDynamicElevationOffset() {
+            const result = this instanceof Button ? 6 : 0;
+            return result;
+        }
+
+        [elevationProperty.setNative](value: number) {
+            if (isPostLollipop()) {
+                this.createStateListAnimator();
+            } else {
+                const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+                androidx.core.view.ViewCompat.setElevation(this.nativeViewProtected, newValue);
+            }
+        }
+
+        createStateListAnimatorTimeout;
+        createStateListAnimator() {
+            if (!this.createStateListAnimatorTimeout) {
+                this.createStateListAnimatorTimeout = setTimeout(() => {
+                    this.createStateListAnimatorTimeout = null;
+                    createStateListAnimator(this, this.nativeViewProtected);
+                });
+            }
+        }
+        [dynamicElevationOffsetProperty.setNative](value: number) {
+            this.nativeViewProtected.setClickable(this.isUserInteractionEnabled);
+            if (isPostLollipop()) {
+                this.createStateListAnimator();
+            } else {
+                const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
+                androidx.core.view.ViewCompat.setTranslationZ(this.nativeViewProtected, newValue);
+            }
+        }
+    }
     applyMixins(NSView, [ViewWithElevationAndRipple]);
+    class ViewOverride extends View {
+        [androidElevationProperty.setNative](value: number) {
+            // override to prevent override of dynamicElevationOffset
+            this[elevationProperty.setNative](value);
+        }
+        [androidDynamicElevationOffsetProperty.setNative](value: number) {
+            // override to prevent override of elevation
+            this[dynamicElevationOffsetProperty.setNative](value);
+        }
+    }
     applyMixins(NSView, [ViewOverride], { override: true });
 }
 
