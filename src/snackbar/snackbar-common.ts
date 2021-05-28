@@ -43,11 +43,16 @@ export interface SnackBarOptions {
     isRTL?: boolean;
 
     /**
-     * *Android Only*
      * The View to which the snackbar will be attached. Useful with modals.
      * Default to Frame.topmost().currentPage
      */
     view?: View;
+
+    /**
+     * The view you want to "anchor the snack above".
+     * The snackbar will appear above that view
+     */
+    anchorView?: View;
 }
 
 export enum DismissReasons {

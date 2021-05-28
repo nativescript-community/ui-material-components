@@ -54,9 +54,6 @@ export class SnackBar extends SnackBarBase {
         }
         const page = attachView instanceof Page ? attachView : attachView.page;
         let nView = (page.nativeViewProtected as android.view.View).getParent();
-        if (page.hasActionBar) {
-            nView = nView.getParent();
-        }
         let nCoordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout = (page as any).nCoordinatorLayout;
         if (!nCoordinatorLayout && !(nView instanceof androidx.coordinatorlayout.widget.CoordinatorLayout) && nView instanceof android.view.ViewGroup) {
             nCoordinatorLayout = new androidx.coordinatorlayout.widget.CoordinatorLayout(attachView._context);
@@ -64,13 +61,11 @@ export class SnackBar extends SnackBarBase {
             if (options.view) {
                 const nAttachedView = options.view.nativeViewProtected as android.view.View;
                 const params = new android.widget.FrameLayout.LayoutParams(nAttachedView.getWidth(), nAttachedView.getHeight());
-                const myArray = Array.create('int', 2);
-                nView.getLocationOnScreen(myArray);
-                const otherArray = Array.create('int', 2);
-                options.view.nativeViewProtected.getLocationOnScreen(otherArray);
-
-                params.topMargin = otherArray[1] - myArray[1];
-                (nView as any).addView(nCoordinatorLayout, params);
+                params.gravity = android.view.Gravity.BOTTOM;
+                const locationArray = Array.create('int', 2);
+                options.view.nativeViewProtected.getLocationOnScreen(locationArray);
+                params.bottomMargin = nView.getHeight() - locationArray[1] - nAttachedView.getHeight();
+                nView.addView(nCoordinatorLayout, params);
             } else {
                 (nView as any).addView(nCoordinatorLayout, new android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT));
             }
@@ -78,7 +73,9 @@ export class SnackBar extends SnackBarBase {
             nView = nCoordinatorLayout;
         }
         this._snackbar = com.google.android.material.snackbar.Snackbar.make(nView as any, options.message, options.hideDelay);
-
+        if (options.anchorView) {
+            this._snackbar.setAnchorView(options.anchorView.nativeViewProtected);
+        }
         // this._snackbar.setText(options.message);
         // this._snackbar.setDuration(options.hideDelay);
 

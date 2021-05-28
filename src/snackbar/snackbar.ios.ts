@@ -54,7 +54,6 @@ export class SnackBar extends SnackBarBase {
                 button.inkColor = getRippleColor(options.actionTextColor);
             });
 
-            // message.buttonTextColor =
         }
 
         if (options.backgroundColor && Color.isValid(options.backgroundColor)) {
@@ -77,11 +76,17 @@ export class SnackBar extends SnackBarBase {
             nAttachedView = viewController.view;
         }
 
-
         if (nAttachedView) {
-            SnackBar._snackbarManager.setPresentationHostView(nAttachedView);
+            message.presentationHostViewOverride = nAttachedView;
+        }
+
+        if (options.anchorView) {
+            const totalHeight = nAttachedView? (nAttachedView.frame.origin.y + nAttachedView.frame.size.height): UIApplication.sharedApplication.keyWindow.rootViewController.view.bounds.size.height;
+            const  result = (options.anchorView.nativeViewProtected as UIView).convertPointToView(CGPointZero, nAttachedView);
+            SnackBar._snackbarManager.setBottomOffset(totalHeight  - result.y );
         } else {
-            SnackBar._snackbarManager.setPresentationHostView(null);
+            SnackBar._snackbarManager.setBottomOffset(0);
+
         }
     }
 

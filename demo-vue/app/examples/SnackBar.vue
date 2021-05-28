@@ -9,11 +9,11 @@
                     <StackLayout id="innerView" ref="innerView" backgroundColor="gray">
                         <MDButton id="show_snack" text="show snack" @tap="onTap" />
                         <MDButton id="show_snack_action" text="show snack action" @tap="onTap" />
-                        <MDButton id="show_snack_action_color" text="show snack action color" @tap="onTap" />
+                        <MDButton ref="show_snack_action_color" id="show_snack_action_color" text="show snack action color" @tap="onTap" />
                     </StackLayout>
                 <!-- </Page> -->
             <!-- </Frame> -->
-            <MDBottomNavigationBar row="1" activeColor="red">
+            <MDBottomNavigationBar row="1" activeColor="red" ref="bottomBar">
                 <MDBottomNavigationTab title="First" icon="res://ic_home" activeColor="green" />
                 <MDBottomNavigationTab title="Second" icon="res://ic_view_list" isSelectable="false" />
                 <MDBottomNavigationTab title="Third" icon="res://ic_menu" inactiveColor="brown" />
@@ -51,7 +51,7 @@ export default Vue.extend({
             console.log('onTap', objId, obj);
             switch (objId) {
                 case 'show_snack': {
-                    showSnack({ message: 'this is test snack!', textColor: 'yellow', view: this.$refs.innerView.nativeView });
+                    showSnack({ message: 'this is test snack!', textColor: 'yellow', anchorView: this.$refs.bottomBar.nativeView });
                     break;
                 }
                 case 'show_snack_action': {
