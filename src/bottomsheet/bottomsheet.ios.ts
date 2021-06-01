@@ -84,8 +84,6 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
     const widthSpec = Utils.layout.makeMeasureSpec(safeAreaWidth, Utils.layout.EXACTLY);
     const heightSpec = Utils.layout.makeMeasureSpec(safeAreaHeight, Utils.layout.UNSPECIFIED);
 
-    owner.iosOverflowSafeArea = true;
-
     // reset _cachedFrame or it will wrongly move the view on subsequent layouts
     (owner as any)._cachedFrame = null;
     View.measureChild(null, owner, widthSpec, heightSpec);
@@ -120,36 +118,45 @@ function layoutView(controller: IUILayoutViewController, owner: View): void {
 
         // there are still some issues in landscape Right but they seem to come from N
 
-        owner.iosIgnoreSafeArea = !isLandscape;
+        owner.iosIgnoreSafeArea = true;
         if (controller.ignoreTopSafeArea) {
-            let key = 'top';
-            let oppositeKey = 'bottom';
-            if (orientation === UIDeviceOrientation.LandscapeLeft) {
-                key = 'left';
-                oppositeKey = 'right';
-            } else if (orientation === UIDeviceOrientation.LandscapeRight) {
-                key = 'right';
-                oppositeKey = 'left';
-            } else if (orientation === UIDeviceOrientation.PortraitUpsideDown) {
-                key = 'bottom';
-                oppositeKey = 'top';
-            }
+            const key = 'top';
+            const oppositeKey = 'bottom';
+            // if (orientation === UIDeviceOrientation.LandscapeLeft) {
+            //     key = 'left';
+            //     oppositeKey = 'right';
+            // } else if (orientation === UIDeviceOrientation.LandscapeRight) {
+            //     key = 'right';
+            //     oppositeKey = 'left';
+            // } else if (orientation === UIDeviceOrientation.PortraitUpsideDown) {
+            //     key = 'bottom';
+            //     oppositeKey = 'top';
+            // }
             const delta = safeAreaPosition[key] - fullscreenPosition[key];
             effectiveHeight -= delta;
             adjustedPosition[oppositeKey] -= delta;
             adjustedPosition[key] -= delta;
         }
         if (controller.ignoreBottomSafeArea) {
-            let key = 'bottom';
-            if (orientation === UIDeviceOrientation.LandscapeLeft) {
-                key = 'right';
-            } else if (orientation === UIDeviceOrientation.LandscapeRight) {
-                key = 'left';
-            } else if (orientation === UIDeviceOrientation.PortraitUpsideDown) {
-                key = 'top';
-            }
+            const key = 'bottom';
+            // if (orientation === UIDeviceOrientation.LandscapeLeft) {
+            //     key = 'right';
+            // } else if (orientation === UIDeviceOrientation.LandscapeRight) {
+            //     key = 'left';
+            // } else if (orientation === UIDeviceOrientation.PortraitUpsideDown) {
+            //     key = 'top';
+            // }
             const delta = fullscreenPosition[key] - safeAreaPosition[key];
             effectiveHeight -= delta;
+        }
+        if (orientation === UIDeviceOrientation.LandscapeRight || orientation === UIDeviceOrientation.LandscapeLeft) {
+            const key = 'left';
+            const oppositeKey = 'right';
+            const delta = fullscreenPosition[key] - safeAreaPosition[key];
+            adjustedPosition[oppositeKey] += Utils.layout.toDevicePixels(delta);
+            // adjustedPosition[key] += (delta);
+            // adjustedPosition[oppositeKey] += Utils.layout.toDevicePixels(delta);
+            // adjustedPosition[key] += Utils.layout.toDevicePixels(delta);
         }
         owner.nativeViewProtected.frame = CGRectMake(
             Utils.layout.toDeviceIndependentPixels(adjustedPosition.left),
@@ -253,6 +260,7 @@ class UILayoutViewController extends UIViewController {
         super.viewWillLayoutSubviews();
         const owner = this.owner.get();
         if (owner) {
+            owner.iosOverflowSafeArea = true;
             IOSHelper.updateConstraints(this, owner);
         }
     }
