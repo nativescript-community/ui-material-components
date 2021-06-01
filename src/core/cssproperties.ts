@@ -1,4 +1,4 @@
-import { Color, CssProperty, InheritedCssProperty, Length, Style, makeParser, makeValidator, LengthType } from '@nativescript/core';
+import { Color, CoreTypes, CssProperty, Style } from '@nativescript/core';
 
 function createGetter(key) {
     return function () {
@@ -27,14 +27,14 @@ export const rippleColorProperty = new CssProperty<Style, Color>({
     valueConverter: (v) => new Color(v)
 });
 rippleColorProperty.register(Style);
-export const elevationProperty = new CssProperty<Style, LengthType>({
+export const elevationProperty = new CssProperty<Style, CoreTypes.LengthType>({
     name: 'elevation',
     cssName: 'elevation',
 
     valueConverter: parseFloat
 });
 elevationProperty.register(Style);
-export const dynamicElevationOffsetProperty = new CssProperty<Style, LengthType>({
+export const dynamicElevationOffsetProperty = new CssProperty<Style, CoreTypes.LengthType>({
     name: 'dynamicElevationOffset',
     cssName: 'dynamic-elevation-offset',
 

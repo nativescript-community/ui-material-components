@@ -13,7 +13,9 @@ import {
     helperProperty,
     strokeColorProperty,
     strokeDisabledColorProperty,
-    strokeInactiveColorProperty
+    strokeInactiveColorProperty,
+    strokeWidthFocusedProperty,
+    strokeWidthProperty
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
 import {
     Background,
@@ -24,6 +26,7 @@ import {
     Utils,
     backgroundInternalProperty,
     borderBottomLeftRadiusProperty,
+    editableProperty,
     fontInternalProperty,
     hintProperty,
     paddingBottomProperty,
@@ -36,6 +39,7 @@ import {
 } from '@nativescript/core';
 import { secureProperty } from '@nativescript/core/ui/text-field';
 import { TextFieldBase } from './textfield.common';
+import { layout } from '@nativescript/core/utils';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
 let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
@@ -109,7 +113,10 @@ export class TextField extends TextFieldBase {
         if (needsTransparent) {
             layoutView.setBoxBackgroundColor(0); // android.graphics.Color.TRANSPARENT
             editText.setBackground(null);
+            layoutView.setHintEnabled(false);
         }
+
+        layoutView.setErrorIconDrawable(null);
         // layoutView.setFocusableInTouchMode(true); // to prevent focus on view creation
         return layoutView;
     }
@@ -179,7 +186,9 @@ export class TextField extends TextFieldBase {
 
     [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
-        (this.layoutView as any).setErrorTextColor(android.content.res.ColorStateList.valueOf(color));
+        const nColor = android.content.res.ColorStateList.valueOf(color);
+        this.layoutView.setErrorTextColor(nColor);
+        this.layoutView.setBoxStrokeErrorColor(nColor);
     }
 
     [helperProperty.setNative](value: string) {
@@ -213,6 +222,14 @@ export class TextField extends TextFieldBase {
             const colorStateList = getFullColorStateList(activeColor, color, disabledColor);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         }
+    }
+
+    [strokeWidthProperty.setNative](value: CoreTypes.LengthType) {
+        this.layoutView.setBoxStrokeWidth(Length.toDevicePixels(value, 0));
+    }
+
+    [strokeWidthFocusedProperty.setNative](value: CoreTypes.LengthType) {
+        this.layoutView.setBoxStrokeWidthFocused(Length.toDevicePixels(value, 0));
     }
 
     [strokeColorProperty.setNative](value: Color) {
@@ -293,16 +310,28 @@ export class TextField extends TextFieldBase {
         }
     }
     [paddingTopProperty.setNative](value: CoreTypes.LengthType) {
-        org.nativescript.widgets.ViewHelper.setPaddingTop(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0));
+        org.nativescript.widgets.ViewHelper.setPaddingTop(
+            this.nativeTextViewProtected,
+            layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0))
+        );
     }
     [paddingRightProperty.setNative](value: CoreTypes.LengthType) {
-        org.nativescript.widgets.ViewHelper.setPaddingRight(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0));
+        org.nativescript.widgets.ViewHelper.setPaddingRight(
+            this.nativeTextViewProtected,
+            layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0))
+        );
     }
     [paddingBottomProperty.setNative](value: CoreTypes.LengthType) {
-        org.nativescript.widgets.ViewHelper.setPaddingBottom(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0));
+        org.nativescript.widgets.ViewHelper.setPaddingBottom(
+            this.nativeTextViewProtected,
+            layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0))
+        );
     }
     [paddingLeftProperty.setNative](value: CoreTypes.LengthType) {
-        org.nativescript.widgets.ViewHelper.setPaddingLeft(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0));
+        org.nativescript.widgets.ViewHelper.setPaddingLeft(
+            this.nativeTextViewProtected,
+            layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0))
+        );
     }
     [textAlignmentProperty.setNative](value: CoreTypes.TextAlignmentType) {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(value) | getVerticalGravity(this.verticalTextAlignment));
@@ -310,6 +339,12 @@ export class TextField extends TextFieldBase {
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
         // TODO: not working for now
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(this.textAlignment) | getVerticalGravity(value));
+    }
+
+    [editableProperty.setNative](value: boolean) {
+        super[editableProperty.setNative](value);
+        const nativeView = this.nativeTextViewProtected;
+        nativeView.setFocusable(value);
     }
 }
 //

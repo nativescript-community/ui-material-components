@@ -1,1 +1,6 @@
 pod 'MaterialComponents/TextFields+Theming'
+
+pod 'MaterialComponents/TextControls+FilledTextAreas'
+pod 'MaterialComponents/TextControls+OutlinedTextAreas'
+pod 'MaterialComponents/TextControls+FilledTextAreasTheming'
+pod 'MaterialComponents/TextControls+OutlinedTextAreasTheming'

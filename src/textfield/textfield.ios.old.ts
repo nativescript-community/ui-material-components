@@ -25,7 +25,6 @@ import {
     backgroundInternalProperty,
     editableProperty,
     fontInternalProperty,
-    hintProperty,
     paddingBottomProperty,
     paddingLeftProperty,
     paddingRightProperty,
@@ -33,80 +32,82 @@ import {
     placeholderColorProperty
 } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
+import { layout } from '@nativescript/core/utils';
 import { TextFieldBase } from './textfield.common';
 
 @NativeClass
-class MDCFilledTextFieldImpl extends MDCFilledTextField {
+class TextInputControllerUnderlineImpl extends MDCTextInputControllerUnderline {
     _owner: WeakRef<TextField>;
     public static initWithOwner(owner: TextField) {
-        const delegate = MDCFilledTextFieldImpl.new() as MDCFilledTextFieldImpl;
+        const delegate = TextInputControllerUnderlineImpl.new() as TextInputControllerUnderlineImpl;
         delegate._owner = new WeakRef(owner);
 
         return delegate;
     }
-    textRectForBounds(bounds: CGRect) {
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
-            return owner._getTextRectForBounds(bounds);
+            result = owner._getTextInsetsForBounds(result);
         }
-        return super.textRectForBounds(bounds);
-    }
-    public editingRectForBounds(bounds: CGRect): CGRect {
-        const owner = this._owner ? this._owner.get() : null;
-        if (owner) {
-            return owner._getTextRectForBounds(bounds);
-        }
-        return super.editingRectForBounds(bounds);
+        return result;
     }
 }
 
 @NativeClass
-class MDCOutlinedTextFieldImpl extends MDCOutlinedTextField {
+class TextInputControllerImpl extends MDCTextInputControllerBase {
     _owner: WeakRef<TextField>;
     public static initWithOwner(owner: TextField) {
-        const delegate = MDCOutlinedTextFieldImpl.new() as MDCOutlinedTextFieldImpl;
+        const delegate = TextInputControllerImpl.new() as TextInputControllerImpl;
         delegate._owner = new WeakRef(owner);
 
         return delegate;
     }
-    textRectForBounds(bounds: CGRect) {
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
-            return owner._getTextRectForBounds(bounds);
+            result = owner._getTextInsetsForBounds(result);
         }
-        return super.textRectForBounds(bounds);
-    }
-    public editingRectForBounds(bounds: CGRect): CGRect {
-        const owner = this._owner ? this._owner.get() : null;
-        if (owner) {
-            return owner._getTextRectForBounds(bounds);
-        }
-        return super.editingRectForBounds(bounds);
+        return result;
     }
 }
 
 @NativeClass
-class MDCUnderlinedTextFieldImpl extends MDCUnderlinedTextField {
+class TextInputControllerOutlinedImpl extends MDCTextInputControllerOutlined {
     _owner: WeakRef<TextField>;
     public static initWithOwner(owner: TextField) {
-        const delegate = MDCUnderlinedTextFieldImpl.new() as MDCUnderlinedTextFieldImpl;
+        const delegate = TextInputControllerOutlinedImpl.new() as TextInputControllerOutlinedImpl;
         delegate._owner = new WeakRef(owner);
 
         return delegate;
     }
-    textRectForBounds(bounds: CGRect) {
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
-            return owner._getTextRectForBounds(bounds);
+            result = owner._getTextInsetsForBounds(result);
         }
-        return super.textRectForBounds(bounds);
+        return result;
     }
-    public editingRectForBounds(bounds: CGRect): CGRect {
+}
+
+@NativeClass
+class TextInputControllerFilledImpl extends MDCTextInputControllerFilled {
+    _owner: WeakRef<TextField>;
+    public static initWithOwner(owner: TextField) {
+        const delegate = TextInputControllerFilledImpl.new() as TextInputControllerFilledImpl;
+        delegate._owner = new WeakRef(owner);
+
+        return delegate;
+    }
+    textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint) {
+        let result = super.textInsetsWithSizeThatFitsWidthHint(defaultValue, widthHint);
         const owner = this._owner ? this._owner.get() : null;
         if (owner) {
-            return owner._getTextRectForBounds(bounds);
+            result = owner._getTextInsetsForBounds(result);
         }
-        return super.editingRectForBounds(bounds);
+        return result;
     }
 }
 
@@ -117,8 +118,9 @@ declare module '@nativescript/core/ui/text-field' {
 }
 
 export class TextField extends TextFieldBase {
-    nativeViewProtected: MDCBaseTextField;
-    nativeTextViewProtected: MDCBaseTextField;
+    nativeViewProtected: MDCTextField;
+    nativeTextViewProtected: MDCTextField;
+    private _controller: MDCTextInputControllerBase;
     public readonly style: Style & { variant: 'outline' | 'underline' | 'filled' };
     public nsdigits?: NSCharacterSet;
     firstEdit: boolean;
@@ -170,49 +172,82 @@ export class TextField extends TextFieldBase {
         }
 
         this.firstEdit = false;
-
+        if (this.mCanAutoSize) {
+            // if the textfield is in auto size we need to request a layout to take the new text width into account
+            this.requestLayout();
+        }
         return true;
         // return super.textFieldShouldChangeCharactersInRangeReplacementString(textField, range, replacementString);
     }
+    private mCanAutoSize = false;
+    public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
+        const widthMode = layout.getMeasureSpecMode(widthMeasureSpec);
+        this.mCanAutoSize = widthMode !== layout.EXACTLY;
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
 
-    _getTextRectForBounds(bounds: CGRect): CGRect {
-        const size = bounds.size;
-
-        const x = Utils.layout.toDeviceIndependentPixels(this.effectiveBorderLeftWidth + this.effectivePaddingLeft);
-        const y = Utils.layout.toDeviceIndependentPixels(this.effectiveBorderTopWidth + this.effectivePaddingTop);
-        const width = Utils.layout.toDeviceIndependentPixels(
-            Utils.layout.toDevicePixels(size.width) - (this.effectiveBorderLeftWidth + this.effectivePaddingLeft + this.effectivePaddingRight + this.effectiveBorderRightWidth)
-        );
-        const height = Utils.layout.toDeviceIndependentPixels(
-            Utils.layout.toDevicePixels(size.height) - (this.effectiveBorderTopWidth + this.effectivePaddingTop + this.effectivePaddingBottom + this.effectiveBorderBottomWidth)
-        );
-
-        return CGRectMake(x, y, width, height);
+    _getTextInsetsForBounds(insets: UIEdgeInsets): UIEdgeInsets {
+        const style = this.style;
+        if (this.variant === 'underline' && this._controller.underlineHeightNormal === 0) {
+            // if no underline/custom background, remove all insets like on android
+            insets.top = 0;
+            insets.bottom = 0;
+        }
+        if (paddingTopProperty.isSet(style)) {
+            insets.top = Utils.layout.toDeviceIndependentPixels(this.effectivePaddingTop);
+        }
+        if (paddingRightProperty.isSet(style)) {
+            insets.right = Utils.layout.toDeviceIndependentPixels(this.effectivePaddingRight);
+        }
+        if (paddingBottomProperty.isSet(style)) {
+            insets.bottom = Utils.layout.toDeviceIndependentPixels(this.effectivePaddingBottom);
+        }
+        if (paddingLeftProperty.isSet(style)) {
+            insets.left = Utils.layout.toDeviceIndependentPixels(this.effectivePaddingLeft);
+        }
+        return insets;
     }
 
     // variant = 'underline';
     public createNativeView() {
         // const view = MDCTextFieldImpl.initWithOwner(new WeakRef(this));
-        let view: MDCFilledTextFieldImpl | MDCOutlinedTextFieldImpl | MDCUnderlinedTextFieldImpl;
+        const view = MDCTextField.new();
 
         // disable it for now
-        if (this.style.variant === 'filled') {
-            view = MDCFilledTextFieldImpl.initWithOwner(this);
-        } else if (this.style.variant === 'outline') {
-            view = MDCOutlinedTextFieldImpl.initWithOwner(this);
-        } else if (this.style.variant === 'underline') {
-            view = MDCUnderlinedTextFieldImpl.initWithOwner(this);
-        } else {
-            view = MDCUnderlinedTextFieldImpl.initWithOwner(this);
-            (view as MDCUnderlinedTextField).normalUnderlineThickness = 0;
-            (view as MDCUnderlinedTextField).editingUnderlineThickness = 0;
-        }
         view.clearButtonMode = UITextFieldViewMode.Never;
-        //theme needs to be applied after setting the textInput
         const scheme = MDCContainerScheme.new();
         scheme.colorScheme = themer.getAppColorScheme();
-        view.applyThemeWithScheme(scheme); // Default theming method
-        view.applyErrorThemeWithScheme(scheme); // Default theming method
+        if (this.style.variant === 'filled') {
+            this._controller = TextInputControllerFilledImpl.initWithOwner(this);
+        } else if (this.style.variant === 'outline') {
+            this._controller = TextInputControllerOutlinedImpl.initWithOwner(this);
+        } else if (this.style.variant === 'underline') {
+            this._controller = TextInputControllerUnderlineImpl.initWithOwner(this);
+        } else {
+            this._controller = TextInputControllerImpl.initWithOwner(this);
+            this._controller.floatingEnabled = false;
+            // (this._controller as TextInputControllerImpl).applyThemeWithScheme(scheme);
+        }
+        this._controller.textInput = view;
+
+        //theme needs to be applied after setting the textInput
+        if (this.style.variant === 'filled') {
+            (this._controller as TextInputControllerFilledImpl).applyThemeWithScheme(scheme);
+        } else if (this.style.variant === 'outline') {
+            (this._controller as TextInputControllerOutlinedImpl).applyThemeWithScheme(scheme);
+        } else if (this.style.variant === 'underline') {
+            (this._controller as TextInputControllerUnderlineImpl).applyThemeWithScheme(scheme);
+        } else {
+            this._controller.underlineHeightActive = 0;
+            this._controller.underlineHeightNormal = 0;
+        }
+
+        view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;
+        // this._controller.
+        // if (colorScheme) {
+        //     MDCTextFieldColorThemer.applySemanticColorSchemeToTextInput(colorScheme, view);
+        //     MDCTextFieldColorThemer.applySemanticColorSchemeToTextInputController(colorScheme, this._controller);
+        // }
         return view;
     }
 
@@ -246,75 +281,59 @@ export class TextField extends TextFieldBase {
     }
     [floatingColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
-        this.nativeViewProtected.setFloatingLabelColorForState(color, MDCTextControlState.Editing);
+        this._controller.floatingPlaceholderActiveColor = color;
         this._updateAttributedPlaceholder();
     }
     [floatingInactiveColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
         // this._controller.inlinePlaceholderColor = color;
-        this.nativeViewProtected.setFloatingLabelColorForState(color, MDCTextControlState.Normal);
+        this._controller.floatingPlaceholderNormalColor = color;
         this._updateAttributedPlaceholder();
     }
-    [placeholderColorProperty.setNative](value: UIColor | Color) {
-        this._updateAttributedPlaceholder();
-    }
-    [hintProperty.setNative](value: string) {
-        this._updateAttributedPlaceholder();
-        if (this.floating && this.variant !== 'none') {
-            this.nativeViewProtected.label.text = value;
+    [placeholderColorProperty.setNative](value: Color) {
+        const color = value instanceof Color ? value.ios : value;
+        this._controller.inlinePlaceholderColor = color;
+        if (!this.floatingColor) {
+            this._controller.floatingPlaceholderActiveColor = color;
         }
+        this._updateAttributedPlaceholder();
     }
     [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
-        this.nativeViewProtected.trailingAssistiveLabel.textColor = color;
+        this._controller.errorColor = color;
     }
     [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
-        const view = this.nativeViewProtected;
-        if (view instanceof MDCOutlinedTextFieldImpl) {
-            view.setOutlineColorForState(color, MDCTextControlState.Editing);
-        } else {
-            (view as MDCFilledTextFieldImpl).setUnderlineColorForState(color, MDCTextControlState.Editing);
-        }
+        this._controller.activeColor = color;
     }
     [strokeInactiveColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
-        const view = this.nativeViewProtected;
-        if (view instanceof MDCOutlinedTextFieldImpl) {
-            view.setOutlineColorForState(color, MDCTextControlState.Normal);
-        } else {
-            (view as MDCFilledTextFieldImpl).setUnderlineColorForState(color, MDCTextControlState.Normal);
-        }
+        this._controller.normalColor = color;
     }
     [strokeDisabledColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
-        const view = this.nativeViewProtected;
-        if (view instanceof MDCOutlinedTextFieldImpl) {
-            view.setOutlineColorForState(color, MDCTextControlState.Disabled);
-        } else {
-            (view as MDCFilledTextFieldImpl).setUnderlineColorForState(color, MDCTextControlState.Disabled);
-        }
+        this._controller.disabledColor = color;
     }
     [buttonColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
-        // this._controller.textInputClearButtonTintColor = color;
+        this._controller.textInputClearButtonTintColor = color;
     }
     [helperProperty.setNative](value: string) {
-        this.nativeViewProtected.leadingAssistiveLabel.text = value;
+        this._controller.helperText = value;
     }
     [helperColorProperty.setNative](value: string | Color) {
         const temp = typeof value === 'string' ? new Color(value) : value;
         const color: UIColor = temp.ios;
-        this.nativeViewProtected.leadingAssistiveLabel.textColor = color;
+        this._controller.leadingUnderlineLabelTextColor = color;
     }
     [counterMaxLengthProperty.setNative](value: number) {
-        // this._controller.characterCountMax = value;
+        this._controller.characterCountMax = value;
     }
     [floatingProperty.setNative](value: boolean) {
-        // this.nativeViewProtected.labelBehavior = MDCTextControlLabelBehavior.Floats;
+        this._controller.floatingEnabled = value;
     }
     [errorProperty.setNative](value: string) {
-        this.nativeViewProtected.trailingAssistiveLabel.text = value;
+        this._controller.setErrorTextErrorAccessibilityValue(value, value);
     }
     [digitsProperty.setNative](value: string) {
         if (value && value.length > 0) {
@@ -324,7 +343,6 @@ export class TextField extends TextFieldBase {
         }
     }
     [backgroundInternalProperty.setNative](value: Background) {
-        const view = this.nativeViewProtected;
         switch (this.variant) {
             case 'none':
                 super[backgroundInternalProperty.setNative](value);
@@ -333,26 +351,19 @@ export class TextField extends TextFieldBase {
             case 'filled':
             case 'underline': {
                 if (value.color) {
-                    if (view instanceof MDCFilledTextFieldImpl) {
-                        view.setFilledBackgroundColorForState(value.color ? value.color.ios : null, MDCTextControlState.Normal);
-                        view.setFilledBackgroundColorForState(value.color ? value.color.ios : null, MDCTextControlState.Editing);
-                    } else {
-                        view.backgroundColor = value.color ? value.color.ios : null;
-                    }
+                    this._controller.borderFillColor = value.color.ios;
                 }
-                // if (value.borderTopColor) {
-                //     this._controller.activeColor = value.borderTopColor.ios;
-                // }
+                if (value.borderTopColor) {
+                    this._controller.activeColor = value.borderTopColor.ios;
+                }
                 break;
             }
         }
     }
     [fontInternalProperty.setNative](value: Font | UIFont) {
         super[fontInternalProperty.setNative](value);
-        const view = this.nativeViewProtected;
-        const font = value instanceof Font ? value.getUIFont(view.font) : value;
-        view.leadingAssistiveLabel.font = font;
-        view.trailingAssistiveLabel.font = font;
+        const font = value instanceof Font ? value.getUIFont(this._controller.inlinePlaceholderFont) : value;
+        this._controller.inlinePlaceholderFont = font;
     }
 
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {

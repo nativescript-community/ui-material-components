@@ -14,8 +14,10 @@ import {
 import {
     Background,
     Color,
+    CoreTypes,
     Font,
     Length,
+    LengthType,
     Utils,
     backgroundInternalProperty,
     borderBottomLeftRadiusProperty,
@@ -26,9 +28,7 @@ import {
     paddingRightProperty,
     paddingTopProperty,
     placeholderColorProperty,
-    textAlignmentProperty,
-    LengthType,
-    CoreTypes
+    textAlignmentProperty
 } from '@nativescript/core';
 import { TextViewBase } from './textview.common';
 import { getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
@@ -284,16 +284,16 @@ export class TextView extends TextViewBase {
             this.nativeTextViewProtected.setTypeface(value instanceof Font ? value.getAndroidTypeface() : value);
         }
     }
-    [paddingTopProperty.setNative](value: LengthType) {
+    [paddingTopProperty.setNative](value: CoreTypes.LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingTop(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0));
     }
-    [paddingRightProperty.setNative](value: LengthType) {
+    [paddingRightProperty.setNative](value: CoreTypes.LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingRight(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0));
     }
-    [paddingBottomProperty.setNative](value: LengthType) {
+    [paddingBottomProperty.setNative](value: CoreTypes.LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingBottom(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0));
     }
-    [paddingLeftProperty.setNative](value: LengthType) {
+    [paddingLeftProperty.setNative](value: CoreTypes.LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingLeft(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0));
     }
     [textAlignmentProperty.setNative](value: CoreTypes.TextAlignmentType) {

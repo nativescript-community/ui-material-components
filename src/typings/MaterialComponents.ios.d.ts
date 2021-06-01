@@ -1,4439 +1,4562 @@
-
+/* eslint-disable @typescript-eslint/unified-signatures */
+/* eslint-disable no-var */
+/* eslint-disable no-redeclare */
 declare const enum MDCActionEmphasis {
+    Low = 0,
 
-	Low = 0,
+    Medium = 1,
 
-	Medium = 1,
-
-	High = 2
+    High = 2
 }
 
 declare class MDCActivityIndicator extends UIView {
+    static alloc(): MDCActivityIndicator; // inherited from NSObject
 
-	static alloc(): MDCActivityIndicator; // inherited from NSObject
+    static appearance(): MDCActivityIndicator; // inherited from UIAppearance
 
-	static appearance(): MDCActivityIndicator; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCActivityIndicator; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCActivityIndicator; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCActivityIndicator; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCActivityIndicator; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCActivityIndicator; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCActivityIndicator; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCActivityIndicator; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCActivityIndicator; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCActivityIndicator; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCActivityIndicator; // inherited from UIAppearance
+    static new(): MDCActivityIndicator; // inherited from NSObject
 
-	static new(): MDCActivityIndicator; // inherited from NSObject
+    animating: boolean;
 
-	animating: boolean;
+    cycleColors: NSArray<UIColor>;
 
-	cycleColors: NSArray<UIColor>;
+    delegate: MDCActivityIndicatorDelegate;
 
-	delegate: MDCActivityIndicatorDelegate;
+    indicatorMode: MDCActivityIndicatorMode;
 
-	indicatorMode: MDCActivityIndicatorMode;
+    progress: number;
 
-	progress: number;
+    radius: number;
 
-	radius: number;
+    strokeWidth: number;
 
-	strokeWidth: number;
+    trackEnabled: boolean;
 
-	trackEnabled: boolean;
+    traitCollectionDidChangeBlock: (p1: MDCActivityIndicator, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCActivityIndicator, p2: UITraitCollection) => void;
+    setIndicatorModeAnimated(mode: MDCActivityIndicatorMode, animated: boolean): void;
 
-	setIndicatorModeAnimated(mode: MDCActivityIndicatorMode, animated: boolean): void;
+    setProgressAnimated(progress: number, animated: boolean): void;
 
-	setProgressAnimated(progress: number, animated: boolean): void;
+    startAnimating(): void;
 
-	startAnimating(): void;
+    startAnimatingWithTransitionCycleStartIndex(startTransition: MDCActivityIndicatorTransition, cycleStartIndex: number): void;
 
-	startAnimatingWithTransitionCycleStartIndex(startTransition: MDCActivityIndicatorTransition, cycleStartIndex: number): void;
+    stopAnimating(): void;
 
-	stopAnimating(): void;
-
-	stopAnimatingWithTransition(stopTransition: MDCActivityIndicatorTransition): void;
+    stopAnimatingWithTransition(stopTransition: MDCActivityIndicatorTransition): void;
 }
 
 interface MDCActivityIndicatorDelegate extends NSObjectProtocol {
+    activityIndicatorAnimationDidFinish?(activityIndicator: MDCActivityIndicator): void;
 
-	activityIndicatorAnimationDidFinish?(activityIndicator: MDCActivityIndicator): void;
-
-	activityIndicatorModeTransitionDidFinish?(activityIndicator: MDCActivityIndicator): void;
+    activityIndicatorModeTransitionDidFinish?(activityIndicator: MDCActivityIndicator): void;
 }
 declare var MDCActivityIndicatorDelegate: {
-
-	prototype: MDCActivityIndicatorDelegate;
+    prototype: MDCActivityIndicatorDelegate;
 };
 
 declare const enum MDCActivityIndicatorMode {
+    Indeterminate = 0,
 
-	Indeterminate = 0,
-
-	Determinate = 1
+    Determinate = 1
 }
 
 declare class MDCActivityIndicatorTransition extends NSObject {
+    static alloc(): MDCActivityIndicatorTransition; // inherited from NSObject
 
-	static alloc(): MDCActivityIndicatorTransition; // inherited from NSObject
+    static new(): MDCActivityIndicatorTransition; // inherited from NSObject
 
-	static new(): MDCActivityIndicatorTransition; // inherited from NSObject
+    animation: (p1: number, p2: number) => void;
 
-	animation: (p1: number, p2: number) => void;
+    completion: () => void;
 
-	completion: () => void;
+    duration: number;
 
-	duration: number;
+    constructor(o: { animation: (p1: number, p2: number) => void });
 
-	constructor(o: { animation: (p1: number, p2: number) => void; });
-
-	initWithAnimation(animation: (p1: number, p2: number) => void): this;
+    initWithAnimation(animation: (p1: number, p2: number) => void): this;
 }
 
 declare class MDCAlertAction extends NSObject implements NSCopying, UIAccessibilityIdentification {
+    static actionWithTitleEmphasisHandler(title: string, emphasis: MDCActionEmphasis, handler: (p1: MDCAlertAction) => void): MDCAlertAction;
 
-	static actionWithTitleEmphasisHandler(title: string, emphasis: MDCActionEmphasis, handler: (p1: MDCAlertAction) => void): MDCAlertAction;
+    static actionWithTitleHandler(title: string, handler: (p1: MDCAlertAction) => void): MDCAlertAction;
 
-	static actionWithTitleHandler(title: string, handler: (p1: MDCAlertAction) => void): MDCAlertAction;
+    static alloc(): MDCAlertAction; // inherited from NSObject
 
-	static alloc(): MDCAlertAction; // inherited from NSObject
+    static new(): MDCAlertAction; // inherited from NSObject
 
-	static new(): MDCAlertAction; // inherited from NSObject
+    dismissOnAction: boolean;
 
-	readonly emphasis: MDCActionEmphasis;
+    readonly emphasis: MDCActionEmphasis;
 
-	readonly title: string;
+    readonly title: string;
 
-	accessibilityIdentifier: string; // inherited from UIAccessibilityIdentification
+    accessibilityIdentifier: string; // inherited from UIAccessibilityIdentification
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	class(): typeof NSObject;
+    class(): typeof NSObject;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	isEqual(object: any): boolean;
+    isEqual(object: any): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	performSelector(aSelector: string): any;
+    performSelector(aSelector: string): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	respondsToSelector(aSelector: string): boolean;
+    respondsToSelector(aSelector: string): boolean;
 
-	retainCount(): number;
+    retainCount(): number;
 
-	self(): this;
+    self(): this;
 }
 
 declare class MDCAlertColorThemer extends NSObject {
+    static alloc(): MDCAlertColorThemer; // inherited from NSObject
 
-	static alloc(): MDCAlertColorThemer; // inherited from NSObject
+    static applyColorScheme(colorScheme: MDCColorScheme): void;
 
-	static applyColorScheme(colorScheme: MDCColorScheme): void;
+    static applySemanticColorSchemeToAlertController(colorScheme: MDCColorScheming, alertController: MDCAlertController): void;
 
-	static applySemanticColorSchemeToAlertController(colorScheme: MDCColorScheming, alertController: MDCAlertController): void;
-
-	static new(): MDCAlertColorThemer; // inherited from NSObject
+    static new(): MDCAlertColorThemer; // inherited from NSObject
 }
 
 declare class MDCAlertController extends UIViewController implements MDCElevatable, MDCElevationOverriding, UIContentSizeCategoryAdjusting {
+    static alertControllerWithTitleAttributedMessage(alertTitle: string, attributedMessage: NSAttributedString): MDCAlertController;
 
-	static alertControllerWithTitleAttributedMessage(alertTitle: string, attributedMessage: NSAttributedString): MDCAlertController;
+    static alertControllerWithTitleMessage(title: string, message: string): MDCAlertController;
 
-	static alertControllerWithTitleMessage(title: string, message: string): MDCAlertController;
+    static alloc(): MDCAlertController; // inherited from NSObject
 
-	static alloc(): MDCAlertController; // inherited from NSObject
+    static new(): MDCAlertController; // inherited from NSObject
 
-	static new(): MDCAlertController; // inherited from NSObject
+    accessoryView: UIView;
 
-	accessoryView: UIView;
+    readonly actions: NSArray<MDCAlertAction>;
 
-	readonly actions: NSArray<MDCAlertAction>;
+    actionsHorizontalAlignment: MDCContentHorizontalAlignment;
 
-	actionsHorizontalAlignment: MDCContentHorizontalAlignment;
+    actionsHorizontalAlignmentInVerticalLayout: MDCContentHorizontalAlignment;
 
-	actionsHorizontalAlignmentInVerticalLayout: MDCContentHorizontalAlignment;
+    adjustsFontForContentSizeCategoryWhenScaledFontIsUnavailable: boolean;
 
-	adjustsFontForContentSizeCategoryWhenScaledFontIsUnavailable: boolean;
+    attributedLinkColor: UIColor;
 
-	attributedLinkColor: UIColor;
+    attributedMessage: NSAttributedString;
 
-	attributedMessage: NSAttributedString;
+    attributedMessageAction: (p1: NSURL, p2: NSRange, p3: UITextItemInteraction) => boolean;
 
-	attributedMessageAction: (p1: NSURL, p2: NSRange, p3: UITextItemInteraction) => boolean;
+    backgroundColor: UIColor;
 
-	backgroundColor: UIColor;
+    buttonInkColor: UIColor;
 
-	buttonInkColor: UIColor;
+    buttonTitleColor: UIColor;
 
-	buttonTitleColor: UIColor;
+    cornerRadius: number;
 
-	cornerRadius: number;
+    delegate: MDCAlertControllerDelegate;
 
-	delegate: MDCAlertControllerDelegate;
+    elevation: number;
 
-	elevation: number;
+    enableRippleBehavior: boolean;
 
-	enableRippleBehavior: boolean;
+    imageAccessibilityLabel: string;
 
-	imageAccessibilityLabel: string;
+    mdc_adjustsFontForContentSizeCategory: boolean;
 
-	mdc_adjustsFontForContentSizeCategory: boolean;
+    message: string;
 
-	message: string;
+    messageAccessibilityLabel: string;
 
-	messageAccessibilityLabel: string;
+    messageAlignment: NSTextAlignment;
 
-	messageAlignment: NSTextAlignment;
+    messageColor: UIColor;
 
-	messageColor: UIColor;
+    messageFont: UIFont;
 
-	messageFont: UIFont;
+    modalTransitionStyleOverride: UIModalTransitionStyle;
 
-	orderVerticalActionsByEmphasis: boolean;
+    orderVerticalActionsByEmphasis: boolean;
 
-	presentationInitialScaleFactor: number;
+    preferredInterfaceOrientationForPresentationOverride: UIInterfaceOrientation;
 
-	presentationOpacityAnimationDuration: number;
+    presentationInitialScaleFactor: number;
 
-	presentationScaleAnimationDuration: number;
+    presentationOpacityAnimationDuration: number;
 
-	scrimColor: UIColor;
+    presentationScaleAnimationDuration: number;
 
-	shadowColor: UIColor;
+    scrimColor: UIColor;
 
-	titleAccessibilityLabel: string;
+    shadowColor: UIColor;
 
-	titleAlignment: NSTextAlignment;
+    shouldAutorotateOverride: boolean;
 
-	titleColor: UIColor;
+    supportedInterfaceOrientationsOverride: UIInterfaceOrientationMask;
 
-	titleFont: UIFont;
+    titleAccessibilityLabel: string;
 
-	titleIcon: UIImage;
+    titleAlignment: NSTextAlignment;
 
-	titleIconAlignment: NSTextAlignment;
+    titleColor: UIColor;
 
-	readonly titleIconImageView: UIImageView;
+    titleFont: UIFont;
 
-	titleIconTintColor: UIColor;
+    titleIcon: UIImage;
 
-	titleIconView: UIView;
+    titleIconAlignment: NSTextAlignment;
 
-	traitCollectionDidChangeBlock: (p1: MDCAlertController, p2: UITraitCollection) => void;
+    readonly titleIconImageView: UIImageView;
 
-	adjustsFontForContentSizeCategory: boolean; // inherited from UIContentSizeCategoryAdjusting
+    titleIconTintColor: UIColor;
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    titleIconView: UIView;
 
-	readonly description: string; // inherited from NSObjectProtocol
+    traitCollectionDidChangeBlock: (p1: MDCAlertController, p2: UITraitCollection) => void;
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    adjustsFontForContentSizeCategory: boolean; // inherited from UIContentSizeCategoryAdjusting
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly mdc_currentElevation: number; // inherited from MDCElevatable
+    readonly description: string; // inherited from NSObjectProtocol
 
-	mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly mdc_currentElevation: number; // inherited from MDCElevatable
 
-	readonly  // inherited from NSObjectProtocol
+    mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
 
-	addAction(action: MDCAlertAction): void;
+    mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
 
-	applyThemeWithScheme(scheme: MDCContainerScheming): void;
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	buttonForAction(action: MDCAlertAction): MDCButton;
+    readonly; // inherited from NSObjectProtocol
 
-	class(): typeof NSObject;
+    addAction(action: MDCAlertAction): void;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	isEqual(object: any): boolean;
+    buttonForAction(action: MDCAlertAction): MDCButton;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    class(): typeof NSObject;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	performSelector(aSelector: string): any;
+    isEqual(object: any): boolean;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    performSelector(aSelector: string): any;
 
-	retainCount(): number;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	self(): this;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	setAccessoryViewNeedsLayout(): void;
+    respondsToSelector(aSelector: string): boolean;
+
+    retainCount(): number;
+
+    self(): this;
+
+    setAccessoryViewNeedsLayout(): void;
 }
 
 interface MDCAlertControllerDelegate extends NSObjectProtocol {
+    alertControllerDidAppear?(alertController: MDCAlertController, animated: boolean): void;
 
-	alertControllerDidAppear?(alertController: MDCAlertController, animated: boolean): void;
+    alertControllerDidDisappear?(alertController: MDCAlertController, animated: boolean): void;
 
-	alertControllerDidDisappear?(alertController: MDCAlertController, animated: boolean): void;
+    alertControllerDidTapActionWithEvent?(alertController: MDCAlertController, action: MDCAlertAction, event: _UIEvent): void;
 
-	alertControllerDidTapActionWithEvent?(alertController: MDCAlertController, action: MDCAlertAction, event: _UIEvent): void;
+    alertControllerWillAppear?(alertController: MDCAlertController, animated: boolean): void;
 
-	alertControllerWillAppear?(alertController: MDCAlertController, animated: boolean): void;
-
-	alertControllerWillDisappear?(alertController: MDCAlertController, animated: boolean): void;
+    alertControllerWillDisappear?(alertController: MDCAlertController, animated: boolean): void;
 }
 declare var MDCAlertControllerDelegate: {
-
-	prototype: MDCAlertControllerDelegate;
+    prototype: MDCAlertControllerDelegate;
 };
 
 declare class MDCAlertControllerView extends UIView {
+    static alloc(): MDCAlertControllerView; // inherited from NSObject
 
-	static alloc(): MDCAlertControllerView; // inherited from NSObject
+    static appearance(): MDCAlertControllerView; // inherited from UIAppearance
 
-	static appearance(): MDCAlertControllerView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCAlertControllerView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCAlertControllerView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCAlertControllerView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCAlertControllerView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCAlertControllerView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCAlertControllerView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCAlertControllerView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCAlertControllerView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCAlertControllerView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCAlertControllerView; // inherited from UIAppearance
+    static new(): MDCAlertControllerView; // inherited from NSObject
 
-	static new(): MDCAlertControllerView; // inherited from NSObject
+    accessoryViewHorizontalInset: number;
 
-	accessoryViewHorizontalInset: number;
+    accessoryViewVerticalInset: number;
 
-	accessoryViewVerticalInset: number;
+    actionsHorizontalMargin: number;
 
-	actionsHorizontalMargin: number;
+    actionsInsets: UIEdgeInsets;
 
-	actionsInsets: UIEdgeInsets;
+    actionsVerticalMargin: number;
 
-	actionsVerticalMargin: number;
+    buttonColor: UIColor;
 
-	buttonColor: UIColor;
+    buttonInkColor: UIColor;
 
-	buttonInkColor: UIColor;
+    contentInsets: UIEdgeInsets;
 
-	contentInsets: UIEdgeInsets;
+    cornerRadius: number;
 
-	cornerRadius: number;
+    enableRippleBehavior: boolean;
 
-	enableRippleBehavior: boolean;
+    mdc_adjustsFontForContentSizeCategory: boolean;
 
-	mdc_adjustsFontForContentSizeCategory: boolean;
+    messageColor: UIColor;
 
-	messageColor: UIColor;
+    messageFont: UIFont;
 
-	messageFont: UIFont;
+    titleColor: UIColor;
 
-	titleColor: UIColor;
+    titleFont: UIFont;
 
-	titleFont: UIFont;
+    titleIcon: UIImage;
 
-	titleIcon: UIImage;
+    titleIconInsets: UIEdgeInsets;
 
-	titleIconInsets: UIEdgeInsets;
+    titleIconTintColor: UIColor;
 
-	titleIconTintColor: UIColor;
-
-	titleInsets: UIEdgeInsets;
+    titleInsets: UIEdgeInsets;
 }
 
 declare class MDCAlertTypographyThemer extends NSObject {
+    static alloc(): MDCAlertTypographyThemer; // inherited from NSObject
 
-	static alloc(): MDCAlertTypographyThemer; // inherited from NSObject
+    static applyTypographySchemeToAlertController(typographyScheme: MDCTypographyScheming, alertController: MDCAlertController): void;
 
-	static applyTypographySchemeToAlertController(typographyScheme: MDCTypographyScheming, alertController: MDCAlertController): void;
-
-	static new(): MDCAlertTypographyThemer; // inherited from NSObject
+    static new(): MDCAlertTypographyThemer; // inherited from NSObject
 }
 
 declare const enum MDCAnimationTimingFunction {
+    Standard = 0,
 
-	Standard = 0,
+    Deceleration = 1,
 
-	Deceleration = 1,
+    Acceleration = 2,
 
-	Acceleration = 2,
+    Sharp = 3,
 
-	Sharp = 3,
+    EaseInOut = 0,
 
-	EaseInOut = 0,
+    EaseOut = 1,
 
-	EaseOut = 1,
+    EaseIn = 2,
 
-	EaseIn = 2,
+    Translate = 0,
 
-	Translate = 0,
+    TranslateOnScreen = 1,
 
-	TranslateOnScreen = 1,
+    TranslateOffScreen = 2,
 
-	TranslateOffScreen = 2,
+    FadeIn = 1,
 
-	FadeIn = 1,
-
-	FadeOut = 2
+    FadeOut = 2
 }
 
+declare class MDCBaseTextArea extends UIControl implements UIContentSizeCategoryAdjusting {
+    static alloc(): MDCBaseTextArea; // inherited from NSObject
+
+    static appearance(): MDCBaseTextArea; // inherited from UIAppearance
+
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCBaseTextArea; // inherited from UIAppearance
+
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCBaseTextArea; // inherited from UIAppearance
+
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBaseTextArea; // inherited from UIAppearance
+
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCBaseTextArea; // inherited from UIAppearance
+
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBaseTextArea; // inherited from UIAppearance
+
+    static new(): MDCBaseTextArea; // inherited from NSObject
+
+    baseTextAreaDelegate: MDCBaseTextAreaDelegate;
+
+    containerRadius: number;
+
+    horizontalInterItemSpacingOverride: number;
+
+    readonly label: UILabel;
+
+    labelBehavior: MDCTextControlLabelBehavior;
+
+    readonly leadingAssistiveLabel: UILabel;
+
+    leadingEdgePaddingOverride: number;
+
+    leadingView: UIView;
+
+    leadingViewMode: UITextFieldViewMode;
+
+    maximumNumberOfVisibleRows: number;
+
+    minimumNumberOfVisibleRows: number;
+
+    placeholder: string;
+
+    placeholderColor: UIColor;
+
+    preferredContainerHeight: number;
+
+    readonly textView: UITextView;
+
+    readonly trailingAssistiveLabel: UILabel;
+
+    trailingEdgePaddingOverride: number;
+
+    trailingView: UIView;
+
+    trailingViewMode: UITextFieldViewMode;
+
+    verticalDensity: number;
+
+    adjustsFontForContentSizeCategory: boolean; // inherited from UIContentSizeCategoryAdjusting
+
+    readonly debugDescription: string; // inherited from NSObjectProtocol
+
+    readonly description: string; // inherited from NSObjectProtocol
+
+    readonly hash: number; // inherited from NSObjectProtocol
+
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
+
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+
+    readonly; // inherited from NSObjectProtocol
+
+    class(): typeof NSObject;
+
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+
+    floatingLabelColorForState(state: MDCTextControlState): UIColor;
+
+    isEqual(object: any): boolean;
+
+    isKindOfClass(aClass: typeof NSObject): boolean;
+
+    isMemberOfClass(aClass: typeof NSObject): boolean;
+
+    leadingAssistiveLabelColorForState(state: MDCTextControlState): UIColor;
+
+    normalLabelColorForState(state: MDCTextControlState): UIColor;
+
+    performSelector(aSelector: string): any;
+
+    performSelectorWithObject(aSelector: string, object: any): any;
+
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+
+    respondsToSelector(aSelector: string): boolean;
+
+    retainCount(): number;
+
+    self(): this;
+
+    setFloatingLabelColorForState(floatingLabelColor: UIColor, state: MDCTextControlState): void;
+
+    setLeadingAssistiveLabelColorForState(leadingAssistiveLabelColor: UIColor, state: MDCTextControlState): void;
+
+    setNormalLabelColorForState(normalLabelColor: UIColor, state: MDCTextControlState): void;
+
+    setTextColorForState(textColor: UIColor, state: MDCTextControlState): void;
+
+    setTrailingAssistiveLabelColorForState(trailingAssistiveLabelColor: UIColor, state: MDCTextControlState): void;
+
+    textColorForState(state: MDCTextControlState): UIColor;
+
+    trailingAssistiveLabelColorForState(state: MDCTextControlState): UIColor;
+}
+
+interface MDCBaseTextAreaDelegate extends NSObjectProtocol {
+    baseTextAreaShouldChangeSize?(baseTextArea: MDCBaseTextArea, newSize: CGSize): void;
+}
+declare var MDCBaseTextAreaDelegate: {
+    prototype: MDCBaseTextAreaDelegate;
+};
+
 declare class MDCBaseTextField extends UITextField {
+    static alloc(): MDCBaseTextField; // inherited from NSObject
 
-	static alloc(): MDCBaseTextField; // inherited from NSObject
+    static appearance(): MDCBaseTextField; // inherited from UIAppearance
 
-	static appearance(): MDCBaseTextField; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCBaseTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCBaseTextField; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCBaseTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCBaseTextField; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBaseTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBaseTextField; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCBaseTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCBaseTextField; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBaseTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBaseTextField; // inherited from UIAppearance
+    static new(): MDCBaseTextField; // inherited from NSObject
 
-	static new(): MDCBaseTextField; // inherited from NSObject
+    baseTextFieldDelegate: MDCBaseTextFieldDelegate;
 
-	baseTextFieldDelegate: MDCBaseTextFieldDelegate;
+    containerRadius: number;
 
-	containerRadius: number;
+    horizontalInterItemSpacingOverride: number;
 
-	horizontalInterItemSpacingOverride: number;
+    readonly label: UILabel;
 
-	readonly label: UILabel;
+    labelBehavior: MDCTextControlLabelBehavior;
 
-	labelBehavior: MDCTextControlLabelBehavior;
+    readonly leadingAssistiveLabel: UILabel;
 
-	readonly leadingAssistiveLabel: UILabel;
+    leadingEdgePaddingOverride: number;
 
-	leadingEdgePaddingOverride: number;
+    leadingView: UIView;
 
-	leadingView: UIView;
+    leadingViewMode: UITextFieldViewMode;
 
-	leadingViewMode: UITextFieldViewMode;
+    preferredContainerHeight: number;
 
-	preferredContainerHeight: number;
+    readonly trailingAssistiveLabel: UILabel;
 
-	readonly trailingAssistiveLabel: UILabel;
+    trailingEdgePaddingOverride: number;
 
-	trailingEdgePaddingOverride: number;
+    trailingView: UIView;
 
-	trailingView: UIView;
+    trailingViewMode: UITextFieldViewMode;
 
-	trailingViewMode: UITextFieldViewMode;
+    verticalDensity: number;
 
-	floatingLabelColorForState(state: MDCTextControlState): UIColor;
+    floatingLabelColorForState(state: MDCTextControlState): UIColor;
 
-	leadingAssistiveLabelColorForState(state: MDCTextControlState): UIColor;
+    leadingAssistiveLabelColorForState(state: MDCTextControlState): UIColor;
 
-	normalLabelColorForState(state: MDCTextControlState): UIColor;
+    normalLabelColorForState(state: MDCTextControlState): UIColor;
 
-	setFloatingLabelColorForState(floatingLabelColor: UIColor, state: MDCTextControlState): void;
+    setFloatingLabelColorForState(floatingLabelColor: UIColor, state: MDCTextControlState): void;
 
-	setLeadingAssistiveLabelColorForState(leadingAssistiveLabelColor: UIColor, state: MDCTextControlState): void;
+    setLeadingAssistiveLabelColorForState(leadingAssistiveLabelColor: UIColor, state: MDCTextControlState): void;
 
-	setNormalLabelColorForState(normalLabelColor: UIColor, state: MDCTextControlState): void;
+    setNormalLabelColorForState(normalLabelColor: UIColor, state: MDCTextControlState): void;
 
-	setTextColorForState(textColor: UIColor, state: MDCTextControlState): void;
+    setTextColorForState(textColor: UIColor, state: MDCTextControlState): void;
 
-	setTrailingAssistiveLabelColorForState(trailingAssistiveLabelColor: UIColor, state: MDCTextControlState): void;
+    setTrailingAssistiveLabelColorForState(trailingAssistiveLabelColor: UIColor, state: MDCTextControlState): void;
 
-	textColorForState(state: MDCTextControlState): UIColor;
+    textColorForState(state: MDCTextControlState): UIColor;
 
-	trailingAssistiveLabelColorForState(state: MDCTextControlState): UIColor;
+    trailingAssistiveLabelColorForState(state: MDCTextControlState): UIColor;
 }
 
 interface MDCBaseTextFieldDelegate extends NSObjectProtocol {
+    baseTextFieldDidDeleteBackward?(textField: MDCBaseTextField): void;
 
-	baseTextFieldDidDeleteBackward?(textField: MDCBaseTextField): void;
+    baseTextFieldDidUpdateIntrinsicHeight?(textField: MDCBaseTextField, height: number): void;
 
-	baseTextFieldShouldDeleteBackward?(textField: MDCBaseTextField): boolean;
+    baseTextFieldShouldDeleteBackward?(textField: MDCBaseTextField): boolean;
 
-	baseTextFieldShouldPerformActionWithSenderCanPerformAction?(textField: MDCBaseTextField, action: string, sender: any, canPerformAction: boolean): boolean;
+    baseTextFieldShouldPerformActionWithSenderCanPerformAction?(textField: MDCBaseTextField, action: string, sender: any, canPerformAction: boolean): boolean;
 }
 declare var MDCBaseTextFieldDelegate: {
-
-	prototype: MDCBaseTextFieldDelegate;
+    prototype: MDCBaseTextFieldDelegate;
 };
 
 declare class MDCBaseTextFieldLayout extends NSObject {
+    static alloc(): MDCBaseTextFieldLayout; // inherited from NSObject
 
-	static alloc(): MDCBaseTextFieldLayout; // inherited from NSObject
+    static new(): MDCBaseTextFieldLayout; // inherited from NSObject
 
-	static new(): MDCBaseTextFieldLayout; // inherited from NSObject
+    assistiveLabelViewFrame: CGRect;
 
-	assistiveLabelViewFrame: CGRect;
+    assistiveLabelViewLayout: MDCTextControlAssistiveLabelViewLayout;
 
-	assistiveLabelViewLayout: MDCTextControlAssistiveLabelViewLayout;
+    readonly calculatedHeight: number;
 
-	readonly calculatedHeight: number;
+    clearButtonFrame: CGRect;
 
-	clearButtonFrame: CGRect;
+    containerHeight: number;
 
-	containerHeight: number;
+    displaysLeadingView: boolean;
 
-	displaysLeadingView: boolean;
+    displaysTrailingView: boolean;
 
-	displaysTrailingView: boolean;
+    labelFrameFloating: CGRect;
 
-	labelFrameFloating: CGRect;
+    labelFrameNormal: CGRect;
 
-	labelFrameNormal: CGRect;
+    leadingViewFrame: CGRect;
 
-	leadingViewFrame: CGRect;
+    textRectFloating: CGRect;
 
-	textRectFloating: CGRect;
+    textRectNormal: CGRect;
 
-	textRectNormal: CGRect;
+    trailingViewFrame: CGRect;
 
-	trailingViewFrame: CGRect;
+    constructor(o: {
+        textFieldSize: CGSize;
+        positioningReference: MDCTextControlVerticalPositioningReference;
+        horizontalPositioningReference: MDCTextControlHorizontalPositioning;
+        text: string;
+        font: UIFont;
+        floatingFont: UIFont;
+        label: UILabel;
+        labelPosition: MDCTextControlLabelPosition;
+        labelBehavior: MDCTextControlLabelBehavior;
+        sideViewAlignment: MDCTextControlTextFieldSideViewAlignment;
+        leadingView: UIView;
+        leadingViewMode: UITextFieldViewMode;
+        trailingView: UIView;
+        trailingViewMode: UITextFieldViewMode;
+        clearButtonSideLength: number;
+        clearButtonMode: UITextFieldViewMode;
+        leadingAssistiveLabel: UILabel;
+        trailingAssistiveLabel: UILabel;
+        assistiveLabelDrawPriority: MDCTextControlAssistiveLabelDrawPriority;
+        customAssistiveLabelDrawPriority: number;
+        isRTL: boolean;
+        isEditing: boolean;
+    });
 
-	constructor(o: { textFieldSize: CGSize; positioningReference: MDCTextControlVerticalPositioningReference; horizontalPositioningReference: MDCTextControlHorizontalPositioning; text: string; font: UIFont; floatingFont: UIFont; label: UILabel; labelPosition: MDCTextControlLabelPosition; labelBehavior: MDCTextControlLabelBehavior; sideViewAlignment: MDCTextControlTextFieldSideViewAlignment; leadingView: UIView; leadingViewMode: UITextFieldViewMode; trailingView: UIView; trailingViewMode: UITextFieldViewMode; clearButtonSideLength: number; clearButtonMode: UITextFieldViewMode; leadingAssistiveLabel: UILabel; trailingAssistiveLabel: UILabel; assistiveLabelDrawPriority: MDCTextControlAssistiveLabelDrawPriority; customAssistiveLabelDrawPriority: number; isRTL: boolean; isEditing: boolean; });
+    initWithTextFieldSizePositioningReferenceHorizontalPositioningReferenceTextFontFloatingFontLabelLabelPositionLabelBehaviorSideViewAlignmentLeadingViewLeadingViewModeTrailingViewTrailingViewModeClearButtonSideLengthClearButtonModeLeadingAssistiveLabelTrailingAssistiveLabelAssistiveLabelDrawPriorityCustomAssistiveLabelDrawPriorityIsRTLIsEditing(
+        textFieldSize: CGSize,
+        positioningReference: MDCTextControlVerticalPositioningReference,
+        horizontalPositioningReference: MDCTextControlHorizontalPositioning,
+        text: string,
+        font: UIFont,
+        floatingFont: UIFont,
+        label: UILabel,
+        labelPosition: MDCTextControlLabelPosition,
+        labelBehavior: MDCTextControlLabelBehavior,
+        sideViewAlignment: MDCTextControlTextFieldSideViewAlignment,
+        leadingView: UIView,
+        leadingViewMode: UITextFieldViewMode,
+        trailingView: UIView,
+        trailingViewMode: UITextFieldViewMode,
+        clearButtonSideLength: number,
+        clearButtonMode: UITextFieldViewMode,
+        leftAssistiveLabel: UILabel,
+        rightAssistiveLabel: UILabel,
+        assistiveLabelDrawPriority: MDCTextControlAssistiveLabelDrawPriority,
+        customAssistiveLabelDrawPriority: number,
+        isRTL: boolean,
+        isEditing: boolean
+    ): this;
 
-	initWithTextFieldSizePositioningReferenceHorizontalPositioningReferenceTextFontFloatingFontLabelLabelPositionLabelBehaviorSideViewAlignmentLeadingViewLeadingViewModeTrailingViewTrailingViewModeClearButtonSideLengthClearButtonModeLeadingAssistiveLabelTrailingAssistiveLabelAssistiveLabelDrawPriorityCustomAssistiveLabelDrawPriorityIsRTLIsEditing(textFieldSize: CGSize, positioningReference: MDCTextControlVerticalPositioningReference, horizontalPositioningReference: MDCTextControlHorizontalPositioning, text: string, font: UIFont, floatingFont: UIFont, label: UILabel, labelPosition: MDCTextControlLabelPosition, labelBehavior: MDCTextControlLabelBehavior, sideViewAlignment: MDCTextControlTextFieldSideViewAlignment, leadingView: UIView, leadingViewMode: UITextFieldViewMode, trailingView: UIView, trailingViewMode: UITextFieldViewMode, clearButtonSideLength: number, clearButtonMode: UITextFieldViewMode, leftAssistiveLabel: UILabel, rightAssistiveLabel: UILabel, assistiveLabelDrawPriority: MDCTextControlAssistiveLabelDrawPriority, customAssistiveLabelDrawPriority: number, isRTL: boolean, isEditing: boolean): this;
-
-	labelFrameWithLabelPosition(labelPosition: MDCTextControlLabelPosition): CGRect;
+    labelFrameWithLabelPosition(labelPosition: MDCTextControlLabelPosition): CGRect;
 }
 
 declare class MDCBasicColorScheme extends NSObject implements MDCColorScheme, NSCopying {
+    static alloc(): MDCBasicColorScheme; // inherited from NSObject
 
-	static alloc(): MDCBasicColorScheme; // inherited from NSObject
+    static new(): MDCBasicColorScheme; // inherited from NSObject
 
-	static new(): MDCBasicColorScheme; // inherited from NSObject
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly primaryColor: UIColor; // inherited from MDCColorScheme
 
-	readonly primaryColor: UIColor; // inherited from MDCColorScheme
+    readonly primaryDarkColor: UIColor; // inherited from MDCColorScheme
 
-	readonly primaryDarkColor: UIColor; // inherited from MDCColorScheme
+    readonly primaryLightColor: UIColor; // inherited from MDCColorScheme
 
-	readonly primaryLightColor: UIColor; // inherited from MDCColorScheme
+    readonly secondaryColor: UIColor; // inherited from MDCColorScheme
 
-	readonly secondaryColor: UIColor; // inherited from MDCColorScheme
+    readonly secondaryDarkColor: UIColor; // inherited from MDCColorScheme
 
-	readonly secondaryDarkColor: UIColor; // inherited from MDCColorScheme
+    readonly secondaryLightColor: UIColor; // inherited from MDCColorScheme
 
-	readonly secondaryLightColor: UIColor; // inherited from MDCColorScheme
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    constructor(o: { primaryColor: UIColor });
 
-	constructor(o: { primaryColor: UIColor; });
+    constructor(o: { primaryColor: UIColor; primaryLightColor: UIColor; primaryDarkColor: UIColor });
 
-	constructor(o: { primaryColor: UIColor; primaryLightColor: UIColor; primaryDarkColor: UIColor; });
+    constructor(o: { primaryColor: UIColor; primaryLightColor: UIColor; primaryDarkColor: UIColor; secondaryColor: UIColor; secondaryLightColor: UIColor; secondaryDarkColor: UIColor });
 
-	constructor(o: { primaryColor: UIColor; primaryLightColor: UIColor; primaryDarkColor: UIColor; secondaryColor: UIColor; secondaryLightColor: UIColor; secondaryDarkColor: UIColor; });
+    constructor(o: { primaryColor: UIColor; secondaryColor: UIColor });
 
-	constructor(o: { primaryColor: UIColor; secondaryColor: UIColor; });
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    initWithPrimaryColor(primaryColor: UIColor): this;
 
-	initWithPrimaryColor(primaryColor: UIColor): this;
+    initWithPrimaryColorPrimaryLightColorPrimaryDarkColor(primaryColor: UIColor, primaryLightColor: UIColor, primaryDarkColor: UIColor): this;
 
-	initWithPrimaryColorPrimaryLightColorPrimaryDarkColor(primaryColor: UIColor, primaryLightColor: UIColor, primaryDarkColor: UIColor): this;
+    initWithPrimaryColorPrimaryLightColorPrimaryDarkColorSecondaryColorSecondaryLightColorSecondaryDarkColor(
+        primaryColor: UIColor,
+        primaryLightColor: UIColor,
+        primaryDarkColor: UIColor,
+        secondaryColor: UIColor,
+        secondaryLightColor: UIColor,
+        secondaryDarkColor: UIColor
+    ): this;
 
-	initWithPrimaryColorPrimaryLightColorPrimaryDarkColorSecondaryColorSecondaryLightColorSecondaryDarkColor(primaryColor: UIColor, primaryLightColor: UIColor, primaryDarkColor: UIColor, secondaryColor: UIColor, secondaryLightColor: UIColor, secondaryDarkColor: UIColor): this;
+    initWithPrimaryColorSecondaryColor(primaryColor: UIColor, secondaryColor: UIColor): this;
 
-	initWithPrimaryColorSecondaryColor(primaryColor: UIColor, secondaryColor: UIColor): this;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCBasicFontScheme extends NSObject implements MDCFontScheme {
+    static alloc(): MDCBasicFontScheme; // inherited from NSObject
 
-	static alloc(): MDCBasicFontScheme; // inherited from NSObject
+    static new(): MDCBasicFontScheme; // inherited from NSObject
 
-	static new(): MDCBasicFontScheme; // inherited from NSObject
+    body1: UIFont;
 
-	body1: UIFont;
+    body2: UIFont;
 
-	body2: UIFont;
+    button: UIFont;
 
-	button: UIFont;
+    caption: UIFont;
 
-	caption: UIFont;
+    headline1: UIFont;
 
-	headline1: UIFont;
+    headline2: UIFont;
 
-	headline2: UIFont;
+    headline3: UIFont;
 
-	headline3: UIFont;
+    headline4: UIFont;
 
-	headline4: UIFont;
+    headline5: UIFont;
 
-	headline5: UIFont;
+    headline6: UIFont;
 
-	headline6: UIFont;
+    overline: UIFont;
 
-	overline: UIFont;
+    subtitle1: UIFont;
 
-	subtitle1: UIFont;
+    subtitle2: UIFont;
 
-	subtitle2: UIFont;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCBottomNavigationBar extends UIView implements MDCElevatable, MDCElevationOverriding, UILargeContentViewerInteractionDelegate {
+    static alloc(): MDCBottomNavigationBar; // inherited from NSObject
 
-	static alloc(): MDCBottomNavigationBar; // inherited from NSObject
+    static appearance(): MDCBottomNavigationBar; // inherited from UIAppearance
 
-	static appearance(): MDCBottomNavigationBar; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCBottomNavigationBar; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCBottomNavigationBar; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCBottomNavigationBar; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCBottomNavigationBar; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBottomNavigationBar; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBottomNavigationBar; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCBottomNavigationBar; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCBottomNavigationBar; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBottomNavigationBar; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCBottomNavigationBar; // inherited from UIAppearance
+    static new(): MDCBottomNavigationBar; // inherited from NSObject
 
-	static new(): MDCBottomNavigationBar; // inherited from NSObject
+    alignment: MDCBottomNavigationBarAlignment;
 
-	alignment: MDCBottomNavigationBarAlignment;
+    backgroundBlurEffectStyle: UIBlurEffectStyle;
 
-	backgroundBlurEffectStyle: UIBlurEffectStyle;
+    backgroundBlurEnabled: boolean;
 
-	backgroundBlurEnabled: boolean;
+    barHeight: number;
 
-	barHeight: number;
+    readonly barItemsBottomAnchor: NSLayoutYAxisAnchor;
 
-	readonly barItemsBottomAnchor: NSLayoutYAxisAnchor;
+    barTintColor: UIColor;
 
-	barTintColor: UIColor;
+    delegate: MDCBottomNavigationBarDelegate;
 
-	delegate: MDCBottomNavigationBarDelegate;
+    elevation: number;
 
-	elevation: number;
+    enableRippleBehavior: boolean;
 
-	enableRippleBehavior: boolean;
+    itemBadgeBackgroundColor: UIColor;
 
-	itemBadgeBackgroundColor: UIColor;
+    itemBadgeTextColor: UIColor;
 
-	itemBadgeTextColor: UIColor;
+    itemTitleFont: UIFont;
 
-	itemTitleFont: UIFont;
+    items: NSArray<UITabBarItem>;
 
-	items: NSArray<UITabBarItem>;
+    itemsContentHorizontalMargin: number;
 
-	itemsContentHorizontalMargin: number;
+    itemsContentVerticalMargin: number;
 
-	itemsContentVerticalMargin: number;
+    itemsHorizontalPadding: number;
 
-	itemsHorizontalPadding: number;
+    selectedItem: UITabBarItem;
 
-	selectedItem: UITabBarItem;
+    selectedItemTintColor: UIColor;
 
-	selectedItemTintColor: UIColor;
+    selectedItemTitleColor: UIColor;
 
-	selectedItemTitleColor: UIColor;
+    shadowColor: UIColor;
 
-	shadowColor: UIColor;
+    titleVisibility: MDCBottomNavigationBarTitleVisibility;
 
-	titleVisibility: MDCBottomNavigationBarTitleVisibility;
+    titlesNumberOfLines: number;
 
-	titlesNumberOfLines: number;
+    traitCollectionDidChangeBlock: (p1: MDCBottomNavigationBar, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCBottomNavigationBar, p2: UITraitCollection) => void;
+    truncatesLongTitles: boolean;
 
-	truncatesLongTitles: boolean;
+    unselectedItemTintColor: UIColor;
 
-	unselectedItemTintColor: UIColor;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly mdc_currentElevation: number; // inherited from MDCElevatable
 
-	readonly mdc_currentElevation: number; // inherited from MDCElevatable
+    mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
 
-	mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
+    mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
 
-	mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    applyPrimaryThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyPrimaryThemeWithScheme(scheme: MDCContainerScheming): void;
+    applySurfaceThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applySurfaceThemeWithScheme(scheme: MDCContainerScheming): void;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    largeContentViewerInteractionDidEndOnItemAtPoint(interaction: UILargeContentViewerInteraction, item: UILargeContentViewerItem, point: CGPoint): void;
 
-	largeContentViewerInteractionDidEndOnItemAtPoint(interaction: UILargeContentViewerInteraction, item: UILargeContentViewerItem, point: CGPoint): void;
+    largeContentViewerInteractionItemAtPoint(interaction: UILargeContentViewerInteraction, point: CGPoint): UILargeContentViewerItem;
 
-	largeContentViewerInteractionItemAtPoint(interaction: UILargeContentViewerInteraction, point: CGPoint): UILargeContentViewerItem;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
+    viewControllerForLargeContentViewerInteraction(interaction: UILargeContentViewerInteraction): UIViewController;
 
-	viewControllerForLargeContentViewerInteraction(interaction: UILargeContentViewerInteraction): UIViewController;
-
-	viewForItem(item: UITabBarItem): UIView;
+    viewForItem(item: UITabBarItem): UIView;
 }
 
 declare const enum MDCBottomNavigationBarAlignment {
+    Justified = 0,
 
-	Justified = 0,
+    JustifiedAdjacentTitles = 1,
 
-	JustifiedAdjacentTitles = 1,
-
-	Centered = 2
+    Centered = 2
 }
 
-interface MDCBottomNavigationBarControllerDelegate extends NSObjectProtocol {
-}
+interface MDCBottomNavigationBarControllerDelegate extends NSObjectProtocol {}
 declare var MDCBottomNavigationBarControllerDelegate: {
-
-	prototype: MDCBottomNavigationBarControllerDelegate;
+    prototype: MDCBottomNavigationBarControllerDelegate;
 };
 
 interface MDCBottomNavigationBarDelegate extends UINavigationBarDelegate {
+    bottomNavigationBarDidSelectItem?(bottomNavigationBar: MDCBottomNavigationBar, item: UITabBarItem): void;
 
-	bottomNavigationBarDidSelectItem?(bottomNavigationBar: MDCBottomNavigationBar, item: UITabBarItem): void;
-
-	bottomNavigationBarShouldSelectItem?(bottomNavigationBar: MDCBottomNavigationBar, item: UITabBarItem): boolean;
+    bottomNavigationBarShouldSelectItem?(bottomNavigationBar: MDCBottomNavigationBar, item: UITabBarItem): boolean;
 }
 declare var MDCBottomNavigationBarDelegate: {
-
-	prototype: MDCBottomNavigationBarDelegate;
+    prototype: MDCBottomNavigationBarDelegate;
 };
 
 declare const enum MDCBottomNavigationBarTitleVisibility {
+    Selected = 0,
 
-	Selected = 0,
+    Always = 1,
 
-	Always = 1,
-
-	Never = 2
+    Never = 2
 }
 
 declare class MDCBottomSheetController extends UIViewController implements MDCElevatable, MDCElevationOverriding {
+    static alloc(): MDCBottomSheetController; // inherited from NSObject
 
-	static alloc(): MDCBottomSheetController; // inherited from NSObject
+    static new(): MDCBottomSheetController; // inherited from NSObject
 
-	static new(): MDCBottomSheetController; // inherited from NSObject
+    adjustHeightForSafeAreaInsets: boolean;
 
-	readonly contentViewController: UIViewController;
+    readonly contentViewController: UIViewController;
 
-	delegate: MDCBottomSheetControllerDelegate;
+    delegate: MDCBottomSheetControllerDelegate;
 
-	dismissOnBackgroundTap: boolean;
+    dismissOnBackgroundTap: boolean;
 
-	dismissOnDraggingDownSheet: boolean;
+    dismissOnDraggingDownSheet: boolean;
 
-	elevation: number;
+    elevation: number;
 
-	isScrimAccessibilityElement: boolean;
+    isScrimAccessibilityElement: boolean;
 
-	scrimAccessibilityHint: string;
+    scrimAccessibilityHint: string;
 
-	scrimAccessibilityLabel: string;
+    scrimAccessibilityLabel: string;
 
-	scrimAccessibilityTraits: number;
+    scrimAccessibilityTraits: number;
 
-	scrimColor: UIColor;
+    scrimColor: UIColor;
 
-	shouldFlashScrollIndicatorsOnAppearance: boolean;
+    shouldFlashScrollIndicatorsOnAppearance: boolean;
 
-	readonly state: MDCSheetState;
+    readonly state: MDCSheetState;
 
-	trackingScrollView: UIScrollView;
+    trackingScrollView: UIScrollView;
 
-	traitCollectionDidChangeBlock: (p1: MDCBottomSheetController, p2: UITraitCollection) => void;
+    traitCollectionDidChangeBlock: (p1: MDCBottomSheetController, p2: UITraitCollection) => void;
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly mdc_currentElevation: number; // inherited from MDCElevatable
+    readonly mdc_currentElevation: number; // inherited from MDCElevatable
 
-	mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
+    mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
 
-	mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
+    mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	constructor(o: { contentViewController: UIViewController; });
+    constructor(o: { contentViewController: UIViewController });
 
-	class(): typeof NSObject;
+    class(): typeof NSObject;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	initWithContentViewController(contentViewController: UIViewController): this;
+    initWithContentViewController(contentViewController: UIViewController): this;
 
-	isEqual(object: any): boolean;
+    isEqual(object: any): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	performSelector(aSelector: string): any;
+    performSelector(aSelector: string): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	respondsToSelector(aSelector: string): boolean;
+    respondsToSelector(aSelector: string): boolean;
 
-	retainCount(): number;
+    retainCount(): number;
 
-	self(): this;
+    self(): this;
 
-	setShapeGeneratorForState(shapeGenerator: MDCShapeGenerating, state: MDCSheetState): void;
+    setShapeGeneratorForState(shapeGenerator: MDCShapeGenerating, state: MDCSheetState): void;
 
-	shapeGeneratorForState(state: MDCSheetState): MDCShapeGenerating;
+    shapeGeneratorForState(state: MDCSheetState): MDCShapeGenerating;
 }
 
 interface MDCBottomSheetControllerDelegate extends NSObjectProtocol {
+    bottomSheetControllerDidChangeYOffsetYOffset?(controller: MDCBottomSheetController, yOffset: number): void;
 
-	bottomSheetControllerDidChangeYOffsetYOffset?(controller: MDCBottomSheetController, yOffset: number): void;
+    bottomSheetControllerDidDismissBottomSheet?(controller: MDCBottomSheetController): void;
 
-	bottomSheetControllerDidDismissBottomSheet?(controller: MDCBottomSheetController): void;
-
-	bottomSheetControllerStateChangedState?(controller: MDCBottomSheetController, state: MDCSheetState): void;
+    bottomSheetControllerStateChangedState?(controller: MDCBottomSheetController, state: MDCSheetState): void;
 }
 declare var MDCBottomSheetControllerDelegate: {
-
-	prototype: MDCBottomSheetControllerDelegate;
+    prototype: MDCBottomSheetControllerDelegate;
 };
 
 declare class MDCBottomSheetControllerShapeThemer extends NSObject {
+    static alloc(): MDCBottomSheetControllerShapeThemer; // inherited from NSObject
 
-	static alloc(): MDCBottomSheetControllerShapeThemer; // inherited from NSObject
+    static applyShapeSchemeToBottomSheetController(shapeScheme: MDCShapeScheming, bottomSheetController: MDCBottomSheetController): void;
 
-	static applyShapeSchemeToBottomSheetController(shapeScheme: MDCShapeScheming, bottomSheetController: MDCBottomSheetController): void;
-
-	static new(): MDCBottomSheetControllerShapeThemer; // inherited from NSObject
+    static new(): MDCBottomSheetControllerShapeThemer; // inherited from NSObject
 }
 
 declare class MDCBottomSheetPresentationController extends UIPresentationController {
+    static alloc(): MDCBottomSheetPresentationController; // inherited from NSObject
 
-	static alloc(): MDCBottomSheetPresentationController; // inherited from NSObject
+    static new(): MDCBottomSheetPresentationController; // inherited from NSObject
 
-	static new(): MDCBottomSheetPresentationController; // inherited from NSObject
+    adjustHeightForSafeAreaInsets: boolean;
 
-	delegate: MDCBottomSheetPresentationControllerDelegate;
+    delegate: MDCBottomSheetPresentationControllerDelegate;
 
-	dismissOnBackgroundTap: boolean;
+    dismissOnBackgroundTap: boolean;
 
-	dismissOnDraggingDownSheet: boolean;
+    dismissOnDraggingDownSheet: boolean;
 
-	isScrimAccessibilityElement: boolean;
+    isScrimAccessibilityElement: boolean;
 
-	preferredSheetHeight: number;
+    preferredSheetHeight: number;
 
-	scrimAccessibilityHint: string;
+    scrimAccessibilityHint: string;
 
-	scrimAccessibilityLabel: string;
+    scrimAccessibilityLabel: string;
 
-	scrimAccessibilityTraits: number;
+    scrimAccessibilityTraits: number;
 
-	scrimColor: UIColor;
+    scrimColor: UIColor;
 
-	shouldPropagateSafeAreaInsetsToPresentedViewController: boolean;
+    shouldPropagateSafeAreaInsetsToPresentedViewController: boolean;
 
-	trackingScrollView: UIScrollView;
+    simulateScrollViewBounce: boolean;
 
-	traitCollectionDidChangeBlock: (p1: MDCBottomSheetPresentationController, p2: UITraitCollection) => void;
+    trackingScrollView: UIScrollView;
+
+    traitCollectionDidChangeBlock: (p1: MDCBottomSheetPresentationController, p2: UITraitCollection) => void;
 }
 
 interface MDCBottomSheetPresentationControllerDelegate extends UIAdaptivePresentationControllerDelegate {
+    bottomSheetDidChangeYOffsetYOffset?(bottomSheet: MDCBottomSheetPresentationController, yOffset: number): void;
 
-	bottomSheetDidChangeYOffsetYOffset?(bottomSheet: MDCBottomSheetPresentationController, yOffset: number): void;
+    bottomSheetPresentationControllerDidDismissBottomSheet?(bottomSheet: MDCBottomSheetPresentationController): void;
 
-	bottomSheetPresentationControllerDidDismissBottomSheet?(bottomSheet: MDCBottomSheetPresentationController): void;
+    bottomSheetPresentationControllerDismissalAnimationCompleted?(bottomSheet: MDCBottomSheetPresentationController): void;
 
-	bottomSheetPresentationControllerDismissalAnimationCompleted?(bottomSheet: MDCBottomSheetPresentationController): void;
+    bottomSheetWillChangeStateSheetState?(bottomSheet: MDCBottomSheetPresentationController, sheetState: MDCSheetState): void;
 
-	bottomSheetWillChangeStateSheetState?(bottomSheet: MDCBottomSheetPresentationController, sheetState: MDCSheetState): void;
-
-	prepareForBottomSheetPresentation?(bottomSheet: MDCBottomSheetPresentationController): void;
+    prepareForBottomSheetPresentation?(bottomSheet: MDCBottomSheetPresentationController): void;
 }
 declare var MDCBottomSheetPresentationControllerDelegate: {
-
-	prototype: MDCBottomSheetPresentationControllerDelegate;
+    prototype: MDCBottomSheetPresentationControllerDelegate;
 };
 
 declare class MDCBottomSheetTransitionController extends NSObject implements UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
+    static alloc(): MDCBottomSheetTransitionController; // inherited from NSObject
 
-	static alloc(): MDCBottomSheetTransitionController; // inherited from NSObject
+    static new(): MDCBottomSheetTransitionController; // inherited from NSObject
 
-	static new(): MDCBottomSheetTransitionController; // inherited from NSObject
+    adjustHeightForSafeAreaInsets: boolean;
 
-	dismissOnBackgroundTap: boolean;
+    dismissOnBackgroundTap: boolean;
 
-	dismissOnDraggingDownSheet: boolean;
+    dismissOnDraggingDownSheet: boolean;
 
-	isScrimAccessibilityElement: boolean;
+    isScrimAccessibilityElement: boolean;
 
-	preferredSheetHeight: number;
+    preferredSheetHeight: number;
 
-	scrimAccessibilityHint: string;
+    scrimAccessibilityHint: string;
 
-	scrimAccessibilityLabel: string;
+    scrimAccessibilityLabel: string;
 
-	scrimAccessibilityTraits: number;
+    scrimAccessibilityTraits: number;
 
-	scrimColor: UIColor;
+    scrimColor: UIColor;
 
-	trackingScrollView: UIScrollView;
+    trackingScrollView: UIScrollView;
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	animateTransition(transitionContext: UIViewControllerContextTransitioning): void;
+    animateTransition(transitionContext: UIViewControllerContextTransitioning): void;
 
-	animationControllerForDismissedController(dismissed: UIViewController): UIViewControllerAnimatedTransitioning;
+    animationControllerForDismissedController(dismissed: UIViewController): UIViewControllerAnimatedTransitioning;
 
-	animationControllerForPresentedControllerPresentingControllerSourceController(presented: UIViewController, presenting: UIViewController, source: UIViewController): UIViewControllerAnimatedTransitioning;
+    animationControllerForPresentedControllerPresentingControllerSourceController(
+        presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ): UIViewControllerAnimatedTransitioning;
 
-	animationEnded(transitionCompleted: boolean): void;
+    animationEnded(transitionCompleted: boolean): void;
 
-	class(): typeof NSObject;
+    class(): typeof NSObject;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning): UIViewControllerInteractiveTransitioning;
+    interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning): UIViewControllerInteractiveTransitioning;
 
-	interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning): UIViewControllerInteractiveTransitioning;
+    interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning): UIViewControllerInteractiveTransitioning;
 
-	interruptibleAnimatorForTransition(transitionContext: UIViewControllerContextTransitioning): UIViewImplicitlyAnimating;
+    interruptibleAnimatorForTransition(transitionContext: UIViewControllerContextTransitioning): UIViewImplicitlyAnimating;
 
-	isEqual(object: any): boolean;
+    isEqual(object: any): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	performSelector(aSelector: string): any;
+    performSelector(aSelector: string): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	presentationControllerForPresentedViewControllerPresentingViewControllerSourceViewController(presented: UIViewController, presenting: UIViewController, source: UIViewController): UIPresentationController;
+    presentationControllerForPresentedViewControllerPresentingViewControllerSourceViewController(
+        presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ): UIPresentationController;
 
-	respondsToSelector(aSelector: string): boolean;
+    respondsToSelector(aSelector: string): boolean;
 
-	retainCount(): number;
+    retainCount(): number;
 
-	self(): this;
+    self(): this;
 
-	transitionDuration(transitionContext: UIViewControllerContextTransitioning): number;
+    transitionDuration(transitionContext: UIViewControllerContextTransitioning): number;
 }
 
 declare class MDCButton extends UIButton implements MDCElevatable, MDCElevationOverriding {
+    static alloc(): MDCButton; // inherited from NSObject
 
-	static alloc(): MDCButton; // inherited from NSObject
+    static appearance(): MDCButton; // inherited from UIAppearance
 
-	static appearance(): MDCButton; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCButton; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCButton; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCButton; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCButton; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCButton; // inherited from UIAppearance
+    static buttonWithType(buttonType: UIButtonType): MDCButton; // inherited from UIButton
 
-	static buttonWithType(buttonType: UIButtonType): MDCButton; // inherited from UIButton
+    static buttonWithTypePrimaryAction(buttonType: UIButtonType, primaryAction: UIAction): MDCButton; // inherited from UIButton
 
-	static buttonWithTypePrimaryAction(buttonType: UIButtonType, primaryAction: UIAction): MDCButton; // inherited from UIButton
+    static new(): MDCButton; // inherited from NSObject
 
-	static new(): MDCButton; // inherited from NSObject
+    static systemButtonWithImageTargetAction(image: UIImage, target: any, action: string): MDCButton; // inherited from UIButton
 
-	static systemButtonWithImageTargetAction(image: UIImage, target: any, action: string): MDCButton; // inherited from UIButton
+    static systemButtonWithPrimaryAction(primaryAction: UIAction): MDCButton; // inherited from UIButton
 
-	static systemButtonWithPrimaryAction(primaryAction: UIAction): MDCButton; // inherited from UIButton
+    accessibilityTraitsIncludesButton: boolean;
 
-	accessibilityTraitsIncludesButton: boolean;
+    adjustsFontForContentSizeCategoryWhenScaledFontIsUnavailable: boolean;
 
-	adjustsFontForContentSizeCategoryWhenScaledFontIsUnavailable: boolean;
+    centerVisibleArea: boolean;
 
-	centerVisibleArea: boolean;
+    readonly defaultContentEdgeInsets: UIEdgeInsets;
 
-	readonly defaultContentEdgeInsets: UIEdgeInsets;
+    disabledAlpha: number;
 
-	disabledAlpha: number;
+    enableRippleBehavior: boolean;
 
-	enableRippleBehavior: boolean;
+    enableTitleFontForState: boolean;
 
-	enableTitleFontForState: boolean;
+    hitAreaInsets: UIEdgeInsets;
 
-	hitAreaInsets: UIEdgeInsets;
+    inferMinimumAndMaximumSizeWhenMultiline: boolean;
 
-	inkColor: UIColor;
+    inkColor: UIColor;
 
-	inkMaxRippleRadius: number;
+    inkMaxRippleRadius: number;
 
-	inkStyle: MDCInkStyle;
+    inkStyle: MDCInkStyle;
 
-	inkViewOffset: CGSize;
+    inkViewOffset: CGSize;
 
-	maximumSize: CGSize;
+    maximumSize: CGSize;
 
-	mdc_adjustsFontForContentSizeCategory: boolean;
+    mdc_adjustsFontForContentSizeCategory: boolean;
 
-	minimumSize: CGSize;
+    minimumSize: CGSize;
 
-	rippleColor: UIColor;
+    rippleColor: UIColor;
 
-	rippleEdgeInsets: UIEdgeInsets;
+    rippleEdgeInsets: UIEdgeInsets;
 
-	rippleMaximumRadius: number;
+    rippleMaximumRadius: number;
 
-	rippleStyle: MDCRippleStyle;
+    rippleStyle: MDCRippleStyle;
 
-	shapeGenerator: MDCShapeGenerating;
+    shapeGenerator: MDCShapeGenerating;
 
-	traitCollectionDidChangeBlock: (p1: MDCButton, p2: UITraitCollection) => void;
+    traitCollectionDidChangeBlock: (p1: MDCButton, p2: UITraitCollection) => void;
 
-	underlyingColorHint: UIColor;
+    underlyingColorHint: UIColor;
 
-	uppercaseTitle: boolean;
+    uppercaseTitle: boolean;
 
-	visibleAreaInsets: UIEdgeInsets;
+    visibleAreaInsets: UIEdgeInsets;
 
-	readonly visibleAreaLayoutGuide: UILayoutGuide;
+    readonly visibleAreaLayoutGuide: UILayoutGuide;
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly mdc_currentElevation: number; // inherited from MDCElevatable
+    readonly mdc_currentElevation: number; // inherited from MDCElevatable
 
-	mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
+    mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
 
-	mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
+    mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	applyContainedThemeWithScheme(scheme: MDCContainerScheming): void;
+    applyContainedThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyOutlinedThemeWithScheme(scheme: MDCContainerScheming): void;
+    applyOutlinedThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyTextThemeWithScheme(scheme: MDCContainerScheming): void;
+    applyTextThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	backgroundColorForState(state: UIControlState): UIColor;
+    backgroundColorForState(state: UIControlState): UIColor;
 
-	borderColorForState(state: UIControlState): UIColor;
+    borderColorForState(state: UIControlState): UIColor;
 
-	borderWidthForState(state: UIControlState): number;
+    borderWidthForState(state: UIControlState): number;
 
-	class(): typeof NSObject;
+    class(): typeof NSObject;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	elevationForState(state: UIControlState): number;
+    elevationForState(state: UIControlState): number;
 
-	imageTintColorForState(state: UIControlState): UIColor;
+    imageTintColorForState(state: UIControlState): UIColor;
 
-	isEqual(object: any): boolean;
+    isEqual(object: any): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	performSelector(aSelector: string): any;
+    performSelector(aSelector: string): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	respondsToSelector(aSelector: string): boolean;
+    respondsToSelector(aSelector: string): boolean;
 
-	retainCount(): number;
+    retainCount(): number;
 
-	self(): this;
+    self(): this;
 
-	setBackgroundColor(backgroundColor: UIColor): void;
+    setBackgroundColor(backgroundColor: UIColor): void;
 
-	setBackgroundColorForState(backgroundColor: UIColor, state: UIControlState): void;
+    setBackgroundColorForState(backgroundColor: UIColor, state: UIControlState): void;
 
-	setBorderColorForState(borderColor: UIColor, state: UIControlState): void;
+    setBorderColorForState(borderColor: UIColor, state: UIControlState): void;
 
-	setBorderWidthForState(borderWidth: number, state: UIControlState): void;
+    setBorderWidthForState(borderWidth: number, state: UIControlState): void;
 
-	setElevationForState(elevation: number, state: UIControlState): void;
+    setElevationForState(elevation: number, state: UIControlState): void;
 
-	setEnabledAnimated(enabled: boolean, animated: boolean): void;
+    setEnabledAnimated(enabled: boolean, animated: boolean): void;
 
-	setImageTintColorForState(imageTintColor: UIColor, state: UIControlState): void;
+    setImageTintColorForState(imageTintColor: UIColor, state: UIControlState): void;
 
-	setShadowColorForState(shadowColor: UIColor, state: UIControlState): void;
+    setShadowColorForState(shadowColor: UIColor, state: UIControlState): void;
 
-	setTitleFontForState(font: UIFont, state: UIControlState): void;
+    setTitleFontForState(font: UIFont, state: UIControlState): void;
 
-	shadowColorForState(state: UIControlState): UIColor;
+    shadowColorForState(state: UIControlState): UIColor;
 
-	titleFontForState(state: UIControlState): UIFont;
+    titleFontForState(state: UIControlState): UIFont;
 }
 
 declare class MDCButtonColorThemer extends NSObject {
+    static alloc(): MDCButtonColorThemer; // inherited from NSObject
 
-	static alloc(): MDCButtonColorThemer; // inherited from NSObject
+    static applyColorSchemeToButton(colorScheme: MDCColorScheme, button: MDCButton): void;
 
-	static applyColorSchemeToButton(colorScheme: MDCColorScheme, button: MDCButton): void;
+    static applySemanticColorSchemeToButton(colorScheme: MDCColorScheming, button: MDCButton): void;
 
-	static applySemanticColorSchemeToButton(colorScheme: MDCColorScheming, button: MDCButton): void;
+    static applySemanticColorSchemeToFlatButton(colorScheme: MDCColorScheming, flatButton: MDCButton): void;
 
-	static applySemanticColorSchemeToFlatButton(colorScheme: MDCColorScheming, flatButton: MDCButton): void;
+    static applySemanticColorSchemeToFloatingButton(colorScheme: MDCColorScheming, floatingButton: MDCFloatingButton): void;
 
-	static applySemanticColorSchemeToFloatingButton(colorScheme: MDCColorScheming, floatingButton: MDCFloatingButton): void;
+    static applySemanticColorSchemeToRaisedButton(colorScheme: MDCColorScheming, raisedButton: MDCButton): void;
 
-	static applySemanticColorSchemeToRaisedButton(colorScheme: MDCColorScheming, raisedButton: MDCButton): void;
-
-	static new(): MDCButtonColorThemer; // inherited from NSObject
+    static new(): MDCButtonColorThemer; // inherited from NSObject
 }
 
 declare class MDCButtonShapeThemer extends NSObject {
+    static alloc(): MDCButtonShapeThemer; // inherited from NSObject
 
-	static alloc(): MDCButtonShapeThemer; // inherited from NSObject
+    static applyShapeSchemeToButton(shapeScheme: MDCShapeScheming, button: MDCButton): void;
 
-	static applyShapeSchemeToButton(shapeScheme: MDCShapeScheming, button: MDCButton): void;
-
-	static new(): MDCButtonShapeThemer; // inherited from NSObject
+    static new(): MDCButtonShapeThemer; // inherited from NSObject
 }
 
 declare class MDCButtonTypographyThemer extends NSObject {
+    static alloc(): MDCButtonTypographyThemer; // inherited from NSObject
 
-	static alloc(): MDCButtonTypographyThemer; // inherited from NSObject
+    static applyTypographySchemeToButton(typographyScheme: MDCTypographyScheming, button: MDCButton): void;
 
-	static applyTypographySchemeToButton(typographyScheme: MDCTypographyScheming, button: MDCButton): void;
-
-	static new(): MDCButtonTypographyThemer; // inherited from NSObject
+    static new(): MDCButtonTypographyThemer; // inherited from NSObject
 }
 
 declare class MDCCard extends UIControl implements MDCElevatable, MDCElevationOverriding {
+    static alloc(): MDCCard; // inherited from NSObject
 
-	static alloc(): MDCCard; // inherited from NSObject
+    static appearance(): MDCCard; // inherited from UIAppearance
 
-	static appearance(): MDCCard; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCCard; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCCard; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCCard; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCCard; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCard; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCard; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCCard; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCCard; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCard; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCard; // inherited from UIAppearance
+    static new(): MDCCard; // inherited from NSObject
 
-	static new(): MDCCard; // inherited from NSObject
+    cornerRadius: number;
 
-	cornerRadius: number;
+    enableRippleBehavior: boolean;
 
-	enableRippleBehavior: boolean;
+    readonly inkView: MDCInkView;
 
-	readonly inkView: MDCInkView;
+    interactable: boolean;
 
-	interactable: boolean;
+    readonly rippleView: MDCStatefulRippleView;
 
-	readonly rippleView: MDCStatefulRippleView;
+    shapeGenerator: MDCShapeGenerating;
 
-	shapeGenerator: MDCShapeGenerating;
+    traitCollectionDidChangeBlock: (p1: MDCCard, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCCard, p2: UITraitCollection) => void;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly mdc_currentElevation: number; // inherited from MDCElevatable
 
-	readonly mdc_currentElevation: number; // inherited from MDCElevatable
+    mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
 
-	mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
+    mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
 
-	mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    applyOutlinedThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyOutlinedThemeWithScheme(scheme: MDCContainerScheming): void;
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyThemeWithScheme(scheme: MDCContainerScheming): void;
+    borderColorForState(state: UIControlState): UIColor;
 
-	borderColorForState(state: UIControlState): UIColor;
+    borderWidthForState(state: UIControlState): number;
 
-	borderWidthForState(state: UIControlState): number;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
+    setBorderColorForState(borderColor: UIColor, state: UIControlState): void;
 
-	setBorderColorForState(borderColor: UIColor, state: UIControlState): void;
+    setBorderWidthForState(borderWidth: number, state: UIControlState): void;
 
-	setBorderWidthForState(borderWidth: number, state: UIControlState): void;
+    setShadowColorForState(shadowColor: UIColor, state: UIControlState): void;
 
-	setShadowColorForState(shadowColor: UIColor, state: UIControlState): void;
+    setShadowElevationForState(shadowElevation: number, state: UIControlState): void;
 
-	setShadowElevationForState(shadowElevation: number, state: UIControlState): void;
+    shadowColorForState(state: UIControlState): UIColor;
 
-	shadowColorForState(state: UIControlState): UIColor;
-
-	shadowElevationForState(state: UIControlState): number;
+    shadowElevationForState(state: UIControlState): number;
 }
 
 declare const enum MDCCardCellHorizontalImageAlignment {
+    Right = 0,
 
-	Right = 0,
+    Center = 1,
 
-	Center = 1,
-
-	Left = 2
+    Left = 2
 }
 
 declare const enum MDCCardCellState {
+    Normal = 0,
 
-	Normal = 0,
+    Highlighted = 1,
 
-	Highlighted = 1,
+    Selected = 2,
 
-	Selected = 2,
-
-	Dragged = 3
+    Dragged = 3
 }
 
 declare const enum MDCCardCellVerticalImageAlignment {
+    Top = 0,
 
-	Top = 0,
+    Center = 1,
 
-	Center = 1,
-
-	Bottom = 2
+    Bottom = 2
 }
 
 declare class MDCCardCollectionCell extends UICollectionViewCell implements MDCElevatable, MDCElevationOverriding {
+    static alloc(): MDCCardCollectionCell; // inherited from NSObject
 
-	static alloc(): MDCCardCollectionCell; // inherited from NSObject
+    static appearance(): MDCCardCollectionCell; // inherited from UIAppearance
 
-	static appearance(): MDCCardCollectionCell; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCCardCollectionCell; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCCardCollectionCell; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCCardCollectionCell; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCCardCollectionCell; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCardCollectionCell; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCardCollectionCell; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCCardCollectionCell; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCCardCollectionCell; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCardCollectionCell; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCCardCollectionCell; // inherited from UIAppearance
+    static new(): MDCCardCollectionCell; // inherited from NSObject
 
-	static new(): MDCCardCollectionCell; // inherited from NSObject
+    cornerRadius: number;
 
-	cornerRadius: number;
+    dragged: boolean;
 
-	dragged: boolean;
+    enableRippleBehavior: boolean;
 
-	enableRippleBehavior: boolean;
+    readonly inkView: MDCInkView;
 
-	readonly inkView: MDCInkView;
+    interactable: boolean;
 
-	interactable: boolean;
+    readonly rippleView: MDCStatefulRippleView;
 
-	readonly rippleView: MDCStatefulRippleView;
+    selectable: boolean;
 
-	selectable: boolean;
+    shapeGenerator: MDCShapeGenerating;
 
-	shapeGenerator: MDCShapeGenerating;
+    readonly state: MDCCardCellState;
 
-	readonly state: MDCCardCellState;
+    traitCollectionDidChangeBlock: (p1: MDCCardCollectionCell, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCCardCollectionCell, p2: UITraitCollection) => void;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly mdc_currentElevation: number; // inherited from MDCElevatable
 
-	readonly mdc_currentElevation: number; // inherited from MDCElevatable
+    mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
 
-	mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
+    mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
 
-	mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    applyOutlinedThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyOutlinedThemeWithScheme(scheme: MDCContainerScheming): void;
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyThemeWithScheme(scheme: MDCContainerScheming): void;
+    borderColorForState(state: MDCCardCellState): UIColor;
 
-	borderColorForState(state: MDCCardCellState): UIColor;
+    borderWidthForState(state: MDCCardCellState): number;
 
-	borderWidthForState(state: MDCCardCellState): number;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    horizontalImageAlignmentForState(state: MDCCardCellState): MDCCardCellHorizontalImageAlignment;
 
-	horizontalImageAlignmentForState(state: MDCCardCellState): MDCCardCellHorizontalImageAlignment;
+    imageForState(state: MDCCardCellState): UIImage;
 
-	imageForState(state: MDCCardCellState): UIImage;
+    imageTintColorForState(state: MDCCardCellState): UIColor;
 
-	imageTintColorForState(state: MDCCardCellState): UIColor;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
+    setBorderColorForState(borderColor: UIColor, state: MDCCardCellState): void;
 
-	setBorderColorForState(borderColor: UIColor, state: MDCCardCellState): void;
+    setBorderWidthForState(borderWidth: number, state: MDCCardCellState): void;
 
-	setBorderWidthForState(borderWidth: number, state: MDCCardCellState): void;
+    setHorizontalImageAlignmentForState(horizontalImageAlignment: MDCCardCellHorizontalImageAlignment, state: MDCCardCellState): void;
 
-	setHorizontalImageAlignmentForState(horizontalImageAlignment: MDCCardCellHorizontalImageAlignment, state: MDCCardCellState): void;
+    setImageForState(image: UIImage, state: MDCCardCellState): void;
 
-	setImageForState(image: UIImage, state: MDCCardCellState): void;
+    setImageTintColorForState(imageTintColor: UIColor, state: MDCCardCellState): void;
 
-	setImageTintColorForState(imageTintColor: UIColor, state: MDCCardCellState): void;
+    setShadowColorForState(shadowColor: UIColor, state: MDCCardCellState): void;
 
-	setShadowColorForState(shadowColor: UIColor, state: MDCCardCellState): void;
+    setShadowElevationForState(shadowElevation: number, state: MDCCardCellState): void;
 
-	setShadowElevationForState(shadowElevation: number, state: MDCCardCellState): void;
+    setVerticalImageAlignmentForState(verticalImageAlignment: MDCCardCellVerticalImageAlignment, state: MDCCardCellState): void;
 
-	setVerticalImageAlignmentForState(verticalImageAlignment: MDCCardCellVerticalImageAlignment, state: MDCCardCellState): void;
+    shadowColorForState(state: MDCCardCellState): UIColor;
 
-	shadowColorForState(state: MDCCardCellState): UIColor;
+    shadowElevationForState(state: MDCCardCellState): number;
 
-	shadowElevationForState(state: MDCCardCellState): number;
-
-	verticalImageAlignmentForState(state: MDCCardCellState): MDCCardCellVerticalImageAlignment;
+    verticalImageAlignmentForState(state: MDCCardCellState): MDCCardCellVerticalImageAlignment;
 }
 
 interface MDCColorScheme extends NSObjectProtocol {
+    primaryColor: UIColor;
 
-	primaryColor: UIColor;
+    primaryDarkColor?: UIColor;
 
-	primaryDarkColor?: UIColor;
+    primaryLightColor?: UIColor;
 
-	primaryLightColor?: UIColor;
+    secondaryColor?: UIColor;
 
-	secondaryColor?: UIColor;
+    secondaryDarkColor?: UIColor;
 
-	secondaryDarkColor?: UIColor;
-
-	secondaryLightColor?: UIColor;
+    secondaryLightColor?: UIColor;
 }
 declare var MDCColorScheme: {
-
-	prototype: MDCColorScheme;
+    prototype: MDCColorScheme;
 };
 
 declare const enum MDCColorSchemeDefaults {
+    Material201804 = 0,
 
-	Material201804 = 0,
+    MaterialDark201907 = 1,
 
-	MaterialDark201907 = 1,
-
-	Material201907 = 2
+    Material201907 = 2
 }
 
 interface MDCColorScheming {
+    backgroundColor: UIColor;
 
-	backgroundColor: UIColor;
+    elevationOverlayEnabledForDarkMode: boolean;
 
-	elevationOverlayColor: UIColor;
+    errorColor: UIColor;
 
-	elevationOverlayEnabledForDarkMode: boolean;
+    onBackgroundColor: UIColor;
 
-	errorColor: UIColor;
+    onPrimaryColor: UIColor;
 
-	onBackgroundColor: UIColor;
+    onSecondaryColor: UIColor;
 
-	onPrimaryColor: UIColor;
+    onSurfaceColor: UIColor;
 
-	onSecondaryColor: UIColor;
+    primaryColor: UIColor;
 
-	onSurfaceColor: UIColor;
+    primaryColorVariant: UIColor;
 
-	primaryColor: UIColor;
+    secondaryColor: UIColor;
 
-	primaryColorVariant: UIColor;
-
-	secondaryColor: UIColor;
-
-	surfaceColor: UIColor;
+    surfaceColor: UIColor;
 }
 declare var MDCColorScheming: {
-
-	prototype: MDCColorScheming;
+    prototype: MDCColorScheming;
 };
 
 declare class MDCContainedButtonColorThemer extends NSObject {
+    static alloc(): MDCContainedButtonColorThemer; // inherited from NSObject
 
-	static alloc(): MDCContainedButtonColorThemer; // inherited from NSObject
+    static applySemanticColorSchemeToButton(colorScheme: MDCColorScheming, button: MDCButton): void;
 
-	static applySemanticColorSchemeToButton(colorScheme: MDCColorScheming, button: MDCButton): void;
-
-	static new(): MDCContainedButtonColorThemer; // inherited from NSObject
+    static new(): MDCContainedButtonColorThemer; // inherited from NSObject
 }
 
 declare class MDCContainerScheme extends NSObject implements MDCContainerScheming {
+    static alloc(): MDCContainerScheme; // inherited from NSObject
 
-	static alloc(): MDCContainerScheme; // inherited from NSObject
+    static new(): MDCContainerScheme; // inherited from NSObject
 
-	static new(): MDCContainerScheme; // inherited from NSObject
+    colorScheme: MDCSemanticColorScheme;
 
-	colorScheme: MDCSemanticColorScheme;
+    shapeScheme: MDCShapeScheme;
 
-	shapeScheme: MDCShapeScheme;
-
-	typographyScheme: MDCTypographyScheme;
+    typographyScheme: MDCTypographyScheme;
 }
 
 interface MDCContainerScheming {
+    colorScheme: MDCColorScheming;
 
-	colorScheme: MDCColorScheming;
+    shapeScheme: MDCShapeScheming;
 
-	shapeScheme: MDCShapeScheming;
-
-	typographyScheme: MDCTypographyScheming;
+    typographyScheme: MDCTypographyScheming;
 }
 declare var MDCContainerScheming: {
-
-	prototype: MDCContainerScheming;
+    prototype: MDCContainerScheming;
 };
 
 declare const enum MDCContentHorizontalAlignment {
+    Center = 0,
 
-	Center = 0,
+    Leading = 1,
 
-	Leading = 1,
+    Trailing = 2,
 
-	Trailing = 2,
-
-	Justified = 3
+    Justified = 3
 }
 
 declare class MDCCornerTreatment extends NSObject implements NSCopying {
+    static alloc(): MDCCornerTreatment; // inherited from NSObject
 
-	static alloc(): MDCCornerTreatment; // inherited from NSObject
+    static cornerWithCurve(value: CGSize): MDCCurvedCornerTreatment;
 
-	static cornerWithCurve(value: CGSize): MDCCurvedCornerTreatment;
+    static cornerWithCurveValueType(value: CGSize, valueType: MDCCornerTreatmentValueType): MDCCurvedCornerTreatment;
 
-	static cornerWithCurveValueType(value: CGSize, valueType: MDCCornerTreatmentValueType): MDCCurvedCornerTreatment;
+    static cornerWithCut(value: number): MDCCutCornerTreatment;
 
-	static cornerWithCut(value: number): MDCCutCornerTreatment;
+    static cornerWithCutValueType(value: number, valueType: MDCCornerTreatmentValueType): MDCCutCornerTreatment;
 
-	static cornerWithCutValueType(value: number, valueType: MDCCornerTreatmentValueType): MDCCutCornerTreatment;
+    static cornerWithRadius(value: number): MDCRoundedCornerTreatment;
 
-	static cornerWithRadius(value: number): MDCRoundedCornerTreatment;
+    static cornerWithRadiusValueType(value: number, valueType: MDCCornerTreatmentValueType): MDCRoundedCornerTreatment;
 
-	static cornerWithRadiusValueType(value: number, valueType: MDCCornerTreatmentValueType): MDCRoundedCornerTreatment;
+    static new(): MDCCornerTreatment; // inherited from NSObject
 
-	static new(): MDCCornerTreatment; // inherited from NSObject
+    valueType: MDCCornerTreatmentValueType;
 
-	valueType: MDCCornerTreatmentValueType;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    pathGeneratorForCornerWithAngle(angle: number): MDCPathGenerator;
 
-	pathGeneratorForCornerWithAngle(angle: number): MDCPathGenerator;
-
-	pathGeneratorForCornerWithAngleForViewSize(angle: number, size: CGSize): MDCPathGenerator;
+    pathGeneratorForCornerWithAngleForViewSize(angle: number, size: CGSize): MDCPathGenerator;
 }
 
 declare const enum MDCCornerTreatmentValueType {
+    Absolute = 0,
 
-	Absolute = 0,
-
-	Percentage = 1
+    Percentage = 1
 }
 
 declare class MDCCurvedCornerTreatment extends MDCCornerTreatment {
+    static alloc(): MDCCurvedCornerTreatment; // inherited from NSObject
 
-	static alloc(): MDCCurvedCornerTreatment; // inherited from NSObject
+    static new(): MDCCurvedCornerTreatment; // inherited from NSObject
 
-	static new(): MDCCurvedCornerTreatment; // inherited from NSObject
+    size: CGSize;
 
-	size: CGSize;
+    constructor(o: { size: CGSize });
 
-	constructor(o: { size: CGSize; });
-
-	initWithSize(size: CGSize): this;
+    initWithSize(size: CGSize): this;
 }
 
 declare class MDCCurvedRectShapeGenerator extends NSObject implements MDCShapeGenerating {
+    static alloc(): MDCCurvedRectShapeGenerator; // inherited from NSObject
 
-	static alloc(): MDCCurvedRectShapeGenerator; // inherited from NSObject
+    static new(): MDCCurvedRectShapeGenerator; // inherited from NSObject
 
-	static new(): MDCCurvedRectShapeGenerator; // inherited from NSObject
+    cornerSize: CGSize;
 
-	cornerSize: CGSize;
+    constructor(o: { cornerSize: CGSize });
 
-	constructor(o: { cornerSize: CGSize; });
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    initWithCornerSize(cornerSize: CGSize): this;
 
-	initWithCornerSize(cornerSize: CGSize): this;
-
-	pathForSize(size: CGSize): any;
+    pathForSize(size: CGSize): any;
 }
 
 declare class MDCCutCornerTreatment extends MDCCornerTreatment {
+    static alloc(): MDCCutCornerTreatment; // inherited from NSObject
 
-	static alloc(): MDCCutCornerTreatment; // inherited from NSObject
+    static new(): MDCCutCornerTreatment; // inherited from NSObject
 
-	static new(): MDCCutCornerTreatment; // inherited from NSObject
+    cut: number;
 
-	cut: number;
+    constructor(o: { cut: number });
 
-	constructor(o: { cut: number; });
-
-	initWithCut(cut: number): this;
+    initWithCut(cut: number): this;
 }
 
 declare class MDCDialogPresentationController extends UIPresentationController {
+    static alloc(): MDCDialogPresentationController; // inherited from NSObject
 
-	static alloc(): MDCDialogPresentationController; // inherited from NSObject
+    static new(): MDCDialogPresentationController; // inherited from NSObject
 
-	static new(): MDCDialogPresentationController; // inherited from NSObject
+    dialogCornerRadius: number;
 
-	dialogCornerRadius: number;
+    dialogElevation: number;
 
-	dialogElevation: number;
+    dialogPresentationControllerDelegate: MDCDialogPresentationControllerDelegate;
 
-	dialogPresentationControllerDelegate: MDCDialogPresentationControllerDelegate;
+    dialogShadowColor: UIColor;
 
-	dialogShadowColor: UIColor;
+    dialogTransform: CGAffineTransform;
 
-	dialogTransform: CGAffineTransform;
+    dismissOnBackgroundTap: boolean;
 
-	dismissOnBackgroundTap: boolean;
+    scrimColor: UIColor;
 
-	scrimColor: UIColor;
+    traitCollectionDidChangeBlock: (p1: MDCDialogPresentationController, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCDialogPresentationController, p2: UITraitCollection) => void;
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyThemeWithScheme(scheme: MDCContainerScheming): void;
-
-	frameOfPresentedViewInContainerView(): CGRect;
+    frameOfPresentedViewInContainerView(): CGRect;
 }
 
 interface MDCDialogPresentationControllerDelegate extends NSObjectProtocol {
-
-	dialogPresentationControllerDidDismiss?(dialogPresentationController: MDCDialogPresentationController): void;
+    dialogPresentationControllerDidDismiss?(dialogPresentationController: MDCDialogPresentationController): void;
 }
 declare var MDCDialogPresentationControllerDelegate: {
-
-	prototype: MDCDialogPresentationControllerDelegate;
+    prototype: MDCDialogPresentationControllerDelegate;
 };
 
 declare class MDCDialogTransitionController extends NSObject implements UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
+    static alloc(): MDCDialogTransitionController; // inherited from NSObject
 
-	static alloc(): MDCDialogTransitionController; // inherited from NSObject
+    static new(): MDCDialogTransitionController; // inherited from NSObject
 
-	static new(): MDCDialogTransitionController; // inherited from NSObject
+    dialogInitialScaleFactor: number;
 
-	dialogInitialScaleFactor: number;
+    opacityAnimationDuration: number;
 
-	opacityAnimationDuration: number;
+    scaleAnimationDuration: number;
 
-	scaleAnimationDuration: number;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    animateTransition(transitionContext: UIViewControllerContextTransitioning): void;
 
-	animateTransition(transitionContext: UIViewControllerContextTransitioning): void;
+    animationControllerForDismissedController(dismissed: UIViewController): UIViewControllerAnimatedTransitioning;
 
-	animationControllerForDismissedController(dismissed: UIViewController): UIViewControllerAnimatedTransitioning;
+    animationControllerForPresentedControllerPresentingControllerSourceController(
+        presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ): UIViewControllerAnimatedTransitioning;
 
-	animationControllerForPresentedControllerPresentingControllerSourceController(presented: UIViewController, presenting: UIViewController, source: UIViewController): UIViewControllerAnimatedTransitioning;
+    animationEnded(transitionCompleted: boolean): void;
 
-	animationEnded(transitionCompleted: boolean): void;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning): UIViewControllerInteractiveTransitioning;
 
-	interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning): UIViewControllerInteractiveTransitioning;
+    interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning): UIViewControllerInteractiveTransitioning;
 
-	interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning): UIViewControllerInteractiveTransitioning;
+    interruptibleAnimatorForTransition(transitionContext: UIViewControllerContextTransitioning): UIViewImplicitlyAnimating;
 
-	interruptibleAnimatorForTransition(transitionContext: UIViewControllerContextTransitioning): UIViewImplicitlyAnimating;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    presentationControllerForPresentedViewControllerPresentingViewControllerSourceViewController(
+        presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ): UIPresentationController;
 
-	presentationControllerForPresentedViewControllerPresentingViewControllerSourceViewController(presented: UIViewController, presenting: UIViewController, source: UIViewController): UIPresentationController;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
-
-	transitionDuration(transitionContext: UIViewControllerContextTransitioning): number;
+    transitionDuration(transitionContext: UIViewControllerContextTransitioning): number;
 }
 
 declare class MDCEdgeTreatment extends NSObject implements NSCopying {
+    static alloc(): MDCEdgeTreatment; // inherited from NSObject
 
-	static alloc(): MDCEdgeTreatment; // inherited from NSObject
+    static new(): MDCEdgeTreatment; // inherited from NSObject
 
-	static new(): MDCEdgeTreatment; // inherited from NSObject
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	pathGeneratorForEdgeWithLength(length: number): MDCPathGenerator;
+    pathGeneratorForEdgeWithLength(length: number): MDCPathGenerator;
 }
 
 interface MDCElevatable extends NSObjectProtocol {
+    mdc_currentElevation: number;
 
-	mdc_currentElevation: number;
-
-	mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void;
+    mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void;
 }
 declare var MDCElevatable: {
-
-	prototype: MDCElevatable;
+    prototype: MDCElevatable;
 };
 
 interface MDCElevationOverriding {
-
-	mdc_overrideBaseElevation: number;
+    mdc_overrideBaseElevation: number;
 }
 declare var MDCElevationOverriding: {
-
-	prototype: MDCElevationOverriding;
+    prototype: MDCElevationOverriding;
 };
 
+declare class MDCFilledTextArea extends MDCBaseTextArea {
+    static alloc(): MDCFilledTextArea; // inherited from NSObject
+
+    static appearance(): MDCFilledTextArea; // inherited from UIAppearance
+
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCFilledTextArea; // inherited from UIAppearance
+
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCFilledTextArea; // inherited from UIAppearance
+
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFilledTextArea; // inherited from UIAppearance
+
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCFilledTextArea; // inherited from UIAppearance
+
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFilledTextArea; // inherited from UIAppearance
+
+    static new(): MDCFilledTextArea; // inherited from NSObject
+
+    applyErrorThemeWithScheme(scheme: MDCContainerScheming): void;
+
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
+
+    filledBackgroundColorForState(state: MDCTextControlState): UIColor;
+
+    setFilledBackgroundColorForState(filledBackgroundColor: UIColor, state: MDCTextControlState): void;
+
+    setUnderlineColorForState(underlineColor: UIColor, state: MDCTextControlState): void;
+
+    underlineColorForState(state: MDCTextControlState): UIColor;
+}
+
 declare class MDCFilledTextField extends MDCBaseTextField {
+    static alloc(): MDCFilledTextField; // inherited from NSObject
 
-	static alloc(): MDCFilledTextField; // inherited from NSObject
+    static appearance(): MDCFilledTextField; // inherited from UIAppearance
 
-	static appearance(): MDCFilledTextField; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCFilledTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCFilledTextField; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCFilledTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCFilledTextField; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFilledTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFilledTextField; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCFilledTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCFilledTextField; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFilledTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFilledTextField; // inherited from UIAppearance
+    static new(): MDCFilledTextField; // inherited from NSObject
 
-	static new(): MDCFilledTextField; // inherited from NSObject
+    applyErrorThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyErrorThemeWithScheme(scheme: MDCContainerScheming): void;
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyThemeWithScheme(scheme: MDCContainerScheming): void;
+    filledBackgroundColorForState(state: MDCTextControlState): UIColor;
 
-	filledBackgroundColorForState(state: MDCTextControlState): UIColor;
+    setFilledBackgroundColorForState(filledBackgroundColor: UIColor, state: MDCTextControlState): void;
 
-	setFilledBackgroundColorForState(filledBackgroundColor: UIColor, state: MDCTextControlState): void;
+    setUnderlineColorForState(underlineColor: UIColor, state: MDCTextControlState): void;
 
-	setUnderlineColorForState(underlineColor: UIColor, state: MDCTextControlState): void;
-
-	underlineColorForState(state: MDCTextControlState): UIColor;
+    underlineColorForState(state: MDCTextControlState): UIColor;
 }
 
 declare class MDCFilledTextFieldColorThemer extends NSObject {
+    static alloc(): MDCFilledTextFieldColorThemer; // inherited from NSObject
 
-	static alloc(): MDCFilledTextFieldColorThemer; // inherited from NSObject
+    static applySemanticColorSchemeToTextInputControllerFilled(colorScheme: MDCColorScheming, textInputControllerFilled: MDCTextInputControllerFilled): void;
 
-	static applySemanticColorSchemeToTextInputControllerFilled(colorScheme: MDCColorScheming, textInputControllerFilled: MDCTextInputControllerFilled): void;
-
-	static new(): MDCFilledTextFieldColorThemer; // inherited from NSObject
+    static new(): MDCFilledTextFieldColorThemer; // inherited from NSObject
 }
 
 declare class MDCFlatButton extends MDCButton {
+    static alloc(): MDCFlatButton; // inherited from NSObject
 
-	static alloc(): MDCFlatButton; // inherited from NSObject
+    static appearance(): MDCFlatButton; // inherited from UIAppearance
 
-	static appearance(): MDCFlatButton; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCFlatButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCFlatButton; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCFlatButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCFlatButton; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFlatButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFlatButton; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCFlatButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCFlatButton; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFlatButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFlatButton; // inherited from UIAppearance
+    static buttonWithType(buttonType: UIButtonType): MDCFlatButton; // inherited from UIButton
 
-	static buttonWithType(buttonType: UIButtonType): MDCFlatButton; // inherited from UIButton
+    static buttonWithTypePrimaryAction(buttonType: UIButtonType, primaryAction: UIAction): MDCFlatButton; // inherited from UIButton
 
-	static buttonWithTypePrimaryAction(buttonType: UIButtonType, primaryAction: UIAction): MDCFlatButton; // inherited from UIButton
+    static new(): MDCFlatButton; // inherited from NSObject
 
-	static new(): MDCFlatButton; // inherited from NSObject
+    static systemButtonWithImageTargetAction(image: UIImage, target: any, action: string): MDCFlatButton; // inherited from UIButton
 
-	static systemButtonWithImageTargetAction(image: UIImage, target: any, action: string): MDCFlatButton; // inherited from UIButton
+    static systemButtonWithPrimaryAction(primaryAction: UIAction): MDCFlatButton; // inherited from UIButton
 
-	static systemButtonWithPrimaryAction(primaryAction: UIAction): MDCFlatButton; // inherited from UIButton
-
-	hasOpaqueBackground: boolean;
+    hasOpaqueBackground: boolean;
 }
 
 declare class MDCFloatingButton extends MDCButton {
+    static alloc(): MDCFloatingButton; // inherited from NSObject
 
-	static alloc(): MDCFloatingButton; // inherited from NSObject
+    static appearance(): MDCFloatingButton; // inherited from UIAppearance
 
-	static appearance(): MDCFloatingButton; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCFloatingButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCFloatingButton; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCFloatingButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCFloatingButton; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFloatingButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFloatingButton; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCFloatingButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCFloatingButton; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFloatingButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFloatingButton; // inherited from UIAppearance
+    static buttonWithType(buttonType: UIButtonType): MDCFloatingButton; // inherited from UIButton
 
-	static buttonWithType(buttonType: UIButtonType): MDCFloatingButton; // inherited from UIButton
+    static buttonWithTypePrimaryAction(buttonType: UIButtonType, primaryAction: UIAction): MDCFloatingButton; // inherited from UIButton
 
-	static buttonWithTypePrimaryAction(buttonType: UIButtonType, primaryAction: UIAction): MDCFloatingButton; // inherited from UIButton
+    static defaultDimension(): number;
 
-	static defaultDimension(): number;
+    static floatingButtonWithShape(shape: MDCFloatingButtonShape): MDCFloatingButton;
 
-	static floatingButtonWithShape(shape: MDCFloatingButtonShape): MDCFloatingButton;
+    static miniDimension(): number;
 
-	static miniDimension(): number;
+    static new(): MDCFloatingButton; // inherited from NSObject
 
-	static new(): MDCFloatingButton; // inherited from NSObject
+    static systemButtonWithImageTargetAction(image: UIImage, target: any, action: string): MDCFloatingButton; // inherited from UIButton
 
-	static systemButtonWithImageTargetAction(image: UIImage, target: any, action: string): MDCFloatingButton; // inherited from UIButton
+    static systemButtonWithPrimaryAction(primaryAction: UIAction): MDCFloatingButton; // inherited from UIButton
 
-	static systemButtonWithPrimaryAction(primaryAction: UIAction): MDCFloatingButton; // inherited from UIButton
+    imageLocation: MDCFloatingButtonImageLocation;
 
-	imageLocation: MDCFloatingButtonImageLocation;
+    imageTitleSpace: number;
 
-	imageTitleSpace: number;
+    mode: MDCFloatingButtonMode;
 
-	mode: MDCFloatingButtonMode;
+    shape: MDCFloatingButtonShape;
 
-	shape: MDCFloatingButtonShape;
+    constructor(o: { frame: CGRect; shape: MDCFloatingButtonShape });
 
-	constructor(o: { frame: CGRect; shape: MDCFloatingButtonShape; });
+    applySecondaryThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applySecondaryThemeWithScheme(scheme: MDCContainerScheming): void;
+    collapseCompletion(animated: boolean, completion: () => void): void;
 
-	collapseCompletion(animated: boolean, completion: () => void): void;
+    expandCompletion(animated: boolean, completion: () => void): void;
 
-	expandCompletion(animated: boolean, completion: () => void): void;
+    initWithFrameShape(frame: CGRect, shape: MDCFloatingButtonShape): this;
 
-	initWithFrameShape(frame: CGRect, shape: MDCFloatingButtonShape): this;
+    setCenterVisibleAreaForShapeInMode(centerVisibleArea: boolean, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
 
-	setCenterVisibleAreaForShapeInMode(centerVisibleArea: boolean, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
+    setContentEdgeInsetsForShapeInMode(contentEdgeInsets: UIEdgeInsets, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
 
-	setContentEdgeInsetsForShapeInMode(contentEdgeInsets: UIEdgeInsets, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
+    setHitAreaInsetsForShapeInMode(hitAreaInsets: UIEdgeInsets, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
 
-	setHitAreaInsetsForShapeInMode(hitAreaInsets: UIEdgeInsets, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
+    setMaximumSizeForShapeInMode(maximumSize: CGSize, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
 
-	setMaximumSizeForShapeInMode(maximumSize: CGSize, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
+    setMinimumSizeForShapeInMode(minimumSize: CGSize, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
 
-	setMinimumSizeForShapeInMode(minimumSize: CGSize, shape: MDCFloatingButtonShape, mode: MDCFloatingButtonMode): void;
+    setModeAnimated(mode: MDCFloatingButtonMode, animated: boolean): void;
 
-	setModeAnimated(mode: MDCFloatingButtonMode, animated: boolean): void;
-
-	setModeAnimatedAnimateAlongsideCompletion(mode: MDCFloatingButtonMode, animated: boolean, animateAlongside: () => void, completion: (p1: boolean) => void): void;
+    setModeAnimatedAnimateAlongsideCompletion(mode: MDCFloatingButtonMode, animated: boolean, animateAlongside: () => void, completion: (p1: boolean) => void): void;
 }
 
 declare class MDCFloatingButtonColorThemer extends NSObject {
+    static alloc(): MDCFloatingButtonColorThemer; // inherited from NSObject
 
-	static alloc(): MDCFloatingButtonColorThemer; // inherited from NSObject
+    static applySemanticColorSchemeToButton(colorScheme: MDCColorScheming, button: MDCFloatingButton): void;
 
-	static applySemanticColorSchemeToButton(colorScheme: MDCColorScheming, button: MDCFloatingButton): void;
-
-	static new(): MDCFloatingButtonColorThemer; // inherited from NSObject
+    static new(): MDCFloatingButtonColorThemer; // inherited from NSObject
 }
 
 declare const enum MDCFloatingButtonImageLocation {
+    Leading = 0,
 
-	Leading = 0,
-
-	Trailing = 1
+    Trailing = 1
 }
 
 declare const enum MDCFloatingButtonMode {
+    Normal = 0,
 
-	Normal = 0,
-
-	Expanded = 1
+    Expanded = 1
 }
 
 declare const enum MDCFloatingButtonShape {
+    Default = 0,
 
-	Default = 0,
-
-	Mini = 1
+    Mini = 1
 }
 
 declare class MDCFontScaler extends NSObject {
+    static alloc(): MDCFontScaler; // inherited from NSObject
 
-	static alloc(): MDCFontScaler; // inherited from NSObject
+    static new(): MDCFontScaler; // inherited from NSObject
 
-	static new(): MDCFontScaler; // inherited from NSObject
+    static scalerForMaterialTextStyle(textStyle: string): MDCFontScaler;
 
-	static scalerForMaterialTextStyle(textStyle: string): MDCFontScaler;
+    constructor(o: { forMaterialTextStyle: string });
 
-	constructor(o: { forMaterialTextStyle: string; });
+    initForMaterialTextStyle(textStyle: string): this;
 
-	initForMaterialTextStyle(textStyle: string): this;
+    scaledFontWithFont(font: UIFont): UIFont;
 
-	scaledFontWithFont(font: UIFont): UIFont;
-
-	scaledValueForValue(value: number): number;
+    scaledValueForValue(value: number): number;
 }
 
 interface MDCFontScheme extends NSObjectProtocol {
+    body1: UIFont;
 
-	body1: UIFont;
+    body2: UIFont;
 
-	body2: UIFont;
+    button: UIFont;
 
-	button: UIFont;
+    caption: UIFont;
 
-	caption: UIFont;
+    headline1: UIFont;
 
-	headline1: UIFont;
+    headline2: UIFont;
 
-	headline2: UIFont;
+    headline3: UIFont;
 
-	headline3: UIFont;
+    headline4: UIFont;
 
-	headline4: UIFont;
+    headline5: UIFont;
 
-	headline5: UIFont;
+    headline6: UIFont;
 
-	headline6: UIFont;
+    overline: UIFont;
 
-	overline: UIFont;
+    subtitle1: UIFont;
 
-	subtitle1: UIFont;
-
-	subtitle2: UIFont;
+    subtitle2: UIFont;
 }
 declare var MDCFontScheme: {
-
-	prototype: MDCFontScheme;
+    prototype: MDCFontScheme;
 };
 
 declare const enum MDCFontTextStyle {
+    Body1 = 0,
 
-	Body1 = 0,
+    Body2 = 1,
 
-	Body2 = 1,
+    Caption = 2,
 
-	Caption = 2,
+    Headline = 3,
 
-	Headline = 3,
+    Subheadline = 4,
 
-	Subheadline = 4,
+    Title = 5,
 
-	Title = 5,
+    Display1 = 6,
 
-	Display1 = 6,
+    Display2 = 7,
 
-	Display2 = 7,
+    Display3 = 8,
 
-	Display3 = 8,
+    Display4 = 9,
 
-	Display4 = 9,
-
-	Button = 10
+    Button = 10
 }
 
 declare class MDCIcons extends NSObject {
+    static alloc(): MDCIcons; // inherited from NSObject
 
-	static alloc(): MDCIcons; // inherited from NSObject
+    static bundleNamed(bundleName: string): NSBundle;
 
-	static bundleNamed(bundleName: string): NSBundle;
+    static imageFor_ic_check_circle(): UIImage;
 
-	static imageFor_ic_check_circle(): UIImage;
+    static new(): MDCIcons; // inherited from NSObject
 
-	static new(): MDCIcons; // inherited from NSObject
-
-	static pathForIconNameWithBundleName(iconName: string, bundleName: string): string;
+    static pathForIconNameWithBundleName(iconName: string, bundleName: string): string;
 }
 
 declare class MDCInkGestureRecognizer extends UIGestureRecognizer {
+    static alloc(): MDCInkGestureRecognizer; // inherited from NSObject
 
-	static alloc(): MDCInkGestureRecognizer; // inherited from NSObject
+    static new(): MDCInkGestureRecognizer; // inherited from NSObject
 
-	static new(): MDCInkGestureRecognizer; // inherited from NSObject
+    cancelOnDragOut: boolean;
 
-	cancelOnDragOut: boolean;
+    dragCancelDistance: number;
 
-	dragCancelDistance: number;
+    targetBounds: CGRect;
 
-	targetBounds: CGRect;
+    isTouchWithinTargetBounds(): boolean;
 
-	isTouchWithinTargetBounds(): boolean;
-
-	touchStartLocationInView(view: UIView): CGPoint;
+    touchStartLocationInView(view: UIView): CGPoint;
 }
 
 declare const enum MDCInkStyle {
+    Bounded = 0,
 
-	Bounded = 0,
-
-	Unbounded = 1
+    Unbounded = 1
 }
 
 declare class MDCInkTouchController extends NSObject implements UIGestureRecognizerDelegate {
+    static alloc(): MDCInkTouchController; // inherited from NSObject
 
-	static alloc(): MDCInkTouchController; // inherited from NSObject
+    static new(): MDCInkTouchController; // inherited from NSObject
 
-	static new(): MDCInkTouchController; // inherited from NSObject
+    cancelsOnDragOut: boolean;
 
-	cancelsOnDragOut: boolean;
+    readonly defaultInkView: MDCInkView;
 
-	readonly defaultInkView: MDCInkView;
+    delaysInkSpread: boolean;
 
-	delaysInkSpread: boolean;
+    delegate: MDCInkTouchControllerDelegate;
 
-	delegate: MDCInkTouchControllerDelegate;
+    dragCancelDistance: number;
 
-	dragCancelDistance: number;
+    readonly gestureRecognizer: MDCInkGestureRecognizer;
 
-	readonly gestureRecognizer: MDCInkGestureRecognizer;
+    requiresFailureOfScrollViewGestures: boolean;
 
-	requiresFailureOfScrollViewGestures: boolean;
+    targetBounds: CGRect;
 
-	targetBounds: CGRect;
+    readonly view: UIView;
 
-	readonly view: UIView;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    constructor(o: { view: UIView });
 
-	constructor(o: { view: UIView; });
+    addInkView(): void;
 
-	addInkView(): void;
+    cancelInkTouchProcessing(): void;
 
-	cancelInkTouchProcessing(): void;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    gestureRecognizerShouldBeRequiredToFailByGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
 
-	gestureRecognizerShouldBeRequiredToFailByGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
+    gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer): boolean;
 
-	gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer): boolean;
+    gestureRecognizerShouldReceiveEvent(gestureRecognizer: UIGestureRecognizer, event: _UIEvent): boolean;
 
-	gestureRecognizerShouldReceiveEvent(gestureRecognizer: UIGestureRecognizer, event: _UIEvent): boolean;
+    gestureRecognizerShouldReceivePress(gestureRecognizer: UIGestureRecognizer, press: UIPress): boolean;
 
-	gestureRecognizerShouldReceivePress(gestureRecognizer: UIGestureRecognizer, press: UIPress): boolean;
+    gestureRecognizerShouldReceiveTouch(gestureRecognizer: UIGestureRecognizer, touch: UITouch): boolean;
 
-	gestureRecognizerShouldReceiveTouch(gestureRecognizer: UIGestureRecognizer, touch: UITouch): boolean;
+    gestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
 
-	gestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
+    gestureRecognizerShouldRequireFailureOfGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
 
-	gestureRecognizerShouldRequireFailureOfGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
+    initWithView(view: UIView): this;
 
-	initWithView(view: UIView): this;
+    inkViewAtTouchLocation(location: CGPoint): MDCInkView;
 
-	inkViewAtTouchLocation(location: CGPoint): MDCInkView;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 interface MDCInkTouchControllerDelegate extends NSObjectProtocol {
+    inkTouchControllerDidProcessInkViewAtTouchLocation?(inkTouchController: MDCInkTouchController, inkView: MDCInkView, location: CGPoint): void;
 
-	inkTouchControllerDidProcessInkViewAtTouchLocation?(inkTouchController: MDCInkTouchController, inkView: MDCInkView, location: CGPoint): void;
+    inkTouchControllerInkViewAtTouchLocation?(inkTouchController: MDCInkTouchController, location: CGPoint): MDCInkView;
 
-	inkTouchControllerInkViewAtTouchLocation?(inkTouchController: MDCInkTouchController, location: CGPoint): MDCInkView;
+    inkTouchControllerInsertInkViewIntoView?(inkTouchController: MDCInkTouchController, inkView: UIView, view: UIView): void;
 
-	inkTouchControllerInsertInkViewIntoView?(inkTouchController: MDCInkTouchController, inkView: UIView, view: UIView): void;
-
-	inkTouchControllerShouldProcessInkTouchesAtTouchLocation?(inkTouchController: MDCInkTouchController, location: CGPoint): boolean;
+    inkTouchControllerShouldProcessInkTouchesAtTouchLocation?(inkTouchController: MDCInkTouchController, location: CGPoint): boolean;
 }
 declare var MDCInkTouchControllerDelegate: {
-
-	prototype: MDCInkTouchControllerDelegate;
+    prototype: MDCInkTouchControllerDelegate;
 };
 
 declare class MDCInkView extends UIView {
+    static alloc(): MDCInkView; // inherited from NSObject
 
-	static alloc(): MDCInkView; // inherited from NSObject
+    static appearance(): MDCInkView; // inherited from UIAppearance
 
-	static appearance(): MDCInkView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCInkView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCInkView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCInkView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCInkView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCInkView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCInkView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCInkView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCInkView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCInkView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCInkView; // inherited from UIAppearance
+    static injectedInkViewForView(view: UIView): MDCInkView;
 
-	static injectedInkViewForView(view: UIView): MDCInkView;
+    static new(): MDCInkView; // inherited from NSObject
 
-	static new(): MDCInkView; // inherited from NSObject
+    animationDelegate: MDCInkViewDelegate;
 
-	animationDelegate: MDCInkViewDelegate;
+    customInkCenter: CGPoint;
 
-	customInkCenter: CGPoint;
+    readonly defaultInkColor: UIColor;
 
-	readonly defaultInkColor: UIColor;
+    inkColor: UIColor;
 
-	inkColor: UIColor;
+    inkStyle: MDCInkStyle;
 
-	inkStyle: MDCInkStyle;
+    maxRippleRadius: number;
 
-	maxRippleRadius: number;
+    traitCollectionDidChangeBlock: (p1: MDCInkView, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCInkView, p2: UITraitCollection) => void;
+    usesCustomInkCenter: boolean;
 
-	usesCustomInkCenter: boolean;
+    usesLegacyInkRipple: boolean;
 
-	usesLegacyInkRipple: boolean;
+    cancelAllAnimationsAnimated(animated: boolean): void;
 
-	cancelAllAnimationsAnimated(animated: boolean): void;
+    startTouchBeganAnimationAtPointCompletion(point: CGPoint, completionBlock: () => void): void;
 
-	startTouchBeganAnimationAtPointCompletion(point: CGPoint, completionBlock: () => void): void;
+    startTouchBeganAtPointAnimatedWithCompletion(point: CGPoint, animated: boolean, completionBlock: () => void): void;
 
-	startTouchBeganAtPointAnimatedWithCompletion(point: CGPoint, animated: boolean, completionBlock: () => void): void;
+    startTouchEndAtPointAnimatedWithCompletion(point: CGPoint, animated: boolean, completionBlock: () => void): void;
 
-	startTouchEndAtPointAnimatedWithCompletion(point: CGPoint, animated: boolean, completionBlock: () => void): void;
-
-	startTouchEndedAnimationAtPointCompletion(point: CGPoint, completionBlock: () => void): void;
+    startTouchEndedAnimationAtPointCompletion(point: CGPoint, completionBlock: () => void): void;
 }
 
 interface MDCInkViewDelegate extends NSObjectProtocol {
+    inkAnimationDidEnd?(inkView: MDCInkView): void;
 
-	inkAnimationDidEnd?(inkView: MDCInkView): void;
-
-	inkAnimationDidStart?(inkView: MDCInkView): void;
+    inkAnimationDidStart?(inkView: MDCInkView): void;
 }
 declare var MDCInkViewDelegate: {
-
-	prototype: MDCInkViewDelegate;
+    prototype: MDCInkViewDelegate;
 };
 
 declare class MDCIntrinsicHeightTextView extends UITextView {
+    static alloc(): MDCIntrinsicHeightTextView; // inherited from NSObject
 
-	static alloc(): MDCIntrinsicHeightTextView; // inherited from NSObject
+    static appearance(): MDCIntrinsicHeightTextView; // inherited from UIAppearance
 
-	static appearance(): MDCIntrinsicHeightTextView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCIntrinsicHeightTextView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCIntrinsicHeightTextView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCIntrinsicHeightTextView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCIntrinsicHeightTextView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCIntrinsicHeightTextView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCIntrinsicHeightTextView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCIntrinsicHeightTextView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCIntrinsicHeightTextView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCIntrinsicHeightTextView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCIntrinsicHeightTextView; // inherited from UIAppearance
-
-	static new(): MDCIntrinsicHeightTextView; // inherited from NSObject
+    static new(): MDCIntrinsicHeightTextView; // inherited from NSObject
 }
 
 declare class MDCKeyboardWatcher extends NSObject {
+    static alloc(): MDCKeyboardWatcher; // inherited from NSObject
 
-	static alloc(): MDCKeyboardWatcher; // inherited from NSObject
+    static animationCurveOptionFromKeyboardNotification(notification: NSNotification): UIViewAnimationOptions;
 
-	static animationCurveOptionFromKeyboardNotification(notification: NSNotification): UIViewAnimationOptions;
+    static animationDurationFromKeyboardNotification(notification: NSNotification): number;
 
-	static animationDurationFromKeyboardNotification(notification: NSNotification): number;
+    static new(): MDCKeyboardWatcher; // inherited from NSObject
 
-	static new(): MDCKeyboardWatcher; // inherited from NSObject
+    static sharedKeyboardWatcher(): MDCKeyboardWatcher;
 
-	static sharedKeyboardWatcher(): MDCKeyboardWatcher;
+    readonly keyboardOffset: number;
 
-	readonly keyboardOffset: number;
-
-	readonly visibleKeyboardHeight: number;
+    readonly visibleKeyboardHeight: number;
 }
 
-declare var MDCKeyboardWatcherKeyboardWillChangeFrameNotification: string;
+declare let MDCKeyboardWatcherKeyboardWillChangeFrameNotification: string;
 
-declare var MDCKeyboardWatcherKeyboardWillHideNotification: string;
+declare let MDCKeyboardWatcherKeyboardWillHideNotification: string;
 
-declare var MDCKeyboardWatcherKeyboardWillShowNotification: string;
+declare let MDCKeyboardWatcherKeyboardWillShowNotification: string;
 
 interface MDCLeadingViewTextInput extends MDCTextInput {
+    leadingView: UIView;
 
-	leadingView: UIView;
-
-	leadingViewMode: UITextFieldViewMode;
+    leadingViewMode: UITextFieldViewMode;
 }
 declare var MDCLeadingViewTextInput: {
-
-	prototype: MDCLeadingViewTextInput;
+    prototype: MDCLeadingViewTextInput;
 };
 
 declare class MDCMultilineTextField extends UIView implements MDCElevatable, MDCElevationOverriding, MDCMultilineTextInput, MDCTextInput {
+    static alloc(): MDCMultilineTextField; // inherited from NSObject
 
-	static alloc(): MDCMultilineTextField; // inherited from NSObject
+    static appearance(): MDCMultilineTextField; // inherited from UIAppearance
 
-	static appearance(): MDCMultilineTextField; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCMultilineTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCMultilineTextField; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCMultilineTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCMultilineTextField; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCMultilineTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCMultilineTextField; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCMultilineTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCMultilineTextField; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCMultilineTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCMultilineTextField; // inherited from UIAppearance
+    static new(): MDCMultilineTextField; // inherited from NSObject
 
-	static new(): MDCMultilineTextField; // inherited from NSObject
+    adjustsFontForContentSizeCategory: boolean;
 
-	adjustsFontForContentSizeCategory: boolean;
+    layoutDelegate: MDCMultilineTextInputLayoutDelegate;
 
-	layoutDelegate: MDCMultilineTextInputLayoutDelegate;
+    multilineDelegate: MDCMultilineTextInputDelegate;
 
-	multilineDelegate: MDCMultilineTextInputDelegate;
+    textView: MDCIntrinsicHeightTextView;
 
-	textView: MDCIntrinsicHeightTextView;
+    traitCollectionDidChangeBlock: (p1: MDCMultilineTextField, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCMultilineTextField, p2: UITraitCollection) => void;
+    useConstraintsForIntrinsicContentSize: boolean;
 
-	useConstraintsForIntrinsicContentSize: boolean;
+    attributedPlaceholder: NSAttributedString; // inherited from MDCTextInput
 
-	attributedPlaceholder: NSAttributedString; // inherited from MDCTextInput
+    attributedText: NSAttributedString; // inherited from MDCTextInput
 
-	attributedText: NSAttributedString; // inherited from MDCTextInput
+    borderPath: UIBezierPath; // inherited from MDCTextInput
 
-	borderPath: UIBezierPath; // inherited from MDCTextInput
+    borderView: MDCTextInputBorderView; // inherited from MDCTextInput
 
-	borderView: MDCTextInputBorderView; // inherited from MDCTextInput
+    readonly clearButton: UIButton; // inherited from MDCTextInput
 
-	readonly clearButton: UIButton; // inherited from MDCTextInput
+    clearButtonMode: UITextFieldViewMode; // inherited from MDCTextInput
 
-	clearButtonMode: UITextFieldViewMode; // inherited from MDCTextInput
+    cursorColor: UIColor; // inherited from MDCTextInput
 
-	cursorColor: UIColor; // inherited from MDCTextInput
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly editing: boolean; // inherited from MDCTextInput
 
-	readonly editing: boolean; // inherited from MDCTextInput
+    enabled: boolean; // inherited from MDCTextInput
 
-	enabled: boolean; // inherited from MDCTextInput
+    expandsOnOverflow: boolean; // inherited from MDCMultilineTextInput
 
-	expandsOnOverflow: boolean; // inherited from MDCMultilineTextInput
+    font: UIFont; // inherited from MDCTextInput
 
-	font: UIFont; // inherited from MDCTextInput
+    readonly hasTextContent: boolean; // inherited from MDCTextInput
 
-	readonly hasTextContent: boolean; // inherited from MDCTextInput
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    hidesPlaceholderOnInput: boolean; // inherited from MDCTextInput
 
-	hidesPlaceholderOnInput: boolean; // inherited from MDCTextInput
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly leadingUnderlineLabel: UILabel; // inherited from MDCTextInput
 
-	readonly leadingUnderlineLabel: UILabel; // inherited from MDCTextInput
+    mdc_adjustsFontForContentSizeCategory: boolean; // inherited from MDCTextInput
 
-	mdc_adjustsFontForContentSizeCategory: boolean; // inherited from MDCTextInput
+    readonly mdc_currentElevation: number; // inherited from MDCElevatable
 
-	readonly mdc_currentElevation: number; // inherited from MDCElevatable
+    mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
 
-	mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
+    mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
 
-	mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
+    minimumLines: number; // inherited from MDCMultilineTextInput
 
-	minimumLines: number; // inherited from MDCMultilineTextInput
+    placeholder: string; // inherited from MDCTextInput
 
-	placeholder: string; // inherited from MDCTextInput
+    readonly placeholderLabel: UILabel; // inherited from MDCTextInput
 
-	readonly placeholderLabel: UILabel; // inherited from MDCTextInput
+    positioningDelegate: MDCTextInputPositioningDelegate; // inherited from MDCTextInput
 
-	positioningDelegate: MDCTextInputPositioningDelegate; // inherited from MDCTextInput
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    text: string; // inherited from MDCTextInput
 
-	text: string; // inherited from MDCTextInput
+    textColor: UIColor; // inherited from MDCTextInput
 
-	textColor: UIColor; // inherited from MDCTextInput
+    readonly textInsets: UIEdgeInsets; // inherited from MDCTextInput
 
-	readonly textInsets: UIEdgeInsets; // inherited from MDCTextInput
+    textInsetsMode: MDCTextInputTextInsetsMode; // inherited from MDCTextInput
 
-	textInsetsMode: MDCTextInputTextInsetsMode; // inherited from MDCTextInput
+    readonly trailingUnderlineLabel: UILabel; // inherited from MDCTextInput
 
-	readonly trailingUnderlineLabel: UILabel; // inherited from MDCTextInput
+    trailingView: UIView; // inherited from MDCTextInput
 
-	trailingView: UIView; // inherited from MDCTextInput
+    trailingViewMode: UITextFieldViewMode; // inherited from MDCTextInput
 
-	trailingViewMode: UITextFieldViewMode; // inherited from MDCTextInput
+    readonly underline: MDCTextInputUnderlineView; // inherited from MDCTextInput
 
-	readonly underline: MDCTextInputUnderlineView; // inherited from MDCTextInput
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    clearText(): void;
 
-	clearText(): void;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 interface MDCMultilineTextInput extends MDCTextInput {
+    expandsOnOverflow: boolean;
 
-	expandsOnOverflow: boolean;
-
-	minimumLines: number;
+    minimumLines: number;
 }
 declare var MDCMultilineTextInput: {
-
-	prototype: MDCMultilineTextInput;
+    prototype: MDCMultilineTextInput;
 };
 
 interface MDCMultilineTextInputDelegate extends NSObjectProtocol {
-
-	multilineTextFieldShouldClear?(textField: UIView): boolean;
+    multilineTextFieldShouldClear?(textField: UIView): boolean;
 }
 declare var MDCMultilineTextInputDelegate: {
-
-	prototype: MDCMultilineTextInputDelegate;
+    prototype: MDCMultilineTextInputDelegate;
 };
 
 interface MDCMultilineTextInputLayoutDelegate extends NSObjectProtocol {
-
-	multilineTextFieldDidChangeContentSize?(multilineTextField: MDCMultilineTextInput, size: CGSize): void;
+    multilineTextFieldDidChangeContentSize?(multilineTextField: MDCMultilineTextInput, size: CGSize): void;
 }
 declare var MDCMultilineTextInputLayoutDelegate: {
-
-	prototype: MDCMultilineTextInputLayoutDelegate;
+    prototype: MDCMultilineTextInputLayoutDelegate;
 };
 
 declare class MDCNumericValueLabel extends UIView implements UIContentSizeCategoryAdjusting {
+    static alloc(): MDCNumericValueLabel; // inherited from NSObject
 
-	static alloc(): MDCNumericValueLabel; // inherited from NSObject
+    static appearance(): MDCNumericValueLabel; // inherited from UIAppearance
 
-	static appearance(): MDCNumericValueLabel; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCNumericValueLabel; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCNumericValueLabel; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCNumericValueLabel; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCNumericValueLabel; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCNumericValueLabel; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCNumericValueLabel; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCNumericValueLabel; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCNumericValueLabel; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCNumericValueLabel; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCNumericValueLabel; // inherited from UIAppearance
+    static new(): MDCNumericValueLabel; // inherited from NSObject
 
-	static new(): MDCNumericValueLabel; // inherited from NSObject
+    font: UIFont;
 
-	font: UIFont;
+    text: string;
 
-	text: string;
+    textColor: UIColor;
 
-	textColor: UIColor;
+    adjustsFontForContentSizeCategory: boolean; // inherited from UIContentSizeCategoryAdjusting
 
-	adjustsFontForContentSizeCategory: boolean; // inherited from UIContentSizeCategoryAdjusting
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCOutlinedButtonColorThemer extends NSObject {
+    static alloc(): MDCOutlinedButtonColorThemer; // inherited from NSObject
 
-	static alloc(): MDCOutlinedButtonColorThemer; // inherited from NSObject
+    static applySemanticColorSchemeToButton(colorScheme: MDCColorScheming, button: MDCButton): void;
 
-	static applySemanticColorSchemeToButton(colorScheme: MDCColorScheming, button: MDCButton): void;
+    static new(): MDCOutlinedButtonColorThemer; // inherited from NSObject
+}
 
-	static new(): MDCOutlinedButtonColorThemer; // inherited from NSObject
+declare class MDCOutlinedTextArea extends MDCBaseTextArea {
+    static alloc(): MDCOutlinedTextArea; // inherited from NSObject
+
+    static appearance(): MDCOutlinedTextArea; // inherited from UIAppearance
+
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCOutlinedTextArea; // inherited from UIAppearance
+
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCOutlinedTextArea; // inherited from UIAppearance
+
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCOutlinedTextArea; // inherited from UIAppearance
+
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCOutlinedTextArea; // inherited from UIAppearance
+
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCOutlinedTextArea; // inherited from UIAppearance
+
+    static new(): MDCOutlinedTextArea; // inherited from NSObject
+
+    applyErrorThemeWithScheme(scheme: MDCContainerScheming): void;
+
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
+
+    outlineColorForState(state: MDCTextControlState): UIColor;
+
+    setOutlineColorForState(outlineColor: UIColor, state: MDCTextControlState): void;
 }
 
 declare class MDCOutlinedTextField extends MDCBaseTextField {
+    static alloc(): MDCOutlinedTextField; // inherited from NSObject
 
-	static alloc(): MDCOutlinedTextField; // inherited from NSObject
+    static appearance(): MDCOutlinedTextField; // inherited from UIAppearance
 
-	static appearance(): MDCOutlinedTextField; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCOutlinedTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCOutlinedTextField; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCOutlinedTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCOutlinedTextField; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCOutlinedTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCOutlinedTextField; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCOutlinedTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCOutlinedTextField; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCOutlinedTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCOutlinedTextField; // inherited from UIAppearance
+    static new(): MDCOutlinedTextField; // inherited from NSObject
 
-	static new(): MDCOutlinedTextField; // inherited from NSObject
+    applyErrorThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyErrorThemeWithScheme(scheme: MDCContainerScheming): void;
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyThemeWithScheme(scheme: MDCContainerScheming): void;
+    outlineColorForState(state: MDCTextControlState): UIColor;
 
-	outlineColorForState(state: MDCTextControlState): UIColor;
-
-	setOutlineColorForState(outlineColor: UIColor, state: MDCTextControlState): void;
+    setOutlineColorForState(outlineColor: UIColor, state: MDCTextControlState): void;
 }
 
 interface MDCOverlay extends NSObjectProtocol {
+    frame: CGRect;
 
-	frame: CGRect;
-
-	identifier: string;
+    identifier: string;
 }
 declare var MDCOverlay: {
-
-	prototype: MDCOverlay;
+    prototype: MDCOverlay;
 };
 
 declare class MDCOverlayObserver extends NSObject {
+    static alloc(): MDCOverlayObserver; // inherited from NSObject
 
-	static alloc(): MDCOverlayObserver; // inherited from NSObject
+    static new(): MDCOverlayObserver; // inherited from NSObject
 
-	static new(): MDCOverlayObserver; // inherited from NSObject
+    static observerForScreen(screen: UIScreen): MDCOverlayObserver;
 
-	static observerForScreen(screen: UIScreen): MDCOverlayObserver;
+    addTargetAction(target: any, action: string): void;
 
-	addTargetAction(target: any, action: string): void;
+    removeTarget(target: any): void;
 
-	removeTarget(target: any): void;
-
-	removeTargetAction(target: any, action: string): void;
+    removeTargetAction(target: any, action: string): void;
 }
 
 interface MDCOverlayTransitioning extends NSObjectProtocol {
+    animationCurve: UIViewAnimationCurve;
 
-	animationCurve: UIViewAnimationCurve;
+    compositeFrame: CGRect;
 
-	compositeFrame: CGRect;
+    customTimingFunction: CAMediaTimingFunction;
 
-	customTimingFunction: CAMediaTimingFunction;
+    duration: number;
 
-	duration: number;
+    animateAlongsideTransition(animations: () => void): void;
 
-	animateAlongsideTransition(animations: () => void): void;
+    animateAlongsideTransitionWithOptionsAnimationsCompletion(options: UIViewAnimationOptions, animations: () => void, completion: (p1: boolean) => void): void;
 
-	animateAlongsideTransitionWithOptionsAnimationsCompletion(options: UIViewAnimationOptions, animations: () => void, completion: (p1: boolean) => void): void;
+    compositeFrameInView(targetView: UIView): CGRect;
 
-	compositeFrameInView(targetView: UIView): CGRect;
-
-	enumerateOverlays(handler: (p1: MDCOverlay, p2: number, p3: interop.Pointer | interop.Reference<boolean>) => void): void;
+    enumerateOverlays(handler: (p1: MDCOverlay, p2: number, p3: interop.Pointer | interop.Reference<boolean>) => void): void;
 }
 declare var MDCOverlayTransitioning: {
-
-	prototype: MDCOverlayTransitioning;
+    prototype: MDCOverlayTransitioning;
 };
 
 declare class MDCOverlayWindow extends UIWindow {
+    static alloc(): MDCOverlayWindow; // inherited from NSObject
 
-	static alloc(): MDCOverlayWindow; // inherited from NSObject
+    static appearance(): MDCOverlayWindow; // inherited from UIAppearance
 
-	static appearance(): MDCOverlayWindow; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCOverlayWindow; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCOverlayWindow; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCOverlayWindow; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCOverlayWindow; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCOverlayWindow; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCOverlayWindow; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCOverlayWindow; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCOverlayWindow; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCOverlayWindow; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCOverlayWindow; // inherited from UIAppearance
+    static new(): MDCOverlayWindow; // inherited from NSObject
 
-	static new(): MDCOverlayWindow; // inherited from NSObject
+    activateOverlayWithLevel(overlay: UIView, level: number): void;
 
-	activateOverlayWithLevel(overlay: UIView, level: number): void;
-
-	deactivateOverlay(overlay: UIView): void;
+    deactivateOverlay(overlay: UIView): void;
 }
 
 declare class MDCPalette extends NSObject {
+    static alloc(): MDCPalette; // inherited from NSObject
 
-	static alloc(): MDCPalette; // inherited from NSObject
+    static new(): MDCPalette; // inherited from NSObject
 
-	static new(): MDCPalette; // inherited from NSObject
+    static paletteGeneratedFromColor(target500Color: UIColor): MDCPalette;
 
-	static paletteGeneratedFromColor(target500Color: UIColor): MDCPalette;
+    static paletteWithTintsAccents(tints: NSDictionary<string, UIColor>, accents: NSDictionary<string, UIColor>): MDCPalette;
 
-	static paletteWithTintsAccents(tints: NSDictionary<string, UIColor>, accents: NSDictionary<string, UIColor>): MDCPalette;
+    readonly accent100: UIColor;
 
-	readonly accent100: UIColor;
+    readonly accent200: UIColor;
 
-	readonly accent200: UIColor;
+    readonly accent400: UIColor;
 
-	readonly accent400: UIColor;
+    readonly accent700: UIColor;
 
-	readonly accent700: UIColor;
+    readonly tint100: UIColor;
 
-	readonly tint100: UIColor;
+    readonly tint200: UIColor;
 
-	readonly tint200: UIColor;
+    readonly tint300: UIColor;
 
-	readonly tint300: UIColor;
+    readonly tint400: UIColor;
 
-	readonly tint400: UIColor;
+    readonly tint50: UIColor;
 
-	readonly tint50: UIColor;
+    readonly tint500: UIColor;
 
-	readonly tint500: UIColor;
+    readonly tint600: UIColor;
 
-	readonly tint600: UIColor;
+    readonly tint700: UIColor;
 
-	readonly tint700: UIColor;
+    readonly tint800: UIColor;
 
-	readonly tint800: UIColor;
+    readonly tint900: UIColor;
 
-	readonly tint900: UIColor;
+    static readonly amberPalette: MDCPalette;
 
-	static readonly amberPalette: MDCPalette;
+    static readonly blueGreyPalette: MDCPalette;
 
-	static readonly blueGreyPalette: MDCPalette;
+    static readonly bluePalette: MDCPalette;
 
-	static readonly bluePalette: MDCPalette;
+    static readonly brownPalette: MDCPalette;
 
-	static readonly brownPalette: MDCPalette;
+    static readonly cyanPalette: MDCPalette;
 
-	static readonly cyanPalette: MDCPalette;
+    static readonly deepOrangePalette: MDCPalette;
 
-	static readonly deepOrangePalette: MDCPalette;
+    static readonly deepPurplePalette: MDCPalette;
 
-	static readonly deepPurplePalette: MDCPalette;
+    static readonly greenPalette: MDCPalette;
 
-	static readonly greenPalette: MDCPalette;
+    static readonly greyPalette: MDCPalette;
 
-	static readonly greyPalette: MDCPalette;
+    static readonly indigoPalette: MDCPalette;
 
-	static readonly indigoPalette: MDCPalette;
+    static readonly lightBluePalette: MDCPalette;
 
-	static readonly lightBluePalette: MDCPalette;
+    static readonly lightGreenPalette: MDCPalette;
 
-	static readonly lightGreenPalette: MDCPalette;
+    static readonly limePalette: MDCPalette;
 
-	static readonly limePalette: MDCPalette;
+    static readonly orangePalette: MDCPalette;
 
-	static readonly orangePalette: MDCPalette;
+    static readonly pinkPalette: MDCPalette;
 
-	static readonly pinkPalette: MDCPalette;
+    static readonly purplePalette: MDCPalette;
 
-	static readonly purplePalette: MDCPalette;
+    static readonly redPalette: MDCPalette;
 
-	static readonly redPalette: MDCPalette;
+    static readonly tealPalette: MDCPalette;
 
-	static readonly tealPalette: MDCPalette;
+    static readonly yellowPalette: MDCPalette;
 
-	static readonly yellowPalette: MDCPalette;
+    constructor(o: { tints: NSDictionary<string, UIColor>; accents: NSDictionary<string, UIColor> });
 
-	constructor(o: { tints: NSDictionary<string, UIColor>; accents: NSDictionary<string, UIColor>; });
-
-	initWithTintsAccents(tints: NSDictionary<string, UIColor>, accents: NSDictionary<string, UIColor>): this;
+    initWithTintsAccents(tints: NSDictionary<string, UIColor>, accents: NSDictionary<string, UIColor>): this;
 }
 
-declare var MDCPaletteAccent100Name: string;
+declare let MDCPaletteAccent100Name: string;
 
-declare var MDCPaletteAccent200Name: string;
+declare let MDCPaletteAccent200Name: string;
 
-declare var MDCPaletteAccent400Name: string;
+declare let MDCPaletteAccent400Name: string;
 
-declare var MDCPaletteAccent700Name: string;
+declare let MDCPaletteAccent700Name: string;
 
-declare var MDCPaletteTint100Name: string;
+declare let MDCPaletteTint100Name: string;
 
-declare var MDCPaletteTint200Name: string;
+declare let MDCPaletteTint200Name: string;
 
-declare var MDCPaletteTint300Name: string;
+declare let MDCPaletteTint300Name: string;
 
-declare var MDCPaletteTint400Name: string;
+declare let MDCPaletteTint400Name: string;
 
-declare var MDCPaletteTint500Name: string;
+declare let MDCPaletteTint500Name: string;
 
-declare var MDCPaletteTint50Name: string;
+declare let MDCPaletteTint50Name: string;
 
-declare var MDCPaletteTint600Name: string;
+declare let MDCPaletteTint600Name: string;
 
-declare var MDCPaletteTint700Name: string;
+declare let MDCPaletteTint700Name: string;
 
-declare var MDCPaletteTint800Name: string;
+declare let MDCPaletteTint800Name: string;
 
-declare var MDCPaletteTint900Name: string;
+declare let MDCPaletteTint900Name: string;
 
 declare class MDCPathGenerator extends NSObject {
+    static alloc(): MDCPathGenerator; // inherited from NSObject
 
-	static alloc(): MDCPathGenerator; // inherited from NSObject
+    static new(): MDCPathGenerator; // inherited from NSObject
 
-	static new(): MDCPathGenerator; // inherited from NSObject
+    static pathGenerator(): MDCPathGenerator;
 
-	static pathGenerator(): MDCPathGenerator;
+    static pathGeneratorWithStartPoint(startPoint: CGPoint): MDCPathGenerator;
 
-	static pathGeneratorWithStartPoint(startPoint: CGPoint): MDCPathGenerator;
+    readonly endPoint: CGPoint;
 
-	readonly endPoint: CGPoint;
+    readonly startPoint: CGPoint;
 
-	readonly startPoint: CGPoint;
+    addArcWithCenterRadiusStartAngleEndAngleClockwise(center: CGPoint, radius: number, startAngle: number, endAngle: number, clockwise: boolean): void;
 
-	addArcWithCenterRadiusStartAngleEndAngleClockwise(center: CGPoint, radius: number, startAngle: number, endAngle: number, clockwise: boolean): void;
+    addArcWithTangentPointToPointRadius(tangentPoint: CGPoint, toPoint: CGPoint, radius: number): void;
 
-	addArcWithTangentPointToPointRadius(tangentPoint: CGPoint, toPoint: CGPoint, radius: number): void;
+    addCurveWithControlPoint1ControlPoint2ToPoint(controlPoint1: CGPoint, controlPoint2: CGPoint, toPoint: CGPoint): void;
 
-	addCurveWithControlPoint1ControlPoint2ToPoint(controlPoint1: CGPoint, controlPoint2: CGPoint, toPoint: CGPoint): void;
+    addLineToPoint(point: CGPoint): void;
 
-	addLineToPoint(point: CGPoint): void;
+    addQuadCurveWithControlPointToPoint(controlPoint: CGPoint, toPoint: CGPoint): void;
 
-	addQuadCurveWithControlPointToPoint(controlPoint: CGPoint, toPoint: CGPoint): void;
-
-	appendToCGPathTransform(cgPath: any, transform: interop.Pointer | interop.Reference<CGAffineTransform>): void;
+    appendToCGPathTransform(cgPath: any, transform: interop.Pointer | interop.Reference<CGAffineTransform>): void;
 }
 
 declare class MDCPillShapeGenerator extends NSObject implements MDCShapeGenerating {
+    static alloc(): MDCPillShapeGenerator; // inherited from NSObject
 
-	static alloc(): MDCPillShapeGenerator; // inherited from NSObject
+    static new(): MDCPillShapeGenerator; // inherited from NSObject
 
-	static new(): MDCPillShapeGenerator; // inherited from NSObject
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	pathForSize(size: CGSize): any;
+    pathForSize(size: CGSize): any;
 }
 
 declare class MDCProgressView extends UIView {
+    static alloc(): MDCProgressView; // inherited from NSObject
 
-	static alloc(): MDCProgressView; // inherited from NSObject
+    static appearance(): MDCProgressView; // inherited from UIAppearance
 
-	static appearance(): MDCProgressView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCProgressView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCProgressView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCProgressView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCProgressView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCProgressView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCProgressView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCProgressView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCProgressView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCProgressView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCProgressView; // inherited from UIAppearance
+    static new(): MDCProgressView; // inherited from NSObject
 
-	static new(): MDCProgressView; // inherited from NSObject
+    animating: boolean;
 
-	animating: boolean;
+    backwardProgressAnimationMode: MDCProgressViewBackwardAnimationMode;
 
-	backwardProgressAnimationMode: MDCProgressViewBackwardAnimationMode;
+    cornerRadius: number;
 
-	cornerRadius: number;
+    mode: MDCProgressViewMode;
 
-	mode: MDCProgressViewMode;
+    progress: number;
 
-	progress: number;
+    progressTintColor: UIColor;
 
-	progressTintColor: UIColor;
+    progressTintColors: NSArray<any>;
 
-	progressTintColors: NSArray<any>;
+    trackTintColor: UIColor;
 
-	trackTintColor: UIColor;
+    traitCollectionDidChangeBlock: (p1: MDCProgressView, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCProgressView, p2: UITraitCollection) => void;
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyThemeWithScheme(scheme: MDCContainerScheming): void;
+    setHiddenAnimatedCompletion(hidden: boolean, animated: boolean, completion: (p1: boolean) => void): void;
 
-	setHiddenAnimatedCompletion(hidden: boolean, animated: boolean, completion: (p1: boolean) => void): void;
+    setProgressAnimatedCompletion(progress: number, animated: boolean, completion: (p1: boolean) => void): void;
 
-	setProgressAnimatedCompletion(progress: number, animated: boolean, completion: (p1: boolean) => void): void;
+    startAnimating(): void;
 
-	startAnimating(): void;
-
-	stopAnimating(): void;
+    stopAnimating(): void;
 }
 
 declare const enum MDCProgressViewBackwardAnimationMode {
+    Reset = 0,
 
-	Reset = 0,
-
-	Animate = 1
+    Animate = 1
 }
 
 declare const enum MDCProgressViewMode {
+    Determinate = 0,
 
-	Determinate = 0,
-
-	Indeterminate = 1
+    Indeterminate = 1
 }
 
 declare class MDCRaisedButton extends MDCButton {
+    static alloc(): MDCRaisedButton; // inherited from NSObject
 
-	static alloc(): MDCRaisedButton; // inherited from NSObject
+    static appearance(): MDCRaisedButton; // inherited from UIAppearance
 
-	static appearance(): MDCRaisedButton; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCRaisedButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCRaisedButton; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCRaisedButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCRaisedButton; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRaisedButton; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRaisedButton; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCRaisedButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCRaisedButton; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRaisedButton; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRaisedButton; // inherited from UIAppearance
+    static buttonWithType(buttonType: UIButtonType): MDCRaisedButton; // inherited from UIButton
 
-	static buttonWithType(buttonType: UIButtonType): MDCRaisedButton; // inherited from UIButton
+    static buttonWithTypePrimaryAction(buttonType: UIButtonType, primaryAction: UIAction): MDCRaisedButton; // inherited from UIButton
 
-	static buttonWithTypePrimaryAction(buttonType: UIButtonType, primaryAction: UIAction): MDCRaisedButton; // inherited from UIButton
+    static new(): MDCRaisedButton; // inherited from NSObject
 
-	static new(): MDCRaisedButton; // inherited from NSObject
+    static systemButtonWithImageTargetAction(image: UIImage, target: any, action: string): MDCRaisedButton; // inherited from UIButton
 
-	static systemButtonWithImageTargetAction(image: UIImage, target: any, action: string): MDCRaisedButton; // inherited from UIButton
-
-	static systemButtonWithPrimaryAction(primaryAction: UIAction): MDCRaisedButton; // inherited from UIButton
+    static systemButtonWithPrimaryAction(primaryAction: UIAction): MDCRaisedButton; // inherited from UIButton
 }
 
 declare class MDCRectangleShapeGenerator extends NSObject implements MDCShapeGenerating {
+    static alloc(): MDCRectangleShapeGenerator; // inherited from NSObject
 
-	static alloc(): MDCRectangleShapeGenerator; // inherited from NSObject
+    static new(): MDCRectangleShapeGenerator; // inherited from NSObject
 
-	static new(): MDCRectangleShapeGenerator; // inherited from NSObject
+    bottomEdge: MDCEdgeTreatment;
 
-	bottomEdge: MDCEdgeTreatment;
+    bottomLeftCorner: MDCCornerTreatment;
 
-	bottomLeftCorner: MDCCornerTreatment;
+    bottomLeftCornerOffset: CGPoint;
 
-	bottomLeftCornerOffset: CGPoint;
+    bottomRightCorner: MDCCornerTreatment;
 
-	bottomRightCorner: MDCCornerTreatment;
+    bottomRightCornerOffset: CGPoint;
 
-	bottomRightCornerOffset: CGPoint;
+    leftEdge: MDCEdgeTreatment;
 
-	leftEdge: MDCEdgeTreatment;
+    rightEdge: MDCEdgeTreatment;
 
-	rightEdge: MDCEdgeTreatment;
+    topEdge: MDCEdgeTreatment;
 
-	topEdge: MDCEdgeTreatment;
+    topLeftCorner: MDCCornerTreatment;
 
-	topLeftCorner: MDCCornerTreatment;
+    topLeftCornerOffset: CGPoint;
 
-	topLeftCornerOffset: CGPoint;
+    topRightCorner: MDCCornerTreatment;
 
-	topRightCorner: MDCCornerTreatment;
+    topRightCornerOffset: CGPoint;
 
-	topRightCornerOffset: CGPoint;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    pathForSize(size: CGSize): any;
 
-	pathForSize(size: CGSize): any;
+    setCorners(cornerShape: MDCCornerTreatment): void;
 
-	setCorners(cornerShape: MDCCornerTreatment): void;
-
-	setEdges(edgeShape: MDCEdgeTreatment): void;
+    setEdges(edgeShape: MDCEdgeTreatment): void;
 }
 
 declare const enum MDCRippleState {
+    Normal = 0,
 
-	Normal = 0,
+    Highlighted = 1,
 
-	Highlighted = 1,
+    Selected = 2,
 
-	Selected = 2,
-
-	Dragged = 4
+    Dragged = 4
 }
 
 declare const enum MDCRippleStyle {
+    Bounded = 0,
 
-	Bounded = 0,
-
-	Unbounded = 1
+    Unbounded = 1
 }
 
 declare class MDCRippleTouchController extends NSObject implements UIGestureRecognizerDelegate {
+    static alloc(): MDCRippleTouchController; // inherited from NSObject
 
-	static alloc(): MDCRippleTouchController; // inherited from NSObject
+    static new(): MDCRippleTouchController; // inherited from NSObject
 
-	static new(): MDCRippleTouchController; // inherited from NSObject
+    delegate: MDCRippleTouchControllerDelegate;
 
-	delegate: MDCRippleTouchControllerDelegate;
+    readonly gestureRecognizer: UILongPressGestureRecognizer;
 
-	readonly gestureRecognizer: UILongPressGestureRecognizer;
+    readonly rippleView: MDCRippleView;
 
-	readonly rippleView: MDCRippleView;
+    shouldProcessRippleWithScrollViewGestures: boolean;
 
-	shouldProcessRippleWithScrollViewGestures: boolean;
+    readonly view: UIView;
 
-	readonly view: UIView;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    constructor(o: { view: UIView });
 
-	constructor(o: { view: UIView; });
+    constructor(o: { view: UIView; deferred: boolean });
 
-	constructor(o: { view: UIView; deferred: boolean; });
+    addRippleToView(view: UIView): void;
 
-	addRippleToView(view: UIView): void;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    gestureRecognizerShouldBeRequiredToFailByGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
 
-	gestureRecognizerShouldBeRequiredToFailByGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
+    gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer): boolean;
 
-	gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer): boolean;
+    gestureRecognizerShouldReceiveEvent(gestureRecognizer: UIGestureRecognizer, event: _UIEvent): boolean;
 
-	gestureRecognizerShouldReceiveEvent(gestureRecognizer: UIGestureRecognizer, event: _UIEvent): boolean;
+    gestureRecognizerShouldReceivePress(gestureRecognizer: UIGestureRecognizer, press: UIPress): boolean;
 
-	gestureRecognizerShouldReceivePress(gestureRecognizer: UIGestureRecognizer, press: UIPress): boolean;
+    gestureRecognizerShouldReceiveTouch(gestureRecognizer: UIGestureRecognizer, touch: UITouch): boolean;
 
-	gestureRecognizerShouldReceiveTouch(gestureRecognizer: UIGestureRecognizer, touch: UITouch): boolean;
+    gestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
 
-	gestureRecognizerShouldRecognizeSimultaneouslyWithGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
+    gestureRecognizerShouldRequireFailureOfGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
 
-	gestureRecognizerShouldRequireFailureOfGestureRecognizer(gestureRecognizer: UIGestureRecognizer, otherGestureRecognizer: UIGestureRecognizer): boolean;
+    initWithView(view: UIView): this;
 
-	initWithView(view: UIView): this;
+    initWithViewDeferred(view: UIView, deferred: boolean): this;
 
-	initWithViewDeferred(view: UIView, deferred: boolean): this;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 interface MDCRippleTouchControllerDelegate extends NSObjectProtocol {
+    rippleTouchControllerDidProcessRippleViewAtTouchLocation?(rippleTouchController: MDCRippleTouchController, rippleView: MDCRippleView, location: CGPoint): void;
 
-	rippleTouchControllerDidProcessRippleViewAtTouchLocation?(rippleTouchController: MDCRippleTouchController, rippleView: MDCRippleView, location: CGPoint): void;
+    rippleTouchControllerInsertRippleViewIntoView?(rippleTouchController: MDCRippleTouchController, rippleView: MDCRippleView, view: UIView): void;
 
-	rippleTouchControllerInsertRippleViewIntoView?(rippleTouchController: MDCRippleTouchController, rippleView: MDCRippleView, view: UIView): void;
+    rippleTouchControllerRippleViewAtTouchLocation?(rippleTouchController: MDCRippleTouchController, location: CGPoint): MDCRippleView;
 
-	rippleTouchControllerRippleViewAtTouchLocation?(rippleTouchController: MDCRippleTouchController, location: CGPoint): MDCRippleView;
-
-	rippleTouchControllerShouldProcessRippleTouchesAtTouchLocation?(rippleTouchController: MDCRippleTouchController, location: CGPoint): boolean;
+    rippleTouchControllerShouldProcessRippleTouchesAtTouchLocation?(rippleTouchController: MDCRippleTouchController, location: CGPoint): boolean;
 }
 declare var MDCRippleTouchControllerDelegate: {
-
-	prototype: MDCRippleTouchControllerDelegate;
+    prototype: MDCRippleTouchControllerDelegate;
 };
 
 declare class MDCRippleView extends UIView {
+    static alloc(): MDCRippleView; // inherited from NSObject
 
-	static alloc(): MDCRippleView; // inherited from NSObject
+    static appearance(): MDCRippleView; // inherited from UIAppearance
 
-	static appearance(): MDCRippleView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCRippleView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCRippleView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCRippleView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCRippleView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRippleView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRippleView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCRippleView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCRippleView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRippleView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRippleView; // inherited from UIAppearance
+    static injectedRippleViewForView(view: UIView): MDCRippleView;
 
-	static injectedRippleViewForView(view: UIView): MDCRippleView;
+    static new(): MDCRippleView; // inherited from NSObject
 
-	static new(): MDCRippleView; // inherited from NSObject
+    activeRippleColor: UIColor;
 
-	activeRippleColor: UIColor;
+    maximumRadius: number;
 
-	maximumRadius: number;
+    rippleColor: UIColor;
 
-	rippleColor: UIColor;
+    rippleStyle: MDCRippleStyle;
 
-	rippleStyle: MDCRippleStyle;
+    rippleViewDelegate: MDCRippleViewDelegate;
 
-	rippleViewDelegate: MDCRippleViewDelegate;
+    traitCollectionDidChangeBlock: (p1: MDCRippleView, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCRippleView, p2: UITraitCollection) => void;
+    usesSuperviewShadowLayerAsMask: boolean;
 
-	usesSuperviewShadowLayerAsMask: boolean;
+    beginRippleTouchDownAtPointAnimatedCompletion(point: CGPoint, animated: boolean, completion: () => void): void;
 
-	beginRippleTouchDownAtPointAnimatedCompletion(point: CGPoint, animated: boolean, completion: () => void): void;
+    beginRippleTouchUpAnimatedCompletion(animated: boolean, completion: () => void): void;
 
-	beginRippleTouchUpAnimatedCompletion(animated: boolean, completion: () => void): void;
+    cancelAllRipplesAnimatedCompletion(animated: boolean, completion: () => void): void;
 
-	cancelAllRipplesAnimatedCompletion(animated: boolean, completion: () => void): void;
+    fadeInRippleAnimatedCompletion(animated: boolean, completion: () => void): void;
 
-	fadeInRippleAnimatedCompletion(animated: boolean, completion: () => void): void;
-
-	fadeOutRippleAnimatedCompletion(animated: boolean, completion: () => void): void;
+    fadeOutRippleAnimatedCompletion(animated: boolean, completion: () => void): void;
 }
 
 interface MDCRippleViewDelegate extends NSObjectProtocol {
+    rippleTouchDownAnimationDidBegin?(rippleView: MDCRippleView): void;
 
-	rippleTouchDownAnimationDidBegin?(rippleView: MDCRippleView): void;
+    rippleTouchDownAnimationDidEnd?(rippleView: MDCRippleView): void;
 
-	rippleTouchDownAnimationDidEnd?(rippleView: MDCRippleView): void;
+    rippleTouchUpAnimationDidBegin?(rippleView: MDCRippleView): void;
 
-	rippleTouchUpAnimationDidBegin?(rippleView: MDCRippleView): void;
-
-	rippleTouchUpAnimationDidEnd?(rippleView: MDCRippleView): void;
+    rippleTouchUpAnimationDidEnd?(rippleView: MDCRippleView): void;
 }
 declare var MDCRippleViewDelegate: {
-
-	prototype: MDCRippleViewDelegate;
+    prototype: MDCRippleViewDelegate;
 };
 
 declare class MDCRoundedCornerTreatment extends MDCCornerTreatment {
+    static alloc(): MDCRoundedCornerTreatment; // inherited from NSObject
 
-	static alloc(): MDCRoundedCornerTreatment; // inherited from NSObject
+    static new(): MDCRoundedCornerTreatment; // inherited from NSObject
 
-	static new(): MDCRoundedCornerTreatment; // inherited from NSObject
+    radius: number;
 
-	radius: number;
+    constructor(o: { radius: number });
 
-	constructor(o: { radius: number; });
-
-	initWithRadius(radius: number): this;
+    initWithRadius(radius: number): this;
 }
 
 declare class MDCSemanticColorScheme extends NSObject implements MDCColorScheming, NSCopying {
+    static alloc(): MDCSemanticColorScheme; // inherited from NSObject
 
-	static alloc(): MDCSemanticColorScheme; // inherited from NSObject
+    static blendColorWithBackgroundColor(color: UIColor, backgroundColor: UIColor): UIColor;
 
-	static blendColorWithBackgroundColor(color: UIColor, backgroundColor: UIColor): UIColor;
+    static new(): MDCSemanticColorScheme; // inherited from NSObject
 
-	static new(): MDCSemanticColorScheme; // inherited from NSObject
+    backgroundColor: UIColor;
 
-	backgroundColor: UIColor;
+    elevationOverlayEnabledForDarkMode: boolean;
 
-	elevationOverlayColor: UIColor;
+    errorColor: UIColor;
 
-	elevationOverlayEnabledForDarkMode: boolean;
+    onBackgroundColor: UIColor;
 
-	errorColor: UIColor;
+    onPrimaryColor: UIColor;
 
-	onBackgroundColor: UIColor;
+    onSecondaryColor: UIColor;
 
-	onPrimaryColor: UIColor;
+    onSurfaceColor: UIColor;
 
-	onSecondaryColor: UIColor;
+    primaryColor: UIColor;
 
-	onSurfaceColor: UIColor;
+    primaryColorVariant: UIColor;
 
-	primaryColor: UIColor;
+    secondaryColor: UIColor;
 
-	primaryColorVariant: UIColor;
+    surfaceColor: UIColor;
 
-	secondaryColor: UIColor;
+    constructor(o: { defaults: MDCColorSchemeDefaults });
 
-	surfaceColor: UIColor;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	constructor(o: { defaults: MDCColorSchemeDefaults; });
-
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	initWithDefaults(defaults: MDCColorSchemeDefaults): this;
+    initWithDefaults(defaults: MDCColorSchemeDefaults): this;
 }
 
-declare var MDCShadowElevationAppBar: number;
+declare let MDCShadowElevationAppBar: number;
 
-declare var MDCShadowElevationBottomAppBar: number;
+declare let MDCShadowElevationBottomAppBar: number;
 
-declare var MDCShadowElevationBottomNavigationBar: number;
+declare let MDCShadowElevationBottomNavigationBar: number;
 
-declare var MDCShadowElevationCardPickedUp: number;
+declare let MDCShadowElevationCardPickedUp: number;
 
-declare var MDCShadowElevationCardResting: number;
+declare let MDCShadowElevationCardResting: number;
 
-declare var MDCShadowElevationDialog: number;
+declare let MDCShadowElevationDialog: number;
 
-declare var MDCShadowElevationFABPressed: number;
+declare let MDCShadowElevationFABPressed: number;
 
-declare var MDCShadowElevationFABResting: number;
+declare let MDCShadowElevationFABResting: number;
 
-declare var MDCShadowElevationMenu: number;
+declare let MDCShadowElevationMenu: number;
 
-declare var MDCShadowElevationModalActionSheet: number;
+declare let MDCShadowElevationModalActionSheet: number;
 
-declare var MDCShadowElevationModalBottomSheet: number;
+declare let MDCShadowElevationModalBottomSheet: number;
 
-declare var MDCShadowElevationNavDrawer: number;
+declare let MDCShadowElevationNavDrawer: number;
 
-declare var MDCShadowElevationNone: number;
+declare let MDCShadowElevationNone: number;
 
-declare var MDCShadowElevationPicker: number;
+declare let MDCShadowElevationPicker: number;
 
-declare var MDCShadowElevationQuickEntry: number;
+declare let MDCShadowElevationQuickEntry: number;
 
-declare var MDCShadowElevationQuickEntryResting: number;
+declare let MDCShadowElevationQuickEntryResting: number;
 
-declare var MDCShadowElevationRaisedButtonPressed: number;
+declare let MDCShadowElevationRaisedButtonPressed: number;
 
-declare var MDCShadowElevationRaisedButtonResting: number;
+declare let MDCShadowElevationRaisedButtonResting: number;
 
-declare var MDCShadowElevationRefresh: number;
+declare let MDCShadowElevationRefresh: number;
 
-declare var MDCShadowElevationRightDrawer: number;
+declare let MDCShadowElevationRightDrawer: number;
 
-declare var MDCShadowElevationSearchBarResting: number;
+declare let MDCShadowElevationSearchBarResting: number;
 
-declare var MDCShadowElevationSearchBarScrolled: number;
+declare let MDCShadowElevationSearchBarScrolled: number;
 
-declare var MDCShadowElevationSnackbar: number;
+declare let MDCShadowElevationSnackbar: number;
 
-declare var MDCShadowElevationSubMenu: number;
+declare let MDCShadowElevationSubMenu: number;
 
-declare var MDCShadowElevationSwitch: number;
+declare let MDCShadowElevationSwitch: number;
 
 declare class MDCShadowLayer extends CALayer implements CALayerDelegate {
+    static alloc(): MDCShadowLayer; // inherited from NSObject
 
-	static alloc(): MDCShadowLayer; // inherited from NSObject
+    static layer(): MDCShadowLayer; // inherited from CALayer
 
-	static layer(): MDCShadowLayer; // inherited from CALayer
+    static new(): MDCShadowLayer; // inherited from NSObject
 
-	static new(): MDCShadowLayer; // inherited from NSObject
+    elevation: number;
 
-	elevation: number;
+    shadowMaskEnabled: boolean;
 
-	shadowMaskEnabled: boolean;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    actionForLayerForKey(layer: CALayer, event: string): CAAction;
 
-	actionForLayerForKey(layer: CALayer, event: string): CAAction;
+    animateCornerRadiusWithTimingFunctionDuration(cornerRadius: number, timingFunction: CAMediaTimingFunction, duration: number): void;
 
-	animateCornerRadiusWithTimingFunctionDuration(cornerRadius: number, timingFunction: CAMediaTimingFunction, duration: number): void;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    displayLayer(layer: CALayer): void;
 
-	displayLayer(layer: CALayer): void;
+    drawLayerInContext(layer: CALayer, ctx: any): void;
 
-	drawLayerInContext(layer: CALayer, ctx: any): void;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    layerWillDraw(layer: CALayer): void;
 
-	layerWillDraw(layer: CALayer): void;
+    layoutSublayersOfLayer(layer: CALayer): void;
 
-	layoutSublayersOfLayer(layer: CALayer): void;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    prepareShadowPath(): void;
 
-	prepareShadowPath(): void;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCShadowMetrics extends NSObject {
+    static alloc(): MDCShadowMetrics; // inherited from NSObject
 
-	static alloc(): MDCShadowMetrics; // inherited from NSObject
+    static metricsWithElevation(elevation: number): MDCShadowMetrics;
 
-	static metricsWithElevation(elevation: number): MDCShadowMetrics;
+    static new(): MDCShadowMetrics; // inherited from NSObject
 
-	static new(): MDCShadowMetrics; // inherited from NSObject
+    readonly bottomShadowOffset: CGSize;
 
-	readonly bottomShadowOffset: CGSize;
+    readonly bottomShadowOpacity: number;
 
-	readonly bottomShadowOpacity: number;
+    readonly bottomShadowRadius: number;
 
-	readonly bottomShadowRadius: number;
+    readonly topShadowOffset: CGSize;
 
-	readonly topShadowOffset: CGSize;
+    readonly topShadowOpacity: number;
 
-	readonly topShadowOpacity: number;
-
-	readonly topShadowRadius: number;
+    readonly topShadowRadius: number;
 }
 
 declare class MDCShapeCategory extends NSObject implements NSCopying {
+    static alloc(): MDCShapeCategory; // inherited from NSObject
 
-	static alloc(): MDCShapeCategory; // inherited from NSObject
+    static new(): MDCShapeCategory; // inherited from NSObject
 
-	static new(): MDCShapeCategory; // inherited from NSObject
+    bottomLeftCorner: MDCCornerTreatment;
 
-	bottomLeftCorner: MDCCornerTreatment;
+    bottomRightCorner: MDCCornerTreatment;
 
-	bottomRightCorner: MDCCornerTreatment;
+    topLeftCorner: MDCCornerTreatment;
 
-	topLeftCorner: MDCCornerTreatment;
+    topRightCorner: MDCCornerTreatment;
 
-	topRightCorner: MDCCornerTreatment;
+    constructor(o: { cornersWithFamily: MDCShapeCornerFamily; andSize: number });
 
-	constructor(o: { cornersWithFamily: MDCShapeCornerFamily; andSize: number; });
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	initCornersWithFamilyAndSize(cornerFamily: MDCShapeCornerFamily, cornerSize: number): this;
+    initCornersWithFamilyAndSize(cornerFamily: MDCShapeCornerFamily, cornerSize: number): this;
 }
 
 declare const enum MDCShapeCornerFamily {
+    Rounded = 0,
 
-	Rounded = 0,
-
-	Cut = 1
+    Cut = 1
 }
 
 interface MDCShapeGenerating extends NSCopying {
-
-	pathForSize(size: CGSize): any;
+    pathForSize(size: CGSize): any;
 }
 declare var MDCShapeGenerating: {
-
-	prototype: MDCShapeGenerating;
+    prototype: MDCShapeGenerating;
 };
 
 declare class MDCShapeScheme extends NSObject implements MDCShapeScheming {
+    static alloc(): MDCShapeScheme; // inherited from NSObject
 
-	static alloc(): MDCShapeScheme; // inherited from NSObject
+    static new(): MDCShapeScheme; // inherited from NSObject
 
-	static new(): MDCShapeScheme; // inherited from NSObject
+    largeComponentShape: MDCShapeCategory;
 
-	largeComponentShape: MDCShapeCategory;
+    mediumComponentShape: MDCShapeCategory;
 
-	mediumComponentShape: MDCShapeCategory;
+    smallComponentShape: MDCShapeCategory;
 
-	smallComponentShape: MDCShapeCategory;
+    constructor(o: { defaults: MDCShapeSchemeDefaults });
 
-	constructor(o: { defaults: MDCShapeSchemeDefaults; });
-
-	initWithDefaults(defaults: MDCShapeSchemeDefaults): this;
+    initWithDefaults(defaults: MDCShapeSchemeDefaults): this;
 }
 
 declare const enum MDCShapeSchemeDefaults {
-
-	Material201809 = 0
+    Material201809 = 0
 }
 
 interface MDCShapeScheming {
+    largeComponentShape: MDCShapeCategory;
 
-	largeComponentShape: MDCShapeCategory;
+    mediumComponentShape: MDCShapeCategory;
 
-	mediumComponentShape: MDCShapeCategory;
-
-	smallComponentShape: MDCShapeCategory;
+    smallComponentShape: MDCShapeCategory;
 }
 declare var MDCShapeScheming: {
-
-	prototype: MDCShapeScheming;
+    prototype: MDCShapeScheming;
 };
 
 declare class MDCShapedShadowLayer extends MDCShadowLayer {
+    static alloc(): MDCShapedShadowLayer; // inherited from NSObject
 
-	static alloc(): MDCShapedShadowLayer; // inherited from NSObject
+    static layer(): MDCShapedShadowLayer; // inherited from CALayer
 
-	static layer(): MDCShapedShadowLayer; // inherited from CALayer
+    static new(): MDCShapedShadowLayer; // inherited from NSObject
 
-	static new(): MDCShapedShadowLayer; // inherited from NSObject
+    colorLayer: CAShapeLayer;
 
-	colorLayer: CAShapeLayer;
+    shapeGenerator: MDCShapeGenerating;
 
-	shapeGenerator: MDCShapeGenerating;
+    shapeLayer: CAShapeLayer;
 
-	shapeLayer: CAShapeLayer;
+    shapedBackgroundColor: UIColor;
 
-	shapedBackgroundColor: UIColor;
+    shapedBorderColor: UIColor;
 
-	shapedBorderColor: UIColor;
-
-	shapedBorderWidth: number;
+    shapedBorderWidth: number;
 }
 
 declare class MDCShapedView extends UIView {
+    static alloc(): MDCShapedView; // inherited from NSObject
 
-	static alloc(): MDCShapedView; // inherited from NSObject
+    static appearance(): MDCShapedView; // inherited from UIAppearance
 
-	static appearance(): MDCShapedView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCShapedView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCShapedView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCShapedView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCShapedView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCShapedView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCShapedView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCShapedView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCShapedView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCShapedView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCShapedView; // inherited from UIAppearance
+    static new(): MDCShapedView; // inherited from NSObject
 
-	static new(): MDCShapedView; // inherited from NSObject
+    elevation: number;
 
-	elevation: number;
+    shapeGenerator: MDCShapeGenerating;
 
-	shapeGenerator: MDCShapeGenerating;
+    shapedBorderColor: UIColor;
 
-	constructor(o: { frame: CGRect; shapeGenerator: MDCShapeGenerating; });
+    shapedBorderWidth: number;
 
-	initWithFrameShapeGenerator(frame: CGRect, shapeGenerator: MDCShapeGenerating): this;
+    constructor(o: { frame: CGRect; shapeGenerator: MDCShapeGenerating });
+
+    initWithFrameShapeGenerator(frame: CGRect, shapeGenerator: MDCShapeGenerating): this;
 }
 
 declare const enum MDCSheetState {
+    Closed = 0,
 
-	Closed = 0,
+    Preferred = 1,
 
-	Preferred = 1,
-
-	Extended = 2
+    Extended = 2
 }
 
 declare class MDCSlantedRectShapeGenerator extends NSObject implements MDCShapeGenerating {
+    static alloc(): MDCSlantedRectShapeGenerator; // inherited from NSObject
 
-	static alloc(): MDCSlantedRectShapeGenerator; // inherited from NSObject
+    static new(): MDCSlantedRectShapeGenerator; // inherited from NSObject
 
-	static new(): MDCSlantedRectShapeGenerator; // inherited from NSObject
+    slant: number;
 
-	slant: number;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	pathForSize(size: CGSize): any;
+    pathForSize(size: CGSize): any;
 }
 
 declare class MDCSlider extends UIControl implements MDCElevatable, MDCElevationOverriding, UIContentSizeCategoryAdjusting {
+    static alloc(): MDCSlider; // inherited from NSObject
 
-	static alloc(): MDCSlider; // inherited from NSObject
+    static appearance(): MDCSlider; // inherited from UIAppearance
 
-	static appearance(): MDCSlider; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCSlider; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCSlider; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCSlider; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCSlider; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSlider; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSlider; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCSlider; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCSlider; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSlider; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSlider; // inherited from UIAppearance
+    static new(): MDCSlider; // inherited from NSObject
 
-	static new(): MDCSlider; // inherited from NSObject
+    allowAnimatedValueChanges: boolean;
 
-	allowAnimatedValueChanges: boolean;
+    color: UIColor;
 
-	color: UIColor;
+    continuous: boolean;
 
-	continuous: boolean;
+    delegate: MDCSliderDelegate;
 
-	delegate: MDCSliderDelegate;
+    disabledColor: UIColor;
 
-	disabledColor: UIColor;
+    discrete: boolean;
 
-	discrete: boolean;
+    discreteValueLabelFont: UIFont;
 
-	discreteValueLabelFont: UIFont;
+    enableRippleBehavior: boolean;
 
-	enableRippleBehavior: boolean;
+    filledTrackAnchorValue: number;
 
-	filledTrackAnchorValue: number;
+    hapticsEnabled: boolean;
 
-	hapticsEnabled: boolean;
+    inkColor: UIColor;
 
-	inkColor: UIColor;
+    maximumValue: number;
 
-	maximumValue: number;
+    minimumValue: number;
 
-	minimumValue: number;
+    numberOfDiscreteValues: number;
 
-	numberOfDiscreteValues: number;
+    rippleColor: UIColor;
 
-	rippleColor: UIColor;
+    shouldDisplayDiscreteValueLabel: boolean;
 
-	shouldDisplayDiscreteValueLabel: boolean;
+    shouldDisplayThumbWithDiscreteValueLabel: boolean;
 
-	shouldDisplayThumbWithDiscreteValueLabel: boolean;
+    shouldEnableHapticsForAllDiscreteValues: boolean;
 
-	shouldEnableHapticsForAllDiscreteValues: boolean;
+    statefulAPIEnabled: boolean;
 
-	statefulAPIEnabled: boolean;
+    thumbBorderWidth: number;
 
-	thumbBorderWidth: number;
+    thumbElevation: number;
 
-	thumbElevation: number;
+    thumbHollowAtStart: boolean;
 
-	thumbHollowAtStart: boolean;
+    thumbIsSmallerWhenDisabled: boolean;
 
-	thumbIsSmallerWhenDisabled: boolean;
+    thumbRadius: number;
 
-	thumbRadius: number;
+    thumbRippleMaximumRadius: number;
 
-	thumbRippleMaximumRadius: number;
+    thumbShadowColor: UIColor;
 
-	thumbShadowColor: UIColor;
+    trackBackgroundColor: UIColor;
 
-	trackBackgroundColor: UIColor;
+    trackEndsAreInset: boolean;
 
-	trackEndsAreInset: boolean;
+    trackEndsAreRounded: boolean;
 
-	trackEndsAreRounded: boolean;
+    trackHeight: number;
 
-	trackHeight: number;
+    trackTickVisibility: MDCSliderTrackTickVisibility;
 
-	trackTickVisibility: MDCSliderTrackTickVisibility;
+    traitCollectionDidChangeBlock: (p1: MDCSlider, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCSlider, p2: UITraitCollection) => void;
+    value: number;
 
-	value: number;
+    valueLabelBackgroundColor: UIColor;
 
-	valueLabelBackgroundColor: UIColor;
+    valueLabelTextColor: UIColor;
 
-	valueLabelTextColor: UIColor;
+    adjustsFontForContentSizeCategory: boolean; // inherited from UIContentSizeCategoryAdjusting
 
-	adjustsFontForContentSizeCategory: boolean; // inherited from UIContentSizeCategoryAdjusting
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly mdc_currentElevation: number; // inherited from MDCElevatable
 
-	readonly mdc_currentElevation: number; // inherited from MDCElevatable
+    mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
 
-	mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
+    mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
 
-	mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    backgroundTrackTickColorForState(state: UIControlState): UIColor;
 
-	backgroundTrackTickColorForState(state: UIControlState): UIColor;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    filledTrackTickColorForState(state: UIControlState): UIColor;
 
-	filledTrackTickColorForState(state: UIControlState): UIColor;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
+    setBackgroundTrackTickColorForState(tickColor: UIColor, state: UIControlState): void;
 
-	setBackgroundTrackTickColorForState(tickColor: UIColor, state: UIControlState): void;
+    setFilledTrackTickColorForState(tickColor: UIColor, state: UIControlState): void;
 
-	setFilledTrackTickColorForState(tickColor: UIColor, state: UIControlState): void;
+    setThumbColorForState(thumbColor: UIColor, state: UIControlState): void;
 
-	setThumbColorForState(thumbColor: UIColor, state: UIControlState): void;
+    setTrackBackgroundColorForState(backgroundColor: UIColor, state: UIControlState): void;
 
-	setTrackBackgroundColorForState(backgroundColor: UIColor, state: UIControlState): void;
+    setTrackFillColorForState(fillColor: UIColor, state: UIControlState): void;
 
-	setTrackFillColorForState(fillColor: UIColor, state: UIControlState): void;
+    setValueAnimated(value: number, animated: boolean): void;
 
-	setValueAnimated(value: number, animated: boolean): void;
+    thumbColorForState(state: UIControlState): UIColor;
 
-	thumbColorForState(state: UIControlState): UIColor;
+    trackBackgroundColorForState(state: UIControlState): UIColor;
 
-	trackBackgroundColorForState(state: UIControlState): UIColor;
-
-	trackFillColorForState(state: UIControlState): UIColor;
+    trackFillColorForState(state: UIControlState): UIColor;
 }
 
 declare class MDCSliderColorThemer extends NSObject {
+    static alloc(): MDCSliderColorThemer; // inherited from NSObject
 
-	static alloc(): MDCSliderColorThemer; // inherited from NSObject
+    static applyColorSchemeToSlider(colorScheme: MDCColorScheme, slider: MDCSlider): void;
 
-	static applyColorSchemeToSlider(colorScheme: MDCColorScheme, slider: MDCSlider): void;
+    static applySemanticColorSchemeToSlider(colorScheme: MDCColorScheming, slider: MDCSlider): void;
 
-	static applySemanticColorSchemeToSlider(colorScheme: MDCColorScheming, slider: MDCSlider): void;
+    static defaultSliderDarkColorScheme(): MDCBasicColorScheme;
 
-	static defaultSliderDarkColorScheme(): MDCBasicColorScheme;
+    static defaultSliderLightColorScheme(): MDCBasicColorScheme;
 
-	static defaultSliderLightColorScheme(): MDCBasicColorScheme;
-
-	static new(): MDCSliderColorThemer; // inherited from NSObject
+    static new(): MDCSliderColorThemer; // inherited from NSObject
 }
 
 interface MDCSliderDelegate extends NSObjectProtocol {
+    sliderAccessibilityLabelForValue?(slider: MDCSlider, value: number): string;
 
-	sliderAccessibilityLabelForValue?(slider: MDCSlider, value: number): string;
+    sliderDisplayedStringForValue?(slider: MDCSlider, value: number): string;
 
-	sliderDisplayedStringForValue?(slider: MDCSlider, value: number): string;
-
-	sliderShouldJumpToValue?(slider: MDCSlider, value: number): boolean;
+    sliderShouldJumpToValue?(slider: MDCSlider, value: number): boolean;
 }
 declare var MDCSliderDelegate: {
-
-	prototype: MDCSliderDelegate;
+    prototype: MDCSliderDelegate;
 };
 
 declare const enum MDCSliderTrackTickVisibility {
+    Never = 0,
 
-	Never = 0,
+    WhenDragging = 1,
 
-	WhenDragging = 1,
-
-	Always = 2
+    Always = 2
 }
 
 declare const enum MDCSnackbarAlignment {
+    Center = 0,
 
-	Center = 0,
-
-	Leading = 1
+    Leading = 1
 }
 
 declare const enum MDCSnackbarError {
-
-	SlideAnimationMisconfigured = -10
+    SlideAnimationMisconfigured = -10
 }
 
-declare var MDCSnackbarErrorDomain: string;
+declare let MDCSnackbarErrorDomain: string;
 
 declare class MDCSnackbarManager extends NSObject implements MDCElevationOverriding {
+    static alloc(): MDCSnackbarManager; // inherited from NSObject
 
-	static alloc(): MDCSnackbarManager; // inherited from NSObject
+    static new(): MDCSnackbarManager; // inherited from NSObject
 
-	static new(): MDCSnackbarManager; // inherited from NSObject
+    adjustsFontForContentSizeCategoryWhenScaledFontIsUnavailable: boolean;
 
-	adjustsFontForContentSizeCategoryWhenScaledFontIsUnavailable: boolean;
+    alignment: MDCSnackbarAlignment;
 
-	alignment: MDCSnackbarAlignment;
+    buttonFont: UIFont;
 
-	buttonFont: UIFont;
+    buttonInkColor: UIColor;
 
-	buttonInkColor: UIColor;
+    delegate: MDCSnackbarManagerDelegate;
 
-	delegate: MDCSnackbarManagerDelegate;
+    disabledButtonAlpha: number;
 
-	disabledButtonAlpha: number;
+    focusAccessibilityNotification: number;
 
-	focusAccessibilityNotification: number;
+    mdc_adjustsFontForContentSizeCategory: boolean;
 
-	mdc_adjustsFontForContentSizeCategory: boolean;
+    mdc_elevationDidChangeBlockForMessageView: (p1: MDCElevatable, p2: number) => void;
 
-	mdc_elevationDidChangeBlockForMessageView: (p1: MDCElevatable, p2: number) => void;
+    messageElevation: number;
 
-	messageElevation: number;
+    messageFont: UIFont;
 
-	messageFont: UIFont;
+    messageTextColor: UIColor;
 
-	messageTextColor: UIColor;
+    shouldApplyStyleChangesToVisibleSnackbars: boolean;
 
-	shouldApplyStyleChangesToVisibleSnackbars: boolean;
+    shouldEnableAccessibilityViewIsModal: boolean;
 
-	shouldEnableAccessibilityViewIsModal: boolean;
+    snackbarMessageViewBackgroundColor: UIColor;
 
-	snackbarMessageViewBackgroundColor: UIColor;
+    snackbarMessageViewShadowColor: UIColor;
 
-	snackbarMessageViewShadowColor: UIColor;
+    traitCollectionDidChangeBlockForMessageView: (p1: MDCSnackbarMessageView, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlockForMessageView: (p1: MDCSnackbarMessageView, p2: UITraitCollection) => void;
+    uppercaseButtonTitle: boolean;
 
-	uppercaseButtonTitle: boolean;
+    static readonly defaultManager: MDCSnackbarManager;
 
-	static readonly defaultManager: MDCSnackbarManager;
+    mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
 
-	mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
+    buttonTitleColorForState(state: UIControlState): UIColor;
 
-	buttonTitleColorForState(state: UIControlState): UIColor;
+    dismissAndCallCompletionBlocksWithCategory(category: string): void;
 
-	dismissAndCallCompletionBlocksWithCategory(category: string): void;
+    hasMessagesShowingOrQueued(): boolean;
 
-	hasMessagesShowingOrQueued(): boolean;
+    resumeMessagesWithToken(token: MDCSnackbarSuspensionToken): void;
 
-	resumeMessagesWithToken(token: MDCSnackbarSuspensionToken): void;
+    setBottomOffset(offset: number): void;
 
-	setBottomOffset(offset: number): void;
+    setButtonTitleColorForState(titleColor: UIColor, state: UIControlState): void;
 
-	setButtonTitleColorForState(titleColor: UIColor, state: UIControlState): void;
+    setPresentationHostView(hostView: UIView): void;
 
-	setPresentationHostView(hostView: UIView): void;
+    showMessage(message: MDCSnackbarMessage): void;
 
-	showMessage(message: MDCSnackbarMessage): void;
+    suspendAllMessages(): MDCSnackbarSuspensionToken;
 
-	suspendAllMessages(): MDCSnackbarSuspensionToken;
-
-	suspendMessagesWithCategory(category: string): MDCSnackbarSuspensionToken;
+    suspendMessagesWithCategory(category: string): MDCSnackbarSuspensionToken;
 }
 
 interface MDCSnackbarManagerDelegate extends NSObjectProtocol {
+    isPresentingSnackbarWithMessageView?(messageView: MDCSnackbarMessageView): void;
 
-	isPresentingSnackbarWithMessageView?(messageView: MDCSnackbarMessageView): void;
+    snackbarDidDisappear?(): void;
 
-	snackbarDidDisappear?(): void;
+    snackbarWillDisappear?(): void;
 
-	snackbarWillDisappear?(): void;
-
-	willPresentSnackbarWithMessageView(messageView: MDCSnackbarMessageView): void;
+    willPresentSnackbarWithMessageView(messageView: MDCSnackbarMessageView): void;
 }
 declare var MDCSnackbarManagerDelegate: {
-
-	prototype: MDCSnackbarManagerDelegate;
+    prototype: MDCSnackbarManagerDelegate;
 };
 
 declare class MDCSnackbarMessage extends NSObject implements NSCopying, UIAccessibilityIdentification {
+    static alloc(): MDCSnackbarMessage; // inherited from NSObject
 
-	static alloc(): MDCSnackbarMessage; // inherited from NSObject
+    static messageWithAttributedText(attributedText: NSAttributedString): MDCSnackbarMessage;
 
-	static messageWithAttributedText(attributedText: NSAttributedString): MDCSnackbarMessage;
+    static messageWithText(text: string): MDCSnackbarMessage;
 
-	static messageWithText(text: string): MDCSnackbarMessage;
+    static new(): MDCSnackbarMessage; // inherited from NSObject
 
-	static new(): MDCSnackbarMessage; // inherited from NSObject
+    action: MDCSnackbarMessageAction;
 
-	action: MDCSnackbarMessageAction;
+    attributedText: NSAttributedString;
 
-	attributedText: NSAttributedString;
+    automaticallyDismisses: boolean;
 
-	automaticallyDismisses: boolean;
+    buttonTextColor: UIColor;
 
-	buttonTextColor: UIColor;
+    category: string;
 
-	category: string;
+    completionHandler: (p1: boolean) => void;
 
-	completionHandler: (p1: boolean) => void;
+    completionHandlerWithError: (p1: boolean, p2: NSError) => void;
 
-	completionHandlerWithError: (p1: boolean, p2: NSError) => void;
+    duration: number;
 
-	duration: number;
+    elementToFocusOnDismiss: UIView;
 
-	elementToFocusOnDismiss: UIView;
+    enableRippleBehavior: boolean;
 
-	enableRippleBehavior: boolean;
+    focusOnShow: boolean;
 
-	focusOnShow: boolean;
+    presentationHostViewOverride: UIView;
 
-	presentationHostViewOverride: UIView;
+    shouldDismissOnOverlayTap: boolean;
 
-	shouldDismissOnOverlayTap: boolean;
+    snackbarMessageWillPresentBlock: (p1: MDCSnackbarMessage, p2: MDCSnackbarMessageView) => void;
 
-	snackbarMessageWillPresentBlock: (p1: MDCSnackbarMessage, p2: MDCSnackbarMessageView) => void;
+    text: string;
 
-	text: string;
+    readonly voiceNotificationText: string;
 
-	readonly voiceNotificationText: string;
+    static usesLegacySnackbar: boolean;
 
-	static usesLegacySnackbar: boolean;
+    accessibilityIdentifier: string; // inherited from UIAccessibilityIdentification
 
-	accessibilityIdentifier: string; // inherited from UIAccessibilityIdentification
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCSnackbarMessageAction extends NSObject implements NSCopying, UIAccessibilityIdentification {
+    static alloc(): MDCSnackbarMessageAction; // inherited from NSObject
 
-	static alloc(): MDCSnackbarMessageAction; // inherited from NSObject
+    static new(): MDCSnackbarMessageAction; // inherited from NSObject
 
-	static new(): MDCSnackbarMessageAction; // inherited from NSObject
+    handler: () => void;
 
-	handler: () => void;
+    title: string;
 
-	title: string;
+    accessibilityIdentifier: string; // inherited from UIAccessibilityIdentification
 
-	accessibilityIdentifier: string; // inherited from UIAccessibilityIdentification
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
-declare var MDCSnackbarMessageBoldAttributeName: string;
+declare let MDCSnackbarMessageBoldAttributeName: string;
 
-declare var MDCSnackbarMessageDurationMax: number;
+declare let MDCSnackbarMessageDurationMax: number;
 
 declare class MDCSnackbarMessageView extends UIView implements MDCElevatable, MDCElevationOverriding {
+    static alloc(): MDCSnackbarMessageView; // inherited from NSObject
 
-	static alloc(): MDCSnackbarMessageView; // inherited from NSObject
+    static appearance(): MDCSnackbarMessageView; // inherited from UIAppearance
 
-	static appearance(): MDCSnackbarMessageView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCSnackbarMessageView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCSnackbarMessageView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCSnackbarMessageView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCSnackbarMessageView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSnackbarMessageView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSnackbarMessageView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCSnackbarMessageView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCSnackbarMessageView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSnackbarMessageView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCSnackbarMessageView; // inherited from UIAppearance
+    static new(): MDCSnackbarMessageView; // inherited from NSObject
 
-	static new(): MDCSnackbarMessageView; // inherited from NSObject
+    actionButtons: NSMutableArray<MDCButton>;
 
-	actionButtons: NSMutableArray<MDCButton>;
+    adjustsFontForContentSizeCategoryWhenScaledFontIsUnavailable: boolean;
 
-	adjustsFontForContentSizeCategoryWhenScaledFontIsUnavailable: boolean;
+    buttonFont: UIFont;
 
-	buttonFont: UIFont;
+    elevation: number;
 
-	elevation: number;
+    mdc_adjustsFontForContentSizeCategory: boolean;
 
-	mdc_adjustsFontForContentSizeCategory: boolean;
+    messageFont: UIFont;
 
-	messageFont: UIFont;
+    messageTextColor: UIColor;
 
-	messageTextColor: UIColor;
+    snackbarMessageViewBackgroundColor: UIColor;
 
-	snackbarMessageViewBackgroundColor: UIColor;
+    snackbarMessageViewShadowColor: UIColor;
 
-	snackbarMessageViewShadowColor: UIColor;
+    traitCollectionDidChangeBlock: (p1: MDCSnackbarMessageView, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCSnackbarMessageView, p2: UITraitCollection) => void;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly mdc_currentElevation: number; // inherited from MDCElevatable
 
-	readonly mdc_currentElevation: number; // inherited from MDCElevatable
+    mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
 
-	mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
+    mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
 
-	mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    buttonTitleColorForState(state: UIControlState): UIColor;
 
-	buttonTitleColorForState(state: UIControlState): UIColor;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
-
-	setButtonTitleColorForState(titleColor: UIColor, state: UIControlState): void;
+    setButtonTitleColorForState(titleColor: UIColor, state: UIControlState): void;
 }
 
-interface MDCSnackbarSuspensionToken extends NSObjectProtocol {
-}
+interface MDCSnackbarSuspensionToken extends NSObjectProtocol {}
 declare var MDCSnackbarSuspensionToken: {
-
-	prototype: MDCSnackbarSuspensionToken;
+    prototype: MDCSnackbarSuspensionToken;
 };
 
 declare class MDCStatefulRippleView extends MDCRippleView {
+    static alloc(): MDCStatefulRippleView; // inherited from NSObject
 
-	static alloc(): MDCStatefulRippleView; // inherited from NSObject
+    static appearance(): MDCStatefulRippleView; // inherited from UIAppearance
 
-	static appearance(): MDCStatefulRippleView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCStatefulRippleView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCStatefulRippleView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCStatefulRippleView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCStatefulRippleView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCStatefulRippleView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCStatefulRippleView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCStatefulRippleView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCStatefulRippleView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCStatefulRippleView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCStatefulRippleView; // inherited from UIAppearance
+    static new(): MDCStatefulRippleView; // inherited from NSObject
 
-	static new(): MDCStatefulRippleView; // inherited from NSObject
+    allowsSelection: boolean;
 
-	allowsSelection: boolean;
+    dragged: boolean;
 
-	dragged: boolean;
+    rippleHighlighted: boolean;
 
-	rippleHighlighted: boolean;
+    selected: boolean;
 
-	selected: boolean;
+    rippleColorForState(state: MDCRippleState): UIColor;
 
-	rippleColorForState(state: MDCRippleState): UIColor;
-
-	setRippleColorForState(rippleColor: UIColor, state: MDCRippleState): void;
+    setRippleColorForState(rippleColor: UIColor, state: MDCRippleState): void;
 }
 
 declare class MDCSystemFontLoader extends NSObject implements MDCTypographyFontLoading {
+    static alloc(): MDCSystemFontLoader; // inherited from NSObject
 
-	static alloc(): MDCSystemFontLoader; // inherited from NSObject
+    static new(): MDCSystemFontLoader; // inherited from NSObject
 
-	static new(): MDCSystemFontLoader; // inherited from NSObject
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    boldFontFromFont(font: UIFont): UIFont;
 
-	boldFontFromFont(font: UIFont): UIFont;
+    boldFontOfSize(fontSize: number): UIFont;
 
-	boldFontOfSize(fontSize: number): UIFont;
+    boldItalicFontOfSize(fontSize: number): UIFont;
 
-	boldItalicFontOfSize(fontSize: number): UIFont;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isLargeForContrastRatios(font: UIFont): boolean;
 
-	isLargeForContrastRatios(font: UIFont): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    italicFontFromFont(font: UIFont): UIFont;
 
-	italicFontFromFont(font: UIFont): UIFont;
+    italicFontOfSize(fontSize: number): UIFont;
 
-	italicFontOfSize(fontSize: number): UIFont;
+    lightFontOfSize(fontSize: number): UIFont;
 
-	lightFontOfSize(fontSize: number): UIFont;
+    mediumFontOfSize(fontSize: number): UIFont;
 
-	mediumFontOfSize(fontSize: number): UIFont;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    regularFontOfSize(fontSize: number): UIFont;
 
-	regularFontOfSize(fontSize: number): UIFont;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCTabBarItem extends UITabBarItem implements MDCTabBarItemCustomViewing {
+    static alloc(): MDCTabBarItem; // inherited from NSObject
 
-	static alloc(): MDCTabBarItem; // inherited from NSObject
+    static appearance(): MDCTabBarItem; // inherited from UIAppearance
 
-	static appearance(): MDCTabBarItem; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCTabBarItem; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCTabBarItem; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTabBarItem; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTabBarItem; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBarItem; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBarItem; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTabBarItem; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTabBarItem; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBarItem; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBarItem; // inherited from UIAppearance
+    static new(): MDCTabBarItem; // inherited from NSObject
 
-	static new(): MDCTabBarItem; // inherited from NSObject
-
-	mdc_customView: UIView; // inherited from MDCTabBarItemCustomViewing
+    mdc_customView: UIView; // inherited from MDCTabBarItemCustomViewing
 }
 
 interface MDCTabBarItemCustomViewing {
-
-	mdc_customView: UIView;
+    mdc_customView: UIView;
 }
 declare var MDCTabBarItemCustomViewing: {
-
-	prototype: MDCTabBarItemCustomViewing;
+    prototype: MDCTabBarItemCustomViewing;
 };
 
 declare class MDCTabBarView extends UIScrollView implements UILargeContentViewerInteractionDelegate {
+    static alloc(): MDCTabBarView; // inherited from NSObject
 
-	static alloc(): MDCTabBarView; // inherited from NSObject
+    static appearance(): MDCTabBarView; // inherited from UIAppearance
 
-	static appearance(): MDCTabBarView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCTabBarView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCTabBarView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTabBarView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTabBarView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBarView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBarView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTabBarView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTabBarView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBarView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTabBarView; // inherited from UIAppearance
+    static new(): MDCTabBarView; // inherited from NSObject
 
-	static new(): MDCTabBarView; // inherited from NSObject
+    barTintColor: UIColor;
 
-	barTintColor: UIColor;
+    bottomDividerColor: UIColor;
 
-	bottomDividerColor: UIColor;
+    readonly effectiveLayoutStyle: MDCTabBarViewLayoutStyle;
 
-	readonly effectiveLayoutStyle: MDCTabBarViewLayoutStyle;
+    itemViewContentInsets: UIEdgeInsets;
 
-	itemViewContentInsets: UIEdgeInsets;
+    items: NSArray<UITabBarItem>;
 
-	items: NSArray<UITabBarItem>;
+    minItemWidth: number;
 
-	minItemWidth: number;
+    preferredLayoutStyle: MDCTabBarViewLayoutStyle;
 
-	preferredLayoutStyle: MDCTabBarViewLayoutStyle;
+    rippleColor: UIColor;
 
-	rippleColor: UIColor;
+    selectedItem: UITabBarItem;
 
-	selectedItem: UITabBarItem;
+    readonly selectionChangeAnimationDuration: number;
 
-	readonly selectionChangeAnimationDuration: number;
+    readonly selectionChangeAnimationTimingFunction: CAMediaTimingFunction;
 
-	readonly selectionChangeAnimationTimingFunction: CAMediaTimingFunction;
+    selectionIndicatorStrokeColor: UIColor;
 
-	selectionIndicatorStrokeColor: UIColor;
+    selectionIndicatorTemplate: MDCTabBarViewIndicatorTemplate;
 
-	selectionIndicatorTemplate: MDCTabBarViewIndicatorTemplate;
+    shouldAdjustForSafeAreaInsets: boolean;
 
-	shouldAdjustForSafeAreaInsets: boolean;
+    tabBarDelegate: MDCTabBarViewDelegate;
 
-	tabBarDelegate: MDCTabBarViewDelegate;
+    traitCollectionDidChangeBlock: (p1: MDCTabBarView, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCTabBarView, p2: UITraitCollection) => void;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    accessibilityElementForItem(item: UITabBarItem): any;
 
-	accessibilityElementForItem(item: UITabBarItem): any;
+    applyPrimaryThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyPrimaryThemeWithScheme(scheme: MDCContainerScheming): void;
+    applySurfaceThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applySurfaceThemeWithScheme(scheme: MDCContainerScheming): void;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    contentPaddingForLayoutStyle(layoutStyle: MDCTabBarViewLayoutStyle): UIEdgeInsets;
 
-	contentPaddingForLayoutStyle(layoutStyle: MDCTabBarViewLayoutStyle): UIEdgeInsets;
+    imageTintColorForState(state: UIControlState): UIColor;
 
-	imageTintColorForState(state: UIControlState): UIColor;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    largeContentViewerInteractionDidEndOnItemAtPoint(interaction: UILargeContentViewerInteraction, item: UILargeContentViewerItem, point: CGPoint): void;
 
-	largeContentViewerInteractionDidEndOnItemAtPoint(interaction: UILargeContentViewerInteraction, item: UILargeContentViewerItem, point: CGPoint): void;
+    largeContentViewerInteractionItemAtPoint(interaction: UILargeContentViewerInteraction, point: CGPoint): UILargeContentViewerItem;
 
-	largeContentViewerInteractionItemAtPoint(interaction: UILargeContentViewerInteraction, point: CGPoint): UILargeContentViewerItem;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    rectForItemInCoordinateSpace(item: UITabBarItem, coordinateSpace: UICoordinateSpace): CGRect;
 
-	rectForItemInCoordinateSpace(item: UITabBarItem, coordinateSpace: UICoordinateSpace): CGRect;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
+    setContentPaddingForLayoutStyle(contentPadding: UIEdgeInsets, layoutStyle: MDCTabBarViewLayoutStyle): void;
 
-	setContentPaddingForLayoutStyle(contentPadding: UIEdgeInsets, layoutStyle: MDCTabBarViewLayoutStyle): void;
+    setImageTintColorForState(imageTintColor: UIColor, state: UIControlState): void;
 
-	setImageTintColorForState(imageTintColor: UIColor, state: UIControlState): void;
+    setSelectedItemAnimated(selectedItem: UITabBarItem, animated: boolean): void;
 
-	setSelectedItemAnimated(selectedItem: UITabBarItem, animated: boolean): void;
+    setTitleColorForState(titleColor: UIColor, state: UIControlState): void;
 
-	setTitleColorForState(titleColor: UIColor, state: UIControlState): void;
+    setTitleFontForState(titleFont: UIFont, state: UIControlState): void;
 
-	setTitleFontForState(titleFont: UIFont, state: UIControlState): void;
+    titleColorForState(state: UIControlState): UIColor;
 
-	titleColorForState(state: UIControlState): UIColor;
+    titleFontForState(state: UIControlState): UIFont;
 
-	titleFontForState(state: UIControlState): UIFont;
-
-	viewControllerForLargeContentViewerInteraction(interaction: UILargeContentViewerInteraction): UIViewController;
+    viewControllerForLargeContentViewerInteraction(interaction: UILargeContentViewerInteraction): UIViewController;
 }
 
 interface MDCTabBarViewCustomViewable {
+    bounds: CGRect;
 
-	bounds: CGRect;
+    contentFrame: CGRect;
 
-	contentFrame: CGRect;
-
-	setSelectedAnimated(selected: boolean, animated: boolean): void;
+    setSelectedAnimated(selected: boolean, animated: boolean): void;
 }
 declare var MDCTabBarViewCustomViewable: {
-
-	prototype: MDCTabBarViewCustomViewable;
+    prototype: MDCTabBarViewCustomViewable;
 };
 
 interface MDCTabBarViewDelegate extends NSObjectProtocol {
+    tabBarViewDidSelectItem?(tabBarView: MDCTabBarView, item: UITabBarItem): void;
 
-	tabBarViewDidSelectItem?(tabBarView: MDCTabBarView, item: UITabBarItem): void;
-
-	tabBarViewShouldSelectItem?(tabBarView: MDCTabBarView, item: UITabBarItem): boolean;
+    tabBarViewShouldSelectItem?(tabBarView: MDCTabBarView, item: UITabBarItem): boolean;
 }
 declare var MDCTabBarViewDelegate: {
-
-	prototype: MDCTabBarViewDelegate;
+    prototype: MDCTabBarViewDelegate;
 };
 
 declare class MDCTabBarViewIndicatorAttributes extends NSObject implements NSCopying {
+    static alloc(): MDCTabBarViewIndicatorAttributes; // inherited from NSObject
 
-	static alloc(): MDCTabBarViewIndicatorAttributes; // inherited from NSObject
+    static new(): MDCTabBarViewIndicatorAttributes; // inherited from NSObject
 
-	static new(): MDCTabBarViewIndicatorAttributes; // inherited from NSObject
+    path: UIBezierPath;
 
-	path: UIBezierPath;
-
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 }
 
 interface MDCTabBarViewIndicatorContext extends NSObjectProtocol {
+    bounds: CGRect;
 
-	bounds: CGRect;
+    contentFrame: CGRect;
 
-	contentFrame: CGRect;
-
-	item: UITabBarItem;
+    item: UITabBarItem;
 }
 declare var MDCTabBarViewIndicatorContext: {
-
-	prototype: MDCTabBarViewIndicatorContext;
+    prototype: MDCTabBarViewIndicatorContext;
 };
 
 interface MDCTabBarViewIndicatorTemplate extends NSObjectProtocol {
-
-	indicatorAttributesForContext(context: MDCTabBarViewIndicatorContext): MDCTabBarViewIndicatorAttributes;
+    indicatorAttributesForContext(context: MDCTabBarViewIndicatorContext): MDCTabBarViewIndicatorAttributes;
 }
 declare var MDCTabBarViewIndicatorTemplate: {
-
-	prototype: MDCTabBarViewIndicatorTemplate;
+    prototype: MDCTabBarViewIndicatorTemplate;
 };
 
 declare const enum MDCTabBarViewLayoutStyle {
+    Fixed = 0,
 
-	Fixed = 0,
+    Scrollable = 1,
 
-	Scrollable = 1,
+    FixedClusteredCentered = 2,
 
-	FixedClusteredCentered = 2,
+    FixedClusteredLeading = 3,
 
-	FixedClusteredLeading = 3,
+    FixedClusteredTrailing = 4,
 
-	FixedClusteredTrailing = 4,
+    ScrollableCentered = 5,
 
-	ScrollableCentered = 5,
-
-	NonFixedClusteredCentered = 6
+    NonFixedClusteredCentered = 6
 }
 
 declare class MDCTabBarViewUnderlineIndicatorTemplate extends NSObject implements MDCTabBarViewIndicatorTemplate {
+    static alloc(): MDCTabBarViewUnderlineIndicatorTemplate; // inherited from NSObject
 
-	static alloc(): MDCTabBarViewUnderlineIndicatorTemplate; // inherited from NSObject
+    static new(): MDCTabBarViewUnderlineIndicatorTemplate; // inherited from NSObject
 
-	static new(): MDCTabBarViewUnderlineIndicatorTemplate; // inherited from NSObject
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    indicatorAttributesForContext(context: MDCTabBarViewIndicatorContext): MDCTabBarViewIndicatorAttributes;
 
-	indicatorAttributesForContext(context: MDCTabBarViewIndicatorContext): MDCTabBarViewIndicatorAttributes;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCTextButtonColorThemer extends NSObject {
+    static alloc(): MDCTextButtonColorThemer; // inherited from NSObject
 
-	static alloc(): MDCTextButtonColorThemer; // inherited from NSObject
+    static applySemanticColorSchemeToButton(colorScheme: MDCColorScheming, button: MDCButton): void;
 
-	static applySemanticColorSchemeToButton(colorScheme: MDCColorScheming, button: MDCButton): void;
-
-	static new(): MDCTextButtonColorThemer; // inherited from NSObject
+    static new(): MDCTextButtonColorThemer; // inherited from NSObject
 }
 
 interface MDCTextControl extends NSObjectProtocol {
+    assistiveLabelDrawPriority: MDCTextControlAssistiveLabelDrawPriority;
 
-	assistiveLabelDrawPriority: MDCTextControlAssistiveLabelDrawPriority;
+    containerFrame: CGRect;
 
-	containerFrame: CGRect;
+    containerStyle: MDCTextControlStyle;
 
-	containerStyle: MDCTextControlStyle;
+    customAssistiveLabelDrawPriority: number;
 
-	customAssistiveLabelDrawPriority: number;
+    floatingFont: UIFont;
 
-	floatingFont: UIFont;
+    label: UILabel;
 
-	label: UILabel;
+    labelBehavior: MDCTextControlLabelBehavior;
 
-	labelBehavior: MDCTextControlLabelBehavior;
+    labelFrame: CGRect;
 
-	labelFrame: CGRect;
+    labelPosition: MDCTextControlLabelPosition;
 
-	labelPosition: MDCTextControlLabelPosition;
+    leadingAssistiveLabel: UILabel;
 
-	leadingAssistiveLabel: UILabel;
+    leadingView: UIView;
 
-	leadingView: UIView;
+    leadingViewMode: UITextFieldViewMode;
 
-	leadingViewMode: UITextFieldViewMode;
+    normalFont: UIFont;
 
-	normalFont: UIFont;
+    numberOfLinesOfVisibleText: number;
 
-	numberOfLinesOfVisibleText: number;
+    preferredContainerHeight: number;
 
-	preferredContainerHeight: number;
+    textControlState: MDCTextControlState;
 
-	textControlState: MDCTextControlState;
+    trailingAssistiveLabel: UILabel;
 
-	trailingAssistiveLabel: UILabel;
+    trailingView: UIView;
 
-	trailingView: UIView;
+    trailingViewMode: UITextFieldViewMode;
 
-	trailingViewMode: UITextFieldViewMode;
+    setTextControlColorViewModelForState(textControlColorViewModel: MDCTextControlColorViewModel, textFieldState: MDCTextControlState): void;
 
-	setTextControlColorViewModelForState(textControlColorViewModel: MDCTextControlColorViewModel, textFieldState: MDCTextControlState): void;
-
-	textControlColorViewModelForState(textControlState: MDCTextControlState): MDCTextControlColorViewModel;
+    textControlColorViewModelForState(textControlState: MDCTextControlState): MDCTextControlColorViewModel;
 }
 declare var MDCTextControl: {
-
-	prototype: MDCTextControl;
+    prototype: MDCTextControl;
 };
 
 declare const enum MDCTextControlAssistiveLabelDrawPriority {
+    Leading = 0,
 
-	Leading = 0,
+    Trailing = 1,
 
-	Trailing = 1,
-
-	Custom = 2
+    Custom = 2
 }
 
 declare class MDCTextControlAssistiveLabelView extends UIView {
+    static alloc(): MDCTextControlAssistiveLabelView; // inherited from NSObject
 
-	static alloc(): MDCTextControlAssistiveLabelView; // inherited from NSObject
+    static appearance(): MDCTextControlAssistiveLabelView; // inherited from UIAppearance
 
-	static appearance(): MDCTextControlAssistiveLabelView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCTextControlAssistiveLabelView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCTextControlAssistiveLabelView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTextControlAssistiveLabelView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTextControlAssistiveLabelView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextControlAssistiveLabelView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextControlAssistiveLabelView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTextControlAssistiveLabelView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTextControlAssistiveLabelView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextControlAssistiveLabelView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextControlAssistiveLabelView; // inherited from UIAppearance
+    static new(): MDCTextControlAssistiveLabelView; // inherited from NSObject
 
-	static new(): MDCTextControlAssistiveLabelView; // inherited from NSObject
+    layout: MDCTextControlAssistiveLabelViewLayout;
 
-	layout: MDCTextControlAssistiveLabelViewLayout;
+    readonly leadingAssistiveLabel: UILabel;
 
-	readonly leadingAssistiveLabel: UILabel;
-
-	readonly trailingAssistiveLabel: UILabel;
+    readonly trailingAssistiveLabel: UILabel;
 }
 
 declare class MDCTextControlAssistiveLabelViewLayout extends NSObject {
+    static alloc(): MDCTextControlAssistiveLabelViewLayout; // inherited from NSObject
 
-	static alloc(): MDCTextControlAssistiveLabelViewLayout; // inherited from NSObject
+    static new(): MDCTextControlAssistiveLabelViewLayout; // inherited from NSObject
 
-	static new(): MDCTextControlAssistiveLabelViewLayout; // inherited from NSObject
+    readonly calculatedHeight: number;
 
-	readonly calculatedHeight: number;
+    readonly leadingAssistiveLabelFrame: CGRect;
 
-	readonly leadingAssistiveLabelFrame: CGRect;
+    readonly trailingAssistiveLabelFrame: CGRect;
 
-	readonly trailingAssistiveLabelFrame: CGRect;
+    constructor(o: {
+        width: number;
+        leadingAssistiveLabel: UILabel;
+        trailingAssistiveLabel: UILabel;
+        assistiveLabelDrawPriority: MDCTextControlAssistiveLabelDrawPriority;
+        customAssistiveLabelDrawPriority: number;
+        leadingEdgePadding: number;
+        trailingEdgePadding: number;
+        paddingAboveAssistiveLabels: number;
+        paddingBelowAssistiveLabels: number;
+        isRTL: boolean;
+    });
 
-	constructor(o: { width: number; leadingAssistiveLabel: UILabel; trailingAssistiveLabel: UILabel; assistiveLabelDrawPriority: MDCTextControlAssistiveLabelDrawPriority; customAssistiveLabelDrawPriority: number; leadingEdgePadding: number; trailingEdgePadding: number; paddingAboveAssistiveLabels: number; paddingBelowAssistiveLabels: number; isRTL: boolean; });
-
-	initWithWidthLeadingAssistiveLabelTrailingAssistiveLabelAssistiveLabelDrawPriorityCustomAssistiveLabelDrawPriorityLeadingEdgePaddingTrailingEdgePaddingPaddingAboveAssistiveLabelsPaddingBelowAssistiveLabelsIsRTL(superviewWidth: number, leadingAssistiveLabel: UILabel, trailingAssistiveLabel: UILabel, assistiveLabelDrawPriority: MDCTextControlAssistiveLabelDrawPriority, customAssistiveLabelDrawPriority: number, leadingEdgePadding: number, trailingEdgePadding: number, paddingAboveAssistiveLabels: number, paddingBelowAssistiveLabels: number, isRTL: boolean): this;
+    initWithWidthLeadingAssistiveLabelTrailingAssistiveLabelAssistiveLabelDrawPriorityCustomAssistiveLabelDrawPriorityLeadingEdgePaddingTrailingEdgePaddingPaddingAboveAssistiveLabelsPaddingBelowAssistiveLabelsIsRTL(
+        superviewWidth: number,
+        leadingAssistiveLabel: UILabel,
+        trailingAssistiveLabel: UILabel,
+        assistiveLabelDrawPriority: MDCTextControlAssistiveLabelDrawPriority,
+        customAssistiveLabelDrawPriority: number,
+        leadingEdgePadding: number,
+        trailingEdgePadding: number,
+        paddingAboveAssistiveLabels: number,
+        paddingBelowAssistiveLabels: number,
+        isRTL: boolean
+    ): this;
 }
 
 declare function MDCTextControlCalculateContainerHeightWhenNoFloatingLabelWithTextRowHeight(textRowHeight: number, numberOfTextRows: number, paddingAroundTextWhenNoFloatingLabel: number): number;
 
-declare function MDCTextControlCalculateContainerHeightWithFloatingLabelHeight(floatingLabelHeight: number, textRowHeight: number, numberOfTextRows: number, paddingBetweenContainerTopAndFloatingLabel: number, paddingBetweenFloatingLabelAndEditingText: number, paddingBetweenEditingTextAndContainerBottom: number): number;
+declare function MDCTextControlCalculateContainerHeightWithFloatingLabelHeight(
+    floatingLabelHeight: number,
+    textRowHeight: number,
+    numberOfTextRows: number,
+    paddingBetweenContainerTopAndFloatingLabel: number,
+    paddingBetweenFloatingLabelAndEditingText: number,
+    paddingBetweenEditingTextAndContainerBottom: number
+): number;
 
 declare function MDCTextControlClampDensity(density: number): number;
 
 declare class MDCTextControlColorViewModel extends NSObject {
+    static alloc(): MDCTextControlColorViewModel; // inherited from NSObject
 
-	static alloc(): MDCTextControlColorViewModel; // inherited from NSObject
+    static new(): MDCTextControlColorViewModel; // inherited from NSObject
 
-	static new(): MDCTextControlColorViewModel; // inherited from NSObject
+    floatingLabelColor: UIColor;
 
-	floatingLabelColor: UIColor;
+    leadingAssistiveLabelColor: UIColor;
 
-	leadingAssistiveLabelColor: UIColor;
+    normalLabelColor: UIColor;
 
-	normalLabelColor: UIColor;
+    textColor: UIColor;
 
-	textColor: UIColor;
+    trailingAssistiveLabelColor: UIColor;
 
-	trailingAssistiveLabelColor: UIColor;
+    constructor(o: { state: MDCTextControlState });
 
-	constructor(o: { state: MDCTextControlState; });
-
-	initWithState(state: MDCTextControlState): this;
+    initWithState(state: MDCTextControlState): this;
 }
 
 declare function MDCTextControlDefaultUITextFieldFont(): UIFont;
 
 declare class MDCTextControlGradientManager extends NSObject {
+    static alloc(): MDCTextControlGradientManager; // inherited from NSObject
 
-	static alloc(): MDCTextControlGradientManager; // inherited from NSObject
+    static new(): MDCTextControlGradientManager; // inherited from NSObject
 
-	static new(): MDCTextControlGradientManager; // inherited from NSObject
+    horizontalGradient: CAGradientLayer;
 
-	horizontalGradient: CAGradientLayer;
+    verticalGradient: CAGradientLayer;
 
-	verticalGradient: CAGradientLayer;
-
-	combinedGradientMaskLayer(): CALayer;
+    combinedGradientMaskLayer(): CALayer;
 }
 
 interface MDCTextControlHorizontalPositioning {
+    horizontalInterItemSpacing: number;
 
-	horizontalInterItemSpacing: number;
+    leadingEdgePadding: number;
 
-	leadingEdgePadding: number;
-
-	trailingEdgePadding: number;
+    trailingEdgePadding: number;
 }
 declare var MDCTextControlHorizontalPositioning: {
-
-	prototype: MDCTextControlHorizontalPositioning;
+    prototype: MDCTextControlHorizontalPositioning;
 };
 
 declare class MDCTextControlHorizontalPositioningReference extends NSObject implements MDCTextControlHorizontalPositioning {
+    static alloc(): MDCTextControlHorizontalPositioningReference; // inherited from NSObject
 
-	static alloc(): MDCTextControlHorizontalPositioningReference; // inherited from NSObject
+    static new(): MDCTextControlHorizontalPositioningReference; // inherited from NSObject
 
-	static new(): MDCTextControlHorizontalPositioningReference; // inherited from NSObject
+    horizontalInterItemSpacing: number; // inherited from MDCTextControlHorizontalPositioning
 
-	horizontalInterItemSpacing: number; // inherited from MDCTextControlHorizontalPositioning
+    leadingEdgePadding: number; // inherited from MDCTextControlHorizontalPositioning
 
-	leadingEdgePadding: number; // inherited from MDCTextControlHorizontalPositioning
-
-	trailingEdgePadding: number; // inherited from MDCTextControlHorizontalPositioning
+    trailingEdgePadding: number; // inherited from MDCTextControlHorizontalPositioning
 }
 
 declare class MDCTextControlLabelAnimation extends NSObject {
+    static alloc(): MDCTextControlLabelAnimation; // inherited from NSObject
 
-	static alloc(): MDCTextControlLabelAnimation; // inherited from NSObject
+    static animateLabelStateNormalLabelFrameFloatingLabelFrameNormalFontFloatingFontAnimationDurationCompletion(
+        label: UILabel,
+        labelPosition: MDCTextControlLabelPosition,
+        normalLabelFrame: CGRect,
+        floatingLabelFrame: CGRect,
+        normalFont: UIFont,
+        floatingFont: UIFont,
+        animationDuration: number,
+        completion: (p1: boolean) => void
+    ): void;
 
-	static animateLabelStateNormalLabelFrameFloatingLabelFrameNormalFontFloatingFontAnimationDurationCompletion(label: UILabel, labelPosition: MDCTextControlLabelPosition, normalLabelFrame: CGRect, floatingLabelFrame: CGRect, normalFont: UIFont, floatingFont: UIFont, animationDuration: number, completion: (p1: boolean) => void): void;
-
-	static new(): MDCTextControlLabelAnimation; // inherited from NSObject
+    static new(): MDCTextControlLabelAnimation; // inherited from NSObject
 }
 
 declare const enum MDCTextControlLabelBehavior {
+    Floats = 0,
 
-	Floats = 0,
-
-	Disappears = 1
+    Disappears = 1
 }
 
 declare const enum MDCTextControlLabelPosition {
+    None = 0,
 
-	None = 0,
+    Floating = 1,
 
-	Floating = 1,
-
-	Normal = 2
+    Normal = 2
 }
 
 declare function MDCTextControlLabelPositionWith(hasLabelText: boolean, hasText: boolean, canLabelFloat: boolean, isEditing: boolean): MDCTextControlLabelPosition;
@@ -4447,1932 +4570,1980 @@ declare function MDCTextControlShouldLayoutForFloatingLabelWithLabelPosition(lab
 declare function MDCTextControlShouldPlaceholderBeVisibleWithPlaceholder(placeholder: string, text: string, labelPosition: MDCTextControlLabelPosition): boolean;
 
 declare const enum MDCTextControlState {
+    Normal = 0,
 
-	Normal = 0,
+    Editing = 1,
 
-	Editing = 1,
-
-	Disabled = 2
+    Disabled = 2
 }
 
 declare function MDCTextControlStateWith(isEnabled: boolean, isEditing: boolean): MDCTextControlState;
 
 interface MDCTextControlStyle extends NSObjectProtocol {
+    applyStyleToTextControlAnimationDuration(textControl: UIView, animationDuration: number): void;
 
-	applyStyleToTextControlAnimationDuration(textControl: UIView, animationDuration: number): void;
+    floatingFontWithNormalFont(font: UIFont): UIFont;
 
-	floatingFontWithNormalFont(font: UIFont): UIFont;
+    horizontalPositioningReference(): MDCTextControlHorizontalPositioningReference;
 
-	horizontalPositioningReference(): MDCTextControlHorizontalPositioningReference;
+    positioningReferenceWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(
+        floatingLabelHeight: number,
+        normalFontLineHeight: number,
+        textRowHeight: number,
+        numberOfTextRows: number,
+        density: number,
+        preferredContainerHeight: number,
+        isMultilineTextControl: boolean
+    ): MDCTextControlVerticalPositioningReference;
 
-	positioningReferenceWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(floatingLabelHeight: number, normalFontLineHeight: number, textRowHeight: number, numberOfTextRows: number, density: number, preferredContainerHeight: number, isMultilineTextControl: boolean): MDCTextControlVerticalPositioningReference;
-
-	removeStyleFrom(textControl: MDCTextControl): void;
+    removeStyleFrom(textControl: MDCTextControl): void;
 }
 declare var MDCTextControlStyle: {
-
-	prototype: MDCTextControlStyle;
+    prototype: MDCTextControlStyle;
 };
 
 declare class MDCTextControlStyleBase extends NSObject implements MDCTextControlStyle {
+    static alloc(): MDCTextControlStyleBase; // inherited from NSObject
 
-	static alloc(): MDCTextControlStyleBase; // inherited from NSObject
+    static new(): MDCTextControlStyleBase; // inherited from NSObject
 
-	static new(): MDCTextControlStyleBase; // inherited from NSObject
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    applyStyleToTextControlAnimationDuration(textControl: UIView, animationDuration: number): void;
 
-	applyStyleToTextControlAnimationDuration(textControl: UIView, animationDuration: number): void;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    floatingFontWithNormalFont(font: UIFont): UIFont;
 
-	floatingFontWithNormalFont(font: UIFont): UIFont;
+    horizontalPositioningReference(): MDCTextControlHorizontalPositioningReference;
 
-	horizontalPositioningReference(): MDCTextControlHorizontalPositioningReference;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    positioningReferenceWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(
+        floatingLabelHeight: number,
+        normalFontLineHeight: number,
+        textRowHeight: number,
+        numberOfTextRows: number,
+        density: number,
+        preferredContainerHeight: number,
+        isMultilineTextControl: boolean
+    ): MDCTextControlVerticalPositioningReference;
 
-	positioningReferenceWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(floatingLabelHeight: number, normalFontLineHeight: number, textRowHeight: number, numberOfTextRows: number, density: number, preferredContainerHeight: number, isMultilineTextControl: boolean): MDCTextControlVerticalPositioningReference;
+    removeStyleFrom(textControl: MDCTextControl): void;
 
-	removeStyleFrom(textControl: MDCTextControl): void;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCTextControlStyleFilled extends MDCTextControlStyleUnderlined implements MDCTextControlStyle {
+    static alloc(): MDCTextControlStyleFilled; // inherited from NSObject
 
-	static alloc(): MDCTextControlStyleFilled; // inherited from NSObject
+    static new(): MDCTextControlStyleFilled; // inherited from NSObject
 
-	static new(): MDCTextControlStyleFilled; // inherited from NSObject
+    topCornerRadius: number;
 
-	topCornerRadius: number;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    applyStyleToTextControlAnimationDuration(textControl: UIView, animationDuration: number): void;
 
-	applyStyleToTextControlAnimationDuration(textControl: UIView, animationDuration: number): void;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    filledBackgroundColorForState(state: MDCTextControlState): UIColor;
 
-	filledBackgroundColorForState(state: MDCTextControlState): UIColor;
+    floatingFontWithNormalFont(font: UIFont): UIFont;
 
-	floatingFontWithNormalFont(font: UIFont): UIFont;
+    horizontalPositioningReference(): MDCTextControlHorizontalPositioningReference;
 
-	horizontalPositioningReference(): MDCTextControlHorizontalPositioningReference;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    positioningReferenceWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(
+        floatingLabelHeight: number,
+        normalFontLineHeight: number,
+        textRowHeight: number,
+        numberOfTextRows: number,
+        density: number,
+        preferredContainerHeight: number,
+        isMultilineTextControl: boolean
+    ): MDCTextControlVerticalPositioningReference;
 
-	positioningReferenceWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(floatingLabelHeight: number, normalFontLineHeight: number, textRowHeight: number, numberOfTextRows: number, density: number, preferredContainerHeight: number, isMultilineTextControl: boolean): MDCTextControlVerticalPositioningReference;
+    removeStyleFrom(textControl: MDCTextControl): void;
 
-	removeStyleFrom(textControl: MDCTextControl): void;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
-
-	setFilledBackgroundColorForState(filledBackgroundColor: UIColor, state: MDCTextControlState): void;
+    setFilledBackgroundColorForState(filledBackgroundColor: UIColor, state: MDCTextControlState): void;
 }
 
 declare class MDCTextControlStyleOutlined extends NSObject implements MDCTextControlStyle {
+    static alloc(): MDCTextControlStyleOutlined; // inherited from NSObject
 
-	static alloc(): MDCTextControlStyleOutlined; // inherited from NSObject
+    static new(): MDCTextControlStyleOutlined; // inherited from NSObject
 
-	static new(): MDCTextControlStyleOutlined; // inherited from NSObject
+    outlineCornerRadius: number;
 
-	outlineCornerRadius: number;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    applyStyleToTextControlAnimationDuration(textControl: UIView, animationDuration: number): void;
 
-	applyStyleToTextControlAnimationDuration(textControl: UIView, animationDuration: number): void;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    floatingFontWithNormalFont(font: UIFont): UIFont;
 
-	floatingFontWithNormalFont(font: UIFont): UIFont;
+    horizontalPositioningReference(): MDCTextControlHorizontalPositioningReference;
 
-	horizontalPositioningReference(): MDCTextControlHorizontalPositioningReference;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    outlineColorForState(state: MDCTextControlState): UIColor;
 
-	outlineColorForState(state: MDCTextControlState): UIColor;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    positioningReferenceWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(
+        floatingLabelHeight: number,
+        normalFontLineHeight: number,
+        textRowHeight: number,
+        numberOfTextRows: number,
+        density: number,
+        preferredContainerHeight: number,
+        isMultilineTextControl: boolean
+    ): MDCTextControlVerticalPositioningReference;
 
-	positioningReferenceWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(floatingLabelHeight: number, normalFontLineHeight: number, textRowHeight: number, numberOfTextRows: number, density: number, preferredContainerHeight: number, isMultilineTextControl: boolean): MDCTextControlVerticalPositioningReference;
+    removeStyleFrom(textControl: MDCTextControl): void;
 
-	removeStyleFrom(textControl: MDCTextControl): void;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
-
-	setOutlineColorForState(outlineColor: UIColor, state: MDCTextControlState): void;
+    setOutlineColorForState(outlineColor: UIColor, state: MDCTextControlState): void;
 }
 
 declare class MDCTextControlStyleUnderlined extends NSObject implements MDCTextControlStyle {
+    static alloc(): MDCTextControlStyleUnderlined; // inherited from NSObject
 
-	static alloc(): MDCTextControlStyleUnderlined; // inherited from NSObject
+    static new(): MDCTextControlStyleUnderlined; // inherited from NSObject
 
-	static new(): MDCTextControlStyleUnderlined; // inherited from NSObject
+    editingUnderlineThickness: number;
 
-	editingUnderlineThickness: number;
+    normalUnderlineThickness: number;
 
-	normalUnderlineThickness: number;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    applyStyleToTextControlAnimationDuration(textControl: UIView, animationDuration: number): void;
 
-	applyStyleToTextControlAnimationDuration(textControl: UIView, animationDuration: number): void;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    floatingFontWithNormalFont(font: UIFont): UIFont;
 
-	floatingFontWithNormalFont(font: UIFont): UIFont;
+    horizontalPositioningReference(): MDCTextControlHorizontalPositioningReference;
 
-	horizontalPositioningReference(): MDCTextControlHorizontalPositioningReference;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    positioningReferenceWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(
+        floatingLabelHeight: number,
+        normalFontLineHeight: number,
+        textRowHeight: number,
+        numberOfTextRows: number,
+        density: number,
+        preferredContainerHeight: number,
+        isMultilineTextControl: boolean
+    ): MDCTextControlVerticalPositioningReference;
 
-	positioningReferenceWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(floatingLabelHeight: number, normalFontLineHeight: number, textRowHeight: number, numberOfTextRows: number, density: number, preferredContainerHeight: number, isMultilineTextControl: boolean): MDCTextControlVerticalPositioningReference;
+    removeStyleFrom(textControl: MDCTextControl): void;
 
-	removeStyleFrom(textControl: MDCTextControl): void;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
+    setEditingUnderlineThicknessAnimated(thickness: number, animated: boolean): void;
 
-	setEditingUnderlineThicknessAnimated(thickness: number, animated: boolean): void;
+    setNormalUnderlineThicknessAnimated(thickness: number, animated: boolean): void;
 
-	setNormalUnderlineThicknessAnimated(thickness: number, animated: boolean): void;
+    setUnderlineColorForState(underlineColor: UIColor, state: MDCTextControlState): void;
 
-	setUnderlineColorForState(underlineColor: UIColor, state: MDCTextControlState): void;
-
-	underlineColorForState(state: MDCTextControlState): UIColor;
+    underlineColorForState(state: MDCTextControlState): UIColor;
 }
 
 interface MDCTextControlTextField extends MDCTextControl {
-
-	sideViewAlignment: MDCTextControlTextFieldSideViewAlignment;
+    sideViewAlignment: MDCTextControlTextFieldSideViewAlignment;
 }
 declare var MDCTextControlTextField: {
-
-	prototype: MDCTextControlTextField;
+    prototype: MDCTextControlTextField;
 };
 
 declare const enum MDCTextControlTextFieldSideViewAlignment {
+    CenteredInContainer = 0,
 
-	CenteredInContainer = 0,
-
-	AlignedWithText = 1
+    AlignedWithText = 1
 }
 
 interface MDCTextControlVerticalPositioningReference extends NSObjectProtocol {
+    containerHeightWithFloatingLabel: number;
 
-	containerHeightWithFloatingLabel: number;
+    containerHeightWithoutFloatingLabel: number;
 
-	containerHeightWithoutFloatingLabel: number;
+    paddingAboveAssistiveLabels: number;
 
-	paddingAboveAssistiveLabels: number;
+    paddingAroundTextWhenNoFloatingLabel: number;
 
-	paddingAroundTextWhenNoFloatingLabel: number;
+    paddingBelowAssistiveLabels: number;
 
-	paddingBelowAssistiveLabels: number;
+    paddingBetweenContainerTopAndFloatingLabel: number;
 
-	paddingBetweenContainerTopAndFloatingLabel: number;
+    paddingBetweenContainerTopAndNormalLabel: number;
 
-	paddingBetweenContainerTopAndNormalLabel: number;
+    paddingBetweenEditingTextAndContainerBottom: number;
 
-	paddingBetweenEditingTextAndContainerBottom: number;
-
-	paddingBetweenFloatingLabelAndEditingText: number;
+    paddingBetweenFloatingLabelAndEditingText: number;
 }
 declare var MDCTextControlVerticalPositioningReference: {
-
-	prototype: MDCTextControlVerticalPositioningReference;
+    prototype: MDCTextControlVerticalPositioningReference;
 };
 
 declare class MDCTextControlVerticalPositioningReferenceBase extends NSObject implements MDCTextControlVerticalPositioningReference {
+    static alloc(): MDCTextControlVerticalPositioningReferenceBase; // inherited from NSObject
 
-	static alloc(): MDCTextControlVerticalPositioningReferenceBase; // inherited from NSObject
+    static new(): MDCTextControlVerticalPositioningReferenceBase; // inherited from NSObject
 
-	static new(): MDCTextControlVerticalPositioningReferenceBase; // inherited from NSObject
+    readonly containerHeightWithFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly containerHeightWithFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly containerHeightWithoutFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly containerHeightWithoutFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly paddingAboveAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingAboveAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingAroundTextWhenNoFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingAroundTextWhenNoFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBelowAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBelowAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenContainerTopAndFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenContainerTopAndFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenContainerTopAndNormalLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenContainerTopAndNormalLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenEditingTextAndContainerBottom: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenEditingTextAndContainerBottom: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenFloatingLabelAndEditingText: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenFloatingLabelAndEditingText: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    constructor(o: {
+        floatingFontLineHeight: number;
+        normalFontLineHeight: number;
+        textRowHeight: number;
+        numberOfTextRows: number;
+        density: number;
+        preferredContainerHeight: number;
+        isMultilineTextControl: boolean;
+    });
 
-	constructor(o: { floatingFontLineHeight: number; normalFontLineHeight: number; textRowHeight: number; numberOfTextRows: number; density: number; preferredContainerHeight: number; isMultilineTextControl: boolean; });
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    initWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(
+        floatingLabelHeight: number,
+        normalFontLineHeight: number,
+        textRowHeight: number,
+        numberOfTextRows: number,
+        density: number,
+        preferredContainerHeight: number,
+        isMultilineTextControl: boolean
+    ): this;
 
-	initWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(floatingLabelHeight: number, normalFontLineHeight: number, textRowHeight: number, numberOfTextRows: number, density: number, preferredContainerHeight: number, isMultilineTextControl: boolean): this;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCTextControlVerticalPositioningReferenceFilled extends NSObject implements MDCTextControlVerticalPositioningReference {
+    static alloc(): MDCTextControlVerticalPositioningReferenceFilled; // inherited from NSObject
 
-	static alloc(): MDCTextControlVerticalPositioningReferenceFilled; // inherited from NSObject
+    static new(): MDCTextControlVerticalPositioningReferenceFilled; // inherited from NSObject
 
-	static new(): MDCTextControlVerticalPositioningReferenceFilled; // inherited from NSObject
+    readonly containerHeightWithFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly containerHeightWithFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly containerHeightWithoutFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly containerHeightWithoutFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly paddingAboveAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingAboveAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingAroundTextWhenNoFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingAroundTextWhenNoFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBelowAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBelowAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenContainerTopAndFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenContainerTopAndFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenContainerTopAndNormalLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenContainerTopAndNormalLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenEditingTextAndContainerBottom: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenEditingTextAndContainerBottom: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenFloatingLabelAndEditingText: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenFloatingLabelAndEditingText: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    constructor(o: {
+        floatingFontLineHeight: number;
+        normalFontLineHeight: number;
+        textRowHeight: number;
+        numberOfTextRows: number;
+        density: number;
+        preferredContainerHeight: number;
+        isMultilineTextControl: boolean;
+    });
 
-	constructor(o: { floatingFontLineHeight: number; normalFontLineHeight: number; textRowHeight: number; numberOfTextRows: number; density: number; preferredContainerHeight: number; isMultilineTextControl: boolean; });
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    initWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(
+        floatingLabelHeight: number,
+        normalFontLineHeight: number,
+        textRowHeight: number,
+        numberOfTextRows: number,
+        density: number,
+        preferredContainerHeight: number,
+        isMultilineTextControl: boolean
+    ): this;
 
-	initWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(floatingLabelHeight: number, normalFontLineHeight: number, textRowHeight: number, numberOfTextRows: number, density: number, preferredContainerHeight: number, isMultilineTextControl: boolean): this;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCTextControlVerticalPositioningReferenceOutlined extends NSObject implements MDCTextControlVerticalPositioningReference {
+    static alloc(): MDCTextControlVerticalPositioningReferenceOutlined; // inherited from NSObject
 
-	static alloc(): MDCTextControlVerticalPositioningReferenceOutlined; // inherited from NSObject
+    static new(): MDCTextControlVerticalPositioningReferenceOutlined; // inherited from NSObject
 
-	static new(): MDCTextControlVerticalPositioningReferenceOutlined; // inherited from NSObject
+    readonly containerHeightWithFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly containerHeightWithFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly containerHeightWithoutFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly containerHeightWithoutFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly paddingAboveAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingAboveAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingAroundTextWhenNoFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingAroundTextWhenNoFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBelowAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBelowAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenContainerTopAndFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenContainerTopAndFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenContainerTopAndNormalLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenContainerTopAndNormalLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenEditingTextAndContainerBottom: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenEditingTextAndContainerBottom: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenFloatingLabelAndEditingText: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenFloatingLabelAndEditingText: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    constructor(o: {
+        floatingFontLineHeight: number;
+        normalFontLineHeight: number;
+        textRowHeight: number;
+        numberOfTextRows: number;
+        density: number;
+        preferredContainerHeight: number;
+        isMultilineTextControl: boolean;
+    });
 
-	constructor(o: { floatingFontLineHeight: number; normalFontLineHeight: number; textRowHeight: number; numberOfTextRows: number; density: number; preferredContainerHeight: number; isMultilineTextControl: boolean; });
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    initWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(
+        floatingLabelHeight: number,
+        normalFontLineHeight: number,
+        textRowHeight: number,
+        numberOfTextRows: number,
+        density: number,
+        preferredContainerHeight: number,
+        isMultilineTextControl: boolean
+    ): this;
 
-	initWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(floatingLabelHeight: number, normalFontLineHeight: number, textRowHeight: number, numberOfTextRows: number, density: number, preferredContainerHeight: number, isMultilineTextControl: boolean): this;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCTextControlVerticalPositioningReferenceUnderlined extends NSObject implements MDCTextControlVerticalPositioningReference {
+    static alloc(): MDCTextControlVerticalPositioningReferenceUnderlined; // inherited from NSObject
 
-	static alloc(): MDCTextControlVerticalPositioningReferenceUnderlined; // inherited from NSObject
+    static new(): MDCTextControlVerticalPositioningReferenceUnderlined; // inherited from NSObject
 
-	static new(): MDCTextControlVerticalPositioningReferenceUnderlined; // inherited from NSObject
+    readonly containerHeightWithFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly containerHeightWithFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly containerHeightWithoutFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly containerHeightWithoutFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly paddingAboveAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingAboveAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingAroundTextWhenNoFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingAroundTextWhenNoFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBelowAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBelowAssistiveLabels: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenContainerTopAndFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenContainerTopAndFloatingLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenContainerTopAndNormalLabel: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenContainerTopAndNormalLabel: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenEditingTextAndContainerBottom: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenEditingTextAndContainerBottom: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly paddingBetweenFloatingLabelAndEditingText: number; // inherited from MDCTextControlVerticalPositioningReference
 
-	readonly paddingBetweenFloatingLabelAndEditingText: number; // inherited from MDCTextControlVerticalPositioningReference
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    constructor(o: {
+        floatingFontLineHeight: number;
+        normalFontLineHeight: number;
+        textRowHeight: number;
+        numberOfTextRows: number;
+        density: number;
+        preferredContainerHeight: number;
+        isMultilineTextControl: boolean;
+    });
 
-	constructor(o: { floatingFontLineHeight: number; normalFontLineHeight: number; textRowHeight: number; numberOfTextRows: number; density: number; preferredContainerHeight: number; isMultilineTextControl: boolean; });
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    initWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(
+        floatingLabelHeight: number,
+        normalFontLineHeight: number,
+        textRowHeight: number,
+        numberOfTextRows: number,
+        density: number,
+        preferredContainerHeight: number,
+        isMultilineTextControl: boolean
+    ): this;
 
-	initWithFloatingFontLineHeightNormalFontLineHeightTextRowHeightNumberOfTextRowsDensityPreferredContainerHeightIsMultilineTextControl(floatingLabelHeight: number, normalFontLineHeight: number, textRowHeight: number, numberOfTextRows: number, density: number, preferredContainerHeight: number, isMultilineTextControl: boolean): this;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCTextField extends UITextField implements MDCElevatable, MDCElevationOverriding, MDCLeadingViewTextInput, MDCTextInput {
+    static alloc(): MDCTextField; // inherited from NSObject
 
-	static alloc(): MDCTextField; // inherited from NSObject
+    static appearance(): MDCTextField; // inherited from UIAppearance
 
-	static appearance(): MDCTextField; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCTextField; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTextField; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextField; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTextField; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextField; // inherited from UIAppearance
+    static new(): MDCTextField; // inherited from NSObject
 
-	static new(): MDCTextField; // inherited from NSObject
+    readonly inputLayoutStrut: UILabel;
 
-	readonly inputLayoutStrut: UILabel;
+    traitCollectionDidChangeBlock: (p1: MDCTextField, p2: UITraitCollection) => void;
 
-	traitCollectionDidChangeBlock: (p1: MDCTextField, p2: UITraitCollection) => void;
+    attributedPlaceholder: NSAttributedString; // inherited from MDCTextInput
 
-	attributedPlaceholder: NSAttributedString; // inherited from MDCTextInput
+    attributedText: NSAttributedString; // inherited from MDCTextInput
 
-	attributedText: NSAttributedString; // inherited from MDCTextInput
+    borderPath: UIBezierPath; // inherited from MDCTextInput
 
-	borderPath: UIBezierPath; // inherited from MDCTextInput
+    borderView: MDCTextInputBorderView; // inherited from MDCTextInput
 
-	borderView: MDCTextInputBorderView; // inherited from MDCTextInput
+    readonly clearButton: UIButton; // inherited from MDCTextInput
 
-	readonly clearButton: UIButton; // inherited from MDCTextInput
+    clearButtonMode: UITextFieldViewMode; // inherited from MDCTextInput
 
-	clearButtonMode: UITextFieldViewMode; // inherited from MDCTextInput
+    cursorColor: UIColor; // inherited from MDCTextInput
 
-	cursorColor: UIColor; // inherited from MDCTextInput
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly editing: boolean; // inherited from MDCTextInput
 
-	readonly editing: boolean; // inherited from MDCTextInput
+    enabled: boolean; // inherited from MDCTextInput
 
-	enabled: boolean; // inherited from MDCTextInput
+    font: UIFont; // inherited from MDCTextInput
 
-	font: UIFont; // inherited from MDCTextInput
+    readonly hasTextContent: boolean; // inherited from MDCTextInput
 
-	readonly hasTextContent: boolean; // inherited from MDCTextInput
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    hidesPlaceholderOnInput: boolean; // inherited from MDCTextInput
 
-	hidesPlaceholderOnInput: boolean; // inherited from MDCTextInput
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly leadingUnderlineLabel: UILabel; // inherited from MDCTextInput
 
-	readonly leadingUnderlineLabel: UILabel; // inherited from MDCTextInput
+    leadingView: UIView; // inherited from MDCLeadingViewTextInput
 
-	leadingView: UIView; // inherited from MDCLeadingViewTextInput
+    leadingViewMode: UITextFieldViewMode; // inherited from MDCLeadingViewTextInput
 
-	leadingViewMode: UITextFieldViewMode; // inherited from MDCLeadingViewTextInput
+    mdc_adjustsFontForContentSizeCategory: boolean; // inherited from MDCTextInput
 
-	mdc_adjustsFontForContentSizeCategory: boolean; // inherited from MDCTextInput
+    readonly mdc_currentElevation: number; // inherited from MDCElevatable
 
-	readonly mdc_currentElevation: number; // inherited from MDCElevatable
+    mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
 
-	mdc_elevationDidChangeBlock: (p1: MDCElevatable, p2: number) => void; // inherited from MDCElevatable
+    mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
 
-	mdc_overrideBaseElevation: number; // inherited from MDCElevationOverriding
+    placeholder: string; // inherited from MDCTextInput
 
-	placeholder: string; // inherited from MDCTextInput
+    readonly placeholderLabel: UILabel; // inherited from MDCTextInput
 
-	readonly placeholderLabel: UILabel; // inherited from MDCTextInput
+    positioningDelegate: MDCTextInputPositioningDelegate; // inherited from MDCTextInput
 
-	positioningDelegate: MDCTextInputPositioningDelegate; // inherited from MDCTextInput
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    text: string; // inherited from MDCTextInput
 
-	text: string; // inherited from MDCTextInput
+    textColor: UIColor; // inherited from MDCTextInput
 
-	textColor: UIColor; // inherited from MDCTextInput
+    readonly textInsets: UIEdgeInsets; // inherited from MDCTextInput
 
-	readonly textInsets: UIEdgeInsets; // inherited from MDCTextInput
+    textInsetsMode: MDCTextInputTextInsetsMode; // inherited from MDCTextInput
 
-	textInsetsMode: MDCTextInputTextInsetsMode; // inherited from MDCTextInput
+    readonly trailingUnderlineLabel: UILabel; // inherited from MDCTextInput
 
-	readonly trailingUnderlineLabel: UILabel; // inherited from MDCTextInput
+    trailingView: UIView; // inherited from MDCTextInput
 
-	trailingView: UIView; // inherited from MDCTextInput
+    trailingViewMode: UITextFieldViewMode; // inherited from MDCTextInput
 
-	trailingViewMode: UITextFieldViewMode; // inherited from MDCTextInput
+    readonly underline: MDCTextInputUnderlineView; // inherited from MDCTextInput
 
-	readonly underline: MDCTextInputUnderlineView; // inherited from MDCTextInput
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    clearText(): void;
 
-	clearText(): void;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
-declare var MDCTextFieldTextDidSetTextNotification: string;
+declare let MDCTextFieldTextDidSetTextNotification: string;
 
 interface MDCTextInput extends NSObjectProtocol {
+    attributedPlaceholder: NSAttributedString;
 
-	attributedPlaceholder: NSAttributedString;
+    attributedText: NSAttributedString;
 
-	attributedText: NSAttributedString;
+    borderPath: UIBezierPath;
 
-	borderPath: UIBezierPath;
+    borderView: MDCTextInputBorderView;
 
-	borderView: MDCTextInputBorderView;
+    clearButton: UIButton;
 
-	clearButton: UIButton;
+    clearButtonMode: UITextFieldViewMode;
 
-	clearButtonMode: UITextFieldViewMode;
+    cursorColor: UIColor;
 
-	cursorColor: UIColor;
+    editing: boolean;
 
-	editing: boolean;
+    enabled: boolean;
 
-	enabled: boolean;
+    font: UIFont;
 
-	font: UIFont;
+    hasTextContent: boolean;
 
-	hasTextContent: boolean;
+    hidesPlaceholderOnInput: boolean;
 
-	hidesPlaceholderOnInput: boolean;
+    leadingUnderlineLabel: UILabel;
 
-	leadingUnderlineLabel: UILabel;
+    mdc_adjustsFontForContentSizeCategory: boolean;
 
-	mdc_adjustsFontForContentSizeCategory: boolean;
+    placeholder: string;
 
-	placeholder: string;
+    placeholderLabel: UILabel;
 
-	placeholderLabel: UILabel;
+    positioningDelegate: MDCTextInputPositioningDelegate;
 
-	positioningDelegate: MDCTextInputPositioningDelegate;
+    text: string;
 
-	text: string;
+    textColor: UIColor;
 
-	textColor: UIColor;
+    textInsets: UIEdgeInsets;
 
-	textInsets: UIEdgeInsets;
+    textInsetsMode: MDCTextInputTextInsetsMode;
 
-	textInsetsMode: MDCTextInputTextInsetsMode;
+    trailingUnderlineLabel: UILabel;
 
-	trailingUnderlineLabel: UILabel;
+    trailingView: UIView;
 
-	trailingView: UIView;
+    trailingViewMode: UITextFieldViewMode;
 
-	trailingViewMode: UITextFieldViewMode;
+    underline: MDCTextInputUnderlineView;
 
-	underline: MDCTextInputUnderlineView;
-
-	clearText(): void;
+    clearText(): void;
 }
 declare var MDCTextInput: {
-
-	prototype: MDCTextInput;
+    prototype: MDCTextInput;
 };
 
 declare class MDCTextInputAllCharactersCounter extends NSObject implements MDCTextInputCharacterCounter {
+    static alloc(): MDCTextInputAllCharactersCounter; // inherited from NSObject
 
-	static alloc(): MDCTextInputAllCharactersCounter; // inherited from NSObject
+    static new(): MDCTextInputAllCharactersCounter; // inherited from NSObject
 
-	static new(): MDCTextInputAllCharactersCounter; // inherited from NSObject
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    characterCountForTextInput(textInput: UIView): number;
 
-	characterCountForTextInput(textInput: UIView): number;
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCTextInputBorderView extends UIView implements NSCopying {
+    static alloc(): MDCTextInputBorderView; // inherited from NSObject
 
-	static alloc(): MDCTextInputBorderView; // inherited from NSObject
+    static appearance(): MDCTextInputBorderView; // inherited from UIAppearance
 
-	static appearance(): MDCTextInputBorderView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCTextInputBorderView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCTextInputBorderView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTextInputBorderView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTextInputBorderView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextInputBorderView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextInputBorderView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTextInputBorderView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTextInputBorderView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextInputBorderView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextInputBorderView; // inherited from UIAppearance
+    static new(): MDCTextInputBorderView; // inherited from NSObject
 
-	static new(): MDCTextInputBorderView; // inherited from NSObject
+    borderFillColor: UIColor;
 
-	borderFillColor: UIColor;
+    borderPath: UIBezierPath;
 
-	borderPath: UIBezierPath;
+    borderStrokeColor: UIColor;
 
-	borderStrokeColor: UIColor;
-
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 }
 
 interface MDCTextInputCharacterCounter extends NSObjectProtocol {
-
-	characterCountForTextInput(textInput: UIView): number;
+    characterCountForTextInput(textInput: UIView): number;
 }
 declare var MDCTextInputCharacterCounter: {
-
-	prototype: MDCTextInputCharacterCounter;
+    prototype: MDCTextInputCharacterCounter;
 };
 
 interface MDCTextInputController extends MDCTextInputPositioningDelegate, NSCopying, NSObjectProtocol {
+    activeColor: UIColor;
 
-	activeColor: UIColor;
+    characterCountMax: number;
 
-	characterCountMax: number;
+    characterCountViewMode: UITextFieldViewMode;
 
-	characterCountViewMode: UITextFieldViewMode;
+    characterCounter: MDCTextInputCharacterCounter;
 
-	characterCounter: MDCTextInputCharacterCounter;
+    disabledColor: UIColor;
 
-	disabledColor: UIColor;
+    errorColor: UIColor;
 
-	errorColor: UIColor;
+    errorText: string;
 
-	errorText: string;
+    helperText: string;
 
-	helperText: string;
+    inlinePlaceholderColor: UIColor;
 
-	inlinePlaceholderColor: UIColor;
+    inlinePlaceholderFont: UIFont;
 
-	inlinePlaceholderFont: UIFont;
+    leadingUnderlineLabelFont: UIFont;
 
-	leadingUnderlineLabelFont: UIFont;
+    leadingUnderlineLabelTextColor: UIColor;
 
-	leadingUnderlineLabelTextColor: UIColor;
+    mdc_adjustsFontForContentSizeCategory: boolean;
 
-	mdc_adjustsFontForContentSizeCategory: boolean;
+    normalColor: UIColor;
 
-	normalColor: UIColor;
+    placeholderText: string;
 
-	placeholderText: string;
+    roundedCorners: UIRectCorner;
 
-	roundedCorners: UIRectCorner;
+    textInput: UIView;
 
-	textInput: UIView;
+    textInputClearButtonTintColor: UIColor;
 
-	textInputClearButtonTintColor: UIColor;
+    textInputFont: UIFont;
 
-	textInputFont: UIFont;
+    trailingUnderlineLabelFont: UIFont;
 
-	trailingUnderlineLabelFont: UIFont;
+    trailingUnderlineLabelTextColor: UIColor;
 
-	trailingUnderlineLabelTextColor: UIColor;
+    underlineHeightActive: number;
 
-	underlineHeightActive: number;
+    underlineHeightNormal: number;
 
-	underlineHeightNormal: number;
+    underlineViewMode: UITextFieldViewMode;
 
-	underlineViewMode: UITextFieldViewMode;
+    initWithTextInput?(input: UIView): MDCTextInputController;
 
-	initWithTextInput?(input: UIView): MDCTextInputController;
+    setErrorTextErrorAccessibilityValue(errorText: string, errorAccessibilityValue: string): void;
 
-	setErrorTextErrorAccessibilityValue(errorText: string, errorAccessibilityValue: string): void;
-
-	setHelperTextHelperAccessibilityLabel(helperText: string, helperAccessibilityLabel: string): void;
+    setHelperTextHelperAccessibilityLabel(helperText: string, helperAccessibilityLabel: string): void;
 }
 declare var MDCTextInputController: {
-
-	prototype: MDCTextInputController;
+    prototype: MDCTextInputController;
 };
 
 declare class MDCTextInputControllerBase extends NSObject implements MDCTextInputControllerFloatingPlaceholder {
+    static alloc(): MDCTextInputControllerBase; // inherited from NSObject
 
-	static alloc(): MDCTextInputControllerBase; // inherited from NSObject
+    static new(): MDCTextInputControllerBase; // inherited from NSObject
 
-	static new(): MDCTextInputControllerBase; // inherited from NSObject
+    borderFillColor: UIColor;
 
-	borderFillColor: UIColor;
+    borderRadius: number;
 
-	borderRadius: number;
+    borderStrokeColor: UIColor;
 
-	borderStrokeColor: UIColor;
+    expandsOnOverflow: boolean;
 
-	expandsOnOverflow: boolean;
+    minimumLines: number;
 
-	minimumLines: number;
+    static borderFillColorDefault: UIColor;
 
-	static borderFillColorDefault: UIColor;
+    activeColor: UIColor; // inherited from MDCTextInputController
 
-	activeColor: UIColor; // inherited from MDCTextInputController
+    characterCountMax: number; // inherited from MDCTextInputController
 
-	characterCountMax: number; // inherited from MDCTextInputController
+    characterCountViewMode: UITextFieldViewMode; // inherited from MDCTextInputController
 
-	characterCountViewMode: UITextFieldViewMode; // inherited from MDCTextInputController
+    characterCounter: MDCTextInputCharacterCounter; // inherited from MDCTextInputController
 
-	characterCounter: MDCTextInputCharacterCounter; // inherited from MDCTextInputController
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    disabledColor: UIColor; // inherited from MDCTextInputController
 
-	disabledColor: UIColor; // inherited from MDCTextInputController
+    errorColor: UIColor; // inherited from MDCTextInputController
 
-	errorColor: UIColor; // inherited from MDCTextInputController
+    readonly errorText: string; // inherited from MDCTextInputController
 
-	readonly errorText: string; // inherited from MDCTextInputController
+    floatingEnabled: boolean; // inherited from MDCTextInputControllerFloatingPlaceholder
 
-	floatingEnabled: boolean; // inherited from MDCTextInputControllerFloatingPlaceholder
+    floatingPlaceholderActiveColor: UIColor; // inherited from MDCTextInputControllerFloatingPlaceholder
 
-	floatingPlaceholderActiveColor: UIColor; // inherited from MDCTextInputControllerFloatingPlaceholder
+    floatingPlaceholderErrorActiveColor: UIColor; // inherited from MDCTextInputControllerFloatingPlaceholder
 
-	floatingPlaceholderErrorActiveColor: UIColor; // inherited from MDCTextInputControllerFloatingPlaceholder
+    floatingPlaceholderNormalColor: UIColor; // inherited from MDCTextInputControllerFloatingPlaceholder
 
-	floatingPlaceholderNormalColor: UIColor; // inherited from MDCTextInputControllerFloatingPlaceholder
+    readonly floatingPlaceholderOffset: UIOffset; // inherited from MDCTextInputControllerFloatingPlaceholder
 
-	readonly floatingPlaceholderOffset: UIOffset; // inherited from MDCTextInputControllerFloatingPlaceholder
+    floatingPlaceholderScale: number; // inherited from MDCTextInputControllerFloatingPlaceholder
 
-	floatingPlaceholderScale: number; // inherited from MDCTextInputControllerFloatingPlaceholder
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    helperText: string; // inherited from MDCTextInputController
 
-	helperText: string; // inherited from MDCTextInputController
+    inlinePlaceholderColor: UIColor; // inherited from MDCTextInputController
 
-	inlinePlaceholderColor: UIColor; // inherited from MDCTextInputController
+    inlinePlaceholderFont: UIFont; // inherited from MDCTextInputController
 
-	inlinePlaceholderFont: UIFont; // inherited from MDCTextInputController
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    leadingUnderlineLabelFont: UIFont; // inherited from MDCTextInputController
 
-	leadingUnderlineLabelFont: UIFont; // inherited from MDCTextInputController
+    leadingUnderlineLabelTextColor: UIColor; // inherited from MDCTextInputController
 
-	leadingUnderlineLabelTextColor: UIColor; // inherited from MDCTextInputController
+    mdc_adjustsFontForContentSizeCategory: boolean; // inherited from MDCTextInputController
 
-	mdc_adjustsFontForContentSizeCategory: boolean; // inherited from MDCTextInputController
+    normalColor: UIColor; // inherited from MDCTextInputController
 
-	normalColor: UIColor; // inherited from MDCTextInputController
+    placeholderText: string; // inherited from MDCTextInputController
 
-	placeholderText: string; // inherited from MDCTextInputController
+    roundedCorners: UIRectCorner; // inherited from MDCTextInputController
 
-	roundedCorners: UIRectCorner; // inherited from MDCTextInputController
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    textInput: UIView; // inherited from MDCTextInputController
 
-	textInput: UIView; // inherited from MDCTextInputController
+    textInputClearButtonTintColor: UIColor; // inherited from MDCTextInputController
 
-	textInputClearButtonTintColor: UIColor; // inherited from MDCTextInputController
+    textInputFont: UIFont; // inherited from MDCTextInputController
 
-	textInputFont: UIFont; // inherited from MDCTextInputController
+    trailingUnderlineLabelFont: UIFont; // inherited from MDCTextInputController
 
-	trailingUnderlineLabelFont: UIFont; // inherited from MDCTextInputController
+    trailingUnderlineLabelTextColor: UIColor; // inherited from MDCTextInputController
 
-	trailingUnderlineLabelTextColor: UIColor; // inherited from MDCTextInputController
+    underlineHeightActive: number; // inherited from MDCTextInputController
 
-	underlineHeightActive: number; // inherited from MDCTextInputController
+    underlineHeightNormal: number; // inherited from MDCTextInputController
 
-	underlineHeightNormal: number; // inherited from MDCTextInputController
+    underlineViewMode: UITextFieldViewMode; // inherited from MDCTextInputController
 
-	underlineViewMode: UITextFieldViewMode; // inherited from MDCTextInputController
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    static activeColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static activeColorDefault: UIColor; // inherited from MDCTextInputController
+    static disabledColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static disabledColorDefault: UIColor; // inherited from MDCTextInputController
+    static errorColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static errorColorDefault: UIColor; // inherited from MDCTextInputController
+    static floatingEnabledDefault: boolean; // inherited from MDCTextInputControllerFloatingPlaceholder
 
-	static floatingEnabledDefault: boolean; // inherited from MDCTextInputControllerFloatingPlaceholder
+    static floatingPlaceholderActiveColorDefault: UIColor; // inherited from MDCTextInputControllerFloatingPlaceholder
 
-	static floatingPlaceholderActiveColorDefault: UIColor; // inherited from MDCTextInputControllerFloatingPlaceholder
+    static floatingPlaceholderNormalColorDefault: UIColor; // inherited from MDCTextInputControllerFloatingPlaceholder
 
-	static floatingPlaceholderNormalColorDefault: UIColor; // inherited from MDCTextInputControllerFloatingPlaceholder
+    static floatingPlaceholderScaleDefault: number; // inherited from MDCTextInputControllerFloatingPlaceholder
 
-	static floatingPlaceholderScaleDefault: number; // inherited from MDCTextInputControllerFloatingPlaceholder
+    static inlinePlaceholderColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static inlinePlaceholderColorDefault: UIColor; // inherited from MDCTextInputController
+    static inlinePlaceholderFontDefault: UIFont; // inherited from MDCTextInputController
 
-	static inlinePlaceholderFontDefault: UIFont; // inherited from MDCTextInputController
+    static leadingUnderlineLabelFontDefault: UIFont; // inherited from MDCTextInputController
 
-	static leadingUnderlineLabelFontDefault: UIFont; // inherited from MDCTextInputController
+    static leadingUnderlineLabelTextColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static leadingUnderlineLabelTextColorDefault: UIColor; // inherited from MDCTextInputController
+    static mdc_adjustsFontForContentSizeCategoryDefault: boolean; // inherited from MDCTextInputController
 
-	static mdc_adjustsFontForContentSizeCategoryDefault: boolean; // inherited from MDCTextInputController
+    static normalColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static normalColorDefault: UIColor; // inherited from MDCTextInputController
+    static roundedCornersDefault: UIRectCorner; // inherited from MDCTextInputController
 
-	static roundedCornersDefault: UIRectCorner; // inherited from MDCTextInputController
+    static textInputClearButtonTintColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static textInputClearButtonTintColorDefault: UIColor; // inherited from MDCTextInputController
+    static textInputFontDefault: UIFont; // inherited from MDCTextInputController
 
-	static textInputFontDefault: UIFont; // inherited from MDCTextInputController
+    static trailingUnderlineLabelFontDefault: UIFont; // inherited from MDCTextInputController
 
-	static trailingUnderlineLabelFontDefault: UIFont; // inherited from MDCTextInputController
+    static trailingUnderlineLabelTextColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static trailingUnderlineLabelTextColorDefault: UIColor; // inherited from MDCTextInputController
+    static underlineHeightActiveDefault: number; // inherited from MDCTextInputController
 
-	static underlineHeightActiveDefault: number; // inherited from MDCTextInputController
+    static underlineHeightNormalDefault: number; // inherited from MDCTextInputController
 
-	static underlineHeightNormalDefault: number; // inherited from MDCTextInputController
+    static underlineViewModeDefault: UITextFieldViewMode; // inherited from MDCTextInputController
 
-	static underlineViewModeDefault: UITextFieldViewMode; // inherited from MDCTextInputController
+    constructor(o: { textInput: UIView }); // inherited from MDCTextInputController
 
-	constructor(o: { textInput: UIView; }); // inherited from MDCTextInputController
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    editingRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
 
-	editingRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
+    initWithTextInput(input: UIView): this;
 
-	initWithTextInput(input: UIView): this;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    leadingViewRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
 
-	leadingViewRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
+    leadingViewTrailingPaddingConstant(): number;
 
-	leadingViewTrailingPaddingConstant(): number;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
+    setErrorTextErrorAccessibilityValue(errorText: string, errorAccessibilityValue: string): void;
 
-	setErrorTextErrorAccessibilityValue(errorText: string, errorAccessibilityValue: string): void;
+    setHelperTextHelperAccessibilityLabel(helperText: string, helperAccessibilityLabel: string): void;
 
-	setHelperTextHelperAccessibilityLabel(helperText: string, helperAccessibilityLabel: string): void;
+    textInputDidLayoutSubviews(): void;
 
-	textInputDidLayoutSubviews(): void;
+    textInputDidUpdateConstraints(): void;
 
-	textInputDidUpdateConstraints(): void;
+    textInsets(defaultInsets: UIEdgeInsets): UIEdgeInsets;
 
-	textInsets(defaultInsets: UIEdgeInsets): UIEdgeInsets;
+    textInsetsWithSizeThatFitsWidthHint(defaultInsets: UIEdgeInsets, widthHint: number): UIEdgeInsets;
 
-	textInsetsWithSizeThatFitsWidthHint(defaultInsets: UIEdgeInsets, widthHint: number): UIEdgeInsets;
+    trailingViewRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
 
-	trailingViewRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
-
-	trailingViewTrailingPaddingConstant(): number;
+    trailingViewTrailingPaddingConstant(): number;
 }
 
 declare class MDCTextInputControllerFilled extends MDCTextInputControllerBase {
+    static alloc(): MDCTextInputControllerFilled; // inherited from NSObject
 
-	static alloc(): MDCTextInputControllerFilled; // inherited from NSObject
+    static new(): MDCTextInputControllerFilled; // inherited from NSObject
 
-	static new(): MDCTextInputControllerFilled; // inherited from NSObject
-
-	applyThemeWithScheme(scheme: MDCContainerScheming): void;
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 }
 
 interface MDCTextInputControllerFloatingPlaceholder extends MDCTextInputController {
+    floatingEnabled: boolean;
 
-	floatingEnabled: boolean;
+    floatingPlaceholderActiveColor: UIColor;
 
-	floatingPlaceholderActiveColor: UIColor;
+    floatingPlaceholderErrorActiveColor: UIColor;
 
-	floatingPlaceholderErrorActiveColor: UIColor;
+    floatingPlaceholderNormalColor: UIColor;
 
-	floatingPlaceholderNormalColor: UIColor;
+    floatingPlaceholderOffset: UIOffset;
 
-	floatingPlaceholderOffset: UIOffset;
-
-	floatingPlaceholderScale: number;
+    floatingPlaceholderScale: number;
 }
 declare var MDCTextInputControllerFloatingPlaceholder: {
-
-	prototype: MDCTextInputControllerFloatingPlaceholder;
+    prototype: MDCTextInputControllerFloatingPlaceholder;
 };
 
 declare class MDCTextInputControllerFullWidth extends NSObject implements MDCTextInputController {
+    static alloc(): MDCTextInputControllerFullWidth; // inherited from NSObject
 
-	static alloc(): MDCTextInputControllerFullWidth; // inherited from NSObject
+    static new(): MDCTextInputControllerFullWidth; // inherited from NSObject
 
-	static new(): MDCTextInputControllerFullWidth; // inherited from NSObject
+    backgroundColor: UIColor;
 
-	backgroundColor: UIColor;
+    static backgroundColorDefault: UIColor;
 
-	static backgroundColorDefault: UIColor;
+    activeColor: UIColor; // inherited from MDCTextInputController
 
-	activeColor: UIColor; // inherited from MDCTextInputController
+    characterCountMax: number; // inherited from MDCTextInputController
 
-	characterCountMax: number; // inherited from MDCTextInputController
+    characterCountViewMode: UITextFieldViewMode; // inherited from MDCTextInputController
 
-	characterCountViewMode: UITextFieldViewMode; // inherited from MDCTextInputController
+    characterCounter: MDCTextInputCharacterCounter; // inherited from MDCTextInputController
 
-	characterCounter: MDCTextInputCharacterCounter; // inherited from MDCTextInputController
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    disabledColor: UIColor; // inherited from MDCTextInputController
 
-	disabledColor: UIColor; // inherited from MDCTextInputController
+    errorColor: UIColor; // inherited from MDCTextInputController
 
-	errorColor: UIColor; // inherited from MDCTextInputController
+    readonly errorText: string; // inherited from MDCTextInputController
 
-	readonly errorText: string; // inherited from MDCTextInputController
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    helperText: string; // inherited from MDCTextInputController
 
-	helperText: string; // inherited from MDCTextInputController
+    inlinePlaceholderColor: UIColor; // inherited from MDCTextInputController
 
-	inlinePlaceholderColor: UIColor; // inherited from MDCTextInputController
+    inlinePlaceholderFont: UIFont; // inherited from MDCTextInputController
 
-	inlinePlaceholderFont: UIFont; // inherited from MDCTextInputController
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    leadingUnderlineLabelFont: UIFont; // inherited from MDCTextInputController
 
-	leadingUnderlineLabelFont: UIFont; // inherited from MDCTextInputController
+    leadingUnderlineLabelTextColor: UIColor; // inherited from MDCTextInputController
 
-	leadingUnderlineLabelTextColor: UIColor; // inherited from MDCTextInputController
+    mdc_adjustsFontForContentSizeCategory: boolean; // inherited from MDCTextInputController
 
-	mdc_adjustsFontForContentSizeCategory: boolean; // inherited from MDCTextInputController
+    normalColor: UIColor; // inherited from MDCTextInputController
 
-	normalColor: UIColor; // inherited from MDCTextInputController
+    placeholderText: string; // inherited from MDCTextInputController
 
-	placeholderText: string; // inherited from MDCTextInputController
+    roundedCorners: UIRectCorner; // inherited from MDCTextInputController
 
-	roundedCorners: UIRectCorner; // inherited from MDCTextInputController
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    textInput: UIView; // inherited from MDCTextInputController
 
-	textInput: UIView; // inherited from MDCTextInputController
+    textInputClearButtonTintColor: UIColor; // inherited from MDCTextInputController
 
-	textInputClearButtonTintColor: UIColor; // inherited from MDCTextInputController
+    textInputFont: UIFont; // inherited from MDCTextInputController
 
-	textInputFont: UIFont; // inherited from MDCTextInputController
+    trailingUnderlineLabelFont: UIFont; // inherited from MDCTextInputController
 
-	trailingUnderlineLabelFont: UIFont; // inherited from MDCTextInputController
+    trailingUnderlineLabelTextColor: UIColor; // inherited from MDCTextInputController
 
-	trailingUnderlineLabelTextColor: UIColor; // inherited from MDCTextInputController
+    underlineHeightActive: number; // inherited from MDCTextInputController
 
-	underlineHeightActive: number; // inherited from MDCTextInputController
+    underlineHeightNormal: number; // inherited from MDCTextInputController
 
-	underlineHeightNormal: number; // inherited from MDCTextInputController
+    underlineViewMode: UITextFieldViewMode; // inherited from MDCTextInputController
 
-	underlineViewMode: UITextFieldViewMode; // inherited from MDCTextInputController
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    static activeColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static activeColorDefault: UIColor; // inherited from MDCTextInputController
+    static disabledColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static disabledColorDefault: UIColor; // inherited from MDCTextInputController
+    static errorColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static errorColorDefault: UIColor; // inherited from MDCTextInputController
+    static inlinePlaceholderColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static inlinePlaceholderColorDefault: UIColor; // inherited from MDCTextInputController
+    static inlinePlaceholderFontDefault: UIFont; // inherited from MDCTextInputController
 
-	static inlinePlaceholderFontDefault: UIFont; // inherited from MDCTextInputController
+    static leadingUnderlineLabelFontDefault: UIFont; // inherited from MDCTextInputController
 
-	static leadingUnderlineLabelFontDefault: UIFont; // inherited from MDCTextInputController
+    static leadingUnderlineLabelTextColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static leadingUnderlineLabelTextColorDefault: UIColor; // inherited from MDCTextInputController
+    static mdc_adjustsFontForContentSizeCategoryDefault: boolean; // inherited from MDCTextInputController
 
-	static mdc_adjustsFontForContentSizeCategoryDefault: boolean; // inherited from MDCTextInputController
+    static normalColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static normalColorDefault: UIColor; // inherited from MDCTextInputController
+    static roundedCornersDefault: UIRectCorner; // inherited from MDCTextInputController
 
-	static roundedCornersDefault: UIRectCorner; // inherited from MDCTextInputController
+    static textInputClearButtonTintColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static textInputClearButtonTintColorDefault: UIColor; // inherited from MDCTextInputController
+    static textInputFontDefault: UIFont; // inherited from MDCTextInputController
 
-	static textInputFontDefault: UIFont; // inherited from MDCTextInputController
+    static trailingUnderlineLabelFontDefault: UIFont; // inherited from MDCTextInputController
 
-	static trailingUnderlineLabelFontDefault: UIFont; // inherited from MDCTextInputController
+    static trailingUnderlineLabelTextColorDefault: UIColor; // inherited from MDCTextInputController
 
-	static trailingUnderlineLabelTextColorDefault: UIColor; // inherited from MDCTextInputController
+    static underlineHeightActiveDefault: number; // inherited from MDCTextInputController
 
-	static underlineHeightActiveDefault: number; // inherited from MDCTextInputController
+    static underlineHeightNormalDefault: number; // inherited from MDCTextInputController
 
-	static underlineHeightNormalDefault: number; // inherited from MDCTextInputController
+    static underlineViewModeDefault: UITextFieldViewMode; // inherited from MDCTextInputController
 
-	static underlineViewModeDefault: UITextFieldViewMode; // inherited from MDCTextInputController
+    constructor(o: { textInput: UIView }); // inherited from MDCTextInputController
 
-	constructor(o: { textInput: UIView; }); // inherited from MDCTextInputController
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    editingRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
 
-	editingRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
+    initWithTextInput(input: UIView): this;
 
-	initWithTextInput(input: UIView): this;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    leadingViewRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
 
-	leadingViewRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
+    leadingViewTrailingPaddingConstant(): number;
 
-	leadingViewTrailingPaddingConstant(): number;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
+    setErrorTextErrorAccessibilityValue(errorText: string, errorAccessibilityValue: string): void;
 
-	setErrorTextErrorAccessibilityValue(errorText: string, errorAccessibilityValue: string): void;
+    setHelperTextHelperAccessibilityLabel(helperText: string, helperAccessibilityLabel: string): void;
 
-	setHelperTextHelperAccessibilityLabel(helperText: string, helperAccessibilityLabel: string): void;
+    textInputDidLayoutSubviews(): void;
 
-	textInputDidLayoutSubviews(): void;
+    textInputDidUpdateConstraints(): void;
 
-	textInputDidUpdateConstraints(): void;
+    textInsets(defaultInsets: UIEdgeInsets): UIEdgeInsets;
 
-	textInsets(defaultInsets: UIEdgeInsets): UIEdgeInsets;
+    textInsetsWithSizeThatFitsWidthHint(defaultInsets: UIEdgeInsets, widthHint: number): UIEdgeInsets;
 
-	textInsetsWithSizeThatFitsWidthHint(defaultInsets: UIEdgeInsets, widthHint: number): UIEdgeInsets;
+    trailingViewRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
 
-	trailingViewRectForBoundsDefaultRect(bounds: CGRect, defaultRect: CGRect): CGRect;
-
-	trailingViewTrailingPaddingConstant(): number;
+    trailingViewTrailingPaddingConstant(): number;
 }
 
 declare class MDCTextInputControllerLegacyDefault extends MDCTextInputControllerBase {
+    static alloc(): MDCTextInputControllerLegacyDefault; // inherited from NSObject
 
-	static alloc(): MDCTextInputControllerLegacyDefault; // inherited from NSObject
-
-	static new(): MDCTextInputControllerLegacyDefault; // inherited from NSObject
+    static new(): MDCTextInputControllerLegacyDefault; // inherited from NSObject
 }
 
 declare class MDCTextInputControllerLegacyFullWidth extends MDCTextInputControllerFullWidth {
+    static alloc(): MDCTextInputControllerLegacyFullWidth; // inherited from NSObject
 
-	static alloc(): MDCTextInputControllerLegacyFullWidth; // inherited from NSObject
-
-	static new(): MDCTextInputControllerLegacyFullWidth; // inherited from NSObject
+    static new(): MDCTextInputControllerLegacyFullWidth; // inherited from NSObject
 }
 
 declare class MDCTextInputControllerOutlined extends MDCTextInputControllerBase {
+    static alloc(): MDCTextInputControllerOutlined; // inherited from NSObject
 
-	static alloc(): MDCTextInputControllerOutlined; // inherited from NSObject
+    static new(): MDCTextInputControllerOutlined; // inherited from NSObject
 
-	static new(): MDCTextInputControllerOutlined; // inherited from NSObject
-
-	applyThemeWithScheme(scheme: MDCContainerScheming): void;
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 }
 
 declare class MDCTextInputControllerOutlinedTextArea extends MDCTextInputControllerBase {
+    static alloc(): MDCTextInputControllerOutlinedTextArea; // inherited from NSObject
 
-	static alloc(): MDCTextInputControllerOutlinedTextArea; // inherited from NSObject
-
-	static new(): MDCTextInputControllerOutlinedTextArea; // inherited from NSObject
+    static new(): MDCTextInputControllerOutlinedTextArea; // inherited from NSObject
 }
 
 declare class MDCTextInputControllerUnderline extends MDCTextInputControllerBase {
+    static alloc(): MDCTextInputControllerUnderline; // inherited from NSObject
 
-	static alloc(): MDCTextInputControllerUnderline; // inherited from NSObject
+    static new(): MDCTextInputControllerUnderline; // inherited from NSObject
 
-	static new(): MDCTextInputControllerUnderline; // inherited from NSObject
-
-	applyThemeWithScheme(scheme: MDCContainerScheming): void;
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 }
 
-declare var MDCTextInputDidToggleEnabledNotification: string;
+declare let MDCTextInputDidToggleEnabledNotification: string;
 
 interface MDCTextInputPositioningDelegate extends NSObjectProtocol {
+    editingRectForBoundsDefaultRect?(bounds: CGRect, defaultRect: CGRect): CGRect;
 
-	editingRectForBoundsDefaultRect?(bounds: CGRect, defaultRect: CGRect): CGRect;
+    leadingViewRectForBoundsDefaultRect?(bounds: CGRect, defaultRect: CGRect): CGRect;
 
-	leadingViewRectForBoundsDefaultRect?(bounds: CGRect, defaultRect: CGRect): CGRect;
+    leadingViewTrailingPaddingConstant?(): number;
 
-	leadingViewTrailingPaddingConstant?(): number;
+    textInputDidLayoutSubviews?(): void;
 
-	textInputDidLayoutSubviews?(): void;
+    textInputDidUpdateConstraints?(): void;
 
-	textInputDidUpdateConstraints?(): void;
+    textInsets?(defaultInsets: UIEdgeInsets): UIEdgeInsets;
 
-	textInsets?(defaultInsets: UIEdgeInsets): UIEdgeInsets;
+    textInsetsWithSizeThatFitsWidthHint?(defaultInsets: UIEdgeInsets, widthHint: number): UIEdgeInsets;
 
-	textInsetsWithSizeThatFitsWidthHint?(defaultInsets: UIEdgeInsets, widthHint: number): UIEdgeInsets;
+    trailingViewRectForBoundsDefaultRect?(bounds: CGRect, defaultRect: CGRect): CGRect;
 
-	trailingViewRectForBoundsDefaultRect?(bounds: CGRect, defaultRect: CGRect): CGRect;
-
-	trailingViewTrailingPaddingConstant?(): number;
+    trailingViewTrailingPaddingConstant?(): number;
 }
 declare var MDCTextInputPositioningDelegate: {
-
-	prototype: MDCTextInputPositioningDelegate;
+    prototype: MDCTextInputPositioningDelegate;
 };
 
 declare const enum MDCTextInputTextInsetsMode {
+    Never = 0,
 
-	Never = 0,
+    IfContent = 1,
 
-	IfContent = 1,
-
-	Always = 2
+    Always = 2
 }
 
 declare class MDCTextInputUnderlineView extends UIView implements NSCopying {
+    static alloc(): MDCTextInputUnderlineView; // inherited from NSObject
 
-	static alloc(): MDCTextInputUnderlineView; // inherited from NSObject
+    static appearance(): MDCTextInputUnderlineView; // inherited from UIAppearance
 
-	static appearance(): MDCTextInputUnderlineView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCTextInputUnderlineView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCTextInputUnderlineView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTextInputUnderlineView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCTextInputUnderlineView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextInputUnderlineView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextInputUnderlineView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTextInputUnderlineView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCTextInputUnderlineView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextInputUnderlineView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCTextInputUnderlineView; // inherited from UIAppearance
+    static new(): MDCTextInputUnderlineView; // inherited from NSObject
 
-	static new(): MDCTextInputUnderlineView; // inherited from NSObject
+    color: UIColor;
 
-	color: UIColor;
+    disabledColor: UIColor;
 
-	disabledColor: UIColor;
+    enabled: boolean;
 
-	enabled: boolean;
+    lineHeight: number;
 
-	lineHeight: number;
-
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 }
 
-declare var MDCTextStyleBody1: string;
+declare let MDCTextStyleBody1: string;
 
-declare var MDCTextStyleBody2: string;
+declare let MDCTextStyleBody2: string;
 
-declare var MDCTextStyleButton: string;
+declare let MDCTextStyleButton: string;
 
-declare var MDCTextStyleCaption: string;
+declare let MDCTextStyleCaption: string;
 
-declare var MDCTextStyleHeadline1: string;
+declare let MDCTextStyleHeadline1: string;
 
-declare var MDCTextStyleHeadline2: string;
+declare let MDCTextStyleHeadline2: string;
 
-declare var MDCTextStyleHeadline3: string;
+declare let MDCTextStyleHeadline3: string;
 
-declare var MDCTextStyleHeadline4: string;
+declare let MDCTextStyleHeadline4: string;
 
-declare var MDCTextStyleHeadline5: string;
+declare let MDCTextStyleHeadline5: string;
 
-declare var MDCTextStyleHeadline6: string;
+declare let MDCTextStyleHeadline6: string;
 
-declare var MDCTextStyleOverline: string;
+declare let MDCTextStyleOverline: string;
 
-declare var MDCTextStyleSubtitle1: string;
+declare let MDCTextStyleSubtitle1: string;
 
-declare var MDCTextStyleSubtitle2: string;
+declare let MDCTextStyleSubtitle2: string;
 
 declare const enum MDCThumbDiscreteDotVisibility {
+    Never = 0,
 
-	Never = 0,
+    WhenDragging = 1,
 
-	WhenDragging = 1,
-
-	Always = 2
+    Always = 2
 }
 
 declare class MDCThumbTrack extends UIControl implements UIContentSizeCategoryAdjusting {
+    static alloc(): MDCThumbTrack; // inherited from NSObject
 
-	static alloc(): MDCThumbTrack; // inherited from NSObject
+    static appearance(): MDCThumbTrack; // inherited from UIAppearance
 
-	static appearance(): MDCThumbTrack; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCThumbTrack; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCThumbTrack; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCThumbTrack; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCThumbTrack; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCThumbTrack; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCThumbTrack; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCThumbTrack; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCThumbTrack; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCThumbTrack; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCThumbTrack; // inherited from UIAppearance
+    static new(): MDCThumbTrack; // inherited from NSObject
 
-	static new(): MDCThumbTrack; // inherited from NSObject
+    allowAnimatedValueChanges: boolean;
 
-	allowAnimatedValueChanges: boolean;
+    continuousUpdateEvents: boolean;
 
-	continuousUpdateEvents: boolean;
+    delegate: MDCThumbTrackDelegate;
 
-	delegate: MDCThumbTrackDelegate;
+    disabledTrackHasThumbGaps: boolean;
 
-	disabledTrackHasThumbGaps: boolean;
+    discrete: boolean;
 
-	discrete: boolean;
+    discreteDotVisibility: MDCThumbDiscreteDotVisibility;
 
-	discreteDotVisibility: MDCThumbDiscreteDotVisibility;
+    discreteValueLabelFont: UIFont;
 
-	discreteValueLabelFont: UIFont;
+    enableRippleBehavior: boolean;
 
-	enableRippleBehavior: boolean;
+    filledTrackAnchorValue: number;
 
-	filledTrackAnchorValue: number;
+    inkColor: UIColor;
 
-	inkColor: UIColor;
+    maximumValue: number;
 
-	maximumValue: number;
+    minimumValue: number;
 
-	minimumValue: number;
+    numDiscreteValues: number;
 
-	numDiscreteValues: number;
+    panningAllowedOnEntireControl: boolean;
 
-	panningAllowedOnEntireControl: boolean;
+    primaryColor: UIColor;
 
-	primaryColor: UIColor;
+    rippleColor: UIColor;
 
-	rippleColor: UIColor;
+    shouldDisplayDiscreteValueLabel: boolean;
 
-	shouldDisplayDiscreteValueLabel: boolean;
+    shouldDisplayFilledTrack: boolean;
 
-	shouldDisplayFilledTrack: boolean;
+    shouldDisplayInk: boolean;
 
-	shouldDisplayInk: boolean;
+    shouldDisplayRipple: boolean;
 
-	shouldDisplayRipple: boolean;
+    shouldDisplayThumbWithDiscreteValueLabel: boolean;
 
-	shouldDisplayThumbWithDiscreteValueLabel: boolean;
+    tapsAllowedOnThumb: boolean;
 
-	tapsAllowedOnThumb: boolean;
+    thumbDisabledColor: UIColor;
 
-	thumbDisabledColor: UIColor;
+    thumbElevation: number;
 
-	thumbElevation: number;
+    thumbEnabledColor: UIColor;
 
-	thumbEnabledColor: UIColor;
+    thumbIsHollowAtStart: boolean;
 
-	thumbIsHollowAtStart: boolean;
+    thumbIsSmallerWhenDisabled: boolean;
 
-	thumbIsSmallerWhenDisabled: boolean;
+    readonly thumbPosition: CGPoint;
 
-	readonly thumbPosition: CGPoint;
+    thumbRadius: number;
 
-	thumbRadius: number;
+    thumbRippleMaximumRadius: number;
 
-	thumbRippleMaximumRadius: number;
+    thumbShadowColor: UIColor;
 
-	thumbShadowColor: UIColor;
+    thumbView: MDCThumbView;
 
-	thumbView: MDCThumbView;
+    trackDisabledColor: UIColor;
 
-	trackDisabledColor: UIColor;
+    trackEndsAreInset: boolean;
 
-	trackEndsAreInset: boolean;
+    trackEndsAreRounded: boolean;
 
-	trackEndsAreRounded: boolean;
+    trackHeight: number;
 
-	trackHeight: number;
+    trackOffColor: UIColor;
 
-	trackOffColor: UIColor;
+    trackOffTickColor: UIColor;
 
-	trackOffTickColor: UIColor;
+    trackOnColor: UIColor;
 
-	trackOnColor: UIColor;
+    trackOnTickColor: UIColor;
 
-	trackOnTickColor: UIColor;
+    value: number;
 
-	value: number;
+    valueLabelBackgroundColor: UIColor;
 
-	valueLabelBackgroundColor: UIColor;
+    valueLabelTextColor: UIColor;
 
-	valueLabelTextColor: UIColor;
+    adjustsFontForContentSizeCategory: boolean; // inherited from UIContentSizeCategoryAdjusting
 
-	adjustsFontForContentSizeCategory: boolean; // inherited from UIContentSizeCategoryAdjusting
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    constructor(o: { frame: CGRect; onTintColor: UIColor });
 
-	constructor(o: { frame: CGRect; onTintColor: UIColor; });
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    initWithFrameOnTintColor(frame: CGRect, onTintColor: UIColor): this;
 
-	initWithFrameOnTintColor(frame: CGRect, onTintColor: UIColor): this;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
+    self(): this;
 
-	self(): this;
+    setIcon(icon: UIImage): void;
 
-	setIcon(icon: UIImage): void;
+    setValueAnimated(value: number, animated: boolean): void;
 
-	setValueAnimated(value: number, animated: boolean): void;
-
-	setValueAnimatedAnimateThumbAfterMoveUserGeneratedCompletion(value: number, animated: boolean, animateThumbAfterMove: boolean, userGenerated: boolean, completion: () => void): void;
+    setValueAnimatedAnimateThumbAfterMoveUserGeneratedCompletion(value: number, animated: boolean, animateThumbAfterMove: boolean, userGenerated: boolean, completion: () => void): void;
 }
 
 interface MDCThumbTrackDelegate extends NSObjectProtocol {
+    thumbTrackDidAnimateToValue?(thumbTrack: MDCThumbTrack, value: number): void;
 
-	thumbTrackDidAnimateToValue?(thumbTrack: MDCThumbTrack, value: number): void;
+    thumbTrackShouldJumpToValue?(thumbTrack: MDCThumbTrack, value: number): boolean;
 
-	thumbTrackShouldJumpToValue?(thumbTrack: MDCThumbTrack, value: number): boolean;
+    thumbTrackStringForValue?(thumbTrack: MDCThumbTrack, value: number): string;
 
-	thumbTrackStringForValue?(thumbTrack: MDCThumbTrack, value: number): string;
+    thumbTrackWillAnimateToValue?(thumbTrack: MDCThumbTrack, value: number): void;
 
-	thumbTrackWillAnimateToValue?(thumbTrack: MDCThumbTrack, value: number): void;
-
-	thumbTrackWillJumpToValue?(thumbTrack: MDCThumbTrack, value: number): void;
+    thumbTrackWillJumpToValue?(thumbTrack: MDCThumbTrack, value: number): void;
 }
 declare var MDCThumbTrackDelegate: {
-
-	prototype: MDCThumbTrackDelegate;
+    prototype: MDCThumbTrackDelegate;
 };
 
 declare class MDCThumbView extends UIView {
+    static alloc(): MDCThumbView; // inherited from NSObject
 
-	static alloc(): MDCThumbView; // inherited from NSObject
+    static appearance(): MDCThumbView; // inherited from UIAppearance
 
-	static appearance(): MDCThumbView; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCThumbView; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCThumbView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCThumbView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCThumbView; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCThumbView; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCThumbView; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCThumbView; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCThumbView; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCThumbView; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCThumbView; // inherited from UIAppearance
+    static new(): MDCThumbView; // inherited from NSObject
 
-	static new(): MDCThumbView; // inherited from NSObject
+    borderColor: UIColor;
 
-	borderColor: UIColor;
+    borderWidth: number;
 
-	borderWidth: number;
+    centerVisibleArea: boolean;
 
-	centerVisibleArea: boolean;
+    cornerRadius: number;
 
-	cornerRadius: number;
+    elevation: number;
 
-	elevation: number;
+    shadowColor: UIColor;
 
-	shadowColor: UIColor;
-
-	setIcon(icon: UIImage): void;
+    setIcon(icon: UIImage): void;
 }
 
 declare class MDCTonalColorScheme extends NSObject implements MDCColorScheme, NSCopying {
+    static alloc(): MDCTonalColorScheme; // inherited from NSObject
 
-	static alloc(): MDCTonalColorScheme; // inherited from NSObject
+    static new(): MDCTonalColorScheme; // inherited from NSObject
 
-	static new(): MDCTonalColorScheme; // inherited from NSObject
+    readonly primaryTonalPalette: MDCTonalPalette;
 
-	readonly primaryTonalPalette: MDCTonalPalette;
+    readonly secondaryTonalPalette: MDCTonalPalette;
 
-	readonly secondaryTonalPalette: MDCTonalPalette;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly primaryColor: UIColor; // inherited from MDCColorScheme
 
-	readonly primaryColor: UIColor; // inherited from MDCColorScheme
+    readonly primaryDarkColor: UIColor; // inherited from MDCColorScheme
 
-	readonly primaryDarkColor: UIColor; // inherited from MDCColorScheme
+    readonly primaryLightColor: UIColor; // inherited from MDCColorScheme
 
-	readonly primaryLightColor: UIColor; // inherited from MDCColorScheme
+    readonly secondaryColor: UIColor; // inherited from MDCColorScheme
 
-	readonly secondaryColor: UIColor; // inherited from MDCColorScheme
+    readonly secondaryDarkColor: UIColor; // inherited from MDCColorScheme
 
-	readonly secondaryDarkColor: UIColor; // inherited from MDCColorScheme
+    readonly secondaryLightColor: UIColor; // inherited from MDCColorScheme
 
-	readonly secondaryLightColor: UIColor; // inherited from MDCColorScheme
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    constructor(o: { primaryTonalPalette: MDCTonalPalette; secondaryTonalPalette: MDCTonalPalette });
 
-	constructor(o: { primaryTonalPalette: MDCTonalPalette; secondaryTonalPalette: MDCTonalPalette; });
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    initWithPrimaryTonalPaletteSecondaryTonalPalette(primaryTonalPalette: MDCTonalPalette, secondaryTonalPalette: MDCTonalPalette): this;
 
-	initWithPrimaryTonalPaletteSecondaryTonalPalette(primaryTonalPalette: MDCTonalPalette, secondaryTonalPalette: MDCTonalPalette): this;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare class MDCTonalPalette extends NSObject implements NSCopying {
+    static alloc(): MDCTonalPalette; // inherited from NSObject
 
-	static alloc(): MDCTonalPalette; // inherited from NSObject
+    static new(): MDCTonalPalette; // inherited from NSObject
 
-	static new(): MDCTonalPalette; // inherited from NSObject
+    readonly colors: NSArray<UIColor>;
 
-	readonly colors: NSArray<UIColor>;
+    readonly darkColor: UIColor;
 
-	readonly darkColor: UIColor;
+    readonly darkColorIndex: number;
 
-	readonly darkColorIndex: number;
+    readonly lightColor: UIColor;
 
-	readonly lightColor: UIColor;
+    readonly lightColorIndex: number;
 
-	readonly lightColorIndex: number;
+    readonly mainColor: UIColor;
 
-	readonly mainColor: UIColor;
+    readonly mainColorIndex: number;
 
-	readonly mainColorIndex: number;
+    constructor(o: { colors: NSArray<UIColor> | UIColor[]; mainColorIndex: number; lightColorIndex: number; darkColorIndex: number });
 
-	constructor(o: { colors: NSArray<UIColor> | UIColor[]; mainColorIndex: number; lightColorIndex: number; darkColorIndex: number; });
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
-
-	initWithColorsMainColorIndexLightColorIndexDarkColorIndex(colors: NSArray<UIColor> | UIColor[], mainColorIndex: number, lightColorIndex: number, darkColorIndex: number): this;
+    initWithColorsMainColorIndexLightColorIndexDarkColorIndex(colors: NSArray<UIColor> | UIColor[], mainColorIndex: number, lightColorIndex: number, darkColorIndex: number): this;
 }
 
 declare const enum MDCTriangleEdgeStyle {
+    Handle = 0,
 
-	Handle = 0,
-
-	Cut = 1
+    Cut = 1
 }
 
 declare class MDCTriangleEdgeTreatment extends MDCEdgeTreatment {
+    static alloc(): MDCTriangleEdgeTreatment; // inherited from NSObject
 
-	static alloc(): MDCTriangleEdgeTreatment; // inherited from NSObject
+    static new(): MDCTriangleEdgeTreatment; // inherited from NSObject
 
-	static new(): MDCTriangleEdgeTreatment; // inherited from NSObject
+    size: number;
 
-	size: number;
+    style: MDCTriangleEdgeStyle;
 
-	style: MDCTriangleEdgeStyle;
+    constructor(o: { size: number; style: MDCTriangleEdgeStyle });
 
-	constructor(o: { size: number; style: MDCTriangleEdgeStyle; });
-
-	initWithSizeStyle(size: number, style: MDCTriangleEdgeStyle): this;
+    initWithSizeStyle(size: number, style: MDCTriangleEdgeStyle): this;
 }
 
 declare class MDCTypography extends NSObject {
+    static alloc(): MDCTypography; // inherited from NSObject
 
-	static alloc(): MDCTypography; // inherited from NSObject
+    static body1Font(): UIFont;
 
-	static body1Font(): UIFont;
+    static body1FontOpacity(): number;
 
-	static body1FontOpacity(): number;
+    static body2Font(): UIFont;
 
-	static body2Font(): UIFont;
+    static body2FontOpacity(): number;
 
-	static body2FontOpacity(): number;
+    static boldFontFromFont(font: UIFont): UIFont;
 
-	static boldFontFromFont(font: UIFont): UIFont;
+    static buttonFont(): UIFont;
 
-	static buttonFont(): UIFont;
+    static buttonFontOpacity(): number;
 
-	static buttonFontOpacity(): number;
+    static captionFont(): UIFont;
 
-	static captionFont(): UIFont;
+    static captionFontOpacity(): number;
 
-	static captionFontOpacity(): number;
+    static display1Font(): UIFont;
 
-	static display1Font(): UIFont;
+    static display1FontOpacity(): number;
 
-	static display1FontOpacity(): number;
+    static display2Font(): UIFont;
 
-	static display2Font(): UIFont;
+    static display2FontOpacity(): number;
 
-	static display2FontOpacity(): number;
+    static display3Font(): UIFont;
 
-	static display3Font(): UIFont;
+    static display3FontOpacity(): number;
 
-	static display3FontOpacity(): number;
+    static display4Font(): UIFont;
 
-	static display4Font(): UIFont;
+    static display4FontOpacity(): number;
 
-	static display4FontOpacity(): number;
+    static fontLoader(): MDCTypographyFontLoading;
 
-	static fontLoader(): MDCTypographyFontLoading;
+    static headlineFont(): UIFont;
 
-	static headlineFont(): UIFont;
+    static headlineFontOpacity(): number;
 
-	static headlineFontOpacity(): number;
+    static isLargeForContrastRatios(font: UIFont): boolean;
 
-	static isLargeForContrastRatios(font: UIFont): boolean;
+    static italicFontFromFont(font: UIFont): UIFont;
 
-	static italicFontFromFont(font: UIFont): UIFont;
+    static new(): MDCTypography; // inherited from NSObject
 
-	static new(): MDCTypography; // inherited from NSObject
+    static setFontLoader(fontLoader: MDCTypographyFontLoading): void;
 
-	static setFontLoader(fontLoader: MDCTypographyFontLoading): void;
+    static subheadFont(): UIFont;
 
-	static subheadFont(): UIFont;
+    static subheadFontOpacity(): number;
 
-	static subheadFontOpacity(): number;
+    static titleFont(): UIFont;
 
-	static titleFont(): UIFont;
-
-	static titleFontOpacity(): number;
+    static titleFontOpacity(): number;
 }
 
 interface MDCTypographyFontLoading extends NSObjectProtocol {
+    boldFontFromFont?(font: UIFont): UIFont;
 
-	boldFontFromFont?(font: UIFont): UIFont;
+    boldFontOfSize?(fontSize: number): UIFont;
 
-	boldFontOfSize?(fontSize: number): UIFont;
+    boldItalicFontOfSize?(fontSize: number): UIFont;
 
-	boldItalicFontOfSize?(fontSize: number): UIFont;
+    isLargeForContrastRatios?(font: UIFont): boolean;
 
-	isLargeForContrastRatios?(font: UIFont): boolean;
+    italicFontFromFont?(font: UIFont): UIFont;
 
-	italicFontFromFont?(font: UIFont): UIFont;
+    italicFontOfSize?(fontSize: number): UIFont;
 
-	italicFontOfSize?(fontSize: number): UIFont;
+    lightFontOfSize(fontSize: number): UIFont;
 
-	lightFontOfSize(fontSize: number): UIFont;
+    mediumFontOfSize(fontSize: number): UIFont;
 
-	mediumFontOfSize(fontSize: number): UIFont;
-
-	regularFontOfSize(fontSize: number): UIFont;
+    regularFontOfSize(fontSize: number): UIFont;
 }
 declare var MDCTypographyFontLoading: {
-
-	prototype: MDCTypographyFontLoading;
+    prototype: MDCTypographyFontLoading;
 };
 
 declare class MDCTypographyScheme extends NSObject implements MDCTypographyScheming, NSCopying {
+    static alloc(): MDCTypographyScheme; // inherited from NSObject
 
-	static alloc(): MDCTypographyScheme; // inherited from NSObject
+    static new(): MDCTypographyScheme; // inherited from NSObject
 
-	static new(): MDCTypographyScheme; // inherited from NSObject
+    body1: UIFont;
 
-	body1: UIFont;
+    body2: UIFont;
 
-	body2: UIFont;
+    button: UIFont;
 
-	button: UIFont;
+    caption: UIFont;
 
-	caption: UIFont;
+    headline1: UIFont;
 
-	headline1: UIFont;
+    headline2: UIFont;
 
-	headline2: UIFont;
+    headline3: UIFont;
 
-	headline3: UIFont;
+    headline4: UIFont;
 
-	headline4: UIFont;
+    headline5: UIFont;
 
-	headline5: UIFont;
+    headline6: UIFont;
 
-	headline6: UIFont;
+    overline: UIFont;
 
-	overline: UIFont;
+    subtitle1: UIFont;
 
-	subtitle1: UIFont;
+    subtitle2: UIFont;
 
-	subtitle2: UIFont;
+    useCurrentContentSizeCategoryWhenApplied: boolean;
 
-	useCurrentContentSizeCategoryWhenApplied: boolean;
+    readonly debugDescription: string; // inherited from NSObjectProtocol
 
-	readonly debugDescription: string; // inherited from NSObjectProtocol
+    readonly description: string; // inherited from NSObjectProtocol
 
-	readonly description: string; // inherited from NSObjectProtocol
+    readonly hash: number; // inherited from NSObjectProtocol
 
-	readonly hash: number; // inherited from NSObjectProtocol
+    readonly isProxy: boolean; // inherited from NSObjectProtocol
 
-	readonly isProxy: boolean; // inherited from NSObjectProtocol
+    readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
 
-	readonly superclass: typeof NSObject; // inherited from NSObjectProtocol
+    readonly; // inherited from NSObjectProtocol
 
-	readonly  // inherited from NSObjectProtocol
+    constructor(o: { defaults: MDCTypographySchemeDefaults });
 
-	constructor(o: { defaults: MDCTypographySchemeDefaults; });
+    class(): typeof NSObject;
 
-	class(): typeof NSObject;
+    conformsToProtocol(aProtocol: any /* Protocol */): boolean;
 
-	conformsToProtocol(aProtocol: any /* Protocol */): boolean;
+    copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
 
-	copyWithZone(zone: interop.Pointer | interop.Reference<any>): any;
+    initWithDefaults(defaults: MDCTypographySchemeDefaults): this;
 
-	initWithDefaults(defaults: MDCTypographySchemeDefaults): this;
+    isEqual(object: any): boolean;
 
-	isEqual(object: any): boolean;
+    isKindOfClass(aClass: typeof NSObject): boolean;
 
-	isKindOfClass(aClass: typeof NSObject): boolean;
+    isMemberOfClass(aClass: typeof NSObject): boolean;
 
-	isMemberOfClass(aClass: typeof NSObject): boolean;
+    performSelector(aSelector: string): any;
 
-	performSelector(aSelector: string): any;
+    performSelectorWithObject(aSelector: string, object: any): any;
 
-	performSelectorWithObject(aSelector: string, object: any): any;
+    performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
 
-	performSelectorWithObjectWithObject(aSelector: string, object1: any, object2: any): any;
+    respondsToSelector(aSelector: string): boolean;
 
-	respondsToSelector(aSelector: string): boolean;
+    retainCount(): number;
 
-	retainCount(): number;
-
-	self(): this;
+    self(): this;
 }
 
 declare const enum MDCTypographySchemeDefaults {
+    Material201804 = 0,
 
-	Material201804 = 0,
-
-	Material201902 = 1
+    Material201902 = 1
 }
 
 interface MDCTypographyScheming extends NSObjectProtocol {
+    body1: UIFont;
 
-	body1: UIFont;
+    body2: UIFont;
 
-	body2: UIFont;
+    button: UIFont;
 
-	button: UIFont;
+    caption: UIFont;
 
-	caption: UIFont;
+    headline1: UIFont;
 
-	headline1: UIFont;
+    headline2: UIFont;
 
-	headline2: UIFont;
+    headline3: UIFont;
 
-	headline3: UIFont;
+    headline4: UIFont;
 
-	headline4: UIFont;
+    headline5: UIFont;
 
-	headline5: UIFont;
+    headline6: UIFont;
 
-	headline6: UIFont;
+    overline: UIFont;
 
-	overline: UIFont;
+    subtitle1: UIFont;
 
-	subtitle1: UIFont;
+    subtitle2: UIFont;
 
-	subtitle2: UIFont;
-
-	useCurrentContentSizeCategoryWhenApplied: boolean;
+    useCurrentContentSizeCategoryWhenApplied: boolean;
 }
 declare var MDCTypographyScheming: {
-
-	prototype: MDCTypographyScheming;
+    prototype: MDCTypographyScheming;
 };
 
 declare class MDCUnderlinedTextField extends MDCBaseTextField {
+    static alloc(): MDCUnderlinedTextField; // inherited from NSObject
 
-	static alloc(): MDCUnderlinedTextField; // inherited from NSObject
+    static appearance(): MDCUnderlinedTextField; // inherited from UIAppearance
 
-	static appearance(): MDCUnderlinedTextField; // inherited from UIAppearance
+    static appearanceForTraitCollection(trait: UITraitCollection): MDCUnderlinedTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollection(trait: UITraitCollection): MDCUnderlinedTextField; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCUnderlinedTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedIn(trait: UITraitCollection, ContainerClass: typeof NSObject): MDCUnderlinedTextField; // inherited from UIAppearance
+    static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCUnderlinedTextField; // inherited from UIAppearance
 
-	static appearanceForTraitCollectionWhenContainedInInstancesOfClasses(trait: UITraitCollection, containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCUnderlinedTextField; // inherited from UIAppearance
+    static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCUnderlinedTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCUnderlinedTextField; // inherited from UIAppearance
+    static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCUnderlinedTextField; // inherited from UIAppearance
 
-	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCUnderlinedTextField; // inherited from UIAppearance
+    static new(): MDCUnderlinedTextField; // inherited from NSObject
 
-	static new(): MDCUnderlinedTextField; // inherited from NSObject
+    editingUnderlineThickness: number;
 
-	editingUnderlineThickness: number;
+    normalUnderlineThickness: number;
 
-	normalUnderlineThickness: number;
+    applyErrorThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyErrorThemeWithScheme(scheme: MDCContainerScheming): void;
+    applyThemeWithScheme(scheme: MDCContainerScheming): void;
 
-	applyThemeWithScheme(scheme: MDCContainerScheming): void;
+    setEditingUnderlineThicknessAnimated(thickness: number, animated: boolean): void;
 
-	setEditingUnderlineThicknessAnimated(thickness: number, animated: boolean): void;
+    setNormalUnderlineThicknessAnimated(thickness: number, animated: boolean): void;
 
-	setNormalUnderlineThicknessAnimated(thickness: number, animated: boolean): void;
+    setUnderlineColorForState(underlineColor: UIColor, state: MDCTextControlState): void;
 
-	setUnderlineColorForState(underlineColor: UIColor, state: MDCTextControlState): void;
-
-	underlineColorForState(state: MDCTextControlState): UIColor;
+    underlineColorForState(state: MDCTextControlState): UIColor;
 }
 
-declare var MaterialComponentsVersionNumber: number;
+declare let MaterialComponentsVersionNumber: number;
 
-declare var MaterialComponentsVersionString: interop.Reference<number>;
+declare let MaterialComponentsVersionString: interop.Reference<number>;
 
-declare var kMDCTextControlDefaultAnimationDuration: number;
+declare let kMDCTextControlDefaultAnimationDuration: number;
