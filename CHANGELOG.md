@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.3](https://github.com/nativescript-community/ui-material-components/compare/v5.3.2...v5.3.3) (2021-06-01)
+
+
+### Bug Fixes
+
+* **bottomsheet:** fix landscape mode. Not perfect yet ([6966149](https://github.com/nativescript-community/ui-material-components/commit/6966149c6ea1f9da531869a690f712b615bfa8ba))
+* **snackbar:** fixed view option and added anchorView [#243](https://github.com/nativescript-community/ui-material-components/issues/243) ([bc646d2](https://github.com/nativescript-community/ui-material-components/commit/bc646d2c0c743efe28da6697a9de446e2c9e9657))
+
+
+
+
+
 ## [5.3.2](https://github.com/nativescript-community/ui-material-components/compare/v5.3.1...v5.3.2) (2021-05-27)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
