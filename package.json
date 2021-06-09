@@ -11,7 +11,7 @@
     "scripts": {
         "setup": "ts-patch install",
         "prepare": "npm run setup",
-        "publish": "npm run setup && npm run build.all && lerna publish --create-release=github --force-publish=1",
+        "publish": "npm run setup && npm run build.all && lerna publish --create-release=github",
         "build": "lerna run build",
         "build.angular": "lerna run build.angular",
         "build.angular.win": "lerna run build.angular.win",
