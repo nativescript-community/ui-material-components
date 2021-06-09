@@ -1,6 +1,8 @@
 import { elevationProperty, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
 import { Color, backgroundColorProperty, colorProperty } from '@nativescript/core';
-import { thumbColorProperty, thumbHollowAtStartProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
+import { maxValueProperty } from '@nativescript/core/ui/progress';
+import { minValueProperty } from '@nativescript/core/ui/slider/slider-common';
+import { stepSizeProperty, thumbColorProperty, thumbHollowAtStartProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
 import { SliderBase } from './slider-common';
 
 export class Slider extends SliderBase {
@@ -59,5 +61,29 @@ export class Slider extends SliderBase {
     }
     [elevationProperty.setNative](value: number) {
         this.nativeViewProtected.thumbElevation = value;
+    }
+    [minValueProperty.setNative](value) {
+        this.nativeViewProtected.minimumValue = value;
+        if (this.stepSize !== 0) {
+            this.nativeViewProtected.numberOfDiscreteValues = (this.maxValue - this.minValue) / value;
+        }
+    }
+    [maxValueProperty.setNative](value) {
+        this.nativeViewProtected.maximumValue = value;
+        if (this.stepSize !== 0) {
+            this.nativeViewProtected.numberOfDiscreteValues = (this.maxValue - this.minValue) / value;
+        }
+    }
+    [stepSizeProperty.getDefault]() {
+        return 0;
+    }
+    [stepSizeProperty.setNative](value) {
+        if (value === 0) {
+            this.nativeViewProtected.discrete = false;
+        } else {
+            this.nativeViewProtected.discrete = true;
+            this.nativeViewProtected.numberOfDiscreteValues = (this.maxValue - this.minValue) / value;
+            this.nativeViewProtected.shouldDisplayDiscreteValueLabel = false;
+        }
     }
 }

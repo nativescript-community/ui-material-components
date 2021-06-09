@@ -1,7 +1,7 @@
 import { cssProperty, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
 import { getEnabledColorStateList, state } from '@nativescript-community/ui-material-core/android/utils';
 import { CoercibleProperty, Color, Property, View, backgroundColorProperty, backgroundInternalProperty, colorProperty } from '@nativescript/core';
-import { thumbColorProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
+import { stepSizeProperty, thumbColorProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
 
 let ASlider: typeof com.google.android.material.slider.Slider;
 export function sliderGetEnabledColorStateList(color: Color, alpha = 255) {
@@ -56,6 +56,7 @@ export class Slider extends View {
     @cssProperty trackBackgroundColor: Color;
     @cssProperty trackFillColor: Color;
     @cssProperty thumbColor: Color;
+    @cssProperty stepSize: number;
     @cssProperty elevation: number;
     _supressNativeValue: boolean;
     public value: number;
@@ -136,8 +137,17 @@ export class Slider extends View {
             this[thumbColorProperty.setNative](this.thumbColor);
         }
     }
+    [stepSizeProperty.getDefault]() {
+        return 0;
+    }
+    [stepSizeProperty.setNative](value) {
+        this.nativeViewProtected.setStepSize(value);
+    }
     [valueProperty.setNative](value) {
-        // this.nativeViewProtected.setValueTo(this.maxValue);
+        // ensure we set min/max to prevent errors in listviews while reusing cells
+        // will sliders with different min/max
+        this.nativeViewProtected.setValueFrom(this.minValue);
+        this.nativeViewProtected.setValueTo(this.maxValue);
         this.nativeViewProtected.setValue(value);
     }
     [minValueProperty.setNative](value) {

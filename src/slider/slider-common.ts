@@ -8,4 +8,5 @@ export abstract class SliderBase extends NSSlider {
     @cssProperty trackFillColor: Color;
     @cssProperty thumbColor: Color;
     @cssProperty elevation: number;
+    @cssProperty stepSize: number;
 }
