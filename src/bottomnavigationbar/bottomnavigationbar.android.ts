@@ -1,5 +1,5 @@
-import { state, stateSets } from '@nativescript-community/ui-material-core/android/utils';
-import { Color } from '@nativescript/core';
+import { getFullColorStateList, state, stateSets } from '@nativescript-community/ui-material-core/android/utils';
+import { Color, fontInternalProperty, ImageSource, Utils } from '@nativescript/core';
 import {
     BottomNavigationBarBase,
     BottomNavigationTabBase,
@@ -9,7 +9,8 @@ import {
     badgeTextColorCssProperty,
     inactiveColorCssProperty,
     tabsProperty,
-    titleVisibilityProperty
+    titleVisibilityProperty,
+    iconProperty
 } from './bottomnavigationbar-common';
 
 // Types shortcuts
@@ -193,8 +194,8 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
             // the create nativeView will actually add the item to the tab bar
             item.index = index;
             this._addView(item);
-            const tab = item.nativeViewProtected;
-            tab.setIcon(item.getNativeIcon());
+            // const tab = item.nativeViewProtected;
+            // tab.setIcon(item.getNativeIcon());
         });
     }
 
@@ -224,8 +225,21 @@ export class BottomNavigationTab extends BottomNavigationTabBase {
     initNativeView() {
         // override for super not to be called. isClickable does not exist on android.view.MenuItem
     }
-    getNativeIcon(): android.graphics.drawable.BitmapDrawable {
-        return this.icon && new android.graphics.drawable.BitmapDrawable(this.icon.android);
+    [iconProperty.setNative](iconSource) {
+        if (!iconSource) {
+            return null;
+        }
+        let is: ImageSource;
+        if (iconSource instanceof ImageSource) {
+            is = iconSource;
+        } else if (Utils.isFontIconURI(iconSource)) {
+            const fontIconCode = iconSource.split('//')[1];
+            const font = this.style.fontInternal;
+            is = ImageSource.fromFontIconCodeSync(fontIconCode, font, new Color('white'));
+        } else {
+            is = ImageSource.fromFileOrResourceSync(iconSource);
+        }
+        this.nativeViewProtected.setIcon(is ? new android.graphics.drawable.BitmapDrawable(is.android) : null);
     }
 
     showBadge(value?): void {
@@ -256,7 +270,7 @@ export class BottomNavigationTab extends BottomNavigationTabBase {
             this.activeColor instanceof Color
                 ? this.activeColor.android
                 : this.nativeViewProtected.getIconTintList()
-                    ? this.nativeViewProtected.getIconTintList().getColorForState(stateSets.FOCUSED_STATE_SET, color2)
+                    ? this.nativeViewProtected.getIconTintList().getColorForState(stateSets.SELECTED_STATE_SET, color2)
                     : 0;
         const colorStateList = createColorStateList(color1, color2);
         // this.nativeViewProtected.setText(colorStateList); // can we set the text color?

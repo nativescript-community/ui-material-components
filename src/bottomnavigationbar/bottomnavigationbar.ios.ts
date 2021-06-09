@@ -1,5 +1,5 @@
 import { themer } from '@nativescript-community/ui-material-core';
-import { Application, Color, Screen, Utils, backgroundColorProperty } from '@nativescript/core';
+import { Application, Color, ImageSource, Screen, Utils, backgroundColorProperty } from '@nativescript/core';
 import {
     BottomNavigationBarBase,
     BottomNavigationTabBase,
@@ -9,7 +9,8 @@ import {
     badgeTextColorCssProperty,
     inactiveColorCssProperty,
     tabsProperty,
-    titleVisibilityProperty
+    titleVisibilityProperty,
+    iconProperty
 } from './bottomnavigationbar-common';
 
 @NativeClass
@@ -193,9 +194,28 @@ export class BottomNavigationTab extends BottomNavigationTabBase {
     }
 
     getNativeIcon(): UIImage {
-        return this.icon && this.icon.ios;
-    }
+        const iconSource = this.icon;
+        if (!iconSource) {
+            return null;
+        }
+        if (iconSource instanceof ImageSource) {
+            return iconSource.ios;
+        }
 
+        let is: ImageSource;
+        if (Utils.isFontIconURI(iconSource)) {
+            const fontIconCode = iconSource.split('//')[1];
+            const font = this.style.fontInternal;
+            is = ImageSource.fromFontIconCodeSync(fontIconCode, font, new Color('white'));
+        } else {
+            is = ImageSource.fromFileOrResourceSync(iconSource);
+        }
+
+        return is && is.ios;
+    }
+    [iconProperty.setNative](iconSource) {
+        this.nativeViewProtected.image = this.getNativeIcon();
+    }
     getMDView() {
         return (this.parent as BottomNavigationBar).nativeViewProtected.viewForItem(this.nativeViewProtected) as MDCBottomNavigationItemView;
     }
