@@ -83,6 +83,11 @@ export interface SnackBarOptions {
      * optional View to attach the snack to
      */
     view?: View;
+    /**
+     * The view you want to "anchor the snack above".
+     * The snackbar will appear above that view
+     */
+    anchorView?: View;
 }
 
 export enum DismissReasons {
