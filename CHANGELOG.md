@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.4](https://github.com/nativescript-community/ui-material-components/compare/v5.3.3...v5.3.4) (2021-06-09)
+
+
+### Bug Fixes
+
+* **bottomnavigationbar:** font icons not working ([c4a5b42](https://github.com/nativescript-community/ui-material-components/commit/c4a5b421f594d619879b1ff13edfb66d9ece6a95))
+* **cardview:** shape property fix ([37eb8bd](https://github.com/nativescript-community/ui-material-components/commit/37eb8bd1d21a8ad405cdcc5b255234dcf32b0820))
+
+
+### Features
+
+* **slider:** stepSize property ([0613882](https://github.com/nativescript-community/ui-material-components/commit/061388293b8c3cdc5097e4a81f2f87751874711e))
+
+
+
+
+
 ## [5.3.3](https://github.com/nativescript-community/ui-material-components/compare/v5.3.2...v5.3.3) (2021-06-01)
 
 
