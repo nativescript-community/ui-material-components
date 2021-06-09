@@ -5,7 +5,14 @@ const nsWebpack = require('@nativescript/webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const NsVueTemplateCompiler = require('nativescript-vue-template-compiler');
-
+function fixedFromCharCode(codePt) {
+    if (codePt > 0xffff) {
+        codePt -= 0x10000;
+        return String.fromCharCode(0xd800 + (codePt >> 10), 0xdc00 + (codePt & 0x3ff));
+    } else {
+        return String.fromCharCode(codePt);
+    }
+}
 // temporary hack to support v-model using ns-vue-template-compiler
 // See https://github.com/nativescript-vue/nativescript-vue/issues/371
 NsVueTemplateCompiler.registerElement('MDTextField', () => require('@nativescript-community/ui-material-textfield').TextField, {
@@ -148,8 +155,9 @@ module.exports = (env, params = {}) => {
             test: /\.scss$/,
             exclude: /\.module\.scss$/,
             use: [
+                { loader: 'apply-css-loader' },
                 {
-                    loader: '@nativescript/webpack/dist/loaders/css2json-loader',
+                    loader: 'css2json-loader',
                     options: { useForImports: true }
                 },
                 {
@@ -184,10 +192,10 @@ module.exports = (env, params = {}) => {
             {
                 loader: 'string-replace-loader',
                 options: {
-                    search: 'mdi-([a-z-]+)',
+                    search: 'mdi-([a-z0-9-_]+)',
                     replace: (match, p1, offset, str) => {
                         if (mdiIcons[p1]) {
-                            return String.fromCharCode(parseInt(mdiIcons[p1], 16));
+                            return fixedFromCharCode(parseInt(mdiIcons[p1], 16));
                         }
                         return match;
                     },

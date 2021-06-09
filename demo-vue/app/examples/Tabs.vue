@@ -79,8 +79,8 @@ export default Vue.extend({
             const items = this.$refs.tabs.nativeView.items.slice(0);
              const item: TabContentItem = new TabContentItem();
         // The createContent is a custom method that returns a StackLayout with a Label as a chils
-            item.content = this.createContent(index);
-        items.push(item);
+            item.content = this.createContent(items.length);
+            items.push(item);
            this.$refs.tabs.nativeView.items = items.slice(0)
         }
     }

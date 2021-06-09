@@ -62,7 +62,7 @@ export default Vue.extend({
                         context: {
                             dataItems: this.dataItems
                         },
-                        view: label
+                        view: label as any
                     }).then(result => {
                         alert(`closed  dialog with customview and result: ${result}`);
                     });
@@ -152,7 +152,7 @@ export default Vue.extend({
                     const dialog = new AlertDialog({
                         // title: 'tsst',
                         // message: null,
-                        view: stack
+                        view: stack as any
                     });
                     dialog.show();
             }

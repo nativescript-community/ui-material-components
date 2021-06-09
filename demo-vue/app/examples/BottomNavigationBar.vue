@@ -16,13 +16,16 @@
             <MDBottomNavigationBar
                 ref="bottomBar"
                 row="1"
+                activeColor="blue"
+                inactiveColor="green"
+                 class="mdi"
                 @loaded="onbottomNavigationBarLoaded"
                 @tabPressed="onBottomNavigationTabPressed"
                 @tabSelected="onBottomNavigationTabSelected"
                 @tabReselected="onBottomNavigationTabReselected"
             >
-                <MDBottomNavigationTab title="First" icon="res://ic_home" activeColor="green" />
-                <MDBottomNavigationTab title="Second" icon="res://ic_view_list" isSelectable="false" />
+                <MDBottomNavigationTab title="First" activeColor="green" />
+                <MDBottomNavigationTab title="Second" icon="font://mdi-account" isSelectable="false" class="mdi" />
                 <MDBottomNavigationTab title="Third" icon="res://ic_menu" inactiveColor="brown" />
             </MDBottomNavigationBar>
         </GridLayout>
