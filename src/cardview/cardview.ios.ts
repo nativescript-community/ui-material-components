@@ -1,4 +1,4 @@
-import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
 import {
     Background,
     Color,
@@ -190,5 +190,9 @@ export class CardView extends CardViewBase {
     }
     [rippleColorProperty.setNative](color: Color) {
         this.nativeViewProtected.inkView.inkColor = getRippleColor(color);
+    }
+
+    [shapeProperty.setNative](shape) {
+        this.getShapeScheme();
     }
 }
