@@ -53,7 +53,6 @@ export class SnackBar extends SnackBarBase {
                 button.setTitleColorForState(color, UIControlState.Highlighted);
                 button.inkColor = getRippleColor(options.actionTextColor);
             });
-
         }
 
         if (options.backgroundColor && Color.isValid(options.backgroundColor)) {
@@ -81,12 +80,11 @@ export class SnackBar extends SnackBarBase {
         }
 
         if (options.anchorView) {
-            const totalHeight = nAttachedView? (nAttachedView.frame.origin.y + nAttachedView.frame.size.height): UIApplication.sharedApplication.keyWindow.rootViewController.view.bounds.size.height;
-            const  result = (options.anchorView.nativeViewProtected as UIView).convertPointToView(CGPointZero, nAttachedView);
-            SnackBar._snackbarManager.setBottomOffset(totalHeight  - result.y );
+            const totalHeight = nAttachedView ? nAttachedView.frame.origin.y + nAttachedView.frame.size.height : UIApplication.sharedApplication.keyWindow.rootViewController.view.bounds.size.height;
+            const result = (options.anchorView.nativeViewProtected as UIView).convertPointToView(CGPointZero, nAttachedView);
+            SnackBar._snackbarManager.setBottomOffset(totalHeight - result.y);
         } else {
             SnackBar._snackbarManager.setBottomOffset(0);
-
         }
     }
 
@@ -119,7 +117,7 @@ export class SnackBar extends SnackBarBase {
             this._shown = false;
             resolve({
                 action: SnackBarAction.DISMISS,
-                reason: this._dismissReason !== undefined ? this._dismissReason : userInitiated ? DismissReasons.ACTION : DismissReasons.TIMEOUT,
+                reason: this._dismissReason !== undefined ? this._dismissReason : userInitiated ? DismissReasons.ACTION : DismissReasons.TIMEOUT
             });
         };
     }
@@ -136,7 +134,7 @@ export class SnackBar extends SnackBarBase {
             } else {
                 resolve({
                     action: SnackBarAction.NONE,
-                    message: 'No actionbar to dismiss',
+                    message: 'No actionbar to dismiss'
                 });
             }
         });
