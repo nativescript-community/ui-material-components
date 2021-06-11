@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.5](https://github.com/nativescript-community/ui-material-components/compare/v5.3.4...v5.3.5) (2021-06-11)
+
+
+### Bug Fixes
+
+* shape allows dip and px units ([72dafae](https://github.com/nativescript-community/ui-material-components/commit/72dafaec67b0d986e47c9fe9f6cff81d837adc89))
+
+
+
+
+
 ## [5.3.4](https://github.com/nativescript-community/ui-material-components/compare/v5.3.3...v5.3.4) (2021-06-09)
 
 

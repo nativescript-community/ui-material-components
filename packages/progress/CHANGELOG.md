@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.5](https://github.com/nativescript-community/ui-material-components/tree/master/packages/progress/compare/v5.3.4...v5.3.5) (2021-06-11)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-progress
+
+
+
+
+
 ## [5.3.4](https://github.com/nativescript-community/ui-material-components/tree/master/packages/progress/compare/v5.3.3...v5.3.4) (2021-06-09)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-progress
