@@ -21,11 +21,11 @@ export interface TypographyOptions {
 import { CornerFamily } from './index.common';
 export { CornerFamily };
 export interface ShapeProperties {
-    cornerSize?: number | CoreTypes.LengthPercentUnit;
-    cornerSizeTopRight?: number | CoreTypes.LengthPercentUnit;
-    cornerSizeBottomLeft?: number | CoreTypes.LengthPercentUnit;
-    cornerSizeTopLeft?: number | CoreTypes.LengthPercentUnit;
-    cornerSizeBottomRight?: number | CoreTypes.LengthPercentUnit;
+    cornerSize?: number | CoreTypes.LengthPercentUnit | CoreTypes.LengthDipUnit | CoreTypes.LengthPxUnit;
+    cornerSizeTopRight?: number | CoreTypes.LengthPercentUnit | CoreTypes.LengthDipUnit | CoreTypes.LengthPxUnit;
+    cornerSizeBottomLeft?: number | CoreTypes.LengthPercentUnit | CoreTypes.LengthDipUnit | CoreTypes.LengthPxUnit;
+    cornerSizeTopLeft?: number | CoreTypes.LengthPercentUnit | CoreTypes.LengthDipUnit | CoreTypes.LengthPxUnit;
+    cornerSizeBottomRight?: number | CoreTypes.LengthPercentUnit | CoreTypes.LengthDipUnit | CoreTypes.LengthPxUnit;
     cornerFamily?: CornerFamily;
     cornerFamilyTopLeft?: CornerFamily;
     cornerFamilyTopRight?: CornerFamily;

@@ -1,4 +1,17 @@
-import { Background, Button, Color, ControlStateChangeListener, CoreTypes, GestureTypes, TouchAction, TouchGestureEventData, Utils, View, backgroundInternalProperty } from '@nativescript/core';
+import {
+    Background,
+    Button,
+    Color,
+    ControlStateChangeListener,
+    CoreTypes,
+    GestureTypes,
+    PercentLength,
+    TouchAction,
+    TouchGestureEventData,
+    Utils,
+    View,
+    backgroundInternalProperty
+} from '@nativescript/core';
 import { ShapeProperties, TypographyOptions } from '.';
 import { CornerFamily, applyMixins } from './index.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
@@ -18,9 +31,17 @@ function cornerTreatment(cornerFamily: CornerFamily, cornerSize: number | CoreTy
     let corner: MDCCornerTreatment;
     if (typeof cornerSize === 'object') {
         if (cornerFamily === CornerFamily.CUT) {
-            corner = MDCCornerTreatment.cornerWithCutValueType(cornerSize.value, MDCCornerTreatmentValueType.Percentage);
+            if (cornerSize.unit === '%') {
+                corner = MDCCornerTreatment.cornerWithCutValueType(cornerSize.value, MDCCornerTreatmentValueType.Percentage);
+            } else {
+                corner = MDCCornerTreatment.cornerWithCutValueType(PercentLength.toDevicePixels(cornerSize.value), MDCCornerTreatmentValueType.Absolute);
+            }
         } else {
-            corner = MDCCornerTreatment.cornerWithRadiusValueType(cornerSize.value, MDCCornerTreatmentValueType.Percentage);
+            if (cornerSize.unit === '%') {
+                corner = MDCCornerTreatment.cornerWithCutValueType(cornerSize.value, MDCCornerTreatmentValueType.Percentage);
+            } else {
+                corner = MDCCornerTreatment.cornerWithCutValueType(PercentLength.toDevicePixels(cornerSize.value), MDCCornerTreatmentValueType.Absolute);
+            }
         }
     } else {
         if (cornerFamily === CornerFamily.ROUNDED) {

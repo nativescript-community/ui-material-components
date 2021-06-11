@@ -1,4 +1,4 @@
-import { Application, Background, Button, Color, Length, View, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, profile } from '@nativescript/core';
+import { Application, Background, Button, Color, Length, View, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, profile, PercentLength } from '@nativescript/core';
 import { createRippleDrawable, createStateListAnimator, getAttrColor, getColorStateList, handleClearFocus, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from './android/utils';
 import { CornerFamily, applyMixins } from './index.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
@@ -127,35 +127,55 @@ export class Themer {
         }
         if (options.cornerSize !== undefined) {
             if (typeof options.cornerSize === 'object') {
-                builder.setAllCornerSizes(new com.google.android.material.shape.RelativeCornerSize(options.cornerSize.value));
+                if (options.cornerSize.unit === '%') {
+                    builder.setAllCornerSizes(new com.google.android.material.shape.RelativeCornerSize(options.cornerSize.value));
+                } else {
+                    builder.setAllCornerSizes(PercentLength.toDevicePixels(options.cornerSize));
+                }
             } else {
                 builder.setAllCornerSizes(options.cornerSize);
             }
         }
         if (options.cornerSizeBottomLeft !== undefined) {
             if (typeof options.cornerSizeBottomLeft === 'object') {
-                builder.setBottomLeftCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeBottomLeft.value));
+                if (options.cornerSizeBottomLeft.unit === '%') {
+                    builder.setBottomLeftCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeBottomLeft.value));
+                } else {
+                    builder.setBottomLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomLeft));
+                }
             } else {
                 builder.setBottomLeftCornerSize(options.cornerSizeBottomLeft);
             }
         }
         if (options.cornerSizeBottomRight !== undefined) {
             if (typeof options.cornerSizeBottomRight === 'object') {
-                builder.setBottomRightCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeBottomRight.value));
+                if (options.cornerSizeBottomRight.unit === '%') {
+                    builder.setBottomRightCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeBottomRight.value));
+                } else {
+                    builder.setBottomRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomRight));
+                }
             } else {
                 builder.setBottomRightCornerSize(options.cornerSizeBottomRight);
             }
         }
         if (options.cornerSizeTopRight !== undefined) {
             if (typeof options.cornerSizeTopRight === 'object') {
-                builder.setTopRightCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeTopRight.value));
+                if (options.cornerSizeTopRight.unit === '%') {
+                    builder.setTopRightCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeTopRight.value));
+                } else {
+                    builder.setTopRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopRight));
+                }
             } else {
                 builder.setTopRightCornerSize(options.cornerSizeTopRight);
             }
         }
         if (options.cornerSizeTopLeft !== undefined) {
             if (typeof options.cornerSizeTopLeft === 'object') {
-                builder.setTopLeftCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeTopLeft.value));
+                if (options.cornerSizeTopLeft.unit === '%') {
+                    builder.setTopLeftCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeTopLeft.value));
+                } else {
+                    builder.setTopLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopLeft));
+                }
             } else {
                 builder.setTopLeftCornerSize(options.cornerSizeTopLeft);
             }
