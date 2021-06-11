@@ -27,7 +27,7 @@ function createCornerFamily(cornerFamily: CornerFamily): MDCShapeCornerFamily {
             return MDCShapeCornerFamily.Rounded;
     }
 }
-function cornerTreatment(cornerFamily: CornerFamily, cornerSize: number | CoreTypes.LengthPercentUnit) {
+function cornerTreatment(cornerFamily: CornerFamily, cornerSize: number | CoreTypes.LengthPercentUnit | CoreTypes.LengthPxUnit | CoreTypes.LengthDipUnit) {
     let corner: MDCCornerTreatment;
     if (typeof cornerSize === 'object') {
         if (cornerFamily === CornerFamily.CUT) {
