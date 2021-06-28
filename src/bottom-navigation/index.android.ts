@@ -903,6 +903,9 @@ export class BottomNavigation extends TabNavigationBase {
 
     private setIconColor(tabStripItem: TabStripItem, color?: Color) {
         const tabBarItem = this._bottomNavigationBar.getViewForItemAt(tabStripItem._index);
+        if (!tabBarItem) {
+            return;
+        }
 
         const drawableInfo = this.getIconInfo(tabStripItem, color);
         const imgView = tabBarItem.getChildAt(0) as android.widget.ImageView;
