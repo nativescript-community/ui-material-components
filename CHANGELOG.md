@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.6](https://github.com/nativescript-community/ui-material-components/compare/v5.3.5...v5.3.6) (2021-06-28)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** prevent issue with while changing system theme ([8bbe7b8](https://github.com/nativescript-community/ui-material-components/commit/8bbe7b8e2631e6b58f5eef29feaaca48a798b3e1))
+
+
+
+
+
 ## [5.3.5](https://github.com/nativescript-community/ui-material-components/compare/v5.3.4...v5.3.5) (2021-06-11)
 
 
