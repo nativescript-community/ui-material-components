@@ -58,7 +58,7 @@ IMPORTANT: _Make sure you include `xmlns:mda="@nativescript-community/ui-materia
 #### CSS
 
 ```CSS
-mdcactivityindicator {
+mdactivityindicator {
     color: #fff;
 }
 ```

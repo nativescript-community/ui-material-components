@@ -66,7 +66,7 @@ IMPORTANT: _Make sure you include `xmlns:mdt="@nativescript-community/ui-materia
 #### CSS
 
 ```CSS
-mdctextview {
+mdtextview {
     ripple-color: blue;
     elevation: 4;
     stroke-color: blue;             /* the border color when active */

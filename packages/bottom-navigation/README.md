@@ -46,37 +46,37 @@ IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-materia
 <Page xmlns:mdt="@nativescript-community/ui-material-bottom-navigation">
     <mdt:BottomNavigation selectedIndex="1">
         <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-        <mdt:TabStrip>
-            <mdt:TabStripItem>
+        <mdt:MDTabStrip>
+            <mdt:MDTabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
-            </mdt:TabStripItem>
-            <mdt:TabStripItem class="special">
+            </mdt:MDTabStripItem>
+            <mdt:MDTabStripItem class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
-            </mdt:TabStripItem>
-            <mdt:TabStripItem class="special">
+            </mdt:MDTabStripItem>
+            <mdt:MDTabStripItem class="special">
                 <Label text="Search"></Label>
                 <Image src="font://&#xf00e;" class="fas"></Image>
-            </mdt:TabStripItem>
-        </mdt:TabStrip>
+            </mdt:MDTabStripItem>
+        </mdt:MDTabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
-        <mdt:TabContentItem>
+        <mdt:MDTabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
-        </mdt:TabContentItem>
-        <mdt:TabContentItem>
+        </mdt:MDTabContentItem>
+        <mdt:MDTabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
-        </mdt:TabContentItem>
-        <mdt:TabContentItem>
+        </mdt:MDTabContentItem>
+        <mdt:MDTabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
-        </mdt:TabContentItem>
+        </mdt:MDTabContentItem>
     </mdt:BottomNavigation>
 </Page>
 ```
@@ -90,23 +90,23 @@ MDBottomNavigation.bottom-nav {
     font-size: 18;
 }
 
-TabStripItem.tabstripitem-active {
+MDTabStripItem.tabstripitem-active {
     background-color: teal;
 }
 
-TabStripItem.tabstripitem-active:active {
+MDTabStripItem.tabstripitem-active:active {
     background-color: yellowgreen;
 }
 
-TabContentItem.first-tabcontent {
+MDTabContentItem.first-tabcontent {
     background-color: seashell;
     color: olive;
 }
-TabContentItem.second-tabcontent {
+MDTabContentItem.second-tabcontent {
     background-color: slategray;
     color: aquamarine;
 }
-TabContentItem.third-tabcontent {
+MDTabContentItem.third-tabcontent {
     background-color: blueviolet;
     color: antiquewhite;
 }

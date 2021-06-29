@@ -63,7 +63,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 #### CSS
 
 ```CSS
-mdcripple {
+mdripple {
     ripple-color: blue;
 }
 ```

@@ -64,7 +64,7 @@ Be sure to run a new build after adding plugins to avoid any issues.
 #### CSS
 
 ```CSS
-mdcfloatingactionbutton {
+mdfloatingactionbutton {
     ripple-color: blue;
     elevation: 4;
 }
