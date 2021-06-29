@@ -84,7 +84,7 @@ The _Bottom Navigation_ component is a simple extract of the [eponymous componen
 ```bash
 npm i
 npm run setup # this should happen for every typescript update
-npm run tsc
+npm run build.all
 npm run demo.ios
 npm run demo.android
 ```

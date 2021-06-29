@@ -12,7 +12,7 @@
         "tsc-win": "..\\..\\node_modules\\.bin\\cpy '**/*.d.ts' '..\\..\\packages\\core' --cwd=..\\..\\src\\core --parents && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
         "build": "npm run tsc && npm run build.hooks",
         "build.hooks": " tsc -skipLibCheck -p tsconfig.hooks.json",
-        "build.all": "npm run build",
+        "build.all": "npm run build.hooks && npm run build",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
     },
     "nativescript": {
