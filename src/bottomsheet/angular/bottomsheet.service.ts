@@ -118,7 +118,7 @@ export class BottomSheetService {
         const detachedLoaderFactory = factoryResolver.resolveComponentFactory(DetachedLoader);
         const childInjector = this.createChildInjector(bottomSheetParams, viewContainerRef);
 
-        return viewContainerRef.createComponent(detachedLoaderFactory, 0, childInjector, null);
+        return viewContainerRef.createComponent(detachedLoaderFactory, 0, childInjector);
     }
 
     private async loadComponent(type: Type<any>, sheetRef: SheetRef): Promise<View> {
