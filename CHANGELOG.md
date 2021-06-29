@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.7](https://github.com/nativescript-community/ui-material-components/compare/v5.3.6...v5.3.7) (2021-06-29)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** more safeguard for android system theme change ([d404dff](https://github.com/nativescript-community/ui-material-components/commit/d404dff6506ff16b9b86451dbeeb0c2550c1827e))
+* **bottom-sheet:** do not pass projectableNodes ([0558973](https://github.com/nativescript-community/ui-material-components/commit/0558973d0f09cb922f35f8e8f560916968fdd4ed))
+
+
+
+
+
 ## [5.3.6](https://github.com/nativescript-community/ui-material-components/compare/v5.3.5...v5.3.6) (2021-06-28)
 
 
