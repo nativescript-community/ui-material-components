@@ -821,7 +821,9 @@ export class BottomNavigation extends TabNavigationBase {
     }
 
     public updateAndroidItemAt(index: number, spec: com.nativescript.material.core.TabItemSpec) {
-        this._bottomNavigationBar.updateItemAt(index, spec);
+        if (this._bottomNavigationBar) {
+            this._bottomNavigationBar.updateItemAt(index, spec);
+        }
     }
 
     public getTabBarBackgroundColor(): android.graphics.drawable.Drawable {
@@ -829,6 +831,9 @@ export class BottomNavigation extends TabNavigationBase {
     }
 
     public setTabBarBackgroundColor(value: android.graphics.drawable.Drawable | Color): void {
+        if (!this._bottomNavigationBar) {
+            return;
+        }
         if (value instanceof Color) {
             this._bottomNavigationBar.setBackgroundColor(value.android);
         } else {
