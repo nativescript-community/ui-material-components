@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.8](https://github.com/nativescript-community/ui-material-components/compare/v5.3.7...v5.3.8) (2021-07-01)
+
+
+### Bug Fixes
+
+* **ios:** rounded % corners for shape going to cut ([df7b8f4](https://github.com/nativescript-community/ui-material-components/commit/df7b8f43971f62ebc96254a14646e718be9de1d3))
+
+
+
+
+
 ## [5.3.7](https://github.com/nativescript-community/ui-material-components/compare/v5.3.6...v5.3.7) (2021-06-29)
 
 
