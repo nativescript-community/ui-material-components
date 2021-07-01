@@ -1,9 +1,11 @@
-import { CSSType, ActivityIndicator as NSActivityIndicator, Progress as NSProgress, Property, Utils, booleanConverter } from '@nativescript/core';
+import { CSSType, CoercibleProperty, ActivityIndicator as NSActivityIndicator, Progress as NSProgress, Property, Utils, booleanConverter } from '@nativescript/core';
 import { applyMixins } from '@nativescript-community/ui-material-core';
 
 @CSSType('MDActivityIndicator')
 export class ActivityIndicatorBase extends NSActivityIndicator {
     public indeterminate: boolean;
+    public maxValue: number;
+    public value: number;
     public startAnimating() {
         this.busy = true;
     }
@@ -37,3 +39,26 @@ export const indeterminateProperty = new Property<ActivityIndicatorBase, boolean
     valueConverter: booleanConverter
 });
 indeterminateProperty.register(ActivityIndicatorBase);
+/**
+ * Represents the observable property backing the value property of each Progress instance.
+ */
+export const valueProperty = new CoercibleProperty<ActivityIndicatorBase, number>({
+    name: 'value',
+    defaultValue: 0,
+    coerceValue: (t, v) => (v < 0 ? 0 : Math.min(v, t.maxValue)),
+    valueConverter: (v) => parseInt(v, 10)
+});
+valueProperty.register(ActivityIndicatorBase);
+
+/**
+ * Represents the observable property backing the maxValue property of each Progress instance.
+ */
+export const maxValueProperty = new Property<ActivityIndicatorBase, number>({
+    name: 'maxValue',
+    defaultValue: 100,
+    valueChanged: (target, oldValue, newValue) => {
+        valueProperty.coerce(target);
+    },
+    valueConverter: (v) => parseInt(v, 10)
+});
+maxValueProperty.register(ActivityIndicatorBase);

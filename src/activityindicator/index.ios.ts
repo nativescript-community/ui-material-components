@@ -1,6 +1,6 @@
 import { themer } from '@nativescript-community/ui-material-core';
 import { Color, Screen, Utils, View, colorProperty } from '@nativescript/core';
-import { ActivityIndicatorBase, indeterminateProperty } from './index-common';
+import { ActivityIndicatorBase, indeterminateProperty, maxValueProperty, valueProperty } from './index-common';
 
 export class ActivityIndicator extends ActivityIndicatorBase {
     nativeViewProtected: MDCActivityIndicator;
@@ -9,7 +9,7 @@ export class ActivityIndicator extends ActivityIndicatorBase {
     public createNativeView() {
         const view = MDCActivityIndicator.new();
         const color = (themer.getAppColorScheme() as MDCSemanticColorScheme).primaryColor;
-        view.cycleColors  = color ? NSArray.arrayWithObject(color) : null;
+        view.cycleColors = color ? NSArray.arrayWithObject(color) : null;
         // const colorScheme = this.colorThemer || themer.getAppColorScheme();
         // if (colorScheme) {
         //     MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(colorScheme, view);
@@ -77,11 +77,25 @@ export class ActivityIndicator extends ActivityIndicatorBase {
 
     [colorProperty.setNative](value: UIColor | Color) {
         const color = value instanceof Color ? value.ios : value;
-        this.nativeViewProtected.cycleColors  = color ? NSArray.arrayWithObject(color) : null;
+        this.nativeViewProtected.cycleColors = color ? NSArray.arrayWithObject(color) : null;
         // this.getColorThemer().primaryColor = value instanceof Color ? value.ios : value;
         // MDCActivityIndicatorColorThemer.applySemanticColorSchemeToActivityIndicator(this.getColorThemer(), this.nativeViewProtected);
     }
     [indeterminateProperty.setNative](value: boolean) {
         this.nativeViewProtected.indicatorMode = value ? MDCActivityIndicatorMode.Indeterminate : MDCActivityIndicatorMode.Determinate;
+    }
+
+    [valueProperty.getDefault](): number {
+        return 0;
+    }
+    [valueProperty.setNative](value: number) {
+        this.nativeViewProtected.progress = value / this.maxValue;
+    }
+
+    [maxValueProperty.getDefault](): number {
+        return 100;
+    }
+    [maxValueProperty.setNative](value: number) {
+        this.nativeViewProtected.progress = this.value / value;
     }
 }

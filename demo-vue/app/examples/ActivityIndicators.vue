@@ -11,7 +11,7 @@
       <MDActivityIndicator color="green" busy class="loading" />
       <MDActivityIndicator color="orange" busy class="loading" width="100" height="100"/>
       <MDActivityIndicator class="loading" backgroundColor="yellow" busy/>
-      <MDActivityIndicator color="brown" indeterminate="false" progress="0.5" maxValue="1" class="loading" horizontalAlignment="center"/>
+      <MDActivityIndicator color="brown" :indeterminate="false" value="50" maxValue="100" class="loading"  busy horizontalAlignment="center"/>
     </StackLayout>
   </Page>
 </template>
@@ -46,7 +46,4 @@ export default Vue.extend({
 });
 </script>
 <style lang="css">
-.loading {
-    color:white;
-}
 </style>
