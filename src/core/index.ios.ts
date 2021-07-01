@@ -38,9 +38,9 @@ function cornerTreatment(cornerFamily: CornerFamily, cornerSize: number | CoreTy
             }
         } else {
             if (cornerSize.unit === '%') {
-                corner = MDCCornerTreatment.cornerWithCutValueType(cornerSize.value, MDCCornerTreatmentValueType.Percentage);
+                corner = MDCCornerTreatment.cornerWithRadiusValueType(cornerSize.value, MDCCornerTreatmentValueType.Percentage);
             } else {
-                corner = MDCCornerTreatment.cornerWithCutValueType(PercentLength.toDevicePixels(cornerSize.value), MDCCornerTreatmentValueType.Absolute);
+                corner = MDCCornerTreatment.cornerWithRadiusValueType(PercentLength.toDevicePixels(cornerSize.value), MDCCornerTreatmentValueType.Absolute);
             }
         }
     } else {
