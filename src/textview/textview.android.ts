@@ -137,8 +137,9 @@ export class TextView extends TextViewBase {
 
     [floatingInactiveColorProperty.setNative](value: Color) {
         const placeholderColor = value instanceof Color ? value.android : value;
-        const floatingColor = (this.floatingColor || (themer.getPrimaryColor() as Color)).android;
-        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
+        const primaryColor = themer.getPrimaryColor();
+        const floatingColor = this.floatingColor || (primaryColor instanceof Color ? primaryColor : new Color(primaryColor));
+        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor instanceof Color ? floatingColor.android : floatingColor, placeholderColor));
     }
 
     public _configureEditText(editText: android.widget.EditText): void {
@@ -234,7 +235,9 @@ export class TextView extends TextViewBase {
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
             const colorStateList = getFullColorStateList(color, inactiveColor, disabledColor);
-            this.layoutView.setBoxStrokeColorStateList(colorStateList);
+            if (colorStateList) {
+                this.layoutView.setBoxStrokeColorStateList(colorStateList);
+            }
         } else {
             this.layoutView.setBoxStrokeColor(color);
         }
