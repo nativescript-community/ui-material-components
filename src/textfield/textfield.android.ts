@@ -113,7 +113,7 @@ export class TextField extends TextFieldBase {
         if (needsTransparent) {
             layoutView.setBoxBackgroundColor(0); // android.graphics.Color.TRANSPARENT
             editText.setBackground(null);
-            layoutView.setHintEnabled(false);
+            // layoutView.setHintEnabled(false);
         }
 
         layoutView.setErrorIconDrawable(null);
