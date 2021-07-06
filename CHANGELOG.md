@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.9](https://github.com/nativescript-community/ui-material-components/compare/v5.3.8...v5.3.9) (2021-07-06)
+
+
+### Bug Fixes
+
+* **textfield:** hint not working in none variant ([21dcefb](https://github.com/nativescript-community/ui-material-components/commit/21dcefbfad2e9adcb4e68f1b331a378089d912a0))
+* **textfield:** some textfield color related fixes ([5195da9](https://github.com/nativescript-community/ui-material-components/commit/5195da94418797e479fce21feec94fa5709ae62a))
+* **textview:** some textfield color related fixes ([67d1a3a](https://github.com/nativescript-community/ui-material-components/commit/67d1a3aefc1975fbb610034ebbe9504c887ab567))
+
+
+
+
+
 ## [5.3.8](https://github.com/nativescript-community/ui-material-components/compare/v5.3.7...v5.3.8) (2021-07-01)
 
 
