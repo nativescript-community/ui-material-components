@@ -147,8 +147,10 @@ export class TextField extends TextFieldBase {
 
     [floatingInactiveColorProperty.setNative](value: Color) {
         const floatingInactiveColor = value instanceof Color ? value.android : value;
-        const floatingColor = (this.floatingColor || (themer.getPrimaryColor() as Color)).android;
-        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, floatingInactiveColor));
+
+        const primaryColor = themer.getPrimaryColor();
+        const floatingColor = this.floatingColor || (primaryColor instanceof Color ? primaryColor : new Color(primaryColor));
+        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor instanceof Color ? floatingColor.android : floatingColor, floatingInactiveColor));
     }
     [helperColorProperty.setNative](value) {
         const color = value instanceof Color ? value.android : value;
@@ -213,17 +215,6 @@ export class TextField extends TextFieldBase {
     [floatingProperty.setNative](value: boolean) {
         this.layoutView.setHintEnabled(!!value);
     }
-
-    [strokeInactiveColorProperty.setNative](value: Color) {
-        const color = value instanceof Color ? value.android : value;
-        if (this.layoutView.setBoxStrokeColorStateList) {
-            const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
-            const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
-            const colorStateList = getFullColorStateList(activeColor, color, disabledColor);
-            this.layoutView.setBoxStrokeColorStateList(colorStateList);
-        }
-    }
-
     [strokeWidthProperty.setNative](value: CoreTypes.LengthType) {
         this.layoutView.setBoxStrokeWidth(Length.toDevicePixels(value, 0));
     }
@@ -232,8 +223,8 @@ export class TextField extends TextFieldBase {
         this.layoutView.setBoxStrokeWidthFocused(Length.toDevicePixels(value, 0));
     }
 
-    [strokeColorProperty.setNative](value: Color) {
-        const color = value instanceof Color ? value.android : value;
+    [strokeColorProperty.setNative](value: Color | string) {
+        const color = value ? (value instanceof Color ? value.android : new Color(value).android) : null;
         if (this.layoutView.setBoxStrokeColorStateList) {
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
@@ -243,8 +234,19 @@ export class TextField extends TextFieldBase {
             this.layoutView.setBoxStrokeColor(color);
         }
     }
-    [strokeDisabledColorProperty.setNative](value: Color) {
-        const color = value instanceof Color ? value.android : value;
+
+    [strokeInactiveColorProperty.setNative](value: Color | string) {
+        const color = value ? (value instanceof Color ? value.android : new Color(value).android) : null;
+        if (this.layoutView.setBoxStrokeColorStateList) {
+            const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
+            const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
+            const colorStateList = getFullColorStateList(activeColor, color, disabledColor);
+            this.layoutView.setBoxStrokeColorStateList(colorStateList);
+        }
+    }
+
+    [strokeDisabledColorProperty.setNative](value: Color | string) {
+        const color = value ? (value instanceof Color ? value.android : new Color(value).android) : null;
         if (this.layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;

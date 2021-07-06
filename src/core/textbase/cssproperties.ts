@@ -1,10 +1,17 @@
 import { Color, CoreTypes, CssProperty, Length, Style, booleanConverter } from '@nativescript/core';
 
+function convertColor(value) {
+    if (typeof value === 'string') {
+        return new Color(value);
+    }
+    return value;
+}
+
 export const errorColorProperty = new CssProperty<Style, Color>({
     name: 'errorColor',
     cssName: 'error-color',
     equalityComparer: Color.equals,
-    valueConverter: (v) => new Color(v)
+    valueConverter: convertColor
 });
 errorColorProperty.register(Style);
 export const helperProperty = new CssProperty<Style, string>({
@@ -16,7 +23,7 @@ export const helperColorProperty = new CssProperty<Style, Color>({
     name: 'helperColor',
     cssName: 'helper-color',
     equalityComparer: Color.equals,
-    valueConverter: (v) => new Color(v)
+    valueConverter: convertColor
 });
 helperColorProperty.register(Style);
 export const errorProperty = new CssProperty<Style, string>({
@@ -40,42 +47,42 @@ export const floatingColorProperty = new CssProperty<Style, Color>({
     name: 'floatingColor',
     cssName: 'floating-color',
     equalityComparer: Color.equals,
-    valueConverter: (v) => new Color(v)
+    valueConverter: convertColor
 });
 floatingColorProperty.register(Style);
 export const floatingInactiveColorProperty = new CssProperty<Style, Color>({
     name: 'floatingInactiveColor',
     cssName: 'floating-inactive-color',
     equalityComparer: Color.equals,
-    valueConverter: (v) => new Color(v)
+    valueConverter: convertColor
 });
 floatingInactiveColorProperty.register(Style);
 export const strokeColorProperty = new CssProperty<Style, Color>({
     name: 'strokeColor',
     cssName: 'stroke-color',
     equalityComparer: Color.equals,
-    valueConverter: (v) => new Color(v)
+    valueConverter: convertColor
 });
 strokeColorProperty.register(Style);
 export const strokeInactiveColorProperty = new CssProperty<Style, Color>({
     name: 'strokeInactiveColor',
     cssName: 'stroke-inactive-color',
     equalityComparer: Color.equals,
-    valueConverter: (v) => new Color(v)
+    valueConverter: convertColor
 });
 strokeInactiveColorProperty.register(Style);
 export const strokeDisabledColorProperty = new CssProperty<Style, Color>({
     name: 'strokeDisabledColor',
     cssName: 'stroke-disabled-color',
     equalityComparer: Color.equals,
-    valueConverter: (v) => new Color(v)
+    valueConverter: convertColor
 });
 strokeDisabledColorProperty.register(Style);
 export const buttonColorProperty = new CssProperty<Style, Color>({
     name: 'buttonColor',
     cssName: 'button-color',
     equalityComparer: Color.equals,
-    valueConverter: (v) => new Color(v)
+    valueConverter: convertColor
 });
 buttonColorProperty.register(Style);
 export const digitsProperty = new CssProperty<Style, string>({

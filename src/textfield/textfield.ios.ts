@@ -315,8 +315,8 @@ export class TextField extends TextFieldBase {
     [strokeWidthFocusedProperty.setNative](value: CoreTypes.LengthType) {
         // possible?
     }
-    [strokeColorProperty.setNative](value: Color) {
-        const color = value instanceof Color ? value.ios : value;
+    [strokeColorProperty.setNative](value: Color | string) {
+        const color = value ? (value instanceof Color ? value.ios : new Color(value).ios) : null;
         const view = this.nativeViewProtected;
         if (view instanceof MDCOutlinedTextFieldImpl) {
             view.setOutlineColorForState(color, MDCTextControlState.Editing);
@@ -324,8 +324,8 @@ export class TextField extends TextFieldBase {
             (view as MDCFilledTextFieldImpl).setUnderlineColorForState(color, MDCTextControlState.Editing);
         }
     }
-    [strokeInactiveColorProperty.setNative](value: Color) {
-        const color = value instanceof Color ? value.ios : value;
+    [strokeInactiveColorProperty.setNative](value: Color | string) {
+        const color = value ? (value instanceof Color ? value.ios : new Color(value).ios) : null;
         const view = this.nativeViewProtected;
         if (view instanceof MDCOutlinedTextFieldImpl) {
             view.setOutlineColorForState(color, MDCTextControlState.Normal);
@@ -333,8 +333,8 @@ export class TextField extends TextFieldBase {
             (view as MDCFilledTextFieldImpl).setUnderlineColorForState(color, MDCTextControlState.Normal);
         }
     }
-    [strokeDisabledColorProperty.setNative](value: Color) {
-        const color = value instanceof Color ? value.ios : value;
+    [strokeDisabledColorProperty.setNative](value: Color | string) {
+        const color = value ? (value instanceof Color ? value.ios : new Color(value).ios) : null;
         const view = this.nativeViewProtected;
         if (view instanceof MDCOutlinedTextFieldImpl) {
             view.setOutlineColorForState(color, MDCTextControlState.Disabled);
