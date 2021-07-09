@@ -847,7 +847,10 @@ export class Tabs extends TabsBase {
     // }
 
     public updateAndroidItemAt(index: number, spec: com.nativescript.material.core.TabItemSpec) {
-        this._tabsBar.updateItemAt(index, spec);
+        // that try catch is fix for an android NPE error on css change which navigated in (not the current fragment)
+        try {
+            this._tabsBar.updateItemAt(index, spec);
+        } catch (err) {}
     }
 
     public getTabBarBackgroundColor(): android.graphics.drawable.Drawable {
