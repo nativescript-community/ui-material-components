@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.10](https://github.com/nativescript-community/ui-material-components/compare/v5.3.9...v5.3.10) (2021-07-09)
+
+
+### Bug Fixes
+
+* **tabs:** android prevent crash on css theme change ([73ad349](https://github.com/nativescript-community/ui-material-components/commit/73ad3499bce0e12db8de82e8b121f1bae0d128fa))
+
+
+
+
+
 ## [5.3.9](https://github.com/nativescript-community/ui-material-components/compare/v5.3.8...v5.3.9) (2021-07-06)
 
 
