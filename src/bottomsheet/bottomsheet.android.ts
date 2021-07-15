@@ -122,6 +122,13 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     // set to maximum possible value to prevent dragging the sheet between peek and expanded height
                     behavior.setPeekHeight(java.lang.Integer.MAX_VALUE);
                 }
+                const skipCollapsedState = !bottomSheetOptions.options || bottomSheetOptions.options.skipCollapsedState === true;
+                if (skipCollapsedState) {
+                    // directly expand the bottom sheet after start
+                    behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED);
+                    // disable peek/collapsed state
+                    behavior.setSkipCollapsed(true);
+                }
 
                 if (owner && !owner.isLoaded) {
                     owner.callLoaded();
