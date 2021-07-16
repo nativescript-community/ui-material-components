@@ -115,8 +115,10 @@ export class TextField extends TextFieldBase {
             editText.setBackground(null);
             // layoutView.setHintEnabled(false);
         }
+        try {
+            layoutView.setErrorIconDrawable(null);
+        } catch (error) {}
 
-        layoutView.setErrorIconDrawable(null);
         // layoutView.setFocusableInTouchMode(true); // to prevent focus on view creation
         return layoutView;
     }
@@ -130,7 +132,9 @@ export class TextField extends TextFieldBase {
     }
     [hintProperty.setNative](value: string) {
         const text = value === null || value === undefined ? null : value.toString();
-        this.layoutView.setHint(text);
+        try {
+            this.layoutView.setHint(text);
+        } catch (error) {}
     }
 
     [placeholderColorProperty.setNative](value: Color) {
