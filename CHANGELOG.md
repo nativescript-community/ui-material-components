@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.11](https://github.com/nativescript-community/ui-material-components/compare/v5.3.10...v5.3.11) (2021-07-16)
+
+
+### Bug Fixes
+
+* **textfield:** android fix crash on lollipop ([982c497](https://github.com/nativescript-community/ui-material-components/commit/982c49754954813830a81a46a5c709247844b222))
+* **textview:** android fix crash on lollipop ([fd79978](https://github.com/nativescript-community/ui-material-components/commit/fd79978dfaf99ad4d406bd13d681fffff560ca88))
+
+
+
+
+
 ## [5.3.10](https://github.com/nativescript-community/ui-material-components/compare/v5.3.9...v5.3.10) (2021-07-09)
 
 
