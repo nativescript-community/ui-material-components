@@ -115,7 +115,9 @@ export class TextView extends TextViewBase {
     }
     [hintProperty.setNative](value: string) {
         const text = value === null || value === undefined ? null : value.toString();
-        this.layoutView.setHint(text);
+        try {
+            this.layoutView.setHint(text);
+        } catch (error) {}
     }
 
     [helperColorProperty.setNative](value) {
