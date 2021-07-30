@@ -1,4 +1,16 @@
-import { Application, Background, Button, Color, Length, View, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty, profile, PercentLength } from '@nativescript/core';
+import {
+    Application,
+    Background,
+    Button,
+    Color,
+    Length,
+    PercentLength,
+    View,
+    androidDynamicElevationOffsetProperty,
+    androidElevationProperty,
+    backgroundInternalProperty,
+    profile
+} from '@nativescript/core';
 import { createRippleDrawable, createStateListAnimator, getAttrColor, getColorStateList, handleClearFocus, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from './android/utils';
 import { CornerFamily, applyMixins } from './index.common';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
@@ -133,7 +145,7 @@ export class Themer {
                     builder.setAllCornerSizes(PercentLength.toDevicePixels(options.cornerSize));
                 }
             } else {
-                builder.setAllCornerSizes(options.cornerSize);
+                builder.setAllCornerSizes(PercentLength.toDevicePixels(options.cornerSize));
             }
         }
         if (options.cornerSizeBottomLeft !== undefined) {
@@ -144,7 +156,7 @@ export class Themer {
                     builder.setBottomLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomLeft));
                 }
             } else {
-                builder.setBottomLeftCornerSize(options.cornerSizeBottomLeft);
+                builder.setBottomLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomLeft));
             }
         }
         if (options.cornerSizeBottomRight !== undefined) {
@@ -155,7 +167,7 @@ export class Themer {
                     builder.setBottomRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomRight));
                 }
             } else {
-                builder.setBottomRightCornerSize(options.cornerSizeBottomRight);
+                builder.setBottomRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomRight));
             }
         }
         if (options.cornerSizeTopRight !== undefined) {
@@ -166,7 +178,7 @@ export class Themer {
                     builder.setTopRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopRight));
                 }
             } else {
-                builder.setTopRightCornerSize(options.cornerSizeTopRight);
+                builder.setTopRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopRight));
             }
         }
         if (options.cornerSizeTopLeft !== undefined) {
@@ -177,7 +189,7 @@ export class Themer {
                     builder.setTopLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopLeft));
                 }
             } else {
-                builder.setTopLeftCornerSize(options.cornerSizeTopLeft);
+                builder.setTopLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopLeft));
             }
         }
         this._shapes[key] = builder.build();

@@ -107,8 +107,18 @@ export class FloatingActionButton extends FloatingActionButtonBase {
             this.nativeViewProtected.shrink();
         }
     }
+    defaultAppearanceModel;
     [shapeProperty.setNative](shape: string) {
         const appearanceModel = themer.getShape(shape);
-        this.nativeViewProtected.setShapeAppearanceModel(appearanceModel);
+        if (!shape) {
+            if (this.defaultAppearanceModel) {
+                this.nativeViewProtected.setShapeAppearanceModel(this.defaultAppearanceModel);
+            }
+        } else {
+            if (!this.defaultAppearanceModel) {
+                this.defaultAppearanceModel = this.nativeViewProtected.getShapeAppearanceModel();
+            }
+            this.nativeViewProtected.setShapeAppearanceModel(appearanceModel);
+        }
     }
 }

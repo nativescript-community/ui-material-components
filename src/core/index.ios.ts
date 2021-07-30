@@ -45,9 +45,9 @@ function cornerTreatment(cornerFamily: CornerFamily, cornerSize: number | CoreTy
         }
     } else {
         if (cornerFamily === CornerFamily.ROUNDED) {
-            corner = MDCCornerTreatment.cornerWithCut(cornerSize);
+            corner = MDCCornerTreatment.cornerWithRadius(PercentLength.toDevicePixels(cornerSize));
         } else {
-            corner = MDCCornerTreatment.cornerWithRadius(cornerSize);
+            corner = MDCCornerTreatment.cornerWithCut(PercentLength.toDevicePixels(cornerSize));
         }
     }
     return corner;
@@ -177,18 +177,18 @@ export class Themer {
             shapeCategory.topLeftCorner = corner;
             shapeCategory.topRightCorner = corner;
         }
-        if (options.cornerFamilyBottomLeft && options.cornerSizeBottomLeft !== undefined) {
-            shapeCategory.bottomLeftCorner = cornerTreatment(options.cornerFamilyBottomLeft, options.cornerSizeBottomLeft);
+        if (options.cornerSizeBottomLeft !== undefined) {
+            shapeCategory.bottomLeftCorner = cornerTreatment(options.cornerFamilyBottomLeft || options.cornerFamily, options.cornerSizeBottomLeft);
         }
-        if (options.cornerFamilyBottomRight && options.cornerSizeBottomRight !== undefined) {
-            shapeCategory.bottomRightCorner = cornerTreatment(options.cornerFamilyBottomRight, options.cornerSizeBottomRight);
+        if (options.cornerSizeBottomRight !== undefined) {
+            shapeCategory.bottomRightCorner = cornerTreatment(options.cornerFamilyBottomRight || options.cornerFamily, options.cornerSizeBottomRight);
         }
 
-        if (options.cornerFamilyTopLeft && options.cornerSizeTopLeft !== undefined) {
-            shapeCategory.topLeftCorner = cornerTreatment(options.cornerFamilyTopLeft, options.cornerSizeTopLeft);
+        if (options.cornerSizeTopLeft !== undefined) {
+            shapeCategory.topLeftCorner = cornerTreatment(options.cornerFamilyTopLeft || options.cornerFamily, options.cornerSizeTopLeft);
         }
-        if (options.cornerFamilyTopRight && options.cornerSizeTopRight !== undefined) {
-            shapeCategory.topRightCorner = cornerTreatment(options.cornerFamilyTopRight, options.cornerSizeTopRight);
+        if (options.cornerSizeTopRight !== undefined) {
+            shapeCategory.topRightCorner = cornerTreatment(options.cornerFamilyTopRight || options.cornerFamily, options.cornerSizeTopRight);
         }
         shapeScheme.smallComponentShape = shapeCategory;
         shapeScheme.mediumComponentShape = shapeCategory;

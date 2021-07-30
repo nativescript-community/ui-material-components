@@ -90,9 +90,19 @@ export class Button extends ButtonBase {
         const color = !value || value instanceof Color ? value : new Color(value);
         this.nativeViewProtected.setRippleColor(color ? getColorStateList(color.android) : null);
     }
+    defaultAppearanceModel;
     [shapeProperty.setNative](shape: string) {
         const appearanceModel = themer.getShape(shape);
-        this.nativeViewProtected.setShapeAppearanceModel(appearanceModel);
+        if (!shape) {
+            if (this.defaultAppearanceModel) {
+                this.nativeViewProtected.setShapeAppearanceModel(this.defaultAppearanceModel);
+            }
+        } else {
+            if (!this.defaultAppearanceModel) {
+                this.defaultAppearanceModel = this.nativeViewProtected.getShapeAppearanceModel();
+            }
+            this.nativeViewProtected.setShapeAppearanceModel(appearanceModel);
+        }
     }
 
     getDefaultElevation(): number {
