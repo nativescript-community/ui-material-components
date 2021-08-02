@@ -32,22 +32,22 @@ function cornerTreatment(cornerFamily: CornerFamily, cornerSize: number | CoreTy
     if (typeof cornerSize === 'object') {
         if (cornerFamily === CornerFamily.CUT) {
             if (cornerSize.unit === '%') {
-                corner = MDCCornerTreatment.cornerWithCutValueType(cornerSize.value, MDCCornerTreatmentValueType.Percentage);
+                corner = MDCCornerTreatment.cornerWithCutValueType(cornerSize.value, 1);
             } else {
-                corner = MDCCornerTreatment.cornerWithCutValueType(PercentLength.toDevicePixels(cornerSize), MDCCornerTreatmentValueType.Absolute);
+                corner = MDCCornerTreatment.cornerWithCutValueType(Utils.layout.toDeviceIndependentPixels(PercentLength.toDevicePixels(cornerSize)), 0);
             }
         } else {
             if (cornerSize.unit === '%') {
-                corner = MDCCornerTreatment.cornerWithRadiusValueType(cornerSize.value, MDCCornerTreatmentValueType.Percentage);
+                corner = MDCCornerTreatment.cornerWithRadiusValueType(cornerSize.value, 1);
             } else {
-                corner = MDCCornerTreatment.cornerWithRadiusValueType(PercentLength.toDevicePixels(cornerSize), MDCCornerTreatmentValueType.Absolute);
+                corner = MDCCornerTreatment.cornerWithRadiusValueType(Utils.layout.toDeviceIndependentPixels(PercentLength.toDevicePixels(cornerSize)), 0);
             }
         }
     } else {
         if (cornerFamily === CornerFamily.ROUNDED) {
-            corner = MDCCornerTreatment.cornerWithRadius(PercentLength.toDevicePixels(cornerSize));
+            corner = MDCCornerTreatment.cornerWithRadius(Utils.layout.toDeviceIndependentPixels(PercentLength.toDevicePixels(cornerSize)));
         } else {
-            corner = MDCCornerTreatment.cornerWithCut(PercentLength.toDevicePixels(cornerSize));
+            corner = MDCCornerTreatment.cornerWithCut(Utils.layout.toDeviceIndependentPixels(PercentLength.toDevicePixels(cornerSize)));
         }
     }
     return corner;
