@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.13](https://github.com/nativescript-community/ui-material-components/compare/v5.3.12...v5.3.13) (2021-08-02)
+
+
+### Bug Fixes
+
+* **core:** iOS shape fix ([c37cb2e](https://github.com/nativescript-community/ui-material-components/commit/c37cb2eff97242a03034bdb1703a58bfe5b5f3ff))
+
+
+
+
+
 ## [5.3.12](https://github.com/nativescript-community/ui-material-components/compare/v5.3.11...v5.3.12) (2021-07-30)
 
 
