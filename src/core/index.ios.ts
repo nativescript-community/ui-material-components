@@ -34,13 +34,13 @@ function cornerTreatment(cornerFamily: CornerFamily, cornerSize: number | CoreTy
             if (cornerSize.unit === '%') {
                 corner = MDCCornerTreatment.cornerWithCutValueType(cornerSize.value, MDCCornerTreatmentValueType.Percentage);
             } else {
-                corner = MDCCornerTreatment.cornerWithCutValueType(PercentLength.toDevicePixels(cornerSize.value), MDCCornerTreatmentValueType.Absolute);
+                corner = MDCCornerTreatment.cornerWithCutValueType(PercentLength.toDevicePixels(cornerSize), MDCCornerTreatmentValueType.Absolute);
             }
         } else {
             if (cornerSize.unit === '%') {
                 corner = MDCCornerTreatment.cornerWithRadiusValueType(cornerSize.value, MDCCornerTreatmentValueType.Percentage);
             } else {
-                corner = MDCCornerTreatment.cornerWithRadiusValueType(PercentLength.toDevicePixels(cornerSize.value), MDCCornerTreatmentValueType.Absolute);
+                corner = MDCCornerTreatment.cornerWithRadiusValueType(PercentLength.toDevicePixels(cornerSize), MDCCornerTreatmentValueType.Absolute);
             }
         }
     } else {
