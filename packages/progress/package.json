@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-progress",
-    "version": "5.3.14",
+    "version": "5.3.15",
     "description": "Progress view is a linear progress indicator that implements Material Design animation and layout.",
     "main": "./progress",
     "sideEffects": false,
@@ -43,7 +43,7 @@
     },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^5.3.14"
+        "@nativescript-community/ui-material-core": "^5.3.15"
     },
     "gitHead": "bd4421242dd4aba6711039ed7c499b3647bdbebc"
 }

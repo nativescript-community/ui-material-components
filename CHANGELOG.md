@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.15](https://github.com/nativescript-community/ui-material-components/compare/v5.3.14...v5.3.15) (2021-08-06)
+
+
+### Bug Fixes
+
+* **tabs:** ios allow custom positioning with iosCustomPositioning ([b3d9624](https://github.com/nativescript-community/ui-material-components/commit/b3d9624fe9303194123c69ed4a9955e64fc0250e))
+
+
+
+
+
 ## [5.3.14](https://github.com/nativescript-community/ui-material-components/compare/v5.3.13...v5.3.14) (2021-08-02)
 
 
