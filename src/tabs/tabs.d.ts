@@ -47,7 +47,7 @@ export class Tabs extends TabNavigationBase {
     /**
      * Allow custom positioning of Tabs within another view
      */
-    public iosCustomPositioning: boolean;
+    public iosCustomPositioning?: boolean;
 
     /**
      * Gets or set the MDCTabBarAlignment of the tab bar icons in iOS. Defaults to "justified"

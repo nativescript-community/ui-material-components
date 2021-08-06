@@ -47,7 +47,7 @@ export class BottomNavigation extends TabNavigationBase {
     /**
      * Allow custom positioning of Tabs within another view
      */
-    public iosCustomPositioning: boolean;
+    public iosCustomPositioning?: boolean;
 
     /**
      * Gets the native [android widget](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) that represents the user interface for this component. Valid only when running on Android OS.
