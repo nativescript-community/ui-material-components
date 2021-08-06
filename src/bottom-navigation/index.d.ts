@@ -45,6 +45,11 @@ export class BottomNavigation extends TabNavigationBase {
     selectedIndex: number;
 
     /**
+     * Allow custom positioning of Tabs within another view
+     */
+    public iosCustomPositioning: boolean;
+
+    /**
      * Gets the native [android widget](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) that represents the user interface for this component. Valid only when running on Android OS.
      */
     android: any /* android.view.View */; //android.support.v4.view.ViewPager;
@@ -59,7 +64,7 @@ export class BottomNavigation extends TabNavigationBase {
      */
     public static selectedIndexChangedEvent: string;
 
-    /** 
+    /**
      * @hidden
      * A basic method signature to hook an event listener (shortcut alias to the addEventListener method).
      * @param eventNames - String corresponding to events (e.g. "propertyChange"). Optionally could be used more events separated by `,` (e.g. "propertyChange", "change").
@@ -72,7 +77,6 @@ export class BottomNavigation extends TabNavigationBase {
      * Raised when the selected index changes.
      */
     on(event: 'selectedIndexChanged', callback: (args: SelectedIndexChangedEventData) => void, thisArg?: any);
-
 
     // parameter to allow the bottom-navigation to be positioned correcly within layouts and thus not be full size
     // be careful it will then be influenced by safeArea. Default is false

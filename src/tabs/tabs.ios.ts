@@ -1,5 +1,5 @@
 ﻿import { themer } from '@nativescript-community/ui-material-core';
-import { Color, Device, Font, Frame, IOSHelper, ImageSource, Trace, Utils, View, ViewBase } from '@nativescript/core';
+import { Color, Device, Font, Frame, IOSHelper, ImageSource, Property, Trace, Utils, View, ViewBase, booleanConverter } from '@nativescript/core';
 import { TabsBase, swipeEnabledProperty } from './tabs-common';
 
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
@@ -424,7 +424,7 @@ function updateBackgroundPositions(tabStrip: TabStrip, tabStripItem: TabStripIte
     }
     let bgView = (tabStripItem as any).bgView;
     const index = tabStripItem._index;
-    const width = tabStrip.nativeView.frame.size.width / (tabStrip.items.filter(s=>s._index!== undefined).length);
+    const width = tabStrip.nativeView.frame.size.width / tabStrip.items.filter((s) => s._index !== undefined).length;
     const frame = CGRectMake(width * index, 0, width, tabStrip.nativeView.frame.size.width);
     if (!bgView) {
         bgView = UIView.alloc().initWithFrame(frame);
@@ -466,6 +466,12 @@ function updateTitleAndIconPositions(tabStripItem: TabStripItem, tabBarItem: UIT
     }
 }
 
+export const iosCustomPositioningProperty = new Property<Tabs, boolean>({
+    name: 'iosCustomPositioning',
+    defaultValue: false,
+
+    valueConverter: booleanConverter
+});
 export class Tabs extends TabsBase {
     public nativeViewProtected: UIView;
     public selectedIndex: number;
@@ -494,6 +500,7 @@ export class Tabs extends TabsBase {
     public _animateNextChange = true;
     private _selectionIndicatorColor: Color;
     private _rippleColor: Color;
+    public iosCustomPositioning: boolean;
 
     constructor() {
         super();
@@ -548,11 +555,15 @@ export class Tabs extends TabsBase {
     }
 
     public layoutNativeView(left: number, top: number, right: number, bottom: number): void {
-        //
+        if (this.iosCustomPositioning) {
+            super.layoutNativeView(left, top, right, bottom);
+        }
     }
 
     public _setNativeViewFrame(nativeView: UIView, frame: CGRect) {
-        //
+        if (this.iosCustomPositioning) {
+            super._setNativeViewFrame(nativeView, frame);
+        }
     }
 
     public onSelectedIndexChanged(oldIndex: number, newIndex: number): void {
@@ -1295,3 +1306,4 @@ export class Tabs extends TabsBase {
         }
     }
 }
+iosCustomPositioningProperty.register(Tabs);
