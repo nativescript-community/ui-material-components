@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.16](https://github.com/nativescript-community/ui-material-components/tree/master/packages/bottomnavigationbar/compare/v5.3.15...v5.3.16) (2021-08-09)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-bottomnavigationbar
+
+
+
+
+
 ## [5.3.15](https://github.com/nativescript-community/ui-material-components/tree/master/packages/bottomnavigationbar/compare/v5.3.14...v5.3.15) (2021-08-06)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-bottomnavigationbar

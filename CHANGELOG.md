@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.16](https://github.com/nativescript-community/ui-material-components/compare/v5.3.15...v5.3.16) (2021-08-09)
+
+
+### Bug Fixes
+
+* **textfield:** iOS fix for textfield color not applied ([748dcd3](https://github.com/nativescript-community/ui-material-components/commit/748dcd3144285202667e2569e5cd2139c50d6b53))
+
+
+
+
+
 ## [5.3.15](https://github.com/nativescript-community/ui-material-components/compare/v5.3.14...v5.3.15) (2021-08-06)
 
 
