@@ -26,6 +26,7 @@ import {
     Utils,
     _updateCharactersInRangeReplacementString,
     backgroundInternalProperty,
+    colorProperty,
     editableProperty,
     fontInternalProperty,
     hintProperty,
@@ -273,6 +274,20 @@ export class TextField extends TextFieldBase {
             const begin = view.beginningOfDocument;
             const pos = view.positionFromPositionOffset(begin, start);
             view.selectedTextRange = view.textRangeFromPositionToPosition(pos, pos);
+        }
+    }
+
+    [colorProperty.setNative](value: Color | { textColor: UIColor; tintColor: UIColor }) {
+        const nativeView = this.nativeTextViewProtected;
+        if (value instanceof Color) {
+            const color = value instanceof Color ? value.ios : value;
+            nativeView.setTextColorForState(color, MDCTextControlState.Normal);
+            nativeView.setTextColorForState(color, MDCTextControlState.Editing);
+            nativeView.tintColor = color;
+        } else {
+            nativeView.setTextColorForState(value.textColor, MDCTextControlState.Normal);
+            nativeView.setTextColorForState(value.textColor, MDCTextControlState.Editing);
+            nativeView.tintColor = value.tintColor;
         }
     }
     [editableProperty.setNative](value: boolean) {
