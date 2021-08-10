@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.17](https://github.com/nativescript-community/ui-material-components/tree/master/packages/dialogs/compare/v5.3.16...v5.3.17) (2021-08-10)
+
+
+### Bug Fixes
+
+* npm ignore unecessary files ([696e88f](https://github.com/nativescript-community/ui-material-components/tree/master/packages/dialogs/commit/696e88f657dbb5415aa4a306991a00ef5b83db18))
+
+
+
+
+
 ## [5.3.16](https://github.com/nativescript-community/ui-material-components/tree/master/packages/dialogs/compare/v5.3.15...v5.3.16) (2021-08-09)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-dialogs
