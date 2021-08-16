@@ -482,7 +482,9 @@ export class Tabs extends TabsBase {
     }
     onSelectedIndexChanged(oldIndex: number, newIndex: number) {
         const tabBarImplementation = (this._tabsBar as unknown) as PositionChanger;
-        tabBarImplementation.onSelectedPositionChange(oldIndex, newIndex);
+        if (tabBarImplementation) {
+            tabBarImplementation.onSelectedPositionChange(oldIndex, newIndex);
+        }
         super.onSelectedIndexChanged(oldIndex, newIndex);
     }
 
