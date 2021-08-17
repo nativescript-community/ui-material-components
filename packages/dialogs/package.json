@@ -9,7 +9,9 @@
         "tsc": "../../node_modules/.bin/cpy ../../src/dialogs/dialogs.d.ts ./ && ../../node_modules/.bin/tsc --skipLibCheck -d",
         "tsc-win": "..\\..\\node_modules\\.bin\\cpy ..\\..\\src\\dialogs\\dialogs.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc --skipLibCheck -d",
         "build": "npm run tsc",
+        "build.win": "npm run tsc-win",
         "build.all": "npm run build",
+        "build.all.win": "npm run build.win",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {
