@@ -17,7 +17,7 @@
         "build.angular": "lerna run build.angular",
         "build.angular.win": "lerna run build.angular.win",
         "build.all": "lerna run build.all",
-        "build.win": "lerna run build-win",
+        "build.all.win": "lerna run build.all.win",
         "doc": "node builddoc && git add docs/* && git commit -m \"chore:doc\"",
         "force_publish": "lerna publish from-package",
         "increment_version": "lerna version",
