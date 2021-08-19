@@ -19,6 +19,7 @@ import BottomNavigationBarPlugin from '@nativescript-community/ui-material-botto
 import TabsPlugin from '@nativescript-community/ui-material-tabs/vue';
 import BottomNavigationPlugin from '@nativescript-community/ui-material-bottom-navigation/vue';
 import SpeedDialPlugin from '@nativescript-community/ui-material-speeddial/vue';
+import Theme from '@nativescript-community/css-theme';
 
 installBottomSheet();
 
@@ -56,8 +57,17 @@ themer.createShape('cut', {
         unit: '%'
     }
 });
+
+if (global.isAndroid) {
+    Application.on(Application.displayedEvent, () => {
+        Theme.setMode(Theme.Auto);
+        androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+    });
+}
+
 // import { getExamples } from './examples';
 import * as views from './views';
+import { Application } from '@nativescript/core';
 
 // for (let item of getExamples()) {
 //     Vue.component(item.component.name, item.component);

@@ -513,7 +513,7 @@ export class Tabs extends TabsBase {
         // _onAttachedToWindow called from OS again after it was detach
         // still happens with androidx.fragment:1.3.2
         const activity = Application.android.foregroundActivity;
-        if ((this._manager && this._manager.isDestroyed()) || !activity.getLifecycle().getCurrentState().isAtLeast(androidx.lifecycle.Lifecycle.State.STARTED)) {
+        if ((this._manager && this._manager.isDestroyed()) || !activity.getLifecycle?.().getCurrentState().isAtLeast(androidx.lifecycle.Lifecycle.State.STARTED)) {
             return;
         }
 

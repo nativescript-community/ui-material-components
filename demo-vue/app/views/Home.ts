@@ -1,3 +1,4 @@
+import { Application } from '@nativescript/core';
 import { getExamples } from '../examples';
 
 export default {
@@ -22,6 +23,11 @@ export default {
         return {
             examples: getExamples()
         };
+    },
+    mounted() {
+        Application.on(Application.systemAppearanceChangedEvent, (event) => {
+            this.$refs?.listView?.nativeView?.refresh();
+        });
     },
     methods: {
         async goToExample(item) {

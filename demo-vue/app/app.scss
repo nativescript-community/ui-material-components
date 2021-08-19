@@ -2,6 +2,12 @@
     font-family: $mdi-fontFamily;
 }
 
+label {
+    color:black;
+    .ns-dark & {
+        color: red;
+    }
+}
 mdbutton,MDFloatingActionButton, MDCardView {
     shape: cut;
 }

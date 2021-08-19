@@ -2,7 +2,8 @@
 android {
   defaultConfig {
     generatedDensities = []
-    applicationId = "org.nativescript.demovuematerial"
+      multiDexEnabled true
+ applicationId = "org.nativescript.demovuematerial"
 
     //override supported platforms
     // ndk {
