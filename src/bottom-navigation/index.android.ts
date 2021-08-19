@@ -315,7 +315,6 @@ export class BottomNavigation extends TabNavigationBase {
 
     public initNativeView(): void {
         super.initNativeView();
-
         if (this._contentViewId < 0) {
             this._contentViewId = android.view.View.generateViewId();
         }
@@ -408,12 +407,7 @@ export class BottomNavigation extends TabNavigationBase {
         }
 
         this._attachedToWindow = true;
-        // add a small delay or the getRootFragmentManager wont be the right one
-        // when "opening" the bottomnavigation page.
-        // this should be removed once we dont need to use the root fragmentmanager
-        setTimeout(() => {
-            this.changeTab(this.selectedIndex);
-        }, 0);
+        this.changeTab(this.selectedIndex);
     }
 
     _onDetachedFromWindow(): void {
@@ -469,7 +463,7 @@ export class BottomNavigation extends TabNavigationBase {
     }
     private attachFragment(fragment: androidx.fragment.app.Fragment, id?: number, name?: string): void {
         //@ts-ignore
-        const fragmentManager = this._getRootFragmentManager();
+        const fragmentManager = this._getFragmentManager();
         if (fragment) {
             if (fragment.isAdded() || fragment.isRemoving()) {
                 // ignore
@@ -526,8 +520,7 @@ export class BottomNavigation extends TabNavigationBase {
         const name = makeFragmentName(container.getId(), position);
 
         //@ts-ignore
-        const fragmentManager = this._getRootFragmentManager();
-        console.log();
+        const fragmentManager = this._getFragmentManager();
         let fragment: androidx.fragment.app.Fragment = fragmentManager.findFragmentByTag(name);
         if (fragment != null) {
             this.attachFragment(fragment);
@@ -589,7 +582,7 @@ export class BottomNavigation extends TabNavigationBase {
     private hideFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
             //@ts-ignore
-            fragmentManager = this._getRootFragmentManager();
+            fragmentManager = this._getFragmentManager();
         }
         if (fragment) {
             if (!fragment.isAdded() || fragment.isRemoving()) {
@@ -618,7 +611,7 @@ export class BottomNavigation extends TabNavigationBase {
     private showFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
             //@ts-ignore
-            fragmentManager = this._getRootFragmentManager();
+            fragmentManager = this._getFragmentManager();
         }
         if (fragment) {
             if (!fragment.isAdded() || fragment.isRemoving()) {
@@ -647,7 +640,7 @@ export class BottomNavigation extends TabNavigationBase {
     private removeFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
             //@ts-ignore
-            fragmentManager = this._getRootFragmentManager();
+            fragmentManager = this._getFragmentManager();
         }
         if (fragment) {
             if (!fragment.isAdded() || fragment.isRemoving()) {
