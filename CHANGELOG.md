@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.20](https://github.com/nativescript-community/ui-material-components/compare/v5.3.19...v5.3.20) (2021-08-29)
+
+
+### Bug Fixes
+
+* **tabs:** ios crash fix on tab changing ([631defb](https://github.com/nativescript-community/ui-material-components/commit/631defb095c4fee1015c96f58b248b04e3419181))
+
+
+
+
+
 ## [5.3.19](https://github.com/nativescript-community/ui-material-components/compare/v5.3.18...v5.3.19) (2021-08-19)
 
 
