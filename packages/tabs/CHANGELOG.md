@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.21](https://github.com/nativescript-community/ui-material-components/tree/master/packages/tabs/compare/v5.3.20...v5.3.21) (2021-08-29)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-tabs
+
+
+
+
+
 ## [5.3.20](https://github.com/nativescript-community/ui-material-components/tree/master/packages/tabs/compare/v5.3.19...v5.3.20) (2021-08-29)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-tabs

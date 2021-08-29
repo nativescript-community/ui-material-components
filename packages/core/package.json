@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-core",
-    "version": "5.3.20",
+    "version": "5.3.21",
     "description": "Material Core component",
     "main": "./index",
     "sideEffects": false,
@@ -48,7 +48,7 @@
     "homepage": "https://github.com/nativescript-community/ui-material-components",
     "repository": "https://github.com/nativescript-community/ui-material-components",
     "readmeFilename": "README.md",
-    "gitHead": "c84a4e936ea84c1e5f04f99e8d2aa44657351354",
+    "gitHead": "486063fb3ca788c5eba59c91add3f5c31feff300",
     "dependencies": {
         "@nativescript/hook": "~2.0.0"
     }
