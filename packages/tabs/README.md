@@ -139,11 +139,11 @@ import { NativeScriptMaterialTabsModule } from "@nativescript-community/ui-mater
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
             </MDTabStripItem>
-            <MDTabStrip>Item class="special">
+            <MDTabStripItem class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
             </MDTabStripItem>
-            <MDTabStrip>Item class="special">
+            <MDTabStripItem class="special">
                 <Label text="Search"></Label>
                 <Image src="font://&#xf00e;" class="fas"></Image>
             </MDTabStripItem>
@@ -186,7 +186,7 @@ Vue.use(TabsPlugin);
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
             </MDTabStripItem>
-            <MDTabStrip>Item class="special">
+            <MDTabStripItem class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
             </MDTabStripItem>
