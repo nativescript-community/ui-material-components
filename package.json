@@ -12,7 +12,7 @@
         "setup": "ts-patch install",
         "prepare": "npm run setup",
         "publish": "npm run setup && npm run build.all && lerna publish --create-release=github --force-publish",
-        "publish-major": "npm run setup && npm run build.all && lerna publish major --create-release=github--force-publish",
+        "publish-major": "npm run setup && npm run build.all && lerna publish major --create-release=github --force-publish",
         "publish-alpha": "npm run setup && npm run build.all && lerna publish --create-release=github --canary --no-git-reset --dist-tag alpha --no-git-tag-version --no-push  --force-publish",
         "build": "lerna run build",
         "build.angular": "lerna run build.angular",
