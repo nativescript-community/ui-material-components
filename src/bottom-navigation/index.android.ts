@@ -404,7 +404,7 @@ export class BottomNavigation extends TabNavigationBase {
         const activity = Application.android.foregroundActivity;
         if (
             (this._manager && this._manager.isDestroyed()) ||
-            (activity instanceof androidx.fragment.app.FragmentActivity && !activity.getLifecycle().getCurrentState().isAtLeast(androidx.lifecycle.Lifecycle.State.STARTED))
+            (activity instanceof androidx.fragment.app.FragmentActivity && !activity.getLifecycle().getCurrentState().isAtLeast(androidx.lifecycle.Lifecycle.State.CREATED))
         ) {
             return;
         }
