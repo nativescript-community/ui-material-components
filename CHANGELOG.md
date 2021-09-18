@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/nativescript-community/ui-material-components/compare/v5.3.21...v6.0.0) (2021-09-18)
+
+
+### Bug Fixes
+
+* **android:** tabs / bottom-navigation lifecyle fix ([d3820e1](https://github.com/nativescript-community/ui-material-components/commit/d3820e1ba960a4399780587b5c3a5d95799a77bf))
+* **tabs)(bottom-navigation:** prevent error with non androidx activities https://github.com/nativescript-community/ui-material-components/pull/328 ([ffa38ab](https://github.com/nativescript-community/ui-material-components/commit/ffa38ab56778dfe0940e0b00a62321ffefee1cf2))
+
+
+
+
+
 ## [5.3.21](https://github.com/nativescript-community/ui-material-components/compare/v5.3.20...v5.3.21) (2021-08-29)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
