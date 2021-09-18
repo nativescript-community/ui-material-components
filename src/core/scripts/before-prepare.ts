@@ -5,11 +5,6 @@ module.exports = function (hookArgs: { projectData /* : IProjectData */; prepare
     const platform = hookArgs.prepareData.platform;
 
     if (platform === 'ios') {
-        const markingModeFullWarning =
-            'Using material components 5.x the N tabs component \n will not be fonctional anymore.\nIf you need it migrate to using @nativescript-community/ui-material-tabs\nor go back the 4.x ';
-        $logger.warn(markingModeFullWarning, {
-            wrapMessageWithBorders: true,
-        });
         const projectFilePath = dirname(hookArgs.projectData.projectFilePath);
         const podFilePath = join(projectFilePath, 'node_modules', '@nativescript/core', 'platforms/ios/Podfile');
         if (existsSync(podFilePath)) {
