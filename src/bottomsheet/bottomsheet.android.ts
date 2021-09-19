@@ -51,6 +51,10 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     },
 
                     onBackPressed(dialog: com.nativescript.material.bottomsheet.BottomSheetDialog) {
+                        if(options.dismissOnBackButton === false){
+                            return true;
+                        }
+                        
                         if (!owner) {
                             return false;
                         }
