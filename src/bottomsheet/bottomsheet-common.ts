@@ -23,7 +23,7 @@ export interface BottomSheetOptions {
     animated?: boolean; // An optional parameter specifying whether to show the sheet view with animation.
     dismissOnBackgroundTap?: boolean; // An optional parameter specifying whether to dismiss the sheet when clicking on background.
     dismissOnDraggingDownSheet?: boolean; // An optional parameter specifying whether to disable dragging the sheet to dismiss.
-    dismissOnBackButton?: boolean; // An optional parameter specifying whether to disable dragging the sheet to dismiss.
+    dismissOnBackButton?: boolean; // An optional parameter that specifies whether to close the sheet when pressing the back button..
     closeCallback?: Function; //  A function that will be called when the view is closed. Any arguments provided when calling shownInBottomSheet.closeCallback will be available here.
     trackingScrollView?: string; // optional id of the scroll view to track
     transparent?: boolean; // optional parameter to make the bottomsheet transparent
