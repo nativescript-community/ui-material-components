@@ -48,7 +48,7 @@
     "homepage": "https://github.com/nativescript-community/ui-material-components",
     "repository": "https://github.com/nativescript-community/ui-material-components",
     "readmeFilename": "README.md",
-    "gitHead": "486063fb3ca788c5eba59c91add3f5c31feff300",
+    "gitHead": "f4a17600487dd826a4a581f2ebde8cf6457710ca",
     "dependencies": {
         "@nativescript/hook": "~2.0.0"
     }
