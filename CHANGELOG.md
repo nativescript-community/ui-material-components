@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/nativescript-community/ui-material-components/compare/v6.0.0...v6.0.1) (2021-09-19)
+
+
+### Bug Fixes
+
+* fix comment property ([78ac075](https://github.com/nativescript-community/ui-material-components/commit/78ac0755c92f8ddc137ccd7578ac166189e38cb9))
+* fix literal ([f8eb8b9](https://github.com/nativescript-community/ui-material-components/commit/f8eb8b90e1e034cef42f04d3035c788b2f4e96d9))
+
+
+### Features
+
+* add suport dismissOnBackButton ([bf6ce50](https://github.com/nativescript-community/ui-material-components/commit/bf6ce50b588218b61d652cee3c14ce658fa1ef48))
+
+
+
+
+
 # [6.0.0](https://github.com/nativescript-community/ui-material-components/compare/v5.3.21...v6.0.0) (2021-09-18)
 
 
