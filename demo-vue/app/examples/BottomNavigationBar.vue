@@ -18,6 +18,7 @@
                 row="1"
                 activeColor="blue"
                 inactiveColor="green"
+                selectedTabIndex="2"
                  class="mdi"
                 @loaded="onbottomNavigationBarLoaded"
                 @tabPressed="onBottomNavigationTabPressed"

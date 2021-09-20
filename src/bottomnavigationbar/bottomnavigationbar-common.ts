@@ -1,4 +1,4 @@
-import { CSSType, Color, CssProperty, EventData, ImageSource, Property, Style, View, booleanConverter } from '@nativescript/core';
+import { CSSType, CoercibleProperty, Color, CssProperty, EventData, ImageSource, Property, Style, View, booleanConverter } from '@nativescript/core';
 import { cssProperty } from '@nativescript-community/ui-material-core';
 
 /**
@@ -47,6 +47,32 @@ export enum TitleVisibility {
     never = 2
 }
 
+export const selectedTabIndexProperty = new CoercibleProperty<BottomNavigationBarBase, number>({
+    name: 'selectedTabIndex',
+    defaultValue: -1,
+    affectsLayout: global.isIOS,
+    valueChanged: (target, oldValue, newValue) => {
+        target.onSelectedTabIndexChanged(oldValue, newValue);
+    },
+    coerceValue: (target, value) => {
+        const items = target.items;
+        if (items) {
+            const max = items.length - 1;
+            if (value < 0) {
+                value = 0;
+            }
+            if (value > max) {
+                value = max;
+            }
+        } else {
+            value = -1;
+        }
+
+        return value;
+    },
+    valueConverter: (v) => parseInt(v, 10)
+});
+
 @CSSType('BottomNavigationBar')
 export abstract class BottomNavigationBarBase extends View {
     static tabPressedEvent = 'tabPressed';
@@ -58,7 +84,7 @@ export abstract class BottomNavigationBarBase extends View {
     @cssProperty badgeColor: Color;
     @cssProperty badgeTextColor: Color;
 
-    selectedTabIndex = 0;
+    selectedTabIndex: number;
     titleVisibility: TitleVisibility = TitleVisibility.always;
     autoClearBadge: boolean;
 
@@ -98,15 +124,7 @@ export abstract class BottomNavigationBarBase extends View {
     }
 
     _emitTabSelected(index: number) {
-        const eventData: TabSelectedEventData = {
-            eventName: BottomNavigationBarBase.tabSelectedEvent,
-            object: this,
-            oldIndex: this.selectedTabIndex,
-            newIndex: index
-        };
-        this.selectedTabIndex = index;
-        this.notify(eventData);
-
+        this.onSelectedTabIndexChanged(this.selectedTabIndex, index);
         if (this.autoClearBadge) {
             this.removeBadge(index);
         }
@@ -138,8 +156,23 @@ export abstract class BottomNavigationBarBase extends View {
         this._items[index] && this._items[index].removeBadge();
     }
 
+    [selectedTabIndexProperty.setNative](value: number) {
+        this.selectTab(value);
+    }
+
     protected abstract selectTabNative(index: number): void;
     protected abstract createTabs(tabs: BottomNavigationTabBase[] | undefined): void;
+
+    public onSelectedTabIndexChanged(oldIndex: number, newIndex: number): void {
+        this.selectedTabIndex = newIndex;
+        // to be overridden in platform specific files
+        this.notify({
+            eventName: BottomNavigationBarBase.tabSelectedEvent,
+            object: this,
+            oldIndex,
+            newIndex
+        } as TabSelectedEventData);
+    }
 }
 
 export const tabsProperty = new Property<BottomNavigationBarBase, BottomNavigationTabBase[]>({
@@ -195,6 +228,7 @@ export const badgeTextColorCssProperty = new CssProperty<Style, Color>({
     valueConverter: (v) => new Color(v)
 });
 badgeTextColorCssProperty.register(Style);
+selectedTabIndexProperty.register(BottomNavigationBarBase);
 
 // Bottom Navigation Tab
 

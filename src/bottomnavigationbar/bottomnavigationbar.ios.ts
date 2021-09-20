@@ -7,10 +7,10 @@ import {
     activeColorCssProperty,
     badgeColorCssProperty,
     badgeTextColorCssProperty,
+    iconProperty,
     inactiveColorCssProperty,
     tabsProperty,
-    titleVisibilityProperty,
-    iconProperty
+    titleVisibilityProperty
 } from './bottomnavigationbar-common';
 
 @NativeClass
@@ -154,6 +154,7 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         this.nativeViewProtected.items = new NSArray({ array: bottomNavigationTabs });
 
         // TODO: this is for he v8 runtime. Should not have to need this setTimeout(), find better way.
+        this.selectTabNative(this.selectedTabIndex);
         setTimeout(() => {
             this.nativeViewProtected.selectedItem = this.nativeViewProtected.items[this.selectedTabIndex];
         }, 0);

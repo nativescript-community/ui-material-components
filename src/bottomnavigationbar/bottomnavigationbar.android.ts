@@ -1,16 +1,14 @@
-import { getFullColorStateList, state, stateSets } from '@nativescript-community/ui-material-core/android/utils';
-import { Color, fontInternalProperty, ImageSource, Utils } from '@nativescript/core';
+import { state, stateSets } from '@nativescript-community/ui-material-core/android/utils';
+import { Color, ImageSource, Utils } from '@nativescript/core';
 import {
     BottomNavigationBarBase,
     BottomNavigationTabBase,
     TitleVisibility,
     activeColorCssProperty,
-    badgeColorCssProperty,
-    badgeTextColorCssProperty,
+    iconProperty,
     inactiveColorCssProperty,
     tabsProperty,
-    titleVisibilityProperty,
-    iconProperty
+    titleVisibilityProperty
 } from './bottomnavigationbar-common';
 
 // Types shortcuts
@@ -122,6 +120,7 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         // Create the tabs before setting the default values for each tab
         // We call this method here to create the tabs defined in the xml
         this.createTabs(this._items);
+        this.selectTabNative(this.selectedTabIndex);
     }
     disposeNativeView(): void {
         this.nativeViewProtected.setOnNavigationItemReselectedListener(null);
@@ -205,8 +204,8 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         if (bottomNavigationTabs.size() === 0) {
             return;
         }
-
-        this.nativeView.setSelectedItemId(index);
+        this.nativeViewProtected.setSelectedItemId(index);
+        this.selectedTabIndex = index;
     }
 }
 
