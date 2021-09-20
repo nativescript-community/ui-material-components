@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.4](https://github.com/nativescript-community/ui-material-components/compare/v6.0.3...v6.0.4) (2021-09-20)
+
+
+### Bug Fixes
+
+* **bottomnavigationbar:** initial selectedTabIndex fix ([8b45cd4](https://github.com/nativescript-community/ui-material-components/commit/8b45cd43898f16d2e3080b67cdf9a885b825d3ef))
+
+
+
+
+
 ## [6.0.3](https://github.com/nativescript-community/ui-material-components/compare/v6.0.2...v6.0.3) (2021-09-20)
 
 
