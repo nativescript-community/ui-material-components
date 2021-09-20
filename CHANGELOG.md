@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.2](https://github.com/nativescript-community/ui-material-components/compare/v6.0.1...v6.0.2) (2021-09-20)
+
+
+### Bug Fixes
+
+* **bottomsheet:** ios working peekHeight ([613490d](https://github.com/nativescript-community/ui-material-components/commit/613490d60340837e653a025a57c68ed6d7ef5da9))
+
+
+### Features
+
+* **bottomsheet:** ios ignoreKeyboardHeight ([3c40b2c](https://github.com/nativescript-community/ui-material-components/commit/3c40b2c1b290d47c2015ede9d13c160f8232f383))
+* BottomSheet add default collapsed sheet height for android ([0b4e85c](https://github.com/nativescript-community/ui-material-components/commit/0b4e85c7036f5c95f39736fb9ad115c211726dc2))
+
+
+
+
+
 ## [6.0.1](https://github.com/nativescript-community/ui-material-components/compare/v6.0.0...v6.0.1) (2021-09-19)
 
 
