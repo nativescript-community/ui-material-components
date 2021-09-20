@@ -410,7 +410,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         if (peekHeight) {
             (bottomSheet.presentationController as MDCBottomSheetPresentationController).preferredSheetHeight = peekHeight;
         }
-        (bottomSheet.presentationController as MDCBottomSheetPresentationController).ignoreKeyboardHeight = true;
+        (bottomSheet.presentationController as MDCBottomSheetPresentationController).ignoreKeyboardHeight = options.ignoreKeyboardHeight !== false;
 
         if (options.trackingScrollView) {
             const scrollView = this.getViewById(options.trackingScrollView);
