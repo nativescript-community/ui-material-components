@@ -415,7 +415,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         if (options.trackingScrollView) {
             const scrollView = this.getViewById(options.trackingScrollView);
             if (scrollView && scrollView.nativeViewProtected instanceof UIScrollView) {
-                bottomSheet.trackingScrollView = scrollView.nativeViewProtected;
+                (bottomSheet.presentationController as MDCBottomSheetPresentationController).trackingScrollView = scrollView.nativeViewProtected;
             }
         }
         controller.nsAnimated = true;
