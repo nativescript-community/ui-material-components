@@ -406,6 +406,11 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         bottomSheet.dismissOnBackgroundTap = options.dismissOnBackgroundTap !== false;
         bottomSheet.dismissOnDraggingDownSheet = options.dismissOnDraggingDownSheet !== false;
 
+        const peekHeight = options.peekHeight;
+        if(peekHeight){
+            bottomSheet.preferredSheetHeight = peekHeight;
+        }
+
         if (options.trackingScrollView) {
             const scrollView = this.getViewById(options.trackingScrollView);
             if (scrollView && scrollView.nativeViewProtected instanceof UIScrollView) {
