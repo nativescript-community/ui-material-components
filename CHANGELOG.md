@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.3](https://github.com/nativescript-community/ui-material-components/compare/v6.0.2...v6.0.3) (2021-09-20)
+
+
+### Bug Fixes
+
+* (iOS) fix trackingScrollView and peekHeight ([c240541](https://github.com/nativescript-community/ui-material-components/commit/c240541ceda061e6b3307ec3e3bb5eb6e3be0cba))
+
+
+
+
+
 ## [6.0.2](https://github.com/nativescript-community/ui-material-components/compare/v6.0.1...v6.0.2) (2021-09-20)
 
 
