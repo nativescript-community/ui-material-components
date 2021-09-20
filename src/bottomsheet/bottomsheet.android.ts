@@ -1,5 +1,5 @@
 import { applyMixins } from '@nativescript-community/ui-material-core';
-import { AndroidActivityBackPressedEventData, Application, View, fromObject } from '@nativescript/core';
+import { AndroidActivityBackPressedEventData, Application, View, fromObject, Utils } from '@nativescript/core';
 import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
 
 export { ViewWithBottomSheetBase } from './bottomsheet-common';
@@ -132,6 +132,12 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED);
                     // disable peek/collapsed state
                     behavior.setSkipCollapsed(true);
+                }
+                
+                const peekHeight = bottomSheetOptions.options?.peekHeight;
+                if(peekHeight){
+                    behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED);
+                    behavior.setPeekHeight(Utils.layout.toDevicePixels(peekHeight));
                 }
 
                 if (owner && !owner.isLoaded) {

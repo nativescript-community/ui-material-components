@@ -31,6 +31,7 @@ export interface BottomSheetOptions {
     ignoreBottomSafeArea?: boolean; // optional ios parameter to bottom safe area. Default is false
     disableDimBackground?: boolean; // optional parameter to remove the dim background
     skipCollapsedState?: boolean; // optional Android parameter to skip midway state when view is greater than 50%. Default is false
+    peekHeight?: number // optional Android parameter to set the collapsed sheet height.
 }
 
 export abstract class ViewWithBottomSheetBase extends View {
