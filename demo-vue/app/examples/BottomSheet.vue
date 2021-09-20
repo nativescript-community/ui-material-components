@@ -9,6 +9,7 @@
             <MDButton id="ignore_bottom_safe_area" text="ignore_bottom_safe_area" @tap="onTap" />
             <MDButton id="dont_ignore_top_ignore_bottom_safe_area" text="dont_ignore_top_ignore_bottom_safe_area" @tap="onTap" />
             <MDButton id="bottomsheet-keyboard" text="bottomsheet-keyboard" @tap="onTap" />
+            <MDButton id="bottomsheet-peekheight" text="bottomsheet-peekheight" @tap="onTap" />
         </StackLayout>
     </Page>
 </template>
@@ -84,6 +85,16 @@ export default Vue.extend({
                 }
                 case 'bottomsheet-keyboard': {
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInnerKeyboard, {
+                        closeCallback: (...args) => {
+                            console.log('bottom sheet closed', args);
+                        }
+                    });
+                    break;
+                }
+                case 'bottomsheet-peekheight': {
+                    (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
+                        peekHeight:100,
+                        // transparent: true,
                         closeCallback: (...args) => {
                             console.log('bottom sheet closed', args);
                         }
