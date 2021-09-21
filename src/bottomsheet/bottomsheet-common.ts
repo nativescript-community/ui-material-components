@@ -57,7 +57,9 @@ export abstract class ViewWithBottomSheetBase extends View {
 
     _bottomSheetFragment: any; // com.google.android.material.bottomsheet.BottomSheetDialogFragment
     protected abstract _hideNativeBottomSheet(parent, whenClosedCallback);
+
     protected _bottomSheetContext: any;
+
     _raiseShownBottomSheetEvent() {
         const args: ShownBottomSheetData = {
             eventName: shownInBottomSheetEvent,
@@ -68,6 +70,7 @@ export abstract class ViewWithBottomSheetBase extends View {
 
         this.notify(args);
     }
+
     public _bottomSheetClosed(): void {
         const _rootModalViews = this._getRootModalViews();
         const modalIndex = _rootModalViews.indexOf(this);
@@ -82,7 +85,9 @@ export abstract class ViewWithBottomSheetBase extends View {
         //     return true;
         // });
     }
+
     protected abstract _showNativeBottomSheet(parent: View, options: BottomSheetOptions);
+
     protected _commonShowNativeBottomSheet(parent: View, options: BottomSheetOptions) {
         this._getRootModalViews().push(this);
         this.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
@@ -134,6 +139,7 @@ export abstract class ViewWithBottomSheetBase extends View {
 
         this._bottomSheetContext.closeCallback = this._closeBottomSheetCallback;
     }
+
     protected _raiseShowingBottomSheetEvent() {
         const args: ShownBottomSheetData = {
             eventName: showingInBottomSheetEvent,
@@ -143,6 +149,7 @@ export abstract class ViewWithBottomSheetBase extends View {
         };
         this.notify(args);
     }
+
     public closeBottomSheet(...args) {
         const closeCallback = this._closeBottomSheetCallback;
         if (closeCallback) {
