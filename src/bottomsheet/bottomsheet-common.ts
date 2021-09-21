@@ -132,7 +132,6 @@ export abstract class ViewWithBottomSheetBase extends View {
 
         if (options.onChangeState && typeof options.onChangeState === 'function') {
             this._onChangeStateBottomSheetCallback = (stateBottomSheet: StateBottomSheet, slideOffset: number) => {
-                // only called if not already called by _closeBottomSheetCallback
                 options.onChangeState(stateBottomSheet, slideOffset ?? stateBottomSheet);
             };
         }
