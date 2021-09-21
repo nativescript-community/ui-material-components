@@ -32,9 +32,9 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
             const topPadding = window.safeAreaInsets.top;
             const bottomPadding = window.safeAreaInsets.bottom;
 
-            const isStateCollapsed = heightScreen - yOffset - bottomPadding === heightCollapsedSheet;
+            const isCollapsed = heightScreen - yOffset - bottomPadding === heightCollapsedSheet;
             const isExpanded = yOffset === topPadding;
-            if (!isStateCollapsed && !isExpanded) {
+            if (!isCollapsed && !isExpanded) {
                 //normalized = (value - min) / (max - min);
                 let normalized = 0;
                 if (yOffset + bottomPadding > heightScreen - heightCollapsedSheet) {
@@ -44,8 +44,7 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
                 }
                 owner._onChangeStateBottomSheetCallback(StateBottomSheet.DRAGGING, normalized);
             } else {
-                const state = isStateCollapsed ? StateBottomSheet.COLLAPSED : StateBottomSheet.EXPANDED;
-                owner._onChangeStateBottomSheetCallback(state, state);
+                owner._onChangeStateBottomSheetCallback(isCollapsed ? StateBottomSheet.COLLAPSED : StateBottomSheet.EXPANDED);
             }
         }
     }
@@ -65,20 +64,14 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
         if (state === MDCSheetState.Closed) {
             if (owner) {
                 owner._onDismissBottomSheetCallback && owner._onDismissBottomSheetCallback();
-                if (owner._onChangeStateBottomSheetCallback) {
-                    owner._onChangeStateBottomSheetCallback(StateBottomSheet.CLOSED, StateBottomSheet.CLOSED);
-                }
+                owner._onChangeStateBottomSheetCallback && owner._onChangeStateBottomSheetCallback(StateBottomSheet.CLOSED);
                 if (owner && owner.isLoaded) {
                     owner.callUnloaded();
                 }
             }
         } else {
             if (owner && owner._onChangeStateBottomSheetCallback) {
-                if (state === MDCSheetState.Extended) {
-                    owner._onChangeStateBottomSheetCallback(StateBottomSheet.EXPANDED, StateBottomSheet.EXPANDED);
-                } else {
-                    owner._onChangeStateBottomSheetCallback(StateBottomSheet.COLLAPSED, StateBottomSheet.COLLAPSED);
-                }
+                owner._onChangeStateBottomSheetCallback(state === MDCSheetState.Extended ? StateBottomSheet.EXPANDED : StateBottomSheet.EXPANDED)
             }
         }
     }
