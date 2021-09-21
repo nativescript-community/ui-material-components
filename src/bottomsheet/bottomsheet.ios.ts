@@ -1,9 +1,7 @@
 import { Application, IOSHelper, Page, Screen, Trace, Utils, View, fromObject } from '@nativescript/core';
-import { iOSNativeHelper } from '@nativescript/core/utils';
-import { iosIgnoreSafeAreaProperty } from '@nativescript/core/ui/core/view/view-common';
 import { applyMixins } from '@nativescript-community/ui-material-core';
 import { BottomSheetOptions } from './bottomsheet';
-import { ViewWithBottomSheetBase } from './bottomsheet-common';
+import { StateBottomSheet, ViewWithBottomSheetBase } from './bottomsheet-common';
 
 export { ViewWithBottomSheetBase } from './bottomsheet-common';
 
@@ -24,7 +22,32 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
 
         return delegate;
     }
+    bottomSheetControllerDidChangeYOffsetYOffset(controller: MDCBottomSheetController, yOffset: number) {
+        const owner = this._owner.get();
+        if (owner && owner._onChangeStateBottomSheetCallback) {
+            const presentationController = controller.presentationController as MDCBottomSheetPresentationController;
+            const heightScreen = Screen.mainScreen.heightDIPs;
+            const heightCollapsedSheet = presentationController.preferredSheetHeight || controller.preferredContentSize.height;
+            const window = UIApplication.sharedApplication.windows.firstObject;
+            const topPadding = window.safeAreaInsets.top;
+            const bottomPadding = window.safeAreaInsets.bottom;
 
+            const isCollapsed = heightScreen - yOffset - bottomPadding === heightCollapsedSheet;
+            const isExpanded = yOffset === topPadding;
+            if (!isCollapsed && !isExpanded) {
+                //normalized = (value - min) / (max - min);
+                let normalized = 0;
+                if (yOffset + bottomPadding > heightScreen - heightCollapsedSheet) {
+                    normalized =  ((heightScreen - yOffset - bottomPadding) - 0) / (heightCollapsedSheet - 0) - 1;
+                } else {
+                    normalized = ((heightScreen - yOffset) - heightCollapsedSheet) / (heightScreen - heightCollapsedSheet);
+                }
+                owner._onChangeStateBottomSheetCallback(StateBottomSheet.DRAGGING, normalized);
+            } else {
+                owner._onChangeStateBottomSheetCallback(isCollapsed ? StateBottomSheet.COLLAPSED : StateBottomSheet.EXPANDED);
+            }
+        }
+    }
     bottomSheetControllerDidDismissBottomSheet(controller: MDCBottomSheetController) {
         // called when clicked on background
         const owner = this._owner.get();
@@ -37,13 +60,18 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
     }
     bottomSheetControllerStateChangedState(controller: MDCBottomSheetController, state: MDCSheetState) {
         // called when swiped
+        const owner = this._owner.get();
         if (state === MDCSheetState.Closed) {
-            const owner = this._owner.get();
             if (owner) {
                 owner._onDismissBottomSheetCallback && owner._onDismissBottomSheetCallback();
+                owner._onChangeStateBottomSheetCallback && owner._onChangeStateBottomSheetCallback(StateBottomSheet.CLOSED);
                 if (owner && owner.isLoaded) {
                     owner.callUnloaded();
                 }
+            }
+        } else {
+            if (owner && owner._onChangeStateBottomSheetCallback) {
+                owner._onChangeStateBottomSheetCallback(state === MDCSheetState.Extended ? StateBottomSheet.EXPANDED : StateBottomSheet.EXPANDED)
             }
         }
     }
