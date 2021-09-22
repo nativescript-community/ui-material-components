@@ -4,7 +4,7 @@ dependencies {
 	def androidXMaterial =  project.hasProperty("androidXMaterial") ? project.androidXMaterial : "1.3.0"
 	def androidxViewPagerVersion =  project.hasProperty("androidxViewPagerVersion") ? project.androidxViewPagerVersion : "1.0.0"
 
-	compile "androidx.appcompat:appcompat:$androidXAppCompatVersion"
-	compile "com.google.android.material:material:$androidXMaterial"
-	compile "androidx.viewpager:viewpager:$androidxViewPagerVersion"
+	implementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
+	implementation "com.google.android.material:material:$androidXMaterial"
+	implementation "androidx.viewpager:viewpager:$androidxViewPagerVersion"
 }
