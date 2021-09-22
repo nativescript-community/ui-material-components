@@ -1,6 +1,6 @@
 import { applyMixins } from '@nativescript-community/ui-material-core';
-import { AndroidActivityBackPressedEventData, Application, View, fromObject, Utils } from '@nativescript/core';
-import { BottomSheetOptions, ViewWithBottomSheetBase } from './bottomsheet-common';
+import { AndroidActivityBackPressedEventData, Application, Utils, View, fromObject } from '@nativescript/core';
+import { BottomSheetOptions, StateBottomSheet, ViewWithBottomSheetBase } from './bottomsheet-common';
 
 export { ViewWithBottomSheetBase } from './bottomsheet-common';
 
@@ -14,6 +14,52 @@ interface BottomSheetDataOptions {
 function getId(id: string) {
     const context: android.content.Context = Application.android.context;
     return context.getResources().getIdentifier(id, 'id', context.getPackageName());
+}
+
+@NativeClass
+class ChangeStateBottomSheet extends com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback {
+    private owner: ViewWithBottomSheet;
+
+    constructor(owner: ViewWithBottomSheet) {
+        super();
+        this.owner = owner;
+        return global.__native(this);
+    }
+
+    onSlide(bottomSheet: android.view.View, slideOffset: number) {
+        if (this.checkActiveCallback()) {
+            this.owner._onChangeStateBottomSheetCallback(StateBottomSheet.DRAGGING, slideOffset);
+        }
+    }
+
+    onStateChanged(bottomSheet: android.view.View, newState: number) {
+        if (this.checkActiveCallback()) {
+            const status = this.getStateBottomSheetFromBottomSheetBehavior(newState);
+            if (status !== undefined) {
+                this.owner._onChangeStateBottomSheetCallback(status);
+            }
+        }
+    }
+
+    private checkActiveCallback() {
+        return this.owner && this.owner._onChangeStateBottomSheetCallback;
+    }
+
+    public getStateBottomSheetFromBottomSheetBehavior(state: number): StateBottomSheet | undefined {
+        switch (state) {
+            case com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN:
+                return StateBottomSheet.CLOSED;
+            case com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED:
+                return StateBottomSheet.EXPANDED;
+            case com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED:
+                return StateBottomSheet.COLLAPSED;
+            case com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_DRAGGING:
+                return StateBottomSheet.DRAGGING;
+            default:
+                // @ts-ignore
+                return;
+        }
+    }
 }
 
 export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
@@ -51,10 +97,10 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     },
 
                     onBackPressed(dialog: com.nativescript.material.bottomsheet.BottomSheetDialog) {
-                        if(bottomSheetOptions.options && bottomSheetOptions.options.dismissOnBackButton === false){
+                        if (bottomSheetOptions.options && bottomSheetOptions.options.dismissOnBackButton === false) {
                             return true;
                         }
-                        
+
                         if (!owner) {
                             return false;
                         }
@@ -133,11 +179,17 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     // disable peek/collapsed state
                     behavior.setSkipCollapsed(true);
                 }
-                
                 const peekHeight = bottomSheetOptions.options?.peekHeight;
-                if(peekHeight){
+                if (peekHeight) {
                     behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED);
                     behavior.setPeekHeight(Utils.layout.toDevicePixels(peekHeight));
+                }
+
+                const onChangeState = bottomSheetOptions.options?.onChangeState;
+                if (onChangeState) {
+                    const changeStateBottomSheet = new ChangeStateBottomSheet(owner);
+                    behavior.addBottomSheetCallback(changeStateBottomSheet);
+                    owner._onChangeStateBottomSheetCallback(changeStateBottomSheet.getStateBottomSheetFromBottomSheetBehavior(behavior.getState()));
                 }
 
                 if (owner && !owner.isLoaded) {
