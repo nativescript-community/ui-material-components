@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.5](https://github.com/nativescript-community/ui-material-components/compare/v6.0.4...v6.0.5) (2021-09-22)
+
+
+### Bug Fixes
+
+* **android:** gradle 7.0 support ([bd7abd8](https://github.com/nativescript-community/ui-material-components/commit/bd7abd860439f582ec78b93159ae9e6ca65b6271))
+
+
+### Features
+
+* BottomSheet Android add onChangeState function ([8eb02c3](https://github.com/nativescript-community/ui-material-components/commit/8eb02c3bb705695b11d948feeb13e1e449bb4ad1))
+* BottomSheet iOS add onChangeState function ([ce00152](https://github.com/nativescript-community/ui-material-components/commit/ce00152cc286dd7d44821f50da03cc31e2cb7ea3))
+
+
+
+
+
 ## [6.0.4](https://github.com/nativescript-community/ui-material-components/compare/v6.0.3...v6.0.4) (2021-09-20)
 
 

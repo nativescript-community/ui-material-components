@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.5](https://github.com/nativescript-community/ui-material-components/tree/master/packages/bottomsheet/compare/v6.0.4...v6.0.5) (2021-09-22)
+
+
+### Bug Fixes
+
+* **android:** gradle 7.0 support ([bd7abd8](https://github.com/nativescript-community/ui-material-components/tree/master/packages/bottomsheet/commit/bd7abd860439f582ec78b93159ae9e6ca65b6271))
+
+
+
+
+
 ## [6.0.4](https://github.com/nativescript-community/ui-material-components/tree/master/packages/bottomsheet/compare/v6.0.3...v6.0.4) (2021-09-20)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-bottomsheet
