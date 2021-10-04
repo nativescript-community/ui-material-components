@@ -217,7 +217,13 @@ function updateBackgroundPositions(tabStrip: TabStrip, tabStripItem: TabStripIte
     }
 
     const backgroundColor = tabStripItem.style.backgroundColor;
-    bgView.backgroundColor = backgroundColor instanceof Color ? backgroundColor.ios : backgroundColor;
+    if (backgroundColor) {
+        bgView.backgroundColor = backgroundColor instanceof Color ? backgroundColor.ios : backgroundColor;
+    } else {
+        // always default to at least a solid white background as fallback
+        // building with Xcode 13 causes bgView with no background to be fully transparent unless a css background-color is set - this allows original default behavior to work as it always did
+        bgView.backgroundColor = new Color('#fff').ios;
+    }
 }
 
 function updateTitleAndIconPositions(tabStripItem: TabStripItem, tabBarItem: UITabBarItem, controller: UIViewController) {
