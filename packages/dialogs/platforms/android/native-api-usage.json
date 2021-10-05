@@ -1,0 +1,6 @@
+{
+    "uses": [
+        "androidx.appcompat.app:AlertDialog*",
+        "androidx.appcompat.app.AlertDialog:Builder*"
+    ]
+}
