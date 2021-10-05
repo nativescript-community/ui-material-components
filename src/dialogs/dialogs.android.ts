@@ -25,9 +25,9 @@ function isString(value): value is string {
     return typeof value === 'string';
 }
 
-function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOptions): androidx.appcompat.app.AlertDialog.Builder {
+function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOptions) {
     const activity = Application.android.foregroundActivity || (Application.android.startActivity as globalAndroid.app.Activity);
-    const builder = new androidx.appcompat.app.AlertDialog.Builder(activity);
+    const builder = new com.google.android.material.dialog.MaterialAlertDialogBuilder(activity);
     builder.setTitle(options && isString(options.title) ? options.title : null);
     builder.setMessage(options && isString(options.message) ? options.message : null);
     if (options.titleIcon) {
@@ -138,7 +138,7 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
     return dlg;
 }
 
-function prepareAndCreateAlertDialog(builder: androidx.appcompat.app.AlertDialog.Builder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any) {
+function prepareAndCreateAlertDialog(builder: com.google.android.material.dialog.MaterialAlertDialogBuilder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any) {
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
     const onDone = function (result: boolean, dialog?: android.content.DialogInterface) {
@@ -252,7 +252,6 @@ export function alert(arg: any): Promise<void> {
     return new Promise<void>((resolve, reject) => {
         try {
             const defaultOptions = {
-                title: DialogStrings.ALERT,
                 okButtonText: DialogStrings.OK
             };
             const options = !isDialogOptions(arg) ? Object.assign(defaultOptions, { message: arg + '' }) : Object.assign(defaultOptions, arg);
@@ -292,7 +291,6 @@ export function confirm(arg: any): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
         try {
             const defaultOptions = {
-                title: DialogStrings.CONFIRM,
                 okButtonText: DialogStrings.OK,
                 cancelButtonText: DialogStrings.CANCEL
             };
@@ -315,7 +313,6 @@ export function prompt(arg: any): Promise<PromptResult> {
     let options: PromptOptions & MDCAlertControlerOptions;
 
     const defaultOptions = {
-        title: DialogStrings.PROMPT,
         okButtonText: DialogStrings.OK,
         cancelButtonText: DialogStrings.CANCEL,
         inputType: inputType.text
@@ -407,7 +404,6 @@ export function prompt(arg: any): Promise<PromptResult> {
 export function login(arg: any): Promise<LoginResult> {
     let options: LoginOptions & MDCAlertControlerOptions;
     const defaultOptions = {
-        title: DialogStrings.LOGIN,
         okButtonText: DialogStrings.OK,
         cancelButtonText: DialogStrings.CANCEL
     };
@@ -515,7 +511,7 @@ export function action(arg: any): Promise<string> {
     return new Promise<string>((resolve, reject) => {
         try {
             const activity = Application.android.foregroundActivity || (Application.android.startActivity as globalAndroid.app.Activity);
-            const alert = new androidx.appcompat.app.AlertDialog.Builder(activity);
+            const alert = new com.google.android.material.dialog.MaterialAlertDialogBuilder(activity);
             const message = options && isString(options.message) ? options.message : '';
             const title = options && isString(options.title) ? options.title : '';
             if (options && options.cancelable === false) {
