@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/nativescript-community/ui-material-components/compare/v6.0.6...v6.1.0) (2021-10-05)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** Xcode 13 background-color correction ([f3a43b8](https://github.com/nativescript-community/ui-material-components/commit/f3a43b8e82b9c847b5bbcc9f395f25f372ea6044))
+* **dialogs:** android fix for truly material theme ([85fc136](https://github.com/nativescript-community/ui-material-components/commit/85fc1364e32c1dfa0ceaf5d119df5bda8c3b36c3))
+* **ios:** fix for dialogs custom params like font … ([4fdf924](https://github.com/nativescript-community/ui-material-components/commit/4fdf92479f87b5181d5084bada9d34bb69cf2087))
+* **tabs:** android fix for default state tab item color ([e6c74ec](https://github.com/nativescript-community/ui-material-components/commit/e6c74ec9668541c6d49ce62d7346a7b19d26976a))
+
+
+### Features
+
+* **android:** native-api-usage support ([7beb915](https://github.com/nativescript-community/ui-material-components/commit/7beb91528deb2f6d421ddcb8ca69e2cfdaa70bb6))
+
+
+
+
+
 ## [6.0.6](https://github.com/nativescript-community/ui-material-components/compare/v6.0.5...v6.0.6) (2021-09-26)
 
 
