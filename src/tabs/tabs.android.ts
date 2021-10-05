@@ -599,7 +599,6 @@ export class Tabs extends TabsBase {
     }
 
     public disposeNativeView() {
-        console.log('disposeNativeView');
         this._tabsBar.setItems(null, null);
         (this._pagerAdapter as any).owner = null;
         this._pagerAdapter = null;
@@ -629,7 +628,6 @@ export class Tabs extends TabsBase {
         const transaction = fragmentManager.beginTransaction();
 
         const fragments = this.fragments;
-        console.log('disposeCurrentFragments', fragments.length);
         for (let i = 0; i < fragments.length; i++) {
             transaction.remove(fragments[i]);
         }
@@ -694,6 +692,9 @@ export class Tabs extends TabsBase {
 
         const tabItems = new Array<com.nativescript.material.core.TabItemSpec>();
         items.forEach((tabStripItem: TabStripItem, i, arr) => {
+            if (!this._unSelectedItemColor) {
+                this._unSelectedItemColor = tabStripItem.label.style.color;
+            }
             tabStripItem._index = i;
             const tabItemSpec = this.createTabItemSpec(tabStripItem);
             (tabStripItem as any).tabItemSpec = tabItemSpec;
