@@ -78,7 +78,7 @@ MDTabs {
   /* color: gold; */
 }
 
-MDTabContentItem.special {
+/* MDTabContentItem.special {
   color: green;
 }
 
@@ -101,6 +101,6 @@ MDTabStripItem.nested {
 MDTabStripItem:highlighted {
     background-color: red;
   color: yellowgreen;
-}
+} */
 
 </style>

@@ -206,7 +206,7 @@ module.exports = (env, params = {}) => {
     });
 
     // // we remove default rules
-    config.plugins = config.plugins.filter((p) => ['CopyPlugin'].indexOf(p.constructor.name) === -1);
+    config.plugins = config.plugins.filter((p) => ['CopyPlugin', 'ForkTsCheckerWebpackPlugin'].indexOf(p.constructor.name) === -1);
     // we add our rules
     const globOptions = { dot: false, ignore: [`**/${relative(appPath, appResourcesFullPath)}/**`] };
     const context = nsWebpack.Utils.platform.getEntryDirPath();

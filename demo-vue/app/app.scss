@@ -3,12 +3,14 @@
 }
 
 label {
-    color:black;
+    color: black;
     .ns-dark & {
         color: red;
     }
 }
-mdbutton,MDFloatingActionButton, MDCardView {
+mdbutton,
+MDFloatingActionButton,
+MDCardView {
     shape: cut;
 }
 // page {
@@ -65,4 +67,33 @@ bottomnavigationbar {
     stroke-color: green;
     stroke-inactive-color: red;
     placeholder-color: #757575;
+}
+
+MDTabs {
+    /* color: gold; */
+}
+
+MDTabContentItem.special {
+    color: green;
+}
+
+MDTabStrip {
+    color: skyblue;
+    selected-item-color: brown;
+    // un-selected-item-color: orange;
+    highlight-color: yellow;
+    background-color: green;
+}
+
+MDTabStripItem.special {
+    color: teal;
+}
+
+MDTabStripItem.nested {
+    color: teal;
+}
+
+MDTabStripItem:highlighted {
+    background-color: red;
+    color: purple;
 }
