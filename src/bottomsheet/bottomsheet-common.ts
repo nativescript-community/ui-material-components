@@ -41,7 +41,7 @@ export interface BottomSheetOptions {
     disableDimBackground?: boolean; // optional parameter to remove the dim background
     skipCollapsedState?: boolean; // optional Android parameter to skip midway state when view is greater than 50%. Default is false
     peekHeight?: number; // optional parameter to set the collapsed sheet height. To work on iOS you need to set trackingScrollView.
-    ignoreKeyboardHeight? : boolean; //(iOS only) A Boolean value that controls whether the height of the keyboard should affect the bottom sheet's frame when the keyboard shows on the screen. (Default: true)
+    ignoreKeyboardHeight?: boolean; //(iOS only) A Boolean value that controls whether the height of the keyboard should affect the bottom sheet's frame when the keyboard shows on the screen. (Default: true)
     onChangeState?: onChangeStateBottomSheet; // One works to be called on the scroll of the sheet. Parameters: state (CLOSED, DRAGGING, DRAGGING, COLLAPSED) and slideOffset is the new offset of this bottom sheet within [-1,1] range. Offset increases as this bottom sheet is moving upward. From 0 to 1 the sheet is between collapsed and expanded states and from -1 to 0 it is between hidden and collapsed states.
 }
 
