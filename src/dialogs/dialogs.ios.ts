@@ -168,57 +168,6 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     // if (options.buttonFont) {
     //     alertController.buttonFont = options.buttonFont.getUIFont(alertController.buttonFont);
     // }
-    if (options.messageFont) {
-        alertController.messageFont = options.messageFont.getUIFont(alertController.messageFont);
-    }
-    if (options.titleFont) {
-        alertController.titleFont = options.titleFont.getUIFont(alertController.titleFont);
-    }
-    if (options.buttonInkColor) {
-        alertController.buttonInkColor = options.buttonInkColor.ios;
-    }
-    if (options.buttonTitleColor) {
-        alertController.buttonTitleColor = options.buttonTitleColor.ios;
-    }
-    if (options.scrimColor) {
-        alertController.scrimColor = options.scrimColor.ios;
-    }
-    if (options.titleColor) {
-        alertController.titleColor = options.titleColor.ios;
-        // } else if (lblColor) {
-        // alertController.titleColor = lblColor.ios;
-    }
-    if (options.titleIconTintColor) {
-        alertController.titleIconTintColor = options.titleIconTintColor.ios;
-    }
-    if (options.messageColor) {
-        alertController.messageColor = options.messageColor.ios;
-    }
-    if (options.elevation !== undefined) {
-        alertController.elevation = options.elevation;
-    }
-    if (options.cornerRadius !== undefined) {
-        alertController.cornerRadius = options.cornerRadius;
-        // } else {
-        // alertController.cornerRadius = 2;
-    }
-    if (options.titleIcon) {
-        alertController.titleIcon = options.titleIcon.ios;
-    }
-    if (options.titleAlignment) {
-        switch (options.titleAlignment) {
-            case 'initial':
-            case 'left':
-                alertController.titleAlignment = NSTextAlignment.Left;
-                break;
-            case 'center':
-                alertController.titleAlignment = NSTextAlignment.Center;
-                break;
-            case 'right':
-                alertController.titleAlignment = NSTextAlignment.Right;
-                break;
-        }
-    }
 
     if (options.view) {
         const view =
@@ -286,7 +235,7 @@ export function alert(arg: any): Promise<any> {
                 resolve(result);
             });
 
-            showUIAlertController(alertController);
+            showUIAlertController(alertController, options);
         } catch (ex) {
             reject(ex);
         }
@@ -300,7 +249,7 @@ export class AlertDialog {
     show(resolve?) {
         if (!this.alertController) {
             this.alertController = createAlertController(this.options, resolve);
-            this.presentingController = showUIAlertController(this.alertController);
+            this.presentingController = showUIAlertController(this.alertController, this.options);
         }
     }
     hide() {
@@ -331,7 +280,7 @@ export function confirm(arg: any): Promise<boolean> {
                 resolve(r);
             });
 
-            showUIAlertController(alertController);
+            showUIAlertController(alertController, options);
         } catch (ex) {
             reject(ex);
         }
@@ -422,7 +371,7 @@ export function prompt(arg: any): Promise<PromptResult> {
             if (options.autoFocus) {
                 alertController.autoFocusTextField = textField;
             }
-            showUIAlertController(alertController);
+            showUIAlertController(alertController, options);
         } catch (ex) {
             reject(ex);
         }
@@ -499,7 +448,7 @@ export function login(arg: any): Promise<LoginResult> {
             if (options.beforeShow) {
                 options.beforeShow(options, userNameTextField, passwordTextField);
             }
-            showUIAlertController(alertController);
+            showUIAlertController(alertController, options);
             if (options.autoFocus) {
                 alertController.autoFocusTextField = userNameTextField;
             }
@@ -509,7 +458,7 @@ export function login(arg: any): Promise<LoginResult> {
     });
 }
 
-function showUIAlertController(alertController: MDCAlertController) {
+function showUIAlertController(alertController: MDCAlertController, options: DialogOptions & MDCAlertControlerOptions) {
     // themer needs to be applied after actions creation
     const colorScheme = themer.getAppColorScheme() as MDCSemanticColorScheme;
     const scheme = MDCContainerScheme.alloc().init();
@@ -517,6 +466,58 @@ function showUIAlertController(alertController: MDCAlertController) {
         scheme.colorScheme = colorScheme;
     }
     alertController.applyThemeWithScheme(scheme);
+
+    if (options.messageFont) {
+        alertController.messageFont = options.messageFont.getUIFont(alertController.messageFont);
+    }
+    if (options.titleFont) {
+        alertController.titleFont = options.titleFont.getUIFont(alertController.titleFont);
+    }
+    if (options.buttonInkColor) {
+        alertController.buttonInkColor = options.buttonInkColor.ios;
+    }
+    if (options.buttonTitleColor) {
+        alertController.buttonTitleColor = options.buttonTitleColor.ios;
+    }
+    if (options.scrimColor) {
+        alertController.scrimColor = options.scrimColor.ios;
+    }
+    if (options.titleColor) {
+        alertController.titleColor = options.titleColor.ios;
+        // } else if (lblColor) {
+        // alertController.titleColor = lblColor.ios;
+    }
+    if (options.titleIconTintColor) {
+        alertController.titleIconTintColor = options.titleIconTintColor.ios;
+    }
+    if (options.messageColor) {
+        alertController.messageColor = options.messageColor.ios;
+    }
+    if (options.elevation !== undefined) {
+        alertController.elevation = options.elevation;
+    }
+    if (options.cornerRadius !== undefined) {
+        alertController.cornerRadius = options.cornerRadius;
+        // } else {
+        // alertController.cornerRadius = 2;
+    }
+    if (options.titleIcon) {
+        alertController.titleIcon = options.titleIcon.ios;
+    }
+    if (options.titleAlignment) {
+        switch (options.titleAlignment) {
+            case 'initial':
+            case 'left':
+                alertController.titleAlignment = NSTextAlignment.Left;
+                break;
+            case 'center':
+                alertController.titleAlignment = NSTextAlignment.Center;
+                break;
+            case 'right':
+                alertController.titleAlignment = NSTextAlignment.Right;
+                break;
+        }
+    }
 
     let currentView = getCurrentPage() || Application.getRootView();
 
@@ -599,7 +600,7 @@ export function action(): Promise<string> {
                 );
             }
 
-            showUIAlertController(alertController);
+            showUIAlertController(alertController, options);
         } catch (ex) {
             reject(ex);
         }
