@@ -25,9 +25,12 @@ function isString(value): value is string {
     return typeof value === 'string';
 }
 
+const DialogInterface = android.content.DialogInterface;
+const MaterialAlertDialogBuilder = com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOptions) {
     const activity = Application.android.foregroundActivity || (Application.android.startActivity as globalAndroid.app.Activity);
-    const builder = new com.google.android.material.dialog.MaterialAlertDialogBuilder(activity);
+    const builder = new MaterialAlertDialogBuilder(activity);
     builder.setTitle(options && isString(options.title) ? options.title : null);
     builder.setMessage(options && isString(options.message) ? options.message : null);
     if (options.titleIcon) {
@@ -36,7 +39,7 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
     if (options && options.cancelable === false) {
         builder.setCancelable(false);
         builder.setOnKeyListener(
-            new android.content.DialogInterface.OnKeyListener({
+            new DialogInterface.OnKeyListener({
                 onKey(dialog, keyCode, event) {
                     // Prevent dialog close on back press button
                     return keyCode === android.view.KeyEvent.KEYCODE_BACK;
@@ -138,7 +141,12 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
     return dlg;
 }
 
-function prepareAndCreateAlertDialog(builder: com.google.android.material.dialog.MaterialAlertDialogBuilder, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any) {
+function prepareAndCreateAlertDialog(
+    builder: com.google.android.material.dialog.MaterialAlertDialogBuilder,
+    options: ConfirmOptions & MDCAlertControlerOptions,
+    callback?: Function,
+    validationArgs?: (r) => any
+) {
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
     const onDone = function (result: boolean, dialog?: android.content.DialogInterface) {
@@ -159,7 +167,7 @@ function prepareAndCreateAlertDialog(builder: com.google.android.material.dialog
     };
 
     builder.setOnDismissListener(
-        new android.content.DialogInterface.OnDismissListener({
+        new DialogInterface.OnDismissListener({
             onDismiss() {
                 onDone(false);
                 if ((builder as any)._currentModalCustomView) {
@@ -190,7 +198,7 @@ function prepareAndCreateAlertDialog(builder: com.google.android.material.dialog
 
     if (options.okButtonText) {
         dlg.setButton(
-            android.content.DialogInterface.BUTTON_POSITIVE,
+            DialogInterface.BUTTON_POSITIVE,
             options.okButtonText,
             null,
             new android.content.DialogInterface.OnClickListener({
@@ -206,10 +214,10 @@ function prepareAndCreateAlertDialog(builder: com.google.android.material.dialog
 
     if (options.cancelButtonText) {
         dlg.setButton(
-            android.content.DialogInterface.BUTTON_NEGATIVE,
+            DialogInterface.BUTTON_NEGATIVE,
             options.cancelButtonText,
             null,
-            new android.content.DialogInterface.OnClickListener({
+            new DialogInterface.OnClickListener({
                 onClick(dialog: android.content.DialogInterface, id: number) {
                     onDone(false, dialog);
                 }
@@ -217,7 +225,7 @@ function prepareAndCreateAlertDialog(builder: com.google.android.material.dialog
         );
         // alert.setNegativeButton(
         //     options.cancelButtonText,
-        //     new android.content.DialogInterface.OnClickListener({
+        //     new DialogInterface.OnClickListener({
         //         onClick: function(dialog: android.content.DialogInterface, id: number) {
         //             onDone(false, dialog);
         //         }
@@ -227,10 +235,10 @@ function prepareAndCreateAlertDialog(builder: com.google.android.material.dialog
 
     if (options.neutralButtonText) {
         dlg.setButton(
-            android.content.DialogInterface.BUTTON_NEUTRAL,
+            DialogInterface.BUTTON_NEUTRAL,
             options.neutralButtonText,
             null,
-            new android.content.DialogInterface.OnClickListener({
+            new DialogInterface.OnClickListener({
                 onClick(dialog: android.content.DialogInterface, id: number) {
                     onDone(undefined, dialog);
                 }
@@ -238,7 +246,7 @@ function prepareAndCreateAlertDialog(builder: com.google.android.material.dialog
         );
         // alert.setNeutralButton(
         //     options.neutralButtonText,
-        //     new android.content.DialogInterface.OnClickListener({
+        //     new DialogInterface.OnClickListener({
         //         onClick: function(dialog: android.content.DialogInterface, id: number) {
         //             onDone(undefined, dialog);
         //         }
@@ -294,11 +302,14 @@ export function confirm(arg: any): Promise<boolean> {
                 okButtonText: DialogStrings.OK,
                 cancelButtonText: DialogStrings.CANCEL
             };
-            const options = !isDialogOptions(arg)
-                ? Object.assign(defaultOptions, {
-                    message: arg + ''
-                })
-                : Object.assign(defaultOptions, arg);
+            const options = Object.assign(
+                defaultOptions,
+                !isDialogOptions(arg)
+                    ? {
+                          message: arg + ''
+                    }
+                    : arg
+            );
             const alert = createAlertDialogBuilder(options);
             const dlg = prepareAndCreateAlertDialog(alert, options, resolve);
             showDialog(dlg, options);
@@ -511,7 +522,7 @@ export function action(arg: any): Promise<string> {
     return new Promise<string>((resolve, reject) => {
         try {
             const activity = Application.android.foregroundActivity || (Application.android.startActivity as globalAndroid.app.Activity);
-            const alert = new com.google.android.material.dialog.MaterialAlertDialogBuilder(activity);
+            const alert = new MaterialAlertDialogBuilder(activity);
             const message = options && isString(options.message) ? options.message : '';
             const title = options && isString(options.title) ? options.title : '';
             if (options && options.cancelable === false) {
@@ -530,7 +541,7 @@ export function action(arg: any): Promise<string> {
             if (options.actions) {
                 alert.setItems(
                     options.actions,
-                    new android.content.DialogInterface.OnClickListener({
+                    new DialogInterface.OnClickListener({
                         onClick(dialog: android.content.DialogInterface, which: number) {
                             resolve(options.actions[which]);
                         }

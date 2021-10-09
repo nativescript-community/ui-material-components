@@ -1,5 +1,5 @@
 import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
-import { createStateListAnimator, getAttrColor, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
+import { createStateListAnimator, getAttrColor, getColorStateList, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import { Color, Length, backgroundInternalProperty } from '@nativescript/core';
 import { CardViewBase } from './cardview-common';
 
@@ -363,10 +363,10 @@ export class CardView extends CardViewBase {
     [rippleColorProperty.setNative](color: Color) {
         const rippleColor = color ? color.android : -1;
         // if (isPostLollipopMR1()) {
-        //     (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(rippleColor));
+        //     (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(getColorStateList(rippleColor));
         // } else {
         //     this.rippleShape.getPaint().setColor(rippleColor);
         // }
-        (this.nativeViewProtected as any).setRippleColor(android.content.res.ColorStateList.valueOf(rippleColor));
+        (this.nativeViewProtected as any).setRippleColor(getColorStateList(rippleColor));
     }
 }

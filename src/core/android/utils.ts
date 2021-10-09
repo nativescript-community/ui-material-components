@@ -1,5 +1,5 @@
 import { VerticalTextAlignment } from '@nativescript-community/text';
-import { Application, Color, Utils, ViewBase, profile, CoreTypes } from '@nativescript/core';
+import { Application, Color, CoreTypes, Utils, ViewBase, profile } from '@nativescript/core';
 
 let isPostLollipopVar: boolean;
 export function isPostLollipop() {
@@ -55,94 +55,94 @@ function createNativeArray(...args) {
 }
 export const stateSets = {
     get PRESSED_STATE_SET() {
-        if (!this._PRESSED_STATE_SET) {
-            this._PRESSED_STATE_SET = createNativeArray(state.pressed);
+        if (!this.mPRESSED_STATE_SET) {
+            this.mPRESSED_STATE_SET = createNativeArray(state.pressed);
         }
-        return this._PRESSED_STATE_SET as Array<number>;
+        return this.mPRESSED_STATE_SET as number[];
     },
     get HOVERED_FOCUSED_STATE_SET() {
-        if (!this._HOVERED_FOCUSED_STATE_SET) {
-            this._HOVERED_FOCUSED_STATE_SET = createNativeArray(state.hovered, state.focused);
+        if (!this.mHOVERED_FOCUSED_STATE_SET) {
+            this.mHOVERED_FOCUSED_STATE_SET = createNativeArray(state.hovered, state.focused);
         }
-        return this._PRESSED_STATE_SET as Array<number>;
+        return this.mPRESSED_STATE_SET as number[];
     },
     get FOCUSED_STATE_SET() {
-        if (!this._FOCUSED_STATE_SET) {
-            this._FOCUSED_STATE_SET = createNativeArray(state.focused);
+        if (!this.mFOCUSED_STATE_SET) {
+            this.mFOCUSED_STATE_SET = createNativeArray(state.focused);
         }
-        return this._FOCUSED_STATE_SET as Array<number>;
+        return this.mFOCUSED_STATE_SET as number[];
     },
     get HOVERED_STATE_SET() {
-        if (!this._HOVERED_STATE_SET) {
-            this._HOVERED_STATE_SET = createNativeArray(state.hovered);
+        if (!this.mHOVERED_STATE_SET) {
+            this.mHOVERED_STATE_SET = createNativeArray(state.hovered);
         }
-        return this._HOVERED_STATE_SET as Array<number>;
+        return this.mHOVERED_STATE_SET as number[];
     },
     get SELECTED_PRESSED_STATE_SET() {
-        if (!this._SELECTED_PRESSED_STATE_SET) {
-            this._SELECTED_PRESSED_STATE_SET = createNativeArray(state.enabled, state.pressed);
+        if (!this.mSELECTED_PRESSED_STATE_SET) {
+            this.mSELECTED_PRESSED_STATE_SET = createNativeArray(state.enabled, state.pressed);
         }
-        return this._SELECTED_PRESSED_STATE_SET as Array<number>;
+        return this.mSELECTED_PRESSED_STATE_SET as number[];
     },
     get SELECTED_HOVERED_FOCUSED_STATE_SET() {
-        if (!this._SELECTED_HOVERED_FOCUSED_STATE_SET) {
-            this._SELECTED_HOVERED_FOCUSED_STATE_SET = createNativeArray(state.selected, state.hovered, state.focused);
+        if (!this.mSELECTED_HOVERED_FOCUSED_STATE_SET) {
+            this.mSELECTED_HOVERED_FOCUSED_STATE_SET = createNativeArray(state.selected, state.hovered, state.focused);
         }
-        return this._SELECTED_HOVERED_FOCUSED_STATE_SET as Array<number>;
+        return this.mSELECTED_HOVERED_FOCUSED_STATE_SET as number[];
     },
     get SELECTED_FOCUSED_STATE_SET() {
-        if (!this._SELECTED_FOCUSED_STATE_SET) {
-            this._SELECTED_FOCUSED_STATE_SET = createNativeArray(state.selected, state.focused);
+        if (!this.mSELECTED_FOCUSED_STATE_SET) {
+            this.mSELECTED_FOCUSED_STATE_SET = createNativeArray(state.selected, state.focused);
         }
-        return this._SELECTED_FOCUSED_STATE_SET as Array<number>;
+        return this.mSELECTED_FOCUSED_STATE_SET as number[];
     },
     get SELECTED_HOVERED_STATE_SET() {
-        if (!this._SELECTED_HOVERED_STATE_SET) {
-            this._SELECTED_HOVERED_STATE_SET = createNativeArray(state.selected, state.hovered);
+        if (!this.mSELECTED_HOVERED_STATE_SET) {
+            this.mSELECTED_HOVERED_STATE_SET = createNativeArray(state.selected, state.hovered);
         }
-        return this._SELECTED_HOVERED_STATE_SET as Array<number>;
+        return this.mSELECTED_HOVERED_STATE_SET as number[];
     },
     get SELECTED_STATE_SET() {
-        if (!this._SELECTED_STATE_SET) {
-            this._SELECTED_STATE_SET = createNativeArray(state.selected);
+        if (!this.mSELECTED_STATE_SET) {
+            this.mSELECTED_STATE_SET = createNativeArray(state.selected);
         }
-        return this._SELECTED_STATE_SET as Array<number>;
+        return this.mSELECTED_STATE_SET as number[];
     },
     get BACKGROUND_DEFAULT_STATE_1() {
-        if (!this._BACKGROUND_DEFAULT_STATE_1) {
-            this._BACKGROUND_DEFAULT_STATE_1 = createNativeArray(state.window_focused, state.enabled);
+        if (!this.mBACKGROUND_DEFAULT_STATE_1) {
+            this.mBACKGROUND_DEFAULT_STATE_1 = createNativeArray(state.window_focused, state.enabled);
         }
-        return this._BACKGROUND_DEFAULT_STATE_1 as number[];
+        return this.mBACKGROUND_DEFAULT_STATE_1 as number[];
     },
     get BACKGROUND_DEFAULT_STATE_2() {
-        if (!this._BACKGROUND_DEFAULT_STATE_1_SET) {
-            this._BACKGROUND_DEFAULT_STATE_1_SET = createNativeArray(state.enabled);
+        if (!this.mBACKGROUND_DEFAULT_STATE_1_SET) {
+            this.mBACKGROUND_DEFAULT_STATE_1_SET = createNativeArray(state.enabled);
         }
-        return this._BACKGROUND_DEFAULT_STATE_1_SET as Array<number>;
+        return this.mBACKGROUND_DEFAULT_STATE_1_SET as number[];
     },
     get BACKGROUND_SELECTED_STATE() {
-        if (!this._BACKGROUND_SELECTED_STATE) {
-            this._BACKGROUND_SELECTED_STATE = createNativeArray(state.window_focused, state.enabled, state.pressed);
+        if (!this.mBACKGROUND_SELECTED_STATE) {
+            this.mBACKGROUND_SELECTED_STATE = createNativeArray(state.window_focused, state.enabled, state.pressed);
         }
-        return this._BACKGROUND_SELECTED_STATE as Array<number>;
+        return this.mBACKGROUND_SELECTED_STATE as number[];
     },
     get BACKGROUND_CHECKED_STATE() {
-        if (!this._BACKGROUND_CHECKED_STATE) {
-            this._BACKGROUND_CHECKED_STATE = createNativeArray(state.window_focused, state.enabled, state.checked);
+        if (!this.mBACKGROUND_CHECKED_STATE) {
+            this.mBACKGROUND_CHECKED_STATE = createNativeArray(state.window_focused, state.enabled, state.checked);
         }
-        return this._BACKGROUND_CHECKED_STATE as Array<number>;
+        return this.mBACKGROUND_CHECKED_STATE as number[];
     },
     get BACKGROUND_FOCUSED_STATE() {
-        if (!this._BACKGROUND_FOCUSED_STATE) {
-            this._BACKGROUND_FOCUSED_STATE = createNativeArray(state.focused, state.window_focused, state.enabled);
+        if (!this.mBACKGROUND_FOCUSED_STATE) {
+            this.mBACKGROUND_FOCUSED_STATE = createNativeArray(state.focused, state.window_focused, state.enabled);
         }
-        return this._BACKGROUND_FOCUSED_STATE as Array<number>;
+        return this.mBACKGROUND_FOCUSED_STATE as number[];
     },
     get BACKGROUND_DISABLED_STATE() {
-        if (!this._BACKGROUND_DISABLED_STATE) {
-            this._BACKGROUND_DISABLED_STATE = createNativeArray(-state.enabled);
+        if (!this.mBACKGROUND_DISABLED_STATE) {
+            this.mBACKGROUND_DISABLED_STATE = createNativeArray(-state.enabled);
         }
-        return this._BACKGROUND_DISABLED_STATE as Array<number>;
+        return this.mBACKGROUND_DISABLED_STATE as number[];
     }
 };
 

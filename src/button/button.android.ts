@@ -68,7 +68,7 @@ export class Button extends ButtonBase {
         // if (variant === 'outline') {
         //     view.setStrokeWidth(1);
         //     if (!grayColorStateList) {
-        //         grayColorStateList = android.content.res.ColorStateList.valueOf(new Color('gray').android);
+        //         grayColorStateList = getColorStateList(new Color('gray').android);
         //     }
         //     view.setStrokeColor(grayColorStateList);
         // }
@@ -223,6 +223,6 @@ export class Button extends ButtonBase {
     [colorProperty.setNative](value) {
         const color = value instanceof Color ? value.android : value;
         super[colorProperty.setNative](value);
-        this.nativeViewProtected.setIconTint(android.content.res.ColorStateList.valueOf(color));
+        this.nativeViewProtected.setIconTint(getColorStateList(color));
     }
 }

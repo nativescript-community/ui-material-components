@@ -1,5 +1,5 @@
 import { cssProperty, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
-import { getEnabledColorStateList, state } from '@nativescript-community/ui-material-core/android/utils';
+import { getColorStateList, getEnabledColorStateList, state } from '@nativescript-community/ui-material-core/android/utils';
 import { CoercibleProperty, Color, Property, View, backgroundColorProperty, backgroundInternalProperty, colorProperty } from '@nativescript/core';
 import { stepSizeProperty, thumbColorProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
 
@@ -175,7 +175,7 @@ export class Slider extends View {
     }
 
     [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.setHaloTintList(color ? android.content.res.ColorStateList.valueOf(color.android) : null);
+        this.nativeViewProtected.setHaloTintList(color ? getColorStateList(color.android) : null);
     }
     [thumbColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setThumbTintList(sliderGetEnabledColorStateList(color));

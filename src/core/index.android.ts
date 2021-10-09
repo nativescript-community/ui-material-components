@@ -19,7 +19,7 @@ import { ShapeProperties } from '.';
 export * from './cssproperties';
 export { applyMixins };
 
-function createCornerTreatment(cornerFamily: CornerFamily): com.google.android.material.shape.CornerTreatment {
+function cornerTreat(cornerFamily: CornerFamily): com.google.android.material.shape.CornerTreatment {
     switch (cornerFamily) {
         case CornerFamily.CUT:
             return new com.google.android.material.shape.CutCornerTreatment();
@@ -121,26 +121,27 @@ export class Themer {
         return this._shapes[key] || null;
     }
     createShape(key: string, options: ShapeProperties) {
+        const RelativeCornerSize = com.google.android.material.shape.RelativeCornerSize;
         const builder = com.google.android.material.shape.ShapeAppearanceModel.builder();
         if (options.cornerFamily) {
-            builder.setAllCorners(createCornerTreatment(options.cornerFamily));
+            builder.setAllCorners(cornerTreat(options.cornerFamily));
         }
         if (options.cornerFamilyBottomRight) {
-            builder.setBottomRightCorner(createCornerTreatment(options.cornerFamilyBottomRight));
+            builder.setBottomRightCorner(cornerTreat(options.cornerFamilyBottomRight));
         }
         if (options.cornerFamilyBottomLeft) {
-            builder.setBottomLeftCorner(createCornerTreatment(options.cornerFamilyBottomLeft));
+            builder.setBottomLeftCorner(cornerTreat(options.cornerFamilyBottomLeft));
         }
         if (options.cornerFamilyTopLeft) {
-            builder.setTopLeftCorner(createCornerTreatment(options.cornerFamilyTopLeft));
+            builder.setTopLeftCorner(cornerTreat(options.cornerFamilyTopLeft));
         }
         if (options.cornerFamilyTopRight) {
-            builder.setTopRightCorner(createCornerTreatment(options.cornerFamilyTopRight));
+            builder.setTopRightCorner(cornerTreat(options.cornerFamilyTopRight));
         }
         if (options.cornerSize !== undefined) {
             if (typeof options.cornerSize === 'object') {
                 if (options.cornerSize.unit === '%') {
-                    builder.setAllCornerSizes(new com.google.android.material.shape.RelativeCornerSize(options.cornerSize.value));
+                    builder.setAllCornerSizes(new RelativeCornerSize(options.cornerSize.value));
                 } else {
                     builder.setAllCornerSizes(PercentLength.toDevicePixels(options.cornerSize));
                 }
@@ -151,7 +152,7 @@ export class Themer {
         if (options.cornerSizeBottomLeft !== undefined) {
             if (typeof options.cornerSizeBottomLeft === 'object') {
                 if (options.cornerSizeBottomLeft.unit === '%') {
-                    builder.setBottomLeftCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeBottomLeft.value));
+                    builder.setBottomLeftCornerSize(new RelativeCornerSize(options.cornerSizeBottomLeft.value));
                 } else {
                     builder.setBottomLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomLeft));
                 }
@@ -162,7 +163,7 @@ export class Themer {
         if (options.cornerSizeBottomRight !== undefined) {
             if (typeof options.cornerSizeBottomRight === 'object') {
                 if (options.cornerSizeBottomRight.unit === '%') {
-                    builder.setBottomRightCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeBottomRight.value));
+                    builder.setBottomRightCornerSize(new RelativeCornerSize(options.cornerSizeBottomRight.value));
                 } else {
                     builder.setBottomRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomRight));
                 }
@@ -173,7 +174,7 @@ export class Themer {
         if (options.cornerSizeTopRight !== undefined) {
             if (typeof options.cornerSizeTopRight === 'object') {
                 if (options.cornerSizeTopRight.unit === '%') {
-                    builder.setTopRightCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeTopRight.value));
+                    builder.setTopRightCornerSize(new RelativeCornerSize(options.cornerSizeTopRight.value));
                 } else {
                     builder.setTopRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopRight));
                 }
@@ -184,7 +185,7 @@ export class Themer {
         if (options.cornerSizeTopLeft !== undefined) {
             if (typeof options.cornerSizeTopLeft === 'object') {
                 if (options.cornerSizeTopLeft.unit === '%') {
-                    builder.setTopLeftCornerSize(new com.google.android.material.shape.RelativeCornerSize(options.cornerSizeTopLeft.value));
+                    builder.setTopLeftCornerSize(new RelativeCornerSize(options.cornerSizeTopLeft.value));
                 } else {
                     builder.setTopLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopLeft));
                 }
@@ -234,14 +235,15 @@ export function overrideViewBase() {
         [rippleColorProperty.setNative](color: Color) {
             const rippleColor = getRippleColor(color);
             const nativeViewProtected = this.nativeViewProtected;
+            const RippleDrawable = android.graphics.drawable.RippleDrawable;
             if (this instanceof Button && isPostMarshmallow()) {
                 const foreground = (nativeViewProtected as android.widget.Button).getForeground();
-                if (foreground instanceof android.graphics.drawable.RippleDrawable) {
+                if (foreground instanceof RippleDrawable) {
                     foreground.setColor(getColorStateList(rippleColor));
                     return;
                 }
                 const background = (nativeViewProtected as android.widget.Button).getBackground();
-                if (background instanceof android.graphics.drawable.RippleDrawable) {
+                if (background instanceof RippleDrawable) {
                     background.setColor(getColorStateList(rippleColor));
                     return;
                 }

@@ -1,6 +1,6 @@
 import { getRippleColor, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
 import { Background, Color, backgroundInternalProperty } from '@nativescript/core';
-import { createRippleDrawable, getAttrColor, isPostLollipopMR1, isPostMarshmallow } from '@nativescript-community/ui-material-core/android/utils';
+import { createRippleDrawable, getAttrColor, getColorStateList, isPostLollipopMR1, isPostMarshmallow } from '@nativescript-community/ui-material-core/android/utils';
 import { RippleBase } from './ripple-common';
 
 let MDStackLayout: typeof org.nativescript.widgets.StackLayout;
@@ -226,7 +226,7 @@ export class Ripple extends RippleBase {
             this.setRippleDrawable(this.nativeViewProtected);
         } else {
             if (isPostLollipopMR1()) {
-                (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(android.content.res.ColorStateList.valueOf(color.android));
+                (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(getColorStateList(color.android));
             } else {
                 (this.rippleDrawable as any).rippleShape.getPaint().setColor(getRippleColor(color));
             }

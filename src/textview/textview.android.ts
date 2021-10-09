@@ -31,7 +31,7 @@ import {
     textAlignmentProperty
 } from '@nativescript/core';
 import { TextViewBase } from './textview.common';
-import { getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
+import { getColorStateList, getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
 import { themer } from '@nativescript-community/ui-material-core';
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 
@@ -122,7 +122,7 @@ export class TextView extends TextViewBase {
 
     [helperColorProperty.setNative](value) {
         const color = value instanceof Color ? value.android : value;
-        this.layoutView.setHelperTextColor(android.content.res.ColorStateList.valueOf(color));
+        this.layoutView.setHelperTextColor(getColorStateList(color));
     }
     [placeholderColorProperty.setNative](value: Color) {
         const placeholderColor = value instanceof Color ? value.android : value;
@@ -191,7 +191,7 @@ export class TextView extends TextViewBase {
 
     [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
-        (this.layoutView as any).setErrorTextColor(android.content.res.ColorStateList.valueOf(color));
+        (this.layoutView as any).setErrorTextColor(getColorStateList(color));
     }
 
     [helperProperty.setNative](value: string) {
@@ -252,7 +252,7 @@ export class TextView extends TextViewBase {
                 if (value.color) {
                     const background = this.editText.getBackground();
                     if (background instanceof com.google.android.material.shape.MaterialShapeDrawable) {
-                        background.setTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                        background.setTintList(getColorStateList(value.color.android));
                         this.layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
                         this.layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
                     } else {
@@ -268,7 +268,7 @@ export class TextView extends TextViewBase {
                 if (value.color) {
                     const background = this.editText.getBackground();
                     if (background instanceof com.google.android.material.shape.MaterialShapeDrawable) {
-                        background.setTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                        background.setTintList(getColorStateList(value.color.android));
                         this.layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
                         this.layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
                     } else {

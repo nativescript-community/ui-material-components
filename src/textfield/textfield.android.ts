@@ -1,6 +1,6 @@
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 import { themer } from '@nativescript-community/ui-material-core';
-import { getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
+import { getColorStateList, getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
 import {
     counterMaxLengthProperty,
     digitsProperty,
@@ -158,7 +158,7 @@ export class TextField extends TextFieldBase {
     }
     [helperColorProperty.setNative](value) {
         const color = value instanceof Color ? value.android : value;
-        this.layoutView.setHelperTextColor(android.content.res.ColorStateList.valueOf(color));
+        this.layoutView.setHelperTextColor(getColorStateList(color));
     }
 
     public requestFocus() {
@@ -192,7 +192,7 @@ export class TextField extends TextFieldBase {
 
     [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
-        const nColor = android.content.res.ColorStateList.valueOf(color);
+        const nColor = getColorStateList(color);
         this.layoutView.setErrorTextColor(nColor);
         this.layoutView.setBoxStrokeErrorColor(nColor);
     }
@@ -275,7 +275,7 @@ export class TextField extends TextFieldBase {
                 if (value.color) {
                     const background = this.editText.getBackground();
                     if (background instanceof com.google.android.material.shape.MaterialShapeDrawable) {
-                        background.setTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                        background.setTintList(getColorStateList(value.color.android));
                         this.layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
                         this.layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
                     } else {
@@ -291,7 +291,7 @@ export class TextField extends TextFieldBase {
                 if (value.color) {
                     const background = this.editText.getBackground();
                     if (background instanceof com.google.android.material.shape.MaterialShapeDrawable) {
-                        background.setTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                        background.setTintList(getColorStateList(value.color.android));
                         this.layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
                         this.layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
                     } else {
