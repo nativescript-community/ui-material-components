@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.2](https://github.com/nativescript-community/ui-material-components/compare/v6.1.1...v6.1.2) (2021-10-09)
+
+
+### Bug Fixes
+
+* refactoring and clean up or faster access ([cd6f18e](https://github.com/nativescript-community/ui-material-components/commit/cd6f18ef5a2f5246d3fc2a5951bf316627e48038))
+
+
+
+
+
 ## [6.1.1](https://github.com/nativescript-community/ui-material-components/compare/v6.1.0...v6.1.1) (2021-10-09)
 
 
