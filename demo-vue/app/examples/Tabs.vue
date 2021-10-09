@@ -87,35 +87,3 @@ export default Vue.extend({
 });
 </script>
 
-<style>
-
-MDTabs {
-  /* color: gold; */
-}
-
-MDTabContentItem.special {
-  color: green;
-}
-
-MDTabStrip {
-  color: skyblue;
-    selected-item-color: white;
-    un-selected-item-color: blue;
-    highlight-color: yellow;
-    background-color: green;
-}
-
-MDTabStripItem.special {
-  color: teal;
-}
-
-MDTabStripItem.nested {
-  color: teal;
-}
-
-MDTabStripItem:highlighted {
-    background-color: red;
-  color: purple;
-}
-
-</style>

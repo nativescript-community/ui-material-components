@@ -6,7 +6,7 @@
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": false,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
+        "emitDecoratorMetadata": false,
         "noEmitHelpers": true,
         "noEmitOnError": true,
         "skipLibCheck": true,

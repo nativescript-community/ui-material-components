@@ -4,7 +4,7 @@
         "module": "esnext",
         "target": "es2017",
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
+        "emitDecoratorMetadata": false,
         "noEmitHelpers": true,
         "noEmitOnError": true,
         "lib": [

@@ -4,7 +4,7 @@
       "target": "es2017",
       "moduleResolution": "node",
       "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
+      "emitDecoratorMetadata": false,
       "noEmitHelpers": true,
       "noEmitOnError": true,
       "skipLibCheck": true,
