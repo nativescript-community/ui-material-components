@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.1](https://github.com/nativescript-community/ui-material-components/compare/v6.1.0...v6.1.1) (2021-10-09)
+
+
+### Bug Fixes
+
+* we dont need to emitDecoratorMetadata ([d528d7f](https://github.com/nativescript-community/ui-material-components/commit/d528d7f4509a52ced5e278b6b2d0de63617a81c3))
+
+
+
+
+
 # [6.1.0](https://github.com/nativescript-community/ui-material-components/compare/v6.0.6...v6.1.0) (2021-10-05)
 
 
