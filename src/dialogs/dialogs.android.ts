@@ -25,11 +25,14 @@ function isString(value): value is string {
     return typeof value === 'string';
 }
 
-const DialogInterface = android.content.DialogInterface;
-const MaterialAlertDialogBuilder = com.google.android.material.dialog.MaterialAlertDialogBuilder;
+let DialogInterface: typeof android.content.DialogInterface;
+let MaterialAlertDialogBuilder: typeof com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOptions) {
     const activity = Application.android.foregroundActivity || (Application.android.startActivity as globalAndroid.app.Activity);
+    if (!MaterialAlertDialogBuilder) {
+        MaterialAlertDialogBuilder = com.google.android.material.dialog.MaterialAlertDialogBuilder;
+    }
     const builder = new MaterialAlertDialogBuilder(activity);
     builder.setTitle(options && isString(options.title) ? options.title : null);
     builder.setMessage(options && isString(options.message) ? options.message : null);
@@ -38,6 +41,9 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
     }
     if (options && options.cancelable === false) {
         builder.setCancelable(false);
+        if (!DialogInterface) {
+            DialogInterface = android.content.DialogInterface;
+        }
         builder.setOnKeyListener(
             new DialogInterface.OnKeyListener({
                 onKey(dialog, keyCode, event) {
@@ -55,8 +61,8 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
             options.view instanceof View
                 ? options.view
                 : Builder.createViewFromEntry({
-                    moduleName: options.view as string
-                });
+                      moduleName: options.view as string
+                  });
 
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
@@ -165,7 +171,9 @@ function prepareAndCreateAlertDialog(
         }
         callback && callback(result);
     };
-
+    if (!DialogInterface) {
+        DialogInterface = android.content.DialogInterface;
+    }
     builder.setOnDismissListener(
         new DialogInterface.OnDismissListener({
             onDismiss() {
@@ -197,6 +205,9 @@ function prepareAndCreateAlertDialog(
     }
 
     if (options.okButtonText) {
+        if (!DialogInterface) {
+            DialogInterface = android.content.DialogInterface;
+        }
         dlg.setButton(
             DialogInterface.BUTTON_POSITIVE,
             options.okButtonText,
@@ -213,6 +224,9 @@ function prepareAndCreateAlertDialog(
     }
 
     if (options.cancelButtonText) {
+        if (!DialogInterface) {
+            DialogInterface = android.content.DialogInterface;
+        }
         dlg.setButton(
             DialogInterface.BUTTON_NEGATIVE,
             options.cancelButtonText,
@@ -234,6 +248,9 @@ function prepareAndCreateAlertDialog(
     }
 
     if (options.neutralButtonText) {
+        if (!DialogInterface) {
+            DialogInterface = android.content.DialogInterface;
+        }
         dlg.setButton(
             DialogInterface.BUTTON_NEUTRAL,
             options.neutralButtonText,
@@ -306,8 +323,8 @@ export function confirm(arg: any): Promise<boolean> {
                 defaultOptions,
                 !isDialogOptions(arg)
                     ? {
-                          message: arg + ''
-                    }
+                        message: arg + ''
+                      }
                     : arg
             );
             const alert = createAlertDialogBuilder(options);
@@ -522,6 +539,9 @@ export function action(arg: any): Promise<string> {
     return new Promise<string>((resolve, reject) => {
         try {
             const activity = Application.android.foregroundActivity || (Application.android.startActivity as globalAndroid.app.Activity);
+            if (!MaterialAlertDialogBuilder) {
+                MaterialAlertDialogBuilder = com.google.android.material.dialog.MaterialAlertDialogBuilder;
+            }
             const alert = new MaterialAlertDialogBuilder(activity);
             const message = options && isString(options.message) ? options.message : '';
             const title = options && isString(options.title) ? options.title : '';
@@ -539,6 +559,9 @@ export function action(arg: any): Promise<string> {
             }
 
             if (options.actions) {
+                if (!DialogInterface) {
+                    DialogInterface = android.content.DialogInterface;
+                }
                 alert.setItems(
                     options.actions,
                     new DialogInterface.OnClickListener({
