@@ -1,5 +1,6 @@
 {
     "uses": [
+        "com.google.android.material.dialog:MaterialAlertDialogBuilder*",
         "androidx.appcompat.app:AlertDialog*",
         "androidx.appcompat.app.AlertDialog:Builder*"
     ]
