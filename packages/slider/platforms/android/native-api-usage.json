@@ -3,7 +3,7 @@
         "com.google.android.material.slider:BaseSlider*",
         "com.google.android.material.slider:Slider*",
         "com.google.android.material.slider:LabelFormatter*",
-        "com.google.android.material.slider:BaseOnChangeListener*"
+        "com.google.android.material.slider:BaseOnChangeListener*",
         "com.google.android.material.slider.Slider:OnChangeListener*"
     ]
 }

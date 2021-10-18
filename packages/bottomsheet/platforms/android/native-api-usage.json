@@ -1,5 +1,6 @@
 {
     "uses": [
-        "com.google.android.material.bottomsheet:BottomSheetBehavior*","com.google.android.material.bottomsheet.BottomSheetBehavior*:*"
+        "com.google.android.material.bottomsheet:BottomSheetBehavior*",
+        "com.google.android.material.bottomsheet.BottomSheetBehavior*:*"
     ]
 }

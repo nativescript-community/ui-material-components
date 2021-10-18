@@ -1,5 +1,7 @@
 {
     "uses": [
-        "com.google.android.material.shape*:*","com.google.android.material.shape:RoundedCornerTreatment*","android.content.res:TypedArray*"
+        "com.google.android.material.shape*:*",
+        "com.google.android.material.shape:RoundedCornerTreatment*",
+        "android.content.res:TypedArray*"
     ]
 }
