@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/nativescript-community/ui-material-components/tree/master/packages/dialogs/compare/v6.1.2...v6.2.0) (2021-10-21)
+
+
+### Bug Fixes
+
+* **android:** native-api-usage fix ([e8969ac](https://github.com/nativescript-community/ui-material-components/tree/master/packages/dialogs/commit/e8969acdb0d1c69ce3395ede1f8af236b236cb1a))
+
+
+### Features
+
+* **android:** native-api-usage for all packages ([7cf2bb0](https://github.com/nativescript-community/ui-material-components/tree/master/packages/dialogs/commit/7cf2bb000b7148282fdd926ea9df088e164d4062))
+
+
+
+
+
 ## [6.1.2](https://github.com/nativescript-community/ui-material-components/tree/master/packages/dialogs/compare/v6.1.1...v6.1.2) (2021-10-09)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-dialogs
