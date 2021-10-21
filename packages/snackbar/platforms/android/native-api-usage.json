@@ -1,0 +1,13 @@
+{
+    "uses": [
+        "com.google.android.material.snackbar.BaseTransientBottomBar:BaseCallback*",
+        "androidx.coordinatorlayout.widget:CoordinatorLayout*",
+        "android.widget.FrameLayout:LayoutParams*",
+        "android.view:Gravity*",
+        "android.view.ViewGroup:LayoutParams*",
+        "com.google.android.material.snackbar:Snackbar*",
+        "android.view.View:OnClickListener*",
+        "com.nativescript.material.snackbar:SnackCallback*",
+        "com.nativescript.material.snackbar.SnackCallback:SnackCallbackListener*"
+    ]
+}

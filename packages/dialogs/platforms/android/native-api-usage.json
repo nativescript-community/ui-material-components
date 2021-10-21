@@ -1,6 +1,10 @@
 {
     "uses": [
         "com.google.android.material.dialog:MaterialAlertDialogBuilder*",
+        "android.widget:TextView*",
+        "android.view:KeyEvent*",
+        "android.graphics.drawable:BitmapDrawable*",
+        "android.content:DialogInterface*",
         "androidx.appcompat.app:AlertDialog*",
         "androidx.appcompat.app.AlertDialog:Builder*"
     ]

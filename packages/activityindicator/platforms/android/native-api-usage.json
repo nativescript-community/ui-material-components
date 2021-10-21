@@ -1,0 +1,5 @@
+{
+    "uses": [
+        "com.google.android.material.progressindicator:CircularProgressIndicator*"
+    ]
+}
