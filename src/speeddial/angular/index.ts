@@ -5,5 +5,5 @@ import { SpeedDial, SpeedDialItem } from '@nativescript-community/ui-material-sp
 @NgModule()
 export class NativeScriptSpeedDialModule {}
 
-registerElement('SpeedDial', () => SpeedDial);
-registerElement('peedDialItem', () => SpeedDialItem);
+registerElement('MDSpeedDial', () => SpeedDial);
+registerElement('MDSpeedDialItem', () => SpeedDialItem);
