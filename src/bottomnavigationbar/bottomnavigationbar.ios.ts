@@ -156,7 +156,7 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         // TODO: this is for he v8 runtime. Should not have to need this setTimeout(), find better way.
         this.selectTabNative(this.selectedTabIndex);
         setTimeout(() => {
-            this.nativeViewProtected.selectedItem = this.nativeViewProtected.items[this.selectedTabIndex];
+            this.nativeViewProtected.selectedItem = this.nativeViewProtected.items.objectAtIndex(this.selectedTabIndex);
         }, 0);
     }
 
@@ -165,9 +165,9 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
             return;
         }
         // ios impl does not trigger delegates!
-        const itemToSelect = this.nativeViewProtected.items[index];
+        const itemToSelect = this.nativeViewProtected.items.objectAtIndex(index);
         if (this._delegate.bottomNavigationBarShouldSelectItem(this.nativeViewProtected, itemToSelect)) {
-            this.nativeViewProtected.selectedItem = this.nativeViewProtected.items[index];
+            this.nativeViewProtected.selectedItem = this.nativeViewProtected.items.objectAtIndex(index);
             this._delegate.bottomNavigationBarDidSelectItem(this.nativeViewProtected, itemToSelect);
             this.selectedTabIndex = index;
         }
