@@ -1,6 +1,6 @@
 {
     "uses": [
-        "(com as any).nativescript.material.core:Utils*",
+        "com.nativescript.material.core:Utils*",
         "android.graphics:Color*",
         "android.os:Build*",
         "android.content.res:ColorStateList*",
