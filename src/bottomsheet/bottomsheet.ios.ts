@@ -38,9 +38,9 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
                 //normalized = (value - min) / (max - min);
                 let normalized = 0;
                 if (yOffset + bottomPadding > heightScreen - heightCollapsedSheet) {
-                    normalized =  ((heightScreen - yOffset - bottomPadding) - 0) / (heightCollapsedSheet - 0) - 1;
+                    normalized = (heightScreen - yOffset - bottomPadding - 0) / (heightCollapsedSheet - 0) - 1;
                 } else {
-                    normalized = ((heightScreen - yOffset) - heightCollapsedSheet) / (heightScreen - heightCollapsedSheet);
+                    normalized = (heightScreen - yOffset - heightCollapsedSheet) / (heightScreen - heightCollapsedSheet);
                 }
                 owner._onChangeStateBottomSheetCallback(StateBottomSheet.DRAGGING, normalized);
             } else {
@@ -71,7 +71,7 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
             }
         } else {
             if (owner && owner._onChangeStateBottomSheetCallback) {
-                owner._onChangeStateBottomSheetCallback(state === MDCSheetState.Extended ? StateBottomSheet.EXPANDED : StateBottomSheet.EXPANDED)
+                owner._onChangeStateBottomSheetCallback(state === MDCSheetState.Extended ? StateBottomSheet.EXPANDED : StateBottomSheet.EXPANDED);
             }
         }
     }
@@ -443,7 +443,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         if (options.trackingScrollView) {
             const scrollView = this.getViewById(options.trackingScrollView);
             if (scrollView && scrollView.nativeViewProtected instanceof UIScrollView) {
-                (bottomSheet.presentationController as MDCBottomSheetPresentationController).trackingScrollView = scrollView.nativeViewProtected;
+                bottomSheet.trackingScrollView = scrollView.nativeViewProtected;
             }
         }
         controller.nsAnimated = true;
