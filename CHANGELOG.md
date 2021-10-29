@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.2](https://github.com/nativescript-community/ui-material-components/compare/v6.2.1...v6.2.2) (2021-10-29)
+
+
+### Bug Fixes
+
+* **bottomsheet:** ios regression fix for trackingScrollView ([6592fc9](https://github.com/nativescript-community/ui-material-components/commit/6592fc9a3dc1d5b972d0f880106d1606438304fd))
+* **core:** android native-api-usage fix ([863749b](https://github.com/nativescript-community/ui-material-components/commit/863749b12d59387dc5f1ff6e163567b162f13069))
+
+
+
+
+
 ## [6.2.1](https://github.com/nativescript-community/ui-material-components/compare/v6.2.0...v6.2.1) (2021-10-25)
 
 
