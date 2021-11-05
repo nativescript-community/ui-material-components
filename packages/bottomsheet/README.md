@@ -38,6 +38,45 @@ Be sure to run a new build after adding plugins to avoid any issues.
 
 ## [FAQ](../../README.md#faq)
 
+## API
+
+```ts
+export interface BottomSheetOptions {
+    view: string | ViewBase; 
+    // View instance to be shown in bottom sheet. Or the name of the module to load starting from the application root.
+    context?: any; 
+    // Any context you want to pass to the view shown in bottom sheet. This same context will be available in the arguments of the shownInBottomSheet event handler.
+    animated?: boolean; 
+    // An optional parameter specifying whether to show the sheet view with animation.
+    dismissOnBackgroundTap?: boolean; 
+    // An optional parameter specifying whether to dismiss the sheet when clicking on background.
+    dismissOnDraggingDownSheet?: boolean; 
+    // An optional parameter specifying whether to disable dragging the sheet to dismiss.
+    dismissOnBackButton?: boolean; 
+    // An optional parameter that specifies whether to close the sheet when pressing the back button.
+    closeCallback?: Function; 
+    //  A function that will be called when the view is closed. Any arguments provided when calling shownInBottomSheet.closeCallback will be available here.
+    trackingScrollView?: string; 
+    // optional id of the scroll view to track
+    transparent?: boolean; 
+    // optional parameter to make the bottomsheet transparent
+    ignoreTopSafeArea?: boolean; 
+    // optional ios parameter to top safe area. Default is true
+    ignoreBottomSafeArea?: boolean; 
+    // optional ios parameter to bottom safe area. Default is false
+    disableDimBackground?: boolean; 
+    // optional parameter to remove the dim background
+    skipCollapsedState?: boolean; 
+    // optional Android parameter to skip midway state when view is greater than 50%. Default is false
+    peekHeight?: number; 
+    // optional parameter to set the collapsed sheet height. To work on iOS you need to set trackingScrollView.
+    ignoreKeyboardHeight?: boolean; 
+    //(iOS only) A Boolean value that controls whether the height of the keyboard should affect the bottom sheet's frame when the keyboard shows on the screen. (Default: true)
+    onChangeState?: onChangeStateBottomSheet; 
+    // One works to be called on the scroll of the sheet. Parameters: state (CLOSED, DRAGGING, DRAGGING, COLLAPSED) and slideOffset is the new offset of this bottom sheet within [-1,1] range. Offset increases as this bottom sheet is moving upward. From 0 to 1 the sheet is between collapsed and expanded states and from -1 to 0 it is between hidden and collapsed states.
+}
+```
+
 ## Usage
 
 ### Plain NativeScript
