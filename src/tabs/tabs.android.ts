@@ -693,7 +693,7 @@ export class Tabs extends TabsBase {
         const tabItems = new Array<com.nativescript.material.core.TabItemSpec>();
         items.forEach((tabStripItem: TabStripItem, i, arr) => {
             if (!this._unSelectedItemColor) {
-                this._unSelectedItemColor = tabStripItem.label.style.color;
+                this._unSelectedItemColor = tabStripItem.label?.style.color;
             }
             tabStripItem._index = i;
             const tabItemSpec = this.createTabItemSpec(tabStripItem);
