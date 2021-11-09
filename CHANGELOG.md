@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.3](https://github.com/nativescript-community/ui-material-components/compare/v6.2.2...v6.2.3) (2021-11-09)
+
+
+### Bug Fixes
+
+* **dialogs:** AlertDialog hide is now async to allow to wait for dialog to be hidden ([d1eb283](https://github.com/nativescript-community/ui-material-components/commit/d1eb283a1fc17bac19cd11ac35545e5acda3294e))
+* **tabs:** prevent crash when TabStripItem isn't loaded yet ([301db6f](https://github.com/nativescript-community/ui-material-components/commit/301db6f370391cc1dd026972146807abde8fedab))
+
+
+
+
+
 ## [6.2.2](https://github.com/nativescript-community/ui-material-components/compare/v6.2.1...v6.2.2) (2021-10-29)
 
 

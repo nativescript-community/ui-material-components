@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.3](https://github.com/nativescript-community/ui-material-components/tree/master/packages/cardview/compare/v6.2.2...v6.2.3) (2021-11-09)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-cardview
+
+
+
+
+
 ## [6.2.2](https://github.com/nativescript-community/ui-material-components/tree/master/packages/cardview/compare/v6.2.1...v6.2.2) (2021-10-29)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-cardview
