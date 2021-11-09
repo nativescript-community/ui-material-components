@@ -296,18 +296,29 @@ export function alert(arg: any): Promise<void> {
 export class AlertDialog {
     dialog: androidx.appcompat.app.AlertDialog;
     constructor(private options: any) {}
-    show(resolve?) {
+    onCloseListeners: any[] = [];
+    onClosed() {
+        this.onCloseListeners.forEach((l) => l());
+        this.onCloseListeners = [];
+    }
+    show(onClosed?) {
         if (!this.dialog) {
             const alert = createAlertDialogBuilder(this.options);
             this.dialog = alert.create();
-            this.dialog = prepareAndCreateAlertDialog(alert, this.options, resolve);
+            this.dialog = prepareAndCreateAlertDialog(alert, this.options, () => {
+                this.onClosed();
+                onClosed?.();
+            });
             showDialog(this.dialog, this.options);
         }
     }
-    hide() {
+    async hide() {
         if (this.dialog) {
-            this.dialog.cancel();
-            this.dialog = null;
+            return new Promise((resolve) => {
+                this.onCloseListeners.push(resolve);
+                this.dialog.cancel();
+                this.dialog = null;
+            });
         }
     }
 }

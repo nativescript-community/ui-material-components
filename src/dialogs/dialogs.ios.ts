@@ -174,8 +174,8 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
             options.view instanceof View
                 ? options.view
                 : Builder.createViewFromEntry({
-                    moduleName: options.view as string
-                });
+                      moduleName: options.view as string
+                  });
 
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
@@ -246,17 +246,20 @@ export class AlertDialog {
     alertController: MDCAlertController;
     presentingController: UIViewController;
     constructor(private options: any) {}
-    show(resolve?) {
+
+    show(onClosed?) {
         if (!this.alertController) {
-            this.alertController = createAlertController(this.options, resolve);
+            this.alertController = createAlertController(this.options, onClosed);
             this.presentingController = showUIAlertController(this.alertController, this.options);
         }
     }
-    hide() {
+    async hide() {
         if (this.presentingController) {
-            this.presentingController.dismissViewControllerAnimatedCompletion(true, null);
-            this.presentingController = null;
-            this.alertController = null;
+            return new Promise<void>((resolve) => {
+                this.presentingController.dismissViewControllerAnimatedCompletion(true, resolve);
+                this.presentingController = null;
+                this.alertController = null;
+            });
         }
     }
 }
@@ -271,8 +274,8 @@ export function confirm(arg: any): Promise<boolean> {
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
-                    message: arg + ''
-                })
+                      message: arg + ''
+                  })
                 : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
 
