@@ -84,7 +84,7 @@ IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-materia
 #### CSS
 
 ```CSS
-MDBottomNavigation.bottom-nav {
+BottomNavigation.bottom-nav {
     background-color: orangered;
     color: gold;
     font-size: 18;
@@ -110,7 +110,7 @@ MDTabContentItem.third-tabcontent {
     background-color: blueviolet;
     color: antiquewhite;
 }
-MDBottomNavigation TabStrip {
+BottomNavigation TabStrip {
     highlight-color: red;
 }
 ```
