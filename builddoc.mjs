@@ -11,7 +11,7 @@ import typedocJson from './typedoc.js';
  *  @param {string} options.outDir
  * @param {Partial<import('typedoc').TypeDocOptions>} [typeDocOptions]
  */
-export async function createTypeScriptApiDocs ({ entryPoint, outDir }, typeDocOptions) {
+export async function createTypeScriptApiDocs ({ outDir }, typeDocOptions = {}) {
     const app = new td.Application();
     app.options.addReader(new td.TSConfigReader());
     console.log('createTypeScriptApiDocs', typeDocOptions);
@@ -21,26 +21,34 @@ export async function createTypeScriptApiDocs ({ entryPoint, outDir }, typeDocOp
     });
     console.log('files', files);
     app.bootstrap({
-        tsconfig: 'tsconfig.json',
+        logger: "console",
+        disableSources: true,
+        cleanOutputDir: true,
+        tsconfig: 'tsconfig.doc.json',
+        entryPointStrategy: td.EntryPointStrategy.Expand,
+        entryPoints: files,
         ...typedocJson,
-        ...typeDocOptions,
-        entryPoints: files
+        ...typeDocOptions
     });
     //@ts-ignore
     app.options.setCompilerOptions(files, {
         esModuleInterop: true
     });
-    const program = ts.createProgram(app.options.getFileNames(), app.options.getCompilerOptions());
+    // const program = ts.createProgram(app.options.getFileNames(), app.options.getCompilerOptions());
 
-    const project = app.converter.convert(app.expandInputFiles(app.options.getValue('entryPoints')), program);
+    const project = app.converter.convert(app.getEntryPoints() ?? []);
 
     if (project) {
         await app.generateDocs(project, outDir);
     } else {
-        throw new Error(`Error creating the TypeScript API docs for ${entryPoint}.`);
+        throw new Error(`Error creating the typedoc project`);
     }
 };
 // app.generateDocs(project, "./docs");
 // app.generateJson(project, "./docs.json");
 
-createTypeScriptApiDocs({ outDir: './docs' });
+try {
+    await createTypeScriptApiDocs({ outDir: './docs' });
+} catch(err) {
+    console.error(err);
+}

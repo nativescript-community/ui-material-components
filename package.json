@@ -62,7 +62,7 @@
         "@commitlint/config-conventional": "^14.1.0",
         "@nativescript-community/text": "^1.4.28",
         "@nativescript/angular": "12.2.0",
-        "@nativescript/core": "8.1.5",
+        "@nativescript/core": "8.1.0",
         "@nativescript/eslint-plugin": "0.0.4",
         "@nativescript/hook": "~2.0.0",
         "@nativescript/types": "8.1.1",
