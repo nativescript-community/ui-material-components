@@ -1,11 +1,9 @@
-// @ts-check
+import td from 'typedoc';
+import ts from 'typescript';
+import * as path from 'path';
+import {globby} from 'globby';
 
-const td = require('typedoc');
-const ts = require('typescript');
-const path = require('path');
-const globby = require('globby');
-
-const typedocJson = require('./typedoc');
+import typedocJson from './typedoc.js';
 
 /**
  * @param {Object} options
@@ -13,7 +11,7 @@ const typedocJson = require('./typedoc');
  *  @param {string} options.outDir
  * @param {Partial<import('typedoc').TypeDocOptions>} [typeDocOptions]
  */
-const createTypeScriptApiDocs = (exports.createTypeScriptApiDocs = async ({ entryPoint, outDir }, typeDocOptions) => {
+export async function createTypeScriptApiDocs ({ entryPoint, outDir }, typeDocOptions) {
     const app = new td.Application();
     app.options.addReader(new td.TSConfigReader());
     console.log('createTypeScriptApiDocs', typeDocOptions);
@@ -41,7 +39,7 @@ const createTypeScriptApiDocs = (exports.createTypeScriptApiDocs = async ({ entr
     } else {
         throw new Error(`Error creating the TypeScript API docs for ${entryPoint}.`);
     }
-});
+};
 // app.generateDocs(project, "./docs");
 // app.generateJson(project, "./docs.json");
 
