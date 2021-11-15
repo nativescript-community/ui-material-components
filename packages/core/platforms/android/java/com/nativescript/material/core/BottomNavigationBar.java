@@ -119,9 +119,11 @@ public class BottomNavigationBar extends LinearLayout {
      */
     public void updateItemAt(int position, TabItemSpec tabItem) {
         LinearLayout ll = (LinearLayout)mTabStrip.getChildAt(position);
-        ImageView imgView = (ImageView)ll.getChildAt(0);
-        TextView textView = (TextView)ll.getChildAt(1);
-        this.setupItem(ll, textView, imgView, tabItem);
+        if (ll != null) {
+            ImageView imgView = (ImageView)ll.getChildAt(0);
+            TextView textView = (TextView)ll.getChildAt(1);
+            this.setupItem(ll, textView, imgView, tabItem);
+        }
     }
 
     /**
