@@ -251,13 +251,14 @@ export function getAttr(context: android.content.Context, id: string) {
 
 export function getHorizontalGravity(textAlignment: CoreTypes.TextAlignmentType) {
     switch (textAlignment) {
-        case 'initial':
-        case 'left':
-            return 8388611; //Gravity.START
         case 'center':
             return 1; //Gravity.CENTER_HORIZONTAL
         case 'right':
             return 8388613; //Gravity.END
+        case 'initial':
+        case 'left':
+        default:
+            return 8388611; //Gravity.START
     }
 }
 export function getVerticalGravity(textAlignment: VerticalTextAlignment) {
