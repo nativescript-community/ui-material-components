@@ -3,25 +3,9 @@
  * @module @nativescript-community/ui-material-speedial
  */
 
-import {
-    Animation,
-    AnimationDefinition,
-    CSSType,
-    Color,
-    EventData,
-    FlexboxLayout,
-    GestureTypes,
-    GridLayout,
-    HorizontalAlignment,
-    ImageSource,
-    View,
-    backgroundColorProperty,
-    colorProperty,
-    isUserInteractionEnabledProperty
-} from '@nativescript/core';
+import { Animation, AnimationDefinition, CSSType, Color, CoreTypes, EventData, FlexboxLayout, GridLayout, ImageSource, isUserInteractionEnabledProperty } from '@nativescript/core';
 import { Button } from '@nativescript-community/ui-material-button';
 import { LinearGradient } from '@nativescript/core/ui/styling/gradient';
-import { AnimationCurve } from '@nativescript/core/ui/enums';
 import { NotifyData } from '@nativescript/core/data/observable';
 
 export class SpeedDialItemBase extends GridLayout {}
@@ -97,36 +81,45 @@ export class SpeedDialButton extends SpeedDialItemButton {}
 @CSSType('MDSpeedDialItem')
 export class SpeedDialItem extends SpeedDialItemBase {
     public actualActive = false;
-    titleView: SpeedDialItemTitle;
-    button: SpeedDialItemButton;
+    mTitleView: WeakRef<SpeedDialItemTitle>;
+    mButton: WeakRef<SpeedDialItemButton>;
     fabmenu: WeakRef<SpeedDial>;
+
+    get titleView() {
+        return this.mTitleView?.get();
+    }
+    get button() {
+        return this.mButton?.get();
+    }
     constructor(size = 'mini', private isMain = false) {
         super();
         // this._fabsHolder.isPassThroughParentEnabled = true;
         this.isPassThroughParentEnabled = true;
-        this.titleView = new SpeedDialItemTitle();
-        this.titleView.notify = this.notifyChildEvent(this.titleView, this.titleView.notify);
-        this.titleView.col = 1;
-        this.titleView.text = this.title;
-        this.button = isMain ? new SpeedDialButton() : new SpeedDialItemButton();
-        this.button.notify = this.notifyChildEvent(this.button, this.button.notify);
-        this.button.horizontalAlignment = 'center';
+        const titleView = new SpeedDialItemTitle();
+        titleView.notify = this.notifyChildEvent(titleView, titleView.notify);
+        titleView.col = 1;
+        titleView.text = this.title;
+        const button = isMain ? new SpeedDialButton() : new SpeedDialItemButton();
+        button.notify = this.notifyChildEvent(button, button.notify);
+        button.horizontalAlignment = 'center';
         // this.fabButtonTitle.style['css:elevation'] = 4;this.fabButtonTitle.style['css:elevation'] = 2;
-        this.button.col = this.fabButtonCol;
+        button.col = this.fabButtonCol;
         if (size === 'mini') {
-            // this.button.style['css:border-radius'] = 20;
-            this.button.style['css:width'] = 40;
-            this.button.style['css:height'] = 40;
-            this.button.style['css:margin'] = 16;
+            // button.style['css:border-radius'] = 20;
+            button.style['css:width'] = 40;
+            button.style['css:height'] = 40;
+            button.style['css:margin'] = 16;
         } else {
-            // this.button.style['css:border-radius'] = 28;
-            this.button.style['css:width'] = 56;
-            this.button.style['css:height'] = 56;
-            this.button.style['css:margin'] = 16;
+            // button.style['css:border-radius'] = 28;
+            button.style['css:width'] = 56;
+            button.style['css:height'] = 56;
+            button.style['css:margin'] = 16;
         }
         (this as any).columns = this.fabColumns;
-        this.addChild(this.titleView);
-        this.addChild(this.button);
+        this.addChild(titleView);
+        this.addChild(button);
+        this.mTitleView = new WeakRef(titleView);
+        this.mButton = new WeakRef(button);
     }
     updateAlignment() {
         (this as any).columns = this.fabColumns;
@@ -265,14 +258,24 @@ export class SpeedDialItem extends SpeedDialItemBase {
 
 @CSSType('MDSpeedDial')
 export class SpeedDial extends SpeedDialItemBase {
-    fabs: SpeedDialItem[] = [];
-    private _fabsHolder: FlexboxLayout;
+    mFabs: WeakRef<SpeedDialItem>[] = [];
+    private mFabsHolder: WeakRef<FlexboxLayout>;
     rows: string;
     columns: string;
     orientation = 'vertical';
     isActive = false;
     actualActive = false;
-    private _fabMainButton: SpeedDialItem;
+    private mFabMainButton: WeakRef<SpeedDialItem>;
+
+    get fabsHolder() {
+        return this.mFabsHolder?.get();
+    }
+    get fabMainButton() {
+        return this.mFabMainButton?.get();
+    }
+    get fabs() {
+        return this.mFabs.map((f) => f?.get()).filter((f) => !!f);
+    }
     constructor() {
         super();
         this.actualActive = this.isActive;
@@ -281,23 +284,25 @@ export class SpeedDial extends SpeedDialItemBase {
         this.rows = 'auto,*,auto,auto';
         this.style['css:padding-left'] = 8;
         this.style['css:padding-right'] = 8;
-        this._fabsHolder = new FlexboxLayout();
-        this._fabsHolder.row = 2;
-        this._fabsHolder.horizontalAlignment = this.horizontalAlignment;
+        const fabHolder = new FlexboxLayout();
+        fabHolder.row = 2;
+        fabHolder.horizontalAlignment = this.horizontalAlignment;
         this.isPassThroughParentEnabled = true;
         if (global.isIOS) {
-            this._fabsHolder.isPassThroughParentEnabled = true;
+            fabHolder.isPassThroughParentEnabled = true;
         }
-        this._fabsHolder.flexDirection = this.orientation === 'vertical' ? 'column-reverse' : 'row-reverse';
-        this._fabsHolder.visibility = 'hidden';
+        fabHolder.flexDirection = this.orientation === 'vertical' ? 'column-reverse' : 'row-reverse';
+        fabHolder.visibility = 'hidden';
         this.backgroundColor = new Color('#00000000');
 
-        this._fabMainButton = new SpeedDialItem(null, true);
-        this.prepareItem(this._fabMainButton, true);
-        this._fabMainButton.row = 3;
+        const fabMainButton = new SpeedDialItem(null, true);
+        this.prepareItem(fabMainButton, true);
+        fabMainButton.row = 3;
 
-        this.addChild(this._fabMainButton);
-        this.addChild(this._fabsHolder);
+        this.addChild(fabMainButton);
+        this.addChild(fabHolder);
+        this.mFabsHolder = new WeakRef(fabHolder);
+        this.mFabMainButton = new WeakRef(fabMainButton);
     }
 
     get backDrop() {
@@ -326,11 +331,11 @@ export class SpeedDial extends SpeedDialItemBase {
         });
     }
     insertChild(child, index) {
-        if (child !== this._fabMainButton && child instanceof SpeedDialItem) {
+        if (child !== this.fabMainButton && child instanceof SpeedDialItem) {
             this.prepareItem(child);
 
-            this.fabs.splice(index, 0, child);
-            this._fabsHolder.insertChild(child, index);
+            this.mFabs.splice(index, 0, new WeakRef(child));
+            this.fabsHolder.insertChild(child, index);
         } else {
             super.insertChild(child, index);
         }
@@ -341,11 +346,11 @@ export class SpeedDial extends SpeedDialItemBase {
         // this is to make sure the view does not get "visible" too quickly
         // before we apply the translation
         // super.addChild(child);
-        if (child !== this._fabMainButton && child instanceof SpeedDialItem) {
+        if (child !== this.fabMainButton && child instanceof SpeedDialItem) {
             this.prepareItem(child);
 
-            this.fabs.push(child);
-            this._fabsHolder.addChild(child);
+            this.mFabs.push(new WeakRef(child));
+            this.fabsHolder.addChild(child);
         } else {
             super.addChild(child);
         }
@@ -370,7 +375,7 @@ export class SpeedDial extends SpeedDialItemBase {
     }
     computeAnimationData(way: 'open' | 'hide', fab: SpeedDialItem, index, count, duration, isMain = false): AnimationDefinition[] {
         const delay = (duration / count) * index;
-        const curve = AnimationCurve.easeOut;
+        const curve = CoreTypes.AnimationCurve.easeOut;
         if (way === 'open') {
             const result: AnimationDefinition[] = [
                 {
@@ -439,18 +444,18 @@ export class SpeedDial extends SpeedDialItemBase {
                 return acc;
             }, [] as AnimationDefinition[])
             .filter((a) => !!a)
-            .concat(this.computeAnimationData('open', this._fabMainButton, 0, length, duration, true))
+            .concat(this.computeAnimationData('open', this.fabMainButton, 0, length, duration, true))
             .concat([
                 {
                     target: this.backDrop,
                     backgroundColor: new Color('#00000099'),
-                    curve: AnimationCurve.easeInOut,
+                    curve: CoreTypes.AnimationCurve.easeInOut,
                     duration
                 }
             ]);
 
         try {
-            this._fabsHolder.visibility = 'visible';
+            this.fabsHolder.visibility = 'visible';
             this.isPassThroughParentEnabled = false;
             await new Animation(params).play();
             fabs.forEach((f) => (f.isUserInteractionEnabled = true));
@@ -471,12 +476,12 @@ export class SpeedDial extends SpeedDialItemBase {
                 return acc;
             }, [] as AnimationDefinition[])
             .filter((a) => !!a)
-            .concat(this.computeAnimationData('hide', this._fabMainButton, 0, length, duration, true))
+            .concat(this.computeAnimationData('hide', this.fabMainButton, 0, length, duration, true))
             .concat([
                 {
                     target: this.backDrop,
                     backgroundColor: new Color('#00000000'),
-                    curve: AnimationCurve.easeInOut,
+                    curve: CoreTypes.AnimationCurve.easeInOut,
                     duration
                 }
             ]);
@@ -485,7 +490,7 @@ export class SpeedDial extends SpeedDialItemBase {
             fabs.forEach((f) => (f.isUserInteractionEnabled = false));
             await new Animation(params).play();
             this.isPassThroughParentEnabled = true;
-            this._fabsHolder.visibility = 'hidden';
+            this.fabsHolder.visibility = 'hidden';
         } catch (err) {
             // console.error(err);
         } finally {
@@ -515,52 +520,52 @@ export class SpeedDial extends SpeedDialItemBase {
 
     //@ts-ignore
     get icon() {
-        return this._fabMainButton.icon;
+        return this.fabMainButton.icon;
     }
     set icon(value: string | ImageSource) {
-        this._fabMainButton.icon = value;
-        this._fabMainButton.padding = 0;
+        this.fabMainButton.icon = value;
+        this.fabMainButton.padding = 0;
     }
     get buttonClass() {
-        return this._fabMainButton.buttonClass;
+        return this.fabMainButton.buttonClass;
     }
     set buttonClass(value: string) {
-        this._fabMainButton.buttonClass = value;
+        this.fabMainButton.buttonClass = value;
     }
     get buttonFontSize() {
-        return this._fabMainButton.buttonFontSize;
+        return this.fabMainButton.buttonFontSize;
     }
     set buttonFontSize(value) {
-        this._fabMainButton.buttonFontSize = value;
+        this.fabMainButton.buttonFontSize = value;
     }
 
     //@ts-ignore
     get color() {
-        return this._fabMainButton.color;
+        return this.fabMainButton.color;
     }
     set color(value) {
-        this._fabMainButton.color = value;
+        this.fabMainButton.color = value;
     }
     get text() {
-        return this._fabMainButton.text;
+        return this.fabMainButton.text;
     }
     set text(value: string) {
-        this._fabMainButton.text = value;
+        this.fabMainButton.text = value;
     }
     get title() {
-        return this._fabMainButton.title;
+        return this.fabMainButton.title;
     }
     set title(value: string) {
-        this._fabMainButton.title = value;
+        this.fabMainButton.title = value;
     }
     //@ts-ignore
     get horizontalAlignment() {
-        return this._fabsHolder.horizontalAlignment;
+        return this.fabsHolder.horizontalAlignment;
     }
     set horizontalAlignment(value) {
-        this._fabsHolder.horizontalAlignment = value;
-        this._fabMainButton.updateAlignment();
-        this._fabsHolder.eachChild((c) => {
+        this.fabsHolder.horizontalAlignment = value;
+        this.fabMainButton.updateAlignment();
+        this.fabsHolder.eachChild((c) => {
             if (c instanceof SpeedDialItem) {
                 c.updateAlignment();
             }
@@ -595,10 +600,10 @@ export class SpeedDial extends SpeedDialItemBase {
     // }
 
     get titleClass() {
-        return this._fabMainButton.titleClass;
+        return this.fabMainButton.titleClass;
     }
     set titleClass(value: string) {
-        this._fabMainButton.titleClass = value;
+        this.fabMainButton.titleClass = value;
     }
 
     onBackdropTap(args) {
