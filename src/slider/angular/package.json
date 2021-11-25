@@ -4,14 +4,9 @@
 	"ngPackage": {
 		"dest": "../../../packages/slider/angular",
 		"lib": {
-			"entryFile": "index.ts",
-			"umdModuleIds": {
-				"@nativescript/core": "ns-core",
-				"@nativescript/angular": "ns-angular",
-				"@nativescript-community/ui-material-slider": "ns-material-slider"
-			}
+			"entryFile": "index.ts"
 		},
-		"whitelistedNonPeerDependencies": [
+		"allowedNonPeerDependencies": [
 			"."
 		]
 	}

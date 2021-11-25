@@ -4,14 +4,9 @@
 	"ngPackage": {
 		"dest": "../../../packages/bottomnavigationbar/angular",
 		"lib": {
-			"entryFile": "index.ts",
-			"umdModuleIds": {
-				"@nativescript/core": "ns-core",
-				"@nativescript/angular": "ns-angular",
-				"@nativescript-community/ui-material-bottomnavigationbar": "ns-material-bottomnavigationbar"
-			}
+			"entryFile": "index.ts"
 		},
-		"whitelistedNonPeerDependencies": [
+		"allowedNonPeerDependencies": [
 			"."
 		]
 	}

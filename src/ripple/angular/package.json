@@ -4,14 +4,9 @@
 	"ngPackage": {
 		"dest": "../../../packages/ripple/angular",
 		"lib": {
-			"entryFile": "index.ts",
-			"umdModuleIds": {
-				"@nativescript/core": "ns-core",
-				"@nativescript/angular": "ns-angular",
-				"@nativescript-community/ui-material-ripple": "ns-material-ripple"
-			}
+			"entryFile": "index.ts"
 		},
-		"whitelistedNonPeerDependencies": [
+		"allowedNonPeerDependencies": [
 			"."
 		]
 	}

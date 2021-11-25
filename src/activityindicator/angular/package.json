@@ -4,14 +4,9 @@
 	"ngPackage": {
 		"dest": "../../../packages/activityindicator/angular",
 		"lib": {
-			"entryFile": "index.ts",
-			"umdModuleIds": {
-				"@nativescript/core": "ns-core",
-				"@nativescript/angular": "ns-angular",
-				"@nativescript-community/ui-material-activityindicator": "ns-material-activityindicator"
-			}
+			"entryFile": "index.ts"
 		},
-		"whitelistedNonPeerDependencies": [
+		"allowedNonPeerDependencies": [
 			"."
 		]
 	}

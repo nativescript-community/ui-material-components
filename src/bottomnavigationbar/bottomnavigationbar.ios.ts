@@ -52,11 +52,6 @@ class BottomNavigationBarDelegate extends NSObject {
 export class BottomNavigationBar extends BottomNavigationBarBase {
     nativeViewProtected: MDCBottomNavigationBar;
     _items: BottomNavigationTab[];
-
-    constructor() {
-        super();
-    }
-
     private _delegate: BottomNavigationBarDelegate;
 
     createNativeView(): Object {
