@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.4](https://github.com/nativescript-community/ui-material-components/compare/v6.2.3...v6.2.4) (2021-11-25)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** fix readme for css class name ([8c0c286](https://github.com/nativescript-community/ui-material-components/commit/8c0c286371b2b4daf4f42c64015269d9c135a4a1))
+* **bottomnavigationbar:** android NPE fix ([4c226ef](https://github.com/nativescript-community/ui-material-components/commit/4c226ef4cdac5a6e2afeac7a8f2dd329ad90b8da))
+
+
+
+
+
 ## [6.2.3](https://github.com/nativescript-community/ui-material-components/compare/v6.2.2...v6.2.3) (2021-11-09)
 
 
