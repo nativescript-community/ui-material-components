@@ -74,6 +74,8 @@ export default Vue.extend({
                         // message: 'this is test Prompt!',
                         okButtonText: 'OK',
                         cancelButtonText: 'Cancel',
+                        buttonInkColor:new Color('yellow'),
+                        buttonTitleColor:new Color('blue'),
                         title: null,
                         textFieldProperties: {
                             marginLeft: 20,
