@@ -1,5 +1,5 @@
 import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
-import { createStateListAnimator, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
+import { createStateListAnimator, getColorStateList, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import { Background, Color, ImageSource, Length, backgroundInternalProperty, colorProperty } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
 import { FloatingActionButtonBase, expandedProperty, imageSourceProperty, sizeProperty, srcProperty } from './floatingactionbutton-common';
@@ -83,7 +83,7 @@ export class FloatingActionButton extends FloatingActionButtonBase {
             } else {
                 // if (android.os.Build.VERSION.SDK_INT >= 21) {
                 if (value.color) {
-                    this.nativeViewProtected.setBackgroundTintList(android.content.res.ColorStateList.valueOf(value.color.android));
+                    this.nativeViewProtected.setBackgroundTintList(getColorStateList(value.color.android));
                 }
                 // } else {
                 //     (this as any)._redrawNativeBackground(value);
@@ -92,13 +92,16 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         }
     }
     [colorProperty.setNative](value: Color) {
-        this.nativeViewProtected.setIconTint(android.content.res.ColorStateList.valueOf(value.android));
+        const color = !value || value instanceof Color ? value : new Color(value);
+        this.nativeViewProtected.setIconTint(getColorStateList(color.android));
     }
-    [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
+    [rippleColorProperty.setNative](value: Color) {
+        const color = !value || value instanceof Color ? value : new Color(value);
+        this.nativeViewProtected.setRippleColor(getColorStateList(color.android));
     }
-    [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.setRippleColor(android.content.res.ColorStateList.valueOf(color.android));
+    [rippleColorProperty.setNative](value: Color) {
+        const color = !value || value instanceof Color ? value : new Color(value);
+        this.nativeViewProtected.setRippleColor(getColorStateList(color.android));
     }
     [expandedProperty.setNative](value: boolean) {
         if (value) {
