@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.5](https://github.com/nativescript-community/ui-material-components/compare/v6.2.4...v6.2.5) (2021-12-02)
+
+
+### Bug Fixes
+
+* **dialogs:** android buttonInkColor and buttonTitleColor not working ([d2e96b6](https://github.com/nativescript-community/ui-material-components/commit/d2e96b6726c2ddecb539b4f212d0cd63d0661fbd))
+
+
+
+
+
 ## [6.2.4](https://github.com/nativescript-community/ui-material-components/compare/v6.2.3...v6.2.4) (2021-11-25)
 
 
