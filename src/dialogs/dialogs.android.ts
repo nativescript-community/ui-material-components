@@ -1,3 +1,4 @@
+import { getColorStateList } from '@nativescript-community/ui-material-core/android/utils';
 import { TextField } from '@nativescript-community/ui-material-textfield';
 import {
     ActionOptions,
@@ -61,8 +62,8 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
             options.view instanceof View
                 ? options.view
                 : Builder.createViewFromEntry({
-                      moduleName: options.view as string
-                  });
+                    moduleName: options.view as string
+                });
 
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
@@ -127,19 +128,27 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
 
     // let { color, backgroundColor } = getButtonColors();
 
+    
+
     if (options.buttonInkColor || options.buttonTitleColor) {
-        const buttons: android.widget.Button[] = [];
-        for (let i = 0; i < 3; i++) {
-            const id = dlg
-                .getContext()
-                .getResources()
-                .getIdentifier('android:id/button' + i, null, null);
-            buttons[i] = dlg.findViewById(id) as android.widget.Button;
+        dlg.create();
+        const buttons: com.google.android.material.button.MaterialButton[] = [];
+        for (let i = -1; i > -4; i--) {
+            buttons.push(dlg.getButton(i) as com.google.android.material.button.MaterialButton);
         }
+
+        const nInkColor  = options.buttonInkColor && getColorStateList(options.buttonInkColor.android);
+        const nTitleColor  = options.buttonTitleColor && getColorStateList(options.buttonTitleColor.android);
 
         buttons.forEach((button) => {
             if (button) {
-                button.setTextColor((options.buttonInkColor || options.buttonTitleColor).android);
+                if (nInkColor) {
+                    button.setRippleColor(nInkColor);
+                }
+                if (nTitleColor) {
+                    button.setTextColor(nTitleColor);
+                    button.setIconTint(nTitleColor);
+                }
             }
         });
     }
@@ -334,8 +343,8 @@ export function confirm(arg: any): Promise<boolean> {
                 defaultOptions,
                 !isDialogOptions(arg)
                     ? {
-                        message: arg + ''
-                      }
+                          message: arg + ''
+                    }
                     : arg
             );
             const alert = createAlertDialogBuilder(options);
