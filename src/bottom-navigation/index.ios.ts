@@ -51,7 +51,8 @@ class UITabBarControllerImpl extends UITabBarController {
     // @profile
     public viewDidDisappear(animated: boolean): void {
         super.viewDidDisappear(animated);
-        const owner = this._owner.get();
+
+        const owner = this._owner?.get();
         if (owner && !owner.parent && owner.isLoaded && !this.presentedViewController) {
             owner.callUnloaded();
         }
