@@ -174,8 +174,8 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
             options.view instanceof View
                 ? options.view
                 : Builder.createViewFromEntry({
-                      moduleName: options.view as string
-                  });
+                    moduleName: options.view as string
+                });
 
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
@@ -274,8 +274,8 @@ export function confirm(arg: any): Promise<boolean> {
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
-                      message: arg + ''
-                  })
+                    message: arg + ''
+                })
                 : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
 
