@@ -17,6 +17,7 @@ import {
     fromObject,
     inputType
 } from '@nativescript/core';
+import { ad } from '@nativescript/core/utils';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
 import { isDialogOptions } from './dialogs-common';
 
@@ -62,8 +63,8 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
             options.view instanceof View
                 ? options.view
                 : Builder.createViewFromEntry({
-                    moduleName: options.view as string
-                });
+                      moduleName: options.view as string
+                  });
 
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
@@ -128,8 +129,6 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
 
     // let { color, backgroundColor } = getButtonColors();
 
-    
-
     if (options.buttonInkColor || options.buttonTitleColor) {
         dlg.create();
         const buttons: com.google.android.material.button.MaterialButton[] = [];
@@ -137,8 +136,8 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
             buttons.push(dlg.getButton(i) as com.google.android.material.button.MaterialButton);
         }
 
-        const nInkColor  = options.buttonInkColor && getColorStateList(options.buttonInkColor.android);
-        const nTitleColor  = options.buttonTitleColor && getColorStateList(options.buttonTitleColor.android);
+        const nInkColor = options.buttonInkColor && getColorStateList(options.buttonInkColor.android);
+        const nTitleColor = options.buttonTitleColor && getColorStateList(options.buttonTitleColor.android);
 
         buttons.forEach((button) => {
             if (button) {
@@ -171,6 +170,9 @@ function prepareAndCreateAlertDialog(
         if (onDoneCalled) {
             return;
         }
+        //ensure we hide any keyboard
+        const imm = ad.getApplicationContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(android.view.inputmethod.InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         onDoneCalled = true;
         if (options.view instanceof View) {
             Utils.android.dismissSoftInput(options.view.nativeView);
@@ -343,8 +345,8 @@ export function confirm(arg: any): Promise<boolean> {
                 defaultOptions,
                 !isDialogOptions(arg)
                     ? {
-                          message: arg + ''
-                    }
+                        message: arg + ''
+                      }
                     : arg
             );
             const alert = createAlertDialogBuilder(options);
