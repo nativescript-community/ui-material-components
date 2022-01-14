@@ -1,5 +1,7 @@
 {
     "uses": [
-        "com.google.android.material.progressindicator:LinearProgressIndicator*"
+        "com.google.android.material.progressindicator:LinearProgressIndicator*",
+        "com.google.android.material.progressindicator:BaseProgressIndicator*",
+        "android.widget:ProgressBar*"
     ]
 }
