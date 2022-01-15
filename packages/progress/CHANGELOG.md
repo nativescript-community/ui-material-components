@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.6](https://github.com/nativescript-community/ui-material-components/tree/master/packages/progress/compare/v6.2.5...v6.2.6) (2022-01-15)
+
+
+### Bug Fixes
+
+* **progress:** missing android native-api-usage ([b09eef6](https://github.com/nativescript-community/ui-material-components/tree/master/packages/progress/commit/b09eef63e69f6ee38f03a5ef3412b0de2063f7ce))
+
+
+
+
+
 ## [6.2.5](https://github.com/nativescript-community/ui-material-components/tree/master/packages/progress/compare/v6.2.4...v6.2.5) (2021-12-02)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-progress
