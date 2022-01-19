@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.8](https://github.com/nativescript-community/ui-material-components/compare/v6.2.7...v6.2.8) (2022-01-19)
+
+
+### Bug Fixes
+
+* **dialogs:** android fix for `AlertDialog` onClose event not getting params ([b1383a2](https://github.com/nativescript-community/ui-material-components/commit/b1383a22899b1925a28cc0b6432b341c58a03f1a))
+
+
+
+
+
 ## [6.2.7](https://github.com/nativescript-community/ui-material-components/compare/v6.2.6...v6.2.7) (2022-01-19)
 
 

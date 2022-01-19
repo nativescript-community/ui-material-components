@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.8](https://github.com/nativescript-community/ui-material-components/tree/master/packages/snackbar/compare/v6.2.7...v6.2.8) (2022-01-19)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-snackbar
+
+
+
+
+
 ## [6.2.7](https://github.com/nativescript-community/ui-material-components/tree/master/packages/snackbar/compare/v6.2.6...v6.2.7) (2022-01-19)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-snackbar
