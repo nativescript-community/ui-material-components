@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.9](https://github.com/nativescript-community/ui-material-components/compare/v6.2.8...v6.2.9) (2022-01-19)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** android correctly load/unload items (fixes issues with inner frames) ([ada3d17](https://github.com/nativescript-community/ui-material-components/commit/ada3d179ef10dd0a9bca0aea60db7553226a1942))
+
+
+
+
+
 ## [6.2.8](https://github.com/nativescript-community/ui-material-components/compare/v6.2.7...v6.2.8) (2022-01-19)
 
 
