@@ -8,7 +8,7 @@ export interface VueBottomSheetOptions extends Omit<BottomSheetOptions, 'view'> 
 }
 
 declare module 'nativescript-vue' {
-    interface NativeScriptVue <V = View> extends Vue{
+    interface NativeScriptVue<V = View> extends Vue {
         $showBottomSheet(component: typeof Vue, options?: VueBottomSheetOptions): Promise<any>;
         $closeBottomSheet(...args);
     }
@@ -23,22 +23,24 @@ function serializeModalOptions(options) {
 
     const allowed = ['fullscreen'];
 
-    return Object.keys(options)
-        .filter(key => allowed.includes(key))
-        .map(key => `${key}: ${options[key]}`)
-        .concat(`uid: ${++sequentialCounter}`)
-        .join(', ') + '_bottomsheet';
+    return (
+        Object.keys(options)
+            .filter((key) => allowed.includes(key))
+            .map((key) => `${key}: ${options[key]}`)
+            .concat(`uid: ${++sequentialCounter}`)
+            .join(', ') + '_bottomsheet'
+    );
 }
 
 const BottomSheetPlugin = {
     install(Vue) {
-        Vue.prototype.$showBottomSheet = function(component, options: VueBottomSheetOptions) {
+        Vue.prototype.$showBottomSheet = function (component, options: VueBottomSheetOptions) {
             return new Promise((resolve: (...args) => void) => {
                 let resolved = false;
                 let navEntryInstance = new Vue({
                     name: 'BottomSheetEntry',
                     parent: this.$root,
-                    render: h =>
+                    render: (h) =>
                         h(component, {
                             props: options.props,
                             key: serializeModalOptions(options)
@@ -65,8 +67,8 @@ const BottomSheetPlugin = {
                 );
             });
         };
-        Vue.prototype.$closeBottomSheet = function(...args) {
-            (this.nativeView).closeBottomSheet.apply(this.nativeView, args);
+        Vue.prototype.$closeBottomSheet = function (...args) {
+            this.nativeView.closeBottomSheet.apply(this.nativeView, args);
         };
     }
 };
