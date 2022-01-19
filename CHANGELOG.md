@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.7](https://github.com/nativescript-community/ui-material-components/compare/v6.2.6...v6.2.7) (2022-01-19)
+
+
+### Bug Fixes
+
+* **dialogs:** android fix for keyboard showing after alert dismiss ([9b5ceab](https://github.com/nativescript-community/ui-material-components/commit/9b5ceabf513f194ee1150d55dc468f867d9e2adc))
+
+
+
+
+
 ## [6.2.6](https://github.com/nativescript-community/ui-material-components/compare/v6.2.5...v6.2.6) (2022-01-15)
 
 
