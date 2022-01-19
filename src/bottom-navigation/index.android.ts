@@ -530,6 +530,7 @@ export class BottomNavigation extends TabNavigationBase {
             this.fragments.push(fragment);
             this.attachFragment(fragment, container.getId(), name);
         }
+        this.items[position].callLoaded();
 
         // if (fragment !== this._currentFragment) {
         //     fragment.setMenuVisibility(false);
@@ -579,6 +580,7 @@ export class BottomNavigation extends TabNavigationBase {
         if (this.items && this.items[position]) {
             this.items[position].canBeLoaded = false;
         }
+        this.items[position].callUnloaded();
     }
     private hideFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
