@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.9](https://github.com/nativescript-community/ui-material-components/tree/master/packages/textview/compare/v6.2.8...v6.2.9) (2022-01-19)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-textview
+
+
+
+
+
 ## [6.2.8](https://github.com/nativescript-community/ui-material-components/tree/master/packages/textview/compare/v6.2.7...v6.2.8) (2022-01-19)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-textview
