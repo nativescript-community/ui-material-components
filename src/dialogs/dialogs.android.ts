@@ -221,6 +221,10 @@ function prepareAndCreateAlertDialog(
         view.bindingContext = fromObject(context);
     }
 
+    if (options.dismissOnBackgroundTap !== undefined) {
+        dlg.setCanceledOnTouchOutside(options.dismissOnBackgroundTap);
+    }
+
     if (options.okButtonText) {
         if (!DialogInterface) {
             DialogInterface = android.content.DialogInterface;
@@ -314,17 +318,17 @@ export class AlertDialog {
     dialog: androidx.appcompat.app.AlertDialog;
     constructor(private options: any) {}
     onCloseListeners: any[] = [];
-    onClosed() {
-        this.onCloseListeners.forEach((l) => l());
+    onClosed(...args) {
+        this.onCloseListeners.forEach((l) => l(...args));
         this.onCloseListeners = [];
     }
     show(onClosed?) {
         if (!this.dialog) {
             const alert = createAlertDialogBuilder(this.options);
             this.dialog = alert.create();
-            this.dialog = prepareAndCreateAlertDialog(alert, this.options, () => {
-                this.onClosed();
-                onClosed?.();
+            this.dialog = prepareAndCreateAlertDialog(alert, this.options, (...args) => {
+                this.onClosed(...args);
+                onClosed?.(...args);
             });
             showDialog(this.dialog, this.options);
         }

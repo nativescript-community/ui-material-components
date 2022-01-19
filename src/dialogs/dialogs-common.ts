@@ -17,6 +17,7 @@ export interface MDCAlertControlerOptions {
     customTitleView?: View;
     view?: ViewBase | string;
     context?: any;
+    dismissOnBackgroundTap?: boolean;
     closeCallback?: Function;
     shouldResolveOnAction?: (result) => boolean;
 }

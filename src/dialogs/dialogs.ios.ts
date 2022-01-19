@@ -213,6 +213,9 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     if (options && options.cancelable === false) {
         alertController.mdc_dialogPresentationController.dismissOnBackgroundTap = false;
     }
+    if (options && options.dismissOnBackgroundTap === false) {
+        alertController.mdc_dialogPresentationController.dismissOnBackgroundTap = false;
+    }
 
     // const transitionController = MDCDialogTransitionController.alloc().init()
     // alertController.modalPresentationStyle = UIModalPresentationStyle.Custom;
