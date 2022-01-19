@@ -171,11 +171,17 @@ function prepareAndCreateAlertDialog(
             return;
         }
         //ensure we hide any keyboard
-        const imm = ad.getApplicationContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(android.view.inputmethod.InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         onDoneCalled = true;
         if (options.view instanceof View) {
             Utils.android.dismissSoftInput(options.view.nativeView);
+        } else {
+            const activity = (Application.android.foregroundActivity || Application.android.startActivity) as globalAndroid.app.Activity;
+            const context = ad.getApplicationContext() as android.content.Context;
+            const view = activity != null ? activity.getCurrentFocus() : null;
+            if (view) {
+                const imm = context.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager;
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
         }
         if (dialog) {
             dialog.cancel();
