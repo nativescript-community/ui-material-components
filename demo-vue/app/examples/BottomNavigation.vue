@@ -4,7 +4,7 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
         
-        <MDBottomNavigation selectedIndex="1" unloadOnTabChange="true">
+        <MDBottomNavigation selectedIndex="1">
             <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
             <MDTabStrip>
                 <MDTabStripItem>
@@ -23,9 +23,13 @@
 
             <!-- The number of MDTabContentItem components should corespond to the number of MDTabStripItem components -->
             <MDTabContentItem>
-                <GridLayout backgroundColor="red" @loaded="onLoaded('red')" @tap="navigateToTabsSample">
+                <Frame>
+                        <Page>
+                    <GridLayout backgroundColor="red" @loaded="onLoaded('red')" @tap="navigateToTabsSample">
                     <Label text="Home Page" class="h2 text-center"></Label>
                 </GridLayout>
+                    </Page>
+                    </Frame>
             </MDTabContentItem>
             <MDTabContentItem>
                 <GridLayout backgroundColor="green" @loaded="onLoaded('green')">
