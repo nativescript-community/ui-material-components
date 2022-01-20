@@ -1,5 +1,6 @@
 {
     "uses": [
+        "com.google.android.material.snackbar:BaseTransientBottomBar*",
         "com.google.android.material.snackbar.BaseTransientBottomBar:BaseCallback*",
         "androidx.coordinatorlayout.widget:CoordinatorLayout*",
         "android.widget.FrameLayout:LayoutParams*",
