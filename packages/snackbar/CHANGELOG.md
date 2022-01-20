@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.10](https://github.com/nativescript-community/ui-material-components/tree/master/packages/snackbar/compare/v6.2.9...v6.2.10) (2022-01-20)
+
+
+### Bug Fixes
+
+* **snackbar:** android native-api-usage fix ([89caff7](https://github.com/nativescript-community/ui-material-components/tree/master/packages/snackbar/commit/89caff766b7c7c100cf7cc58ba3134c0dd5afdd5))
+
+
+
+
+
 ## [6.2.9](https://github.com/nativescript-community/ui-material-components/tree/master/packages/snackbar/compare/v6.2.8...v6.2.9) (2022-01-19)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-snackbar
