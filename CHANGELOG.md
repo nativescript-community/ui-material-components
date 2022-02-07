@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.11](https://github.com/nativescript-community/ui-material-components/compare/v6.2.10...v6.2.11) (2022-02-07)
+
+
+### Bug Fixes
+
+* **tabs:** delay layout until tabs finish transitioning ([4be9a50](https://github.com/nativescript-community/ui-material-components/commit/4be9a50ca19d337be8c45b71eecae9346aad33a7))
+
+
+
+
+
 ## [6.2.10](https://github.com/nativescript-community/ui-material-components/compare/v6.2.9...v6.2.10) (2022-01-20)
 
 
