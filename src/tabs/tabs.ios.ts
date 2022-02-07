@@ -41,7 +41,7 @@ class MDCTabBarViewDelegateImpl extends NSObject implements MDCTabBarViewDelegat
         const selectedIndex = owner.tabBarItems.indexOf(item);
 
         if (owner.selectedIndex !== selectedIndex) {
-            owner._canSelectItem = false;
+            owner.beginTabTransition();
         }
 
         const tabStrip = owner.tabStrip;
@@ -396,7 +396,7 @@ class UIPageViewControllerDelegateImpl extends NSObject implements UIPageViewCon
             // or it will create weird behaviors
             owner._animateNextChange = false;
             owner.selectedIndex = nextViewControllerIndex;
-            owner._canSelectItem = true;
+            owner.finishTabTransition();
         }
         // HACK: UIPageViewController fix; see https://stackoverflow.com/questions/15325891
         if (owner._needsCacheUpdate) {
@@ -502,6 +502,8 @@ export class Tabs extends TabsBase {
     private _rippleColor: Color;
     public iosCustomPositioning: boolean;
 
+    private _layoutPending = false;
+
     constructor() {
         super();
 
@@ -524,6 +526,26 @@ export class Tabs extends TabsBase {
         this._ios.tabBarDelegate = null;
         this._ios.tabBar = null;
         super.disposeNativeView();
+    }
+
+    requestLayout() {
+        if (!this._canSelectItem) {
+            this._layoutPending = true;
+        } else {
+            this._layoutPending = false;
+            super.requestLayout();
+        }
+    }
+
+    beginTabTransition() {
+        this._canSelectItem = false;
+    }
+
+    finishTabTransition() {
+        this._canSelectItem = true;
+        if (this._layoutPending) {
+            this.requestLayout();
+        }
     }
 
     // TODO
@@ -781,7 +803,9 @@ export class Tabs extends TabsBase {
         this._needsCacheUpdate = true;
         super.onItemsChanged(oldItems, newItems);
         if (oldItems) {
-            this._canSelectItem = true;
+            if (!this._canSelectItem) {
+                this.finishTabTransition();
+            }
             this._setCanBeLoaded(this.selectedIndex);
             this._loadUnloadTabItems(this.selectedIndex);
         }
@@ -1175,7 +1199,7 @@ export class Tabs extends TabsBase {
             const doneAnimating = () => {
                 this.visitFrames(item, (frame) => (frame._animationInProgress = false));
 
-                this._canSelectItem = true;
+                this.finishTabTransition();
                 this._setCanBeLoaded(value);
                 this._loadUnloadTabItems(value);
             };
