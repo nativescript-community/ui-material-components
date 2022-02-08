@@ -164,8 +164,7 @@ function initializeNativeClasses() {
         }
 
         instantiateItem(container: android.view.ViewGroup, position: number): java.lang.Object {
-            //@ts-ignore
-            const fragmentManager = this.owner._getRootFragmentManager();
+            const fragmentManager = this.owner._getFragmentManager();
             if (!this.mCurTransaction) {
                 this.mCurTransaction = fragmentManager.beginTransaction();
             }
@@ -202,8 +201,7 @@ function initializeNativeClasses() {
 
         destroyItem(container: android.view.ViewGroup, position: number, object: java.lang.Object): void {
             if (!this.mCurTransaction) {
-                //@ts-ignore
-                const fragmentManager = this.owner._getRootFragmentManager();
+                const fragmentManager = this.owner._getFragmentManager();
                 this.mCurTransaction = fragmentManager.beginTransaction();
             }
 
@@ -623,8 +621,7 @@ export class Tabs extends TabsBase {
     }
 
     private disposeCurrentFragments(): void {
-        //@ts-ignore
-        const fragmentManager = this._getRootFragmentManager();
+        const fragmentManager = this._getFragmentManager();
         const transaction = fragmentManager.beginTransaction();
 
         const fragments = this.fragments;
