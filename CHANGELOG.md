@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.13](https://github.com/nativescript-community/ui-material-components/compare/v6.2.12...v6.2.13) (2022-02-09)
+
+
+### Bug Fixes
+
+* **tabs:** also disable accessibilty swipe when swipe is disabled ([8ac6236](https://github.com/nativescript-community/ui-material-components/commit/8ac6236819acf6f39d370480ad52100f416eb895))
+
+
+
+
+
 ## [6.2.12](https://github.com/nativescript-community/ui-material-components/compare/v6.2.11...v6.2.12) (2022-02-08)
 
 
