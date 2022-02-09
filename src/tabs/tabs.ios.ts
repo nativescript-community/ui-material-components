@@ -94,6 +94,13 @@ class UIPageViewControllerImpl extends UIPageViewController {
         return handler;
     }
 
+    public accessibilityScroll(direction: UIAccessibilityScrollDirection): boolean {
+        if (this._owner.get()?.swipeEnabled ?? true) {
+            return super.accessibilityScroll(direction);
+        }
+        return false;
+    }
+
     public viewDidLoad(): void {
         const owner = this._owner.get();
 
