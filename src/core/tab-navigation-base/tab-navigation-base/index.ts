@@ -264,6 +264,21 @@ export class TabNavigationBase extends View implements TabNavigationBaseDefiniti
         // overridden by inheritors
         return null;
     }
+    /**
+     * Gets the parent fragment manager from a fragment to be used in destroying or hiding it.
+     * @param fragment target fragment
+     * @returns the parent fragment manager or null if none exists.
+     */
+    public _getParentFragmentManagerFromFragment(fragment: androidx.fragment.app.Fragment) {
+        if (!fragment) {
+            return null;
+        }
+        try {
+            return fragment.getParentFragmentManager();
+        } catch (e) {
+            return null;
+        }
+    }
 }
 
 const MIN_ICON_SIZE = 24;
