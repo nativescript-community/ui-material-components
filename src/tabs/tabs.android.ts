@@ -103,7 +103,7 @@ function initializeNativeClasses() {
 
             // Get view as bitmap and set it as background. This is workaround for the disapearing nested fragments.
             // TODO: Consider removing it when update to androidx.fragment:1.2.0
-            if (hasRemovingParent && this.owner.selectedIndex === this.index) {
+            if (hasRemovingParent && this.owner.selectedIndex === this.index && this.owner.nativeViewProtected) {
                 this.backgroundBitmap = this.loadBitmapFromView(this.owner.nativeViewProtected);
             }
 
@@ -200,18 +200,17 @@ function initializeNativeClasses() {
         }
 
         destroyItem(container: android.view.ViewGroup, position: number, object: java.lang.Object): void {
-            if (!this.mCurTransaction) {
-                const fragmentManager = this.owner._getFragmentManager();
-                this.mCurTransaction = fragmentManager.beginTransaction();
-            }
-
             const fragment: androidx.fragment.app.Fragment = object as androidx.fragment.app.Fragment;
+            if (!this.mCurTransaction) {
+                const fragmentManager: androidx.fragment.app.FragmentManager = this.owner._getParentFragmentManagerFromFragment(fragment);
+                this.mCurTransaction = fragmentManager?.beginTransaction();
+            }
 
             const index = this.owner.fragments.indexOf(fragment);
             // if (index !== -1) {
             //     this.owner.fragments.splice(index, 1);
             // }
-            this.mCurTransaction.detach(fragment);
+            this.mCurTransaction?.detach(fragment);
 
             if (this.mCurrentPrimaryItem === fragment) {
                 this.mCurrentPrimaryItem = null;
@@ -479,7 +478,7 @@ export class Tabs extends TabsBase {
         return nativeView;
     }
     onSelectedIndexChanged(oldIndex: number, newIndex: number) {
-        const tabBarImplementation = (this._tabsBar as unknown) as PositionChanger;
+        const tabBarImplementation = this._tabsBar as unknown as PositionChanger;
         if (tabBarImplementation) {
             tabBarImplementation.onSelectedPositionChange(oldIndex, newIndex);
         }
@@ -621,14 +620,22 @@ export class Tabs extends TabsBase {
     }
 
     private disposeCurrentFragments(): void {
-        const fragmentManager = this._getFragmentManager();
-        const transaction = fragmentManager.beginTransaction();
-
-        const fragments = this.fragments;
-        for (let i = 0; i < fragments.length; i++) {
-            transaction.remove(fragments[i]);
+        let fragmentManager: androidx.fragment.app.FragmentManager;
+        for (const fragment of this.fragments) {
+            fragmentManager = this._getParentFragmentManagerFromFragment(fragment);
+            if (fragmentManager) {
+                break;
+            }
         }
-        transaction.commitNowAllowingStateLoss();
+        if (fragmentManager) {
+            const transaction = fragmentManager.beginTransaction();
+
+            const fragments = this.fragments;
+            for (let i = 0; i < fragments.length; i++) {
+                transaction.remove(fragments[i]);
+            }
+            transaction.commitNowAllowingStateLoss();
+        }
         this.fragments = [];
     }
 
