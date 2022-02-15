@@ -206,7 +206,8 @@ function initializeNativeClasses() {
                 this.mCurTransaction = fragmentManager?.beginTransaction();
             }
 
-            const index = this.owner.fragments.indexOf(fragment);
+            // detached fragments are still attached to the fragment manager
+            // const index = this.owner.fragments.indexOf(fragment);
             // if (index !== -1) {
             //     this.owner.fragments.splice(index, 1);
             // }
@@ -620,22 +621,26 @@ export class Tabs extends TabsBase {
     }
 
     private disposeCurrentFragments(): void {
-        let fragmentManager: androidx.fragment.app.FragmentManager;
+        // we need to use this because the destroyItem only detaches the item
+        // here we clean up all fragments, even ones that were detached to another manager, which may happen on suspend/resume
+        // alternative: actually remove the fragment on destroyItem
+        const transactionMap = new Map<androidx.fragment.app.FragmentManager, androidx.fragment.app.FragmentTransaction>();
         for (const fragment of this.fragments) {
-            fragmentManager = this._getParentFragmentManagerFromFragment(fragment);
-            if (fragmentManager) {
-                break;
+            const fragmentManager = this._getParentFragmentManagerFromFragment(fragment);
+            if (!fragmentManager || fragmentManager.isDestroyed()) {
+                continue;
             }
-        }
-        if (fragmentManager) {
-            const transaction = fragmentManager.beginTransaction();
+            if (!transactionMap.has(fragmentManager)) {
+                transactionMap.set(fragmentManager, fragmentManager.beginTransaction());
+            }
+            const transaction = transactionMap.get(fragmentManager);
 
-            const fragments = this.fragments;
-            for (let i = 0; i < fragments.length; i++) {
-                transaction.remove(fragments[i]);
-            }
+            transaction.remove(fragment);
+        }
+        for (const transaction of transactionMap.values()) {
             transaction.commitNowAllowingStateLoss();
         }
+        transactionMap.clear(); // let's avoid memory leaks
         this.fragments = [];
     }
 
