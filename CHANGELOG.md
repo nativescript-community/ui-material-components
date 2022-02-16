@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.14](https://github.com/nativescript-community/ui-material-components/compare/v6.2.13...v6.2.14) (2022-02-16)
+
+
+### Bug Fixes
+
+* handle multiple dirty fragments on dispose ([7dc1998](https://github.com/nativescript-community/ui-material-components/commit/7dc1998f01808eac301e8ae7a90e0b4458ce2f7d))
+* try to use the fragment's parent when possible ([e4f5e0f](https://github.com/nativescript-community/ui-material-components/commit/e4f5e0f9af9970098dbed6ccd9ea2e99a19e2e7d))
+
+
+
+
+
 ## [6.2.13](https://github.com/nativescript-community/ui-material-components/compare/v6.2.12...v6.2.13) (2022-02-09)
 
 
