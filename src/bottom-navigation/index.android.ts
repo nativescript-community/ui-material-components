@@ -113,7 +113,7 @@ function initializeNativeClasses() {
 
             // Get view as bitmap and set it as background. This is workaround for the disapearing nested fragments.
             // TODO: Consider removing it when update to androidx.fragment:1.2.0
-            if (hasRemovingParent && this.owner.selectedIndex === this.index) {
+            if (hasRemovingParent && this.owner.selectedIndex === this.index && this.owner.nativeViewProtected) {
                 this.backgroundBitmap = this.loadBitmapFromView(this.owner.nativeViewProtected);
             }
 
@@ -585,7 +585,11 @@ export class BottomNavigation extends TabNavigationBase {
     private hideFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
             //@ts-ignore
-            fragmentManager = this._getFragmentManager();
+            fragmentManager = this._getParentFragmentManagerFromFragment(fragment);
+            if(!fragmentManager) {
+                // nothing to do
+                return;
+            }
         }
         if (fragment) {
             if (!fragment.isAdded() || fragment.isRemoving()) {
@@ -614,7 +618,11 @@ export class BottomNavigation extends TabNavigationBase {
     private showFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
             //@ts-ignore
-            fragmentManager = this._getFragmentManager();
+            fragmentManager = this._getParentFragmentManagerFromFragment(fragment);
+            if(!fragmentManager) {
+                // nothing to do
+                return;
+            }
         }
         if (fragment) {
             if (!fragment.isAdded() || fragment.isRemoving()) {
@@ -643,7 +651,11 @@ export class BottomNavigation extends TabNavigationBase {
     private removeFragment(fragment: androidx.fragment.app.Fragment, fragmentManager?: any) {
         if (!fragmentManager) {
             //@ts-ignore
-            fragmentManager = this._getFragmentManager();
+            fragmentManager = this._getParentFragmentManagerFromFragment(fragment);
+            if(!fragmentManager) {
+                // nothing to do
+                return;
+            }
         }
         if (fragment) {
             if (!fragment.isAdded() || fragment.isRemoving()) {

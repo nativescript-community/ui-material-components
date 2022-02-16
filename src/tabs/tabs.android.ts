@@ -103,7 +103,7 @@ function initializeNativeClasses() {
 
             // Get view as bitmap and set it as background. This is workaround for the disapearing nested fragments.
             // TODO: Consider removing it when update to androidx.fragment:1.2.0
-            if (hasRemovingParent && this.owner.selectedIndex === this.index) {
+            if (hasRemovingParent && this.owner.selectedIndex === this.index && this.owner.nativeViewProtected) {
                 this.backgroundBitmap = this.loadBitmapFromView(this.owner.nativeViewProtected);
             }
 
@@ -200,18 +200,18 @@ function initializeNativeClasses() {
         }
 
         destroyItem(container: android.view.ViewGroup, position: number, object: java.lang.Object): void {
+            const fragment: androidx.fragment.app.Fragment = object as androidx.fragment.app.Fragment;
             if (!this.mCurTransaction) {
-                const fragmentManager = this.owner._getFragmentManager();
-                this.mCurTransaction = fragmentManager.beginTransaction();
+                const fragmentManager: androidx.fragment.app.FragmentManager = this.owner._getParentFragmentManagerFromFragment(fragment);
+                this.mCurTransaction = fragmentManager?.beginTransaction();
             }
 
-            const fragment: androidx.fragment.app.Fragment = object as androidx.fragment.app.Fragment;
-
-            const index = this.owner.fragments.indexOf(fragment);
+            // detached fragments are still attached to the fragment manager
+            // const index = this.owner.fragments.indexOf(fragment);
             // if (index !== -1) {
             //     this.owner.fragments.splice(index, 1);
             // }
-            this.mCurTransaction.detach(fragment);
+            this.mCurTransaction?.detach(fragment);
 
             if (this.mCurrentPrimaryItem === fragment) {
                 this.mCurrentPrimaryItem = null;
@@ -479,7 +479,7 @@ export class Tabs extends TabsBase {
         return nativeView;
     }
     onSelectedIndexChanged(oldIndex: number, newIndex: number) {
-        const tabBarImplementation = (this._tabsBar as unknown) as PositionChanger;
+        const tabBarImplementation = this._tabsBar as unknown as PositionChanger;
         if (tabBarImplementation) {
             tabBarImplementation.onSelectedPositionChange(oldIndex, newIndex);
         }
@@ -621,14 +621,26 @@ export class Tabs extends TabsBase {
     }
 
     private disposeCurrentFragments(): void {
-        const fragmentManager = this._getFragmentManager();
-        const transaction = fragmentManager.beginTransaction();
+        // we need to use this because the destroyItem only detaches the item
+        // here we clean up all fragments, even ones that were detached to another manager, which may happen on suspend/resume
+        // alternative: actually remove the fragment on destroyItem
+        const transactionMap = new Map<androidx.fragment.app.FragmentManager, androidx.fragment.app.FragmentTransaction>();
+        for (const fragment of this.fragments) {
+            const fragmentManager = this._getParentFragmentManagerFromFragment(fragment);
+            if (!fragmentManager || fragmentManager.isDestroyed()) {
+                continue;
+            }
+            if (!transactionMap.has(fragmentManager)) {
+                transactionMap.set(fragmentManager, fragmentManager.beginTransaction());
+            }
+            const transaction = transactionMap.get(fragmentManager);
 
-        const fragments = this.fragments;
-        for (let i = 0; i < fragments.length; i++) {
-            transaction.remove(fragments[i]);
+            transaction.remove(fragment);
         }
-        transaction.commitNowAllowingStateLoss();
+        for (const transaction of transactionMap.values()) {
+            transaction.commitNowAllowingStateLoss();
+        }
+        transactionMap.clear(); // let's avoid memory leaks
         this.fragments = [];
     }
 
