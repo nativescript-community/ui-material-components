@@ -938,7 +938,9 @@ export class BottomNavigation extends TabNavigationBase {
         }
 
         const androidColor = value instanceof Color ? value.android : value;
-        tabStripItem.nativeViewProtected.setTextColor(androidColor);
+        if (androidColor) {
+            tabStripItem?.nativeViewProtected?.setTextColor(androidColor);
+        }
     }
 
     public setTabBarIconColor(tabStripItem: TabStripItem, value: number | Color): void {
