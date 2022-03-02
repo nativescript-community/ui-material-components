@@ -1,9 +1,0 @@
-{
-  "main": "main.js",
-  "name": "nativescript-vue-template",
-  "version": "0.1.1",
-  "android": {
-    "v8Flags": "--expose_gc",
-    "markingMode": "none"
-  }
-}

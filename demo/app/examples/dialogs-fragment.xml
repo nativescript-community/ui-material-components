@@ -1,7 +1,0 @@
-<StackLayout xmlns:mdb="@nativescript-community/ui-material-button">
-    <mdb:Button id="alert" text="alert" tap="{{ onTap }}"/>
-    <mdb:Button id="prompt" text="prompt" tap="{{ onTap }}"/>
-    <mdb:Button id="login" text="login" tap="{{ onTap }}"/>
-    <mdb:Button id="dialogCustomView" text="customView" tap="{{ onTap }}"/>
-    <mdb:Button id="alertdialog" text="alertdialog" tap="{{ onTap }}"/>
-</StackLayout>

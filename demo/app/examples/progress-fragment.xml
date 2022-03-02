@@ -1,3 +1,0 @@
-<StackLayout xmlns:mdp="@nativescript-community/ui-material-progress" padding="20">
-    <mdp:Progress width="100%" value="{{ progressValue }}"  maxValue="{{ progressMaxValue }}" loaded="onProgressLoaded"/>
-</StackLayout>

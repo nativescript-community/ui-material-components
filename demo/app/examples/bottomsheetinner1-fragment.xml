@@ -1,4 +1,0 @@
-<StackLayout backgroundColor="red" xmlns:mdb="@nativescript-community/ui-material-button" shownInBottomSheet="onShownInBottomSheet">
-    <mdb:Button id="test1" text="test1" tap="onTap"/>
-    <mdb:Button id="test2" text="test2" tap="onTap"/>
-</StackLayout>
