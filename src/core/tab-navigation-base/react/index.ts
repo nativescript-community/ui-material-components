@@ -94,14 +94,10 @@ export function registerTabNavigationBase(opts: RegisterTabsOptions = {}): void 
                             return;
                         }
 
-                        // console.log(`[tabStrip.insert] 1 [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
-
                         const items = tabStrip.items || []; // Annoyingly, it's the consumer's responsibility to ensure there's an array there!
                         if (typeof atIndex === 'undefined' || atIndex === items.length) {
-                            // console.log(`[tabStrip.insert] 2a [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
                             tabStrip._addChildFromBuilder('items', child.nativeView as TabStripItem);
                         } else {
-                            // console.log(`[tabStrip.insert] 2b [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
                             const itemsClone = items.slice();
                             itemsClone.splice(atIndex, 0, child.nativeView as TabStripItem);
                             tabStrip.items = itemsClone;
@@ -154,7 +150,6 @@ export function registerTabNavigationBase(opts: RegisterTabsOptions = {}): void 
                     //       keep these good practices in case it's ever refactored.
 
                     if (child.nodeRole === 'label') {
-                        console.log(`[tabStripItem.insert] LABEL [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
                         if (child.nativeView instanceof Label === false) {
                             if (enableDebugLogging) {
                                 warn(`Unable to add child "${child.nativeView.constructor.name}" to the items of <tabStripItem> as it is not an instance of Label.`);
@@ -164,7 +159,6 @@ export function registerTabNavigationBase(opts: RegisterTabsOptions = {}): void 
 
                         tabStripItem.label = child.nativeView as Label;
                     } else if (child.nodeRole === 'image') {
-                        console.log(`[tabStripItem.insert] IMAGE [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
                         if (child.nativeView instanceof Image === false) {
                             if (enableDebugLogging) {
                                 warn(`Unable to add child "${child.nativeView.constructor.name}" to the items of <tabStripItem> as it is not an instance of Image.`);
@@ -174,7 +168,6 @@ export function registerTabNavigationBase(opts: RegisterTabsOptions = {}): void 
 
                         tabStripItem.image = child.nativeView as Image;
                     } else {
-                        console.log(`[tabStripItem.insert] OTHER [${parent} > ${child} @${atIndex}] => [${parent.childNodes}]`);
                         if (enableDebugLogging) {
                             warn(
                                 `Unable to add child "${child.nativeView.constructor.name}" to <tabStripItem> as it does not have a nodeRole specified; ` +

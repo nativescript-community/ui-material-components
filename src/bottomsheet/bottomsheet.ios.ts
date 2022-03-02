@@ -332,7 +332,6 @@ class UILayoutViewController extends UIViewController {
 
             //     const insets = new UIEdgeInsets(additionalInsets);
             //     this.additionalSafeAreaInsets = insets;
-            //     console.log('additionalSafeAreaInsets', insets.left, insets.bottom, insets.right, insets.top);
             // }
         }
     }
@@ -348,7 +347,6 @@ class UILayoutViewController extends UIViewController {
 
         // if (!owner.parent) {
         //     owner.callLoaded();
-        //     console.log('callLoaded done');
         // }
     }
 
