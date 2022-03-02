@@ -79,7 +79,6 @@ export interface SnackBarOptions {
      */
     isRTL?: boolean;
     /**
-     * *Android Only*
      * optional View to attach the snack to
      */
     view?: View;
