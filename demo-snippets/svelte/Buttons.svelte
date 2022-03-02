@@ -1,4 +1,4 @@
-<script lang="typescript">
+<script lang="ts">
     import { Frame } from '@nativescript/core';
     let isEditing = false;
     function onNavigationButtonTap() {

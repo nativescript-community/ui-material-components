@@ -2,8 +2,8 @@ import { install as installBottomSheet } from '@nativescript-community/ui-materi
 import { installMixins, themer } from '@nativescript-community/ui-material-core';
 
 import ButtonPlugin from '@nativescript-community/ui-material-button/svelte';
-import '../app.scss';
 import Buttons from './Buttons.svelte';
+import '../app.scss';
 
 installMixins();
 installBottomSheet();
@@ -24,7 +24,4 @@ export function installPlugin() {
     ButtonPlugin.register();
 }
 
-export const demos = [
-    { name: 'Buttons', path: 'Buttons', component: Buttons },
-
-];
+export const demos = [{ name: 'Buttons', path: 'Buttons', component: Buttons }];
