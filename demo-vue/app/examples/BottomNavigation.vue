@@ -23,7 +23,7 @@
 
             <!-- The number of MDTabContentItem components should corespond to the number of MDTabStripItem components -->
             <MDTabContentItem>
-                <Frame>
+                <Frame id="test">
                         <Page>
                     <GridLayout backgroundColor="red" @loaded="onLoaded('red')" @tap="navigateToTabsSample">
                     <Label text="Home Page" class="h2 text-center"></Label>
@@ -66,7 +66,7 @@ export default Vue.extend({
             frameModule.Frame.topmost().goBack();
         },
         onLoaded(name) {
-            console.log('onTabLoaded', name)
+            console.log('BN onTabLoaded', name)
         },
         navigateToTabsSample() {
                 this.$navigateTo(Tabs);

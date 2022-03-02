@@ -4,7 +4,7 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
         
-        <MDTabs ref="tabs" unloadOnTabChange="false">
+        <MDTabs ref="tabs" :unloadOnTabChange="false">
             <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
             <MDTabStrip>
                 <MDTabStripItem>
@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import * as frameModule from '@nativescript/core/ui/frame';
-import { TabContentItem, Tabs } from '@nativescript-community/ui-material-tabs';
+import { TabContentItem, Tabs } from '@nativescript-community/ui-material-tabs/';
 import { Color, EventData, GridLayout, Label, StackLayout } from '@nativescript/core';
 
 import Vue from 'vue';
@@ -60,7 +60,7 @@ export default Vue.extend({
         },
 
         onLoaded(name) {
-            console.log('onTabLoaded', name)
+            console.log('onTabLoaded2', name)
         },
          createContent(index: number) {
     const label = new Label();

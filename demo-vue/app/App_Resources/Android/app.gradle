@@ -1,16 +1,9 @@
 
 android {
+  compileSdkVersion 31
   defaultConfig {
-    generatedDensities = []
-      multiDexEnabled true
- applicationId = "org.nativescript.demovuematerial"
-
-    //override supported platforms
-    // ndk {
-    //       abiFilters.clear()
-    //   		abiFilters "armeabi-v7a"
- 		// }
-
+    multiDexEnabled true
+    targetSdkVersion 31
   }
   aaptOptions {
     additionalParameters "--no-version-vectors"

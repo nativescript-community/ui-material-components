@@ -81,3 +81,4 @@ hooks
 /tempAngular
 /.gradle
 /.settings
+.gradle

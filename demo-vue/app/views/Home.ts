@@ -33,9 +33,14 @@ export default {
         async goToExample(item) {
             console.log('goToExample', item.title);
             try {
-                await this.$navigateTo(item.component);
+                await this.$navigateTo(item.component, {
+                    // transition: {
+                    //     name: 'slideTop',
+                    //     duration: 1000
+                    // }
+                });
             } catch (err) {
-                console.error(err);
+                console.error(err, err.stack);
             }
         },
         goToModalExample(item) {

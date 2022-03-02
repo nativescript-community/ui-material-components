@@ -14,7 +14,6 @@
         ],
         "baseUrl": ".",
         "paths": {
-            "tns-core-modules": ["@nativescript/core"],
             "~/*": [
                 "app/*"
             ]

@@ -1,4 +1,11 @@
-
 ext {
-
+    androidxVersion = "1.6.0"
+    androidXAppCompat = "1.4.1"
+    androidXAppCompatVersion = "1.4.1"
+    androidXFragment = "1.4.1"
+    androidXTransition = "1.4.1"
+    androidXRecyclerViewVersion = "1.2.1"
+    androidXMaterial = "1.4.0"
+    androidXBrowser = "1.3.0"
+    cartoMobileVersion = "4.4.2"
 }

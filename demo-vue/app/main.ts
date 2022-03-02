@@ -1,25 +1,28 @@
-// import {Trace} from '@nativescript/core';
-// Trace.addCategories(Trace.categories.concat(Trace.categories.Layout));
-// Trace.enable();
-
-import Vue from 'nativescript-vue';
+import Theme from '@nativescript-community/css-theme';
 import ActivityIndicatorPlugin from '@nativescript-community/ui-material-activityindicator/vue';
+import BottomNavigationPlugin from '@nativescript-community/ui-material-bottom-navigation/vue';
+import BottomNavigationBarPlugin from '@nativescript-community/ui-material-bottomnavigationbar/vue';
+import { install as installBottomSheet } from '@nativescript-community/ui-material-bottomsheet';
+import BottomSheetPlugin from '@nativescript-community/ui-material-bottomsheet/vue';
 import ButtonPlugin from '@nativescript-community/ui-material-button/vue';
 import CardViewPlugin from '@nativescript-community/ui-material-cardview/vue';
+import { installMixins, themer } from '@nativescript-community/ui-material-core';
 import FloatingActionButtonPlugin from '@nativescript-community/ui-material-floatingactionbutton/vue';
 import ProgressPlugin from '@nativescript-community/ui-material-progress/vue';
 import RipplePlugin from '@nativescript-community/ui-material-ripple/vue';
 import SliderPlugin from '@nativescript-community/ui-material-slider/vue';
+import SpeedDialPlugin from '@nativescript-community/ui-material-speeddial/vue';
+import TabsPlugin from '@nativescript-community/ui-material-tabs/vue';
 import TextFieldPlugin from '@nativescript-community/ui-material-textfield/vue';
 import TextViewPlugin from '@nativescript-community/ui-material-textview/vue';
+import { Application, Trace } from '@nativescript/core';
 import { isIOS } from '@nativescript/core/platform';
-import { install as installBottomSheet } from '@nativescript-community/ui-material-bottomsheet';
-import BottomSheetPlugin from '@nativescript-community/ui-material-bottomsheet/vue';
-import BottomNavigationBarPlugin from '@nativescript-community/ui-material-bottomnavigationbar/vue';
-import TabsPlugin from '@nativescript-community/ui-material-tabs/vue';
-import BottomNavigationPlugin from '@nativescript-community/ui-material-bottom-navigation/vue';
-import SpeedDialPlugin from '@nativescript-community/ui-material-speeddial/vue';
-import Theme from '@nativescript-community/css-theme';
+import Vue from 'nativescript-vue';
+// import { getExamples } from './examples';
+import * as views from './views';
+Trace.addCategories(Trace.categories.Transition);
+Trace.addCategories(Trace.categories.Navigation);
+Trace.enable();
 
 installBottomSheet();
 
@@ -42,7 +45,6 @@ Vue.use(SpeedDialPlugin);
 Vue.registerElement('PreviousNextView', () => require('@nativescript/iqkeyboardmanager').PreviousNextView);
 Vue.registerElement('TextViewWithHint', () => require('@nativescript/iqkeyboardmanager').TextViewWithHint);
 
-import { installMixins, themer } from '@nativescript-community/ui-material-core';
 installMixins();
 if (isIOS) {
     themer.setPrimaryColor('#bff937');
@@ -64,10 +66,6 @@ if (global.isAndroid) {
         androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
     });
 }
-
-// import { getExamples } from './examples';
-import * as views from './views';
-import { Application } from '@nativescript/core';
 
 // for (let item of getExamples()) {
 //     Vue.component(item.component.name, item.component);

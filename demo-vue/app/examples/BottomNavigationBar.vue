@@ -3,16 +3,20 @@
         <ActionBar :title="title">
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
-        <GridLayout rows="*, auto" backgroundColor="blue">
-            <StackLayout class="page" backgroundColor="white" row="0">
-                <GridLayout class="p-20" v-if="currentTab === 0">
+        <GridLayout class="page" backgroundColor="white" rows="*, auto">
+            <MDTabs row="0" :selectedIndex="currentTab" swipeEnabled="false">
+            <MDTabContentItem>
+                <GridLayout class="p-20" >
                     <Label class="h1 text-center" text="First tab" textWrap="true"></Label>
                     <Button text="select sthird" @tap="selectThird" horizontalAlignment="center" verticalAlignment="bottom" />
                 </GridLayout>
-                <GridLayout class="p-20" v-if="currentTab === 2">
+            </MDTabContentItem>
+            <MDTabContentItem>
+                <GridLayout class="p-20">
                     <Label class="h1 text-center" text="Third tab" textWrap="true"></Label>
                 </GridLayout>
-            </StackLayout>
+            </MDTabContentItem>
+            </MDTabs>
             <MDBottomNavigationBar
                 ref="bottomBar"
                 row="1"

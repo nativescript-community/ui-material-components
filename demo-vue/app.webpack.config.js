@@ -52,7 +52,13 @@ module.exports = (env, params = {}) => {
     const tsconfig = 'tsconfig.json';
     const projectRoot = params.projectRoot || __dirname;
     const appResourcesFullPath = resolve(projectRoot, appResourcesPath);
+    const webpack = require('@nativescript/webpack');
 
+    const coreModulesPackageName = '@akylas/nativescript';
+    config.resolve.modules = [resolve(__dirname, `node_modules/${coreModulesPackageName}`), resolve(__dirname, 'node_modules')];
+    // Object.assign(config.resolve.alias, {
+    //     '@nativescript/core': `${coreModulesPackageName}`
+    // });
     if (!!development) {
         const srcFullPath = resolve(projectRoot, '..', 'src');
         Object.assign(config.resolve.alias, {
@@ -128,8 +134,12 @@ module.exports = (env, params = {}) => {
             '@nativescript-community/ui-material-snackbar/snackbar$': '#/snackbar/snackbar.' + platform,
             './snackbar$': '#/snackbar/snackbar.' + platform
         });
-        console.log(config.resolve.alias);
     }
+
+    Object.assign(config.plugins.find((p) => p.constructor.name === 'DefinePlugin').definitions, {
+        __UI_USE_EXTERNAL_RENDERER__: true,
+        __UI_USE_XML_PARSER__: false
+    });
     const symbolsParser = require('scss-symbols-parser');
     const mdiSymbols = symbolsParser.parseSymbols(readFileSync(resolve(projectRoot, 'node_modules/@mdi/font/scss/_variables.scss')).toString());
     const mdiIcons = JSON.parse(`{${mdiSymbols.variables[mdiSymbols.variables.length - 1].value.replace(/" (F|0)(.*?)([,\n]|$)/g, '": "$1$2"$3')}}`);
