@@ -11,6 +11,7 @@
         "tsc": "../../node_modules/.bin/cpy '**/*.d.ts' '../../packages/core' --cwd=../../src/core --parents && ../../node_modules/.bin/tsc -d",
         "tsc-win": "..\\..\\node_modules\\.bin\\cpy '**/*.d.ts' '..\\..\\packages\\core' --cwd=..\\..\\src\\core --parents && ..\\..\\node_modules\\.bin\\tsc -d",
         "build": "npm run tsc && npm run build.hooks",
+        "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win && npm run build.hooks.win",
         "build.hooks.win": "..\\..\\node_modules\\.bin\\tsc -skipLibCheck -p tsconfig.hooks.json",
         "build.hooks": " tsc -skipLibCheck -p tsconfig.hooks.json",
