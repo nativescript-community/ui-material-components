@@ -185,7 +185,7 @@ class UINavigationControllerDelegateImpl extends NSObject implements UINavigatio
         if (owner) {
             // If viewController is one of our tab item controllers, then "< More" will be visible shortly.
             // Otherwise viewController is the UIMoreListController which shows the list of all tabs beyond the 4th tab.
-            const backToMoreWillBeVisible = owner._ios.viewControllers.containsObject(viewController);
+            const backToMoreWillBeVisible = owner.viewController.viewControllers.containsObject(viewController);
             owner._handleTwoNavigationBars(backToMoreWillBeVisible);
         }
     }
@@ -279,55 +279,52 @@ export const iosCustomPositioningProperty = new Property<BottomNavigation, boole
 export class BottomNavigation extends TabNavigationBase {
     public viewController: UITabBarControllerImpl;
     public items: TabContentItem[];
-    public _ios: UITabBarControllerImpl;
-    private _delegate: UITabBarControllerDelegateImpl;
-    private _moreNavigationControllerDelegate: UINavigationControllerDelegateImpl;
-    private _iconsCache = {};
-    private _selectedItemColor: Color;
-    private _unSelectedItemColor: Color;
+    private mDelegate: UITabBarControllerDelegateImpl;
+    private mMoreNavigationControllerDelegate: UINavigationControllerDelegateImpl;
+    private mIconsCache = {};
+    private mSelectedItemColor: Color;
+    private mUnSelectedItemColor: Color;
     public iosCustomPositioning: boolean;
 
     constructor() {
         super();
-        this.viewController = this._ios = UITabBarControllerImpl.initWithOwner(new WeakRef(this));
-        this.nativeViewProtected = this._ios.view;
+        this.viewController = UITabBarControllerImpl.initWithOwner(new WeakRef(this));
+    }
+
+    createNativeView() {
+        return this.viewController.view;
     }
 
     initNativeView() {
         super.initNativeView();
-        this._delegate = UITabBarControllerDelegateImpl.initWithOwner(new WeakRef(this));
-        this._moreNavigationControllerDelegate = UINavigationControllerDelegateImpl.initWithOwner(new WeakRef(this));
+        this.mDelegate = UITabBarControllerDelegateImpl.initWithOwner(new WeakRef(this));
+        this.mMoreNavigationControllerDelegate = UINavigationControllerDelegateImpl.initWithOwner(new WeakRef(this));
         if (!this.tabStrip) {
             this.viewController.tabBar.hidden = true;
         }
     }
 
     disposeNativeView() {
-        this._delegate = null;
-        this._moreNavigationControllerDelegate = null;
+        this.mDelegate = null;
+        this.mMoreNavigationControllerDelegate = null;
         super.disposeNativeView();
     }
-
-    // TODO
-    // @profile
     public onLoaded() {
         super.onLoaded();
-
         this.setViewControllers(this.items);
-
         const selectedIndex = this.selectedIndex;
         const selectedView = this.items && this.items[selectedIndex] && this.items[selectedIndex].content;
         if (selectedView instanceof Frame) {
             selectedView._pushInFrameStackRecursive();
         }
 
-        this._ios.delegate = this._delegate;
+        this.viewController.delegate = this.mDelegate;
         this.onSelectedIndexChanged(selectedIndex, selectedIndex);
     }
 
     public onUnloaded() {
-        this._ios.delegate = null;
-        this._ios.moreNavigationController.delegate = null;
+        this.viewController.delegate = null;
+        this.viewController.moreNavigationController.delegate = null;
         super.onUnloaded();
         this.items.forEach((item, i) => {
             item.unloadView(item.content);
@@ -336,7 +333,7 @@ export class BottomNavigation extends TabNavigationBase {
 
     // @ts-ignore
     get ios(): UITabBarController {
-        return this._ios;
+        return this.viewController;
     }
 
     public layoutNativeView(left: number, top: number, right: number, bottom: number): void {
@@ -389,11 +386,11 @@ export class BottomNavigation extends TabNavigationBase {
     }
 
     public getTabBarBackgroundColor(): UIColor {
-        return this._ios.tabBar.barTintColor;
+        return this.viewController.tabBar.barTintColor;
     }
 
     public setTabBarBackgroundColor(value: UIColor | Color): void {
-        this._ios.tabBar.barTintColor = value instanceof Color ? value.ios : value;
+        this.viewController.tabBar.barTintColor = value instanceof Color ? value.ios : value;
         this.updateAllItemsColors();
     }
 
@@ -414,18 +411,18 @@ export class BottomNavigation extends TabNavigationBase {
     }
 
     private setItemColors(): void {
-        if (this._selectedItemColor) {
-            this.viewController.tabBar.selectedImageTintColor = this._selectedItemColor.ios;
+        if (this.mSelectedItemColor) {
+            this.viewController.tabBar.selectedImageTintColor = this.mSelectedItemColor.ios;
         }
-        if (this._unSelectedItemColor) {
-            this.viewController.tabBar.unselectedItemTintColor = this._unSelectedItemColor.ios;
+        if (this.mUnSelectedItemColor) {
+            this.viewController.tabBar.unselectedItemTintColor = this.mUnSelectedItemColor.ios;
         }
     }
 
     private setIconColor(tabStripItem: TabStripItem, forceReload = false): void {
-        if (forceReload || (!this._unSelectedItemColor && !this._selectedItemColor)) {
+        if (forceReload || (!this.mUnSelectedItemColor && !this.mSelectedItemColor)) {
             // if selectedItemColor or unSelectedItemColor is set we don't respect the color from the style
-            const tabStripColor = this.selectedIndex === tabStripItem._index ? this._selectedItemColor : this._unSelectedItemColor;
+            const tabStripColor = this.selectedIndex === tabStripItem._index ? this.mSelectedItemColor : this.mUnSelectedItemColor;
 
             const image = this.getIcon(tabStripItem, tabStripColor);
 
@@ -451,28 +448,28 @@ export class BottomNavigation extends TabNavigationBase {
     }
 
     public getTabBarHighlightColor(): UIColor {
-        return this._ios.tabBar.tintColor;
+        return this.viewController.tabBar.tintColor;
     }
 
     public setTabBarHighlightColor(value: UIColor | Color) {
-        this._ios.tabBar.tintColor = value instanceof Color ? value.ios : value;
+        this.viewController.tabBar.tintColor = value instanceof Color ? value.ios : value;
     }
 
     public getTabBarSelectedItemColor(): Color {
-        return this._selectedItemColor;
+        return this.mSelectedItemColor;
     }
 
     public setTabBarSelectedItemColor(value: Color) {
-        this._selectedItemColor = value;
+        this.mSelectedItemColor = value;
         this.updateAllItemsColors();
     }
 
     public getTabBarUnSelectedItemColor(): Color {
-        return this._unSelectedItemColor;
+        return this.mUnSelectedItemColor;
     }
 
     public setTabBarUnSelectedItemColor(value: Color) {
-        this._unSelectedItemColor = value;
+        this.mUnSelectedItemColor = value;
         this.updateAllItemsColors();
     }
 
@@ -495,8 +492,8 @@ export class BottomNavigation extends TabNavigationBase {
         // if (Trace.isEnabled()) {
         //     Trace.write("TabView._onViewControllerShown(" + viewController + ");", Trace.categories.Debug);
         // }
-        if (this._ios.viewControllers && this._ios.viewControllers.containsObject(viewController)) {
-            this.selectedIndex = this._ios.viewControllers.indexOfObject(viewController);
+        if (this.viewController.viewControllers && this.viewController.viewControllers.containsObject(viewController)) {
+            this.selectedIndex = this.viewController.viewControllers.indexOfObject(viewController);
         } else {
             // TODO
             // if (Trace.isEnabled()) {
@@ -575,7 +572,7 @@ export class BottomNavigation extends TabNavigationBase {
     private setViewControllers(items: TabContentItem[]) {
         const length = items ? items.length : 0;
         if (length === 0) {
-            this._ios.viewControllers = null;
+            this.viewController.viewControllers = null;
 
             return;
         }
@@ -586,7 +583,7 @@ export class BottomNavigation extends TabNavigationBase {
         const controllers = NSMutableArray.alloc<UIViewController>().initWithCapacity(length);
 
         if (this.tabStrip) {
-            this.tabStrip.setNativeView(this._ios.tabBar);
+            this.tabStrip.setNativeView(this.viewController.tabBar);
         }
 
         items.forEach((item, i) => {
@@ -609,24 +606,24 @@ export class BottomNavigation extends TabNavigationBase {
 
         this.setItemImages();
 
-        this._ios.viewControllers = controllers;
-        this._ios.customizableViewControllers = null;
+        this.viewController.viewControllers = controllers;
+        this.viewController.customizableViewControllers = null;
 
-        // When we set this._ios.viewControllers, someone is clearing the moreNavigationController.delegate, so we have to reassign it each time here.
-        this._ios.moreNavigationController.delegate = this._moreNavigationControllerDelegate;
+        // When we set this.viewController.viewControllers, someone is clearing the moreNavigationController.delegate, so we have to reassign it each time here.
+        this.viewController.moreNavigationController.delegate = this.mMoreNavigationControllerDelegate;
     }
 
     private setItemImages() {
-        if (this._selectedItemColor || this._unSelectedItemColor) {
+        if (this.mSelectedItemColor || this.mUnSelectedItemColor) {
             if (this.tabStrip && this.tabStrip.items) {
                 this.tabStrip.items.forEach((item) => {
-                    if (this._unSelectedItemColor && item.nativeView) {
-                        item.nativeView.image = this.getIcon(item, this._unSelectedItemColor);
-                        item.nativeView.tintColor = this._unSelectedItemColor;
+                    if (this.mUnSelectedItemColor && item.nativeView) {
+                        item.nativeView.image = this.getIcon(item, this.mUnSelectedItemColor);
+                        item.nativeView.tintColor = this.mUnSelectedItemColor;
                     }
-                    if (this._selectedItemColor && item.nativeView) {
-                        item.nativeView.selectedImage = this.getIcon(item, this._selectedItemColor);
-                        item.nativeView.tintColor = this._selectedItemColor;
+                    if (this.mSelectedItemColor && item.nativeView) {
+                        item.nativeView.selectedImage = this.getIcon(item, this.mSelectedItemColor);
+                        item.nativeView.tintColor = this.mSelectedItemColor;
                     }
                 });
             }
@@ -692,7 +689,7 @@ export class BottomNavigation extends TabNavigationBase {
         const iconTag = [iconSource, font.fontStyle, font.fontWeight, font.fontSize, font.fontFamily, color].join(';');
 
         let isFontIcon = false;
-        let image: UIImage = this._iconsCache[iconTag];
+        let image: UIImage = this.mIconsCache[iconTag];
         if (!image) {
             let is;
             if (Utils.isFontIconURI(iconSource)) {
@@ -715,7 +712,7 @@ export class BottomNavigation extends TabNavigationBase {
                     renderingMode = this.getIconRenderingMode();
                 }
                 const originalRenderedImage = image.imageWithRenderingMode(renderingMode);
-                this._iconsCache[iconTag] = originalRenderedImage;
+                this.mIconsCache[iconTag] = originalRenderedImage;
                 image = originalRenderedImage;
             } else {
                 // TODO
@@ -772,8 +769,8 @@ export class BottomNavigation extends TabNavigationBase {
         //     Trace.write("TabView._onSelectedIndexPropertyChangedSetNativeValue(" + value + ")", Trace.categories.Debug);
         // }
         if (value > -1) {
-            (this._ios as any)._willSelectViewController = this._ios.viewControllers[value];
-            this._ios.selectedIndex = value;
+            (this.viewController as any)._willSelectViewController = this.viewController.viewControllers[value];
+            this.viewController.selectedIndex = value;
         }
     }
 
@@ -813,14 +810,14 @@ export class BottomNavigation extends TabNavigationBase {
         const attributes: any = { [NSFontAttributeName]: font };
 
         // if selectedItemColor or unSelectedItemColor is set we don't respect the color from the style
-        if (!this._selectedItemColor && !this._unSelectedItemColor) {
+        if (!this.mSelectedItemColor && !this.mUnSelectedItemColor) {
             if (textColor) {
                 attributes[UITextAttributeTextColor] = textColor;
                 attributes[NSForegroundColorAttributeName] = textColor;
             }
         } else {
-            this.viewController.tabBar.unselectedItemTintColor = this._unSelectedItemColor && this._unSelectedItemColor.ios;
-            this.viewController.tabBar.selectedImageTintColor = this._selectedItemColor && this._selectedItemColor.ios;
+            this.viewController.tabBar.unselectedItemTintColor = this.mUnSelectedItemColor && this.mUnSelectedItemColor.ios;
+            this.viewController.tabBar.selectedImageTintColor = this.mSelectedItemColor && this.mSelectedItemColor.ios;
         }
 
         item.setTitleTextAttributesForState(attributes, UIControlState.Selected);

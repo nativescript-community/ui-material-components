@@ -3,7 +3,7 @@
 import { CSSType, Color, Property, booleanConverter } from '@nativescript/core';
 import { TabNavigationBase } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 
-import { Tabs as TabsDefinition } from './tabs';
+import { Tabs as TabsDefinition } from '.';
 
 export const traceCategory = 'TabView';
 

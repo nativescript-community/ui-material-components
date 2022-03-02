@@ -1,7 +1,7 @@
 import { NSVElement, NativeScriptProps, registerElement } from 'react-nativescript';
 import { PropertyChangeData } from '@nativescript/core';
 import { warn } from 'react-nativescript/dist/shared/Logger';
-import { Tabs } from '../tabs';
+import { Tabs } from '..';
 import { TabNavigationBaseAttributes } from '@nativescript-community/ui-material-core/tab-navigation-base/react';
 import { SelectedIndexChangedEventData } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';

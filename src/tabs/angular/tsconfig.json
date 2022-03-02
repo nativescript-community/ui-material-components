@@ -7,7 +7,7 @@
             "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
             "@nativescript-community/ui-material-core": ["packages/core/index"],
             "@nativescript-community/ui-material-core/*": ["packages/core/*"],
-            "@nativescript-community/ui-material-tabs": ["packages/tabs/tabs"],
+            "@nativescript-community/ui-material-tabs": ["packages/tabs/index"],
             "@nativescript-community/ui-material-tabs/*": ["packages/tabs/*"]
         }
     },

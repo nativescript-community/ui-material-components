@@ -1,22 +1,21 @@
-import { Application, CoercibleProperty, Color, CoreTypes, Font, Frame, ImageSource, Property, Utils, View, getTransformedText, isIOS } from '@nativescript/core';
-import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
-import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
-import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
-import { TabsBase, animationEnabledProperty, offscreenTabLimitProperty, swipeEnabledProperty } from './tabs-common';
-import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+import { Application, Color, CoreTypes, Font, Frame, ImageSource, Utils, View, getTransformedText } from '@nativescript/core';
+import { TabContentItem } from '../tab-content-item';
+import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '../tab-navigation-base';
+import { TabStrip } from '../tab-strip';
+import { TabStripItem } from '../tab-strip-item';
+import { TabNavigationBase, animationEnabledProperty, offscreenTabLimitProperty, swipeEnabledProperty } from './index-common';
+export * from './index-common';
 export { TabContentItem, TabStrip, TabStripItem };
 
-export * from './tabs-common';
-
 const ACCENT_COLOR = 'colorAccent';
-const PRIMARY_COLOR = 'colorPrimary';
+export const PRIMARY_COLOR = 'colorPrimary';
 const DEFAULT_ELEVATION = 4;
 
 const TABID = '_tabId';
 const INDEX = '_index';
 const ownerSymbol = Symbol('_owner');
 
-type PagerAdapter = new (owner: Tabs) => androidx.viewpager.widget.PagerAdapter;
+type PagerAdapter = new (owner: WeakRef<TabNavigation>) => androidx.viewpager.widget.PagerAdapter;
 
 // eslint-disable-next-line no-redeclare
 let PagerAdapter: PagerAdapter;
@@ -28,7 +27,7 @@ function makeFragmentName(viewId: number, id: number): string {
     return 'android:viewpager:' + viewId + ':' + id;
 }
 
-function getTabById(id: number): Tabs {
+function getTabById(id: number): TabNavigation {
     const ref = tabs.find((ref) => {
         const tab = ref.get();
 
@@ -37,7 +36,7 @@ function getTabById(id: number): Tabs {
 
     return ref && ref.get();
 }
-interface PositionChanger {
+export interface PositionChanger {
     onSelectedPositionChange(position: number, prevPosition: number);
 }
 
@@ -47,7 +46,7 @@ function initializeNativeClasses() {
     }
     @NativeClass
     class TabFragmentImplementation extends org.nativescript.widgets.FragmentBase {
-        private owner: Tabs;
+        private owner: TabNavigation;
         private index: number;
         private backgroundBitmap: android.graphics.Bitmap = null;
 
@@ -90,7 +89,7 @@ function initializeNativeClasses() {
             // TODO: Consider removing it when update to androidx.fragment:1.2.0
             if (hasRemovingParent && this.owner.selectedIndex === this.index) {
                 const bitmapDrawable = new android.graphics.drawable.BitmapDrawable(appResources, this.backgroundBitmap);
-                this.owner._originalBackground = this.owner.backgroundColor || new Color('White');
+                this.owner.mOriginalBackground = this.owner.backgroundColor || new Color('White');
                 this.owner.nativeViewProtected.setBackgroundDrawable(bitmapDrawable);
                 this.backgroundBitmap = null;
             }
@@ -136,7 +135,7 @@ function initializeNativeClasses() {
         private mCurTransaction: androidx.fragment.app.FragmentTransaction;
         private mCurrentPrimaryItem: androidx.fragment.app.Fragment;
 
-        constructor(public owner: Tabs) {
+        constructor(public owner: WeakRef<TabNavigation>) {
             super();
 
             return global.__native(this);
@@ -164,7 +163,11 @@ function initializeNativeClasses() {
         }
 
         instantiateItem(container: android.view.ViewGroup, position: number): java.lang.Object {
-            const fragmentManager = this.owner._getFragmentManager();
+            const owner = this.owner?.get();
+            if (!owner) {
+                return null;
+            }
+            const fragmentManager = owner._getFragmentManager();
             if (!this.mCurTransaction) {
                 this.mCurTransaction = fragmentManager.beginTransaction();
             }
@@ -176,8 +179,8 @@ function initializeNativeClasses() {
             if (fragment != null) {
                 this.mCurTransaction.attach(fragment);
             } else {
-                fragment = TabFragmentImplementation.newInstance(this.owner._domId, position);
-                this.owner.fragments.push(fragment);
+                fragment = TabFragmentImplementation.newInstance(owner._domId, position);
+                owner.fragments.push(fragment);
                 this.mCurTransaction.add(container.getId(), fragment, name);
             }
 
@@ -186,7 +189,7 @@ function initializeNativeClasses() {
                 fragment.setUserVisibleHint(false);
             }
 
-            const tabItems = this.owner.items;
+            const tabItems = owner.items;
             const tabItem = tabItems ? tabItems[position] : null;
             if (tabItem) {
                 tabItem.canBeLoaded = true;
@@ -200,14 +203,18 @@ function initializeNativeClasses() {
         }
 
         destroyItem(container: android.view.ViewGroup, position: number, object: java.lang.Object): void {
+            const owner = this.owner?.get();
+            if (!owner) {
+                return;
+            }
             if (!this.mCurTransaction) {
-                const fragmentManager = this.owner._getFragmentManager();
+                const fragmentManager = owner._getFragmentManager();
                 this.mCurTransaction = fragmentManager.beginTransaction();
             }
 
             const fragment: androidx.fragment.app.Fragment = object as androidx.fragment.app.Fragment;
 
-            const index = this.owner.fragments.indexOf(fragment);
+            const index = owner.fragments.indexOf(fragment);
             // if (index !== -1) {
             //     this.owner.fragments.splice(index, 1);
             // }
@@ -217,7 +224,7 @@ function initializeNativeClasses() {
                 this.mCurrentPrimaryItem = null;
             }
 
-            const tabItems = this.owner.items;
+            const tabItems = owner.items;
             const tabItem = tabItems ? tabItems[position] : null;
             if (tabItem) {
                 tabItem.canBeLoaded = false;
@@ -225,6 +232,10 @@ function initializeNativeClasses() {
         }
 
         setPrimaryItem(container: android.view.ViewGroup, position: number, object: java.lang.Object): void {
+            const owner = this.owner?.get();
+            if (!owner) {
+                return;
+            }
             const fragment = object as androidx.fragment.app.Fragment;
             if (fragment !== this.mCurrentPrimaryItem) {
                 if (this.mCurrentPrimaryItem != null) {
@@ -237,10 +248,10 @@ function initializeNativeClasses() {
                     fragment.setUserVisibleHint(true);
                 }
 
+                const tab = owner;
                 this.mCurrentPrimaryItem = fragment;
-                this.owner.selectedIndex = position;
+                tab.selectedIndex = position;
 
-                const tab = this.owner;
                 const tabItems = tab.items;
                 const newTabItem = tabItems ? tabItems[position] : null;
 
@@ -284,7 +295,7 @@ function initializeNativeClasses() {
 
     @NativeClass
     class TabsBarImplementation extends com.nativescript.material.core.TabsBar implements PositionChanger {
-        constructor(context: android.content.Context, public owner: Tabs) {
+        constructor(context: android.content.Context, public owner: TabNavigation) {
             super(context);
 
             return global.__native(this);
@@ -295,18 +306,7 @@ function initializeNativeClasses() {
             if (!owner) {
                 return;
             }
-
-            const tabStripItems = owner.tabStrip && owner.tabStrip.items;
-
-            if (position >= 0 && tabStripItems && tabStripItems[position]) {
-                tabStripItems[position]._emit(TabStripItem.selectEvent);
-                owner._setItemColor(tabStripItems[position]);
-            }
-
-            if (prevPosition >= 0 && tabStripItems && tabStripItems[prevPosition]) {
-                tabStripItems[prevPosition]._emit(TabStripItem.unselectEvent);
-                owner._setItemColor(tabStripItems[prevPosition]);
-            }
+            owner.onTabsBarSelectedPositionChange(position, prevPosition);
         }
 
         public onTap(position: number): boolean {
@@ -314,20 +314,7 @@ function initializeNativeClasses() {
             if (!owner) {
                 return false;
             }
-
-            const tabStrip = owner.tabStrip;
-            const tabStripItems = tabStrip && tabStrip.items;
-
-            if (position >= 0 && tabStripItems[position]) {
-                tabStripItems[position]._emit(TabStripItem.tapEvent);
-                tabStrip.notify({ eventName: TabStrip.itemTapEvent, object: tabStrip, index: position });
-            }
-
-            if (!owner.items[position]) {
-                return false;
-            }
-
-            return true;
+            return owner.onTabsBarTap(position);
         }
     }
 
@@ -354,15 +341,14 @@ function initializeNativeClasses() {
             }
         }
     }
-
     PagerAdapter = FragmentPagerAdapter;
-    TabsBar = TabsBarImplementation;
+    TabsBar = TabsBarImplementation as any;
     AttachStateChangeListener = new AttachListener();
     appResources = Application.android.context.getResources();
 }
 
 let defaultAccentColor: number;
-function getDefaultAccentColor(context: android.content.Context): number {
+export function getDefaultAccentColor(context: android.content.Context): number {
     if (defaultAccentColor === undefined) {
         //Fallback color: https://developer.android.com/samples/SlidingTabsColors/src/com.example.android.common/view/SlidingTabStrip.html
         defaultAccentColor = Utils.android.resources.getPaletteColor(ACCENT_COLOR, context) || 0xff33b5e5;
@@ -371,20 +357,22 @@ function getDefaultAccentColor(context: android.content.Context): number {
     return defaultAccentColor;
 }
 
-function setElevation(grid: org.nativescript.widgets.GridLayout, tabsBar: com.nativescript.material.core.TabsBar, tabsPosition: string) {
+function setElevation(grid: org.nativescript.widgets.GridLayout, tabsBar: android.view.View, tabsPosition: string) {
     const compat = androidx.core.view.ViewCompat as any;
     if (compat.setElevation) {
         const val = DEFAULT_ELEVATION * Utils.layout.getDisplayDensity();
 
-        if (tabsPosition === 'top') {
+        if (grid && tabsPosition === 'top') {
             compat.setElevation(grid, val);
         }
 
-        compat.setElevation(tabsBar, val);
+        if (tabsBar) {
+            compat.setElevation(tabsBar, val);
+        }
     }
 }
 
-export const tabs = new Array<WeakRef<Tabs>>();
+export const tabs = new Array<WeakRef<TabNavigation>>();
 
 function iterateIndexRange(index: number, eps: number, lastIndex: number, callback: (i) => void) {
     const rangeStart = Math.max(0, index - eps);
@@ -394,17 +382,19 @@ function iterateIndexRange(index: number, eps: number, lastIndex: number, callba
     }
 }
 
-export class Tabs extends TabsBase {
-    private _tabsBar: com.nativescript.material.core.TabsBar;
-    private _viewPager: com.nativescript.material.core.TabViewPager;
-    private _pagerAdapter: androidx.viewpager.widget.PagerAdapter;
-    private _androidViewId = -1;
-    public _originalBackground: any;
-    private _textTransform: CoreTypes.TextTransformType = 'uppercase';
-    private _selectedItemColor: Color;
-    private _unSelectedItemColor: Color;
+//TODO: move to abstract
+export abstract class TabNavigation<T extends android.view.ViewGroup = any> extends TabNavigationBase {
+    // export abstract class TabNavigation<T extends com.nativescript.material.core.TabsBar> extends TabNavigationBase {
+    nativeViewProtected: org.nativescript.widgets.GridLayout;
+    protected mTabsBar: T;
+    protected mViewPager: com.nativescript.material.core.TabViewPager;
+    protected mPagerAdapter: androidx.viewpager.widget.PagerAdapter;
+    protected mAndroidViewId = -1;
+    public mOriginalBackground: any;
+    protected mTextTransform: CoreTypes.TextTransformType = 'uppercase';
+    protected mSelectedItemColor: Color;
+    protected mUnSelectedItemColor: Color;
     fragments: androidx.fragment.app.Fragment[] = [];
-    private _attachedToWindow = false;
 
     constructor() {
         super();
@@ -429,21 +419,11 @@ export class Tabs extends TabsBase {
 
     public createNativeView() {
         initializeNativeClasses();
-        // TODO
-        // if (traceEnabled()) {
-        //     traceWrite("TabView._createUI(" + this + ");", traceCategory);
-        // }
-
         const context: android.content.Context = this._context;
         const nativeView = new org.nativescript.widgets.GridLayout(context);
         const viewPager = new com.nativescript.material.core.TabViewPager(context);
-        const tabsBar = new TabsBar(context, this);
         const lp = new org.nativescript.widgets.CommonLayoutParams();
-        const primaryColor = Utils.android.resources.getPaletteColor(PRIMARY_COLOR, context);
-        const accentColor = getDefaultAccentColor(context);
-
         lp.row = 1;
-
         if (this.tabsPosition === 'top') {
             nativeView.addRow(new org.nativescript.widgets.ItemSpec(1, org.nativescript.widgets.GridUnitType.auto));
             nativeView.addRow(new org.nativescript.widgets.ItemSpec(1, org.nativescript.widgets.GridUnitType.star));
@@ -452,22 +432,29 @@ export class Tabs extends TabsBase {
         } else {
             nativeView.addRow(new org.nativescript.widgets.ItemSpec(1, org.nativescript.widgets.GridUnitType.star));
             nativeView.addRow(new org.nativescript.widgets.ItemSpec(1, org.nativescript.widgets.GridUnitType.auto));
-
-            tabsBar.setLayoutParams(lp);
         }
 
         nativeView.addView(viewPager);
         (nativeView as any).viewPager = viewPager;
 
-        const adapter = new PagerAdapter(this);
+        const adapter = (this.mPagerAdapter = new PagerAdapter(new WeakRef(this)));
         viewPager.setAdapter(adapter);
         (viewPager as any).adapter = adapter;
+        this.mViewPager = viewPager;
+        setElevation(nativeView, null, this.tabsPosition);
 
-        nativeView.addView(tabsBar);
-        (nativeView as any).tabsBar = tabsBar;
+        if (this.tabStrip) {
+            this.handleTabStripChanged(nativeView, null, this.tabStrip);
+        }
 
-        setElevation(nativeView, tabsBar, this.tabsPosition);
+        return nativeView;
+    }
 
+    // TODO: mark abstract
+    protected createNativeTabBar(context: android.content.Context) {
+        const tabsBar = new TabsBar(context, this);
+        const primaryColor = Utils.android.resources.getPaletteColor(PRIMARY_COLOR, context);
+        const accentColor = getDefaultAccentColor(context);
         if (accentColor) {
             tabsBar.setSelectedIndicatorColors([accentColor]);
         }
@@ -475,34 +462,63 @@ export class Tabs extends TabsBase {
         if (primaryColor) {
             tabsBar.setBackgroundColor(primaryColor);
         }
-
-        return nativeView;
+        return tabsBar;
     }
+
+    protected abstract setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[], viewPager: com.nativescript.material.core.TabViewPager);
+    protected abstract getTabBarItemView(index: number);
+    protected abstract getTabBarItemTextView(index: number);
+    protected abstract selectTabBar(oldIndex: number, newIndex: number);
+
+    private handleTabStripChanged(nativeView: org.nativescript.widgets.GridLayout, oldTabStrip: TabStrip, newTabStrip: TabStrip) {
+        if (this.mTabsBar) {
+            nativeView.removeView(this.mTabsBar);
+            nativeView['tabsBar'] = null;
+            this.mTabsBar = null;
+        }
+
+        if (newTabStrip) {
+            initializeNativeClasses();
+            const context = this._context;
+            const tabsBar = (this.mTabsBar = this.createNativeTabBar(context));
+            setElevation(null, tabsBar, this.tabsPosition);
+            if (this.tabsPosition !== 'top') {
+                tabsBar.setLayoutParams(this.mViewPager.getLayoutParams());
+            }
+            nativeView.addView(tabsBar);
+            nativeView['tabsBar'] = tabsBar;
+        }
+    }
+    public onTabStripChanged(oldTabStrip: TabStrip, newTabStrip: TabStrip) {
+        super.onTabStripChanged(oldTabStrip, newTabStrip);
+        const nativeView = this.nativeViewProtected;
+        if (!nativeView) {
+            return;
+        }
+        this.handleTabStripChanged(nativeView, oldTabStrip, newTabStrip);
+    }
+
     onSelectedIndexChanged(oldIndex: number, newIndex: number) {
-        const tabBarImplementation = (this._tabsBar as unknown) as PositionChanger;
-        if (tabBarImplementation) {
-            tabBarImplementation.onSelectedPositionChange(oldIndex, newIndex);
+        if (this.mTabsBar) {
+            this.selectTabBar(oldIndex, newIndex);
         }
         super.onSelectedIndexChanged(oldIndex, newIndex);
     }
 
     public initNativeView(): void {
         super.initNativeView();
-        if (this._androidViewId < 0) {
-            this._androidViewId = android.view.View.generateViewId();
+        if (this.mAndroidViewId < 0) {
+            this.mAndroidViewId = android.view.View.generateViewId();
         }
 
         const nativeView: any = this.nativeViewProtected;
-        this._tabsBar = nativeView.tabsBar;
+        // this._tabsBar = nativeView.tabsBar;
 
         // nativeView.addOnAttachStateChangeListener(AttachStateChangeListener);
-        nativeView[ownerSymbol] = this;
+        // nativeView[ownerSymbol] = this;
 
         const viewPager = nativeView.viewPager;
-        viewPager.setId(this._androidViewId);
-        this._viewPager = viewPager;
-        this._pagerAdapter = viewPager.adapter;
-        (this._pagerAdapter as any).owner = this;
+        viewPager.setId(this.mAndroidViewId);
     }
 
     _onAttachedToWindow(): void {
@@ -516,15 +532,12 @@ export class Tabs extends TabsBase {
             return;
         }
 
-        this._attachedToWindow = true;
-        this._viewPager.setCurrentItem(this.selectedIndex, false);
+        this.mViewPager.setCurrentItem(this.selectedIndex, false);
     }
 
     _onDetachedFromWindow(): void {
         super._onDetachedFromWindow();
-        this.disposeCurrentFragments();
-
-        this._attachedToWindow = false;
+        this.disposeTabFragments();
     }
 
     public _loadUnloadTabItems(newIndex: number) {
@@ -541,19 +554,20 @@ export class Tabs extends TabsBase {
 
         iterateIndexRange(newIndex, offsideItems, lastIndex, (i) => toLoad.push(i));
 
-        items.forEach((item, i) => {
-            const indexOfI = toLoad.indexOf(i);
-            if (indexOfI < 0) {
-                toUnload.push(i);
-            }
-        });
-
-        toUnload.forEach((index) => {
-            const item = items[index];
-            if (items[index]) {
-                item.unloadView(item.content);
-            }
-        });
+        if (this.unloadOnTabChange) {
+            items.forEach((item, i) => {
+                const indexOfI = toLoad.indexOf(i);
+                if (indexOfI < 0) {
+                    toUnload.push(i);
+                }
+                toUnload.forEach((index) => {
+                    const item = items[index];
+                    if (items[index]) {
+                        item.unloadView(item.content);
+                    }
+                });
+            });
+        }
 
         const newItem = items[newIndex];
         const selectedView = newItem && newItem.content;
@@ -572,10 +586,10 @@ export class Tabs extends TabsBase {
     public onLoaded(): void {
         super.onLoaded();
 
-        if (this._originalBackground) {
+        if (this.mOriginalBackground) {
             this.backgroundColor = null;
-            this.backgroundColor = this._originalBackground;
-            this._originalBackground = null;
+            this.backgroundColor = this.mOriginalBackground;
+            this.mOriginalBackground = null;
         }
 
         this.setItems(this.items as any);
@@ -593,21 +607,23 @@ export class Tabs extends TabsBase {
         this.setItems(null);
         this.setTabStripItems(null);
 
+        // TODO: needed ?
+        this.items.forEach((item, i) => {
+            item.unloadView(item.content);
+        });
         // this.setAdapterItems(null);
     }
 
     public disposeNativeView() {
-        this._tabsBar.setItems(null, null);
-        (this._pagerAdapter as any).owner = null;
-        this._pagerAdapter = null;
+        if (this.mTabsBar) {
+            this.setTabBarItems(null, null);
+        }
+        (this.mPagerAdapter as any).owner = null;
+        this.mPagerAdapter = null;
 
         this.nativeViewProtected.removeOnAttachStateChangeListener(AttachStateChangeListener);
-        this.nativeViewProtected[ownerSymbol] = null;
-
-        this._tabsBar = null;
-        this._viewPager = null;
         super.disposeNativeView();
-        this.disposeCurrentFragments();
+        this.disposeTabFragments();
     }
 
     public _onRootViewReset(): void {
@@ -617,27 +633,65 @@ export class Tabs extends TabsBase {
         // i.e. in a scenario with tab frames let the frames cleanup their fragments first, and then
         // cleanup the tab fragments to avoid
         // android.content.res.Resources$NotFoundException: Unable to find resource ID #0xfffffff6
-        this.disposeCurrentFragments();
+        this.disposeTabFragments();
     }
-
-    private disposeCurrentFragments(): void {
-        const fragmentManager = this._getFragmentManager();
-        const transaction = fragmentManager.beginTransaction();
-
+    private disposeTabFragments(): void {
         const fragments = this.fragments;
         for (let i = 0; i < fragments.length; i++) {
-            transaction.remove(fragments[i]);
+            this.removeFragment(fragments[i]);
         }
-        transaction.commitNowAllowingStateLoss();
+        // const items = this.items;
+        // items.forEach((item, i) => {
+        //     item.unloadView(item.content);
+        // });
+        // this._currentFragment = null;
         this.fragments = [];
     }
 
+    private removeFragment(fragment: androidx.fragment.app.Fragment) {
+        if (fragment) {
+            if (!fragment.isAdded() || fragment.isRemoving()) {
+                // ignore
+                return;
+            } else {
+                const fragmentExitTransition = fragment.getExitTransition();
+                if (fragmentExitTransition && fragmentExitTransition instanceof org.nativescript.widgets.CustomTransition) {
+                    fragmentExitTransition.setResetOnTransitionEnd(true);
+                }
+                if (fragment && fragment.isAdded() && !fragment.isRemoving()) {
+                    const pfm = fragment.getParentFragmentManager();
+                    if (pfm && !pfm.isDestroyed()) {
+                        try {
+                            if (pfm.isStateSaved()) {
+                                pfm.beginTransaction().remove(fragment).commitNowAllowingStateLoss();
+                            } else {
+                                pfm.beginTransaction().remove(fragment).commitNow();
+                            }
+                        } catch (e) {}
+                    }
+                }
+            }
+        }
+    }
+
+    // private disposeCurrentFragments(): void {
+    //     const fragmentManager = this._getFragmentManager();
+    //     const transaction = fragmentManager.beginTransaction();
+
+    //     const fragments = this.fragments;
+    //     for (let i = 0; i < fragments.length; i++) {
+    //         transaction.remove(fragments[i]);
+    //     }
+    //     transaction.commitNowAllowingStateLoss();
+    //     this.fragments = [];
+    // }
+
     private shouldUpdateAdapter(items: TabContentItem[]) {
-        if (!this._pagerAdapter) {
+        if (!this.mPagerAdapter) {
             return false;
         }
 
-        const currentPagerAdapterItems = (this._pagerAdapter as any).items;
+        const currentPagerAdapterItems = (this.mPagerAdapter as any).items;
 
         // if both values are null, should not update
         if (!items && !currentPagerAdapterItems) {
@@ -667,7 +721,7 @@ export class Tabs extends TabsBase {
 
     private setItems(items: TabContentItem[]) {
         if (this.shouldUpdateAdapter(items)) {
-            (this._pagerAdapter as any).items = items;
+            (this.mPagerAdapter as any).items = items;
 
             if (items && items.length) {
                 items.forEach((item: TabContentItem, i) => {
@@ -675,22 +729,23 @@ export class Tabs extends TabsBase {
                 });
             }
 
-            this._pagerAdapter.notifyDataSetChanged();
+            this.mPagerAdapter.notifyDataSetChanged();
         }
     }
 
     private setTabStripItems(items: TabStripItem[]) {
         const length = items ? items.length : 0;
         if (length === 0) {
-            this._tabsBar.setItems(null, null);
-
+            if (this.mTabsBar) {
+                this.setTabBarItems(null, null);
+            }
             return;
         }
 
         const tabItems = new Array<com.nativescript.material.core.TabItemSpec>();
         items.forEach((tabStripItem: TabStripItem, i, arr) => {
-            if (!this._unSelectedItemColor) {
-                this._unSelectedItemColor = tabStripItem.label?.style.color;
+            if (!this.mUnSelectedItemColor) {
+                this.mUnSelectedItemColor = tabStripItem.label?.style.color;
             }
             tabStripItem._index = i;
             const tabItemSpec = this.createTabItemSpec(tabStripItem);
@@ -698,11 +753,11 @@ export class Tabs extends TabsBase {
             tabItems.push(tabItemSpec);
         });
 
-        const tabsBar = this._tabsBar;
-        tabsBar.setItems(tabItems, this._viewPager);
+        const tabsBar = this.mTabsBar;
+        this.setTabBarItems(tabItems, this.mViewPager);
         this.tabStrip.setNativeView(tabsBar);
         items.forEach((item, i, arr) => {
-            const tv = tabsBar.getTextViewForItemAt(i);
+            const tv = this.getTabBarItemTextView(i);
             item.setNativeView(tv);
             this._setItemColor(item);
         });
@@ -717,10 +772,10 @@ export class Tabs extends TabsBase {
             textTransform = tabStripItem.style.textTransform;
         }
 
-        return textTransform || this._textTransform;
+        return textTransform || this.mTextTransform;
     }
 
-    private createTabItemSpec(tabStripItem: TabStripItem): com.nativescript.material.core.TabItemSpec {
+    protected createTabItemSpec(tabStripItem: TabStripItem): com.nativescript.material.core.TabItemSpec {
         const tabItemSpec = new com.nativescript.material.core.TabItemSpec();
 
         if (tabStripItem.isLoaded) {
@@ -737,7 +792,7 @@ export class Tabs extends TabsBase {
             tabItemSpec.backgroundColor = backgroundColor ? backgroundColor.android : this.getTabBarBackgroundArgbColor();
 
             // COLOR
-            const itemColor = this.selectedIndex === tabStripItem._index ? this._selectedItemColor : this._unSelectedItemColor;
+            const itemColor = this.selectedIndex === tabStripItem._index ? this.mSelectedItemColor : this.mUnSelectedItemColor;
             const color = itemColor || nestedLabel.style.color;
             tabItemSpec.color = color && color.android;
 
@@ -846,23 +901,26 @@ export class Tabs extends TabsBase {
     //         this._pagerAdapter.notifyDataSetChanged();
     //     }
     // }
-
+    protected abstract updateTabsBarItemAt(index: number, spec: com.nativescript.material.core.TabItemSpec);
+    protected abstract setTabsBarSelectedIndicatorColors(colors: number[]);
     public updateAndroidItemAt(index: number, spec: com.nativescript.material.core.TabItemSpec) {
         // that try catch is fix for an android NPE error on css change which navigated in (not the current fragment)
         try {
-            this._tabsBar.updateItemAt(index, spec);
+            if (this.mTabsBar) {
+                this.updateTabsBarItemAt(index, spec);
+            }
         } catch (err) {}
     }
 
     public getTabBarBackgroundColor(): android.graphics.drawable.Drawable {
-        return this._tabsBar.getBackground();
+        return this.mTabsBar.getBackground();
     }
 
     public setTabBarBackgroundColor(value: android.graphics.drawable.Drawable | Color): void {
         if (value instanceof Color) {
-            this._tabsBar.setBackgroundColor(value.android);
+            this.mTabsBar.setBackgroundColor(value.android);
         } else {
-            this._tabsBar.setBackground(tryCloneDrawable(value, this.nativeViewProtected.getResources()));
+            this.mTabsBar.setBackground(tryCloneDrawable(value, this.nativeViewProtected.getResources()));
         }
     }
 
@@ -872,23 +930,23 @@ export class Tabs extends TabsBase {
 
     public setTabBarHighlightColor(value: number | Color) {
         const color = value instanceof Color ? value.android : value;
-        this._tabsBar.setSelectedIndicatorColors([color]);
+        this.setTabsBarSelectedIndicatorColors([color]);
     }
 
     public getTabBarSelectedItemColor(): Color {
-        return this._selectedItemColor;
+        return this.mSelectedItemColor;
     }
 
     public setTabBarSelectedItemColor(value: Color) {
-        this._selectedItemColor = value;
+        this.mSelectedItemColor = value;
     }
 
     public getTabBarUnSelectedItemColor(): Color {
-        return this._unSelectedItemColor;
+        return this.mUnSelectedItemColor;
     }
 
     public setTabBarUnSelectedItemColor(value: Color) {
-        this._unSelectedItemColor = value;
+        this.mUnSelectedItemColor = value;
     }
 
     private updateItem(tabStripItem: TabStripItem): void {
@@ -910,7 +968,7 @@ export class Tabs extends TabsBase {
         if (!tabStripItem.nativeViewProtected) {
             return;
         }
-        const itemColor = tabStripItem._index === this.selectedIndex ? this._selectedItemColor : this._unSelectedItemColor;
+        const itemColor = tabStripItem._index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor;
         if (!itemColor) {
             return;
         }
@@ -922,11 +980,11 @@ export class Tabs extends TabsBase {
         this.setIconColor(tabStripItem, itemColor);
     }
 
-    private setIconColor(tabStripItem: TabStripItem, color?: Color) {
+    protected setIconColor(tabStripItem: TabStripItem, color?: Color) {
         if (!tabStripItem.nativeViewProtected) {
             return;
         }
-        const tabBarItem = this._tabsBar.getViewForItemAt(tabStripItem._index);
+        const tabBarItem = this.getTabBarItemView(tabStripItem._index);
 
         const drawable = this.getIcon(tabStripItem, color);
         const imgView = tabBarItem.getChildAt(0) as android.widget.ImageView;
@@ -937,7 +995,7 @@ export class Tabs extends TabsBase {
     }
 
     public setTabBarItemColor(tabStripItem: TabStripItem, value: number | Color): void {
-        const itemColor = tabStripItem._index === this.selectedIndex ? this._selectedItemColor : this._unSelectedItemColor;
+        const itemColor = tabStripItem._index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor;
         if (itemColor) {
             // the itemColor is set through the selectedItemColor and unSelectedItemColor properties
             // so it does not respect the css color
@@ -949,7 +1007,7 @@ export class Tabs extends TabsBase {
     }
 
     public setTabBarIconColor(tabStripItem: TabStripItem, value: number | Color): void {
-        const itemColor = tabStripItem._index === this.selectedIndex ? this._selectedItemColor : this._unSelectedItemColor;
+        const itemColor = tabStripItem._index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor;
         if (itemColor) {
             // the itemColor is set through the selectedItemColor and unSelectedItemColor properties
             // so it does not respect the css color
@@ -981,7 +1039,7 @@ export class Tabs extends TabsBase {
     }
 
     public getTabBarTextTransform(): CoreTypes.TextTransformType {
-        return this._textTransform;
+        return this.mTextTransform;
     }
 
     public setTabBarTextTransform(value: CoreTypes.TextTransformType): void {
@@ -995,7 +1053,37 @@ export class Tabs extends TabsBase {
                 }
             });
         }
-        this._textTransform = value;
+        this.mTextTransform = value;
+    }
+
+    public onTabsBarSelectedPositionChange(position: number, prevPosition: number): void {
+        const tabStripItems = this.tabStrip?.items;
+
+        if (position >= 0 && tabStripItems && tabStripItems[position]) {
+            tabStripItems[position]._emit(TabStripItem.selectEvent);
+            this._setItemColor(tabStripItems[position]);
+        }
+
+        if (prevPosition >= 0 && tabStripItems && tabStripItems[prevPosition]) {
+            tabStripItems[prevPosition]._emit(TabStripItem.unselectEvent);
+            this._setItemColor(tabStripItems[prevPosition]);
+        }
+    }
+
+    public onTabsBarTap(position: number): boolean {
+        const tabStrip = this.tabStrip;
+        const tabStripItems = tabStrip && tabStrip.items;
+
+        if (position >= 0 && tabStripItems[position]) {
+            tabStripItems[position]._emit(TabStripItem.tapEvent);
+            tabStrip.notify({ eventName: TabStrip.itemTapEvent, object: tabStrip, index: position });
+        }
+
+        if (!this.items[position]) {
+            return false;
+        }
+
+        return true;
     }
 
     [selectedIndexProperty.setNative](value: number) {
@@ -1003,8 +1091,8 @@ export class Tabs extends TabsBase {
         // if (traceEnabled()) {
         //     traceWrite("TabView this._viewPager.setCurrentItem(" + value + ", " + smoothScroll + ");", traceCategory);
         // }
-
-        this._viewPager.setCurrentItem(value, this.animationEnabled);
+        console.log('selectedIndexProperty', value, new Error().stack);
+        this.mViewPager.setCurrentItem(value, this.animationEnabled);
     }
 
     [itemsProperty.getDefault](): TabContentItem[] {
@@ -1019,25 +1107,24 @@ export class Tabs extends TabsBase {
         return null;
     }
     [tabStripProperty.setNative](value: TabStrip) {
-        this.setTabStripItems(value.items);
+        this.setTabStripItems(value?.items || null);
     }
 
     [swipeEnabledProperty.getDefault](): boolean {
-        // TODO: create native method and get native?
         return true;
     }
     [swipeEnabledProperty.setNative](value: boolean) {
-        this._viewPager.setSwipePageEnabled(value);
+        this.mViewPager.setSwipePageEnabled(value);
     }
 
     [offscreenTabLimitProperty.getDefault](): number {
-        return this._viewPager.getOffscreenPageLimit();
+        return this.mViewPager.getOffscreenPageLimit();
     }
     [offscreenTabLimitProperty.setNative](value: number) {
-        this._viewPager.setOffscreenPageLimit(value);
+        this.mViewPager.setOffscreenPageLimit(value);
     }
     [animationEnabledProperty.setNative](value: number) {
-        (this._viewPager as any).setAnimationEnabled(value);
+        (this.mViewPager as any).setAnimationEnabled(value);
     }
 }
 

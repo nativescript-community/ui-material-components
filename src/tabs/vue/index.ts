@@ -1,4 +1,4 @@
-import { TabContentItem, TabStrip, TabStripItem, Tabs } from '../tabs';
+import { TabContentItem, TabStrip, TabStripItem, Tabs } from '..';
 
 let installed = false;
 
