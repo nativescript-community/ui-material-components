@@ -10,6 +10,7 @@
         "tsc-win": "..\\..\\node_modules\\.bin\\cpy ..\\..\\src\\tabs\\index.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc -d",
         "build": "npm run tsc",
         "build.win": "npm run tsc-win",
+        "build.watch": "npm run tsc -- -w",
         "build.all": "npm run build && npm run build.angular",
         "build.all.win": "npm run build.win && npm run build.angular.win",
         "build.angular": "../../node_modules/.bin/ng-packagr -p ../../src/tabs/angular/package.json -c ../../src/tabs/angular/tsconfig.json",

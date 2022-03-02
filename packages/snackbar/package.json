@@ -9,6 +9,7 @@
         "tsc": "../../node_modules/.bin/cpy ../../src/snackbar/snackbar.d.ts ./ && ../../node_modules/.bin/tsc -d",
         "tsc-win": "..\\..\\node_modules\\.bin\\cpy ..\\..\\src\\snackbar\\snackbar.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc -d",
         "build": "npm run tsc",
+        "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win",
         "build.all": "npm run build",
         "build.all.win": "npm run build.win",

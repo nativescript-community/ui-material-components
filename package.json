@@ -13,6 +13,7 @@
     "license": "ISC",
     "scripts": {
         "build": "lerna run build",
+        "build.watch": "lerna run build.watch",
         "build.all": "lerna run build.all",
         "build.angular": "lerna run build.angular",
         "clean": "rimraf 'packages/**/*.d.ts' 'packages/**/*.js' 'packages/**/*.js.map' 'packages/**/*.metadata.json' 'packages/**/*.ngsummary.json' 'packages/**/*.mjs' 'packages/**/*.mjs.map' 'packages/**/node_modules' 'packages/**/angular/package.json' 'package-lock.json' 'pnpm-lock.yaml' 'node_modules'",

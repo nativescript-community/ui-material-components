@@ -9,6 +9,7 @@
         "tsc": "../../node_modules/.bin/cpy ../../src/cardview/cardview.d.ts ./ && ../../node_modules/.bin/tsc -d",
         "tsc-win": "..\\..\\node_modules\\.bin\\cpy ..\\..\\src\\cardview\\cardview.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc -d",
         "build": "npm run tsc",
+        "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win",
         "build.all": "npm run build && npm run build.angular",
         "build.all.win": "npm run build.win && npm run build.angular.win",
