@@ -11,10 +11,15 @@ export namespace knownCollections {
     export const items = 'items';
 }
 
+export enum TabsPosition {
+    Top = 'top',
+    Bottom = 'bottom'
+}
+
 export class TabNavigationBase extends TabNavigationBaseBase implements TabsDefinition {
     public swipeEnabled: boolean;
     public offscreenTabLimit: number;
-    public tabsPosition: 'top' | 'bottom';
+    public tabsPosition: TabsPosition;
     // public iOSTabBarItemsAlignment: IOSTabBarItemsAlignment;
     public animationEnabled: boolean;
     @cssProperty rippleColor: Color;
@@ -34,7 +39,7 @@ export const offscreenTabLimitProperty = new Property<TabNavigationBase, number>
 });
 offscreenTabLimitProperty.register(TabNavigationBase);
 
-export const tabsPositionProperty = new Property<TabNavigationBase, 'top' | 'bottom'>({ name: 'tabsPosition', defaultValue: 'top' });
+export const tabsPositionProperty = new Property<TabNavigationBase, TabsPosition>({ name: 'tabsPosition' });
 tabsPositionProperty.register(TabNavigationBase);
 
 // export type IOSTabBarItemsAlignment = 'leading' | 'justified' | 'center' | 'centerSelected';

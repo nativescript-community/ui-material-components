@@ -8,6 +8,7 @@ import { TabNavigationBase } from '../tab-navigation-base';
 import { TabContentItem } from '../tab-navigation-base/tab-content-item';
 import { TabStrip } from '../tab-navigation-base/tab-strip';
 import { TabStripItem } from '../tab-navigation-base/tab-strip-item';
+import { TabsPosition } from './index-common';
 export { TabContentItem, TabStrip, TabStripItem };
 /**
  * Represents a swipeable tabs view.
@@ -42,7 +43,7 @@ export abstract class TabNavigation<T = any> extends TabNavigationBase {
     /**
      * Gets or sets the position state of the Tabs.
      */
-    tabsPosition: 'top' | 'bottom';
+    tabsPosition: TabsPosition;
 
     /**
      * Allow custom positioning of Tabs within another view

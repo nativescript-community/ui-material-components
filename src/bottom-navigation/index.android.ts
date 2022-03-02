@@ -2,7 +2,9 @@ import { TabContentItem } from '@nativescript-community/ui-material-core/tab-nav
 import { PRIMARY_COLOR, TabNavigation } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation/index.android';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
+import { TabsPosition } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation/index-common';
 import { CSSType, Color, Utils } from '@nativescript/core';
+
 export { TabContentItem, TabStrip, TabStripItem };
 
 interface BottomNavigationBar extends com.nativescript.material.core.BottomNavigationBar {
@@ -26,7 +28,6 @@ function initializeNativeClasses() {
         }
 
         public onSelectedPositionChange(position: number, prevPosition: number): void {
-            console.log('onSelectedPositionChange', position, prevPosition);
             const owner = this.owner;
             if (!owner) {
                 return;
@@ -39,7 +40,6 @@ function initializeNativeClasses() {
             if (!owner) {
                 return false;
             }
-            console.log('onTap', position, owner.onTabsBarTap(position));
             return owner.onTabsBarTap(position);
         }
     }
@@ -49,6 +49,7 @@ function initializeNativeClasses() {
 
 @CSSType('BottomNavigation')
 export class BottomNavigation extends TabNavigation<com.nativescript.material.core.BottomNavigationBar> {
+    tabsPosition = TabsPosition.Bottom;
     protected updateTabsBarItemAt(position: number, itemSpec: com.nativescript.material.core.TabItemSpec) {
         this.mTabsBar.updateItemAt(position, itemSpec);
     }
@@ -65,11 +66,6 @@ export class BottomNavigation extends TabNavigation<com.nativescript.material.co
         initializeNativeClasses();
         const tabsBar = new BottomNavigationBar(context, this);
         const primaryColor = Utils.android.resources.getPaletteColor(PRIMARY_COLOR, context);
-        // const accentColor = getDefaultAccentColor(context);
-        // if (accentColor) {
-        //     tabsBar.setSelectedIndicatorColors([accentColor]);
-        // }
-
         if (primaryColor) {
             tabsBar.setBackgroundColor(primaryColor);
         }

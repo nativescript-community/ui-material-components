@@ -394,6 +394,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     protected mSelectedItemColor: Color;
     protected mUnSelectedItemColor: Color;
     fragments: androidx.fragment.app.Fragment[] = [];
+    protected tabBarLayoutParams: org.nativescript.widgets.CommonLayoutParams;
 
     constructor() {
         super();
@@ -431,6 +432,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         } else {
             nativeView.addRow(new org.nativescript.widgets.ItemSpec(1, org.nativescript.widgets.GridUnitType.star));
             nativeView.addRow(new org.nativescript.widgets.ItemSpec(1, org.nativescript.widgets.GridUnitType.auto));
+            this.tabBarLayoutParams = lp;
         }
 
         nativeView.addView(viewPager);
@@ -482,7 +484,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
             const tabsBar = (this.mTabsBar = this.createNativeTabBar(context));
             setElevation(null, tabsBar, this.tabsPosition);
             if (this.tabsPosition !== 'top') {
-                tabsBar.setLayoutParams(this.mViewPager.getLayoutParams());
+                tabsBar.setLayoutParams(this.tabBarLayoutParams);
             }
             nativeView.addView(tabsBar);
             nativeView['tabsBar'] = tabsBar;
@@ -1090,7 +1092,6 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         // if (traceEnabled()) {
         //     traceWrite("TabView this._viewPager.setCurrentItem(" + value + ", " + smoothScroll + ");", traceCategory);
         // }
-        console.log('selectedIndexProperty', value, new Error().stack);
         this.mViewPager.setCurrentItem(value, this.animationEnabled);
     }
 

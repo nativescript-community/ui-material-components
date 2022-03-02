@@ -842,7 +842,6 @@ export abstract class TabNavigation<
     }
 
     public setTabBarItemFontInternal(tabStripItem: TabStripItem, value: Font): void {
-        console.log('setTabBarItemFontInternal');
         this.setViewTextAttributes(tabStripItem.label);
     }
 
@@ -851,7 +850,6 @@ export abstract class TabNavigation<
     }
 
     public setTabBarFontInternal(): void {
-        console.log('setTabBarFontInternal');
         const defaultTabItemFontSize = 10;
         const tabItemFontSize = this.tabStrip.style.fontSize || defaultTabItemFontSize;
         const font: UIFont = (this.tabStrip.style.fontInternal || Font.default).getUIFont(UIFont.systemFontOfSize(tabItemFontSize));
