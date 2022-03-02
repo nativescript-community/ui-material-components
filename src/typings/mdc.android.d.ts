@@ -7,309 +7,309 @@
 /// <reference path="./android-declarations.d.ts" />
 
 declare module com {
-  export namespace google {
-      export namespace android {
-          export namespace material {
-              export namespace appbar {
-                  export class CollapsingToolbarLayout extends globalAndroid.widget.FrameLayout {
-                      public static class: java.lang.Class<com.google.android.material.appbar.CollapsingToolbarLayout>;
-                      public isLayoutRequested(): boolean;
-                      public setStatusBarScrimResource(param0: number): void;
-                      public constructor(param0: globalAndroid.content.Context);
-                      public drawChild(param0: globalAndroid.graphics.Canvas, param1: globalAndroid.view.View, param2: number): boolean;
-                      public onStartNestedScroll(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): boolean;
-                      public onNestedPrePerformAccessibilityAction(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.os.Bundle): boolean;
-                      public setExpandedTitleGravity(param0: number): void;
-                      public setExpandedTitleMarginTop(param0: number): void;
-                      public generateLayoutParams(param0: globalAndroid.util.AttributeSet): globalAndroid.view.ViewGroup.LayoutParams;
-                      public setExpandedTitleMarginStart(param0: number): void;
-                      public onSizeChanged(param0: number, param1: number, param2: number, param3: number): void;
-                      public childHasTransientStateChanged(param0: globalAndroid.view.View, param1: boolean): void;
-                      public setCollapsedTitleTypeface(param0: globalAndroid.graphics.Typeface): void;
-                      public setStatusBarScrimColor(param0: number): void;
-                      public onMeasure(param0: number, param1: number): void;
-                      public getTextDirection(): number;
-                      public setExpandedTitleMargin(param0: number, param1: number, param2: number, param3: number): void;
-                      public onKeyMultiple(param0: number, param1: number, param2: globalAndroid.view.KeyEvent): boolean;
-                      public getChildVisibleRect(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: globalAndroid.graphics.Point): boolean;
-                      public generateLayoutParams(param0: globalAndroid.view.ViewGroup.LayoutParams): globalAndroid.view.ViewGroup.LayoutParams;
-                      public verifyDrawable(param0: globalAndroid.graphics.drawable.Drawable): boolean;
-                      public getExpandedTitleMarginBottom(): number;
-                      public recomputeViewAttributes(param0: globalAndroid.view.View): void;
-                      public canResolveTextDirection(): boolean;
-                      public setTitleEnabled(param0: boolean): void;
-                      public requestDisallowInterceptTouchEvent(param0: boolean): void;
-                      /** @deprecated */
-                      public invalidateChildInParent(param0: androidNative.Array<number>, param1: globalAndroid.graphics.Rect): globalAndroid.view.ViewParent;
-                      public addView(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
-                      public onKeyLongPress(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
-                      public onKeyDown(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
-                      public requestLayout(): void;
-                      public notifySubtreeAccessibilityStateChanged(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
-                      public setScrimsShown(param0: boolean, param1: boolean): void;
-                      public keyboardNavigationClusterSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
-                      public bringChildToFront(param0: globalAndroid.view.View): void;
-                      public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback): globalAndroid.view.ActionMode;
-                      public addView(param0: globalAndroid.view.View, param1: number): void;
-                      public setScrimAnimationDuration(param0: number): void;
-                      public getExpandedTitleMarginTop(): number;
-                      public isTextDirectionResolved(): boolean;
-                      public setVisibility(param0: number): void;
-                      /** @deprecated */
-                      public requestFitSystemWindows(): void;
-                      public onAttachedToWindow(): void;
-                      public focusSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
-                      public getExpandedTitleMarginEnd(): number;
-                      public setExpandedTitleMarginBottom(param0: number): void;
-                      public requestTransparentRegion(param0: globalAndroid.view.View): void;
-                      public setContentScrimColor(param0: number): void;
-                      public getContentScrim(): globalAndroid.graphics.drawable.Drawable;
-                      public addView(param0: globalAndroid.view.View): void;
-                      public createContextMenu(param0: globalAndroid.view.ContextMenu): void;
-                      public getExpandedTitleTypeface(): globalAndroid.graphics.Typeface;
-                      public childDrawableStateChanged(param0: globalAndroid.view.View): void;
-                      public requestFitSystemWindows(): void;
-                      public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number, param3: number);
-                      public updateViewLayout(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
-                      public getParentForAccessibility(): globalAndroid.view.ViewParent;
-                      public generateLayoutParams(param0: globalAndroid.view.ViewGroup.LayoutParams): globalAndroid.widget.FrameLayout.LayoutParams;
-                      public getTitle(): string;
-                      public generateDefaultLayoutParams(): com.google.android.material.appbar.CollapsingToolbarLayout.LayoutParams;
-                      public getExpandedTitleGravity(): number;
-                      public generateDefaultLayoutParams(): globalAndroid.widget.FrameLayout.LayoutParams;
-                      public getTextAlignment(): number;
-                      public onNestedScrollAccepted(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
-                      public setExpandedTitleTypeface(param0: globalAndroid.graphics.Typeface): void;
-                      public getParent(): globalAndroid.view.ViewParent;
-                      public getLayoutDirection(): number;
-                      public canResolveTextAlignment(): boolean;
-                      public setExpandedTitleTextAppearance(param0: number): void;
-                      public getScrimVisibleHeightTrigger(): number;
-                      public canResolveLayoutDirection(): boolean;
-                      public onNestedPreScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: androidNative.Array<number>): void;
-                      public sendAccessibilityEvent(param0: number): void;
-                      public sendAccessibilityEventUnchecked(param0: globalAndroid.view.accessibility.AccessibilityEvent): void;
-                      public isTitleEnabled(): boolean;
-                      public getScrimAnimationDuration(): number;
-                      public clearChildFocus(param0: globalAndroid.view.View): void;
-                      public requestChildFocus(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
-                      /** @deprecated */
-                      public invalidateChild(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect): void;
-                      public setCollapsedTitleTextColor(param0: number): void;
-                      public setMaxLines(param0: number): void;
-                      public onLayout(param0: boolean, param1: number, param2: number, param3: number, param4: number): void;
-                      public setCollapsedTitleTextColor(param0: globalAndroid.content.res.ColorStateList): void;
-                      public onNestedFling(param0: globalAndroid.view.View, param1: number, param2: number, param3: boolean): boolean;
-                      public isTextAlignmentResolved(): boolean;
-                      public setCollapsedTitleTextAppearance(param0: number): void;
-                      public addView(param0: globalAndroid.view.View, param1: number, param2: number): void;
-                      public showContextMenuForChild(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
-                      public onDescendantInvalidated(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
-                      public removeView(param0: globalAndroid.view.View): void;
-                      public onKeyUp(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
-                      public generateDefaultLayoutParams(): globalAndroid.view.ViewGroup.LayoutParams;
-                      public setCollapsedTitleGravity(param0: number): void;
-                      public setContentScrim(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public showContextMenuForChild(param0: globalAndroid.view.View): boolean;
-                      public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public setContentScrimResource(param0: number): void;
-                      public setTitle(param0: string): void;
-                      public isLayoutDirectionResolved(): boolean;
-                      public draw(param0: globalAndroid.graphics.Canvas): void;
-                      public setStatusBarScrim(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public onNestedScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: number, param4: number): void;
-                      public setExpandedTitleTextColor(param0: globalAndroid.content.res.ColorStateList): void;
-                      public requestChildRectangleOnScreen(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: boolean): boolean;
-                      public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback, param2: number): globalAndroid.view.ActionMode;
-                      public getMaxLines(): number;
-                      public setExpandedTitleMarginEnd(param0: number): void;
-                      public onStopNestedScroll(param0: globalAndroid.view.View): void;
-                      public invalidateDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public drawableStateChanged(): void;
-                      public setScrimVisibleHeightTrigger(param0: number): void;
-                      public addView(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.view.ViewGroup.LayoutParams): void;
-                      public onNestedPreFling(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
-                      public generateLayoutParams(param0: globalAndroid.util.AttributeSet): globalAndroid.widget.FrameLayout.LayoutParams;
-                      public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
-                      public getCollapsedTitleGravity(): number;
-                      public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable): void;
-                      public checkLayoutParams(param0: globalAndroid.view.ViewGroup.LayoutParams): boolean;
-                      public onDetachedFromWindow(): void;
-                      public scheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable, param2: number): void;
-                      public getCollapsedTitleTypeface(): globalAndroid.graphics.Typeface;
-                      public focusableViewAvailable(param0: globalAndroid.view.View): void;
-                      public focusSearch(param0: number): globalAndroid.view.View;
-                      public requestSendAccessibilityEvent(param0: globalAndroid.view.View, param1: globalAndroid.view.accessibility.AccessibilityEvent): boolean;
-                      public setScrimsShown(param0: boolean): void;
-                      public getExpandedTitleMarginStart(): number;
-                      public getStatusBarScrim(): globalAndroid.graphics.drawable.Drawable;
-                      public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number);
-                      public setExpandedTitleColor(param0: number): void;
-                  }
-                  export namespace CollapsingToolbarLayout {
-                      export class LayoutParams extends globalAndroid.widget.FrameLayout.LayoutParams {
-                          public static class: java.lang.Class<com.google.android.material.appbar.CollapsingToolbarLayout.LayoutParams>;
-                          public static COLLAPSE_MODE_OFF: number;
-                          public static COLLAPSE_MODE_PIN: number;
-                          public static COLLAPSE_MODE_PARALLAX: number;
-                          public constructor(param0: globalAndroid.view.ViewGroup.MarginLayoutParams);
-                          public constructor(param0: number, param1: number, param2: number);
-                          public setCollapseMode(param0: number): void;
-                          public constructor(param0: number, param1: number);
-                          public getCollapseMode(): number;
-                          public constructor(param0: globalAndroid.view.ViewGroup.LayoutParams);
-                          public getParallaxMultiplier(): number;
-                          public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
-                          public setParallaxMultiplier(param0: number): void;
-                          public constructor(param0: globalAndroid.widget.FrameLayout.LayoutParams);
-                      }
-                      export class OffsetUpdateListener extends java.lang.Object implements com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener {
-                          public static class: java.lang.Class<com.google.android.material.appbar.CollapsingToolbarLayout.OffsetUpdateListener>;
-                          public onOffsetChanged(param0: com.google.android.material.appbar.AppBarLayout, param1: number): void;
-                          public onOffsetChanged(param0: any, param1: number): void;
-                      }
-                  }
-              }
-          }
-      }
-  }
+    export namespace google {
+        export namespace android {
+            export namespace material {
+                export namespace appbar {
+                    export class CollapsingToolbarLayout extends globalAndroid.widget.FrameLayout {
+                        public static class: java.lang.Class<com.google.android.material.appbar.CollapsingToolbarLayout>;
+                        public isLayoutRequested(): boolean;
+                        public setStatusBarScrimResource(param0: number): void;
+                        public constructor(param0: globalAndroid.content.Context);
+                        public drawChild(param0: globalAndroid.graphics.Canvas, param1: globalAndroid.view.View, param2: number): boolean;
+                        public onStartNestedScroll(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): boolean;
+                        public onNestedPrePerformAccessibilityAction(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.os.Bundle): boolean;
+                        public setExpandedTitleGravity(param0: number): void;
+                        public setExpandedTitleMarginTop(param0: number): void;
+                        public generateLayoutParams(param0: globalAndroid.util.AttributeSet): globalAndroid.view.ViewGroup.LayoutParams;
+                        public setExpandedTitleMarginStart(param0: number): void;
+                        public onSizeChanged(param0: number, param1: number, param2: number, param3: number): void;
+                        public childHasTransientStateChanged(param0: globalAndroid.view.View, param1: boolean): void;
+                        public setCollapsedTitleTypeface(param0: globalAndroid.graphics.Typeface): void;
+                        public setStatusBarScrimColor(param0: number): void;
+                        public onMeasure(param0: number, param1: number): void;
+                        public getTextDirection(): number;
+                        public setExpandedTitleMargin(param0: number, param1: number, param2: number, param3: number): void;
+                        public onKeyMultiple(param0: number, param1: number, param2: globalAndroid.view.KeyEvent): boolean;
+                        public getChildVisibleRect(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: globalAndroid.graphics.Point): boolean;
+                        public generateLayoutParams(param0: globalAndroid.view.ViewGroup.LayoutParams): globalAndroid.view.ViewGroup.LayoutParams;
+                        public verifyDrawable(param0: globalAndroid.graphics.drawable.Drawable): boolean;
+                        public getExpandedTitleMarginBottom(): number;
+                        public recomputeViewAttributes(param0: globalAndroid.view.View): void;
+                        public canResolveTextDirection(): boolean;
+                        public setTitleEnabled(param0: boolean): void;
+                        public requestDisallowInterceptTouchEvent(param0: boolean): void;
+                        /** @deprecated */
+                        public invalidateChildInParent(param0: androidNative.Array<number>, param1: globalAndroid.graphics.Rect): globalAndroid.view.ViewParent;
+                        public addView(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
+                        public onKeyLongPress(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+                        public onKeyDown(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+                        public requestLayout(): void;
+                        public notifySubtreeAccessibilityStateChanged(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
+                        public setScrimsShown(param0: boolean, param1: boolean): void;
+                        public keyboardNavigationClusterSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
+                        public bringChildToFront(param0: globalAndroid.view.View): void;
+                        public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback): globalAndroid.view.ActionMode;
+                        public addView(param0: globalAndroid.view.View, param1: number): void;
+                        public setScrimAnimationDuration(param0: number): void;
+                        public getExpandedTitleMarginTop(): number;
+                        public isTextDirectionResolved(): boolean;
+                        public setVisibility(param0: number): void;
+                        /** @deprecated */
+                        public requestFitSystemWindows(): void;
+                        public onAttachedToWindow(): void;
+                        public focusSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
+                        public getExpandedTitleMarginEnd(): number;
+                        public setExpandedTitleMarginBottom(param0: number): void;
+                        public requestTransparentRegion(param0: globalAndroid.view.View): void;
+                        public setContentScrimColor(param0: number): void;
+                        public getContentScrim(): globalAndroid.graphics.drawable.Drawable;
+                        public addView(param0: globalAndroid.view.View): void;
+                        public createContextMenu(param0: globalAndroid.view.ContextMenu): void;
+                        public getExpandedTitleTypeface(): globalAndroid.graphics.Typeface;
+                        public childDrawableStateChanged(param0: globalAndroid.view.View): void;
+                        public requestFitSystemWindows(): void;
+                        public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number, param3: number);
+                        public updateViewLayout(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
+                        public getParentForAccessibility(): globalAndroid.view.ViewParent;
+                        public generateLayoutParams(param0: globalAndroid.view.ViewGroup.LayoutParams): globalAndroid.widget.FrameLayout.LayoutParams;
+                        public getTitle(): string;
+                        public generateDefaultLayoutParams(): com.google.android.material.appbar.CollapsingToolbarLayout.LayoutParams;
+                        public getExpandedTitleGravity(): number;
+                        public generateDefaultLayoutParams(): globalAndroid.widget.FrameLayout.LayoutParams;
+                        public getTextAlignment(): number;
+                        public onNestedScrollAccepted(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
+                        public setExpandedTitleTypeface(param0: globalAndroid.graphics.Typeface): void;
+                        public getParent(): globalAndroid.view.ViewParent;
+                        public getLayoutDirection(): number;
+                        public canResolveTextAlignment(): boolean;
+                        public setExpandedTitleTextAppearance(param0: number): void;
+                        public getScrimVisibleHeightTrigger(): number;
+                        public canResolveLayoutDirection(): boolean;
+                        public onNestedPreScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: androidNative.Array<number>): void;
+                        public sendAccessibilityEvent(param0: number): void;
+                        public sendAccessibilityEventUnchecked(param0: globalAndroid.view.accessibility.AccessibilityEvent): void;
+                        public isTitleEnabled(): boolean;
+                        public getScrimAnimationDuration(): number;
+                        public clearChildFocus(param0: globalAndroid.view.View): void;
+                        public requestChildFocus(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
+                        /** @deprecated */
+                        public invalidateChild(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect): void;
+                        public setCollapsedTitleTextColor(param0: number): void;
+                        public setMaxLines(param0: number): void;
+                        public onLayout(param0: boolean, param1: number, param2: number, param3: number, param4: number): void;
+                        public setCollapsedTitleTextColor(param0: globalAndroid.content.res.ColorStateList): void;
+                        public onNestedFling(param0: globalAndroid.view.View, param1: number, param2: number, param3: boolean): boolean;
+                        public isTextAlignmentResolved(): boolean;
+                        public setCollapsedTitleTextAppearance(param0: number): void;
+                        public addView(param0: globalAndroid.view.View, param1: number, param2: number): void;
+                        public showContextMenuForChild(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
+                        public onDescendantInvalidated(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
+                        public removeView(param0: globalAndroid.view.View): void;
+                        public onKeyUp(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+                        public generateDefaultLayoutParams(): globalAndroid.view.ViewGroup.LayoutParams;
+                        public setCollapsedTitleGravity(param0: number): void;
+                        public setContentScrim(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public showContextMenuForChild(param0: globalAndroid.view.View): boolean;
+                        public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public setContentScrimResource(param0: number): void;
+                        public setTitle(param0: string): void;
+                        public isLayoutDirectionResolved(): boolean;
+                        public draw(param0: globalAndroid.graphics.Canvas): void;
+                        public setStatusBarScrim(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public onNestedScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: number, param4: number): void;
+                        public setExpandedTitleTextColor(param0: globalAndroid.content.res.ColorStateList): void;
+                        public requestChildRectangleOnScreen(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: boolean): boolean;
+                        public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback, param2: number): globalAndroid.view.ActionMode;
+                        public getMaxLines(): number;
+                        public setExpandedTitleMarginEnd(param0: number): void;
+                        public onStopNestedScroll(param0: globalAndroid.view.View): void;
+                        public invalidateDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public drawableStateChanged(): void;
+                        public setScrimVisibleHeightTrigger(param0: number): void;
+                        public addView(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.view.ViewGroup.LayoutParams): void;
+                        public onNestedPreFling(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
+                        public generateLayoutParams(param0: globalAndroid.util.AttributeSet): globalAndroid.widget.FrameLayout.LayoutParams;
+                        public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
+                        public getCollapsedTitleGravity(): number;
+                        public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable): void;
+                        public checkLayoutParams(param0: globalAndroid.view.ViewGroup.LayoutParams): boolean;
+                        public onDetachedFromWindow(): void;
+                        public scheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable, param2: number): void;
+                        public getCollapsedTitleTypeface(): globalAndroid.graphics.Typeface;
+                        public focusableViewAvailable(param0: globalAndroid.view.View): void;
+                        public focusSearch(param0: number): globalAndroid.view.View;
+                        public requestSendAccessibilityEvent(param0: globalAndroid.view.View, param1: globalAndroid.view.accessibility.AccessibilityEvent): boolean;
+                        public setScrimsShown(param0: boolean): void;
+                        public getExpandedTitleMarginStart(): number;
+                        public getStatusBarScrim(): globalAndroid.graphics.drawable.Drawable;
+                        public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number);
+                        public setExpandedTitleColor(param0: number): void;
+                    }
+                    export namespace CollapsingToolbarLayout {
+                        export class LayoutParams extends globalAndroid.widget.FrameLayout.LayoutParams {
+                            public static class: java.lang.Class<com.google.android.material.appbar.CollapsingToolbarLayout.LayoutParams>;
+                            public static COLLAPSE_MODE_OFF: number;
+                            public static COLLAPSE_MODE_PIN: number;
+                            public static COLLAPSE_MODE_PARALLAX: number;
+                            public constructor(param0: globalAndroid.view.ViewGroup.MarginLayoutParams);
+                            public constructor(param0: number, param1: number, param2: number);
+                            public setCollapseMode(param0: number): void;
+                            public constructor(param0: number, param1: number);
+                            public getCollapseMode(): number;
+                            public constructor(param0: globalAndroid.view.ViewGroup.LayoutParams);
+                            public getParallaxMultiplier(): number;
+                            public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
+                            public setParallaxMultiplier(param0: number): void;
+                            public constructor(param0: globalAndroid.widget.FrameLayout.LayoutParams);
+                        }
+                        export class OffsetUpdateListener extends java.lang.Object implements com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener {
+                            public static class: java.lang.Class<com.google.android.material.appbar.CollapsingToolbarLayout.OffsetUpdateListener>;
+                            public onOffsetChanged(param0: com.google.android.material.appbar.AppBarLayout, param1: number): void;
+                            public onOffsetChanged(param0: any, param1: number): void;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 declare module com {
-  export namespace google {
-      export namespace android {
-          export namespace material {
-              export namespace appbar {
-                  export abstract class HeaderBehavior<V>  extends com.google.android.material.appbar.ViewOffsetBehavior<any> {
-                      public static class: java.lang.Class<com.google.android.material.appbar.HeaderBehavior<any>>;
-                      public constructor();
-                      public onTouchEvent(param0: androidx.coordinatorlayout.widget.CoordinatorLayout, param1: any, param2: globalAndroid.view.MotionEvent): boolean;
-                      public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
-                      public onInterceptTouchEvent(param0: androidx.coordinatorlayout.widget.CoordinatorLayout, param1: any, param2: globalAndroid.view.MotionEvent): boolean;
-                  }
-                  export namespace HeaderBehavior {
-                      export class FlingRunnable extends java.lang.Object implements java.lang.Runnable {
-                          public static class: java.lang.Class<com.google.android.material.appbar.HeaderBehavior.FlingRunnable>;
-                          public run(): void;
-                      }
-                  }
-              }
-          }
-      }
-  }
+    export namespace google {
+        export namespace android {
+            export namespace material {
+                export namespace appbar {
+                    export abstract class HeaderBehavior<V>  extends com.google.android.material.appbar.ViewOffsetBehavior<any> {
+                        public static class: java.lang.Class<com.google.android.material.appbar.HeaderBehavior<any>>;
+                        public constructor();
+                        public onTouchEvent(param0: androidx.coordinatorlayout.widget.CoordinatorLayout, param1: any, param2: globalAndroid.view.MotionEvent): boolean;
+                        public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
+                        public onInterceptTouchEvent(param0: androidx.coordinatorlayout.widget.CoordinatorLayout, param1: any, param2: globalAndroid.view.MotionEvent): boolean;
+                    }
+                    export namespace HeaderBehavior {
+                        export class FlingRunnable extends java.lang.Object implements java.lang.Runnable {
+                            public static class: java.lang.Class<com.google.android.material.appbar.HeaderBehavior.FlingRunnable>;
+                            public run(): void;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 declare module com {
-  export namespace google {
-      export namespace android {
-          export namespace material {
-              export namespace appbar {
-                  export abstract class HeaderScrollingViewBehavior extends com.google.android.material.appbar.ViewOffsetBehavior<globalAndroid.view.View> {
-                      public static class: java.lang.Class<com.google.android.material.appbar.HeaderScrollingViewBehavior>;
-                      public onMeasureChild(param0: androidx.coordinatorlayout.widget.CoordinatorLayout, param1: globalAndroid.view.View, param2: number, param3: number, param4: number, param5: number): boolean;
-                      public layoutChild(param0: androidx.coordinatorlayout.widget.CoordinatorLayout, param1: any, param2: number): void;
-                      public constructor();
-                      public shouldHeaderOverlapScrollingChild(): boolean;
-                      public layoutChild(param0: androidx.coordinatorlayout.widget.CoordinatorLayout, param1: globalAndroid.view.View, param2: number): void;
-                      public setOverlayTop(param0: number): void;
-                      public getOverlayTop(): number;
-                      public onMeasureChild(param0: androidx.coordinatorlayout.widget.CoordinatorLayout, param1: any, param2: number, param3: number, param4: number, param5: number): boolean;
-                      public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
-                  }
-              }
-          }
-      }
-  }
+    export namespace google {
+        export namespace android {
+            export namespace material {
+                export namespace appbar {
+                    export abstract class HeaderScrollingViewBehavior extends com.google.android.material.appbar.ViewOffsetBehavior<globalAndroid.view.View> {
+                        public static class: java.lang.Class<com.google.android.material.appbar.HeaderScrollingViewBehavior>;
+                        public onMeasureChild(param0: androidx.coordinatorlayout.widget.CoordinatorLayout, param1: globalAndroid.view.View, param2: number, param3: number, param4: number, param5: number): boolean;
+                        public layoutChild(param0: androidx.coordinatorlayout.widget.CoordinatorLayout, param1: any, param2: number): void;
+                        public constructor();
+                        public shouldHeaderOverlapScrollingChild(): boolean;
+                        public layoutChild(param0: androidx.coordinatorlayout.widget.CoordinatorLayout, param1: globalAndroid.view.View, param2: number): void;
+                        public setOverlayTop(param0: number): void;
+                        public getOverlayTop(): number;
+                        public onMeasureChild(param0: androidx.coordinatorlayout.widget.CoordinatorLayout, param1: any, param2: number, param3: number, param4: number, param5: number): boolean;
+                        public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
+                    }
+                }
+            }
+        }
+    }
 }
 
 declare module com {
-  export namespace google {
-      export namespace android {
-          export namespace material {
-              export namespace appbar {
-                  export class MaterialToolbar extends androidx.appcompat.widget.Toolbar {
-                      public static class: java.lang.Class<com.google.android.material.appbar.MaterialToolbar>;
-                      public isLayoutRequested(): boolean;
-                      public canResolveLayoutDirection(): boolean;
-                      public constructor(param0: globalAndroid.content.Context);
-                      public onNestedPreScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: androidNative.Array<number>): void;
-                      public sendAccessibilityEvent(param0: number): void;
-                      public onStartNestedScroll(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): boolean;
-                      public onNestedPrePerformAccessibilityAction(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.os.Bundle): boolean;
-                      public sendAccessibilityEventUnchecked(param0: globalAndroid.view.accessibility.AccessibilityEvent): void;
-                      public setNavigationIcon(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public clearChildFocus(param0: globalAndroid.view.View): void;
-                      public requestChildFocus(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
-                      public setElevation(param0: number): void;
-                      /** @deprecated */
-                      public invalidateChild(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect): void;
-                      public onNestedFling(param0: globalAndroid.view.View, param1: number, param2: number, param3: boolean): boolean;
-                      public childHasTransientStateChanged(param0: globalAndroid.view.View, param1: boolean): void;
-                      public isTextAlignmentResolved(): boolean;
-                      public addView(param0: globalAndroid.view.View, param1: number, param2: number): void;
-                      public getTextDirection(): number;
-                      public showContextMenuForChild(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
-                      public onKeyMultiple(param0: number, param1: number, param2: globalAndroid.view.KeyEvent): boolean;
-                      public onDescendantInvalidated(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
-                      public removeView(param0: globalAndroid.view.View): void;
-                      public getChildVisibleRect(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: globalAndroid.graphics.Point): boolean;
-                      public onKeyUp(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
-                      public recomputeViewAttributes(param0: globalAndroid.view.View): void;
-                      public showContextMenuForChild(param0: globalAndroid.view.View): boolean;
-                      public canResolveTextDirection(): boolean;
-                      public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public requestDisallowInterceptTouchEvent(param0: boolean): void;
-                      public isLayoutDirectionResolved(): boolean;
-                      /** @deprecated */
-                      public invalidateChildInParent(param0: androidNative.Array<number>, param1: globalAndroid.graphics.Rect): globalAndroid.view.ViewParent;
-                      public onNestedScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: number, param4: number): void;
-                      public addView(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
-                      public onKeyLongPress(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
-                      public onKeyDown(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
-                      public requestLayout(): void;
-                      public notifySubtreeAccessibilityStateChanged(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
-                      public keyboardNavigationClusterSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
-                      public bringChildToFront(param0: globalAndroid.view.View): void;
-                      public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback): globalAndroid.view.ActionMode;
-                      public addView(param0: globalAndroid.view.View, param1: number): void;
-                      public requestChildRectangleOnScreen(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: boolean): boolean;
-                      public setNavigationIconTint(param0: number): void;
-                      public isTextDirectionResolved(): boolean;
-                      public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback, param2: number): globalAndroid.view.ActionMode;
-                      /** @deprecated */
-                      public requestFitSystemWindows(): void;
-                      public onAttachedToWindow(): void;
-                      public focusSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
-                      public onStopNestedScroll(param0: globalAndroid.view.View): void;
-                      public invalidateDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public requestTransparentRegion(param0: globalAndroid.view.View): void;
-                      public addView(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.view.ViewGroup.LayoutParams): void;
-                      public addView(param0: globalAndroid.view.View): void;
-                      public onNestedPreFling(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
-                      public setNavigationIcon(param0: number): void;
-                      public createContextMenu(param0: globalAndroid.view.ContextMenu): void;
-                      public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
-                      public childDrawableStateChanged(param0: globalAndroid.view.View): void;
-                      public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable): void;
-                      public requestFitSystemWindows(): void;
-                      public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number, param3: number);
-                      public updateViewLayout(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
-                      public getParentForAccessibility(): globalAndroid.view.ViewParent;
-                      public scheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable, param2: number): void;
-                      public focusableViewAvailable(param0: globalAndroid.view.View): void;
-                      public focusSearch(param0: number): globalAndroid.view.View;
-                      public requestSendAccessibilityEvent(param0: globalAndroid.view.View, param1: globalAndroid.view.accessibility.AccessibilityEvent): boolean;
-                      public getTextAlignment(): number;
-                      public onNestedScrollAccepted(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
-                      public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number);
-                      public getParent(): globalAndroid.view.ViewParent;
-                      public getLayoutDirection(): number;
-                      public canResolveTextAlignment(): boolean;
-                  }
-              }
-          }
-      }
-  }
+    export namespace google {
+        export namespace android {
+            export namespace material {
+                export namespace appbar {
+                    export class MaterialToolbar extends androidx.appcompat.widget.Toolbar {
+                        public static class: java.lang.Class<com.google.android.material.appbar.MaterialToolbar>;
+                        public isLayoutRequested(): boolean;
+                        public canResolveLayoutDirection(): boolean;
+                        public constructor(param0: globalAndroid.content.Context);
+                        public onNestedPreScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: androidNative.Array<number>): void;
+                        public sendAccessibilityEvent(param0: number): void;
+                        public onStartNestedScroll(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): boolean;
+                        public onNestedPrePerformAccessibilityAction(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.os.Bundle): boolean;
+                        public sendAccessibilityEventUnchecked(param0: globalAndroid.view.accessibility.AccessibilityEvent): void;
+                        public setNavigationIcon(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public clearChildFocus(param0: globalAndroid.view.View): void;
+                        public requestChildFocus(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
+                        public setElevation(param0: number): void;
+                        /** @deprecated */
+                        public invalidateChild(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect): void;
+                        public onNestedFling(param0: globalAndroid.view.View, param1: number, param2: number, param3: boolean): boolean;
+                        public childHasTransientStateChanged(param0: globalAndroid.view.View, param1: boolean): void;
+                        public isTextAlignmentResolved(): boolean;
+                        public addView(param0: globalAndroid.view.View, param1: number, param2: number): void;
+                        public getTextDirection(): number;
+                        public showContextMenuForChild(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
+                        public onKeyMultiple(param0: number, param1: number, param2: globalAndroid.view.KeyEvent): boolean;
+                        public onDescendantInvalidated(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
+                        public removeView(param0: globalAndroid.view.View): void;
+                        public getChildVisibleRect(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: globalAndroid.graphics.Point): boolean;
+                        public onKeyUp(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+                        public recomputeViewAttributes(param0: globalAndroid.view.View): void;
+                        public showContextMenuForChild(param0: globalAndroid.view.View): boolean;
+                        public canResolveTextDirection(): boolean;
+                        public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public requestDisallowInterceptTouchEvent(param0: boolean): void;
+                        public isLayoutDirectionResolved(): boolean;
+                        /** @deprecated */
+                        public invalidateChildInParent(param0: androidNative.Array<number>, param1: globalAndroid.graphics.Rect): globalAndroid.view.ViewParent;
+                        public onNestedScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: number, param4: number): void;
+                        public addView(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
+                        public onKeyLongPress(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+                        public onKeyDown(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+                        public requestLayout(): void;
+                        public notifySubtreeAccessibilityStateChanged(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
+                        public keyboardNavigationClusterSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
+                        public bringChildToFront(param0: globalAndroid.view.View): void;
+                        public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback): globalAndroid.view.ActionMode;
+                        public addView(param0: globalAndroid.view.View, param1: number): void;
+                        public requestChildRectangleOnScreen(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: boolean): boolean;
+                        public setNavigationIconTint(param0: number): void;
+                        public isTextDirectionResolved(): boolean;
+                        public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback, param2: number): globalAndroid.view.ActionMode;
+                        /** @deprecated */
+                        public requestFitSystemWindows(): void;
+                        public onAttachedToWindow(): void;
+                        public focusSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
+                        public onStopNestedScroll(param0: globalAndroid.view.View): void;
+                        public invalidateDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public requestTransparentRegion(param0: globalAndroid.view.View): void;
+                        public addView(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.view.ViewGroup.LayoutParams): void;
+                        public addView(param0: globalAndroid.view.View): void;
+                        public onNestedPreFling(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
+                        public setNavigationIcon(param0: number): void;
+                        public createContextMenu(param0: globalAndroid.view.ContextMenu): void;
+                        public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
+                        public childDrawableStateChanged(param0: globalAndroid.view.View): void;
+                        public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable): void;
+                        public requestFitSystemWindows(): void;
+                        public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number, param3: number);
+                        public updateViewLayout(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
+                        public getParentForAccessibility(): globalAndroid.view.ViewParent;
+                        public scheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable, param2: number): void;
+                        public focusableViewAvailable(param0: globalAndroid.view.View): void;
+                        public focusSearch(param0: number): globalAndroid.view.View;
+                        public requestSendAccessibilityEvent(param0: globalAndroid.view.View, param1: globalAndroid.view.accessibility.AccessibilityEvent): boolean;
+                        public getTextAlignment(): number;
+                        public onNestedScrollAccepted(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
+                        public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number);
+                        public getParent(): globalAndroid.view.ViewParent;
+                        public getLayoutDirection(): number;
+                        public canResolveTextAlignment(): boolean;
+                    }
+                }
+            }
+        }
+    }
 }
 
 declare module com {
@@ -10164,334 +10164,334 @@ declare module com {
 }
 
 declare module com {
-  export namespace google {
-      export namespace android {
-          export namespace material {
-              export namespace textfield {
-                  export class TextInputLayout extends globalAndroid.widget.LinearLayout {
-                      public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout>;
-                      public static BOX_BACKGROUND_NONE: number;
-                      public static BOX_BACKGROUND_FILLED: number;
-                      public static BOX_BACKGROUND_OUTLINE: number;
-                      public static END_ICON_CUSTOM: number;
-                      public static END_ICON_NONE: number;
-                      public static END_ICON_PASSWORD_TOGGLE: number;
-                      public static END_ICON_CLEAR_TEXT: number;
-                      public static END_ICON_DROPDOWN_MENU: number;
-                      public setPlaceholderText(param0: string): void;
-                      public isLayoutRequested(): boolean;
-                      public constructor(param0: globalAndroid.content.Context);
-                      public setCounterOverflowTextColor(param0: globalAndroid.content.res.ColorStateList): void;
-                      /** @deprecated */
-                      public isPasswordVisibilityToggleEnabled(): boolean;
-                      public onNestedPrePerformAccessibilityAction(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.os.Bundle): boolean;
-                      public setEndIconVisible(param0: boolean): void;
-                      public setBoxStrokeErrorColor(param0: globalAndroid.content.res.ColorStateList): void;
-                      public getBoxCornerRadiusBottomEnd(): number;
-                      public isHintAnimationEnabled(): boolean;
-                      public getBoxBackgroundMode(): number;
-                      public setErrorIconTintMode(param0: globalAndroid.graphics.PorterDuff.Mode): void;
-                      public setEndIconDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public setBoxBackgroundColor(param0: number): void;
-                      public setStartIconOnClickListener(param0: globalAndroid.view.View.OnClickListener): void;
-                      public setErrorIconOnClickListener(param0: globalAndroid.view.View.OnClickListener): void;
-                      public setStartIconContentDescription(param0: number): void;
-                      public setHintEnabled(param0: boolean): void;
-                      public setBoxBackgroundMode(param0: number): void;
-                      public removeOnEditTextAttachedListener(param0: com.google.android.material.textfield.TextInputLayout.OnEditTextAttachedListener): void;
-                      public recomputeViewAttributes(param0: globalAndroid.view.View): void;
-                      public setEndIconActivated(param0: boolean): void;
-                      public setCounterEnabled(param0: boolean): void;
-                      /** @deprecated */
-                      public invalidateChildInParent(param0: androidNative.Array<number>, param1: globalAndroid.graphics.Rect): globalAndroid.view.ViewParent;
-                      public setSuffixTextColor(param0: globalAndroid.content.res.ColorStateList): void;
-                      public setStartIconTintList(param0: globalAndroid.content.res.ColorStateList): void;
-                      public onKeyDown(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
-                      public notifySubtreeAccessibilityStateChanged(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
-                      public setPrefixText(param0: string): void;
-                      public keyboardNavigationClusterSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
-                      public setErrorIconOnLongClickListener(param0: globalAndroid.view.View.OnLongClickListener): void;
-                      public setBoxCornerRadii(param0: number, param1: number, param2: number, param3: number): void;
-                      public getBoxStrokeWidthFocused(): number;
-                      public isTextDirectionResolved(): boolean;
-                      public focusSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
-                      public removeOnEndIconChangedListener(param0: com.google.android.material.textfield.TextInputLayout.OnEndIconChangedListener): void;
-                      public setHintTextAppearance(param0: number): void;
-                      public dispatchProvideAutofillStructure(param0: any, param1: number): void;
-                      public getCounterTextColor(): globalAndroid.content.res.ColorStateList;
-                      public setEndIconContentDescription(param0: string): void;
-                      public childDrawableStateChanged(param0: globalAndroid.view.View): void;
-                      public requestFitSystemWindows(): void;
-                      public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number, param3: number);
-                      public updateViewLayout(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
-                      public getParentForAccessibility(): globalAndroid.view.ViewParent;
-                      public setEndIconContentDescription(param0: number): void;
-                      public setEndIconTintMode(param0: globalAndroid.graphics.PorterDuff.Mode): void;
-                      public clearOnEndIconChangedListeners(): void;
-                      public getSuffixTextColor(): globalAndroid.content.res.ColorStateList;
-                      public setEnabled(param0: boolean): void;
-                      public refreshErrorIconDrawableState(): void;
-                      public onNestedScrollAccepted(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
-                      public setBoxCornerRadiiResources(param0: number, param1: number, param2: number, param3: number): void;
-                      public isStartIconVisible(): boolean;
-                      public setCounterMaxLength(param0: number): void;
-                      public onSaveInstanceState(): globalAndroid.os.Parcelable;
-                      public canResolveTextAlignment(): boolean;
-                      public setCounterTextColor(param0: globalAndroid.content.res.ColorStateList): void;
-                      public canResolveLayoutDirection(): boolean;
-                      /** @deprecated */
-                      public passwordVisibilityToggleRequested(param0: boolean): void;
-                      public setBoxBackgroundColorResource(param0: number): void;
-                      public onNestedPreScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: androidNative.Array<number>): void;
-                      public clearChildFocus(param0: globalAndroid.view.View): void;
-                      public requestChildFocus(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
-                      public setStartIconDrawable(param0: number): void;
-                      public onLayout(param0: boolean, param1: number, param2: number, param3: number, param4: number): void;
-                      public getBaseline(): number;
-                      public setErrorTextAppearance(param0: number): void;
-                      public isTextAlignmentResolved(): boolean;
-                      public setEndIconMode(param0: number): void;
-                      public getTypeface(): globalAndroid.graphics.Typeface;
-                      public addView(param0: globalAndroid.view.View, param1: number, param2: number): void;
-                      public getBoxBackgroundColor(): number;
-                      public isCounterEnabled(): boolean;
-                      public showContextMenuForChild(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
-                      public onDescendantInvalidated(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
-                      public getCounterOverflowTextColor(): globalAndroid.content.res.ColorStateList;
-                      public setHintAnimationEnabled(param0: boolean): void;
-                      public onKeyUp(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
-                      public setPlaceholderTextAppearance(param0: number): void;
-                      public getSuffixText(): string;
-                      /** @deprecated */
-                      public setPasswordVisibilityToggleDrawable(param0: number): void;
-                      public setExpandedHintEnabled(param0: boolean): void;
-                      public isLayoutDirectionResolved(): boolean;
-                      public setHintTextColor(param0: globalAndroid.content.res.ColorStateList): void;
-                      public setErrorIconDrawable(param0: number): void;
-                      public onNestedScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: number, param4: number): void;
-                      public setHelperTextEnabled(param0: boolean): void;
-                      public setEndIconTintList(param0: globalAndroid.content.res.ColorStateList): void;
-                      public setEndIconCheckable(param0: boolean): void;
-                      public requestChildRectangleOnScreen(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: boolean): boolean;
-                      public setTextInputAccessibilityDelegate(param0: com.google.android.material.textfield.TextInputLayout.AccessibilityDelegate): void;
-                      public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback, param2: number): globalAndroid.view.ActionMode;
-                      public addOnEditTextAttachedListener(param0: com.google.android.material.textfield.TextInputLayout.OnEditTextAttachedListener): void;
-                      public getBoxStrokeColor(): number;
-                      public setSuffixTextAppearance(param0: number): void;
-                      public getDefaultHintTextColor(): globalAndroid.content.res.ColorStateList;
-                      public onStopNestedScroll(param0: globalAndroid.view.View): void;
-                      public isEndIconCheckable(): boolean;
-                      public setEndIconOnClickListener(param0: globalAndroid.view.View.OnClickListener): void;
-                      public setBoxStrokeWidth(param0: number): void;
-                      public dispatchRestoreInstanceState(param0: globalAndroid.util.SparseArray<globalAndroid.os.Parcelable>): void;
-                      public isHintEnabled(): boolean;
-                      public setEndIconDrawable(param0: number): void;
-                      /** @deprecated */
-                      public setPasswordVisibilityToggleTintList(param0: globalAndroid.content.res.ColorStateList): void;
-                      public requestSendAccessibilityEvent(param0: globalAndroid.view.View, param1: globalAndroid.view.accessibility.AccessibilityEvent): boolean;
-                      public getPlaceholderTextColor(): globalAndroid.content.res.ColorStateList;
-                      /** @deprecated */
-                      public setPasswordVisibilityToggleContentDescription(param0: string): void;
-                      public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number);
-                      /** @deprecated */
-                      public setPasswordVisibilityToggleContentDescription(param0: number): void;
-                      public getErrorIconDrawable(): globalAndroid.graphics.drawable.Drawable;
-                      public setBoxBackgroundColorStateList(param0: globalAndroid.content.res.ColorStateList): void;
-                      public isErrorEnabled(): boolean;
-                      public onStartNestedScroll(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): boolean;
-                      public refreshEndIconDrawableState(): void;
-                      /** @deprecated */
-                      public setPasswordVisibilityToggleTintMode(param0: globalAndroid.graphics.PorterDuff.Mode): void;
-                      public getHint(): string;
-                      public childHasTransientStateChanged(param0: globalAndroid.view.View, param1: boolean): void;
-                      public isProvidingHint(): boolean;
-                      public setStartIconTintMode(param0: globalAndroid.graphics.PorterDuff.Mode): void;
-                      public setStartIconCheckable(param0: boolean): void;
-                      public onMeasure(param0: number, param1: number): void;
-                      public getTextDirection(): number;
-                      public setDefaultHintTextColor(param0: globalAndroid.content.res.ColorStateList): void;
-                      public onKeyMultiple(param0: number, param1: number, param2: globalAndroid.view.KeyEvent): boolean;
-                      public getChildVisibleRect(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: globalAndroid.graphics.Point): boolean;
-                      public refreshStartIconDrawableState(): void;
-                      public setBoxStrokeWidthFocused(param0: number): void;
-                      public getErrorCurrentTextColors(): number;
-                      public setStartIconVisible(param0: boolean): void;
-                      public isEndIconVisible(): boolean;
-                      public setStartIconOnLongClickListener(param0: globalAndroid.view.View.OnLongClickListener): void;
-                      public canResolveTextDirection(): boolean;
-                      public requestDisallowInterceptTouchEvent(param0: boolean): void;
-                      public addView(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
-                      public getEditText(): globalAndroid.widget.EditText;
-                      public onKeyLongPress(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
-                      public getPlaceholderText(): string;
-                      public setErrorIconTintList(param0: globalAndroid.content.res.ColorStateList): void;
-                      /** @deprecated */
-                      public getPasswordVisibilityToggleDrawable(): globalAndroid.graphics.drawable.Drawable;
-                      public requestLayout(): void;
-                      public addView(param0: globalAndroid.view.View, param1: number): void;
-                      public bringChildToFront(param0: globalAndroid.view.View): void;
-                      public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback): globalAndroid.view.ActionMode;
-                      public setTypeface(param0: globalAndroid.graphics.Typeface): void;
-                      public setErrorTextColor(param0: globalAndroid.content.res.ColorStateList): void;
-                      /** @deprecated */
-                      public requestFitSystemWindows(): void;
-                      public isExpandedHintEnabled(): boolean;
-                      public requestTransparentRegion(param0: globalAndroid.view.View): void;
-                      public addView(param0: globalAndroid.view.View): void;
-                      public getErrorContentDescription(): string;
-                      public getEndIconContentDescription(): string;
-                      public createContextMenu(param0: globalAndroid.view.ContextMenu): void;
-                      public setBoxStrokeWidthResource(param0: number): void;
-                      public addOnEndIconChangedListener(param0: com.google.android.material.textfield.TextInputLayout.OnEndIconChangedListener): void;
-                      public setCounterTextAppearance(param0: number): void;
-                      public getBoxCornerRadiusTopStart(): number;
-                      public getHintTextColor(): globalAndroid.content.res.ColorStateList;
-                      public setHelperTextColor(param0: globalAndroid.content.res.ColorStateList): void;
-                      public getTextAlignment(): number;
-                      public getPrefixTextView(): globalAndroid.widget.TextView;
-                      public getPrefixText(): string;
-                      public isHelperTextEnabled(): boolean;
-                      public getBoxStrokeWidth(): number;
-                      public getParent(): globalAndroid.view.ViewParent;
-                      public getLayoutDirection(): number;
-                      public getStartIconContentDescription(): string;
-                      public setHelperText(param0: string): void;
-                      public sendAccessibilityEvent(param0: number): void;
-                      public sendAccessibilityEventUnchecked(param0: globalAndroid.view.accessibility.AccessibilityEvent): void;
-                      public getCounterMaxLength(): number;
-                      public getEndIconMode(): number;
-                      /** @deprecated */
-                      public invalidateChild(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect): void;
-                      public setStartIconContentDescription(param0: string): void;
-                      public setEndIconOnLongClickListener(param0: globalAndroid.view.View.OnLongClickListener): void;
-                      /** @deprecated */
-                      public setPasswordVisibilityToggleDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public onNestedFling(param0: globalAndroid.view.View, param1: number, param2: number, param3: boolean): boolean;
-                      public setBoxStrokeColor(param0: number): void;
-                      public setHelperTextTextAppearance(param0: number): void;
-                      public removeView(param0: globalAndroid.view.View): void;
-                      public getBoxCornerRadiusTopEnd(): number;
-                      public setErrorIconDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public getPlaceholderTextAppearance(): number;
-                      public setPlaceholderTextColor(param0: globalAndroid.content.res.ColorStateList): void;
-                      public showContextMenuForChild(param0: globalAndroid.view.View): boolean;
-                      public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public draw(param0: globalAndroid.graphics.Canvas): void;
-                      public getError(): string;
-                      public setBoxStrokeWidthFocusedResource(param0: number): void;
-                      public getPrefixTextColor(): globalAndroid.content.res.ColorStateList;
-                      public setErrorEnabled(param0: boolean): void;
-                      public setHint(param0: string): void;
-                      public getSuffixTextView(): globalAndroid.widget.TextView;
-                      public setErrorContentDescription(param0: string): void;
-                      public invalidateDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public getBoxCornerRadiusBottomStart(): number;
-                      public setCounterOverflowTextAppearance(param0: number): void;
-                      public setError(param0: string): void;
-                      public setPrefixTextAppearance(param0: number): void;
-                      public drawableStateChanged(): void;
-                      public getHelperText(): string;
-                      public addView(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.view.ViewGroup.LayoutParams): void;
-                      /** @deprecated */
-                      public getPasswordVisibilityToggleContentDescription(): string;
-                      public getHelperTextCurrentTextColor(): number;
-                      public onNestedPreFling(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
-                      public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
-                      public setSuffixText(param0: string): void;
-                      public setHint(param0: number): void;
-                      public setStartIconDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
-                      public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable): void;
-                      public getStartIconDrawable(): globalAndroid.graphics.drawable.Drawable;
-                      public isStartIconCheckable(): boolean;
-                      public scheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable, param2: number): void;
-                      /** @deprecated */
-                      public setPasswordVisibilityToggleEnabled(param0: boolean): void;
-                      public focusableViewAvailable(param0: globalAndroid.view.View): void;
-                      public focusSearch(param0: number): globalAndroid.view.View;
-                      public setPrefixTextColor(param0: globalAndroid.content.res.ColorStateList): void;
-                      public getEndIconDrawable(): globalAndroid.graphics.drawable.Drawable;
-                      public clearOnEditTextAttachedListeners(): void;
-                      public setBoxStrokeColorStateList(param0: globalAndroid.content.res.ColorStateList): void;
-                      public onRestoreInstanceState(param0: globalAndroid.os.Parcelable): void;
-                      public getBoxStrokeErrorColor(): globalAndroid.content.res.ColorStateList;
-                  }
-                  export namespace TextInputLayout {
-                      export class comgoogleandroidmaterialtextfieldTextInputLayoutAccessibilityDelegate extends androidx.core.view.AccessibilityDelegateCompat {
-                          public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout.AccessibilityDelegate>;
-                          public constructor();
-                          public constructor(param0: com.google.android.material.textfield.TextInputLayout);
-                          public onInitializeAccessibilityNodeInfo(param0: globalAndroid.view.View, param1: androidx.core.view.accessibility.AccessibilityNodeInfoCompat): void;
-                          public constructor(param0: any);
-                      }
-                      export type AccessibilityDelegate = comgoogleandroidmaterialtextfieldTextInputLayoutAccessibilityDelegate
-                      export class BoxBackgroundMode extends java.lang.Object implements java.lang.annotation.Annotation {
-                          public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout.BoxBackgroundMode>;
-                          /**
-                           * Constructs a new instance of the com.google.android.material.textfield.TextInputLayout$BoxBackgroundMode interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
-                           */
-                          public constructor(implementation: {
-                              equals(param0: any): boolean;
-                              hashCode(): number;
-                              toString(): string;
-                              annotationType(): java.lang.Class<any>;
-                          });
-                          public constructor();
-                          public hashCode(): number;
-                          public annotationType(): java.lang.Class<any>;
-                          public toString(): string;
-                          public equals(param0: any): boolean;
-                      }
-                      export class EndIconMode extends java.lang.Object implements java.lang.annotation.Annotation {
-                          public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout.EndIconMode>;
-                          /**
-                           * Constructs a new instance of the com.google.android.material.textfield.TextInputLayout$EndIconMode interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
-                           */
-                          public constructor(implementation: {
-                              equals(param0: any): boolean;
-                              hashCode(): number;
-                              toString(): string;
-                              annotationType(): java.lang.Class<any>;
-                          });
-                          public constructor();
-                          public hashCode(): number;
-                          public annotationType(): java.lang.Class<any>;
-                          public toString(): string;
-                          public equals(param0: any): boolean;
-                      }
-                      export class OnEditTextAttachedListener extends java.lang.Object {
-                          public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout.OnEditTextAttachedListener>;
-                          /**
-                           * Constructs a new instance of the com.google.android.material.textfield.TextInputLayout$OnEditTextAttachedListener interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
-                           */
-                          public constructor(implementation: {
-                              onEditTextAttached(param0: com.google.android.material.textfield.TextInputLayout): void;
-                          });
-                          public constructor();
-                          public onEditTextAttached(param0: com.google.android.material.textfield.TextInputLayout): void;
-                      }
-                      export class OnEndIconChangedListener extends java.lang.Object {
-                          public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout.OnEndIconChangedListener>;
-                          /**
-                           * Constructs a new instance of the com.google.android.material.textfield.TextInputLayout$OnEndIconChangedListener interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
-                           */
-                          public constructor(implementation: {
-                              onEndIconChanged(param0: com.google.android.material.textfield.TextInputLayout, param1: number): void;
-                          });
-                          public constructor();
-                          public onEndIconChanged(param0: com.google.android.material.textfield.TextInputLayout, param1: number): void;
-                      }
-                      export class SavedState extends androidx.customview.view.AbsSavedState {
-                          public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout.SavedState>;
-                          public static CREATOR: globalAndroid.os.Parcelable.Creator<com.google.android.material.textfield.TextInputLayout.SavedState>;
-                          public writeToParcel(param0: globalAndroid.os.Parcel, param1: number): void;
-                          public describeContents(): number;
-                          public toString(): string;
-                      }
-                  }
-              }
-          }
-      }
-  }
+    export namespace google {
+        export namespace android {
+            export namespace material {
+                export namespace textfield {
+                    export class TextInputLayout extends globalAndroid.widget.LinearLayout {
+                        public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout>;
+                        public static BOX_BACKGROUND_NONE: number;
+                        public static BOX_BACKGROUND_FILLED: number;
+                        public static BOX_BACKGROUND_OUTLINE: number;
+                        public static END_ICON_CUSTOM: number;
+                        public static END_ICON_NONE: number;
+                        public static END_ICON_PASSWORD_TOGGLE: number;
+                        public static END_ICON_CLEAR_TEXT: number;
+                        public static END_ICON_DROPDOWN_MENU: number;
+                        public setPlaceholderText(param0: string): void;
+                        public isLayoutRequested(): boolean;
+                        public constructor(param0: globalAndroid.content.Context);
+                        public setCounterOverflowTextColor(param0: globalAndroid.content.res.ColorStateList): void;
+                        /** @deprecated */
+                        public isPasswordVisibilityToggleEnabled(): boolean;
+                        public onNestedPrePerformAccessibilityAction(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.os.Bundle): boolean;
+                        public setEndIconVisible(param0: boolean): void;
+                        public setBoxStrokeErrorColor(param0: globalAndroid.content.res.ColorStateList): void;
+                        public getBoxCornerRadiusBottomEnd(): number;
+                        public isHintAnimationEnabled(): boolean;
+                        public getBoxBackgroundMode(): number;
+                        public setErrorIconTintMode(param0: globalAndroid.graphics.PorterDuff.Mode): void;
+                        public setEndIconDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public setBoxBackgroundColor(param0: number): void;
+                        public setStartIconOnClickListener(param0: globalAndroid.view.View.OnClickListener): void;
+                        public setErrorIconOnClickListener(param0: globalAndroid.view.View.OnClickListener): void;
+                        public setStartIconContentDescription(param0: number): void;
+                        public setHintEnabled(param0: boolean): void;
+                        public setBoxBackgroundMode(param0: number): void;
+                        public removeOnEditTextAttachedListener(param0: com.google.android.material.textfield.TextInputLayout.OnEditTextAttachedListener): void;
+                        public recomputeViewAttributes(param0: globalAndroid.view.View): void;
+                        public setEndIconActivated(param0: boolean): void;
+                        public setCounterEnabled(param0: boolean): void;
+                        /** @deprecated */
+                        public invalidateChildInParent(param0: androidNative.Array<number>, param1: globalAndroid.graphics.Rect): globalAndroid.view.ViewParent;
+                        public setSuffixTextColor(param0: globalAndroid.content.res.ColorStateList): void;
+                        public setStartIconTintList(param0: globalAndroid.content.res.ColorStateList): void;
+                        public onKeyDown(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+                        public notifySubtreeAccessibilityStateChanged(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
+                        public setPrefixText(param0: string): void;
+                        public keyboardNavigationClusterSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
+                        public setErrorIconOnLongClickListener(param0: globalAndroid.view.View.OnLongClickListener): void;
+                        public setBoxCornerRadii(param0: number, param1: number, param2: number, param3: number): void;
+                        public getBoxStrokeWidthFocused(): number;
+                        public isTextDirectionResolved(): boolean;
+                        public focusSearch(param0: globalAndroid.view.View, param1: number): globalAndroid.view.View;
+                        public removeOnEndIconChangedListener(param0: com.google.android.material.textfield.TextInputLayout.OnEndIconChangedListener): void;
+                        public setHintTextAppearance(param0: number): void;
+                        public dispatchProvideAutofillStructure(param0: any, param1: number): void;
+                        public getCounterTextColor(): globalAndroid.content.res.ColorStateList;
+                        public setEndIconContentDescription(param0: string): void;
+                        public childDrawableStateChanged(param0: globalAndroid.view.View): void;
+                        public requestFitSystemWindows(): void;
+                        public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number, param3: number);
+                        public updateViewLayout(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
+                        public getParentForAccessibility(): globalAndroid.view.ViewParent;
+                        public setEndIconContentDescription(param0: number): void;
+                        public setEndIconTintMode(param0: globalAndroid.graphics.PorterDuff.Mode): void;
+                        public clearOnEndIconChangedListeners(): void;
+                        public getSuffixTextColor(): globalAndroid.content.res.ColorStateList;
+                        public setEnabled(param0: boolean): void;
+                        public refreshErrorIconDrawableState(): void;
+                        public onNestedScrollAccepted(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): void;
+                        public setBoxCornerRadiiResources(param0: number, param1: number, param2: number, param3: number): void;
+                        public isStartIconVisible(): boolean;
+                        public setCounterMaxLength(param0: number): void;
+                        public onSaveInstanceState(): globalAndroid.os.Parcelable;
+                        public canResolveTextAlignment(): boolean;
+                        public setCounterTextColor(param0: globalAndroid.content.res.ColorStateList): void;
+                        public canResolveLayoutDirection(): boolean;
+                        /** @deprecated */
+                        public passwordVisibilityToggleRequested(param0: boolean): void;
+                        public setBoxBackgroundColorResource(param0: number): void;
+                        public onNestedPreScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: androidNative.Array<number>): void;
+                        public clearChildFocus(param0: globalAndroid.view.View): void;
+                        public requestChildFocus(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
+                        public setStartIconDrawable(param0: number): void;
+                        public onLayout(param0: boolean, param1: number, param2: number, param3: number, param4: number): void;
+                        public getBaseline(): number;
+                        public setErrorTextAppearance(param0: number): void;
+                        public isTextAlignmentResolved(): boolean;
+                        public setEndIconMode(param0: number): void;
+                        public getTypeface(): globalAndroid.graphics.Typeface;
+                        public addView(param0: globalAndroid.view.View, param1: number, param2: number): void;
+                        public getBoxBackgroundColor(): number;
+                        public isCounterEnabled(): boolean;
+                        public showContextMenuForChild(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
+                        public onDescendantInvalidated(param0: globalAndroid.view.View, param1: globalAndroid.view.View): void;
+                        public getCounterOverflowTextColor(): globalAndroid.content.res.ColorStateList;
+                        public setHintAnimationEnabled(param0: boolean): void;
+                        public onKeyUp(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+                        public setPlaceholderTextAppearance(param0: number): void;
+                        public getSuffixText(): string;
+                        /** @deprecated */
+                        public setPasswordVisibilityToggleDrawable(param0: number): void;
+                        public setExpandedHintEnabled(param0: boolean): void;
+                        public isLayoutDirectionResolved(): boolean;
+                        public setHintTextColor(param0: globalAndroid.content.res.ColorStateList): void;
+                        public setErrorIconDrawable(param0: number): void;
+                        public onNestedScroll(param0: globalAndroid.view.View, param1: number, param2: number, param3: number, param4: number): void;
+                        public setHelperTextEnabled(param0: boolean): void;
+                        public setEndIconTintList(param0: globalAndroid.content.res.ColorStateList): void;
+                        public setEndIconCheckable(param0: boolean): void;
+                        public requestChildRectangleOnScreen(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: boolean): boolean;
+                        public setTextInputAccessibilityDelegate(param0: com.google.android.material.textfield.TextInputLayout.AccessibilityDelegate): void;
+                        public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback, param2: number): globalAndroid.view.ActionMode;
+                        public addOnEditTextAttachedListener(param0: com.google.android.material.textfield.TextInputLayout.OnEditTextAttachedListener): void;
+                        public getBoxStrokeColor(): number;
+                        public setSuffixTextAppearance(param0: number): void;
+                        public getDefaultHintTextColor(): globalAndroid.content.res.ColorStateList;
+                        public onStopNestedScroll(param0: globalAndroid.view.View): void;
+                        public isEndIconCheckable(): boolean;
+                        public setEndIconOnClickListener(param0: globalAndroid.view.View.OnClickListener): void;
+                        public setBoxStrokeWidth(param0: number): void;
+                        public dispatchRestoreInstanceState(param0: globalAndroid.util.SparseArray<globalAndroid.os.Parcelable>): void;
+                        public isHintEnabled(): boolean;
+                        public setEndIconDrawable(param0: number): void;
+                        /** @deprecated */
+                        public setPasswordVisibilityToggleTintList(param0: globalAndroid.content.res.ColorStateList): void;
+                        public requestSendAccessibilityEvent(param0: globalAndroid.view.View, param1: globalAndroid.view.accessibility.AccessibilityEvent): boolean;
+                        public getPlaceholderTextColor(): globalAndroid.content.res.ColorStateList;
+                        /** @deprecated */
+                        public setPasswordVisibilityToggleContentDescription(param0: string): void;
+                        public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number);
+                        /** @deprecated */
+                        public setPasswordVisibilityToggleContentDescription(param0: number): void;
+                        public getErrorIconDrawable(): globalAndroid.graphics.drawable.Drawable;
+                        public setBoxBackgroundColorStateList(param0: globalAndroid.content.res.ColorStateList): void;
+                        public isErrorEnabled(): boolean;
+                        public onStartNestedScroll(param0: globalAndroid.view.View, param1: globalAndroid.view.View, param2: number): boolean;
+                        public refreshEndIconDrawableState(): void;
+                        /** @deprecated */
+                        public setPasswordVisibilityToggleTintMode(param0: globalAndroid.graphics.PorterDuff.Mode): void;
+                        public getHint(): string;
+                        public childHasTransientStateChanged(param0: globalAndroid.view.View, param1: boolean): void;
+                        public isProvidingHint(): boolean;
+                        public setStartIconTintMode(param0: globalAndroid.graphics.PorterDuff.Mode): void;
+                        public setStartIconCheckable(param0: boolean): void;
+                        public onMeasure(param0: number, param1: number): void;
+                        public getTextDirection(): number;
+                        public setDefaultHintTextColor(param0: globalAndroid.content.res.ColorStateList): void;
+                        public onKeyMultiple(param0: number, param1: number, param2: globalAndroid.view.KeyEvent): boolean;
+                        public getChildVisibleRect(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect, param2: globalAndroid.graphics.Point): boolean;
+                        public refreshStartIconDrawableState(): void;
+                        public setBoxStrokeWidthFocused(param0: number): void;
+                        public getErrorCurrentTextColors(): number;
+                        public setStartIconVisible(param0: boolean): void;
+                        public isEndIconVisible(): boolean;
+                        public setStartIconOnLongClickListener(param0: globalAndroid.view.View.OnLongClickListener): void;
+                        public canResolveTextDirection(): boolean;
+                        public requestDisallowInterceptTouchEvent(param0: boolean): void;
+                        public addView(param0: globalAndroid.view.View, param1: globalAndroid.view.ViewGroup.LayoutParams): void;
+                        public getEditText(): globalAndroid.widget.EditText;
+                        public onKeyLongPress(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+                        public getPlaceholderText(): string;
+                        public setErrorIconTintList(param0: globalAndroid.content.res.ColorStateList): void;
+                        /** @deprecated */
+                        public getPasswordVisibilityToggleDrawable(): globalAndroid.graphics.drawable.Drawable;
+                        public requestLayout(): void;
+                        public addView(param0: globalAndroid.view.View, param1: number): void;
+                        public bringChildToFront(param0: globalAndroid.view.View): void;
+                        public startActionModeForChild(param0: globalAndroid.view.View, param1: globalAndroid.view.ActionMode.Callback): globalAndroid.view.ActionMode;
+                        public setTypeface(param0: globalAndroid.graphics.Typeface): void;
+                        public setErrorTextColor(param0: globalAndroid.content.res.ColorStateList): void;
+                        /** @deprecated */
+                        public requestFitSystemWindows(): void;
+                        public isExpandedHintEnabled(): boolean;
+                        public requestTransparentRegion(param0: globalAndroid.view.View): void;
+                        public addView(param0: globalAndroid.view.View): void;
+                        public getErrorContentDescription(): string;
+                        public getEndIconContentDescription(): string;
+                        public createContextMenu(param0: globalAndroid.view.ContextMenu): void;
+                        public setBoxStrokeWidthResource(param0: number): void;
+                        public addOnEndIconChangedListener(param0: com.google.android.material.textfield.TextInputLayout.OnEndIconChangedListener): void;
+                        public setCounterTextAppearance(param0: number): void;
+                        public getBoxCornerRadiusTopStart(): number;
+                        public getHintTextColor(): globalAndroid.content.res.ColorStateList;
+                        public setHelperTextColor(param0: globalAndroid.content.res.ColorStateList): void;
+                        public getTextAlignment(): number;
+                        public getPrefixTextView(): globalAndroid.widget.TextView;
+                        public getPrefixText(): string;
+                        public isHelperTextEnabled(): boolean;
+                        public getBoxStrokeWidth(): number;
+                        public getParent(): globalAndroid.view.ViewParent;
+                        public getLayoutDirection(): number;
+                        public getStartIconContentDescription(): string;
+                        public setHelperText(param0: string): void;
+                        public sendAccessibilityEvent(param0: number): void;
+                        public sendAccessibilityEventUnchecked(param0: globalAndroid.view.accessibility.AccessibilityEvent): void;
+                        public getCounterMaxLength(): number;
+                        public getEndIconMode(): number;
+                        /** @deprecated */
+                        public invalidateChild(param0: globalAndroid.view.View, param1: globalAndroid.graphics.Rect): void;
+                        public setStartIconContentDescription(param0: string): void;
+                        public setEndIconOnLongClickListener(param0: globalAndroid.view.View.OnLongClickListener): void;
+                        /** @deprecated */
+                        public setPasswordVisibilityToggleDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public onNestedFling(param0: globalAndroid.view.View, param1: number, param2: number, param3: boolean): boolean;
+                        public setBoxStrokeColor(param0: number): void;
+                        public setHelperTextTextAppearance(param0: number): void;
+                        public removeView(param0: globalAndroid.view.View): void;
+                        public getBoxCornerRadiusTopEnd(): number;
+                        public setErrorIconDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public getPlaceholderTextAppearance(): number;
+                        public setPlaceholderTextColor(param0: globalAndroid.content.res.ColorStateList): void;
+                        public showContextMenuForChild(param0: globalAndroid.view.View): boolean;
+                        public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public draw(param0: globalAndroid.graphics.Canvas): void;
+                        public getError(): string;
+                        public setBoxStrokeWidthFocusedResource(param0: number): void;
+                        public getPrefixTextColor(): globalAndroid.content.res.ColorStateList;
+                        public setErrorEnabled(param0: boolean): void;
+                        public setHint(param0: string): void;
+                        public getSuffixTextView(): globalAndroid.widget.TextView;
+                        public setErrorContentDescription(param0: string): void;
+                        public invalidateDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public getBoxCornerRadiusBottomStart(): number;
+                        public setCounterOverflowTextAppearance(param0: number): void;
+                        public setError(param0: string): void;
+                        public setPrefixTextAppearance(param0: number): void;
+                        public drawableStateChanged(): void;
+                        public getHelperText(): string;
+                        public addView(param0: globalAndroid.view.View, param1: number, param2: globalAndroid.view.ViewGroup.LayoutParams): void;
+                        /** @deprecated */
+                        public getPasswordVisibilityToggleContentDescription(): string;
+                        public getHelperTextCurrentTextColor(): number;
+                        public onNestedPreFling(param0: globalAndroid.view.View, param1: number, param2: number): boolean;
+                        public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
+                        public setSuffixText(param0: string): void;
+                        public setHint(param0: number): void;
+                        public setStartIconDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+                        public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable): void;
+                        public getStartIconDrawable(): globalAndroid.graphics.drawable.Drawable;
+                        public isStartIconCheckable(): boolean;
+                        public scheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable, param2: number): void;
+                        /** @deprecated */
+                        public setPasswordVisibilityToggleEnabled(param0: boolean): void;
+                        public focusableViewAvailable(param0: globalAndroid.view.View): void;
+                        public focusSearch(param0: number): globalAndroid.view.View;
+                        public setPrefixTextColor(param0: globalAndroid.content.res.ColorStateList): void;
+                        public getEndIconDrawable(): globalAndroid.graphics.drawable.Drawable;
+                        public clearOnEditTextAttachedListeners(): void;
+                        public setBoxStrokeColorStateList(param0: globalAndroid.content.res.ColorStateList): void;
+                        public onRestoreInstanceState(param0: globalAndroid.os.Parcelable): void;
+                        public getBoxStrokeErrorColor(): globalAndroid.content.res.ColorStateList;
+                    }
+                    export namespace TextInputLayout {
+                        export class comgoogleandroidmaterialtextfieldTextInputLayoutAccessibilityDelegate extends androidx.core.view.AccessibilityDelegateCompat {
+                            public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout.AccessibilityDelegate>;
+                            public constructor();
+                            public constructor(param0: com.google.android.material.textfield.TextInputLayout);
+                            public onInitializeAccessibilityNodeInfo(param0: globalAndroid.view.View, param1: androidx.core.view.accessibility.AccessibilityNodeInfoCompat): void;
+                            public constructor(param0: any);
+                        }
+                        export type AccessibilityDelegate = comgoogleandroidmaterialtextfieldTextInputLayoutAccessibilityDelegate
+                        export class BoxBackgroundMode extends java.lang.Object implements java.lang.annotation.Annotation {
+                            public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout.BoxBackgroundMode>;
+                            /**
+                             * Constructs a new instance of the com.google.android.material.textfield.TextInputLayout$BoxBackgroundMode interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+                             */
+                            public constructor(implementation: {
+                                equals(param0: any): boolean;
+                                hashCode(): number;
+                                toString(): string;
+                                annotationType(): java.lang.Class<any>;
+                            });
+                            public constructor();
+                            public hashCode(): number;
+                            public annotationType(): java.lang.Class<any>;
+                            public toString(): string;
+                            public equals(param0: any): boolean;
+                        }
+                        export class EndIconMode extends java.lang.Object implements java.lang.annotation.Annotation {
+                            public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout.EndIconMode>;
+                            /**
+                             * Constructs a new instance of the com.google.android.material.textfield.TextInputLayout$EndIconMode interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+                             */
+                            public constructor(implementation: {
+                                equals(param0: any): boolean;
+                                hashCode(): number;
+                                toString(): string;
+                                annotationType(): java.lang.Class<any>;
+                            });
+                            public constructor();
+                            public hashCode(): number;
+                            public annotationType(): java.lang.Class<any>;
+                            public toString(): string;
+                            public equals(param0: any): boolean;
+                        }
+                        export class OnEditTextAttachedListener extends java.lang.Object {
+                            public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout.OnEditTextAttachedListener>;
+                            /**
+                             * Constructs a new instance of the com.google.android.material.textfield.TextInputLayout$OnEditTextAttachedListener interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+                             */
+                            public constructor(implementation: {
+                                onEditTextAttached(param0: com.google.android.material.textfield.TextInputLayout): void;
+                            });
+                            public constructor();
+                            public onEditTextAttached(param0: com.google.android.material.textfield.TextInputLayout): void;
+                        }
+                        export class OnEndIconChangedListener extends java.lang.Object {
+                            public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout.OnEndIconChangedListener>;
+                            /**
+                             * Constructs a new instance of the com.google.android.material.textfield.TextInputLayout$OnEndIconChangedListener interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+                             */
+                            public constructor(implementation: {
+                                onEndIconChanged(param0: com.google.android.material.textfield.TextInputLayout, param1: number): void;
+                            });
+                            public constructor();
+                            public onEndIconChanged(param0: com.google.android.material.textfield.TextInputLayout, param1: number): void;
+                        }
+                        export class SavedState extends androidx.customview.view.AbsSavedState {
+                            public static class: java.lang.Class<com.google.android.material.textfield.TextInputLayout.SavedState>;
+                            public static CREATOR: globalAndroid.os.Parcelable.Creator<com.google.android.material.textfield.TextInputLayout.SavedState>;
+                            public writeToParcel(param0: globalAndroid.os.Parcel, param1: number): void;
+                            public describeContents(): number;
+                            public toString(): string;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 declare module com {

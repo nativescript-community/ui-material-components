@@ -1,0 +1,79 @@
+{
+    "name": "@nativescript-community/template-snippet",
+    "version": "0.0.1",
+    "dependencies": {
+        "@nativescript-community/ui-material-activityindicator": "file:../packages/activityindicator",
+        "@nativescript-community/ui-material-bottom-navigation": "file:../packages/bottom-navigation",
+        "@nativescript-community/ui-material-bottomnavigationbar": "file:../packages/bottomnavigationbar",
+        "@nativescript-community/ui-material-bottomsheet": "file:../packages/bottomsheet",
+        "@nativescript-community/ui-material-button": "file:../packages/button",
+        "@nativescript-community/ui-material-cardview": "file:../packages/cardview",
+        "@nativescript-community/ui-material-core": "file:../packages/core",
+        "@nativescript-community/ui-material-dialogs": "file:../packages/dialogs",
+        "@nativescript-community/ui-material-floatingactionbutton": "file:../packages/floatingactionbutton",
+        "@nativescript-community/ui-material-progress": "file:../packages/progress",
+        "@nativescript-community/ui-material-ripple": "file:../packages/ripple",
+        "@nativescript-community/ui-material-slider": "file:../packages/slider",
+        "@nativescript-community/ui-material-snackbar": "file:../packages/snackbar",
+        "@nativescript-community/ui-material-speeddial": "file:../packages/speeddial",
+        "@nativescript-community/ui-material-tabs": "file:../packages/tabs",
+        "@nativescript-community/ui-material-textfield": "file:../packages/textfield",
+        "@nativescript-community/ui-material-textview": "file:../packages/textview",
+        "@mdi/font": "6.5.95"
+    },
+    "devDependencies": {
+        "nativescript-vue-template-compiler": "~2.9.0",
+        "scss-symbols-parser": "^2.0.1",
+        "string-replace-loader": "^3.1.0"
+    },
+    "dependenciesMeta": {
+        "@nativescript-community/ui-material-activityindicator": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-bottom-navigation": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-bottomnavigationbar": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-button": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-cardview": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-core": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-dialogs": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-floatingactionbutton": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-progress": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-ripple": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-slider": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-snackbar": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-speeddial": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-tabs": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-textfield": {
+            "injected": true
+        },
+        "@nativescript-community/ui-material-textview": {
+            "injected": true
+        }
+    }
+}

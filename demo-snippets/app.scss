@@ -1,0 +1,99 @@
+.mdi {
+    font-family: $mdi-fontFamily;
+}
+
+label {
+    color: black;
+    .ns-dark & {
+        color: red;
+    }
+}
+mdbutton,
+MDFloatingActionButton,
+MDCardView {
+    shape: cut;
+}
+// page {
+//     background-color: black;
+// }
+
+.falseFAb {
+    elevation: 6;
+    font-size: 26;
+    border-radius: 28;
+    width: 56;
+    height: 56;
+    margin: 16;
+}
+bottomnavigationbar {
+    active-color: #1b1edb;
+    inactive-color: #683131;
+    background-color: #ddd;
+    badge-color: green;
+    badge-text-color: yellow;
+}
+
+.buttonYellow {
+    background-color: yellow;
+}
+
+.item-with-border {
+    height: 50;
+    border-bottom-color: green;
+    border-bottom-width: 2;
+}
+
+.cardviewtest {
+    border-color: green;
+    border-width: 4;
+    border-radius: 20;
+    ripple-color: blue;
+    elevation: 5;
+    background-color: lightgray;
+}
+
+.cardView {
+    margin: 20;
+    border-radius: 2;
+    elevation: 2;
+    dynamic-elevation-offset: 5;
+    ripple-color: red;
+    background-color: white;
+}
+
+.md-textfield-outline {
+    floating-color: blue;
+    floating-inactive-color: yellow;
+    stroke-color: green;
+    stroke-inactive-color: red;
+    placeholder-color: #757575;
+}
+
+MDTabs {
+    /* color: gold; */
+}
+
+MDTabContentItem.special {
+    color: green;
+}
+
+MDTabStrip {
+    color: skyblue;
+    selected-item-color: brown;
+    // un-selected-item-color: orange;
+    highlight-color: yellow;
+    background-color: green;
+}
+
+MDTabStripItem.special {
+    color: teal;
+}
+
+MDTabStripItem.nested {
+    color: teal;
+}
+
+MDTabStripItem:highlighted {
+    background-color: red;
+    color: purple;
+}

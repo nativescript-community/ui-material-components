@@ -3,7 +3,6 @@ import { PRIMARY_COLOR, TabNavigation } from '@nativescript-community/ui-materia
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 import { CSSType, Color, Utils } from '@nativescript/core';
-import { selectedIndexProperty } from '@nativescript/core/ui/list-picker/list-picker-common';
 export { TabContentItem, TabStrip, TabStripItem };
 
 interface BottomNavigationBar extends com.nativescript.material.core.BottomNavigationBar {

@@ -1,3 +1,6 @@
+import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
+import { themer } from '@nativescript-community/ui-material-core';
+import { getColorStateList, getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
 import {
     counterMaxLengthProperty,
     errorColorProperty,
@@ -17,7 +20,6 @@ import {
     CoreTypes,
     Font,
     Length,
-    LengthType,
     Utils,
     backgroundInternalProperty,
     borderBottomLeftRadiusProperty,
@@ -31,11 +33,7 @@ import {
     textAlignmentProperty
 } from '@nativescript/core';
 import { TextViewBase } from './textview.common';
-import { getColorStateList, getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
-import { themer } from '@nativescript-community/ui-material-core';
-import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 
-let LayoutInflater: typeof android.view.LayoutInflater;
 let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
 let filledId;
 let outlineId;
@@ -161,14 +159,15 @@ export class TextView extends TextViewBase {
     }
 
     public requestFocus() {
-        if (this.layoutView) {
+        const layoutView = this.layoutView;
+        if (layoutView) {
             // because of setFocusableInTouchMode fix we need this for focus to work
-            const oldDesc = this.layoutView.getDescendantFocusability();
-            this.layoutView.setDescendantFocusability(android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS);
+            const oldDesc = layoutView.getDescendantFocusability();
+            layoutView.setDescendantFocusability(android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS);
             // }
-            this.layoutView.requestFocus();
+            layoutView.requestFocus();
             setTimeout(() => {
-                this.layoutView.setDescendantFocusability(oldDesc);
+                layoutView.setDescendantFocusability(oldDesc);
                 Utils.android.showSoftInput(this.nativeTextViewProtected);
                 // this.focus();
             }, 0);
@@ -198,13 +197,15 @@ export class TextView extends TextViewBase {
         (this.layoutView as any).setHelperText(value ? value : null);
     }
     [errorProperty.setNative](value: string) {
-        this.layoutView.setError(value ? value : null);
-        this.layoutView.setErrorEnabled(!!value);
+        const layoutView = this.layoutView;
+        layoutView.setError(value ? value : null);
+        layoutView.setErrorEnabled(!!value);
     }
 
     [counterMaxLengthProperty.setNative](value: number) {
-        this.layoutView.setCounterEnabled(value > 0);
-        this.layoutView.setCounterMaxLength(value);
+        const layoutView = this.layoutView;
+        layoutView.setCounterEnabled(value > 0);
+        layoutView.setCounterMaxLength(value);
     }
 
     [floatingProperty.setNative](value: boolean) {
@@ -213,35 +214,47 @@ export class TextView extends TextViewBase {
 
     [strokeInactiveColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
-        if (this.layoutView.setBoxStrokeColorStateList) {
-            const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
+        const layoutView = this.layoutView;
+        // TODO: find why it fails in cli build
+        //@ts-ignore
+        if (layoutView.setBoxStrokeColorStateList) {
+            const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : layoutView.getBoxStrokeColor();
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
             const colorStateList = getFullColorStateList(activeColor, color, disabledColor);
-            this.layoutView.setBoxStrokeColorStateList(colorStateList);
+            //@ts-ignore
+            layoutView.setBoxStrokeColorStateList(colorStateList);
         }
     }
 
     [strokeDisabledColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
-        if (this.layoutView.setBoxStrokeColorStateList) {
-            const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
+        const layoutView = this.layoutView;
+        // TODO: find why it fails in cli build
+        //@ts-ignore
+        if (layoutView.setBoxStrokeColorStateList) {
+            const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : layoutView.getBoxStrokeColor();
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
             const colorStateList = getFullColorStateList(activeColor, inactiveColor, color);
-            this.layoutView.setBoxStrokeColorStateList(colorStateList);
+            //@ts-ignore
+            layoutView.setBoxStrokeColorStateList(colorStateList);
         }
     }
 
     [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
-        if (this.layoutView.setBoxStrokeColorStateList) {
+        const layoutView = this.layoutView;
+        // TODO: find why it fails in cli build
+        //@ts-ignore
+        if (layoutView.setBoxStrokeColorStateList) {
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
             const colorStateList = getFullColorStateList(color, inactiveColor, disabledColor);
             if (colorStateList) {
-                this.layoutView.setBoxStrokeColorStateList(colorStateList);
+                //@ts-ignore
+                layoutView.setBoxStrokeColorStateList(colorStateList);
             }
         } else {
-            this.layoutView.setBoxStrokeColor(color);
+            layoutView.setBoxStrokeColor(color);
         }
     }
     [backgroundInternalProperty.setNative](value: Background) {
@@ -251,12 +264,13 @@ export class TextView extends TextViewBase {
                 super[backgroundInternalProperty.setNative](value);
                 if (value.color) {
                     const background = this.editText.getBackground();
+                    const layoutView = this.layoutView;
                     if (background instanceof com.google.android.material.shape.MaterialShapeDrawable) {
                         background.setTintList(getColorStateList(value.color.android));
-                        this.layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
-                        this.layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+                        layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
+                        layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
                     } else {
-                        this.layoutView.setBoxBackgroundColor(value.color.android);
+                        layoutView.setBoxBackgroundColor(value.color.android);
                     }
                 }
                 if (value.borderTopColor) {
@@ -267,12 +281,13 @@ export class TextView extends TextViewBase {
             case 'underline': {
                 if (value.color) {
                     const background = this.editText.getBackground();
+                    const layoutView = this.layoutView;
                     if (background instanceof com.google.android.material.shape.MaterialShapeDrawable) {
                         background.setTintList(getColorStateList(value.color.android));
-                        this.layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
-                        this.layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+                        layoutView.setBoxBackgroundColor(android.graphics.Color.TRANSPARENT);
+                        layoutView.setBackgroundColor(android.graphics.Color.TRANSPARENT);
                     } else {
-                        this.layoutView.setBoxBackgroundColor(value.color.android);
+                        layoutView.setBoxBackgroundColor(value.color.android);
                     }
                 }
                 if (value.borderTopColor) {

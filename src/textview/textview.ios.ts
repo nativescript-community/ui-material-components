@@ -12,22 +12,7 @@ import {
     strokeColorProperty,
     strokeInactiveColorProperty
 } from '@nativescript-community/ui-material-core/textbase/cssproperties';
-import {
-    Background,
-    Color,
-    Property,
-    Screen,
-    Style,
-    Utils,
-    View,
-    backgroundInternalProperty,
-    colorProperty,
-    editableProperty,
-    hintProperty,
-    isAndroid,
-    placeholderColorProperty
-} from '@nativescript/core';
-import { resetSymbol, textProperty } from '@nativescript/core/ui/text-base';
+import { Background, Color, Screen, Style, backgroundInternalProperty, editableProperty, hintProperty, placeholderColorProperty } from '@nativescript/core';
 import { TextViewBase } from './textview.common';
 
 declare module '@nativescript/core/ui/text-view' {

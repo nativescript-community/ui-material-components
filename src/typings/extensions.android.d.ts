@@ -1,93 +1,93 @@
 declare namespace com {
     export namespace nativescript {
         export namespace material {
-        export namespace core {
-            export class TabLayout extends android.widget.HorizontalScrollView {
-                constructor(context: android.content.Context);
-                constructor(context: android.content.Context, attrs: android.util.AttributeSet);
-                constructor(context: android.content.Context, attrs: android.util.AttributeSet, defStyle: number);
+            export namespace core {
+                export class TabLayout extends globalAndroid.widget.HorizontalScrollView {
+                    constructor(context: globalAndroid.content.Context);
+                    constructor(context: globalAndroid.content.Context, attrs: globalAndroid.util.AttributeSet);
+                    constructor(context: globalAndroid.content.Context, attrs: globalAndroid.util.AttributeSet, defStyle: number);
 
-                setSelectedIndicatorColors(color: Array<number>): void;
-                getSelectedIndicatorColors(): Array<number>;
-                setTabTextColor(color: number): void;
-                getTabTextColor(): number;
-                setSelectedTabTextColor(color: number): void;
-                getSelectedTabTextColor(): number;
-                setTabTextFontSize(fontSize: number): void;
-                getTabTextFontSize(): number;
+                    setSelectedIndicatorColors(color: Array<number>): void;
+                    getSelectedIndicatorColors(): Array<number>;
+                    setTabTextColor(color: number): void;
+                    getTabTextColor(): number;
+                    setSelectedTabTextColor(color: number): void;
+                    getSelectedTabTextColor(): number;
+                    setTabTextFontSize(fontSize: number): void;
+                    getTabTextFontSize(): number;
 
-                setItems(items: Array<TabItemSpec>, viewPager: androidx.viewpager.widget.ViewPager): void;
-                updateItemAt(position: number, itemSpec: TabItemSpec): void;
+                    setItems(items: Array<TabItemSpec>, viewPager: androidx.viewpager.widget.ViewPager): void;
+                    updateItemAt(position: number, itemSpec: TabItemSpec): void;
 
-                getTextViewForItemAt(index: number): android.widget.TextView;
-                getViewForItemAt(index: number): android.widget.LinearLayout;
-                getItemCount(): number;
+                    getTextViewForItemAt(index: number): globalAndroid.widget.TextView;
+                    getViewForItemAt(index: number): globalAndroid.widget.LinearLayout;
+                    getItemCount(): number;
+                }
+
+                export class TabsBar extends globalAndroid.widget.HorizontalScrollView {
+                    constructor(context: globalAndroid.content.Context);
+                    constructor(context: globalAndroid.content.Context, attrs: globalAndroid.util.AttributeSet);
+                    constructor(context: globalAndroid.content.Context, attrs: globalAndroid.util.AttributeSet, defStyle: number);
+
+                    setSelectedIndicatorColors(color: Array<number>): void;
+                    getSelectedIndicatorColors(): Array<number>;
+                    setTabTextColor(color: number): void;
+                    getTabTextColor(): number;
+                    setSelectedTabTextColor(color: number): void;
+                    getSelectedTabTextColor(): number;
+                    setTabTextFontSize(fontSize: number): void;
+                    getTabTextFontSize(): number;
+
+                    setItems(items: Array<TabItemSpec>, viewPager: androidx.viewpager.widget.ViewPager): void;
+                    updateItemAt(position: number, itemSpec: TabItemSpec): void;
+
+                    getTextViewForItemAt(index: number): globalAndroid.widget.TextView;
+                    getViewForItemAt(index: number): globalAndroid.widget.LinearLayout;
+                    getItemCount(): number;
+                }
+
+                export class BottomNavigationBar extends globalAndroid.widget.LinearLayout {
+                    constructor(context: globalAndroid.content.Context);
+                    constructor(context: globalAndroid.content.Context, attrs: globalAndroid.util.AttributeSet);
+                    constructor(context: globalAndroid.content.Context, attrs: globalAndroid.util.AttributeSet, defStyle: number);
+
+                    setTabTextColor(color: number): void;
+                    getTabTextColor(): number;
+                    setSelectedTabTextColor(color: number): void;
+                    getSelectedTabTextColor(): number;
+                    setTabTextFontSize(fontSize: number): void;
+                    getTabTextFontSize(): number;
+
+                    onTap(position: number): boolean;
+                    onSelectedPositionChange(position: number, prevPosition: number): void;
+                    setSelectedPosition(position: number): void;
+                    setItems(items: Array<TabItemSpec>): void;
+                    updateItemAt(position: number, itemSpec: TabItemSpec): void;
+
+                    getTextViewForItemAt(index: number): globalAndroid.widget.TextView;
+                    getViewForItemAt(index: number): globalAndroid.widget.LinearLayout;
+                    getItemCount(): number;
+                }
+
+                export class TabViewPager extends androidx.viewpager.widget.ViewPager {
+                    constructor(context: globalAndroid.content.Context);
+                    constructor(context: globalAndroid.content.Context, attrs: globalAndroid.util.AttributeSet);
+
+                    setSwipePageEnabled(enabled: boolean): void;
+                                setAnimationEnabled(enabled: boolean): void;
+                }
+
+                export class TabItemSpec {
+                    title: string;
+                    fontSize: number;
+                    typeFace: globalAndroid.graphics.Typeface;
+                    iconId: number;
+                    iconDrawable: globalAndroid.graphics.drawable.Drawable;
+                    imageHeight: number;
+                    backgroundColor: number;
+                    color: number;
+                }
             }
-
-            export class TabsBar extends android.widget.HorizontalScrollView {
-                constructor(context: android.content.Context);
-                constructor(context: android.content.Context, attrs: android.util.AttributeSet);
-                constructor(context: android.content.Context, attrs: android.util.AttributeSet, defStyle: number);
-
-                setSelectedIndicatorColors(color: Array<number>): void;
-                getSelectedIndicatorColors(): Array<number>;
-                setTabTextColor(color: number): void;
-                getTabTextColor(): number;
-                setSelectedTabTextColor(color: number): void;
-                getSelectedTabTextColor(): number;
-                setTabTextFontSize(fontSize: number): void;
-                getTabTextFontSize(): number;
-
-                setItems(items: Array<TabItemSpec>, viewPager: androidx.viewpager.widget.ViewPager): void;
-                updateItemAt(position: number, itemSpec: TabItemSpec): void;
-
-                getTextViewForItemAt(index: number): android.widget.TextView;
-                getViewForItemAt(index: number): android.widget.LinearLayout;
-                getItemCount(): number;
-            }
-
-            export class BottomNavigationBar extends android.widget.LinearLayout {
-                constructor(context: android.content.Context);
-                constructor(context: android.content.Context, attrs: android.util.AttributeSet);
-                constructor(context: android.content.Context, attrs: android.util.AttributeSet, defStyle: number);
-
-                setTabTextColor(color: number): void;
-                getTabTextColor(): number;
-                setSelectedTabTextColor(color: number): void;
-                getSelectedTabTextColor(): number;
-                setTabTextFontSize(fontSize: number): void;
-                getTabTextFontSize(): number;
-
-                onTap(position: number): boolean;
-                onSelectedPositionChange(position: number, prevPosition: number): void;
-                setSelectedPosition(position: number): void;
-                setItems(items: Array<TabItemSpec>): void;
-                updateItemAt(position: number, itemSpec: TabItemSpec): void;
-
-                getTextViewForItemAt(index: number): android.widget.TextView;
-                getViewForItemAt(index: number): android.widget.LinearLayout;
-                getItemCount(): number;
-            }
-
-            export class TabViewPager extends androidx.viewpager.widget.ViewPager {
-                constructor(context: android.content.Context);
-                constructor(context: android.content.Context, attrs: android.util.AttributeSet);
-
-                setSwipePageEnabled(enabled: boolean): void;
-							  setAnimationEnabled(enabled: boolean): void;
-            }
-
-            export class TabItemSpec {
-                title: string;
-                fontSize: number;
-                typeFace: android.graphics.Typeface;
-                iconId: number;
-                iconDrawable: android.graphics.drawable.Drawable;
-                imageHeight: number;
-                backgroundColor: number;
-                color: number;
-            }
-        }
             export namespace textfield {
                 class TextInputEditText extends google.android.material.textfield.TextInputEditText {
                     fullClearFocus();

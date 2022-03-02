@@ -1,14 +1,12 @@
 {
-    "extends": "../../tsconfig.json",
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
+        "baseUrl": "../../",
         "rootDir": "../../src/core",
         "outDir": "./",
         "paths": {
-            "tns-core-modules": ["./node_modules/@nativescript/core"],
-            "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
             "*": ["node_modules/*", "packages/*"]
         }
     },

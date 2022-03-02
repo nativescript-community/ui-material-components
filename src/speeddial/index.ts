@@ -5,7 +5,7 @@
 
 import { Animation, AnimationDefinition, CSSType, Color, CoreTypes, EventData, FlexboxLayout, GridLayout, ImageSource, isUserInteractionEnabledProperty } from '@nativescript/core';
 import { Button } from '@nativescript-community/ui-material-button';
-import { LinearGradient } from '@nativescript/core/ui/styling/gradient';
+import { LinearGradient } from '@nativescript/core/ui/styling/linear-gradient';
 import { NotifyData } from '@nativescript/core/data/observable';
 
 export class SpeedDialItemBase extends GridLayout {}

@@ -1,6 +1,6 @@
 import { NativeScriptVue } from 'nativescript-vue';
+import Vue from 'vue';
 import { BottomSheetOptions } from '../bottomsheet';
-import { Vue } from 'vue/types/vue';
 import { View } from '@nativescript/core';
 
 export interface VueBottomSheetOptions extends Omit<BottomSheetOptions, 'view'> {

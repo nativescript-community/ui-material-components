@@ -3,8 +3,6 @@
     "compilerOptions": {
         "rootDir": "./",
         "paths": {
-            "tns-core-modules": ["./node_modules/@nativescript/core"],
-            "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
             "@nativescript-community/ui-material-core": ["packages/core/index"],
             "@nativescript-community/ui-material-core/*": ["packages/core/*"],
             "@nativescript-community/ui-material-floatingactionbutton": ["packages/floatingactionbutton/floatingactionbutton"],
