@@ -115,10 +115,25 @@ Or you can bind the value to some instance data using the `v-model` directive:
 
 Inherite from NativeScript [Slider](https://docs.nativescript.org/ui/ns-ui-widgets/slider) so it already has all the same attributes.
 
-* **elevation** _optional_
+- **stepSize** _optional_
+  - An attribute to set the step size of the slider. Without this attribute, it behaves as a **continuous slider**.
 
-An attribute to set the elevation of the slider. This will increase the 'drop-shadow' of the slider.
+- **elevation** _optional_
+  - An attribute to set the elevation of the slider. This will increase the 'drop-shadow' of the slider.
 
-* **rippleColor** _optional_
+- **rippleColor** _optional_
+  - An attribute to set the ripple color of the slider.
 
-An attribute to set the ripple color of the slider.
+- **trackFillColor** _optional_
+  - Sets the color of the filled track.
+  - Defaults to your theme's `colorPrimary`. 
+
+- **trackBackgroundColor** _optional_
+  - Sets the color of the background track.
+
+- **thumbColor** _optional_
+  - Sets the color of the slider's thumb.
+  - Defaults to your theme's `colorPrimary`. 
+
+
+

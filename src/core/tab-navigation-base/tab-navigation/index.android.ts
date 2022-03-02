@@ -87,7 +87,7 @@ function initializeNativeClasses() {
 
             // Get view as bitmap and set it as background. This is workaround for the disapearing nested fragments.
             // TODO: Consider removing it when update to androidx.fragment:1.2.0
-            if (hasRemovingParent && this.owner.selectedIndex === this.index) {
+            if (hasRemovingParent && this.owner.selectedIndex === this.index && this.owner.nativeViewProtected) {
                 const bitmapDrawable = new android.graphics.drawable.BitmapDrawable(appResources, this.backgroundBitmap);
                 this.owner.mOriginalBackground = this.owner.backgroundColor || new Color('White');
                 this.owner.nativeViewProtected.setBackgroundDrawable(bitmapDrawable);
@@ -102,7 +102,7 @@ function initializeNativeClasses() {
 
             // Get view as bitmap and set it as background. This is workaround for the disapearing nested fragments.
             // TODO: Consider removing it when update to androidx.fragment:1.2.0
-            if (hasRemovingParent && this.owner.selectedIndex === this.index) {
+            if (hasRemovingParent && this.owner.selectedIndex === this.index && this.owner.nativeViewProtected) {
                 this.backgroundBitmap = this.loadBitmapFromView(this.owner.nativeViewProtected);
             }
 
@@ -207,18 +207,17 @@ function initializeNativeClasses() {
             if (!owner) {
                 return;
             }
-            if (!this.mCurTransaction) {
-                const fragmentManager = owner._getFragmentManager();
-                this.mCurTransaction = fragmentManager.beginTransaction();
-            }
-
             const fragment: androidx.fragment.app.Fragment = object as androidx.fragment.app.Fragment;
+            if (!this.mCurTransaction) {
+                const fragmentManager = fragment.getParentFragmentManager();
+                this.mCurTransaction = fragmentManager?.beginTransaction();
+            }
 
             const index = owner.fragments.indexOf(fragment);
             // if (index !== -1) {
             //     this.owner.fragments.splice(index, 1);
             // }
-            this.mCurTransaction.detach(fragment);
+            this.mCurTransaction?.detach(fragment);
 
             if (this.mCurrentPrimaryItem === fragment) {
                 this.mCurrentPrimaryItem = null;
