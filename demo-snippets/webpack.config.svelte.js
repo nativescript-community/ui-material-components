@@ -1,5 +1,3 @@
-// const webpack = require('@nativescript/webpack');
-const NsVueTemplateCompiler = require('nativescript-vue-template-compiler');
 const { readFileSync } = require('fs');
 
 const { resolve } = require('path');
@@ -11,27 +9,6 @@ function fixedFromCharCode(codePt) {
         return String.fromCharCode(codePt);
     }
 }
-
-// temporary hack to support v-model using ns-vue-template-compiler
-// See https://github.com/nativescript-vue/nativescript-vue/issues/371
-NsVueTemplateCompiler.registerElement('MDTextField', () => require('@nativescript-community/ui-material-textfield').TextField, {
-    model: {
-        prop: 'text',
-        event: 'textChange'
-    }
-});
-NsVueTemplateCompiler.registerElement('MDTextView', () => require('@nativescript-community/ui-material-textview').TextField, {
-    model: {
-        prop: 'text',
-        event: 'textChange'
-    }
-});
-NsVueTemplateCompiler.registerElement('MDSlider', () => require('@nativescript-community/ui-material-slider').Slider, {
-    model: {
-        prop: 'value',
-        event: 'valueChange'
-    }
-});
 
 module.exports = (env, webpack) => {
     const platform = env && ((env.android && 'android') || (env.ios && 'ios'));

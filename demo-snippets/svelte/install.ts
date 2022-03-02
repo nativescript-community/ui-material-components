@@ -1,7 +1,9 @@
 import { install as installBottomSheet } from '@nativescript-community/ui-material-bottomsheet';
 import { installMixins, themer } from '@nativescript-community/ui-material-core';
 
+import ButtonPlugin from '@nativescript-community/ui-material-button/svelte';
 import '../app.scss';
+import Buttons from './Buttons.svelte';
 
 installMixins();
 installBottomSheet();
@@ -18,6 +20,11 @@ themer.createShape('cut', {
         unit: '%'
     }
 });
-export function installPlugin() {}
+export function installPlugin() {
+    ButtonPlugin.register();
+}
 
-export const demos = [];
+export const demos = [
+    { name: 'Buttons', path: 'Buttons', component: Buttons },
+
+];
