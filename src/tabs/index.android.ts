@@ -48,19 +48,19 @@ function initializeNativeClasses() {
 
 @CSSType('Tabs')
 export class Tabs extends TabNavigation<TabsBar> {
-    protected updateTabsBarItemAt(position: number, itemSpec: com.nativescript.material.core.TabItemSpec) {
+    protected override updateTabsBarItemAt(position: number, itemSpec: com.nativescript.material.core.TabItemSpec) {
         this.mTabsBar.updateItemAt(position, itemSpec);
     }
-    protected setTabsBarSelectedIndicatorColors(colors: number[]) {
+    protected override setTabsBarSelectedIndicatorColors(colors: number[]) {
         this.mTabsBar.setSelectedIndicatorColors(colors);
     }
-    protected getTabBarItemView(index: number) {
+    protected override getTabBarItemView(index: number) {
         return this.mTabsBar.getViewForItemAt(index);
     }
-    protected getTabBarItemTextView(index: number) {
+    protected override getTabBarItemTextView(index: number) {
         return this.mTabsBar.getTextViewForItemAt(index);
     }
-    protected createNativeTabBar(context: android.content.Context) {
+    protected override createNativeTabBar(context: android.content.Context) {
         initializeNativeClasses();
         const tabsBar = new TabsBar(context, this);
         const primaryColor = Utils.android.resources.getPaletteColor(PRIMARY_COLOR, context);
@@ -75,15 +75,29 @@ export class Tabs extends TabNavigation<TabsBar> {
         return tabsBar;
     }
 
-    protected setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[], viewPager: com.nativescript.material.core.TabViewPager) {
+    protected override setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[], viewPager: com.nativescript.material.core.TabViewPager) {
         this.mTabsBar.setItems(tabItems, viewPager);
     }
 
-    protected selectTabBar(oldIndex: number, newIndex: number) {
+    protected override selectTabBar(oldIndex: number, newIndex: number) {
         this.mTabsBar.onSelectedPositionChange(oldIndex, newIndex);
     }
 
-    public onLoaded(): void {
+    protected override setTabStripItems(items: TabStripItem[]) {
+        if (items.length > 0 && !this.mUnSelectedItemColor) {
+            items.some((item) => {
+                const color = item.label?.style.color;
+                if (color) {
+                    this.mUnSelectedItemColor = color;
+                    return true;
+                }
+                return false;
+            });
+        }
+        super.setTabStripItems(items);
+    }
+
+    public override onLoaded(): void {
         super.onLoaded();
 
         if (!this.tabStrip && this.mTabsBar) {

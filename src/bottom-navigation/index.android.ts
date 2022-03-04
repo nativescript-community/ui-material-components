@@ -50,19 +50,19 @@ function initializeNativeClasses() {
 @CSSType('BottomNavigation')
 export class BottomNavigation extends TabNavigation<com.nativescript.material.core.BottomNavigationBar> {
     tabsPosition = TabsPosition.Bottom;
-    protected updateTabsBarItemAt(position: number, itemSpec: com.nativescript.material.core.TabItemSpec) {
+    protected override updateTabsBarItemAt(position: number, itemSpec: com.nativescript.material.core.TabItemSpec) {
         this.mTabsBar.updateItemAt(position, itemSpec);
     }
-    protected setTabsBarSelectedIndicatorColors(colors: number[]) {
+    protected override setTabsBarSelectedIndicatorColors(colors: number[]) {
         // nothing to do
     }
-    protected getTabBarItemView(index: number) {
+    protected override getTabBarItemView(index: number) {
         return this.mTabsBar.getViewForItemAt(index);
     }
-    protected getTabBarItemTextView(index: number) {
+    protected override getTabBarItemTextView(index: number) {
         return this.mTabsBar.getTextViewForItemAt(index);
     }
-    protected createNativeTabBar(context: android.content.Context) {
+    protected override createNativeTabBar(context: android.content.Context) {
         initializeNativeClasses();
         const tabsBar = new BottomNavigationBar(context, this);
         const primaryColor = Utils.android.resources.getPaletteColor(PRIMARY_COLOR, context);
@@ -73,11 +73,11 @@ export class BottomNavigation extends TabNavigation<com.nativescript.material.co
         return tabsBar;
     }
 
-    protected setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[], viewPager: com.nativescript.material.core.TabViewPager) {
+    protected override setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[], viewPager: com.nativescript.material.core.TabViewPager) {
         this.mTabsBar.setItems(tabItems);
     }
 
-    protected selectTabBar(oldIndex: number, newIndex: number) {
+    protected override selectTabBar(oldIndex: number, newIndex: number) {
         this.mTabsBar.setSelectedPosition(newIndex);
     }
 
@@ -99,7 +99,7 @@ export class BottomNavigation extends TabNavigation<com.nativescript.material.co
         // this.changeTab(this.selectedIndex);
     }
 
-    public updateAndroidItemAt(index: number, spec: com.nativescript.material.core.TabItemSpec) {
+    public override updateAndroidItemAt(index: number, spec: com.nativescript.material.core.TabItemSpec) {
         // that try catch is fix for an android NPE error on css change which navigated in (not the current fragment)
         try {
             if (this.mTabsBar) {
@@ -108,7 +108,7 @@ export class BottomNavigation extends TabNavigation<com.nativescript.material.co
         } catch (err) {}
     }
 
-    public setTabBarBackgroundColor(value: android.graphics.drawable.Drawable | Color): void {
+    public override setTabBarBackgroundColor(value: android.graphics.drawable.Drawable | Color): void {
         super.setTabBarBackgroundColor(value);
         // this.updateTabStripItems();
     }
@@ -130,19 +130,28 @@ export class BottomNavigation extends TabNavigation<com.nativescript.material.co
         });
     }
 
-    public setTabBarSelectedItemColor(value: Color) {
+    public override setTabBarSelectedItemColor(value: Color) {
         super.setTabBarSelectedItemColor(value);
         this._setItemsColors(this.tabStrip.items);
     }
 
-    public setTabBarUnSelectedItemColor(value: Color) {
+    public override setTabBarUnSelectedItemColor(value: Color) {
         super.setTabBarUnSelectedItemColor(value);
         this._setItemsColors(this.tabStrip.items);
     }
 
-    public onTabsBarSelectedPositionChange(position: number, prevPosition: number) {
-        super.onTabsBarSelectedPositionChange(position, prevPosition);
+    public override onTabsBarSelectedPositionChange(position: number, prevPosition: number): void {
         this.mViewPager.setCurrentItem(position, true);
+        const tabStripItems = this.tabStrip && this.tabStrip.items;
+
+        if (position >= 0 && tabStripItems && tabStripItems[position]) {
+            tabStripItems[position]._emit(TabStripItem.selectEvent);
+        }
+
+        if (prevPosition >= 0 && tabStripItems && tabStripItems[prevPosition]) {
+            tabStripItems[prevPosition]._emit(TabStripItem.unselectEvent);
+        }
+
         this._setItemsColors(this.tabStrip.items);
     }
 }

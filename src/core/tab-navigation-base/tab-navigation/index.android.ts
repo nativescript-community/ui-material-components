@@ -505,7 +505,6 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
             const context = this._context;
             const tabsBar = (this.mTabsBar = this.createNativeTabBar(context));
             setElevation(null, tabsBar, this.tabsPosition);
-            console.log('handleTabStripChanged', this.tabsPosition);
             if (this.tabsPosition !== TabsPosition.Top) {
                 tabsBar.setLayoutParams(this.tabBarLayoutParams);
             }
@@ -757,7 +756,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         }
     }
 
-    private setTabStripItems(items: TabStripItem[]) {
+    protected setTabStripItems(items: TabStripItem[]) {
         const length = items ? items.length : 0;
         if (length === 0) {
             if (this.mTabsBar) {
@@ -768,9 +767,6 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
 
         const tabItems = new Array<com.nativescript.material.core.TabItemSpec>();
         items.forEach((tabStripItem: TabStripItem, i, arr) => {
-            if (!this.mUnSelectedItemColor) {
-                this.mUnSelectedItemColor = tabStripItem.label?.style.color;
-            }
             tabStripItem._index = i;
             const tabItemSpec = this.createTabItemSpec(tabStripItem);
             (tabStripItem as any).tabItemSpec = tabItemSpec;
