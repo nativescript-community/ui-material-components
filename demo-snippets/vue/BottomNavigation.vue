@@ -4,7 +4,7 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
 
-        <GridLayout rows="*, 20" backgroundColor="red">
+        <GridLayout rows="*, 0" backgroundColor="red">
             <MDBottomNavigation selectedIndex="1" :iosCustomPositioning="true">
                 <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
                 <MDTabStrip>
@@ -65,7 +65,7 @@ export default Vue.extend({
     },
     methods: {
         onNavigationButtonTap() {
-            frameModule.Frame.topmost().goBack();
+            this.$navigateBack();
         },
         onLoaded(name) {
             console.log('BN onTabLoaded', name);

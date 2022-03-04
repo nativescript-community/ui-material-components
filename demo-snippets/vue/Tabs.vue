@@ -3,7 +3,7 @@
         <ActionBar :title="title">
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
-        <GridLayout rows="*, 20" backgroundColor="red">
+        <GridLayout rows="*, 0" backgroundColor="red">
             <MDTabs ref="tabs" :iosCustomPositioning="true" :unloadOnTabChange="false" backgroundColor="green">
                 <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
                 <MDTabStrip>
@@ -23,7 +23,7 @@
 
                 <!-- The number of MDTabContentItem components should corespond to the number of MDTabStripItem components -->
                 <MDTabContentItem>
-                    <Frame>
+                    <Frame id="inner">
                         <Page>
                             <GridLayout backgroundColor="red" @loaded="onLoaded('red')">
                                 <Label text="Home Page" class="h2 text-center"></Label>
@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import * as frameModule from '@nativescript/core/ui/frame';
+import { Frame } from '@nativescript/core/ui/frame';
 import { TabContentItem, Tabs } from '@nativescript-community/ui-material-tabs/';
 import { Color, EventData, GridLayout, Label, StackLayout } from '@nativescript/core';
 
@@ -60,7 +60,7 @@ export default Vue.extend({
     },
     methods: {
         onNavigationButtonTap() {
-            frameModule.Frame.topmost().goBack();
+            this.$navigateBack();
         },
 
         onLoaded(name) {
