@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.17](https://github.com/nativescript-community/ui-material-component/compare/v6.2.16...v6.2.17) (2022-03-04)
+
+
+### Bug Fixes
+
+* **bottom-navigation/tabs:** android refactor regressions fix ([77ccc57](https://github.com/nativescript-community/ui-material-component/commit/77ccc5720adb06f184dae820f58e2362d8f12777))
+* **tabs/bottom-navigation:** wrong tabBar position ([ed7744d](https://github.com/nativescript-community/ui-material-component/commit/ed7744d9f6f0ff2c6f01881002b9fa4facc04037))
+
+
+
+
+
 ## [6.2.16](https://github.com/nativescript-community/ui-material-component/compare/v6.2.15...v6.2.16) (2022-03-02)
 
 
