@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.18](https://github.com/nativescript-community/ui-material-component/compare/v6.2.17...v6.2.18) (2022-03-04)
+
+
+### Bug Fixes
+
+* **tabs:** text transform fix for android and textTransform support for iOS ([56ff14e](https://github.com/nativescript-community/ui-material-component/commit/56ff14ed5aa4594261e9c445553002e9d1365d5c))
+
+
+
+
+
 ## [6.2.17](https://github.com/nativescript-community/ui-material-component/compare/v6.2.16...v6.2.17) (2022-03-04)
 
 
