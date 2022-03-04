@@ -1,4 +1,4 @@
-﻿import { Color, Device, Font, Frame, IOSHelper, ImageSource, Property, Utils, View, ViewBase, booleanConverter } from '@nativescript/core';
+﻿import { Color, CoreTypes, Device, Font, Frame, IOSHelper, ImageSource, Property, Utils, View, ViewBase, booleanConverter, getTransformedText } from '@nativescript/core';
 import { TabContentItem } from '../tab-content-item';
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '../tab-navigation-base';
 import { TabStrip } from '../tab-strip';
@@ -623,6 +623,9 @@ export abstract class TabNavigation<
             }
 
             if (!this.tabStrip._hasTitle) {
+                // TEXT-TRANSFORM
+                const textTransform = this.getItemLabelTextTransform(item);
+                title = getTransformedText(title, textTransform);
                 this.tabStrip._hasTitle = !!title;
             }
         }
@@ -737,7 +740,32 @@ export abstract class TabNavigation<
         if (!nativeView) {
             return;
         }
-        nativeView.title = value;
+        const textTransform = this.getItemLabelTextTransform(tabStripItem);
+        nativeView.title = getTransformedText(value, textTransform);
+    }
+
+    public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: CoreTypes.TextTransformType): void {
+        const nativeView = tabStripItem.nativeView;
+        if (!nativeView) {
+            return;
+        }
+        const nestedLabel = tabStripItem.label;
+        const title = getTransformedText(nestedLabel.text, value);
+        nativeView.title = title;
+    }
+
+    public setTabBarTextTransform(value: CoreTypes.TextTransformType): void {
+        const items = this.tabStrip && this.tabStrip.items;
+        if (items) {
+            items.forEach((tabStripItem) => {
+                if (tabStripItem.label && tabStripItem.nativeViewProtected) {
+                    const nestedLabel = tabStripItem.label;
+                    const title = getTransformedText(nestedLabel.text, value);
+                    tabStripItem.nativeViewProtected.title = title;
+                }
+            });
+        }
+        this.mTextTransform = value;
     }
 
     private equalUIColor(first: UIColor, second: UIColor): boolean {

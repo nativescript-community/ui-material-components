@@ -407,7 +407,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     protected mAndroidViewId = -1;
     // value from N core!!!
     public _originalBackground: any;
-    protected mTextTransform: CoreTypes.TextTransformType = 'uppercase';
+    protected mTextTransform: CoreTypes.TextTransformType = 'none';
     protected mSelectedItemColor: Color;
     protected mUnSelectedItemColor: Color;
     fragments: androidx.fragment.app.Fragment[] = [];
@@ -782,18 +782,6 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         });
     }
 
-    private getItemLabelTextTransform(tabStripItem: TabStripItem): CoreTypes.TextTransformType {
-        const nestedLabel = tabStripItem.label;
-        let textTransform: CoreTypes.TextTransformType = null;
-        if (nestedLabel && nestedLabel.style.textTransform !== 'initial') {
-            textTransform = nestedLabel.style.textTransform;
-        } else if (tabStripItem.style.textTransform !== 'initial') {
-            textTransform = tabStripItem.style.textTransform;
-        }
-
-        return textTransform || this.mTextTransform;
-    }
-
     protected createTabItemSpec(tabStripItem: TabStripItem): com.nativescript.material.core.TabItemSpec {
         const tabItemSpec = new com.nativescript.material.core.TabItemSpec();
 
@@ -1047,18 +1035,10 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         tabStripItem.nativeViewProtected.setTypeface(value.getAndroidTypeface());
     }
 
-    public getTabBarItemTextTransform(tabStripItem: TabStripItem): CoreTypes.TextTransformType {
-        return this.getItemLabelTextTransform(tabStripItem);
-    }
-
     public setTabBarItemTextTransform(tabStripItem: TabStripItem, value: CoreTypes.TextTransformType): void {
         const nestedLabel = tabStripItem.label;
         const title = getTransformedText(nestedLabel.text, value);
         tabStripItem.nativeViewProtected.setText(title);
-    }
-
-    public getTabBarTextTransform(): CoreTypes.TextTransformType {
-        return this.mTextTransform;
     }
 
     public setTabBarTextTransform(value: CoreTypes.TextTransformType): void {
