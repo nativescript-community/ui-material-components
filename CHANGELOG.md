@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.19](https://github.com/nativescript-community/ui-material-component/compare/v6.2.18...v6.2.19) (2022-03-04)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** trying to fix tab bar icons on android ([d767bad](https://github.com/nativescript-community/ui-material-component/commit/d767bada0640bae7fd76aef260c38f8e4555d766))
+
+
+
+
+
 ## [6.2.18](https://github.com/nativescript-community/ui-material-component/compare/v6.2.17...v6.2.18) (2022-03-04)
 
 
