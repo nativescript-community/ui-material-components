@@ -39,7 +39,7 @@ export const offscreenTabLimitProperty = new Property<TabNavigationBase, number>
 });
 offscreenTabLimitProperty.register(TabNavigationBase);
 
-export const tabsPositionProperty = new Property<TabNavigationBase, TabsPosition>({ name: 'tabsPosition' });
+export const tabsPositionProperty = new Property<TabNavigationBase, TabsPosition>({ name: 'tabsPosition', defaultValue: TabsPosition.Top });
 tabsPositionProperty.register(TabNavigationBase);
 
 // export type IOSTabBarItemsAlignment = 'leading' | 'justified' | 'center' | 'centerSelected';

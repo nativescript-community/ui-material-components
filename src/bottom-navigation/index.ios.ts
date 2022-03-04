@@ -1,6 +1,7 @@
 ﻿// Types
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
 import { TabNavigationBase, getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
+import { TabsPosition } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation/index-common';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 // Types
@@ -277,6 +278,7 @@ export const iosCustomPositioningProperty = new Property<BottomNavigation, boole
 
 @CSSType('BottomNavigation')
 export class BottomNavigation extends TabNavigationBase {
+    tabsPosition = TabsPosition.Bottom;
     public viewController: UITabBarControllerImpl;
     public items: TabContentItem[];
     private mDelegate: UITabBarControllerDelegateImpl;
