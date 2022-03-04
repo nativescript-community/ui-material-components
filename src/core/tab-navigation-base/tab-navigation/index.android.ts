@@ -3,7 +3,7 @@ import { TabContentItem } from '../tab-content-item';
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '../tab-navigation-base';
 import { TabStrip } from '../tab-strip';
 import { TabStripItem } from '../tab-strip-item';
-import { TabNavigationBase, animationEnabledProperty, offscreenTabLimitProperty, swipeEnabledProperty } from './index-common';
+import { TabNavigationBase, TabsPosition, animationEnabledProperty, offscreenTabLimitProperty, swipeEnabledProperty } from './index-common';
 export * from './index-common';
 export { TabContentItem, TabStrip, TabStripItem };
 
@@ -25,6 +25,22 @@ let AttachStateChangeListener: any;
 
 function makeFragmentName(viewId: number, id: number): string {
     return 'android:viewpager:' + viewId + ':' + id;
+}
+
+/**
+ * Gets the parent fragment manager from a fragment to be used in destroying or hiding it.
+ * @param fragment target fragment
+ * @returns the parent fragment manager or null if none exists.
+ */
+function _getParentFragmentManagerFromFragment(fragment: androidx.fragment.app.Fragment) {
+    if (!fragment) {
+        return null;
+    }
+    try {
+        return fragment.getParentFragmentManager();
+    } catch (e) {
+        return null;
+    }
 }
 
 function getTabById(id: number): TabNavigation {
@@ -89,8 +105,8 @@ function initializeNativeClasses() {
             // TODO: Consider removing it when update to androidx.fragment:1.2.0
             if (hasRemovingParent && this.owner.selectedIndex === this.index && this.owner.nativeViewProtected) {
                 const bitmapDrawable = new android.graphics.drawable.BitmapDrawable(appResources, this.backgroundBitmap);
-                this.owner.mOriginalBackground = this.owner.backgroundColor || new Color('White');
-                this.owner.nativeViewProtected.setBackgroundDrawable(bitmapDrawable);
+                this.owner._originalBackground = this.owner.backgroundColor || new Color('White');
+                this.owner.nativeViewProtected.setBackground(bitmapDrawable);
                 this.backgroundBitmap = null;
             }
 
@@ -209,7 +225,7 @@ function initializeNativeClasses() {
             }
             const fragment: androidx.fragment.app.Fragment = object as androidx.fragment.app.Fragment;
             if (!this.mCurTransaction) {
-                const fragmentManager = fragment.getParentFragmentManager();
+                const fragmentManager = _getParentFragmentManagerFromFragment(fragment);
                 this.mCurTransaction = fragmentManager?.beginTransaction();
             }
 
@@ -389,7 +405,8 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     protected mViewPager: com.nativescript.material.core.TabViewPager;
     protected mPagerAdapter: androidx.viewpager.widget.PagerAdapter;
     protected mAndroidViewId = -1;
-    public mOriginalBackground: any;
+    // value from N core!!!
+    public _originalBackground: any;
     protected mTextTransform: CoreTypes.TextTransformType = 'uppercase';
     protected mSelectedItemColor: Color;
     protected mUnSelectedItemColor: Color;
@@ -483,7 +500,8 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
             const context = this._context;
             const tabsBar = (this.mTabsBar = this.createNativeTabBar(context));
             setElevation(null, tabsBar, this.tabsPosition);
-            if (this.tabsPosition !== 'top') {
+            console.log('handleTabStripChanged', this.tabsPosition);
+            if (this.tabsPosition !== TabsPosition.Top) {
                 tabsBar.setLayoutParams(this.tabBarLayoutParams);
             }
             nativeView.addView(tabsBar);
@@ -587,10 +605,10 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     public onLoaded(): void {
         super.onLoaded();
 
-        if (this.mOriginalBackground) {
+        if (this._originalBackground) {
             this.backgroundColor = null;
-            this.backgroundColor = this.mOriginalBackground;
-            this.mOriginalBackground = null;
+            this.backgroundColor = this._originalBackground;
+            this._originalBackground = null;
         }
 
         this.setItems(this.items as any);
@@ -660,7 +678,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
                     fragmentExitTransition.setResetOnTransitionEnd(true);
                 }
                 if (fragment && fragment.isAdded() && !fragment.isRemoving()) {
-                    const pfm = fragment.getParentFragmentManager();
+                    const pfm = _getParentFragmentManagerFromFragment(fragment);
                     if (pfm && !pfm.isDestroyed()) {
                         try {
                             if (pfm.isStateSaved()) {
