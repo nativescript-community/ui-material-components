@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.20](https://github.com/nativescript-community/ui-material-component/compare/v6.2.19...v6.2.20) (2022-03-04)
+
+
+### Bug Fixes
+
+* **tabs:** fix wrongly rendered icons ([57c8461](https://github.com/nativescript-community/ui-material-component/commit/57c84613dfb967cb564b50bb2d3fb500fbbe419d))
+
+
+
+
+
 ## [6.2.19](https://github.com/nativescript-community/ui-material-component/compare/v6.2.18...v6.2.19) (2022-03-04)
 
 
