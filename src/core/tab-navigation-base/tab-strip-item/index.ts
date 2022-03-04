@@ -156,7 +156,7 @@ export class TabStripItem extends View implements TabStripItemDefinition, AddChi
                 const parent = this.parent as TabStrip;
                 const tabStripParent = parent && (parent.parent as TabNavigationBase);
 
-                return tabStripParent && tabStripParent.setTabBarIconColor(this, args.value);
+                return tabStripParent && tabStripParent.setTabBarItemFontInternal(this, args.value);
             });
         this.image.style.on('fontInternalChange', this._imageFontHandler);
 

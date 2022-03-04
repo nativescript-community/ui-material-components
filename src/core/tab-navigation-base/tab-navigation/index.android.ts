@@ -15,6 +15,11 @@ const TABID = '_tabId';
 const INDEX = '_index';
 const ownerSymbol = Symbol('_owner');
 
+class IconInfo {
+    drawable: android.graphics.drawable.BitmapDrawable;
+    height: number;
+}
+
 type PagerAdapter = new (owner: WeakRef<TabNavigation>) => androidx.viewpager.widget.PagerAdapter;
 
 // eslint-disable-next-line no-redeclare
@@ -813,12 +818,13 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
             // ICON
             const iconSource = tabStripItem.image && tabStripItem.image.src;
             if (iconSource) {
-                const icon = this.getIcon(tabStripItem, itemColor);
+                const iconInfo = this.getIconInfo(tabStripItem, itemColor);
 
-                if (icon) {
+                if (iconInfo) {
                     // TODO: Make this native call that accepts string so that we don't load Bitmap in JS.
                     // tslint:disable-next-line:deprecation
-                    tabItemSpec.iconDrawable = icon;
+                    tabItemSpec.iconDrawable = iconInfo.drawable;
+                    tabItemSpec.imageHeight = iconInfo.height;
                 } else {
                     // TODO:
                     // traceMissingIcon(iconSource);
@@ -829,7 +835,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         return tabItemSpec;
     }
 
-    private getIcon(tabStripItem: TabStripItem, color?: Color): android.graphics.drawable.BitmapDrawable {
+    private getOriginalIcon(tabStripItem: TabStripItem, color?: Color): android.graphics.Bitmap {
         const iconSource = tabStripItem.image && tabStripItem.image.src;
         if (!iconSource) {
             return null;
@@ -848,28 +854,40 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
             is = ImageSource.fromFileOrResourceSync(iconSource);
         }
 
-        let imageDrawable: android.graphics.drawable.BitmapDrawable;
-        if (is && is.android) {
-            let image = is.android;
+        return is && is.android;
+    }
 
+    private getDrawableInfo(image: android.graphics.Bitmap): IconInfo {
+        if (image) {
             if (this.tabStrip && this.tabStrip.isIconSizeFixed) {
                 image = this.getFixedSizeIcon(image);
             }
 
-            imageDrawable = new android.graphics.drawable.BitmapDrawable(appResources, image);
-        } else {
-            // TODO
-            // traceMissingIcon(iconSource);
+            const imageDrawable = new android.graphics.drawable.BitmapDrawable(appResources, image);
+
+            return {
+                drawable: imageDrawable,
+                height: image.getHeight()
+            };
         }
 
-        return imageDrawable;
+        return new IconInfo();
+    }
+
+    private getIconInfo(tabStripItem: TabStripItem, color?: Color): IconInfo {
+        const originalIcon = this.getOriginalIcon(tabStripItem, color);
+
+        return this.getDrawableInfo(originalIcon);
     }
 
     private getFixedSizeIcon(image: android.graphics.Bitmap): android.graphics.Bitmap {
         const inWidth = image.getWidth();
         const inHeight = image.getHeight();
 
-        const iconSpecSize = getIconSpecSize({ width: inWidth, height: inHeight });
+        const iconSpecSize = getIconSpecSize({
+            width: inWidth,
+            height: inHeight
+        });
 
         const widthPixels = iconSpecSize.width * Utils.layout.getDisplayDensity();
         const heightPixels = iconSpecSize.height * Utils.layout.getDisplayDensity();
@@ -993,9 +1011,9 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         }
         const tabBarItem = this.getTabBarItemView(tabStripItem._index);
 
-        const drawable = this.getIcon(tabStripItem, color);
+        const drawableInfo = this.getIconInfo(tabStripItem, color);
         const imgView = tabBarItem.getChildAt(0) as android.widget.ImageView;
-        imgView.setImageDrawable(drawable);
+        imgView.setImageDrawable(drawableInfo.drawable);
         if (color) {
             imgView.setColorFilter(color.android);
         }
