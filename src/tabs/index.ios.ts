@@ -1,5 +1,6 @@
 ﻿import { themer } from '@nativescript-community/ui-material-core';
 import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
+import { TabsPosition } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation/index-common';
 import { TabNavigation, updateBackgroundPositions, updateTitleAndIconPositions } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation/index.ios';
 import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
@@ -170,7 +171,7 @@ class UIPageViewControllerImpl extends UIPageViewController {
             scrollViewHeight = this.view.bounds.size.height - tabBarHeight + conditionalSafeAreaBottom;
 
             const tabsPosition = owner.tabsPosition;
-            if (tabsPosition === 'bottom') {
+            if (tabsPosition === TabsPosition.Bottom) {
                 tabBarTop = viewHeight - tabBarHeight - safeAreaInsetsBottom;
                 scrollViewTop = this.view.frame.origin.y;
                 scrollViewHeight = viewHeight - tabBarHeight;

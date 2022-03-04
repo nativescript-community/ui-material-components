@@ -249,9 +249,6 @@ export abstract class TabNavigation<
 > extends TabNavigationBase {
     public nativeViewProtected: UIView;
     public selectedIndex: number;
-    // public swipeEnabled: boolean;
-    // public offscreenTabLimit: number;
-    // public tabsPosition: "top" | "bottom";
     public mCanSelectItem: boolean;
     public isLoaded: boolean;
     public viewController: T;

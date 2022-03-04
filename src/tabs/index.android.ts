@@ -4,7 +4,6 @@ import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigatio
 import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
 import { CSSType, Utils } from '@nativescript/core';
 
-export * from './index-common';
 export { TabContentItem, TabStrip, TabStripItem };
 
 interface TabsBar extends com.nativescript.material.core.TabsBar {
