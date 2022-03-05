@@ -84,7 +84,7 @@ export class Tabs extends TabNavigation<TabsBar> {
     }
 
     protected override setTabStripItems(items: TabStripItem[]) {
-        if (items.length > 0 && !this.mUnSelectedItemColor) {
+        if (items?.length > 0 && !this.mUnSelectedItemColor) {
             items.some((item) => {
                 const color = item.label?.style.color;
                 if (color) {
