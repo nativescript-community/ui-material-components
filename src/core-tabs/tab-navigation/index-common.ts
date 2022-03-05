@@ -1,12 +1,10 @@
-﻿import { cssProperty } from '../../';
+﻿import { cssProperty } from '@nativescript-community/ui-material-core';
 // Types
-import { CSSType, Color, CoreTypes, Property, booleanConverter } from '@nativescript/core';
+import { Color, CoreTypes, Property, booleanConverter } from '@nativescript/core';
 import { TabNavigationBase as TabNavigationBaseBase } from '../tab-navigation-base';
 
 import { TabNavigation as TabsDefinition } from '.';
 import { TabStripItem } from '../tab-strip-item';
-
-export const traceCategory = 'TabView';
 
 export namespace knownCollections {
     export const items = 'items';

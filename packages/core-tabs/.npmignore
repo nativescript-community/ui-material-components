@@ -1,0 +1,9 @@
+node_modules/
+pnpm-global/
+bin/
+src/
+hooks/
+*.ts
+*.old
+tsconfig.json
+!*.d.ts

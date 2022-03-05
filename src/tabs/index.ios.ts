@@ -1,9 +1,9 @@
 ﻿import { themer } from '@nativescript-community/ui-material-core';
-import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
-import { TabsPosition } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation/index-common';
-import { TabNavigation, updateBackgroundPositions, updateTitleAndIconPositions } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation/index.ios';
-import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
-import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
+import { TabContentItem } from '@nativescript-community/ui-material-core-tabs/tab-content-item';
+import { TabsPosition } from '@nativescript-community/ui-material-core-tabs/tab-navigation/index-common';
+import { TabNavigation, updateBackgroundPositions, updateTitleAndIconPositions } from '@nativescript-community/ui-material-core-tabs/tab-navigation/index.ios';
+import { TabStrip } from '@nativescript-community/ui-material-core-tabs/tab-strip';
+import { TabStripItem } from '@nativescript-community/ui-material-core-tabs/tab-strip-item';
 import { IOSHelper, Utils } from '@nativescript/core';
 
 export { TabContentItem, TabStrip, TabStripItem };
@@ -241,9 +241,9 @@ class UIPageViewControllerImpl extends UIPageViewController {
             if (owner && owner.tabStrip && owner.tabStrip.items) {
                 const tabStrip = owner.tabStrip;
                 tabStrip.items.forEach((tabStripItem) => {
-                    updateBackgroundPositions(tabStrip, tabStripItem, owner.selectedIndex !== tabStripItem._index ? owner.mDefaultItemBackgroundColor : null);
+                    updateBackgroundPositions(tabStrip, tabStripItem, owner.selectedIndex !== tabStripItem.index ? owner.mDefaultItemBackgroundColor : null);
 
-                    const index = tabStripItem._index;
+                    const index = tabStripItem.index;
                     const tabBarItemController = owner.viewControllers[index];
                     updateTitleAndIconPositions(tabStripItem, tabBarItemController.tabBarItem, tabBarItemController);
                 });

@@ -1,4 +1,7 @@
-﻿import { Color, CoreTypes, Device, Font, Frame, IOSHelper, ImageSource, Property, Utils, View, ViewBase, booleanConverter, getTransformedText } from '@nativescript/core';
+﻿/**
+ * @module @nativescript-community/ui-material-core-tabs/tab-navigation
+ */
+import { Color, CoreTypes, Device, Font, Frame, IOSHelper, ImageSource, Property, Utils, View, ViewBase, booleanConverter, getTransformedText } from '@nativescript/core';
 import { TabContentItem } from '../tab-content-item';
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '../tab-navigation-base';
 import { TabStrip } from '../tab-strip';
@@ -188,12 +191,12 @@ function iterateIndexRange(index: number, eps: number, lastIndex: number, callba
 }
 
 export function updateBackgroundPositions(tabStrip: TabStrip, tabStripItem: TabStripItem, color: UIColor = null) {
-    if (!tabStrip.nativeView || tabStripItem._index === undefined) {
+    if (!tabStrip.nativeView || tabStripItem.index === undefined) {
         return;
     }
     let bgView = (tabStripItem as any).bgView;
-    const index = tabStripItem._index;
-    const width = tabStrip.nativeView.frame.size.width / tabStrip.items.filter((s) => s._index !== undefined).length;
+    const index = tabStripItem.index;
+    const width = tabStrip.nativeView.frame.size.width / tabStrip.items.filter((s) => s.index !== undefined).length;
     const frame = CGRectMake(width * index, 0, width, tabStrip.nativeView.frame.size.width);
     if (!bgView) {
         bgView = UIView.alloc().initWithFrame(frame);
@@ -542,7 +545,7 @@ export abstract class TabNavigation<
                 this.setViewTextAttributes(tabStripItem.label, i === this.selectedIndex);
 
                 controller.tabBarItem = tabBarItem;
-                tabStripItem._index = i;
+                tabStripItem.index = i;
                 tabBarItems.push(tabBarItem);
                 tabStripItem.setNativeView(tabBarItem);
             }
@@ -586,7 +589,7 @@ export abstract class TabNavigation<
                         item.nativeView.image = this.getIcon(item, this.mUnSelectedItemColor);
                     }
                     if (this.mSelectedItemColor && item.nativeView) {
-                        if (this.selectedIndex === item._index) {
+                        if (this.selectedIndex === item.index) {
                             item.nativeView.image = this.getIcon(item, this.mSelectedItemColor);
                         }
                     }
@@ -787,7 +790,7 @@ export abstract class TabNavigation<
         // we first go through setTabBarItemBackgroundColor thice, once before setting the "highlighted" state
         // and once after that, but if the "highlighted" state is not set we cannot get the backgroundColor
         // set using :active selector
-        return tabStripItem._index === this.selectedIndex && tabStripItem['_visualState'] === 'highlighted';
+        return tabStripItem.index === this.selectedIndex && tabStripItem['_visualState'] === 'highlighted';
     }
 
     public setTabBarItemBackgroundColor(tabStripItem: TabStripItem, value: UIColor | Color): void {

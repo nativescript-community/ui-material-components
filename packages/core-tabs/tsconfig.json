@@ -1,14 +1,13 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "rootDir": "../../src/tabs",
+        "rootDir": "../../src/core-tabs",
         "outDir": "./",
         "paths": {
             "@nativescript-community/ui-material-core": ["packages/core/index"],
             "@nativescript-community/ui-material-core/*": ["packages/core/*"],
-            "@nativescript-community/ui-material-core-tabs/*": ["packages/core-tabs/*"],
         }
     },
-    "include": ["../../src/tabs/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/tabs/angular/**"]
+    "include": ["../../src/core-tabs/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
+    "exclude": ["../../src/core-tabs/scripts/**/*.ts", "../../src/core-tabs/angular/**"]
 }

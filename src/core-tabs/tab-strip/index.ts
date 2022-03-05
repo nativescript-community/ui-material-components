@@ -1,15 +1,13 @@
 /**
- * @module @nativescript-community/ui-material-core/tab-navigation-base/tab-strip
+ * @module @nativescript-community/ui-material-core-tabs/tab-strip
  */
-import { rippleColorProperty } from '../../cssproperties';
+import { rippleColorProperty } from '@nativescript-community/ui-material-core/cssproperties';
 import { AddArrayFromBuilder, AddChildFromBuilder, CSSType, Color, CssProperty, Property, Style, View, ViewBase, booleanConverter } from '@nativescript/core';
 import { backgroundColorProperty, backgroundInternalProperty, colorProperty, fontInternalProperty } from '@nativescript/core/ui/styling/style-properties';
 import { textTransformProperty } from '@nativescript/core/ui/text-base';
 import { TabNavigationBase } from '../tab-navigation-base';
 import { TabStripItem } from '../tab-strip-item';
-import { TabStrip as TabStripDefinition } from './';
-
-export const traceCategory = 'TabView';
+import { TabStrip as TabStripDefinition } from '.';
 
 // Place this on top because the webpack ts-loader doesn't work when export
 // is after reference

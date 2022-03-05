@@ -1,0 +1,45 @@
+{
+    "name": "@nativescript-community/ui-material-core-tabs",
+    "version": "6.2.20",
+    "description": "Material Core Tabs component",
+    "main": "./index",
+    "sideEffects": false,
+    "typings": "./index.d.ts",
+    "scripts": {
+        "tsc": "../../node_modules/.bin/cpy '**/*.d.ts' '../../packages/core-tabs' --cwd=../../src/core-tabs --parents && ../../node_modules/.bin/tsc -d",
+        "tsc-win": "..\\..\\node_modules\\.bin\\cpy '**/*.d.ts' '..\\..\\packages\\core-tabs' --cwd=..\\..\\src\\core-tabs --parents && ..\\..\\node_modules\\.bin\\tsc -d",
+        "build": "npm run tsc ",
+        "build.watch": "npm run tsc -- -w",
+        "build.win": "npm run tsc-win ",
+        "build.all": "npm run build.hooks && npm run build",
+        "build.all.win": "npm run build.hooks.win && npm run build.win",
+        "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
+    },
+    "nativescript": {
+        "platforms": {
+            "android": "6.2.0",
+            "ios": "6.2.0"
+        }
+    },
+    "keywords": [
+        "NativeScript",
+        "JavaScript",
+        "Android",
+        "iOS"
+    ],
+    "author": {
+        "name": "Martin Guillon",
+        "email": "martin@akylas.fr"
+    },
+    "bugs": {
+        "url": "https://github.com/nativescript-community/ui-material-components/issues"
+    },
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/nativescript-community/ui-material-components",
+    "repository": "https://github.com/nativescript-community/ui-material-components",
+    "readmeFilename": "README.md",
+    "dependencies": {
+        "@nativescript-community/ui-material-core": "^6.2.20"
+    },
+    "gitHead": "f4a17600487dd826a4a581f2ebde8cf6457710ca"
+}

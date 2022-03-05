@@ -1,8 +1,8 @@
-import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
-import { PRIMARY_COLOR, TabNavigation } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation/index.android';
-import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
-import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
-import { TabsPosition } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation/index-common';
+import { TabContentItem } from '@nativescript-community/ui-material-core-tabs/tab-content-item';
+import { PRIMARY_COLOR, TabNavigation } from '@nativescript-community/ui-material-core-tabs/tab-navigation/index.android';
+import { TabStrip } from '@nativescript-community/ui-material-core-tabs/tab-strip';
+import { TabStripItem } from '@nativescript-community/ui-material-core-tabs/tab-strip-item';
+import { TabsPosition, animationEnabledProperty, swipeEnabledProperty } from '@nativescript-community/ui-material-core-tabs/tab-navigation/index-common';
 import { CSSType, Color, Utils } from '@nativescript/core';
 
 export { TabContentItem, TabStrip, TabStripItem };
@@ -51,6 +51,7 @@ function initializeNativeClasses() {
 export class BottomNavigation extends TabNavigation<com.nativescript.material.core.BottomNavigationBar> {
     tabsPosition = TabsPosition.Bottom;
     animationEnabled = false;
+    swipeEnabled = false;
     protected override updateTabsBarItemAt(position: number, itemSpec: com.nativescript.material.core.TabItemSpec) {
         this.mTabsBar.updateItemAt(position, itemSpec);
     }
@@ -74,7 +75,7 @@ export class BottomNavigation extends TabNavigation<com.nativescript.material.co
         return tabsBar;
     }
 
-    protected override setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[], viewPager: com.nativescript.material.core.TabViewPager) {
+    protected override setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[]) {
         this.mTabsBar.setItems(tabItems);
     }
 
@@ -142,7 +143,7 @@ export class BottomNavigation extends TabNavigation<com.nativescript.material.co
     }
 
     public override onTabsBarSelectedPositionChange(position: number, prevPosition: number): void {
-        this.mViewPager.setCurrentItem(position, true);
+        this.mViewPager.setCurrentItem(position, this.animationEnabled);
         const tabStripItems = this.tabStrip && this.tabStrip.items;
 
         if (position >= 0 && tabStripItems && tabStripItems[position]) {

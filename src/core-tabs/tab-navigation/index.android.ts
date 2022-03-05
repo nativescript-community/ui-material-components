@@ -13,40 +13,21 @@ const DEFAULT_ELEVATION = 4;
 
 const TABID = '_tabId';
 const INDEX = '_index';
-const ownerSymbol = Symbol('_owner');
 
 class IconInfo {
     drawable: android.graphics.drawable.BitmapDrawable;
     height: number;
 }
 
-type PagerAdapter = new (owner: WeakRef<TabNavigation>) => androidx.viewpager.widget.PagerAdapter;
+type PagerAdapter = new (owner: WeakRef<TabNavigation>, fragmentActivity: androidx.fragment.app.FragmentActivity) => androidx.viewpager2.adapter.FragmentStateAdapter;
+type PageChangeCallback = new (owner: WeakRef<TabNavigation>) => androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback;
 
 // eslint-disable-next-line no-redeclare
 let PagerAdapter: PagerAdapter;
-let TabsBar: any;
+// eslint-disable-next-line no-redeclare
+let PageChangeCallback: PageChangeCallback;
 let appResources: android.content.res.Resources;
-let AttachStateChangeListener: any;
-
-function makeFragmentName(viewId: number, id: number): string {
-    return 'android:viewpager:' + viewId + ':' + id;
-}
-
-/**
- * Gets the parent fragment manager from a fragment to be used in destroying or hiding it.
- * @param fragment target fragment
- * @returns the parent fragment manager or null if none exists.
- */
-function _getParentFragmentManagerFromFragment(fragment: androidx.fragment.app.Fragment) {
-    if (!fragment) {
-        return null;
-    }
-    try {
-        return fragment.getParentFragmentManager();
-    } catch (e) {
-        return null;
-    }
-}
+// let AttachStateChangeListener: any;
 
 function getTabById(id: number): TabNavigation {
     const ref = tabs.find((ref) => {
@@ -65,6 +46,31 @@ function initializeNativeClasses() {
     if (PagerAdapter) {
         return;
     }
+
+    @NativeClass
+    class PageChangeCallbackImpl extends androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback {
+        private readonly owner: WeakRef<TabNavigation>;
+
+        constructor(owner: WeakRef<TabNavigation>) {
+            super();
+            this.owner = owner;
+            return global.__native(this);
+        }
+
+        onPageSelected(position: number) {
+            const owner = this.owner && this.owner.get();
+            if (owner) {
+                owner.selectedIndex = position;
+                const tabItems = owner.items;
+                const newTabItem = tabItems ? tabItems[position] : null;
+
+                if (newTabItem) {
+                    owner._loadUnloadTabItems(owner.selectedIndex);
+                }
+            }
+        }
+    }
+
     @NativeClass
     class TabFragmentImplementation extends org.nativescript.widgets.FragmentBase {
         private owner: TabNavigation;
@@ -73,7 +79,6 @@ function initializeNativeClasses() {
 
         constructor() {
             super();
-
             return global.__native(this);
         }
 
@@ -99,116 +104,96 @@ function initializeNativeClasses() {
 
         public onCreateView(inflater: android.view.LayoutInflater, container: android.view.ViewGroup, savedInstanceState: android.os.Bundle): android.view.View {
             const tabItem = this.owner.items[this.index];
-
+            tabItem.canBeLoaded = true;
+            // ensure item is loaded
+            tabItem.loadView(tabItem.content);
             return tabItem.nativeViewProtected;
         }
 
         public onDestroyView() {
-            const hasRemovingParent = this.getRemovingParentFragment();
+            console.log('TabFragmentImplementation', 'onDestroyView', this.index);
+            //     const hasRemovingParent = this.getRemovingParentFragment();
 
-            // Get view as bitmap and set it as background. This is workaround for the disapearing nested fragments.
-            // TODO: Consider removing it when update to androidx.fragment:1.2.0
-            if (hasRemovingParent && this.owner.selectedIndex === this.index && this.owner.nativeViewProtected) {
-                const bitmapDrawable = new android.graphics.drawable.BitmapDrawable(appResources, this.backgroundBitmap);
-                this.owner._originalBackground = this.owner.backgroundColor || new Color('White');
-                this.owner.nativeViewProtected.setBackground(bitmapDrawable);
-                this.backgroundBitmap = null;
-            }
+            //     // Get view as bitmap and set it as background. This is workaround for the disapearing nested fragments.
+            //     // TODO: Consider removing it when update to androidx.fragment:1.2.0
+            //     if (hasRemovingParent && this.owner.selectedIndex === this.index && this.owner.nativeViewProtected) {
+            //         const bitmapDrawable = new android.graphics.drawable.BitmapDrawable(appResources, this.backgroundBitmap);
+            //         this.owner._originalBackground = this.owner.backgroundColor || new Color('White');
+            //         this.owner.nativeViewProtected.setBackground(bitmapDrawable);
+            //         this.backgroundBitmap = null;
+            //     }
 
             super.onDestroyView();
+            const tabItem = this.owner.items[this.index];
+            tabItem.canBeLoaded = false;
+            tabItem._tearDownUI(true);
         }
 
-        public onPause(): void {
-            const hasRemovingParent = this.getRemovingParentFragment();
+        // public onPause(): void {
+        //     const hasRemovingParent = this.getRemovingParentFragment();
 
-            // Get view as bitmap and set it as background. This is workaround for the disapearing nested fragments.
-            // TODO: Consider removing it when update to androidx.fragment:1.2.0
-            if (hasRemovingParent && this.owner.selectedIndex === this.index && this.owner.nativeViewProtected) {
-                this.backgroundBitmap = this.loadBitmapFromView(this.owner.nativeViewProtected);
-            }
+        //     // Get view as bitmap and set it as background. This is workaround for the disapearing nested fragments.
+        //     // TODO: Consider removing it when update to androidx.fragment:1.2.0
+        //     if (hasRemovingParent && this.owner.selectedIndex === this.index && this.owner.nativeViewProtected) {
+        //         this.backgroundBitmap = this.loadBitmapFromView(this.owner.nativeViewProtected);
+        //     }
 
-            super.onPause();
-        }
+        //     super.onPause();
+        // }
 
-        private loadBitmapFromView(view: android.view.View): android.graphics.Bitmap {
-            // Another way to get view bitmap. Test performance vs setDrawingCacheEnabled
-            // const width = view.getWidth();
-            // const height = view.getHeight();
-            // const bitmap = android.graphics.Bitmap.createBitmap(width, height, android.graphics.Bitmap.Config.ARGB_8888);
-            // const canvas = new android.graphics.Canvas(bitmap);
-            // view.layout(0, 0, width, height);
-            // view.draw(canvas);
+        // private loadBitmapFromView(view: android.view.View): android.graphics.Bitmap {
+        //     // Another way to get view bitmap. Test performance vs setDrawingCacheEnabled
+        //     // const width = view.getWidth();
+        //     // const height = view.getHeight();
+        //     // const bitmap = android.graphics.Bitmap.createBitmap(width, height, android.graphics.Bitmap.Config.ARGB_8888);
+        //     // const canvas = new android.graphics.Canvas(bitmap);
+        //     // view.layout(0, 0, width, height);
+        //     // view.draw(canvas);
 
-            view.setDrawingCacheEnabled(true);
-            const bitmap = android.graphics.Bitmap.createBitmap(view.getDrawingCache());
-            view.setDrawingCacheEnabled(false);
+        //     view.setDrawingCacheEnabled(true);
+        //     const bitmap = android.graphics.Bitmap.createBitmap(view.getDrawingCache());
+        //     view.setDrawingCacheEnabled(false);
 
-            return bitmap;
-        }
+        //     return bitmap;
+        // }
     }
 
-    const POSITION_UNCHANGED = -1;
-    const POSITION_NONE = -2;
-
     @NativeClass
-    class FragmentPagerAdapter extends androidx.viewpager.widget.PagerAdapter {
+    class FragmentPagerAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
         public items: TabContentItem[];
         private mCurTransaction: androidx.fragment.app.FragmentTransaction;
         private mCurrentPrimaryItem: androidx.fragment.app.Fragment;
 
-        constructor(public owner: WeakRef<TabNavigation>) {
-            super();
+        constructor(public owner: WeakRef<TabNavigation>, fragmentActivity: androidx.fragment.app.FragmentActivity) {
+            super(fragmentActivity);
 
             return global.__native(this);
         }
 
-        getCount() {
+        getItemCount() {
             const items = this.items;
 
             return items ? items.length : 0;
         }
 
-        getPageTitle(index: number) {
-            const items = this.items;
-            if (index < 0 || index >= items.length) {
-                return '';
-            }
+        // getPageTitle(index: number) {
+        //     const items = this.items;
+        //     if (index < 0 || index >= items.length) {
+        //         return '';
+        //     }
 
-            return ''; // items[index].title;
-        }
-
-        startUpdate(container: android.view.ViewGroup): void {
-            if (container.getId() === android.view.View.NO_ID) {
-                throw new Error(`ViewPager with adapter ${this} requires a view containerId`);
-            }
-        }
-
-        instantiateItem(container: android.view.ViewGroup, position: number): java.lang.Object {
+        //     return ''; // items[index].title;
+        // }
+        createFragment(position: number): androidx.fragment.app.Fragment {
             const owner = this.owner?.get();
             if (!owner) {
                 return null;
             }
-            const fragmentManager = owner._getFragmentManager();
-            if (!this.mCurTransaction) {
-                this.mCurTransaction = fragmentManager.beginTransaction();
-            }
 
             const itemId = this.getItemId(position);
-            const name = makeFragmentName(container.getId(), itemId);
+            // const name = makeFragmentName(itemId);
 
-            let fragment: androidx.fragment.app.Fragment = fragmentManager.findFragmentByTag(name);
-            if (fragment != null) {
-                this.mCurTransaction.attach(fragment);
-            } else {
-                fragment = TabFragmentImplementation.newInstance(owner._domId, position);
-                owner.fragments.push(fragment);
-                this.mCurTransaction.add(container.getId(), fragment, name);
-            }
-
-            if (fragment !== this.mCurrentPrimaryItem) {
-                fragment.setMenuVisibility(false);
-                fragment.setUserVisibleHint(false);
-            }
+            const fragment: androidx.fragment.app.Fragment = TabFragmentImplementation.newInstance(owner._domId, position);
 
             const tabItems = owner.items;
             const tabItem = tabItems ? tabItems[position] : null;
@@ -218,152 +203,11 @@ function initializeNativeClasses() {
 
             return fragment;
         }
-
-        getItemPosition(object: java.lang.Object): number {
-            return this.items ? POSITION_UNCHANGED : POSITION_NONE;
-        }
-
-        destroyItem(container: android.view.ViewGroup, position: number, object: java.lang.Object): void {
-            const owner = this.owner?.get();
-            if (!owner) {
-                return;
-            }
-            const fragment: androidx.fragment.app.Fragment = object as androidx.fragment.app.Fragment;
-            if (!this.mCurTransaction) {
-                const fragmentManager = _getParentFragmentManagerFromFragment(fragment);
-                this.mCurTransaction = fragmentManager?.beginTransaction();
-            }
-
-            const index = owner.fragments.indexOf(fragment);
-            // if (index !== -1) {
-            //     this.owner.fragments.splice(index, 1);
-            // }
-            this.mCurTransaction?.detach(fragment);
-
-            if (this.mCurrentPrimaryItem === fragment) {
-                this.mCurrentPrimaryItem = null;
-            }
-
-            const tabItems = owner.items;
-            const tabItem = tabItems ? tabItems[position] : null;
-            if (tabItem) {
-                tabItem.canBeLoaded = false;
-            }
-        }
-
-        setPrimaryItem(container: android.view.ViewGroup, position: number, object: java.lang.Object): void {
-            const owner = this.owner?.get();
-            if (!owner) {
-                return;
-            }
-            const fragment = object as androidx.fragment.app.Fragment;
-            if (fragment !== this.mCurrentPrimaryItem) {
-                if (this.mCurrentPrimaryItem != null) {
-                    this.mCurrentPrimaryItem.setMenuVisibility(false);
-                    this.mCurrentPrimaryItem.setUserVisibleHint(false);
-                }
-
-                if (fragment != null) {
-                    fragment.setMenuVisibility(true);
-                    fragment.setUserVisibleHint(true);
-                }
-
-                const tab = owner;
-                this.mCurrentPrimaryItem = fragment;
-                tab.selectedIndex = position;
-
-                const tabItems = tab.items;
-                const newTabItem = tabItems ? tabItems[position] : null;
-
-                if (newTabItem) {
-                    tab._loadUnloadTabItems(tab.selectedIndex);
-                }
-            }
-        }
-
-        finishUpdate(container: android.view.ViewGroup): void {
-            this._commitCurrentTransaction();
-        }
-
-        isViewFromObject(view: android.view.View, object: java.lang.Object): boolean {
-            return (object as androidx.fragment.app.Fragment).getView() === view;
-        }
-
-        saveState(): android.os.Parcelable {
-            // Commit the current transaction on save to prevent "No view found for id 0xa" exception on restore.
-            // Related to: https://github.com/NativeScript/NativeScript/issues/6466
-            this._commitCurrentTransaction();
-
-            return null;
-        }
-
-        restoreState(state: android.os.Parcelable, loader: java.lang.ClassLoader): void {
-            //
-        }
-
-        getItemId(position: number): number {
-            return position;
-        }
-
-        private _commitCurrentTransaction() {
-            if (this.mCurTransaction != null) {
-                this.mCurTransaction.commitNowAllowingStateLoss();
-                this.mCurTransaction = null;
-            }
-        }
     }
 
-    @NativeClass
-    class TabsBarImplementation extends com.nativescript.material.core.TabsBar implements PositionChanger {
-        constructor(context: android.content.Context, public owner: TabNavigation) {
-            super(context);
-
-            return global.__native(this);
-        }
-
-        public onSelectedPositionChange(position: number, prevPosition: number): void {
-            const owner = this.owner;
-            if (!owner) {
-                return;
-            }
-            owner.onTabsBarSelectedPositionChange(position, prevPosition);
-        }
-
-        public onTap(position: number): boolean {
-            const owner = this.owner;
-            if (!owner) {
-                return false;
-            }
-            return owner.onTabsBarTap(position);
-        }
-    }
-
-    @NativeClass
-    @Interfaces([android.view.View.OnAttachStateChangeListener])
-    class AttachListener extends java.lang.Object implements android.view.View.OnAttachStateChangeListener {
-        constructor() {
-            super();
-
-            return global.__native(this);
-        }
-
-        onViewAttachedToWindow(view: android.view.View): void {
-            const owner: View = view[ownerSymbol];
-            if (owner) {
-                owner._onAttachedToWindow();
-            }
-        }
-
-        onViewDetachedFromWindow(view: android.view.View): void {
-            const owner: View = view[ownerSymbol];
-            if (owner) {
-                owner._onDetachedFromWindow();
-            }
-        }
-    }
     PagerAdapter = FragmentPagerAdapter;
-    TabsBar = TabsBarImplementation as any;
-    AttachStateChangeListener = new AttachListener();
+    PageChangeCallback = PageChangeCallbackImpl;
+    // AttachStateChangeListener = new AttachListener();
     appResources = Application.android.context.getResources();
 }
 
@@ -407,8 +251,9 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     // export abstract class TabNavigation<T extends com.nativescript.material.core.TabsBar> extends TabNavigationBase {
     nativeViewProtected: org.nativescript.widgets.GridLayout;
     protected mTabsBar: T;
-    protected mViewPager: com.nativescript.material.core.TabViewPager;
-    protected mPagerAdapter: androidx.viewpager.widget.PagerAdapter;
+    protected mViewPager: androidx.viewpager2.widget.ViewPager2;
+    protected mPageListener: androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback;
+    protected mPagerAdapter: androidx.viewpager2.adapter.FragmentStateAdapter;
     protected mAndroidViewId = -1;
     // value from N core!!!
     public _originalBackground: any;
@@ -443,7 +288,10 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         initializeNativeClasses();
         const context: android.content.Context = this._context;
         const nativeView = new org.nativescript.widgets.GridLayout(context);
-        const viewPager = new com.nativescript.material.core.TabViewPager(context);
+        const viewPager = new androidx.viewpager2.widget.ViewPager2(context);
+        //dirty trick to be able to disable swipe
+        // const recyclerView = viewPager as any as androidx.recyclerview.widget.RecyclerView;
+        // recyclerView.addOnItemTouchListener();
         const lp = new org.nativescript.widgets.CommonLayoutParams();
         lp.row = 1;
         if (this.tabsPosition === 'top') {
@@ -460,7 +308,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         nativeView.addView(viewPager);
         (nativeView as any).viewPager = viewPager;
 
-        const adapter = (this.mPagerAdapter = new PagerAdapter(new WeakRef(this)));
+        const adapter = (this.mPagerAdapter = new PagerAdapter(new WeakRef(this), this._context));
         viewPager.setAdapter(adapter);
         (viewPager as any).adapter = adapter;
         this.mViewPager = viewPager;
@@ -473,22 +321,8 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         return nativeView;
     }
 
-    // TODO: mark abstract
-    protected createNativeTabBar(context: android.content.Context) {
-        const tabsBar = new TabsBar(context, this);
-        const primaryColor = Utils.android.resources.getPaletteColor(PRIMARY_COLOR, context);
-        const accentColor = getDefaultAccentColor(context);
-        if (accentColor) {
-            tabsBar.setSelectedIndicatorColors([accentColor]);
-        }
-
-        if (primaryColor) {
-            tabsBar.setBackgroundColor(primaryColor);
-        }
-        return tabsBar;
-    }
-
-    protected abstract setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[], viewPager: com.nativescript.material.core.TabViewPager);
+    protected abstract createNativeTabBar(context: android.content.Context): T;
+    protected abstract setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[]);
     protected abstract getTabBarItemView(index: number);
     protected abstract getTabBarItemTextView(index: number);
     protected abstract selectTabBar(oldIndex: number, newIndex: number);
@@ -534,33 +368,21 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
             this.mAndroidViewId = android.view.View.generateViewId();
         }
 
-        const nativeView: any = this.nativeViewProtected;
-        // this._tabsBar = nativeView.tabsBar;
-
-        // nativeView.addOnAttachStateChangeListener(AttachStateChangeListener);
-        // nativeView[ownerSymbol] = this;
-
-        const viewPager = nativeView.viewPager;
-        viewPager.setId(this.mAndroidViewId);
+        this.mPageListener = new PageChangeCallback(new WeakRef(this));
+        this.mViewPager.setId(this.mAndroidViewId);
+        this.mViewPager.registerOnPageChangeCallback(this.mPageListener);
     }
 
-    _onAttachedToWindow(): void {
-        super._onAttachedToWindow();
-
-        // _onAttachedToWindow called from OS again after it was detach
-        // still happens with androidx.fragment:1.3.2
-        const activity = Application.android.foregroundActivity || Application.android.startActivity;
-        const lifecycle = activity?.getLifecycle?.().getCurrentState() || androidx.lifecycle.Lifecycle.State.CREATED;
-        if ((this._manager && this._manager.isDestroyed()) || (activity instanceof androidx.fragment.app.FragmentActivity && !lifecycle.isAtLeast(androidx.lifecycle.Lifecycle.State.CREATED))) {
-            return;
+    public disposeNativeView() {
+        if (this.mTabsBar) {
+            this.setTabBarItems(null);
         }
+        // setAdapter(null) will destroy fragments
+        this.mViewPager.setAdapter(null);
+        this.mViewPager.unregisterOnPageChangeCallback(this.mPageListener);
+        this.mPagerAdapter = null;
 
-        this.mViewPager.setCurrentItem(this.selectedIndex, false);
-    }
-
-    _onDetachedFromWindow(): void {
-        super._onDetachedFromWindow();
-        this.disposeTabFragments();
+        super.disposeNativeView();
     }
 
     public _loadUnloadTabItems(newIndex: number) {
@@ -620,8 +442,6 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         if (this.tabStrip) {
             this.setTabStripItems(this.tabStrip.items);
         }
-
-        // this.setAdapterItems(this.items);
     }
 
     public onUnloaded(): void {
@@ -634,80 +454,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         this.items.forEach((item, i) => {
             item.unloadView(item.content);
         });
-        // this.setAdapterItems(null);
     }
-
-    public disposeNativeView() {
-        if (this.mTabsBar) {
-            this.setTabBarItems(null, null);
-        }
-        (this.mPagerAdapter as any).owner = null;
-        this.mPagerAdapter = null;
-
-        this.nativeViewProtected.removeOnAttachStateChangeListener(AttachStateChangeListener);
-        super.disposeNativeView();
-        this.disposeTabFragments();
-    }
-
-    public _onRootViewReset(): void {
-        super._onRootViewReset();
-
-        // call this AFTER the super call to ensure descendants apply their rootview-reset logic first
-        // i.e. in a scenario with tab frames let the frames cleanup their fragments first, and then
-        // cleanup the tab fragments to avoid
-        // android.content.res.Resources$NotFoundException: Unable to find resource ID #0xfffffff6
-        this.disposeTabFragments();
-    }
-    private disposeTabFragments(): void {
-        const fragments = this.fragments;
-        for (let i = 0; i < fragments.length; i++) {
-            this.removeFragment(fragments[i]);
-        }
-        // const items = this.items;
-        // items.forEach((item, i) => {
-        //     item.unloadView(item.content);
-        // });
-        // this._currentFragment = null;
-        this.fragments = [];
-    }
-
-    private removeFragment(fragment: androidx.fragment.app.Fragment) {
-        if (fragment) {
-            if (!fragment.isAdded() || fragment.isRemoving()) {
-                // ignore
-                return;
-            } else {
-                const fragmentExitTransition = fragment.getExitTransition();
-                if (fragmentExitTransition && fragmentExitTransition instanceof org.nativescript.widgets.CustomTransition) {
-                    fragmentExitTransition.setResetOnTransitionEnd(true);
-                }
-                if (fragment && fragment.isAdded() && !fragment.isRemoving()) {
-                    const pfm = _getParentFragmentManagerFromFragment(fragment);
-                    if (pfm && !pfm.isDestroyed()) {
-                        try {
-                            if (pfm.isStateSaved()) {
-                                pfm.beginTransaction().remove(fragment).commitNowAllowingStateLoss();
-                            } else {
-                                pfm.beginTransaction().remove(fragment).commitNow();
-                            }
-                        } catch (e) {}
-                    }
-                }
-            }
-        }
-    }
-
-    // private disposeCurrentFragments(): void {
-    //     const fragmentManager = this._getFragmentManager();
-    //     const transaction = fragmentManager.beginTransaction();
-
-    //     const fragments = this.fragments;
-    //     for (let i = 0; i < fragments.length; i++) {
-    //         transaction.remove(fragments[i]);
-    //     }
-    //     transaction.commitNowAllowingStateLoss();
-    //     this.fragments = [];
-    // }
 
     private shouldUpdateAdapter(items: TabContentItem[]) {
         if (!this.mPagerAdapter) {
@@ -760,21 +507,21 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         const length = items ? items.length : 0;
         if (length === 0) {
             if (this.mTabsBar) {
-                this.setTabBarItems(null, null);
+                this.setTabBarItems(null);
             }
             return;
         }
 
         const tabItems = new Array<com.nativescript.material.core.TabItemSpec>();
         items.forEach((tabStripItem: TabStripItem, i, arr) => {
-            tabStripItem._index = i;
+            tabStripItem.index = i;
             const tabItemSpec = this.createTabItemSpec(tabStripItem);
             (tabStripItem as any).tabItemSpec = tabItemSpec;
             tabItems.push(tabItemSpec);
         });
 
         const tabsBar = this.mTabsBar;
-        this.setTabBarItems(tabItems, this.mViewPager);
+        this.setTabBarItems(tabItems);
         this.tabStrip.setNativeView(tabsBar);
         items.forEach((item, i, arr) => {
             const tv = this.getTabBarItemTextView(i);
@@ -800,7 +547,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
             tabItemSpec.backgroundColor = backgroundColor ? backgroundColor.android : this.getTabBarBackgroundArgbColor();
 
             // COLOR
-            const itemColor = this.selectedIndex === tabStripItem._index ? this.mSelectedItemColor : this.mUnSelectedItemColor;
+            const itemColor = this.selectedIndex === tabStripItem.index ? this.mSelectedItemColor : this.mUnSelectedItemColor;
             const color = itemColor || nestedLabel.style.color;
             tabItemSpec.color = color && color.android;
 
@@ -893,35 +640,6 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         return scaledImage;
     }
 
-    // private setAdapterItems(items: Array<TabStripItem>) {
-    //     if (this.shouldUpdateAdapter(items)) {
-    //         (this._pagerAdapter as any).items = items;
-
-    //         const length = items ? items.length : 0;
-    //         if (length === 0) {
-    //             this._tabLayout.setItems(null, null);
-    //             this._pagerAdapter.notifyDataSetChanged();
-    //             return;
-    //         }
-
-    //         const tabItems = new Array<com.nativescript.material.core.TabItemSpec>();
-    //         items.forEach((item: TabStripItem, i, arr) => {
-    //             const tabItemSpec = createTabItemSpec(item);
-    //             (item as any).index = i;
-    //             (item as any).tabItemSpec = tabItemSpec;
-    //             tabItems.push(tabItemSpec);
-    //         });
-
-    //         const tabLayout = this._tabLayout;
-    //         tabLayout.setItems(tabItems, this._viewPager);
-    //         items.forEach((item, i, arr) => {
-    //             const tv = tabLayout.getTextViewForItemAt(i);
-    //             item.setNativeView(tv);
-    //         });
-
-    //         this._pagerAdapter.notifyDataSetChanged();
-    //     }
-    // }
     protected abstract updateTabsBarItemAt(index: number, spec: com.nativescript.material.core.TabItemSpec);
     protected abstract setTabsBarSelectedIndicatorColors(colors: number[]);
     public updateAndroidItemAt(index: number, spec: com.nativescript.material.core.TabItemSpec) {
@@ -989,8 +707,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         if (!tabStripItem.nativeViewProtected) {
             return;
         }
-        const itemColor = tabStripItem._index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor;
-        console.log('_setItemColor', tabStripItem, itemColor);
+        const itemColor = tabStripItem.index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor;
 
         // set label color
         if (itemColor) {
@@ -1004,7 +721,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         if (!tabStripItem.nativeViewProtected) {
             return;
         }
-        const tabBarItem = this.getTabBarItemView(tabStripItem._index);
+        const tabBarItem = this.getTabBarItemView(tabStripItem.index);
 
         const drawableInfo = this.getIconInfo(tabStripItem, color);
         const imgView = tabBarItem.getChildAt(0) as android.widget.ImageView;
@@ -1013,7 +730,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     }
 
     public setTabBarItemColor(tabStripItem: TabStripItem, value: number | Color): void {
-        const itemColor = tabStripItem._index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor;
+        const itemColor = tabStripItem.index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor;
         if (itemColor) {
             // the itemColor is set through the selectedItemColor and unSelectedItemColor properties
             // so it does not respect the css color
@@ -1025,7 +742,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     }
 
     public setTabBarIconColor(tabStripItem: TabStripItem, value: number | Color): void {
-        const itemColor = tabStripItem._index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor;
+        const itemColor = tabStripItem.index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor;
         if (itemColor) {
             // the itemColor is set through the selectedItemColor and unSelectedItemColor properties
             // so it does not respect the css color
@@ -1067,6 +784,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     }
 
     public onTabsBarSelectedPositionChange(position: number, prevPosition: number): void {
+        this.mViewPager.setCurrentItem(position, this.animationEnabled);
         const tabStripItems = this.tabStrip?.items;
 
         if (position >= 0 && tabStripItems && tabStripItems[position]) {
@@ -1097,11 +815,10 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     }
 
     [selectedIndexProperty.setNative](value: number) {
-        // TODO
-        // if (traceEnabled()) {
-        //     traceWrite("TabView this._viewPager.setCurrentItem(" + value + ", " + smoothScroll + ");", traceCategory);
-        // }
-        this.mViewPager.setCurrentItem(value, this.animationEnabled);
+        const current = this.mViewPager.getCurrentItem();
+        if (current !== value) {
+            this.mViewPager.setCurrentItem(value, this.animationEnabled);
+        }
     }
 
     [itemsProperty.getDefault](): TabContentItem[] {
@@ -1123,7 +840,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         return true;
     }
     [swipeEnabledProperty.setNative](value: boolean) {
-        this.mViewPager.setSwipePageEnabled(value);
+        this.mViewPager.setUserInputEnabled(value);
     }
 
     [offscreenTabLimitProperty.getDefault](): number {
@@ -1131,9 +848,6 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     }
     [offscreenTabLimitProperty.setNative](value: number) {
         this.mViewPager.setOffscreenPageLimit(value);
-    }
-    [animationEnabledProperty.setNative](value: number) {
-        (this.mViewPager as any).setAnimationEnabled(value);
     }
 }
 

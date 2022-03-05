@@ -1,7 +1,7 @@
-import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
-import { PRIMARY_COLOR, PositionChanger, TabNavigation, getDefaultAccentColor } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation/index.android';
-import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
-import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
+import { TabContentItem } from '@nativescript-community/ui-material-core-tabs/tab-content-item';
+import { PRIMARY_COLOR, PositionChanger, TabNavigation, getDefaultAccentColor } from '@nativescript-community/ui-material-core-tabs/tab-navigation/index.android';
+import { TabStrip } from '@nativescript-community/ui-material-core-tabs/tab-strip';
+import { TabStripItem } from '@nativescript-community/ui-material-core-tabs/tab-strip-item';
 import { CSSType, Utils } from '@nativescript/core';
 
 export { TabContentItem, TabStrip, TabStripItem };
@@ -48,6 +48,13 @@ function initializeNativeClasses() {
 
 @CSSType('Tabs')
 export class Tabs extends TabNavigation<TabsBar> {
+    public override createNativeView() {
+        const view = super.createNativeView();
+        if (this.mTabsBar) {
+            this.mTabsBar.setViewPager(this.mViewPager);
+        }
+        return view;
+    }
     protected override updateTabsBarItemAt(position: number, itemSpec: com.nativescript.material.core.TabItemSpec) {
         this.mTabsBar.updateItemAt(position, itemSpec);
     }
@@ -63,6 +70,7 @@ export class Tabs extends TabNavigation<TabsBar> {
     protected override createNativeTabBar(context: android.content.Context) {
         initializeNativeClasses();
         const tabsBar = new TabsBar(context, this);
+        tabsBar.setViewPager(this.mViewPager);
         const primaryColor = Utils.android.resources.getPaletteColor(PRIMARY_COLOR, context);
         const accentColor = getDefaultAccentColor(context);
         if (accentColor) {
@@ -75,12 +83,12 @@ export class Tabs extends TabNavigation<TabsBar> {
         return tabsBar;
     }
 
-    protected override setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[], viewPager: com.nativescript.material.core.TabViewPager) {
-        this.mTabsBar.setItems(tabItems, viewPager);
+    protected override setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[]) {
+        this.mTabsBar.setItems(tabItems);
     }
 
     protected override selectTabBar(oldIndex: number, newIndex: number) {
-        this.mTabsBar.onSelectedPositionChange(oldIndex, newIndex);
+        this.mTabsBar.setSelectedPosition(newIndex);
     }
 
     protected override setTabStripItems(items: TabStripItem[]) {

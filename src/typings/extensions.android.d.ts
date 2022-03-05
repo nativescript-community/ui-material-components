@@ -38,8 +38,11 @@ declare namespace com {
                     setTabTextFontSize(fontSize: number): void;
                     getTabTextFontSize(): number;
 
-                    setItems(items: Array<TabItemSpec>, viewPager: androidx.viewpager.widget.ViewPager): void;
+                    setViewPager(viewPager: androidx.viewpager2.widget.ViewPager2): void;
+                    setItems(items: Array<TabItemSpec>): void;
                     updateItemAt(position: number, itemSpec: TabItemSpec): void;
+
+                    setSelectedPosition(position: number): void;
 
                     getTextViewForItemAt(index: number): globalAndroid.widget.TextView;
                     getViewForItemAt(index: number): globalAndroid.widget.LinearLayout;
@@ -69,12 +72,12 @@ declare namespace com {
                     getItemCount(): number;
                 }
 
-                export class TabViewPager extends androidx.viewpager.widget.ViewPager {
+                export class TabViewPager extends androidx.viewpager2.widget.ViewPager2 {
                     constructor(context: globalAndroid.content.Context);
                     constructor(context: globalAndroid.content.Context, attrs: globalAndroid.util.AttributeSet);
 
                     setSwipePageEnabled(enabled: boolean): void;
-                                setAnimationEnabled(enabled: boolean): void;
+                    setAnimationEnabled(enabled: boolean): void;
                 }
 
                 export class TabItemSpec {

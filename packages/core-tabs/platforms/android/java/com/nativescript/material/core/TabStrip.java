@@ -23,6 +23,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -45,7 +46,6 @@ class TabStrip extends LinearLayout {
     private int mSelectedPosition;
     private float mSelectionOffset;
 
-    private TabLayout.TabColorizer mCustomTabColorizer;
     private final SimpleTabColorizer mDefaultTabColorizer;
 
     private int mTabTextColor;
@@ -94,14 +94,7 @@ class TabStrip extends LinearLayout {
         setMeasureWithLargestChildEnabled(true);
     }
 
-    void setCustomTabColorizer(TabLayout.TabColorizer customTabColorizer) {
-        mCustomTabColorizer = customTabColorizer;
-        invalidate();
-    }
-
     void setSelectedIndicatorColors(int... colors) {
-        // Make sure that the custom colorizer is removed
-        mCustomTabColorizer = null;
         mDefaultTabColorizer.setIndicatorColors(colors);
         invalidate();
     }
@@ -128,12 +121,24 @@ class TabStrip extends LinearLayout {
         mShouldUpdateTabsTextColor = value;
     }
 
+
+    private void updateTabTextColor(int index, boolean selected){
+        if (mShouldUpdateTabsTextColor) {
+            TextView textView = getTextViewAt(index);
+            if (selected){
+                textView.setTextColor(mSelectedTabTextColor);
+            }
+            else {
+                textView.setTextColor(mTabTextColor);
+            }
+        }
+    }
+
     private void updateTabsTextColor(){
         if (mShouldUpdateTabsTextColor) {
             final int childCount = getChildCount();
             for (int i = 0; i < childCount; i++){
-                LinearLayout linearLayout = (LinearLayout)getChildAt(i);
-                TextView textView = (TextView)linearLayout.getChildAt(1);
+                TextView textView = getTextViewAt(i);
                 if (i == mSelectedPosition){
                     textView.setTextColor(mSelectedTabTextColor);
                 }
@@ -153,26 +158,21 @@ class TabStrip extends LinearLayout {
         return mTabTextFontSize;
     }
 
+    private TextView getTextViewAt(int index) {
+        LinearLayout linearLayout = (LinearLayout)getChildAt(index);
+        return (TextView)linearLayout.getChildAt(1);
+    }
+
     private void updateTabsTextFontSize(){
         final int childCount = getChildCount();
         for (int i = 0; i < childCount; i++){
-            LinearLayout linearLayout = (LinearLayout)getChildAt(i);
-            TextView textView = (TextView)linearLayout.getChildAt(1);
+            TextView textView = getTextViewAt(i);
             textView.setTextSize(mTabTextFontSize);
         }
     }
 
-    // Used by TabLayout (the 'old' tab-view control)
-    void onViewPagerPageChanged(int position, float positionOffset) {
-        mSelectedPosition = position;
-        mSelectionOffset = positionOffset;
-        invalidate();
-        updateTabsTextColor();
-    }
 
-    // Used by TabsBar
     void onTabsViewPagerPageChanged(int position, float positionOffset) {
-        mSelectedPosition = position;
         mSelectionOffset = positionOffset;
         invalidate();
     }
@@ -182,9 +182,14 @@ class TabStrip extends LinearLayout {
     }
 
     void setSelectedPosition(int position) {
-        mSelectedPosition = position;
-        invalidate();
-        updateTabsTextColor();
+        if (mSelectedPosition != position) {
+            getChildAt(mSelectedPosition).setSelected(false);
+            getChildAt(position).setSelected(true);
+            updateTabTextColor(mSelectedPosition, false);
+            updateTabTextColor(position, false);
+            mSelectedPosition = position;
+            invalidate();
+        }
     }
 
     @Override
@@ -193,9 +198,7 @@ class TabStrip extends LinearLayout {
 
         final int height = getHeight();
         final int childCount = getChildCount();
-        final TabLayout.TabColorizer tabColorizer = mCustomTabColorizer != null
-                ? mCustomTabColorizer
-                : mDefaultTabColorizer;
+        final SimpleTabColorizer tabColorizer = mDefaultTabColorizer;
 
         // Thick colored underline below the current selection
         if (childCount > 0 && mSelectedPosition < childCount) {
@@ -249,10 +252,9 @@ class TabStrip extends LinearLayout {
         return Color.rgb((int) r, (int) g, (int) b);
     }
 
-    private static class SimpleTabColorizer implements TabLayout.TabColorizer {
+    private static class SimpleTabColorizer {
         private int[] mIndicatorColors;
 
-        @Override
         public final int getIndicatorColor(int position) {
             return mIndicatorColors[position % mIndicatorColors.length];
         }

@@ -1,9 +1,9 @@
 ﻿// Types
-import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
-import { TabNavigationBase, getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
-import { TabsPosition } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation/index-common';
-import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
-import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
+import { TabContentItem } from '@nativescript-community/ui-material-core-tabs/tab-content-item';
+import { TabNavigationBase, getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '@nativescript-community/ui-material-core-tabs/tab-navigation-base';
+import { TabsPosition } from '@nativescript-community/ui-material-core-tabs/tab-navigation/index-common';
+import { TabStrip } from '@nativescript-community/ui-material-core-tabs/tab-strip';
+import { TabStripItem } from '@nativescript-community/ui-material-core-tabs/tab-strip-item';
 // Types
 // Requires
 import { CSSType, Color, CoreTypes, Device, Font, Frame, IOSHelper, ImageSource, Property, Utils, View, booleanConverter } from '@nativescript/core';
@@ -68,7 +68,7 @@ class UITabBarControllerImpl extends UITabBarController {
                 tabStrip.items.forEach((tabStripItem) => {
                     updateBackgroundPositions(tabStrip, tabStripItem);
 
-                    const index = tabStripItem._index;
+                    const index = tabStripItem.index;
                     const tabBarItemController = this.viewControllers[index];
                     updateTitleAndIconPositions(tabStripItem, tabBarItemController.tabBarItem, tabBarItemController);
                 });
@@ -207,7 +207,7 @@ class UINavigationControllerDelegateImpl extends NSObject implements UINavigatio
 
 function updateBackgroundPositions(tabStrip: TabStrip, tabStripItem: TabStripItem) {
     let bgView = (tabStripItem as any).bgView;
-    const index = tabStripItem._index;
+    const index = tabStripItem.index;
     const width = tabStrip.nativeView.frame.size.width / tabStrip.items.length;
     const frame = CGRectMake(width * index, 0, width, tabStrip.nativeView.frame.size.width);
     if (!bgView) {
@@ -424,7 +424,7 @@ export class BottomNavigation extends TabNavigationBase {
     private setIconColor(tabStripItem: TabStripItem, forceReload = false): void {
         if (forceReload || (!this.mUnSelectedItemColor && !this.mSelectedItemColor)) {
             // if selectedItemColor or unSelectedItemColor is set we don't respect the color from the style
-            const tabStripColor = this.selectedIndex === tabStripItem._index ? this.mSelectedItemColor : this.mUnSelectedItemColor;
+            const tabStripColor = this.selectedIndex === tabStripItem.index ? this.mSelectedItemColor : this.mUnSelectedItemColor;
 
             const image = this.getIcon(tabStripItem, tabStripColor);
 
@@ -599,7 +599,7 @@ export class BottomNavigation extends TabNavigationBase {
                 this.setViewAttributes(tabBarItem, tabStripItem.label);
 
                 controller.tabBarItem = tabBarItem;
-                tabStripItem._index = i;
+                tabStripItem.index = i;
                 tabStripItem.setNativeView(tabBarItem);
             }
 

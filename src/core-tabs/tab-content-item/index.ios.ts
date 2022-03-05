@@ -16,17 +16,4 @@ export class TabContentItem extends TabContentItemBase {
         this.__controller = undefined;
         this.setNativeView(undefined);
     }
-
-    // TODO: Handle this for BOTTOM NAVIGATION with canBeLoaded in tab-cotent-item-common
-    // public loadView(view: ViewBase): void {
-    //     const tabView = this.parent as TabNavigationBase;
-    //     if (tabView && tabView.items) {
-    //         const index = tabView.items.indexOf(this);
-
-    //         // if (index === tabView.selectedIndex) {
-    //         //     super.loadView(view);
-    //         // }
-    //         super.loadView(view);
-    //     }
-    // }
 }

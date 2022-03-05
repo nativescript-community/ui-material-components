@@ -3,11 +3,11 @@
  * @module @nativescript-community/ui-material-bottom-navigation
  */
 
-import { TabContentItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-content-item';
-import { TabNavigationBase } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-navigation-base';
-import { TabStrip } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip';
+import { TabContentItem } from '@nativescript-community/ui-material-core-tabs/tab-content-item';
+import { TabNavigationBase } from '@nativescript-community/ui-material-core-tabs/tab-navigation-base';
+import { TabStrip } from '@nativescript-community/ui-material-core-tabs/tab-strip';
 import { CoercibleProperty, EventData, Property } from '@nativescript/core';
-import { TabStripItem } from '@nativescript-community/ui-material-core/tab-navigation-base/tab-strip-item';
+import { TabStripItem } from '@nativescript-community/ui-material-core-tabs/tab-strip-item';
 
 export { TabContentItem, TabStrip, TabStripItem };
 /**

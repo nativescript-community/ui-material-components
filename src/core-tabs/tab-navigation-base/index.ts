@@ -1,5 +1,5 @@
 ﻿/**
- * @hidden
+ * @module @nativescript-community/ui-material-core-tabs/tab-navigation-base
  */
 import { AddArrayFromBuilder, AddChildFromBuilder, CoercibleProperty, Color, EventData, Property, View, ViewBase, booleanConverter } from '@nativescript/core';
 import { TabNavigationBase as TabNavigationBaseDefinition } from '.';
