@@ -5,7 +5,7 @@
         </ActionBar>
 
         <GridLayout rows="*, 0" backgroundColor="red">
-            <MDBottomNavigation selectedIndex="1" :iosCustomPositioning="true">
+            <MDBottomNavigation selectedIndex="1" :iosCustomPositioning="false">
                 <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
                 <MDTabStrip>
                     <MDTabStripItem>

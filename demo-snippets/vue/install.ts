@@ -36,6 +36,10 @@ import Mixins from './Mixins.vue';
 
 import '../app.scss';
 
+import {Trace} from '@nativescript/core';
+Trace.addCategories(Trace.categories.NativeLifecycle);
+Trace.addCategories(Trace.categories.ViewHierarchy);
+// Trace.enable();
 installMixins();
 installBottomSheet();
 if (__IOS__) {

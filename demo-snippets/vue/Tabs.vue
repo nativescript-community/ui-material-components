@@ -4,7 +4,7 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
         <GridLayout rows="*, 0" backgroundColor="red">
-            <MDTabs ref="tabs" :iosCustomPositioning="false" :unloadOnTabChange="false" backgroundColor="green">
+            <MDTabs ref="tabs" :swipeEnabled="false" :animationEnabled="false" :unloadOnTabChange="false" backgroundColor="green">
                 <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
                 <MDTabStrip>
                     <MDTabStripItem>
