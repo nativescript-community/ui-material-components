@@ -990,13 +990,12 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
             return;
         }
         const itemColor = tabStripItem._index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor;
-        if (!itemColor) {
-            return;
-        }
+        console.log('_setItemColor', tabStripItem, itemColor);
 
         // set label color
-        tabStripItem.nativeViewProtected.setTextColor(itemColor.android);
-
+        if (itemColor) {
+            tabStripItem.nativeViewProtected.setTextColor(itemColor.android || null);
+        }
         // set icon color
         this.setIconColor(tabStripItem, itemColor);
     }
@@ -1010,9 +1009,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         const drawableInfo = this.getIconInfo(tabStripItem, color);
         const imgView = tabBarItem.getChildAt(0) as android.widget.ImageView;
         imgView.setImageDrawable(drawableInfo.drawable);
-        if (color) {
-            imgView.setColorFilter(color.android);
-        }
+        imgView.setColorFilter(color?.android || null);
     }
 
     public setTabBarItemColor(tabStripItem: TabStripItem, value: number | Color): void {
