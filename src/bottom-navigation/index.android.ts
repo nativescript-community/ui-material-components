@@ -50,6 +50,7 @@ function initializeNativeClasses() {
 @CSSType('BottomNavigation')
 export class BottomNavigation extends TabNavigation<com.nativescript.material.core.BottomNavigationBar> {
     tabsPosition = TabsPosition.Bottom;
+    animationEnabled = false;
     protected override updateTabsBarItemAt(position: number, itemSpec: com.nativescript.material.core.TabItemSpec) {
         this.mTabsBar.updateItemAt(position, itemSpec);
     }
