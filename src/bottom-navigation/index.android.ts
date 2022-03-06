@@ -96,10 +96,10 @@ export class BottomNavigation extends TabNavigation<com.nativescript.material.co
         // }
     }
 
-    _onAttachedToWindow(): void {
-        super._onAttachedToWindow();
-        // this.changeTab(this.selectedIndex);
-    }
+    // _onAttachedToWindow(): void {
+    //     super._onAttachedToWindow();
+    //     // this.changeTab(this.selectedIndex);
+    // }
 
     public override updateAndroidItemAt(index: number, spec: com.nativescript.material.core.TabItemSpec) {
         // that try catch is fix for an android NPE error on css change which navigated in (not the current fragment)

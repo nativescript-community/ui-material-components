@@ -183,10 +183,15 @@ class TabStrip extends LinearLayout {
 
     void setSelectedPosition(int position) {
         if (mSelectedPosition != position) {
-            getChildAt(mSelectedPosition).setSelected(false);
-            getChildAt(position).setSelected(true);
-            updateTabTextColor(mSelectedPosition, false);
-            updateTabTextColor(position, false);
+            final int childCount = getChildCount();
+            if (mSelectedPosition > -1 && mSelectedPosition < childCount ) {
+                getChildAt(mSelectedPosition).setSelected(false);
+                updateTabTextColor(mSelectedPosition, false);
+            }
+            if (position > -1 && position < childCount ) {
+                getChildAt(position).setSelected(true);
+                updateTabTextColor(position, true);
+            }
             mSelectedPosition = position;
             invalidate();
         }

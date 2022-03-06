@@ -1,9 +1,9 @@
-import { Application, Color, CoreTypes, Font, Frame, ImageSource, Utils, View, getTransformedText } from '@nativescript/core';
+import { Application, Color, CoreTypes, Font, ImageSource, Utils, getTransformedText } from '@nativescript/core';
 import { TabContentItem } from '../tab-content-item';
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '../tab-navigation-base';
 import { TabStrip } from '../tab-strip';
 import { TabStripItem } from '../tab-strip-item';
-import { TabNavigationBase, TabsPosition, animationEnabledProperty, offscreenTabLimitProperty, swipeEnabledProperty } from './index-common';
+import { TabNavigationBase, TabsPosition, offscreenTabLimitProperty, swipeEnabledProperty } from './index-common';
 export * from './index-common';
 export { TabContentItem, TabStrip, TabStripItem };
 
@@ -27,7 +27,6 @@ let PagerAdapter: PagerAdapter;
 // eslint-disable-next-line no-redeclare
 let PageChangeCallback: PageChangeCallback;
 let appResources: android.content.res.Resources;
-// let AttachStateChangeListener: any;
 
 function getTabById(id: number): TabNavigation {
     const ref = tabs.find((ref) => {
@@ -75,7 +74,7 @@ function initializeNativeClasses() {
     class TabFragmentImplementation extends org.nativescript.widgets.FragmentBase {
         private owner: TabNavigation;
         private index: number;
-        private backgroundBitmap: android.graphics.Bitmap = null;
+        // private backgroundBitmap: android.graphics.Bitmap = null;
 
         constructor() {
             super();
@@ -111,7 +110,6 @@ function initializeNativeClasses() {
         }
 
         public onDestroyView() {
-            console.log('TabFragmentImplementation', 'onDestroyView', this.index);
             //     const hasRemovingParent = this.getRemovingParentFragment();
 
             //     // Get view as bitmap and set it as background. This is workaround for the disapearing nested fragments.
@@ -160,54 +158,30 @@ function initializeNativeClasses() {
 
     @NativeClass
     class FragmentPagerAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
-        public items: TabContentItem[];
-        private mCurTransaction: androidx.fragment.app.FragmentTransaction;
-        private mCurrentPrimaryItem: androidx.fragment.app.Fragment;
-
         constructor(public owner: WeakRef<TabNavigation>, fragmentActivity: androidx.fragment.app.FragmentActivity) {
             super(fragmentActivity);
-
             return global.__native(this);
         }
 
         getItemCount() {
-            const items = this.items;
-
-            return items ? items.length : 0;
+            const owner = this.owner?.get();
+            if (!owner) {
+                return 0;
+            }
+            return owner.items.length;
         }
-
-        // getPageTitle(index: number) {
-        //     const items = this.items;
-        //     if (index < 0 || index >= items.length) {
-        //         return '';
-        //     }
-
-        //     return ''; // items[index].title;
-        // }
         createFragment(position: number): androidx.fragment.app.Fragment {
             const owner = this.owner?.get();
             if (!owner) {
                 return null;
             }
-
-            const itemId = this.getItemId(position);
-            // const name = makeFragmentName(itemId);
-
             const fragment: androidx.fragment.app.Fragment = TabFragmentImplementation.newInstance(owner._domId, position);
-
-            const tabItems = owner.items;
-            const tabItem = tabItems ? tabItems[position] : null;
-            if (tabItem) {
-                tabItem.canBeLoaded = true;
-            }
-
             return fragment;
         }
     }
 
     PagerAdapter = FragmentPagerAdapter;
     PageChangeCallback = PageChangeCallbackImpl;
-    // AttachStateChangeListener = new AttachListener();
     appResources = Application.android.context.getResources();
 }
 
@@ -238,17 +212,8 @@ function setElevation(grid: org.nativescript.widgets.GridLayout, tabsBar: androi
 
 export const tabs = new Array<WeakRef<TabNavigation>>();
 
-function iterateIndexRange(index: number, eps: number, lastIndex: number, callback: (i) => void) {
-    const rangeStart = Math.max(0, index - eps);
-    const rangeEnd = Math.min(index + eps, lastIndex);
-    for (let i = rangeStart; i <= rangeEnd; i++) {
-        callback(i);
-    }
-}
-
 //TODO: move to abstract
 export abstract class TabNavigation<T extends android.view.ViewGroup = any> extends TabNavigationBase {
-    // export abstract class TabNavigation<T extends com.nativescript.material.core.TabsBar> extends TabNavigationBase {
     nativeViewProtected: org.nativescript.widgets.GridLayout;
     protected mTabsBar: T;
     protected mViewPager: androidx.viewpager2.widget.ViewPager2;
@@ -289,9 +254,6 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         const context: android.content.Context = this._context;
         const nativeView = new org.nativescript.widgets.GridLayout(context);
         const viewPager = new androidx.viewpager2.widget.ViewPager2(context);
-        //dirty trick to be able to disable swipe
-        // const recyclerView = viewPager as any as androidx.recyclerview.widget.RecyclerView;
-        // recyclerView.addOnItemTouchListener();
         const lp = new org.nativescript.widgets.CommonLayoutParams();
         lp.row = 1;
         if (this.tabsPosition === 'top') {
@@ -313,7 +275,6 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         (viewPager as any).adapter = adapter;
         this.mViewPager = viewPager;
         setElevation(nativeView, null, this.tabsPosition);
-
         if (this.tabStrip) {
             this.handleTabStripChanged(nativeView, null, this.tabStrip);
         }
@@ -344,6 +305,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
             }
             nativeView.addView(tabsBar);
             nativeView['tabsBar'] = tabsBar;
+            this.setTabStripItems(newTabStrip?.items || null);
         }
     }
     public onTabStripChanged(oldTabStrip: TabStrip, newTabStrip: TabStrip) {
@@ -388,13 +350,14 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     public onLoaded(): void {
         super.onLoaded();
 
-        if (this._originalBackground) {
-            this.backgroundColor = null;
-            this.backgroundColor = this._originalBackground;
-            this._originalBackground = null;
-        }
+        // if (this._originalBackground) {
+        //     console.log('setting original background', this._originalBackground);
+        //     this.backgroundColor = null;
+        //     this.backgroundColor = this._originalBackground;
+        //     this._originalBackground = null;
+        // }
 
-        this.setItems(this.items as any);
+        // this.setItems(this.items as any);
 
         if (this.tabStrip) {
             this.setTabStripItems(this.tabStrip.items);
@@ -404,13 +367,13 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     public onUnloaded(): void {
         super.onUnloaded();
 
-        this.setItems(null);
-        this.setTabStripItems(null);
+        // this.setItems(null);
+        // this.setTabStripItems(null);
 
         // TODO: needed ?
-        this.items.forEach((item, i) => {
-            item.unloadView(item.content);
-        });
+        // this.items.forEach((item, i) => {
+        //     item.unloadView(item.content);
+        // });
     }
 
     private shouldUpdateAdapter(items: TabContentItem[]) {
@@ -447,15 +410,13 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     }
 
     private setItems(items: TabContentItem[]) {
+        if (items && items.length) {
+            items.forEach((item: TabContentItem, i) => {
+                item.index = i;
+            });
+        }
+        this._loadUnloadTabItems(this.selectedIndex);
         if (this.shouldUpdateAdapter(items)) {
-            (this.mPagerAdapter as any).items = items;
-
-            if (items && items.length) {
-                items.forEach((item: TabContentItem, i) => {
-                    (item as any).index = i;
-                });
-            }
-
             this.mPagerAdapter.notifyDataSetChanged();
         }
     }
@@ -664,8 +625,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         if (!tabStripItem.nativeViewProtected) {
             return;
         }
-        const itemColor = tabStripItem.index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor;
-
+        const itemColor = tabStripItem.index === this.selectedIndex ? this.mSelectedItemColor : tabStripItem.style.color || this.mUnSelectedItemColor;
         // set label color
         if (itemColor) {
             tabStripItem.nativeViewProtected.setTextColor(itemColor.android || null);
