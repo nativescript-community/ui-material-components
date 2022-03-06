@@ -5,7 +5,7 @@
         </ActionBar>
 
         <GridLayout rows="*, 0" backgroundColor="red">
-            <MDBottomNavigation selectedIndex="1" :iosCustomPositioning="false">
+            <MDBottomNavigation selectedIndex="1" :iosCustomPositioning="false" backgroundColor="blue">
                 <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
                 <MDTabStrip>
                     <MDTabStripItem>
@@ -24,16 +24,17 @@
 
                 <!-- The number of MDTabContentItem components should corespond to the number of MDTabStripItem components -->
                 <MDTabContentItem>
-                    <Frame id="test">
-                        <Page>
-                            <GridLayout backgroundColor="red" @loaded="onLoaded('red')" @tap="navigateToTabsSample">
-                                <Label text="Home Page" class="h2 text-center"></Label>
+                    <Frame id="test" backgroundColor="transparent">
+                        <Page backgroundColor="transparent">
+                            <GridLayout backgroundColor="transparent" @loaded="onLoaded('red')">
+                                <Label text="Home Page" class="h2 text-center" @tap="navigateToTabsSample"></Label>
+                                <Button text="show alert" @tap="showTestAlert" verticalAlignment="center"></Button>
                             </GridLayout>
                         </Page>
                     </Frame>
                 </MDTabContentItem>
                 <MDTabContentItem>
-                    <GridLayout backgroundColor="green" @loaded="onLoaded('green')">
+                    <GridLayout backgroundColor="transparent" @loaded="onLoaded('green')">
                         <Label text="Account Page" class="h2 text-center"></Label>
                     </GridLayout>
                 </MDTabContentItem>
@@ -72,6 +73,9 @@ export default Vue.extend({
         },
         navigateToTabsSample() {
             this.$navigateTo(Tabs);
+        },
+        showTestAlert() {
+            alert('test');
         }
     }
 });
