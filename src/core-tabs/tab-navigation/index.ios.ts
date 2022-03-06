@@ -830,34 +830,24 @@ export abstract class TabNavigation<
 
     private setItemColors(): void {
         if (this.mSelectedItemColor) {
+            this.viewController.tabBar.setImageTintColorForState(this.mSelectedItemColor.ios, UIControlState.Selected);
             this.viewController.tabBar.setTitleColorForState(this.mSelectedItemColor.ios, UIControlState.Selected);
         }
         if (this.mUnSelectedItemColor) {
+            this.viewController.tabBar.setImageTintColorForState(this.mUnSelectedItemColor.ios, UIControlState.Normal);
             this.viewController.tabBar.setTitleColorForState(this.mUnSelectedItemColor.ios, UIControlState.Normal);
         }
     }
 
     private setIconColor(tabStripItem: TabStripItem, forceReload = false): void {
         const nativeView = tabStripItem.nativeView;
-        if (!nativeView) {
-            return;
-        }
-        // if there is no change in the css color and there is no item color set
-        // we don't need to reload the icon
-        if (!forceReload && !this.mSelectedItemColor && !this.mUnSelectedItemColor) {
-            return;
-        }
+        if (nativeView && (forceReload || (!this.mUnSelectedItemColor && !this.mSelectedItemColor))) {
+            // if selectedItemColor or unSelectedItemColor is set we don't respect the color from the style
+            const tabStripColor = this.selectedIndex === tabStripItem.index ? this.mSelectedItemColor : this.mUnSelectedItemColor;
+            const image = this.getIcon(tabStripItem, tabStripColor);
 
-        // if selectedItemColor or unSelectedItemColor is set we don't respect the color from the style
-
-        if (this.mSelectedItemColor) {
-            const image = this.getIcon(tabStripItem, this.mSelectedItemColor);
-            nativeView.selectedImage = image;
-        }
-
-        if (this.mUnSelectedItemColor) {
-            const image = this.getIcon(tabStripItem, this.mUnSelectedItemColor);
             nativeView.image = image;
+            nativeView.selectedImage = image;
         }
     }
 
