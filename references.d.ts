@@ -5,6 +5,7 @@
 /// <reference path="./node_modules/@nativescript/types-ios/lib/ios/objc-x86_64/objc!UIKit.d.ts" />
 /// <reference path="./node_modules/@nativescript/types-ios/lib/ios/objc-x86_64/objc!CoreGraphics.d.ts" />
 /// <reference path="./node_modules/@nativescript/types-ios/lib/ios/objc-x86_64/objc!ObjectiveC.d.ts" />
+/// <reference path="./node_modules/@nativescript/types-ios/lib/ios/objc-x86_64/objc!QuartzCore.d.ts" />
 /// <reference path="./node_modules/@nativescript/types-android/lib/android/android-platform-31.d.ts" />
 /// <reference path="./node_modules/@nativescript/types-android/lib/android/androidx-31.d.ts" />
 /// <reference path="./node_modules/@nativescript/types-android/lib/android/common.d.ts" />
