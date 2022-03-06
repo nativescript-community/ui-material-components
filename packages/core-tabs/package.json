@@ -11,8 +11,8 @@
         "build": "npm run tsc ",
         "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win ",
-        "build.all": "npm run build.hooks && npm run build",
-        "build.all.win": "npm run build.hooks.win && npm run build.win",
+        "build.all": "npm run build",
+        "build.all.win": "npm run build.win",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
     },
     "nativescript": {
