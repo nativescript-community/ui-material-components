@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-button",
-    "version": "6.2.20",
+    "version": "6.2.21",
     "description": "Material Design Buttons allow users to take actions, and make choices, with a single tap.",
     "main": "./button",
     "sideEffects": false,
@@ -47,7 +47,7 @@
     "readmeFilename": "README.md",
     "dependencies": {
         "@nativescript-community/text": "^1.5.2",
-        "@nativescript-community/ui-material-core": "^6.2.20"
+        "@nativescript-community/ui-material-core": "^6.2.21"
     },
     "gitHead": "f4a17600487dd826a4a581f2ebde8cf6457710ca"
 }

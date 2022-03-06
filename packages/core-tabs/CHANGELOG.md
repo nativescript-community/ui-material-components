@@ -1,0 +1,11 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [6.2.21](https://github.com/nativescript-community/ui-material-components/compare/v6.2.20...v6.2.21) (2022-03-06)
+
+
+### Bug Fixes
+
+* **bottom-navigation/tabs:** android full rewrite using ViewPager2 ([013616a](https://github.com/nativescript-community/ui-material-components/commit/013616a9b73156466f79d5c6974498d0282073cd))

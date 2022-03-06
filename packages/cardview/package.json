@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-cardview",
-    "version": "6.2.20",
+    "version": "6.2.21",
     "description": "Material Design Cards contain content and actions about a single subject.",
     "main": "./cardview",
     "sideEffects": false,
@@ -46,7 +46,7 @@
     },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^6.2.20"
+        "@nativescript-community/ui-material-core": "^6.2.21"
     },
     "gitHead": "f4a17600487dd826a4a581f2ebde8cf6457710ca"
 }

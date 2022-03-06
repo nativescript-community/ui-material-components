@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.21](https://github.com/nativescript-community/ui-material-component/compare/v6.2.20...v6.2.21) (2022-03-06)
+
+
+### Bug Fixes
+
+* **bottom-navigation/tabs:** android full rewrite using ViewPager2 ([013616a](https://github.com/nativescript-community/ui-material-component/commit/013616a9b73156466f79d5c6974498d0282073cd))
+* **bottom-navigation:** android default to no animation ([e62441d](https://github.com/nativescript-community/ui-material-component/commit/e62441d97c064eb9673c73156e9ac0d85ab84f07))
+* **tabs/bottom-navigation:** image color filter not reset on unselect ([f4c53c5](https://github.com/nativescript-community/ui-material-component/commit/f4c53c5aba0fad6a8d3893b9f16ce38c5a8597dd))
+* **tabs:** android crash on back navigation ([ff12691](https://github.com/nativescript-community/ui-material-component/commit/ff126913bb5c324b59e8619ff02b15a51cb3633a))
+* **tabs:** ios wrong color set in TabStrip items ([0923641](https://github.com/nativescript-community/ui-material-component/commit/0923641104f3d50a7433acbb2fb871e357999400))
+
+
+
+
+
 ## [6.2.20](https://github.com/nativescript-community/ui-material-component/compare/v6.2.19...v6.2.20) (2022-03-04)
 
 
