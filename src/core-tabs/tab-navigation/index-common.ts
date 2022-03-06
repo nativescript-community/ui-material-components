@@ -1,10 +1,11 @@
 ﻿import { cssProperty } from '@nativescript-community/ui-material-core';
 // Types
-import { Color, CoreTypes, Property, booleanConverter } from '@nativescript/core';
+import { Color, CoreTypes, Frame, Property, booleanConverter } from '@nativescript/core';
 import { TabNavigationBase as TabNavigationBaseBase } from '../tab-navigation-base';
 
 import { TabNavigation as TabsDefinition } from '.';
 import { TabStripItem } from '../tab-strip-item';
+import { TabContentItem } from '../tab-content-item';
 
 export namespace knownCollections {
     export const items = 'items';
@@ -40,6 +41,42 @@ export class TabNavigationBase extends TabNavigationBaseBase implements TabsDefi
     }
     public getTabBarItemTextTransform(tabStripItem: TabStripItem): CoreTypes.TextTransformType {
         return this.getItemLabelTextTransform(tabStripItem);
+    }
+
+    public _loadUnloadTabItems(newIndex: number) {
+        const items = this.items;
+        if (!items) {
+            return;
+        }
+
+        const offsideItems = this.offscreenTabLimit;
+
+        const toLoad: TabContentItem[] = [];
+        const toUnload: TabContentItem[] = [];
+        for (let index = 0; index < items.length; index++) {
+            const item = items[index];
+            if (item) {
+                if (Math.abs(index - newIndex) <= offsideItems) {
+                    toLoad.push(item);
+                } else {
+                    toUnload.push(item);
+                }
+            }
+        }
+
+        if (this.unloadOnTabChange) {
+            toUnload.forEach((item) => item.unloadView(item.content));
+        }
+
+        const newItem = items[newIndex];
+        const selectedView = newItem && newItem.content;
+        if (selectedView instanceof Frame) {
+            selectedView._pushInFrameStackRecursive();
+        }
+
+        if (this.isLoaded) {
+            toLoad.forEach((item) => item.loadView(item.content));
+        }
     }
 }
 

@@ -385,49 +385,6 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         super.disposeNativeView();
     }
 
-    public _loadUnloadTabItems(newIndex: number) {
-        const items = this.items;
-        if (!items) {
-            return;
-        }
-
-        const lastIndex = items.length - 1;
-        const offsideItems = this.offscreenTabLimit;
-
-        const toUnload = [];
-        const toLoad = [];
-
-        iterateIndexRange(newIndex, offsideItems, lastIndex, (i) => toLoad.push(i));
-
-        if (this.unloadOnTabChange) {
-            items.forEach((item, i) => {
-                const indexOfI = toLoad.indexOf(i);
-                if (indexOfI < 0) {
-                    toUnload.push(i);
-                }
-                toUnload.forEach((index) => {
-                    const item = items[index];
-                    if (items[index]) {
-                        item.unloadView(item.content);
-                    }
-                });
-            });
-        }
-
-        const newItem = items[newIndex];
-        const selectedView = newItem && newItem.content;
-        if (selectedView instanceof Frame) {
-            selectedView._pushInFrameStackRecursive();
-        }
-
-        toLoad.forEach((index) => {
-            const item = items[index];
-            if (this.isLoaded && items[index]) {
-                item.loadView(item.content);
-            }
-        });
-    }
-
     public onLoaded(): void {
         super.onLoaded();
 

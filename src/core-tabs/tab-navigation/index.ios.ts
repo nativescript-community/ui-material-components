@@ -385,62 +385,21 @@ export abstract class TabNavigation<
 
         const tabStripItems = this.tabStrip && this.tabStrip.items;
         if (tabStripItems) {
-            if (tabStripItems[newIndex]) {
-                tabStripItems[newIndex]._emit(TabStripItem.selectEvent);
-                this.updateItemColors(tabStripItems[newIndex]);
+            const newItem = tabStripItems[newIndex];
+            if (newItem) {
+                newItem._emit(TabStripItem.selectEvent);
+                this.updateItemColors(newItem);
             }
-
-            if (tabStripItems[oldIndex]) {
-                tabStripItems[oldIndex]._emit(TabStripItem.unselectEvent);
-                this.updateItemColors(tabStripItems[oldIndex]);
+            const oldItem = tabStripItems[oldIndex];
+            if (oldItem) {
+                oldItem._emit(TabStripItem.unselectEvent);
+                this.updateItemColors(oldItem);
             }
         }
 
         this._loadUnloadTabItems(newIndex);
 
         super.onSelectedIndexChanged(oldIndex, newIndex);
-    }
-
-    public _loadUnloadTabItems(newIndex: number) {
-        const items = this.items;
-        if (!items) {
-            return;
-        }
-
-        const lastIndex = items.length - 1;
-        const offsideItems = this.offscreenTabLimit;
-
-        const toUnload = [];
-        const toLoad = [];
-
-        iterateIndexRange(newIndex, offsideItems, lastIndex, (i) => toLoad.push(i));
-        if (this.unloadOnTabChange) {
-            items.forEach((item, i) => {
-                const indexOfI = toLoad.indexOf(i);
-                if (indexOfI < 0) {
-                    toUnload.push(i);
-                }
-            });
-
-            toUnload.forEach((index) => {
-                const item = items[index];
-                if (items[index]) {
-                    item.unloadView(item.content);
-                }
-            });
-        }
-        const newItem = items[newIndex];
-        const selectedView = newItem && newItem.content;
-        if (selectedView instanceof Frame) {
-            selectedView._pushInFrameStackRecursive();
-        }
-
-        toLoad.forEach((index) => {
-            const item = items[index];
-            if (this.isLoaded && items[index]) {
-                item.loadView(item.content);
-            }
-        });
     }
 
     public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
