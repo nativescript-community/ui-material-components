@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-core-tabs",
-    "version": "6.2.20",
+    "version": "6.2.21-alpha.5+6a7fa01a",
     "description": "Material Core Tabs component",
     "main": "./index",
     "sideEffects": false,
@@ -41,5 +41,5 @@
     "dependencies": {
         "@nativescript-community/ui-material-core": "^6.2.20"
     },
-    "gitHead": "f4a17600487dd826a4a581f2ebde8cf6457710ca"
+    "gitHead": "6a7fa01aa25fd5987efa49315d7bb3c47fbf2b48"
 }
