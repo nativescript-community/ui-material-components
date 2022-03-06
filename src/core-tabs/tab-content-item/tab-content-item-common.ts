@@ -1,12 +1,10 @@
 ﻿// Types
 import { AddChildFromBuilder, CSSType, ContentView, View, ViewBase } from '@nativescript/core';
 import { TabContentItem as TabContentItemDefinition } from '.';
-import { TabNavigationBase } from '../tab-navigation-base';
-
-export const traceCategory = 'TabView';
 
 @CSSType('MDTabContentItem')
 export abstract class TabContentItemBase extends ContentView implements TabContentItemDefinition, AddChildFromBuilder {
+    public index: number;
     public eachChild(callback: (child: View) => boolean) {
         if (this.content) {
             callback(this.content);
@@ -14,12 +12,9 @@ export abstract class TabContentItemBase extends ContentView implements TabConte
     }
 
     public loadView(view: ViewBase): void {
-        const tabView = this.parent as TabNavigationBase;
-        if (tabView && tabView.items) {
-            // Don't load items until their fragments are instantiated.
-            if ((this as TabContentItemDefinition).canBeLoaded) {
-                super.loadView(view);
-            }
+        // Don't load items until their fragments are instantiated.
+        if ((this as TabContentItemDefinition).canBeLoaded) {
+            super.loadView(view);
         }
     }
 }

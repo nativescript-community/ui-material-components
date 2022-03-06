@@ -1030,7 +1030,7 @@ export abstract class TabNavigation<
     [itemsProperty.setNative](value: TabContentItem[]) {
         if (value) {
             value.forEach((item: TabContentItem, i) => {
-                (item as any).index = i;
+                item.index = i;
             });
         }
         this.setViewControllers(value);

@@ -8,4 +8,6 @@ export class TabContentItem extends ContentView {
      * @private
      */
     canBeLoaded?: boolean;
+
+    public index: number;
 }
