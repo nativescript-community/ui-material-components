@@ -110,50 +110,11 @@ function initializeNativeClasses() {
         }
 
         public onDestroyView() {
-            //     const hasRemovingParent = this.getRemovingParentFragment();
-
-            //     // Get view as bitmap and set it as background. This is workaround for the disapearing nested fragments.
-            //     // TODO: Consider removing it when update to androidx.fragment:1.2.0
-            //     if (hasRemovingParent && this.owner.selectedIndex === this.index && this.owner.nativeViewProtected) {
-            //         const bitmapDrawable = new android.graphics.drawable.BitmapDrawable(appResources, this.backgroundBitmap);
-            //         this.owner._originalBackground = this.owner.backgroundColor || new Color('White');
-            //         this.owner.nativeViewProtected.setBackground(bitmapDrawable);
-            //         this.backgroundBitmap = null;
-            //     }
-
             super.onDestroyView();
             const tabItem = this.owner.items[this.index];
             tabItem.canBeLoaded = false;
-            tabItem._tearDownUI(true);
+            tabItem.unloadView(tabItem.content);
         }
-
-        // public onPause(): void {
-        //     const hasRemovingParent = this.getRemovingParentFragment();
-
-        //     // Get view as bitmap and set it as background. This is workaround for the disapearing nested fragments.
-        //     // TODO: Consider removing it when update to androidx.fragment:1.2.0
-        //     if (hasRemovingParent && this.owner.selectedIndex === this.index && this.owner.nativeViewProtected) {
-        //         this.backgroundBitmap = this.loadBitmapFromView(this.owner.nativeViewProtected);
-        //     }
-
-        //     super.onPause();
-        // }
-
-        // private loadBitmapFromView(view: android.view.View): android.graphics.Bitmap {
-        //     // Another way to get view bitmap. Test performance vs setDrawingCacheEnabled
-        //     // const width = view.getWidth();
-        //     // const height = view.getHeight();
-        //     // const bitmap = android.graphics.Bitmap.createBitmap(width, height, android.graphics.Bitmap.Config.ARGB_8888);
-        //     // const canvas = new android.graphics.Canvas(bitmap);
-        //     // view.layout(0, 0, width, height);
-        //     // view.draw(canvas);
-
-        //     view.setDrawingCacheEnabled(true);
-        //     const bitmap = android.graphics.Bitmap.createBitmap(view.getDrawingCache());
-        //     view.setDrawingCacheEnabled(false);
-
-        //     return bitmap;
-        // }
     }
 
     @NativeClass
