@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.22](https://github.com/nativescript-community/ui-material-component/compare/v6.2.21...v6.2.22) (2022-03-07)
+
+
+### Bug Fixes
+
+* **bottom-navigation/tabs:** android fix for tabs disappearing ([26b5686](https://github.com/nativescript-community/ui-material-component/commit/26b568676eecf3805d8f58e97c4215736c622e20))
+
+
+
+
+
 ## [6.2.21](https://github.com/nativescript-community/ui-material-component/compare/v6.2.20...v6.2.21) (2022-03-06)
 
 
