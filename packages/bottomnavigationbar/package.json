@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-bottomnavigationbar",
-    "version": "6.2.22",
+    "version": "6.2.23",
     "description": "Material Design Bottom Navigation bars allow movement between primary destinations in an app. Tapping on a bottom navigation icon takes you directly to the associated view or refreshes the currently active view.",
     "main": "bottomnavigationbar",
     "sideEffects": false,
@@ -52,7 +52,7 @@
     },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^6.2.22"
+        "@nativescript-community/ui-material-core": "^6.2.23"
     },
     "gitHead": "f4a17600487dd826a4a581f2ebde8cf6457710ca"
 }
