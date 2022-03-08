@@ -9,15 +9,19 @@
                 <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
                 <MDTabStrip>
                     <MDTabStripItem>
-                        <Label text="Home" />
+                        <Label text="First" />
                         <Image src="font://mdi-home" class="mdi" />
                     </MDTabStripItem>
                     <MDTabStripItem class="special">
-                        <Label text="Account" />
+                        <Label text="Second" />
                         <Image src="font://mdi-account" class="mdi" />
                     </MDTabStripItem>
                     <MDTabStripItem class="special">
-                        <Label text="Search" />
+                        <Label text="Third" />
+                        <Image src="font://mdi-magnify" class="mdi" />
+                    </MDTabStripItem>
+                    <MDTabStripItem class="special">
+                        <Label text="Fourth" />
                         <Image src="font://mdi-magnify" class="mdi" />
                     </MDTabStripItem>
                 </MDTabStrip>
@@ -27,7 +31,7 @@
                     <Frame id="test" backgroundColor="transparent">
                         <Page backgroundColor="transparent">
                             <GridLayout backgroundColor="transparent" @loaded="onLoaded('red')">
-                                <Label text="Home Page" class="h2 text-center" @tap="navigateToTabsSample"></Label>
+                                <Label text="First Page" class="h2 text-center" @tap="navigateToTabsSample"></Label>
                                 <Button text="show alert" @tap="showTestAlert" verticalAlignment="center"></Button>
                             </GridLayout>
                         </Page>
@@ -35,13 +39,23 @@
                 </MDTabContentItem>
                 <MDTabContentItem>
                     <GridLayout backgroundColor="transparent" @loaded="onLoaded('green')">
-                        <Label text="Account Page" class="h2 text-center"></Label>
+                        <Label text="Second Page" class="h2 text-center"></Label>
                     </GridLayout>
                 </MDTabContentItem>
                 <MDTabContentItem>
                     <GridLayout backgroundColor="yellow" @loaded="onLoaded('yellow')">
-                        <Label text="Search Page" class="h2 text-center"></Label>
+                        <Label text="Third Page" class="h2 text-center"></Label>
                     </GridLayout>
+                </MDTabContentItem>
+                <MDTabContentItem>
+                    <Frame id="test2">
+                        <Page>
+                            <GridLayout backgroundColor="transparent" @loaded="onLoaded('red')">
+                                <Label text="Fourth Page" class="h2 text-center" @tap="navigateToTabsSample"></Label>
+                                <Button text="show alert" @tap="showTestAlert" verticalAlignment="center"></Button>
+                            </GridLayout>
+                        </Page>
+                    </Frame>
                 </MDTabContentItem>
             </MDBottomNavigation>
         </GridLayout>
