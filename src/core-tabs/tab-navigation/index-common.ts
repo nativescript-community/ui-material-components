@@ -49,7 +49,9 @@ export class TabNavigationBase extends TabNavigationBaseBase implements TabsDefi
             return;
         }
 
-        const offsideItems = this.offscreenTabLimit;
+        // const offsideItems = this.offscreenTabLimit;
+        // use 0 because users expect load/unload to be like selected/unselected
+        const offsideItems = 0;
 
         const toLoad: TabContentItem[] = [];
         const toUnload: TabContentItem[] = [];
