@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.1](https://github.com/nativescript-community/ui-material-component/compare/v7.0.0...v7.0.1) (2022-03-09)
+
+
+### Bug Fixes
+
+* **bottom-navigation/tabs:** android fix for loaded/unloaded not called on tab change ([d219714](https://github.com/nativescript-community/ui-material-component/commit/d21971486e846a796bb8beebf24c60b861c7d2a7))
+
+
+### Features
+
+* **bottom-navigation/tabs:** new selected/unselected events ([e1b6fce](https://github.com/nativescript-community/ui-material-component/commit/e1b6fce1794760faebd34b27ead1233d17adc6d7))
+
+
+
+
+
 # [7.0.0](https://github.com/nativescript-community/ui-material-component/compare/v6.2.23...v7.0.0) (2022-03-08)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
