@@ -27,6 +27,8 @@ export interface SelectedIndexChangedEventData extends EventData {
 
 export class TabNavigationBase extends View implements TabNavigationBaseDefinition, AddChildFromBuilder, AddArrayFromBuilder {
     public static selectedIndexChangedEvent = 'selectedIndexChanged';
+    public static selectedEvent = 'selected';
+    public static unselectedEvent = 'unselected';
 
     public unloadOnTabChange: boolean;
     public items: TabContentItem[];
@@ -121,7 +123,19 @@ export class TabNavigationBase extends View implements TabNavigationBaseDefiniti
     }
 
     public onSelectedIndexChanged(oldIndex: number, newIndex: number): void {
-        // to be overridden in platform specific files
+        const items = this.items;
+        if (items[oldIndex]) {
+            items[oldIndex].content.notify({
+                eventName: TabNavigationBase.unselectedEvent,
+                object: this
+            });
+        }
+        if (items[newIndex]) {
+            items[newIndex].content.notify({
+                eventName: TabNavigationBase.selectedEvent,
+                object: this
+            });
+        }
         this.notify({
             eventName: TabNavigationBase.selectedIndexChangedEvent,
             object: this,
