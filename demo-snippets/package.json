@@ -26,58 +26,5 @@
         "nativescript-vue-template-compiler": "~2.9.0",
         "scss-symbols-parser": "^2.0.1",
         "string-replace-loader": "^3.1.0"
-    },
-    "dependenciesMeta": {
-        "@nativescript-community/ui-material-activityindicator": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-bottom-navigation": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-bottomnavigationbar": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-button": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-cardview": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-core": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-core-tabs": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-dialogs": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-floatingactionbutton": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-progress": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-ripple": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-slider": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-snackbar": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-speeddial": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-tabs": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-textfield": {
-            "injected": true
-        },
-        "@nativescript-community/ui-material-textview": {
-            "injected": true
-        }
     }
 }
