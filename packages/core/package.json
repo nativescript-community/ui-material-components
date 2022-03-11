@@ -6,31 +6,20 @@
     "sideEffects": false,
     "typings": "./index.d.ts",
     "scripts": {
-        "preuninstall": "node preuninstall.js",
-        "postinstall": "node postinstall.js",
         "tsc": "../../node_modules/.bin/cpy '**/*.d.ts' '../../packages/core' --cwd=../../src/core --parents && ../../node_modules/.bin/tsc -d",
         "tsc-win": "..\\..\\node_modules\\.bin\\cpy '**/*.d.ts' '..\\..\\packages\\core' --cwd=..\\..\\src\\core --parents && ..\\..\\node_modules\\.bin\\tsc -d",
-        "build": "npm run tsc && npm run build.hooks",
+        "build": "npm run tsc",
         "build.watch": "npm run tsc -- -w",
-        "build.win": "npm run tsc-win && npm run build.hooks.win",
-        "build.hooks.win": "..\\..\\node_modules\\.bin\\tsc -skipLibCheck -p tsconfig.hooks.json",
-        "build.hooks": " tsc -skipLibCheck -p tsconfig.hooks.json",
-        "build.all": "npm run build.hooks && npm run build",
-        "build.all.win": "npm run build.hooks.win && npm run build.win",
+        "build.win": "npm run tsc-win",
+        "build.all": "npm run build",
+        "build.all.win": "npm run build.win",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
     },
     "nativescript": {
         "platforms": {
             "android": "6.2.0",
             "ios": "6.2.0"
-        },
-        "hooks": [
-            {
-                "type": "before-prepare",
-                "script": "scripts/before-prepare.js",
-                "inject": true
-            }
-        ]
+        }
     },
     "keywords": [
         "NativeScript",
@@ -49,8 +38,5 @@
     "homepage": "https://github.com/nativescript-community/ui-material-components",
     "repository": "https://github.com/nativescript-community/ui-material-components",
     "readmeFilename": "README.md",
-    "gitHead": "48cf92e33d0f74f46c045dd3a80652243a19a40c",
-    "dependencies": {
-        "@nativescript/hook": "~2.0.0"
-    }
+    "gitHead": "48cf92e33d0f74f46c045dd3a80652243a19a40c"
 }
