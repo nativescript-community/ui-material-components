@@ -211,6 +211,7 @@ export class BottomNavigationTab extends BottomNavigationTabBase {
     }
     [iconProperty.setNative](iconSource) {
         this.nativeViewProtected.image = this.getNativeIcon();
+        this.nativeViewProtected.selectedImage = this.nativeViewProtected.image;
     }
     getMDView() {
         return (this.parent as BottomNavigationBar).nativeViewProtected.viewForItem(this.nativeViewProtected) as MDCBottomNavigationItemView;
