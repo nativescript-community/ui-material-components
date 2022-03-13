@@ -5,17 +5,17 @@
         </ActionBar>
         <GridLayout class="page" backgroundColor="white" rows="*, auto">
             <MDTabs row="0" :selectedIndex="currentTab" swipeEnabled="false">
-            <MDTabContentItem>
-                <GridLayout class="p-20" >
-                    <Label class="h1 text-center" text="First tab" textWrap="true"></Label>
-                    <Button text="select sthird" @tap="selectThird" horizontalAlignment="center" verticalAlignment="bottom" />
-                </GridLayout>
-            </MDTabContentItem>
-            <MDTabContentItem>
-                <GridLayout class="p-20">
-                    <Label class="h1 text-center" text="Third tab" textWrap="true"></Label>
-                </GridLayout>
-            </MDTabContentItem>
+                <MDTabContentItem>
+                    <GridLayout class="p-20">
+                        <Label class="h1 text-center" text="First tab" textWrap="true"></Label>
+                        <Button text="select sthird" @tap="selectThird" horizontalAlignment="center" verticalAlignment="bottom" />
+                    </GridLayout>
+                </MDTabContentItem>
+                <MDTabContentItem>
+                    <GridLayout class="p-20">
+                        <Label class="h1 text-center" text="Third tab" textWrap="true"></Label>
+                    </GridLayout>
+                </MDTabContentItem>
             </MDTabs>
             <MDBottomNavigationBar
                 ref="bottomBar"
@@ -23,15 +23,15 @@
                 activeColor="blue"
                 inactiveColor="green"
                 selectedTabIndex="2"
-                 class="mdi"
+                class="mdi"
                 @loaded="onbottomNavigationBarLoaded"
                 @tabPressed="onBottomNavigationTabPressed"
                 @tabSelected="onBottomNavigationTabSelected"
                 @tabReselected="onBottomNavigationTabReselected"
             >
-                <MDBottomNavigationTab title="First" activeColor="green" />
-                <MDBottomNavigationTab title="Second" icon="font://mdi-account" isSelectable="false" class="mdi" />
-                <MDBottomNavigationTab title="Third" icon="res://ic_menu" inactiveColor="brown" />
+                <MDBottomNavigationTab title="First" activeColor="green" class="mdi" />
+                <MDBottomNavigationTab title="Second" icon="font://mdi-account" class="mdi" />
+                <MDBottomNavigationTab title="Third" icon="res://ic_menu" inactiveColor="brown" isSelectable="false" />
             </MDBottomNavigationBar>
         </GridLayout>
     </Page>
@@ -50,7 +50,7 @@ export default Vue.extend({
     name: 'BottomNavigationBar',
     data() {
         return {
-            title: title,
+            title,
             currentTab: 0
         };
     },

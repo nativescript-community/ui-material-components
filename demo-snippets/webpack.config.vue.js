@@ -1,6 +1,6 @@
-// const webpack = require('@nativescript/webpack');
 const NsVueTemplateCompiler = require('nativescript-vue-template-compiler');
 const { readFileSync } = require('fs');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const { resolve } = require('path');
 function fixedFromCharCode(codePt) {
@@ -61,5 +61,15 @@ module.exports = (env, webpack) => {
                 },
                 flags: 'g'
             });
+        config.plugin('material-font').use(CopyWebpackPlugin, [
+            {
+                patterns: [
+                    {
+                        from: resolve(__dirname, 'node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf'),
+                        to: 'fonts'
+                    }
+                ]
+            }
+        ]);
     });
 };
