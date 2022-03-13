@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.2](https://github.com/nativescript-community/ui-material-component/compare/v7.0.1...v7.0.2) (2022-03-13)
+
+
+### Bug Fixes
+
+* **bottomnavigationbar:** android default height ([e779a19](https://github.com/nativescript-community/ui-material-component/commit/e779a198346198e6165b228fb5aed5d30e9d94f3))
+* **bottomnavigationbar:** ios fixed wrong selected icon ([ec67a95](https://github.com/nativescript-community/ui-material-component/commit/ec67a957364e8ea5f3161bcfcf86b9769e7c3dc1))
+
+
+
+
+
 ## [7.0.1](https://github.com/nativescript-community/ui-material-component/compare/v7.0.0...v7.0.1) (2022-03-09)
 
 
