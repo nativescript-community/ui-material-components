@@ -1,5 +1,5 @@
 import { state, stateSets } from '@nativescript-community/ui-material-core/android/utils';
-import { Color, ImageSource, Utils } from '@nativescript/core';
+import { Color, ImageSource, Utils, heightProperty } from '@nativescript/core';
 import {
     BottomNavigationBarBase,
     BottomNavigationTabBase,
@@ -105,6 +105,8 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
     _items: BottomNavigationTab[];
     reselectListener: OnNavigationItemReselectedListener;
     selectListener: OnNavigationItemSelectedListener;
+    // default height property
+    height = 56;
     createNativeView() {
         return new com.google.android.material.bottomnavigation.BottomNavigationView(this._context);
     }
@@ -157,7 +159,6 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
     [tabsProperty.setNative](tabs: BottomNavigationTab[]) {
         this.createTabs(tabs);
     }
-
     [titleVisibilityProperty.setNative](titleVisibility: TitleVisibility) {
         this.nativeViewProtected.setLabelVisibilityMode(titleVisibility);
     }
@@ -255,8 +256,8 @@ export class BottomNavigationTab extends BottomNavigationTabBase {
             this.inactiveColor instanceof Color
                 ? this.inactiveColor.android
                 : this.nativeViewProtected.getIconTintList()
-                    ? this.nativeViewProtected.getIconTintList().getColorForState(stateSets.BACKGROUND_DEFAULT_STATE_2, color1)
-                    : 0;
+                ? this.nativeViewProtected.getIconTintList().getColorForState(stateSets.BACKGROUND_DEFAULT_STATE_2, color1)
+                : 0;
         const colorStateList = createColorStateList(color1, color2);
         // this.nativeViewProtected.color(colorStateList); // can we set the text color?
         this.nativeViewProtected.setIconTintList(colorStateList);
@@ -269,8 +270,8 @@ export class BottomNavigationTab extends BottomNavigationTabBase {
             this.activeColor instanceof Color
                 ? this.activeColor.android
                 : this.nativeViewProtected.getIconTintList()
-                    ? this.nativeViewProtected.getIconTintList().getColorForState(stateSets.SELECTED_STATE_SET, color2)
-                    : 0;
+                ? this.nativeViewProtected.getIconTintList().getColorForState(stateSets.SELECTED_STATE_SET, color2)
+                : 0;
         const colorStateList = createColorStateList(color1, color2);
         // this.nativeViewProtected.setText(colorStateList); // can we set the text color?
         this.nativeViewProtected.setIconTintList(colorStateList);
