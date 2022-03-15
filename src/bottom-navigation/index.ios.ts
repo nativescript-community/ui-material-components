@@ -19,11 +19,11 @@ const majorVersion = iOSNativeHelper.MajorVersion;
 const isPhone = Device.deviceType === 'Phone';
 
 @NativeClass
-class UITabBarControllerImpl extends UITabBarController {
+class MDTabBarControllerImpl extends UITabBarController {
     private _owner: WeakRef<BottomNavigation>;
 
-    public static initWithOwner(owner: WeakRef<BottomNavigation>): UITabBarControllerImpl {
-        const handler = UITabBarControllerImpl.alloc().init() as UITabBarControllerImpl;
+    public static initWithOwner(owner: WeakRef<BottomNavigation>): MDTabBarControllerImpl {
+        const handler = MDTabBarControllerImpl.alloc().init() as MDTabBarControllerImpl;
         handler._owner = owner;
 
         return handler;
@@ -279,7 +279,7 @@ export const iosCustomPositioningProperty = new Property<BottomNavigation, boole
 @CSSType('BottomNavigation')
 export class BottomNavigation extends TabNavigationBase {
     tabsPosition = TabsPosition.Bottom;
-    public viewController: UITabBarControllerImpl;
+    public viewController: MDTabBarControllerImpl;
     public items: TabContentItem[];
     private mDelegate: UITabBarControllerDelegateImpl;
     private mMoreNavigationControllerDelegate: UINavigationControllerDelegateImpl;
@@ -290,7 +290,7 @@ export class BottomNavigation extends TabNavigationBase {
 
     constructor() {
         super();
-        this.viewController = UITabBarControllerImpl.initWithOwner(new WeakRef(this));
+        this.viewController = MDTabBarControllerImpl.initWithOwner(new WeakRef(this));
     }
 
     createNativeView() {

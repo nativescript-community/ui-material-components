@@ -89,7 +89,7 @@ function initLayoutGuide(controller: UIViewController) {
 
     return layoutGuide;
 }
-function layoutView(controller: IUILayoutViewController, owner: View): void {
+function layoutView(controller: IMDLayoutViewController, owner: View): void {
     let layoutGuide = controller.view.safeAreaLayoutGuide;
     if (!layoutGuide) {
         Trace.write(`safeAreaLayoutGuide during layout of ${owner}. Creating fallback constraints, but layout might be wrong.`, Trace.categories.Layout, Trace.messageType.error);
@@ -248,9 +248,9 @@ function getAvailableSpaceFromParent(view: View, frame: CGRect): { safeArea: CGR
     return { safeArea, fullscreen };
 }
 
-declare class IUILayoutViewController extends UIViewController {
-    static new(): IUILayoutViewController;
-    static alloc(): IUILayoutViewController;
+declare class IMDLayoutViewController extends UIViewController {
+    static new(): IMDLayoutViewController;
+    static alloc(): IMDLayoutViewController;
     owner: WeakRef<View>;
     nsAnimated: boolean;
     ignoreBottomSafeArea: boolean;
@@ -258,13 +258,13 @@ declare class IUILayoutViewController extends UIViewController {
 }
 
 @NativeClass
-class UILayoutViewController extends UIViewController {
+class MDLayoutViewController extends UIViewController {
     owner: WeakRef<View>;
     ignoreBottomSafeArea: boolean;
     ignoreTopSafeArea: boolean;
     nsAnimated: boolean;
     public static initWithOwner(owner: View) {
-        const delegate = UILayoutViewController.new() as UILayoutViewController;
+        const delegate = MDLayoutViewController.new() as MDLayoutViewController;
         delegate.owner = new WeakRef(owner);
 
         return delegate;
@@ -298,41 +298,6 @@ class UILayoutViewController extends UIViewController {
         const owner = this.owner.get();
         if (owner) {
             layoutView(this, owner);
-            // if (majorVersion >= 11) {
-            //     // Handle nested UILayoutViewController safe area application.
-            //     // Currently, UILayoutViewController can be nested only in a TabView.
-            //     // The TabView itself is handled by the OS, so we check the TabView's parent (usually a Page, but can be a Layout).
-            //     const tabViewItem = owner.parent;
-            //     const tabView = tabViewItem && tabViewItem.parent;
-            //     let parent = tabView && tabView.parent;
-
-            //     // Handle Angular scenario where TabView is in a ProxyViewContainer
-            //     // It is possible to wrap components in ProxyViewContainers indefinitely
-            //     // Not using instanceof ProxyViewContainer to avoid circular dependency
-            //     // TODO: Try moving UILayoutViewController out of view module
-            //     while (parent && !parent.nativeViewProtected) {
-            //         parent = parent.parent;
-            //     }
-            //     const additionalInsets = { top: 0, left: 0, bottom: 0, right: 0 };
-
-            //     if (parent) {
-            //         const parentPageInsetsTop = parent.nativeViewProtected.safeAreaInsets.top;
-            //         const currentInsetsTop = this.view.safeAreaInsets.top;
-            //         const additionalInsetsTop = Math.max(parentPageInsetsTop - currentInsetsTop, 0);
-
-            //         const parentPageInsetsBottom = parent.nativeViewProtected.safeAreaInsets.bottom;
-            //         const currentInsetsBottom = this.view.safeAreaInsets.bottom;
-            //         const additionalInsetsBottom = Math.max(parentPageInsetsBottom - currentInsetsBottom, 0);
-
-            //         if (additionalInsetsTop > 0 || additionalInsetsBottom > 0) {
-            //             additionalInsets.top = additionalInsetsTop;
-            //             additionalInsets.bottom = additionalInsetsBottom;
-            //         }
-            //     }
-
-            //     const insets = new UIEdgeInsets(additionalInsets);
-            //     this.additionalSafeAreaInsets = insets;
-            // }
         }
     }
 
@@ -355,10 +320,6 @@ class UILayoutViewController extends UIViewController {
         // let s not call callUnloaded here in case
         // another modal / sheet is shown on top
         // will be called on dismiss
-        // const owner = this.owner.get();
-        // if (owner && !owner.parent) {
-        //     owner.callUnloaded();
-        // }
     }
 
     // Mind implementation for other controllers
@@ -402,11 +363,11 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         this._setupAsRootView({});
 
         this._commonShowNativeBottomSheet(parentWithController, options);
-        let controller: IUILayoutViewController = this.viewController;
+        let controller: IMDLayoutViewController = this.viewController;
         if (!controller) {
             const nativeView = this.ios || this.nativeViewProtected;
-            controller = UILayoutViewController.initWithOwner(this);
-            // newController = IOSHelper.UILayoutViewController.initWithOwner(new WeakRef(item.content)) as UIViewController;
+            controller = MDLayoutViewController.initWithOwner(this);
+            // newController = IOSHelper.MDLayoutViewController.initWithOwner(new WeakRef(item.content)) as UIViewController;
             if (options.ignoreBottomSafeArea !== undefined) {
                 controller.ignoreBottomSafeArea = options.ignoreBottomSafeArea;
             } else {
