@@ -7,7 +7,7 @@
     "typings": "./index.d.ts",
     "scripts": {
         "tsc": "../../node_modules/.bin/cpy '**/*.d.ts' '../../packages/core' --cwd=../../src/core --parents && ../../node_modules/.bin/tsc -d",
-        "tsc-win": "..\\..\\node_modules\\.bin\\cpy '**/*.d.ts' '..\\..\\packages\\core' --cwd=..\\..\\src\\core --parents && ..\\..\\node_modules\\.bin\\tsc -d",
+        "tsc-win": "..\\..\\node_modules\\.bin\\cpy **/*.d.ts ..\\..\\packages\\core --cwd=..\\..\\src\\core --parents && ..\\..\\node_modules\\.bin\\tsc -d",
         "build": "npm run tsc",
         "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win",
