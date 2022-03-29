@@ -50,8 +50,8 @@ public class TextViewInputEditText extends com.google.android.material.textfield
     }
 
     public void fullClearFocus() {
-        handleClearFocus(this);
         dismissSoftInput();
+        handleClearFocus(this);
     }
 
     public boolean dispatchKeyEventPreIme(KeyEvent event) {

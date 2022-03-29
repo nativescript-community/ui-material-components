@@ -278,8 +278,8 @@ export function overrideViewBase() {
             this.focus();
         }
         public clearFocus() {
-            handleClearFocus(this.nativeViewProtected);
             ad.dismissSoftInput(this.nativeViewProtected);
+            handleClearFocus(this.nativeViewProtected);
         }
 
         getDefaultElevation(): number {
