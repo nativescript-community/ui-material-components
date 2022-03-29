@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.3](https://github.com/nativescript-community/ui-material-components/compare/v7.0.2...v7.0.3) (2022-03-29)
+
+
+### Bug Fixes
+
+* **build:** restore windows build support ([2bb91c1](https://github.com/nativescript-community/ui-material-components/commit/2bb91c1ccbea1f0e525c070a271cf00796a92000))
+
+
+
+
+
 ## [7.0.2](https://github.com/nativescript-community/ui-material-components/compare/v7.0.1...v7.0.2) (2022-03-13)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-core

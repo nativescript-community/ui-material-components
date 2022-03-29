@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.3](https://github.com/nativescript-community/ui-material-component/compare/v7.0.2...v7.0.3) (2022-03-29)
+
+
+### Bug Fixes
+
+* **build:** restore windows build support ([2bb91c1](https://github.com/nativescript-community/ui-material-component/commit/2bb91c1ccbea1f0e525c070a271cf00796a92000))
+* **core:** clearFocus order fix to ensure keyboard is hidden ([ece2c6e](https://github.com/nativescript-community/ui-material-component/commit/ece2c6e36c0c1a4c04591ad7c7a2970876733fc3))
+
+
+
+
+
 ## [7.0.2](https://github.com/nativescript-community/ui-material-component/compare/v7.0.1...v7.0.2) (2022-03-13)
 
 
