@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.4](https://github.com/nativescript-community/ui-material-components/compare/v7.0.3...v7.0.4) (2022-04-20)
+
+
+### Bug Fixes
+
+* **bottomsheet:** ios fix for `peekHeight` + doc ([2818b70](https://github.com/nativescript-community/ui-material-components/commit/2818b70f4a0abe51650e022cb78afb96e8907599))
+
+
+
+
+
 ## [7.0.3](https://github.com/nativescript-community/ui-material-components/compare/v7.0.2...v7.0.3) (2022-03-29)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-bottomsheet
