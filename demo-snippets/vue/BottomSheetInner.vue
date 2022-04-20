@@ -11,7 +11,7 @@
                 <MDTextField hint="Edit text to filter..." style="font-size: 16" />
                 <MDActivityIndicator *ngIf="processing" width="50" height="50" />
             </StackLayout>
-            <ListView height="150" :items="items">
+            <ListView height="150" :items="items" id="scrollView">
                 <v-template let-item="item" let-odd="odd" let-even="even">
                     <GridLayout height="64" backgroundColor="green">
                         <Image horizontalAlignment="left" width="64" />
