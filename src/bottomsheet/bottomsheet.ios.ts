@@ -393,16 +393,18 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         bottomSheet.dismissOnBackgroundTap = options.dismissOnBackgroundTap !== false;
         bottomSheet.dismissOnDraggingDownSheet = options.dismissOnDraggingDownSheet !== false;
 
+        const presentationController = bottomSheet.presentationController as MDCBottomSheetPresentationController;
         const peekHeight = options.peekHeight;
         if (peekHeight) {
-            (bottomSheet.presentationController as MDCBottomSheetPresentationController).preferredSheetHeight = peekHeight;
+            presentationController.preferredSheetHeight = peekHeight;
         }
-        (bottomSheet.presentationController as MDCBottomSheetPresentationController).ignoreKeyboardHeight = options.ignoreKeyboardHeight !== false;
+        presentationController.ignoreKeyboardHeight = options.ignoreKeyboardHeight !== false;
+        const skipCollapsedState = options?.skipCollapsedState === true;
 
         if (options.trackingScrollView) {
             const scrollView = this.getViewById(options.trackingScrollView);
             if (scrollView && scrollView.nativeViewProtected instanceof UIScrollView) {
-                bottomSheet.trackingScrollView = scrollView.nativeViewProtected;
+                presentationController.trackingScrollView = scrollView.nativeViewProtected;
             }
         }
         controller.nsAnimated = true;

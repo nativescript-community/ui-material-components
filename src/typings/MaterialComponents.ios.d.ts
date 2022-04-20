@@ -1217,6 +1217,8 @@ declare class MDCButton extends UIButton implements MDCElevatable, MDCElevationO
 
 	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCButton; // inherited from UIAppearance
 
+	static buttonWithConfigurationPrimaryAction(configuration: UIButtonConfiguration, primaryAction: UIAction): MDCButton; // inherited from UIButton
+
 	static buttonWithType(buttonType: UIButtonType): MDCButton; // inherited from UIButton
 
 	static buttonWithTypePrimaryAction(buttonType: UIButtonType, primaryAction: UIAction): MDCButton; // inherited from UIButton
@@ -2033,6 +2035,8 @@ declare class MDCFlatButton extends MDCButton {
 
 	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFlatButton; // inherited from UIAppearance
 
+	static buttonWithConfigurationPrimaryAction(configuration: UIButtonConfiguration, primaryAction: UIAction): MDCFlatButton; // inherited from UIButton
+
 	static buttonWithType(buttonType: UIButtonType): MDCFlatButton; // inherited from UIButton
 
 	static buttonWithTypePrimaryAction(buttonType: UIButtonType, primaryAction: UIAction): MDCFlatButton; // inherited from UIButton
@@ -2061,6 +2065,8 @@ declare class MDCFloatingButton extends MDCButton {
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCFloatingButton; // inherited from UIAppearance
 
 	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCFloatingButton; // inherited from UIAppearance
+
+	static buttonWithConfigurationPrimaryAction(configuration: UIButtonConfiguration, primaryAction: UIAction): MDCFloatingButton; // inherited from UIButton
 
 	static buttonWithType(buttonType: UIButtonType): MDCFloatingButton; // inherited from UIButton
 
@@ -3037,6 +3043,8 @@ declare class MDCRaisedButton extends MDCButton {
 	static appearanceWhenContainedIn(ContainerClass: typeof NSObject): MDCRaisedButton; // inherited from UIAppearance
 
 	static appearanceWhenContainedInInstancesOfClasses(containerTypes: NSArray<typeof NSObject> | typeof NSObject[]): MDCRaisedButton; // inherited from UIAppearance
+
+	static buttonWithConfigurationPrimaryAction(configuration: UIButtonConfiguration, primaryAction: UIAction): MDCRaisedButton; // inherited from UIButton
 
 	static buttonWithType(buttonType: UIButtonType): MDCRaisedButton; // inherited from UIButton
 

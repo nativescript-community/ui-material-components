@@ -69,7 +69,7 @@ export interface BottomSheetOptions {
     skipCollapsedState?: boolean; 
     // optional Android parameter to skip midway state when view is greater than 50%. Default is false
     peekHeight?: number; 
-    // optional parameter to set the collapsed sheet height. To work on iOS you need to set trackingScrollView.
+    // optional parameter to set the collapsed sheet height. To work on iOS you need to set trackingScrollView. Also ensure the scrollView is taking the full height of the bottomsheet content. Otherwise the "full" height wont be computed correctly
     ignoreKeyboardHeight?: boolean; 
     //(iOS only) A Boolean value that controls whether the height of the keyboard should affect the bottom sheet's frame when the keyboard shows on the screen. (Default: true)
     onChangeState?: onChangeStateBottomSheet; 
