@@ -154,8 +154,8 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 const color = owner.backgroundColor;
                 const contentViewId = getId('design_bottom_sheet');
                 const view = fragment.getDialog().findViewById(contentViewId);
-                const transparent = bottomSheetOptions.options && bottomSheetOptions.options.transparent;
-                if (transparent === true) {
+                const transparent = bottomSheetOptions.options?.transparent === true;
+                if (transparent) {
                     // we need delay it just a bit or it wont work
                     setTimeout(() => {
                         view.setBackground(null);
@@ -164,7 +164,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
                 const behavior = com.google.android.material.bottomsheet.BottomSheetBehavior.from(view);
                 // prevent hiding the bottom sheet by
-                const dismissOnDraggingDownSheet = !bottomSheetOptions.options || bottomSheetOptions.options.dismissOnDraggingDownSheet !== false;
+                const dismissOnDraggingDownSheet = bottomSheetOptions.options?.dismissOnDraggingDownSheet !== false;
                 behavior.setHideable(dismissOnDraggingDownSheet);
                 if (!dismissOnDraggingDownSheet) {
                     // directly expand the bottom sheet after start
@@ -172,7 +172,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     // set to maximum possible value to prevent dragging the sheet between peek and expanded height
                     behavior.setPeekHeight(java.lang.Integer.MAX_VALUE);
                 }
-                const skipCollapsedState = !bottomSheetOptions.options || bottomSheetOptions.options.skipCollapsedState === true;
+                const skipCollapsedState = bottomSheetOptions.options?.skipCollapsedState === true;
                 if (skipCollapsedState) {
                     // directly expand the bottom sheet after start
                     behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED);
