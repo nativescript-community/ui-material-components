@@ -91,6 +91,7 @@ export default Vue.extend({
                 case 'bottomsheet-peekheight': {
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
                         peekHeight: 100,
+                        trackingScrollView: 'scrollView',
                         // transparent: true,
                         closeCallback: (...args) => {
                             console.log('bottom sheet closed', args);
