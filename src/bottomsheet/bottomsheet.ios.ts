@@ -113,7 +113,7 @@ function layoutView(controller: IMDLayoutViewController, owner: View): void {
     const heightSpec = Utils.layout.makeMeasureSpec(safeAreaHeight, Utils.layout.UNSPECIFIED);
 
     // reset _cachedFrame or it will wrongly move the view on subsequent layouts
-    (owner as any)._cachedFrame = null;
+    // (owner as any)._cachedFrame = null;
     View.measureChild(null, owner, widthSpec, heightSpec);
     const marginTop = owner.effectiveMarginTop;
     const marginBottom = owner.effectiveMarginBottom;
