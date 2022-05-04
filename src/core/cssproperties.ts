@@ -1,25 +1,17 @@
 import { Color, CoreTypes, CssProperty, Style } from '@nativescript/core';
 
-function createGetter(key) {
-    return function () {
-        return this.style[key];
-    };
-}
-function createSetter(key) {
-    return function (newVal) {
-        this.style[key] = newVal;
-    };
-}
-
 export const cssProperty = (target: Object, key: string | symbol) => {
     Object.defineProperty(target, key, {
-        get: createGetter(key),
-        set: createSetter(key),
+        get() {
+            return this.style[key];
+        },
+        set(newVal) {
+            this.style[key] = newVal;
+        },
         enumerable: true,
         configurable: true
     });
 };
-
 export const rippleColorProperty = new CssProperty<Style, Color>({
     name: 'rippleColor',
     cssName: 'ripple-color',
