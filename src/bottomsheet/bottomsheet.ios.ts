@@ -189,8 +189,8 @@ function layoutView(controller: IMDLayoutViewController, owner: View): void {
         owner.nativeViewProtected.frame = CGRectMake(
             Utils.layout.toDeviceIndependentPixels(adjustedPosition.left),
             Utils.layout.toDeviceIndependentPixels(adjustedPosition.top),
-            Utils.layout.toDeviceIndependentPixels(adjustedPosition.right - adjustedPosition.left),
-            Utils.layout.toDeviceIndependentPixels(adjustedPosition.bottom - adjustedPosition.top)
+            Utils.layout.toDeviceIndependentPixels(adjustedPosition.right),
+            Utils.layout.toDeviceIndependentPixels(adjustedPosition.bottom)
         );
     }
     controller.preferredContentSize = CGSizeMake(Utils.layout.toDeviceIndependentPixels(effectiveWidth), Utils.layout.toDeviceIndependentPixels(effectiveHeight));
