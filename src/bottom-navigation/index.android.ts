@@ -86,7 +86,7 @@ export class BottomNavigation extends TabNavigation<com.nativescript.material.co
     public onLoaded(): void {
         super.onLoaded();
 
-        if (!this.tabStrip) {
+        if (!this.tabStrip && this.mTabsBar) {
             // manually set the visibility, so that the grid layout remeasures
             this.mTabsBar.setVisibility(android.view.View.GONE);
         }
