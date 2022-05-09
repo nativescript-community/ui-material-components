@@ -5,11 +5,11 @@ import {
     Color,
     Length,
     PercentLength,
+    Utils,
     View,
     androidDynamicElevationOffsetProperty,
     androidElevationProperty,
-    backgroundInternalProperty,
-    profile
+    backgroundInternalProperty
 } from '@nativescript/core';
 import { createRippleDrawable, createStateListAnimator, getAttrColor, getColorStateList, handleClearFocus, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from './android/utils';
 import { CornerFamily, applyMixins } from './index.common';
@@ -27,6 +27,14 @@ function cornerTreat(cornerFamily: CornerFamily): com.google.android.material.sh
         case CornerFamily.ROUNDED:
             return new com.google.android.material.shape.RoundedCornerTreatment();
     }
+}
+
+let context: android.content.Context;
+function getContext() {
+    if (!context) {
+        context = Utils.ad.getApplicationContext();
+    }
+    return context;
 }
 
 // stub class as we don't use this on android
@@ -53,7 +61,7 @@ export class Themer {
     }
     getPrimaryColor(): string | Color {
         if (!this.primaryColor) {
-            this.primaryColor = new Color(getAttrColor(Application.android.startActivity, 'colorPrimary'));
+            this.primaryColor = new Color(getAttrColor(getContext(), 'colorPrimary'));
         }
         return this.primaryColor;
     }
@@ -63,14 +71,14 @@ export class Themer {
     }
     getOnPrimaryColor() {
         if (!this.onPrimaryColor) {
-            this.onPrimaryColor = new Color(getAttrColor(Application.android.startActivity, 'colorOnPrimary'));
+            this.onPrimaryColor = new Color(getAttrColor(getContext(), 'colorOnPrimary'));
         }
         return this.onPrimaryColor;
     }
 
     setAccentColor(value: string | Color) {
         if (!this.accentColor) {
-            this.accentColor = new Color(getAttrColor(Application.android.startActivity, 'colorAccent'));
+            this.accentColor = new Color(getAttrColor(getContext(), 'colorAccent'));
         }
         this.accentColor = value;
     }
@@ -95,7 +103,7 @@ export class Themer {
     }
     getPrimaryColorVariant(): string | Color {
         if (!this.primaryColorVariant) {
-            this.primaryColorVariant = new Color(getAttrColor(Application.android.context, 'colorSecondary'));
+            this.primaryColorVariant = new Color(getAttrColor(getContext(), 'colorSecondary'));
         }
         return this.primaryColorVariant;
     }
@@ -109,7 +117,7 @@ export class Themer {
     controlHighlightColor: Color;
     getControlHighlightColor(): Color {
         if (!this.controlHighlightColor) {
-            this.controlHighlightColor = new Color(getAttrColor(Application.android.context, 'colorControlHighlight'));
+            this.controlHighlightColor = new Color(getAttrColor(getContext(), 'colorControlHighlight'));
         }
         return this.controlHighlightColor;
     }
