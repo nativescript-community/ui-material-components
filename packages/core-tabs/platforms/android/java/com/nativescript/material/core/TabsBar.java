@@ -116,6 +116,8 @@ public class TabsBar extends HorizontalScrollView {
 
     public void setDistributeEvenly(boolean distributeEvenly) {
         mDistributeEvenly = distributeEvenly;
+        mTabStrip.setMeasureWithLargestChildEnabled(distributeEvenly);
+        refreshTabStrip();
     }
 
     /**
@@ -300,10 +302,13 @@ public class TabsBar extends HorizontalScrollView {
             ll.setMinimumHeight((int) (SMALL_MIN_HEIGHT * density));
         }
 
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) ll.getLayoutParams();
         if (mDistributeEvenly) {
-            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) ll.getLayoutParams();
             lp.width = 0;
             lp.weight = 1;
+        } else {
+            lp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            lp.weight = 0;
         }
     }
 
@@ -351,6 +356,21 @@ public class TabsBar extends HorizontalScrollView {
             mTabStrip.addView(tabView);
             if (i == mViewPager.getCurrentItem()) {
                 tabView.setSelected(true);
+            }
+        }
+    }
+
+    private void refreshTabStrip() {
+        final FragmentStateAdapter adapter = (FragmentStateAdapter)mViewPager.getAdapter();
+        for (int i = 0; i < adapter.getItemCount(); i++) {
+            TabItemSpec tabItem;
+            if (this.mTabItems != null && this.mTabItems.length > i) {
+                tabItem = this.mTabItems[i];
+            } else {
+                tabItem = new TabItemSpec();
+            }
+            if (i < mTabStrip.getChildCount()) {
+                this.updateItemAt(i, tabItem);
             }
         }
     }
