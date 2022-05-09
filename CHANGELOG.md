@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.6](https://github.com/nativescript-community/ui-material-component/compare/v7.0.5...v7.0.6) (2022-05-09)
+
+
+### Bug Fixes
+
+* **core:** android crash with N 8.2 ([8f4d1b1](https://github.com/nativescript-community/ui-material-component/commit/8f4d1b18b0c382cf72c733dd07ffdfc32d28f334))
+
+
+
+
+
 ## [7.0.5](https://github.com/nativescript-community/ui-material-component/compare/v7.0.4...v7.0.5) (2022-05-04)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
