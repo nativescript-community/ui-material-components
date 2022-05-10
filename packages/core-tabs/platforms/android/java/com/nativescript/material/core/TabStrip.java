@@ -43,7 +43,11 @@ class TabStrip extends LinearLayout {
 
     private final int mDefaultBottomBorderColor;
 
+    // selected tab position (final)
     private int mSelectedPosition;
+    // current tab position for when the view is animating (scrolling)
+    private int mSelectionTabPosition;
+    // scrolling offset in relation to the current tab position
     private float mSelectionOffset;
 
     private final SimpleTabColorizer mDefaultTabColorizer;
@@ -173,6 +177,7 @@ class TabStrip extends LinearLayout {
 
 
     void onTabsViewPagerPageChanged(int position, float positionOffset) {
+        mSelectionTabPosition = position;
         mSelectionOffset = positionOffset;
         invalidate();
     }
@@ -206,24 +211,30 @@ class TabStrip extends LinearLayout {
         final SimpleTabColorizer tabColorizer = mDefaultTabColorizer;
 
         // Thick colored underline below the current selection
-        if (childCount > 0 && mSelectedPosition < childCount) {
-            View selectedTitle = getChildAt(mSelectedPosition);
+        if (childCount > 0 && mSelectionTabPosition < childCount) {
+            View selectedTitle = getChildAt(mSelectionTabPosition);
             int left = selectedTitle.getLeft();
+            int width = selectedTitle.getWidth();
             int right = selectedTitle.getRight();
-            int color = tabColorizer.getIndicatorColor(mSelectedPosition);
+            int color = tabColorizer.getIndicatorColor(mSelectionTabPosition);
+            int nextTab = mSelectionTabPosition + 1;
 
-            if (mSelectionOffset > 0f && mSelectedPosition < (getChildCount() - 1)) {
-                int nextColor = tabColorizer.getIndicatorColor(mSelectedPosition + 1);
+            // we're always at mSelectionTabPosition + mSelectionOffset (ex: 1 + 0.5)
+            // if we mSelectionOffset > 0f then we need to mutate the position, width and color of the selection
+            // if we're on the last tab, nextTab will be getChildCount() + 1 so it won't enter as there's nothing to animate
+            if (mSelectionOffset > 0f && nextTab >= 0 && nextTab < getChildCount()) {
+                int nextColor = tabColorizer.getIndicatorColor(nextTab);
                 if (color != nextColor) {
                     color = blendColors(nextColor, color, mSelectionOffset);
                 }
 
                 // Draw the selection partway between the tabs
-                View nextTitle = getChildAt(mSelectedPosition + 1);
-                left = (int) (mSelectionOffset * nextTitle.getLeft() +
-                        (1.0f - mSelectionOffset) * left);
-                right = (int) (mSelectionOffset * nextTitle.getRight() +
-                        (1.0f - mSelectionOffset) * right);
+                View nextTitle = getChildAt(nextTab);
+                // left is the current tab left + it's width * mSelectionOffset ex: 0 + (100 * 0.5) = 50, halfway through the current cell
+                left = (int) (left + mSelectionOffset * width);
+                // right is the tab right + the next tab's width * mSelectionOffset ex: 100 + (200 * 0.5) = 200, halfway through the next cell
+                // this ensures that the width mutates smoothly as we move between cells
+                right = (int) (right + mSelectionOffset * nextTitle.getWidth());
             }
 
             mSelectedIndicatorPaint.setColor(color);
