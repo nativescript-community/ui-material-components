@@ -51,23 +51,16 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
     bottomSheetControllerDidDismissBottomSheet(controller: MDCBottomSheetController) {
         // called when clicked on background
         const owner = this._owner.get();
-        if (owner) {
-            owner._onDismissBottomSheetCallback && owner._onDismissBottomSheetCallback();
-            if (owner && owner.isLoaded) {
-                owner.callUnloaded();
-            }
-        }
+        owner && owner._unloadBottomSheet();
+
     }
     bottomSheetControllerStateChangedState(controller: MDCBottomSheetController, state: MDCSheetState) {
         // called when swiped
         const owner = this._owner.get();
         if (state === MDCSheetState.Closed) {
             if (owner) {
-                owner._onDismissBottomSheetCallback && owner._onDismissBottomSheetCallback();
                 owner._onChangeStateBottomSheetCallback && owner._onChangeStateBottomSheetCallback(StateBottomSheet.CLOSED);
-                if (owner && owner.isLoaded) {
-                    owner.callUnloaded();
-                }
+                owner && owner._unloadBottomSheet();
             }
         } else {
             if (owner && owner._onChangeStateBottomSheetCallback) {
@@ -186,12 +179,14 @@ function layoutView(controller: IMDLayoutViewController, owner: View): void {
             // adjustedPosition[oppositeKey] += Utils.layout.toDevicePixels(delta);
             // adjustedPosition[key] += Utils.layout.toDevicePixels(delta);
         }
-        owner.nativeViewProtected.frame = CGRectMake(
-            Utils.layout.toDeviceIndependentPixels(adjustedPosition.left),
-            Utils.layout.toDeviceIndependentPixels(adjustedPosition.top),
-            Utils.layout.toDeviceIndependentPixels(adjustedPosition.right),
-            Utils.layout.toDeviceIndependentPixels(adjustedPosition.bottom)
-        );
+        if (owner.nativeViewProtected) {
+            owner.nativeViewProtected.frame = CGRectMake(
+                Utils.layout.toDeviceIndependentPixels(adjustedPosition.left),
+                Utils.layout.toDeviceIndependentPixels(adjustedPosition.top),
+                Utils.layout.toDeviceIndependentPixels(adjustedPosition.right),
+                Utils.layout.toDeviceIndependentPixels(adjustedPosition.bottom)
+            );
+        }
     }
     controller.preferredContentSize = CGSizeMake(Utils.layout.toDeviceIndependentPixels(effectiveWidth), Utils.layout.toDeviceIndependentPixels(effectiveHeight));
 
@@ -448,6 +443,16 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         const parentController = parentWithController.viewController;
         const animated = this.viewController.nsAnimated;
         parentController.dismissViewControllerAnimatedCompletion(animated, whenClosedCallback);
+    }
+
+    _unloadBottomSheet() {
+        if (this.isLoaded) {
+            this.callUnloaded();
+        }
+        // it is very important to clear the viewController as N does not do it
+        // and the destroy of the view from svelte could trigger a layout pass on the viewController
+        this.viewController = null;
+        this._onDismissBottomSheetCallback && this._onDismissBottomSheetCallback();
     }
 }
 
