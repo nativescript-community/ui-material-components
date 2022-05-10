@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.8](https://github.com/nativescript-community/ui-material-components/compare/v7.0.7...v7.0.8) (2022-05-10)
+
+
+### Bug Fixes
+
+* **tabs:** correctly calculate sizing and animation positions ([20a977d](https://github.com/nativescript-community/ui-material-components/commit/20a977dcc436dff54878034ea3305c20afa6898a))
+
+
+
+
+
 ## [7.0.7](https://github.com/nativescript-community/ui-material-components/compare/v7.0.6...v7.0.7) (2022-05-09)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-core-tabs

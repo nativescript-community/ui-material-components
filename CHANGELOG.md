@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.8](https://github.com/nativescript-community/ui-material-component/compare/v7.0.7...v7.0.8) (2022-05-10)
+
+
+### Bug Fixes
+
+* **bottomsheet:** prevent crash on ios ([70e3d50](https://github.com/nativescript-community/ui-material-component/commit/70e3d5026085d7ed17e5fc464b77ce01b225fb92))
+* **tabs:** correctly calculate sizing and animation positions ([20a977d](https://github.com/nativescript-community/ui-material-component/commit/20a977dcc436dff54878034ea3305c20afa6898a))
+
+
+### Features
+
+* **bottomsheet:** svelte! ([03a4efb](https://github.com/nativescript-community/ui-material-component/commit/03a4efb46bbf45ea2f9ef7b2e39e51124e0935f6))
+
+
+
+
+
 ## [7.0.7](https://github.com/nativescript-community/ui-material-component/compare/v7.0.6...v7.0.7) (2022-05-09)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
