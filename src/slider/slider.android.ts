@@ -4,6 +4,9 @@ import { CoercibleProperty, Color, Property, View, backgroundColorProperty, back
 import { stepSizeProperty, thumbColorProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
 
 let ASlider: typeof com.google.android.material.slider.Slider;
+
+const DEFAULT_MIN = 0;
+const DEFAULT_MAX = 0;
 export function sliderGetEnabledColorStateList(color: Color, alpha = 255) {
     if (!color) {
         return null;
@@ -12,10 +15,12 @@ export function sliderGetEnabledColorStateList(color: Color, alpha = 255) {
 }
 export const valueProperty = new CoercibleProperty<Slider, number>({
     name: 'value',
-    defaultValue: 0,
+    // defaultValue: 0,
     coerceValue: (target, value) => {
-        value = Math.max(value, target.minValue);
-        value = Math.min(value, target.maxValue);
+        if (target.minValue !== undefined && target.maxValue !== undefined) {
+            value = Math.max(value, target.minValue);
+            value = Math.min(value, target.maxValue);
+        }
 
         return value;
     },
@@ -26,7 +31,7 @@ export const valueProperty = new CoercibleProperty<Slider, number>({
  */
 export const minValueProperty = new Property<Slider, number>({
     name: 'minValue',
-    defaultValue: 0,
+    // defaultValue: 0,
     valueChanged: (target, oldValue, newValue) => {
         maxValueProperty.coerce(target);
         valueProperty.coerce(target);
@@ -38,7 +43,7 @@ export const minValueProperty = new Property<Slider, number>({
  */
 export const maxValueProperty = new CoercibleProperty<Slider, number>({
     name: 'maxValue',
-    defaultValue: 100,
+    // defaultValue: 100,
     coerceValue: (target, value) => {
         const minValue = target.minValue;
         if (value < minValue) {
@@ -86,9 +91,9 @@ export class Slider extends View {
                 }
             }
         });
+        nativeView.setValueFrom(this.minValue || DEFAULT_MIN);
+        nativeView.setValueTo(this.maxValue || DEFAULT_MAX);
         nativeView.addOnChangeListener(this.listener);
-        nativeView.setValueFrom(this.minValue);
-        nativeView.setValueTo(this.maxValue);
     }
     disposeNativeView() {
         if (this.listener) {
@@ -138,7 +143,7 @@ export class Slider extends View {
         }
     }
     [stepSizeProperty.getDefault]() {
-        return 0;
+        return DEFAULT_MIN;
     }
     [stepSizeProperty.setNative](value) {
         this.nativeViewProtected.setStepSize(value);
@@ -146,15 +151,15 @@ export class Slider extends View {
     [valueProperty.setNative](value) {
         // ensure we set min/max to prevent errors in listviews while reusing cells
         // will sliders with different min/max
-        this.nativeViewProtected.setValueFrom(this.minValue);
-        this.nativeViewProtected.setValueTo(this.maxValue);
+        this.nativeViewProtected.setValueFrom(this.minValue || DEFAULT_MIN);
+        this.nativeViewProtected.setValueTo(this.maxValue || DEFAULT_MAX);
         this.nativeViewProtected.setValue(value);
     }
     [minValueProperty.setNative](value) {
         this.nativeViewProtected.setValueFrom(value);
     }
     [maxValueProperty.getDefault]() {
-        return 100;
+        return DEFAULT_MAX;
     }
     [maxValueProperty.setNative](value) {
         this.nativeViewProtected.setValueTo(value);
