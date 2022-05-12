@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.9](https://github.com/nativescript-community/ui-material-component/compare/v7.0.8...v7.0.9) (2022-05-12)
+
+
+### Bug Fixes
+
+* **slider:** android fix for wrong first value if min > 100 ([24670c2](https://github.com/nativescript-community/ui-material-component/commit/24670c205bd6c6b99a4c1c95330c965260a9832a))
+
+
+
+
+
 ## [7.0.8](https://github.com/nativescript-community/ui-material-component/compare/v7.0.7...v7.0.8) (2022-05-10)
 
 
