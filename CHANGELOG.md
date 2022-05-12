@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.10](https://github.com/nativescript-community/ui-material-component/compare/v7.0.9...v7.0.10) (2022-05-12)
+
+
+### Bug Fixes
+
+* **slider:** drop coerced prop for value ([d5411ae](https://github.com/nativescript-community/ui-material-component/commit/d5411ae607bc0464386d49a9e4334a489f313de9))
+
+
+
+
+
 ## [7.0.9](https://github.com/nativescript-community/ui-material-component/compare/v7.0.8...v7.0.9) (2022-05-12)
 
 

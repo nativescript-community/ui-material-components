@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-speeddial",
-    "version": "7.0.9",
+    "version": "7.0.10",
     "description": "When pressed, the Material Design component can display three to six related actions in the form of a speed dial.",
     "main": "./index",
     "sideEffects": false,
@@ -46,8 +46,8 @@
     },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-button": "^7.0.9",
-        "@nativescript-community/ui-material-core": "^7.0.9"
+        "@nativescript-community/ui-material-button": "^7.0.10",
+        "@nativescript-community/ui-material-core": "^7.0.10"
     },
     "gitHead": "48cf92e33d0f74f46c045dd3a80652243a19a40c"
 }
