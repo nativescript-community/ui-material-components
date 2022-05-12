@@ -13,17 +13,17 @@ export function sliderGetEnabledColorStateList(color: Color, alpha = 255) {
     }
     return getEnabledColorStateList(color.android, new Color(alpha, 158, 158, 158).android);
 }
-export const valueProperty = new CoercibleProperty<Slider, number>({
+export const valueProperty = new Property<Slider, number>({
     name: 'value',
     // defaultValue: 0,
-    coerceValue: (target, value) => {
-        if (target.minValue !== undefined && target.maxValue !== undefined) {
-            value = Math.max(value, target.minValue);
-            value = Math.min(value, target.maxValue);
-        }
+    // coerceValue: (target, value) => {
+    //     if (target.minValue !== undefined && target.maxValue !== undefined) {
+    //         value = Math.max(value, target.minValue);
+    //         value = Math.min(value, target.maxValue);
+    //     }
 
-        return value;
-    },
+    //     return value;
+    // },
     valueConverter: (v) => parseFloat(v)
 });
 /**
@@ -34,7 +34,7 @@ export const minValueProperty = new Property<Slider, number>({
     // defaultValue: 0,
     valueChanged: (target, oldValue, newValue) => {
         maxValueProperty.coerce(target);
-        valueProperty.coerce(target);
+        // valueProperty.coerce(target);
     },
     valueConverter: (v) => parseFloat(v)
 });
@@ -52,7 +52,7 @@ export const maxValueProperty = new CoercibleProperty<Slider, number>({
 
         return value;
     },
-    valueChanged: (target, oldValue, newValue) => valueProperty.coerce(target),
+    // valueChanged: (target, oldValue, newValue) => valueProperty.coerce(target),
     valueConverter: (v) => parseFloat(v)
 });
 export class Slider extends View {
@@ -79,6 +79,8 @@ export class Slider extends View {
         }
         const result = new ASlider(this._context);
         result.setLabelBehavior(2); // com.google.android.material.slider.LabelFormatter.LABEL_GONE
+        result.setValueFrom(DEFAULT_MIN);
+        result.setValueTo(DEFAULT_MAX);
         return result;
     }
     initNativeView() {
@@ -91,8 +93,6 @@ export class Slider extends View {
                 }
             }
         });
-        nativeView.setValueFrom(this.minValue || DEFAULT_MIN);
-        nativeView.setValueTo(this.maxValue || DEFAULT_MAX);
         nativeView.addOnChangeListener(this.listener);
     }
     disposeNativeView() {
@@ -149,10 +149,14 @@ export class Slider extends View {
         this.nativeViewProtected.setStepSize(value);
     }
     [valueProperty.setNative](value) {
-        // ensure we set min/max to prevent errors in listviews while reusing cells
-        // will sliders with different min/max
-        this.nativeViewProtected.setValueFrom(this.minValue || DEFAULT_MIN);
-        this.nativeViewProtected.setValueTo(this.maxValue || DEFAULT_MAX);
+        // ensure we set min/max to prevent errors depending on the ordered or applied props
+        // when reusing sliders with different min/max
+        const min = this.minValue || DEFAULT_MIN;
+        const max = this.maxValue || DEFAULT_MAX;
+        this.nativeViewProtected.setValueFrom(min);
+        this.nativeViewProtected.setValueTo(max);
+        value = Math.max(value, min);
+        value = Math.min(value, max);
         this.nativeViewProtected.setValue(value);
     }
     [minValueProperty.setNative](value) {
