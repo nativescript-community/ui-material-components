@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.11](https://github.com/nativescript-community/ui-material-component/compare/v7.0.10...v7.0.11) (2022-05-14)
+
+
+### Bug Fixes
+
+* **slider:** android this should be the final fix for every single case! ([efd3bb9](https://github.com/nativescript-community/ui-material-component/commit/efd3bb97886552237e881e35e2313b1f2349fcea))
+
+
+
+
+
 ## [7.0.10](https://github.com/nativescript-community/ui-material-component/compare/v7.0.9...v7.0.10) (2022-05-12)
 
 
