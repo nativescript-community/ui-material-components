@@ -136,11 +136,9 @@ export class Slider extends View {
     }
     updateValues() {
         if (!this.mCanChangeValues) {
-            console.log('test1');
             this.mNeedUpdate = true;
             return;
         }
-        console.log('test2');
         const min = this.minValue || DEFAULT_MIN;
         const max = this.maxValue || DEFAULT_MAX;
         this.nativeViewProtected.setValueFrom(min);
