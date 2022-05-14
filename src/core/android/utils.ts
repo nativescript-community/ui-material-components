@@ -148,7 +148,7 @@ export const stateSets = {
 
 let ColorStateList: typeof android.content.res.ColorStateList;
 export function getColorStateList(color: number) {
-    if (!color) {
+    if (color === undefined || color === null) {
         return null;
     }
     if (!ColorStateList) {
@@ -158,7 +158,7 @@ export function getColorStateList(color: number) {
 }
 
 export function getFullColorStateList(activeColor: number, inactiveColor = 1627389952, disabledColor = 1627389952) {
-    if (!activeColor) {
+    if (activeColor === undefined || activeColor === null) {
         return null;
     }
     if (!NUtils) {
@@ -167,7 +167,7 @@ export function getFullColorStateList(activeColor: number, inactiveColor = 16273
     return NUtils.getFullColorStateList(activeColor, inactiveColor, disabledColor);
 }
 export function getEnabledColorStateList(color: number, disabledColor: number) {
-    if (!color) {
+    if (color === undefined || color === null) {
         return null;
     }
     if (!NUtils) {
