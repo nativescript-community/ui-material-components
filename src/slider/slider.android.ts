@@ -63,9 +63,9 @@ export class Slider extends View {
     @cssProperty thumbColor: Color;
     @cssProperty stepSize: number;
     @cssProperty elevation: number;
-    _supressNativeValue: boolean;
-    _canChangeValues: boolean = true;
-    _needUpdate: boolean = true;
+    mSupressNativeValue: boolean;
+    mCanChangeValues: boolean = true;
+    mNeedUpdate: boolean = true;
     public value: number;
     public minValue: number;
     public maxValue: number;
@@ -135,12 +135,12 @@ export class Slider extends View {
         this.nativeViewProtected.setStepSize(value);
     }
     updateValues() {
-        if (!this._canChangeValues) {
-            console.log('test1')
-            this._needUpdate = true;
+        if (!this.mCanChangeValues) {
+            console.log('test1');
+            this.mNeedUpdate = true;
             return;
         }
-        console.log('test2')
+        console.log('test2');
         const min = this.minValue || DEFAULT_MIN;
         const max = this.maxValue || DEFAULT_MAX;
         this.nativeViewProtected.setValueFrom(min);
@@ -153,11 +153,11 @@ export class Slider extends View {
 
     public onResumeNativeUpdates(): void {
         // {N} suspends properties update on `_suspendNativeUpdates`. So we only need to do this in onResumeNativeUpdates
-        this._canChangeValues = false;
+        this.mCanChangeValues = false;
         super.onResumeNativeUpdates();
-        this._canChangeValues = true;
-        if (this._needUpdate) {
-            this._needUpdate = false;
+        this.mCanChangeValues = true;
+        if (this.mNeedUpdate) {
+            this.mNeedUpdate = false;
             this.updateValues();
         }
     }
