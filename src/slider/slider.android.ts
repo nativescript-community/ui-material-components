@@ -64,6 +64,8 @@ export class Slider extends View {
     @cssProperty stepSize: number;
     @cssProperty elevation: number;
     _supressNativeValue: boolean;
+    _canChangeValues: boolean = true;
+    _needUpdate: boolean = true;
     public value: number;
     public minValue: number;
     public maxValue: number;
@@ -103,22 +105,6 @@ export class Slider extends View {
         super.disposeNativeView();
     }
 
-    /**
-     * There is no minValue in Android. We simulate this by subtracting the minValue from the native value and maxValue.
-     * We need this method to call native setMax and setProgress methods when minValue property is changed,
-     * without handling the native value changed callback.
-     */
-    // setNativeValuesSilently() {
-    //     this._supressNativeValue = true;
-    //     const nativeView = this.nativeViewProtected;
-    //     try {
-    //         nativeView.setMax(this.maxValue - this.minValue);
-    //         nativeView.setProgress(this.value - this.minValue);
-    //     } finally {
-    //         this._supressNativeValue = false;
-    //     }
-    // }
-
     [colorProperty.setNative](color: Color) {
         if (color) {
             this.nativeViewProtected.setTrackTintList(sliderGetEnabledColorStateList(color));
@@ -148,25 +134,44 @@ export class Slider extends View {
     [stepSizeProperty.setNative](value) {
         this.nativeViewProtected.setStepSize(value);
     }
-    [valueProperty.setNative](value) {
-        // ensure we set min/max to prevent errors depending on the ordered or applied props
-        // when reusing sliders with different min/max
+    updateValues() {
+        if (!this._canChangeValues) {
+            console.log('test1')
+            this._needUpdate = true;
+            return;
+        }
+        console.log('test2')
         const min = this.minValue || DEFAULT_MIN;
         const max = this.maxValue || DEFAULT_MAX;
         this.nativeViewProtected.setValueFrom(min);
         this.nativeViewProtected.setValueTo(max);
+        let value = this.value;
         value = Math.max(value, min);
         value = Math.min(value, max);
         this.nativeViewProtected.setValue(value);
     }
+
+    public onResumeNativeUpdates(): void {
+        // {N} suspends properties update on `_suspendNativeUpdates`. So we only need to do this in onResumeNativeUpdates
+        this._canChangeValues = false;
+        super.onResumeNativeUpdates();
+        this._canChangeValues = true;
+        if (this._needUpdate) {
+            this._needUpdate = false;
+            this.updateValues();
+        }
+    }
+    [valueProperty.setNative](value) {
+        this.updateValues();
+    }
     [minValueProperty.setNative](value) {
-        this.nativeViewProtected.setValueFrom(value);
+        this.updateValues();
     }
     [maxValueProperty.getDefault]() {
         return DEFAULT_MAX;
     }
     [maxValueProperty.setNative](value) {
-        this.nativeViewProtected.setValueTo(value);
+        this.updateValues();
     }
     // [colorProperty.getDefault]() {
     //     return -1;
