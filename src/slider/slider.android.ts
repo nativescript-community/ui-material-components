@@ -70,10 +70,6 @@ export class Slider extends View {
     public minValue: number;
     public maxValue: number;
     listener: com.google.android.material.slider.Slider.OnChangeListener;
-    constructor() {
-        super();
-        this.color = themer.getPrimaryColor() as Color;
-    }
 
     createNativeView() {
         if (!ASlider) {
