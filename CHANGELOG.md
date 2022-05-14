@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.14](https://github.com/nativescript-community/ui-material-component/compare/v7.0.13...v7.0.14) (2022-05-14)
+
+
+### Bug Fixes
+
+* **slider:** android dont force color ([4241df5](https://github.com/nativescript-community/ui-material-component/commit/4241df57010c1010b506b91406b9491f221941e6))
+* **slider:** android removed logs ([d2ebe09](https://github.com/nativescript-community/ui-material-component/commit/d2ebe09d351066b5af69dc3bf25ecfaf4a0efa9e))
+
+
+
+
+
 ## [7.0.13](https://github.com/nativescript-community/ui-material-component/compare/v7.0.12...v7.0.13) (2022-05-14)
 
 
