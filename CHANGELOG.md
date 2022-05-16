@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.16](https://github.com/nativescript-community/ui-material-component/compare/v7.0.15...v7.0.16) (2022-05-16)
+
+
+### Bug Fixes
+
+* **progress:** android dont force default coolor ([07b3276](https://github.com/nativescript-community/ui-material-component/commit/07b32763ecf2d8ef129dfd630c79c65b1cbcc08d))
+
+
+
+
+
 ## [7.0.15](https://github.com/nativescript-community/ui-material-component/compare/v7.0.14...v7.0.15) (2022-05-14)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
