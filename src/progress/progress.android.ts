@@ -1,12 +1,7 @@
-import { themer } from '@nativescript-community/ui-material-core';
 import { Color, PercentLength, heightProperty } from '@nativescript/core';
 import { ProgressBase, busyProperty, indeterminateProperty, progressBackgroundColorProperty, progressColorProperty } from './progress-common';
 
 export class Progress extends ProgressBase {
-    constructor() {
-        super();
-        this.color = themer.getPrimaryColor() as Color;
-    }
     nativeViewProtected: com.google.android.material.progressindicator.LinearProgressIndicator;
 
     // added in 1.3.0
