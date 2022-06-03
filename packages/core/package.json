@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-core",
-    "version": "7.0.17",
+    "version": "7.0.18",
     "description": "Material Core component",
     "main": "./index",
     "sideEffects": false,
@@ -38,5 +38,5 @@
     "homepage": "https://github.com/nativescript-community/ui-material-components",
     "repository": "https://github.com/nativescript-community/ui-material-components",
     "readmeFilename": "README.md",
-    "gitHead": "81c3b0f0cbd9e40c84653a52950f390e38dd544a"
+    "gitHead": "1a04b1378044d5cecd7af12f07412fc63a9c4361"
 }
