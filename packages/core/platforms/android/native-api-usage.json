@@ -2,6 +2,7 @@
     "uses": [
         "com.nativescript.material.core:Utils*",
         "android.graphics:Color*",
+        "android.graphics.drawable:RippleDrawable*",
         "android.os:Build*",
         "android.content.res:ColorStateList*",
         "com.google.android.material.shape:ShapeAppearanceModel*",
