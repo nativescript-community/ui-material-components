@@ -215,6 +215,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         const context: android.content.Context = this._context;
         const nativeView = new org.nativescript.widgets.GridLayout(context);
         const viewPager = new androidx.viewpager2.widget.ViewPager2(context);
+        viewPager.setSaveEnabled(false);
         const lp = new org.nativescript.widgets.CommonLayoutParams();
         lp.row = 1;
         if (this.tabsPosition === 'top') {
