@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.19](https://github.com/nativescript-community/ui-material-component/compare/v7.0.18...v7.0.19) (2022-06-16)
+
+
+### Bug Fixes
+
+* **bottom-navigation:** fix error on home/resume ([acd3cd8](https://github.com/nativescript-community/ui-material-component/commit/acd3cd8eb423504a68f2da749822e38431170811))
+
+
+
+
+
 ## [7.0.18](https://github.com/nativescript-community/ui-material-component/compare/v7.0.17...v7.0.18) (2022-06-03)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
