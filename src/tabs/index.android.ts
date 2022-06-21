@@ -80,6 +80,7 @@ export class Tabs extends TabNavigation<TabsBar> {
         if (primaryColor) {
             tabsBar.setBackgroundColor(primaryColor);
         }
+        tabsBar.setSelectedPosition(this.selectedIndex);
         return tabsBar;
     }
 
