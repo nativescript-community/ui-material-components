@@ -135,7 +135,7 @@ Then you can show a Vue component:
 import MyComponent from 'MyComponent.vue';
 
 //inside another Vue component
-const options: BottomSheetOptions = {
+const options: VueBottomSheetOptions = {
 };
 this.$showBottomSheet(MyComponent, options)
 ```
