@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.21](https://github.com/nativescript-community/ui-material-component/compare/v7.0.20...v7.0.21) (2022-06-21)
+
+
+### Bug Fixes
+
+* **tabs,android:** fix for wrong first position of the tabsbar ([dc5e64b](https://github.com/nativescript-community/ui-material-component/commit/dc5e64b449c0018d9a672dec7d2ad00ae0d02878))
+
+
+
+
+
 ## [7.0.20](https://github.com/nativescript-community/ui-material-component/compare/v7.0.19...v7.0.20) (2022-06-16)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
