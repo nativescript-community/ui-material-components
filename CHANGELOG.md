@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.22](https://github.com/nativescript-community/ui-material-component/compare/v7.0.21...v7.0.22) (2022-06-22)
+
+
+### Bug Fixes
+
+* **bottomsheet:** import options in readme ([c4529a3](https://github.com/nativescript-community/ui-material-component/commit/c4529a35e98c322a5030b71981eb724d1e866b70))
+
+
+
+
+
 ## [7.0.21](https://github.com/nativescript-community/ui-material-component/compare/v7.0.20...v7.0.21) (2022-06-21)
 
 
