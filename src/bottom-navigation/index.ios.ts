@@ -97,13 +97,13 @@ class MDTabBarControllerImpl extends UITabBarController {
 }
 
 @NativeClass
-class UITabBarControllerDelegateImpl extends NSObject implements UITabBarControllerDelegate {
+class BNTabBarControllerDelegateImpl extends NSObject implements UITabBarControllerDelegate {
     public static ObjCProtocols = [UITabBarControllerDelegate];
 
     private _owner: WeakRef<BottomNavigation>;
 
-    public static initWithOwner(owner: WeakRef<BottomNavigation>): UITabBarControllerDelegateImpl {
-        const delegate = UITabBarControllerDelegateImpl.alloc().init() as UITabBarControllerDelegateImpl;
+    public static initWithOwner(owner: WeakRef<BottomNavigation>): BNTabBarControllerDelegateImpl {
+        const delegate = BNTabBarControllerDelegateImpl.alloc().init() as BNTabBarControllerDelegateImpl;
         delegate._owner = owner;
 
         return delegate;
@@ -164,13 +164,13 @@ class UITabBarControllerDelegateImpl extends NSObject implements UITabBarControl
 }
 
 @NativeClass
-class UINavigationControllerDelegateImpl extends NSObject implements UINavigationControllerDelegate {
+class BNNavigationControllerDelegateImpl extends NSObject implements UINavigationControllerDelegate {
     public static ObjCProtocols = [UINavigationControllerDelegate];
 
     private _owner: WeakRef<BottomNavigation>;
 
-    public static initWithOwner(owner: WeakRef<BottomNavigation>): UINavigationControllerDelegateImpl {
-        const delegate = UINavigationControllerDelegateImpl.alloc().init() as UINavigationControllerDelegateImpl;
+    public static initWithOwner(owner: WeakRef<BottomNavigation>): BNNavigationControllerDelegateImpl {
+        const delegate = BNNavigationControllerDelegateImpl.alloc().init() as BNNavigationControllerDelegateImpl;
         delegate._owner = owner;
 
         return delegate;
@@ -281,8 +281,8 @@ export class BottomNavigation extends TabNavigationBase {
     tabsPosition = TabsPosition.Bottom;
     public viewController: MDTabBarControllerImpl;
     public items: TabContentItem[];
-    private mDelegate: UITabBarControllerDelegateImpl;
-    private mMoreNavigationControllerDelegate: UINavigationControllerDelegateImpl;
+    private mDelegate: BNTabBarControllerDelegateImpl;
+    private mMoreNavigationControllerDelegate: BNNavigationControllerDelegateImpl;
     private mIconsCache = {};
     private mSelectedItemColor: Color;
     private mUnSelectedItemColor: Color;
@@ -299,8 +299,8 @@ export class BottomNavigation extends TabNavigationBase {
 
     initNativeView() {
         super.initNativeView();
-        this.mDelegate = UITabBarControllerDelegateImpl.initWithOwner(new WeakRef(this));
-        this.mMoreNavigationControllerDelegate = UINavigationControllerDelegateImpl.initWithOwner(new WeakRef(this));
+        this.mDelegate = BNTabBarControllerDelegateImpl.initWithOwner(new WeakRef(this));
+        this.mMoreNavigationControllerDelegate = BNNavigationControllerDelegateImpl.initWithOwner(new WeakRef(this));
         if (!this.tabStrip) {
             this.viewController.tabBar.hidden = true;
         }
