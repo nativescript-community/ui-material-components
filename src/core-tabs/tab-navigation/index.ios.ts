@@ -529,7 +529,9 @@ export abstract class TabNavigation<
     }
 
     public onItemsChanged(oldItems: TabContentItem[], newItems: TabContentItem[]): void {
-        this.mNeedsCacheUpdate = true;
+        if (this.isLoaded) {
+            this.mNeedsCacheUpdate = true;
+        }
         super.onItemsChanged(oldItems, newItems);
         if (oldItems) {
             if (!this.mCanSelectItem) {
