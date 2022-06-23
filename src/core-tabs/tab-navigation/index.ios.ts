@@ -282,7 +282,6 @@ export abstract class TabNavigation<
     constructor() {
         super();
         this.viewController = this.createViewController();
-        // this.viewController = UIPageViewControllerImpl.initWithOwner(new WeakRef(this));
     }
 
     createNativeView() {
@@ -416,18 +415,8 @@ export abstract class TabNavigation<
     }
 
     public _onViewControllerShown(viewController: UIViewController) {
-        // This method could be called with the moreNavigationController or its list controller, so we have to check.
-        // TODO
-        // if (traceEnabled()) {
-        //     traceWrite("TabView._onViewControllerShown(" + viewController + ");", traceCategories.Debug);
-        // }
         if (this.viewController.viewControllers && this.viewController.viewControllers.containsObject(viewController)) {
             this.selectedIndex = this.viewController.viewControllers.indexOfObject(viewController);
-        } else {
-            // TODO
-            // if (traceEnabled()) {
-            //     traceWrite("TabView._onViewControllerShown: viewController is not one of our viewControllers", traceCategories.Debug);
-            // }
         }
     }
 
