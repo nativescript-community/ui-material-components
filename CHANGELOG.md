@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.23](https://github.com/nativescript-community/ui-material-component/compare/v7.0.22...v7.0.23) (2022-06-23)
+
+
+### Bug Fixes
+
+* **bottom-navigation,ios:** remove warnings ([87c5975](https://github.com/nativescript-community/ui-material-component/commit/87c5975d4232c53ea47a0d99ff0b5469441c034a))
+* **tabs,ios:** fix tabs not swipable after first scroll ([3984b50](https://github.com/nativescript-community/ui-material-component/commit/3984b50bfdc8f52fa2fdc5d4e1bd03da5bdd7d99))
+
+
+
+
+
 ## [7.0.22](https://github.com/nativescript-community/ui-material-component/compare/v7.0.21...v7.0.22) (2022-06-22)
 
 
