@@ -52,7 +52,6 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
         // called when clicked on background
         const owner = this._owner.get();
         owner && owner._unloadBottomSheet();
-
     }
     bottomSheetControllerStateChangedState(controller: MDCBottomSheetController, state: MDCSheetState) {
         // called when swiped
@@ -127,6 +126,11 @@ function layoutView(controller: IMDLayoutViewController, owner: View): void {
             Utils.layout.toDeviceIndependentPixels(height)
         );
         const availableSpace = getAvailableSpaceFromParent(owner, frame);
+
+        if (!availableSpace.fullscreen) {
+            // can happen if we get there after the bottomsheet was removed...
+            return;
+        }
 
         const startPos = IOSHelper.getPositionFromFrame(frame);
         const fullscreenPosition = IOSHelper.getPositionFromFrame(availableSpace.fullscreen);
@@ -209,11 +213,12 @@ function getAvailableSpaceFromParent(view: View, frame: CGRect): { safeArea: CGR
         while (parent && !parent.viewController && !(parent.nativeViewProtected instanceof UIScrollView)) {
             parent = parent.parent as View;
         }
-
-        if (parent.nativeViewProtected instanceof UIScrollView) {
-            scrollView = parent.nativeViewProtected;
-        } else if (parent.viewController) {
-            viewControllerView = parent.viewController.view;
+        if (parent) {
+            if (parent.nativeViewProtected instanceof UIScrollView) {
+                scrollView = parent.nativeViewProtected;
+            } else if (parent.viewController) {
+                viewControllerView = parent.viewController.view;
+            }
         }
     }
 
