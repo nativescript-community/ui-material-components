@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.24](https://github.com/nativescript-community/ui-material-component/compare/v7.0.23...v7.0.24) (2022-06-24)
+
+
+### Bug Fixes
+
+* **bottomsheet,ios:** crash fix when closing the bottomsheet ([a48c33f](https://github.com/nativescript-community/ui-material-component/commit/a48c33ffda10db46b6d40b976f6a9a32e36671a9))
+
+
+
+
+
 ## [7.0.23](https://github.com/nativescript-community/ui-material-component/compare/v7.0.22...v7.0.23) (2022-06-23)
 
 
