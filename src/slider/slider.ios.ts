@@ -65,13 +65,17 @@ export class Slider extends SliderBase {
     [minValueProperty.setNative](value) {
         this.nativeViewProtected.minimumValue = value;
         if (this.stepSize !== 0) {
-            this.nativeViewProtected.numberOfDiscreteValues = (this.maxValue - this.minValue) / value;
+            // add one to get amount of values and not difference between min and max
+            const valuesCount = this.maxValue - this.minValue + 1;
+            this.nativeViewProtected.numberOfDiscreteValues = Math.ceil(valuesCount / value);
         }
     }
     [maxValueProperty.setNative](value) {
         this.nativeViewProtected.maximumValue = value;
         if (this.stepSize !== 0) {
-            this.nativeViewProtected.numberOfDiscreteValues = (this.maxValue - this.minValue) / value;
+            // add one to get amount of values and not difference between min and max
+            const valuesCount = this.maxValue - this.minValue + 1;
+            this.nativeViewProtected.numberOfDiscreteValues = Math.ceil(valuesCount / value);
         }
     }
     [stepSizeProperty.getDefault]() {
@@ -82,7 +86,11 @@ export class Slider extends SliderBase {
             this.nativeViewProtected.discrete = false;
         } else {
             this.nativeViewProtected.discrete = true;
-            this.nativeViewProtected.numberOfDiscreteValues = (this.maxValue - this.minValue) / value;
+
+            // add one to get amount of values and not difference between min and max
+            const valuesCount = this.maxValue - this.minValue + 1;
+            this.nativeViewProtected.numberOfDiscreteValues = Math.ceil(valuesCount / value);
+
             this.nativeViewProtected.shouldDisplayDiscreteValueLabel = false;
         }
     }
