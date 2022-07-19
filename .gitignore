@@ -1,84 +1,56 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+# NativeScript
+hooks/
+node_modules/
+/platforms/
 
-# Folder config file
-Desktop.ini
+# NativeScript Template
+*.js.map
+!ngcc.config.js
+!webpack.config.js
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
+# General
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-bin
-obj
-.vs
-.tscache
-*.user
-*.map
-!gruntfile.js
-node_modules
-*.tmp.*
-platforms
-!plugin/platforms
-lib
-!webpack.*.js
-report
-*.log
-dist
-
-packages/**/angular
-packages/**/*.js
-packages/**/*.ts
-packages/**/*.js.map
-packages/**/*.metadata.json
-packages/**/*.ngsummary.json
-!packages/**/angular/package.json
-!packages/**/platforms
-*.tgz
-*.aar
-package-lock.json
-!packages/**/package-lock.json
-
-# IDE
 .idea
-/pnpm-lock.yaml
+.cloud
+.project
+tmp/
+package-lock.json
+
+!.eslintrc.js
+!.prettierrc.js
+
+!e2e/*.js
+!detox.config.js
+devices.js
+
+*.framework
+**/*.js.map
+src/**/*.js
+packages/**/*.js
+packages/**/*.d.ts
+bin
+build
+Pods
+!packages/platforms
+/packages/**/*.aar
+*.xcuserdatad
+/packages/README.md
+packages/**/*js.map
+packages/**/*js
+packages/**/angular/*.json
+packages/*.ngsummary.json
+packages/*.metadata.json
+packages/angular
+packages/typings
 pnpm-lock.yaml
-hooks
-!src/core/hooks
-/tempAngular
-/.gradle
-/.settings
-.gradle
+
+/blueprint.md
