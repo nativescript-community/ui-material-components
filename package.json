@@ -83,5 +83,10 @@
         "@nativescript-community/plugin-seed-tools": {
             "injected": true
         }
+    },
+    "engines": {
+        "npm": "please-use-yarn-or-pnpm",
+        "yarn": ">= 1.19.1",
+        "pnpm": ">= 7.0.0"
     }
 }
