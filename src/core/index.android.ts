@@ -77,12 +77,12 @@ export class Themer {
     }
 
     setAccentColor(value: string | Color) {
-        if (!this.accentColor) {
-            this.accentColor = new Color(getAttrColor(getContext(), 'colorAccent'));
-        }
         this.accentColor = value;
     }
     getAccentColor(): string | Color {
+        if (!this.accentColor) {
+            this.accentColor = new Color(getAttrColor(getContext(), 'colorAccent'));
+        }
         return this.accentColor;
     }
 
