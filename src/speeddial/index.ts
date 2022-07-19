@@ -83,7 +83,7 @@ export class SpeedDialItem extends SpeedDialItemBase {
     public actualActive = false;
     mTitleView: WeakRef<SpeedDialItemTitle>;
     mButton: WeakRef<SpeedDialItemButton>;
-    fabmenu: WeakRef<SpeedDial>;
+    mFabmenu: WeakRef<SpeedDial>;
 
     get titleView() {
         return this.mTitleView?.get();
@@ -91,19 +91,23 @@ export class SpeedDialItem extends SpeedDialItemBase {
     get button() {
         return this.mButton?.get();
     }
+    get fabmenu() {
+        return this.mFabmenu?.get();
+    }
     constructor(size = 'mini', private isMain = false) {
         super();
-        // this._fabsHolder.isPassThroughParentEnabled = true;
         this.isPassThroughParentEnabled = true;
         const titleView = new SpeedDialItemTitle();
         titleView.notify = this.notifyChildEvent(titleView, titleView.notify);
         titleView.col = 1;
-        titleView.text = this.title;
+        // titleView.text = this.title;
+        this.mTitleView = new WeakRef(titleView);
         const button = isMain ? new SpeedDialButton() : new SpeedDialItemButton();
         button.notify = this.notifyChildEvent(button, button.notify);
         button.horizontalAlignment = 'center';
         // this.fabButtonTitle.style['css:elevation'] = 4;this.fabButtonTitle.style['css:elevation'] = 2;
         button.col = this.fabButtonCol;
+        this.mButton = new WeakRef(button);
         if (size === 'mini') {
             // button.style['css:border-radius'] = 20;
             button.style['css:width'] = 40;
@@ -118,8 +122,6 @@ export class SpeedDialItem extends SpeedDialItemBase {
         (this as any).columns = this.fabColumns;
         this.addChild(titleView);
         this.addChild(button);
-        this.mTitleView = new WeakRef(titleView);
-        this.mButton = new WeakRef(button);
     }
     updateAlignment() {
         (this as any).columns = this.fabColumns;
@@ -141,9 +143,9 @@ export class SpeedDialItem extends SpeedDialItemBase {
             (data as any).speeddialItem = this;
             if (data.eventName === 'tap') {
                 if (this.isMain) {
-                    this.fabmenu.get().onButtonTap(data);
+                    this.fabmenu.onButtonTap(data);
                 } else {
-                    this.fabmenu.get().active = false;
+                    this.fabmenu.active = false;
                 }
             }
             superNotifyMethod.call(child, data);
@@ -154,27 +156,27 @@ export class SpeedDialItem extends SpeedDialItemBase {
     }
     onButtonTap(args) {
         if (this.isMain) {
-            this.fabmenu.get().onButtonTap(args);
+            this.fabmenu.onButtonTap(args);
         } else {
             this.notify({ object: this, ...args });
-            this.fabmenu.get().active = false;
+            this.fabmenu.active = false;
         }
     }
     get isLeft() {
-        return this.fabmenu && this.fabmenu.get().isLeft;
+        return this.mFabmenu && this.fabmenu.isLeft;
     }
     get isRight() {
-        return this.fabmenu && this.fabmenu.get().isRight;
+        return this.mFabmenu && this.fabmenu.isRight;
     }
     get fabColumns() {
         return this.isRight ? '*,auto,60' : '60,auto,*';
     }
     get active() {
-        return this.fabmenu && this.fabmenu.get().active;
+        return this.mFabmenu && this.fabmenu.active;
     }
     set active(value) {
-        if (this.fabmenu) {
-            this.fabmenu.get().active = value;
+        if (this.mFabmenu) {
+            this.fabmenu.active = value;
         }
     }
 
@@ -258,14 +260,14 @@ export class SpeedDialItem extends SpeedDialItemBase {
 
 @CSSType('MDSpeedDial')
 export class SpeedDial extends SpeedDialItemBase {
-    mFabs: WeakRef<SpeedDialItem>[] = [];
+    private mFabs: WeakRef<SpeedDialItem>[] = [];
     private mFabsHolder: WeakRef<FlexboxLayout>;
+    private mFabMainButton: WeakRef<SpeedDialItem>;
     rows: string;
     columns: string;
     orientation = 'vertical';
     isActive = false;
     actualActive = false;
-    private mFabMainButton: WeakRef<SpeedDialItem>;
 
     get fabsHolder() {
         return this.mFabsHolder?.get();
@@ -284,25 +286,25 @@ export class SpeedDial extends SpeedDialItemBase {
         this.rows = 'auto,*,auto,auto';
         this.style['css:padding-left'] = 8;
         this.style['css:padding-right'] = 8;
-        const fabHolder = new FlexboxLayout();
-        fabHolder.row = 2;
-        fabHolder.horizontalAlignment = this.horizontalAlignment;
+        const fabsHolder = new FlexboxLayout();
+        fabsHolder.row = 2;
+        fabsHolder.horizontalAlignment = this.horizontalAlignment;
         this.isPassThroughParentEnabled = true;
         if (global.isIOS) {
-            fabHolder.isPassThroughParentEnabled = true;
+            fabsHolder.isPassThroughParentEnabled = true;
         }
-        fabHolder.flexDirection = this.orientation === 'vertical' ? 'column-reverse' : 'row-reverse';
-        fabHolder.visibility = 'hidden';
+        fabsHolder.flexDirection = this.orientation === 'vertical' ? 'column-reverse' : 'row-reverse';
+        fabsHolder.visibility = 'hidden';
         this.backgroundColor = new Color('#00000000');
 
         const fabMainButton = new SpeedDialItem(null, true);
         this.prepareItem(fabMainButton, true);
         fabMainButton.row = 3;
 
-        this.addChild(fabMainButton);
-        this.addChild(fabHolder);
-        this.mFabsHolder = new WeakRef(fabHolder);
+        this.mFabsHolder = new WeakRef(fabsHolder);
         this.mFabMainButton = new WeakRef(fabMainButton);
+        this.addChild(fabMainButton);
+        this.addChild(fabsHolder);
     }
 
     get backDrop() {
@@ -319,7 +321,7 @@ export class SpeedDial extends SpeedDialItemBase {
     }
 
     prepareItem(item: SpeedDialItem, isMain = false) {
-        item.fabmenu = new WeakRef(this);
+        item.mFabmenu = new WeakRef(this);
         const animationData = this.computeAnimationData('hide', item, this.fabs.length, Math.max(this.fabs.length, 1), OPEN_DURATION, isMain);
         transformAnimationValues(animationData).forEach((d) => {
             const { target, ...others } = d;
@@ -560,7 +562,7 @@ export class SpeedDial extends SpeedDialItemBase {
     }
     //@ts-ignore
     get horizontalAlignment() {
-        return this.fabsHolder.horizontalAlignment;
+        return this.fabsHolder?.horizontalAlignment;
     }
     set horizontalAlignment(value) {
         this.fabsHolder.horizontalAlignment = value;
