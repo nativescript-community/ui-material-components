@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.25](https://github.com/nativescript-community/ui-material-component/compare/v7.0.24...v7.0.25) (2022-07-19)
+
+
+### Bug Fixes
+
+* **core:** themer fix ([bc62d50](https://github.com/nativescript-community/ui-material-component/commit/bc62d504d02210c25f5a8c850b1f4cceb479728e))
+* **speedial:** crash fix ([6602ab0](https://github.com/nativescript-community/ui-material-component/commit/6602ab0b07ae519c30ce65feface37ef243d1f73))
+
+
+
+
+
 ## [7.0.24](https://github.com/nativescript-community/ui-material-component/compare/v7.0.23...v7.0.24) (2022-06-24)
 
 
