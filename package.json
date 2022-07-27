@@ -34,7 +34,7 @@
         "postinstall": "npm run setup",
         "publish": "npm run setup && npm run build.all && lerna publish --create-release=github --force-publish",
         "readme": "node ./tools/readme.js",
-        "setup": "npm run submodules && ts-patch install",
+        "setup": "npm run submodules && ts-patch install -s",
         "start": "./node_modules/.bin/ntl -A -s 15 -o",
         "submodules": "git submodule update --init",
         "sync": "node ./tools/sync.js",
@@ -77,11 +77,6 @@
             "demo.vue.android": "Runs the Vue demo on Android.",
             "demo.vue.ios": "Runs the Vue demo on iOS.",
             "watch": "Watch for changes in the plugin source and re-build."
-        }
-    },
-    "dependenciesMeta": {
-        "@nativescript-community/plugin-seed-tools": {
-            "injected": true
         }
     },
     "engines": {
