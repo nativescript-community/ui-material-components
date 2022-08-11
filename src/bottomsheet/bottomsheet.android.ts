@@ -199,7 +199,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 if(bottomSheetOptions.options.canTouchBehind){
                     const coordinator = view.getParent();
                     coordinator.findViewById(getId("touch_outside")).setOnTouchListener(new android.view.View.OnTouchListener({
-                        onTouch: function (a, event) {
+                        onTouch: function (view, event) {
                           fragment.getActivity().dispatchTouchEvent(event)
                           return false;
                         }
