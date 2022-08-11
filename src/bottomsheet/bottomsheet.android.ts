@@ -196,6 +196,16 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     owner.callLoaded();
                 }
 
+                if(bottomSheetOptions.options.canTouchBehind){
+                    const coordinator = view.getParent();
+                    coordinator.findViewById(getId("touch_outside")).setOnTouchListener(new android.view.View.OnTouchListener({
+                        onTouch: function (a, event) {
+                          fragment.getActivity().dispatchTouchEvent(event)
+                          return false;
+                        }
+                    }));
+                }
+                
                 bottomSheetOptions.shownCallback();
             },
 
