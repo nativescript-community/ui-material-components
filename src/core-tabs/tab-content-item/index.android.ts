@@ -36,4 +36,22 @@ export class TabContentItem extends TabContentItemBase {
         super.disposeNativeView();
         (this as TabContentItemDefinition).canBeLoaded = false;
     }
+
+    _getChildFragmentManager() {
+        const tabView = this.parent as View;
+        let tabFragment = null;
+        const fragmentManager = tabView._getFragmentManager();
+        const fragments = fragmentManager.getFragments().toArray();
+        for (let i = 0; i < fragments.length; i++) {
+            // ensure index AND owner for when 2 tabviews are in the same page
+            if (fragments[i].index === this.index && fragments[i].owner === tabView) {
+                tabFragment = fragments[i];
+                break;
+            }
+        }
+        if (!tabFragment) {
+            return fragmentManager;
+        }
+        return tabFragment.getChildFragmentManager();
+    }
 }
