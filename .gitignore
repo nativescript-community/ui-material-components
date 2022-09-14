@@ -54,3 +54,4 @@ packages/typings
 pnpm-lock.yaml
 
 /blueprint.md
+.gradle
