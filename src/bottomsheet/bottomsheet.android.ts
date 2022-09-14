@@ -196,16 +196,20 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     owner.callLoaded();
                 }
 
-                if(bottomSheetOptions.options.canTouchBehind){
+                if (bottomSheetOptions.options.canTouchBehind) {
                     const coordinator = view.getParent();
-                    coordinator.findViewById(getId("touch_outside")).setOnTouchListener(new android.view.View.OnTouchListener({
-                        onTouch: function (view, event) {
-                          fragment.getActivity().dispatchTouchEvent(event);
-                          return false;
-                        }
-                    }));
+                    if (coordinator instanceof android.view.View) {
+                        coordinator.findViewById(getId('touch_outside')).setOnTouchListener(
+                            new android.view.View.OnTouchListener({
+                                onTouch(view, event) {
+                                    fragment.getActivity().dispatchTouchEvent(event);
+                                    return false;
+                                }
+                            })
+                        );
+                    }
                 }
-                
+
                 bottomSheetOptions.shownCallback();
             },
 
