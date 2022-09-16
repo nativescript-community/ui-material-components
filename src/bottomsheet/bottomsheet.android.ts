@@ -166,6 +166,12 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 // prevent hiding the bottom sheet by
                 const dismissOnDraggingDownSheet = bottomSheetOptions.options?.dismissOnDraggingDownSheet !== false;
                 behavior.setHideable(dismissOnDraggingDownSheet);
+
+                const peekHeight = bottomSheetOptions.options?.peekHeight;
+                if (peekHeight) {
+                    behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED);
+                    behavior.setPeekHeight(Utils.layout.toDevicePixels(peekHeight));
+                }
                 if (!dismissOnDraggingDownSheet) {
                     // directly expand the bottom sheet after start
                     behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED);
@@ -178,11 +184,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED);
                     // disable peek/collapsed state
                     behavior.setSkipCollapsed(true);
-                }
-                const peekHeight = bottomSheetOptions.options?.peekHeight;
-                if (peekHeight) {
-                    behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED);
-                    behavior.setPeekHeight(Utils.layout.toDevicePixels(peekHeight));
                 }
 
                 const onChangeState = bottomSheetOptions.options?.onChangeState;
