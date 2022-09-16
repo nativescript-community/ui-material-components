@@ -1,4 +1,4 @@
-import { GridLayout, View } from '@nativescript/core';
+import { GridLayout, View, Trace } from '@nativescript/core';
 import { TabContentItem as TabContentItemDefinition } from '.';
 import { TabContentItemBase } from './tab-content-item-common';
 
@@ -37,20 +37,30 @@ export class TabContentItem extends TabContentItemBase {
         (this as TabContentItemDefinition).canBeLoaded = false;
     }
 
+    private _fragmentMatches(fragment: any) {
+        // ensure index AND owner for when 2 tabviews are in the same page
+        return fragment.index === this.index && fragment.owner === this.parent;
+    }
+    private _findFragment(fragmentManager: androidx.fragment.app.FragmentManager) {
+        if (!fragmentManager) {
+            return null;
+        }
+        const fragments = fragmentManager.getFragments().toArray();
+        for (let i = 0; i < fragments.length; i++) {
+            if (fragments[i].index === this.index && fragments[i].owner === this.parent) {
+                return fragments[i];
+            }
+        }
+        return null;
+    }
+
     _getChildFragmentManager() {
         const tabView = this.parent as View;
         let tabFragment = null;
-        const fragmentManager = tabView._getFragmentManager();
-        const fragments = fragmentManager.getFragments().toArray();
-        for (let i = 0; i < fragments.length; i++) {
-            // ensure index AND owner for when 2 tabviews are in the same page
-            if (fragments[i].index === this.index && fragments[i].owner === tabView) {
-                tabFragment = fragments[i];
-                break;
-            }
-        }
+        tabFragment = this._findFragment(tabView._getRootFragmentManager()) || this._findFragment(tabView._getFragmentManager());
         if (!tabFragment) {
-            return fragmentManager;
+            Trace.write(`No fragment found for ${tabView} with index ${this.index}`, Trace.categories.Error, Trace.messageType.error);
+            return tabView._getFragmentManager();
         }
         return tabFragment.getChildFragmentManager();
     }
