@@ -249,6 +249,9 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     protected abstract getTabBarItemView(index: number);
     protected abstract getTabBarItemTextView(index: number);
     protected abstract selectTabBar(oldIndex: number, newIndex: number);
+    protected willSelectWithoutAnimation(index: number) {
+        // noop
+    }
 
     private handleTabStripChanged(nativeView: org.nativescript.widgets.GridLayout, oldTabStrip: TabStrip, newTabStrip: TabStrip) {
         if (this.mTabsBar) {
@@ -663,7 +666,14 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     }
 
     public onTabsBarSelectedPositionChange(position: number, prevPosition: number): void {
-        this.mViewPager.setCurrentItem(position, this.animationEnabled);
+        // prevent setting it to the same value
+        // this is important when we're dragging and this is called with animationEnabled = false which will cause a jump
+        if (position !== this.mViewPager.getCurrentItem()) {
+            if (!this.animationEnabled) {
+                this.willSelectWithoutAnimation(position);
+            }
+            this.mViewPager.setCurrentItem(position, this.animationEnabled);
+        }
         const tabStripItems = this.tabStrip?.items;
 
         if (position >= 0 && tabStripItems && tabStripItems[position]) {
@@ -696,6 +706,9 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     [selectedIndexProperty.setNative](value: number) {
         const current = this.mViewPager.getCurrentItem();
         if (current !== value) {
+            if (!this.animationEnabled) {
+                this.willSelectWithoutAnimation(value);
+            }
             this.mViewPager.setCurrentItem(value, this.animationEnabled);
         }
     }

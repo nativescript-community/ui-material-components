@@ -74,6 +74,8 @@ public class TabsBar extends HorizontalScrollView {
 
     private int mTitleOffset;
 
+    private boolean mIgnoreScrollEventsUntilNextStateChange = false;
+
     private boolean mDistributeEvenly = true;
 
     private TabItemSpec[] mTabItems;
@@ -157,6 +159,15 @@ public class TabsBar extends HorizontalScrollView {
 
     public float getTabTextFontSize(){
         return mTabStrip.getTabTextFontSize();
+    }
+
+    public void forceTransitionToPosition(int position){
+        mIgnoreScrollEventsUntilNextStateChange = true;
+        final int tabStripChildCount = mTabStrip.getChildCount();
+        if ((tabStripChildCount == 0) || (position < 0) || (position >= tabStripChildCount)) {
+            return;
+        }
+        mTabStrip.onTabsViewPagerPageChanged(position, 0);
     }
 
     /**
@@ -414,10 +425,16 @@ public class TabsBar extends HorizontalScrollView {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             int tabStripChildCount = mTabStrip.getChildCount();
-            if ((tabStripChildCount == 0) || (position < 0) || (position >= tabStripChildCount)) {
+            if (mIgnoreScrollEventsUntilNextStateChange || (tabStripChildCount == 0) || (position < 0) || (position >= tabStripChildCount)) {
                 return;
             }
             mTabStrip.onTabsViewPagerPageChanged(position, positionOffset);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+            super.onPageScrollStateChanged(state);
+            mIgnoreScrollEventsUntilNextStateChange = false;
         }
 
     }

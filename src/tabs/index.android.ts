@@ -105,6 +105,9 @@ export class Tabs extends TabNavigation<TabsBar> {
         }
         super.setTabStripItems(items);
     }
+    protected override willSelectWithoutAnimation(index: number) {
+        this.mTabsBar?.forceTransitionToPosition(index);
+    }
 
     public override onLoaded(): void {
         super.onLoaded();
