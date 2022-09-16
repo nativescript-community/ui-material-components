@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.28](https://github.com/nativescript-community/ui-material-component/compare/v7.0.27...v7.0.28) (2022-09-16)
+
+
+### Bug Fixes
+
+* correctly search for the tab fragment ([#405](https://github.com/nativescript-community/ui-material-component/issues/405)) ([2e91650](https://github.com/nativescript-community/ui-material-component/commit/2e916508622faf06e9bfc76de9c8c0b31cb417c1))
+
+
+
+
+
 ## [7.0.27](https://github.com/nativescript-community/ui-material-component/compare/v7.0.26...v7.0.27) (2022-09-16)
 
 
