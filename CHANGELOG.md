@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.27](https://github.com/nativescript-community/ui-material-component/compare/v7.0.26...v7.0.27) (2022-09-16)
+
+
+### Bug Fixes
+
+* **bottomsheet:** android ensure props are set in the right order ([9076a8d](https://github.com/nativescript-community/ui-material-component/commit/9076a8d87706de4ced3d78b68d8c7fc23a0d4650))
+
+
+
+
+
 ## [7.0.26](https://github.com/nativescript-community/ui-material-component/compare/v7.0.25...v7.0.26) (2022-09-14)
 
 
