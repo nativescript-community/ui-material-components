@@ -50,7 +50,7 @@ export class TabContentItem extends TabContentItemBase {
             }
         }
         if (!tabFragment) {
-            return fragmentManager;
+            return tabView._getRootFragmentManager();
         }
         return tabFragment.getChildFragmentManager();
     }
