@@ -198,6 +198,8 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 }
 
                 if (bottomSheetOptions.options.canTouchBehind) {
+                    // necessary for smooth movement of the back page
+                    fragment.getDialog().getWindow().setFlags(android.view.WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, android.view.WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
                     const coordinator = view.getParent();
                     if (coordinator instanceof android.view.View) {
                         coordinator.findViewById(getId('touch_outside')).setOnTouchListener(
