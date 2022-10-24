@@ -166,6 +166,12 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 // prevent hiding the bottom sheet by
                 const dismissOnDraggingDownSheet = bottomSheetOptions.options?.dismissOnDraggingDownSheet !== false;
                 behavior.setHideable(dismissOnDraggingDownSheet);
+
+                const peekHeight = bottomSheetOptions.options?.peekHeight;
+                if (peekHeight) {
+                    behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED);
+                    behavior.setPeekHeight(Utils.layout.toDevicePixels(peekHeight));
+                }
                 if (!dismissOnDraggingDownSheet) {
                     // directly expand the bottom sheet after start
                     behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED);
@@ -179,11 +185,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     // disable peek/collapsed state
                     behavior.setSkipCollapsed(true);
                 }
-                const peekHeight = bottomSheetOptions.options?.peekHeight;
-                if (peekHeight) {
-                    behavior.setState(com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED);
-                    behavior.setPeekHeight(Utils.layout.toDevicePixels(peekHeight));
-                }
 
                 const onChangeState = bottomSheetOptions.options?.onChangeState;
                 if (onChangeState) {
@@ -194,6 +195,22 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
                 if (owner && !owner.isLoaded) {
                     owner.callLoaded();
+                }
+
+                if (bottomSheetOptions.options.canTouchBehind) {
+                    // necessary for smooth movement of the back page
+                    fragment.getDialog().getWindow().setFlags(android.view.WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, android.view.WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+                    const coordinator = view.getParent();
+                    if (coordinator instanceof android.view.View) {
+                        coordinator.findViewById(getId('touch_outside')).setOnTouchListener(
+                            new android.view.View.OnTouchListener({
+                                onTouch(view, event) {
+                                    fragment.getActivity().dispatchTouchEvent(event);
+                                    return false;
+                                }
+                            })
+                        );
+                    }
                 }
 
                 bottomSheetOptions.shownCallback();

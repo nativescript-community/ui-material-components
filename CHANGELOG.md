@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.28](https://github.com/nativescript-community/ui-material-component/compare/v7.0.27...v7.0.28) (2022-09-16)
+
+
+### Bug Fixes
+
+* correctly search for the tab fragment ([#405](https://github.com/nativescript-community/ui-material-component/issues/405)) ([2e91650](https://github.com/nativescript-community/ui-material-component/commit/2e916508622faf06e9bfc76de9c8c0b31cb417c1))
+
+
+
+
+
+## [7.0.27](https://github.com/nativescript-community/ui-material-component/compare/v7.0.26...v7.0.27) (2022-09-16)
+
+
+### Bug Fixes
+
+* **bottomsheet:** android ensure props are set in the right order ([9076a8d](https://github.com/nativescript-community/ui-material-component/commit/9076a8d87706de4ced3d78b68d8c7fc23a0d4650))
+
+
+
+
+
+## [7.0.26](https://github.com/nativescript-community/ui-material-component/compare/v7.0.25...v7.0.26) (2022-09-14)
+
+
+### Bug Fixes
+
+* **bottomsheet:** android ensure coordinator is a view ([8a7bed7](https://github.com/nativescript-community/ui-material-component/commit/8a7bed7d62e9100f5422925ea14700fe8239b4cb))
+* **tabs:** ensure we return the correct fragment manager ([23b25b9](https://github.com/nativescript-community/ui-material-component/commit/23b25b9055faddee4a2cb73f977d60f76145aadf))
+
+
+### Features
+
+* **BottomSheet:** (Android only) allows to interact with the screen behind the sheet ([aaf9e0e](https://github.com/nativescript-community/ui-material-component/commit/aaf9e0e8c04a81fce6e6fd46055dd57dd615e6ce))
+
+
+
+
+
 ## [7.0.25](https://github.com/nativescript-community/ui-material-component/compare/v7.0.24...v7.0.25) (2022-07-19)
 
 

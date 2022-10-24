@@ -21,9 +21,12 @@ yarn-error.log*
 .LSOverride
 .idea
 .cloud
+.gradle
 .project
+.yarn
 tmp/
 package-lock.json
+yarn.lock
 
 !.eslintrc.js
 !.prettierrc.js

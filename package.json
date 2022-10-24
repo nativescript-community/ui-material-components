@@ -17,7 +17,8 @@
         "build.all": "lerna run build.all",
         "build.all.win": "lerna run build.all.win",
         "build.angular": "lerna run build.angular",
-        "clean": "rimraf 'packages/**/*.d.ts' 'packages/**/*.js' 'packages/**/*.js.map' 'packages/**/*.metadata.json' 'packages/**/*.ngsummary.json' 'packages/**/*.mjs' 'packages/**/*.mjs.map' 'packages/**/node_modules' 'packages/**/angular/package.json' 'package-lock.json' 'pnpm-lock.yaml' 'node_modules'",
+        "clean": "rimraf 'packages/**/*.d.ts' 'packages/**/*.js' 'packages/**/*.js.map' 'packages/**/*.metadata.json' 'packages/**/*.ngsummary.json' 'packages/**/*.mjs' 'packages/**/*.mjs.map' 'packages/**/angular/package.json'",
+        "fullclean": "npm run clean && rimraf 'packages/**/node_modules' 'package-lock.json' 'pnpm-lock.yaml' 'node_modules'",
         "commitmsg": "commitlint -e $GIT_PARAMS",
         "demo.ng.android": "cd ./demo-ng && ns run android --no-hmr",
         "demo.ng.clean": "cd ./demo-ng && ns clean",
@@ -32,7 +33,7 @@
         "demo.vue.clean": "cd ./demo-vue && ns clean",
         "demo.vue.ios": "cd ./demo-vue && ns run ios --no-hmr",
         "postinstall": "npm run setup",
-        "publish": "npm run setup && npm run build.all && lerna publish --create-release=github --force-publish",
+        "publish": "npm run setup && npm run clean && npm run build.all && lerna publish --create-release=github --force-publish",
         "readme": "node ./tools/readme.js",
         "setup": "npm run submodules && ts-patch install -s",
         "start": "./node_modules/.bin/ntl -A -s 15 -o",
@@ -40,7 +41,8 @@
         "sync": "node ./tools/sync.js",
         "sync.test": "node ./tools/sync.js",
         "tsc": "cpy '**/*.d.ts' '../plugin' --parents --cwd=src && tsc -skipLibCheck -d",
-        "update": "node ./tools/update.js"
+        "update": "node ./tools/update.js",
+        "doc": "node tools/builddoc.mjs && git add docs/* && git commit -m \"chore:doc\""
     },
     "keywords": [
         "NativeScript",
@@ -80,7 +82,7 @@
         }
     },
     "engines": {
-        "npm": "please-use-yarn-or-pnpm",
+        "npm": "please use yarn or pnpm",
         "yarn": ">= 1.19.1",
         "pnpm": ">= 7.0.0"
     }
