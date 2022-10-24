@@ -32,6 +32,12 @@ NsVueTemplateCompiler.registerElement('MDSlider', () => require('@nativescript-c
         event: 'valueChange'
     }
 });
+NsVueTemplateCompiler.registerElement('MDTabs', () => require('@nativescript-community/ui-material-tabs').Slider, {
+    model: {
+        prop: 'selectedIndex',
+        event: 'selectedIndexChange'
+    }
+});
 
 module.exports = (env, webpack) => {
     const platform = env && ((env.android && 'android') || (env.ios && 'ios'));

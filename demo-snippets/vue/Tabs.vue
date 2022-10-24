@@ -4,7 +4,7 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap" />
         </ActionBar>
         <GridLayout rows="*, 0" backgroundColor="red">
-            <MDTabs ref="tabs" :swipeEnabled="false" :animationEnabled="false" :unloadOnTabChange="false" backgroundColor="green" selectedIndex="1">
+            <MDTabs ref="tabs" :swipeEnabled="false" :animationEnabled="true" :unloadOnTabChange="false" backgroundColor="green" v-model="selectedIndex">
                 <!-- The bottom tab UI is created via MDTabStrip (the containier) and MDTabStripItem (for each tab)-->
                 <MDTabStrip>
                     <MDTabStripItem>
@@ -27,14 +27,19 @@
                         <Page>
                             <GridLayout backgroundColor="red" @loaded="onLoaded('red')">
                                 <Label text="Home Page" class="h2 text-center"></Label>
+                                <Button text="change" @tap="selectedIndex=1"/>
                             </GridLayout>
                         </Page>
                     </Frame>
                 </MDTabContentItem>
                 <MDTabContentItem>
-                    <GridLayout backgroundColor="green" @loaded="onLoaded('green')">
+                    <Frame id="inner2">
+                        <Page>
+                            <GridLayout backgroundColor="green" @loaded="onLoaded('green')">
                         <Label text="Account Page" class="h2 text-center" @tap="addPage"></Label>
-                    </GridLayout>
+                            </GridLayout>
+                        </Page>
+                    </Frame>
                 </MDTabContentItem>
             </MDTabs>
         </GridLayout>
@@ -43,7 +48,7 @@
 
 <script lang="ts">
 import { Frame } from '@nativescript/core/ui/frame';
-import { TabContentItem, Tabs } from '@nativescript-community/ui-material-tabs/';
+import { TabContentItem, Tabs } from '@nativescript-community/ui-material-tabs';
 import { Color, EventData, GridLayout, Label, StackLayout } from '@nativescript/core';
 
 import Vue from 'vue';
@@ -55,6 +60,7 @@ export default Vue.extend({
     data() {
         return {
             title,
+            selectedIndex:0,
             addThirdItem: false
         };
     },
