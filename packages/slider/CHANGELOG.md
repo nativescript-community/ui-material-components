@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.30](https://github.com/nativescript-community/ui-material-components/compare/v7.0.29...v7.0.30) (2022-11-18)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-slider
+
+
+
+
+
 ## [7.0.29](https://github.com/nativescript-community/ui-material-components/compare/v7.0.28...v7.0.29) (2022-10-24)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-slider
