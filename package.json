@@ -81,6 +81,7 @@
             "watch": "Watch for changes in the plugin source and re-build."
         }
     },
+    "workspaces":["packages/*"],
     "engines": {
         "npm": "please use yarn or pnpm",
         "yarn": ">= 1.19.1",
