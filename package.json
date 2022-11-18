@@ -35,7 +35,7 @@
         "postinstall": "npm run setup",
         "publish": "npm run setup && npm run clean && npm run build.all && lerna publish --create-release=github --force-publish",
         "readme": "node ./tools/readme.js",
-        "setup": "npm run submodules && ts-patch install -s",
+        "setup": "npm run submodules && ts-patch install",
         "start": "./node_modules/.bin/ntl -A -s 15 -o",
         "submodules": "git submodule update --init",
         "sync": "node ./tools/sync.js",
