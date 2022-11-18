@@ -1,13 +1,4 @@
 {
 	"name": "@nativescript-community/ui-material-ripple-angular",
-	"main": "index.js",
-	"ngPackage": {
-		"dest": "../../../packages/ripple/angular",
-		"lib": {
-			"entryFile": "index.ts"
-		},
-		"allowedNonPeerDependencies": [
-			"."
-		]
-	}
+	"main": "index.js"
 }

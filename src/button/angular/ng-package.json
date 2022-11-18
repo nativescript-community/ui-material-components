@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/button/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}

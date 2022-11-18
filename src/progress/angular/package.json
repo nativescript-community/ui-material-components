@@ -1,13 +1,4 @@
 {
 	"name": "@nativescript-community/ui-material-progress-angular",
-	"main": "index.js",
-	"ngPackage": {
-		"dest": "../../../packages/progress/angular",
-		"lib": {
-			"entryFile": "index.ts"
-		},
-		"allowedNonPeerDependencies": [
-			"."
-		]
-	}
+	"main": "index.js"
 }

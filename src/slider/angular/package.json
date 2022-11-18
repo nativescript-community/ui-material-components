@@ -1,13 +1,4 @@
 {
 	"name": "@nativescript-community/ui-material-slider-angular",
-	"main": "index.js",
-	"ngPackage": {
-		"dest": "../../../packages/slider/angular",
-		"lib": {
-			"entryFile": "index.ts"
-		},
-		"allowedNonPeerDependencies": [
-			"."
-		]
-	}
+	"main": "index.js"
 }

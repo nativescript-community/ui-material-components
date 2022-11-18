@@ -1,13 +1,4 @@
 {
 	"name": "@nativescript-community/ui-material-bottomsheet-angular",
-	"main": "index.js",
-	"ngPackage": {
-		"dest": "../../../packages/bottomsheet/angular",
-		"lib": {
-			"entryFile": "index.ts"
-		},
-		"allowedNonPeerDependencies": [
-			"."
-		]
-	}
+	"main": "index.js"
 }

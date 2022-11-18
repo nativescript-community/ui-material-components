@@ -1,13 +1,4 @@
 {
 	"name": "@nativescript-community/ui-material-textfield-angular",
-	"main": "index.js",
-	"ngPackage": {
-		"dest": "../../../packages/textfield/angular",
-		"lib": {
-			"entryFile": "index.ts"
-		},
-		"allowedNonPeerDependencies": [
-			"."
-		]
-	}
+	"main": "index.js"
 }

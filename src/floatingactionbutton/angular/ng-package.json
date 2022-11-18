@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/floatingactionbutton/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}

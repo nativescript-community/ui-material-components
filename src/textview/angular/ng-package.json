@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/textview/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}

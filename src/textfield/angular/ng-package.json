@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/textfield/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}

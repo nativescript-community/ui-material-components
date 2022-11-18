@@ -1,13 +1,4 @@
 {
 	"name": "@nativescript-community/ui-material-textview-angular",
-	"main": "index.js",
-	"ngPackage": {
-		"dest": "../../../packages/textview/angular",
-		"lib": {
-			"entryFile": "index.ts"
-		},
-		"allowedNonPeerDependencies": [
-			"."
-		]
-	}
+	"main": "index.js"
 }

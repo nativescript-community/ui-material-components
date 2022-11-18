@@ -1,13 +1,4 @@
 {
 	"name": "@nativescript-community/ui-material-button-angular",
-	"main": "index.js",
-	"ngPackage": {
-		"dest": "../../../packages/button/angular",
-		"lib": {
-			"entryFile": "index.ts"
-		},
-		"allowedNonPeerDependencies": [
-			"."
-		]
-	}
+	"main": "index.js"
 }

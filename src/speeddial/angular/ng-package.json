@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/speeddial/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}
