@@ -20,7 +20,7 @@
         "build.win": "npm run tsc-win",
         "build.all": "npm run build && npm run build.angular",
         "build.all.win": "npm run build.win && npm run build.angular.win",
-        "build.angular": "../../node_modules/.bin/ng-packagr -p ../../src/bottomnavigationbar/angular/package.json -c ../../src/bottomnavigationbar/angular/tsconfig.json",
+        "build.angular": "ng-packagr -p ../../src/bottomnavigationbar/angular/ng-package.json -c ../../src/bottomnavigationbar/angular/tsconfig.json",
         "build.angular.win": "..\\..\\node_modules\\.bin\\ng-packagr -p ..\\..\\src\\bottomnavigationbar\\angular\\package.json -c ..\\..\\src\\bottomnavigationbar\\angular\\tsconfig.json",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
