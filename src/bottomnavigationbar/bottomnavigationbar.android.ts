@@ -200,12 +200,13 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
     }
 
     protected selectTabNative(index: number): void {
-        const bottomNavigationTabs = this.nativeView.getMenu();
-
-        if (bottomNavigationTabs.size() === 0) {
-            return;
+        if (this.nativeViewProtected) {
+            const bottomNavigationTabs = this.nativeViewProtected.getMenu();
+            if (bottomNavigationTabs.size() === 0) {
+                return;
+            }
+            this.nativeViewProtected.setSelectedItemId(index);
         }
-        this.nativeViewProtected.setSelectedItemId(index);
         this.selectedTabIndex = index;
     }
 }

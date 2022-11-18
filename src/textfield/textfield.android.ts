@@ -140,13 +140,13 @@ export class TextField extends TextFieldBase {
     [placeholderColorProperty.setNative](value: Color) {
         const placeholderColor = value instanceof Color ? value.android : value;
         const floatingColor = this.floatingColor instanceof Color ? this.floatingColor.android : placeholderColor;
-        this.layoutView.setHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
+        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
     }
 
     [floatingColorProperty.setNative](value: Color) {
         const floatingColor = value instanceof Color ? value.android : value;
         const placeholderColor = this.floatingInactiveColor instanceof Color ? this.floatingInactiveColor.android : undefined;
-        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
+        this.layoutView.setHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
     }
 
     [floatingInactiveColorProperty.setNative](value: Color) {
@@ -154,7 +154,7 @@ export class TextField extends TextFieldBase {
 
         const primaryColor = themer.getPrimaryColor();
         const floatingColor = this.floatingColor || (primaryColor instanceof Color ? primaryColor : new Color(primaryColor));
-        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor instanceof Color ? floatingColor.android : floatingColor, floatingInactiveColor));
+        this.layoutView.setHintTextColor(getFullColorStateList(floatingColor instanceof Color ? floatingColor.android : floatingColor, floatingInactiveColor));
     }
     [helperColorProperty.setNative](value) {
         const color = value instanceof Color ? value.android : value;

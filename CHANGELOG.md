@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.29](https://github.com/nativescript-community/ui-material-component/compare/v7.0.28...v7.0.29) (2022-10-24)
+
+
+### Bug Fixes
+
+* **bottomnavigationbar:** select tab native view ([7a0debe](https://github.com/nativescript-community/ui-material-component/commit/7a0debee97405416ef1f0a8eb9f69d7989732c9b))
+* **BottomSheet:**  Back-to-blade motion is fluid ([09f7e2f](https://github.com/nativescript-community/ui-material-component/commit/09f7e2f77b44fa820ff628f4f0c1f6f42083fe9a))
+* **textfield:** wrong hint colors ([8055347](https://github.com/nativescript-community/ui-material-component/commit/805534779fc91b25ff095242ca4cf30b76286404))
+
+
+
+
+
+## [7.0.28](https://github.com/nativescript-community/ui-material-component/compare/v7.0.27...v7.0.28) (2022-09-16)
+
+
+### Bug Fixes
+
+* correctly search for the tab fragment ([#405](https://github.com/nativescript-community/ui-material-component/issues/405)) ([2e91650](https://github.com/nativescript-community/ui-material-component/commit/2e916508622faf06e9bfc76de9c8c0b31cb417c1))
+
+
+
+
+
 ## [7.0.27](https://github.com/nativescript-community/ui-material-component/compare/v7.0.26...v7.0.27) (2022-09-16)
 
 
