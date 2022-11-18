@@ -12,6 +12,7 @@
     },
     "license": "ISC",
     "scripts": {
+        "setup.yarn": "lerna run setup.yarn",
         "build": "lerna run build",
         "build.watch": "lerna run build.watch",
         "build.all": "lerna run build.all",
@@ -81,7 +82,9 @@
             "watch": "Watch for changes in the plugin source and re-build."
         }
     },
-    "workspaces":["packages/*"],
+    "workspaces": [
+        "packages/*"
+    ],
     "engines": {
         "npm": "please use yarn or pnpm",
         "yarn": ">= 1.19.1",
