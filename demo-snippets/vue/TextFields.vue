@@ -10,7 +10,7 @@
                     <Button text="setSelection" @tap="$refs.textField1.nativeView.setSelection(1, 4)" />
                 </StackLayout>
                 <StackLayout backgroundColor="red" horizontalAlignment="center" orientation="horizontal">
-                    <Label width="20" height="20" backgroundColor="green" verticalAlignment="top"/>
+                    <Label width="20" height="20" backgroundColor="green" verticalAlignment="top" />
                     <MDTextField
                         ref="textField1"
                         id="textField1"
@@ -20,6 +20,7 @@
                         width="250"
                         height="60"
                         paddingTop="4"
+                        lineHeight="20"
                         paddingBottom="0"
                         paddingLeft="0"
                         placeholderColor="green"
@@ -48,12 +49,18 @@
                         floating="true"
                     />
                 </GridLayout>
-                <MDTextField id="textField34" hint="test" 
-                        helper="helper text" helperColor="green" errorColor="purple"
-                        error="error text"
-                class="md-textfield-outline" variant="outline"/>
-                <MDTextField id="textField3" hint="filled" @focus="onFocus" @blur="onBlur" @textChange="onTextChange" @returnPress="onReturnPress" margin="10" 
-                text="this si a text not editable" editable="false" />
+                <MDTextField id="textField34" hint="test" helper="helper text" helperColor="green" errorColor="purple" error="error text" class="md-textfield-outline" variant="outline" />
+                <MDTextField
+                    id="textField3"
+                    hint="filled"
+                    @focus="onFocus"
+                    @blur="onBlur"
+                    @textChange="onTextChange"
+                    @returnPress="onReturnPress"
+                    margin="10"
+                    text="this si a text not editable"
+                    editable="false"
+                />
                 <MDTextField
                     id="textField4"
                     variant="outline"
@@ -89,7 +96,7 @@
                     variant="filled"
                     required="true"
                     email="true"
-                     maxLength="10"
+                    maxLength="10"
                     hint="fill this out..."
                     @focus="onFocus"
                     @blur="onBlur"
@@ -108,8 +115,8 @@
                     floating="false"
                     @textChange="onTextChange"
                     @returnPress="onReturnPress"
-                                      keyboardType="decimal"
-      digits="0123456789."
+                    keyboardType="decimal"
+                    digits="0123456789."
                     margin="10"
                 />
                 <MDTextField
@@ -140,7 +147,7 @@ export default Vue.extend({
 
     data() {
         return {
-            title: title,
+            title,
             value: ''
         };
     },
