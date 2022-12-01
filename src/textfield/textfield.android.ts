@@ -39,7 +39,7 @@ import {
 } from '@nativescript/core';
 import { secureProperty } from '@nativescript/core/ui/text-field';
 import { TextFieldBase } from './textfield.common';
-import { layout } from '@nativescript/core/utils';
+import { layout } from '@nativescript/core/utils/layout-helper';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
 let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
