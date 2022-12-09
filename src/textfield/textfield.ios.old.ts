@@ -32,7 +32,7 @@ import {
     placeholderColorProperty
 } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
-import { layout } from '@nativescript/core/utils/layout-helper';
+import { Utils } from '@nativescript/core';
 import { TextFieldBase } from './textfield.common';
 
 @NativeClass

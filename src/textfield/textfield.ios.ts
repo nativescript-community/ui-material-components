@@ -38,7 +38,7 @@ import {
 } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
 import { TextFieldBase } from './textfield.common';
-import { layout } from '@nativescript/core/utils/layout-helper';
+import { Utils } from '@nativescript/core';
 
 @NativeClass
 class MDCFilledTextFieldImpl extends MDCFilledTextField {

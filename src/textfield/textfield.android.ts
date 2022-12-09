@@ -39,7 +39,7 @@ import {
 } from '@nativescript/core';
 import { secureProperty } from '@nativescript/core/ui/text-field';
 import { TextFieldBase } from './textfield.common';
-import { layout } from '@nativescript/core/utils/layout-helper';
+import { Utils } from '@nativescript/core';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
 let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
@@ -334,25 +334,25 @@ export class TextField extends TextFieldBase {
     [paddingTopProperty.setNative](value: CoreTypes.LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingTop(
             this.nativeTextViewProtected,
-            layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0))
+            Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0))
         );
     }
     [paddingRightProperty.setNative](value: CoreTypes.LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingRight(
             this.nativeTextViewProtected,
-            layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0))
+            Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0))
         );
     }
     [paddingBottomProperty.setNative](value: CoreTypes.LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingBottom(
             this.nativeTextViewProtected,
-            layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0))
+            Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0))
         );
     }
     [paddingLeftProperty.setNative](value: CoreTypes.LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingLeft(
             this.nativeTextViewProtected,
-            layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0))
+            Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0))
         );
     }
     [textAlignmentProperty.setNative](value: CoreTypes.TextAlignmentType) {
