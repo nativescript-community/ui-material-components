@@ -418,8 +418,15 @@ public class TabsBar extends HorizontalScrollView {
                 return;
             }
             mTabStrip.onTabsViewPagerPageChanged(position, positionOffset);
+            if (positionOffset == 0 && mScrollState == androidx.viewpager.widget.ViewPager.SCROLL_STATE_SETTLING) {
+                scrollToTab(position, 0);
+            }
         }
 
+        @Override
+        public void onPageScrollStateChanged (int state) {
+            mScrollState = state;
+        }
     }
 
     private class TabClickListener implements OnClickListener {
