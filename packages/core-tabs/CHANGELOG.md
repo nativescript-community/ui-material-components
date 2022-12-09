@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.32](https://github.com/nativescript-community/ui-material-components/compare/v7.0.31...v7.0.32) (2022-12-09)
+
+
+### Bug Fixes
+
+* **tabs:** active tabitem isn't visible ([fc286a5](https://github.com/nativescript-community/ui-material-components/commit/fc286a55a67b08403aff027fa49d66f6a7022200))
+
+
+
+
+
 ## [7.0.31](https://github.com/nativescript-community/ui-material-components/compare/v7.0.30...v7.0.31) (2022-12-01)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-core-tabs

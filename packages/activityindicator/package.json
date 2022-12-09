@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-activityindicator",
-    "version": "7.0.31",
+    "version": "7.0.32",
     "description": "Material Design Activity Indicator expresses an unspecified wait time.",
     "main": "./index",
     "sideEffects": false,
@@ -48,7 +48,7 @@
     "readmeFilename": "README.md",
     "homepage": "https://nativescript-community.github.io/ui-material-components/modules/_nativescript_community_ui_material_activityindicator.html",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^7.0.31"
+        "@nativescript-community/ui-material-core": "^7.0.32"
     },
     "gitHead": "240457b7952c4f0258aabc46615de63d1473ead1"
 }

@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-textfield",
-    "version": "7.0.31",
+    "version": "7.0.32",
     "description": "Material Design Text fields allow users to input text into your app.",
     "main": "./textfield",
     "sideEffects": false,
@@ -48,7 +48,7 @@
     "readmeFilename": "README.md",
     "dependencies": {
         "@nativescript-community/text": "^1.5.2",
-        "@nativescript-community/ui-material-core": "^7.0.31"
+        "@nativescript-community/ui-material-core": "^7.0.32"
     },
     "gitHead": "240457b7952c4f0258aabc46615de63d1473ead1"
 }
