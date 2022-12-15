@@ -305,6 +305,8 @@ export class TextField extends TextFieldBase {
         this._updateAttributedPlaceholder();
     }
     [placeholderColorProperty.setNative](value: UIColor | Color) {
+        const color = value instanceof Color ? value.ios : value;
+        this.nativeViewProtected.setNormalLabelColorForState(color, MDCTextControlState.Normal);
         this._updateAttributedPlaceholder();
     }
     [hintProperty.setNative](value: string) {
