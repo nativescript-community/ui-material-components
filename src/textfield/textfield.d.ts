@@ -4,6 +4,7 @@
  */
 
 import { Color, TextField as NTextField } from '@nativescript/core';
+import { VerticalTextAlignment } from '@nativescript-community/text';
 
 type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 
@@ -24,7 +25,14 @@ export class TextField extends NTextField {
     placeholderColor: Color;
     variant: string;
     error: string;
+    strokeColor: Color;
+    strokeInactiveColor: Color;
+    strokeDisabledColor: Color;
+    floatingColor: Color;
+    floatingInactiveColor: Color;
+    buttonColor: Color;
     digits: string;
+    verticalTextAlignment: VerticalTextAlignment;
 
     focus();
     blur();
