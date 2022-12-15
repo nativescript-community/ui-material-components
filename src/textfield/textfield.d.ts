@@ -4,6 +4,7 @@
  */
 
 import { Color, TextField as NTextField } from '@nativescript/core';
+import { VerticalTextAlignment } from '@nativescript-community/text';
 
 type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 
