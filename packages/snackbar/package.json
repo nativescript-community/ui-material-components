@@ -6,15 +6,15 @@
     "sideEffects": false,
     "typings": "./snackbar.d.ts",
     "scripts": {
-        "tsc": "../../node_modules/.bin/cpy ../../src/snackbar/snackbar.d.ts ./ && ../../node_modules/.bin/tsc -d",
-        "tsc-win": "..\\..\\node_modules\\.bin\\cpy ..\\..\\src\\snackbar\\snackbar.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc -d",
+        "tsc": "cpy ../../src/snackbar/snackbar.d.ts ./ && tsc -d",
+        "tsc-win": "cpy ..\\..\\src\\snackbar\\snackbar.d.ts .\\ && tsc -d",
         "build": "npm run tsc",
         "setup.yarn": "yarn install",
         "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win",
         "build.all": "npm run build",
         "build.all.win": "npm run build.win",
-        "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
+        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {
         "platforms": {

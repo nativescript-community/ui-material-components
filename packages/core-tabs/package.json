@@ -6,14 +6,14 @@
     "sideEffects": false,
     "typings": "./index.d.ts",
     "scripts": {
-        "tsc": "../../node_modules/.bin/cpy '**/*.d.ts' '../../packages/core-tabs' --cwd=../../src/core-tabs --parents && ../../node_modules/.bin/tsc -d",
-        "tsc-win": "..\\..\\node_modules\\.bin\\cpy **/*.d.ts ..\\..\\packages\\core-tabs --cwd=..\\..\\src\\core-tabs --parents && ..\\..\\node_modules\\.bin\\tsc -d",
+        "tsc": "cpy '**/*.d.ts' '../../packages/core-tabs' --cwd=../../src/core-tabs --parents && tsc -d",
+        "tsc-win": "cpy **/*.d.ts ..\\..\\packages\\core-tabs --cwd=..\\..\\src\\core-tabs --parents && tsc -d",
         "build": "npm run tsc ",
         "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win ",
         "build.all": "npm run build",
         "build.all.win": "npm run build.win",
-        "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
+        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map android"
     },
     "nativescript": {
         "platforms": {

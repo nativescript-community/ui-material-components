@@ -6,8 +6,8 @@
     "sideEffects": false,
     "typings": "./textview.d.ts",
     "scripts": {
-        "tsc": "../../node_modules/.bin/cpy ../../src/textview/textview.d.ts ./ && ../../node_modules/.bin/tsc -d",
-        "tsc-win": "..\\..\\node_modules\\.bin\\cpy ..\\..\\src\\textview\\textview.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc -d",
+        "tsc": "cpy ../../src/textview/textview.d.ts ./ && tsc -d",
+        "tsc-win": "cpy ..\\..\\src\\textview\\textview.d.ts .\\ && tsc -d",
         "build": "npm run tsc",
         "setup.yarn": "yarn install",
         "build.watch": "npm run tsc -- -w",
@@ -15,8 +15,8 @@
         "build.all": "npm run build && npm run build.angular",
         "build.all.win": "npm run build.win && npm run build.angular.win",
         "build.angular": "ng-packagr -p ../../src/textview/angular/ng-package.json -c ../../src/textview/angular/tsconfig.json",
-        "build.angular.win": "..\\..\\node_modules\\.bin\\ng-packagr -p ..\\..\\src\\textview\\angular\\package.json -c ..\\..\\src\\textview\\angular\\tsconfig.json",
-        "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
+        "build.angular.win": "ng-packagr -p ..\\..\\src\\textview\\angular\\package.json -c ..\\..\\src\\textview\\angular\\tsconfig.json",
+        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {
         "platforms": {
