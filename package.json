@@ -19,22 +19,22 @@
         "build.all.win": "lerna run build.all.win",
         "build.angular": "lerna run build.angular",
         "clean": "rimraf 'packages/**/*.d.ts' 'packages/**/*.js' 'packages/**/*.js.map' 'packages/**/*.metada 'packages/**/angular/ng-package.json'",
-        "fullclean": "npm run clean && rimraf 'packages/**/node_modules' 'package-lock.json' 'pnpm-lock.yaml' 'node_modules'",
+        "fullclean": "npm run clean && rimraf 'packages/**/node_modules' 'demo-*/hooks' 'package-lock.json' 'pnpm-lock.yaml' 'node_modules'",
         "commitmsg": "commitlint -e $GIT_PARAMS",
-        "demo.ng.android": "cd ./demo-ng && ns run android --no-hmr",
+        "demo.ng.android": "cd ./demo-ng && ns run android --no-hmr --env.watchNodeModules",
         "demo.ng.clean": "cd ./demo-ng && ns clean",
-        "demo.ng.ios": "cd ./demo-ng && ns run ios --no-hmr",
-        "demo.react.android": "cd ./demo-react && ns run android --no-hmr",
+        "demo.ng.ios": "cd ./demo-ng && ns run ios --no-hmr --env.watchNodeModules",
+        "demo.react.android": "cd ./demo-react && ns run android --no-hmr --env.watchNodeModules",
         "demo.react.clean": "cd ./demo-react && ns clean",
-        "demo.react.ios": "cd ./demo-react && ns run ios --no-hmr",
-        "demo.svelte.android": "cd ./demo-svelte && ns run android --no-hmr",
+        "demo.react.ios": "cd ./demo-react && ns run ios --no-hmr --env.watchNodeModules",
+        "demo.svelte.android": "cd ./demo-svelte && ns run android --no-hmr --env.watchNodeModules",
         "demo.svelte.clean": "cd ./demo-svelte && ns clean",
-        "demo.svelte.ios": "cd ./demo-svelte && ns run ios --no-hmr",
-        "demo.vue.android": "cd ./demo-vue && ns run android --no-hmr",
+        "demo.svelte.ios": "cd ./demo-svelte && ns run ios --no-hmr --env.watchNodeModules",
+        "demo.vue.android": "cd ./demo-vue && ns run android --no-hmr --env.watchNodeModules",
         "demo.vue.clean": "cd ./demo-vue && ns clean",
-        "demo.vue.ios": "cd ./demo-vue && ns run ios --no-hmr",
+        "demo.vue.ios": "cd ./demo-vue && ns run ios --no-hmr --env.watchNodeModules",
         "postinstall": "npm run setup",
-        "publish": "npm run clean && npm run build.all && lerna publish --create-release=github --force-publish",
+        "publish": "npm run clean && npm run build.all && npm run readme && lerna publish --create-release=github --force-publish",
         "readme": "node ./tools/readme.js",
         "setup": "npm run submodules && ts-patch install",
         "start": "./node_modules/.bin/ntl -A -s 15 -o",
@@ -83,11 +83,16 @@
         }
     },
     "workspaces": [
-        "packages/*"
+        "packages/*",
+        "demo-vue",
+        "demo-ng",
+        "demo-svelte",
+        "demo-react",
+        "demo-snippets"
     ],
     "engines": {
         "npm": "please use yarn or pnpm",
-        "yarn": ">= 1.19.1",
-        "pnpm": ">= 7.0.0"
+        "yarn": ">=1.19.1",
+        "pnpm": ">=7.0.0"
     }
 }
