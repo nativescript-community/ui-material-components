@@ -84,7 +84,11 @@
     },
     "workspaces": [
         "packages/*",
-        "demo-*"
+        "demo-vue",
+        "demo-ng",
+        "demo-svelte",
+        "demo-react",
+        "demo-snippets"
     ],
     "engines": {
         "npm": "please use yarn or pnpm",
