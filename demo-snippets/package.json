@@ -39,11 +39,8 @@
         "@nativescript-community/ui-material-textview": "link:../packages/textview",
         "@nativescript/hook": "~2.0.0",
         "copy-webpack-plugin": "^10.2.4",
-
         "nativescript-vue-template-compiler": "~2.9.3",
         "scss-symbols-parser": "^2.0.1",
         "string-replace-loader": "^3.1.0"
-    },
-    "devDependencies": {
     }
 }
