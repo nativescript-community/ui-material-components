@@ -59,7 +59,8 @@ The publishing is completely handled by `lerna` (you can add `-- --bump major` t
 Simply run 
 ```shell
 npm run publish
-```<br><br>This monorepo contains multiple packages:<br><br><details>
+```
+<br><br>This monorepo contains multiple packages:<br><br><details>
 <summary><b>activityindicator</b></summary>
 
 [](#nativescript-material-circular-progress-indicator)
