@@ -10,6 +10,6 @@
             "@nativescript-community/ui-material-textfield/*": ["src/textfield/*"],
         }
     },
-    "include": ["../../src/dialogs/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
+    "include": ["../../src/dialogs/**/*.ts", "../../references.d.ts", "../../tools/references.d.ts", "../../src/references.d.ts"],
     "exclude": ["../../src/dialogs/angular/**"]
 }

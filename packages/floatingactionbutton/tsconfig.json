@@ -8,6 +8,6 @@
             "@nativescript-community/ui-material-core/*": ["packages/core/*"],
         }
     },
-    "include": ["../../src/floatingactionbutton/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
+    "include": ["../../src/floatingactionbutton/**/*.ts", "../../references.d.ts", "../../tools/references.d.ts", "../../src/references.d.ts"],
     "exclude": ["../../src/floatingactionbutton/angular/**"]
 }

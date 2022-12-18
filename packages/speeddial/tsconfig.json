@@ -10,6 +10,6 @@
             "@nativescript-community/ui-material-button/*": ["packages/button/*"]
         }
     },
-    "include": ["../../src/speeddial/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
+    "include": ["../../src/speeddial/**/*.ts", "../../references.d.ts", "../../tools/references.d.ts", "../../src/references.d.ts"],
     "exclude": ["../../src/speeddial/angular/**"]
 }
