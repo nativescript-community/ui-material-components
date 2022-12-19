@@ -2,6 +2,7 @@
     "name": "@nativescript-community/ui-material-components",
     "description": "Nativescript UI Material Components",
     "version": "1.0.0",
+    "private": true,
     "homepage": "https://github.com/nativescript-community/ui-material-components#readme",
     "bugs": {
         "url": "https://github.com/nativescript-community/ui-material-component/issues"
