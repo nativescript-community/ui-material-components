@@ -58,7 +58,7 @@
     "readmeFilename": "README.md",
     "dependencies": {
         "@nativescript-community/plugin-seed-tools": "file:tools",
-        "@nativescript-community/template-snippet": "file:demo-snippets"
+        "@nativescript-community/text": "1.5.11"
     },
     "commitlint": {
         "extends": [
