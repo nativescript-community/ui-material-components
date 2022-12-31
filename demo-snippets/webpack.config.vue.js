@@ -42,8 +42,8 @@ NsVueTemplateCompiler.registerElement('MDTabs', () => require('@nativescript-com
 module.exports = (env, webpack) => {
     const platform = env && ((env.android && 'android') || (env.ios && 'ios'));
     webpack.chainWebpack((config) => {
-        const symbolsParser = require('../demo-vue/node_modules/scss-symbols-parser');
-        const mdiSymbols = symbolsParser.parseSymbols(readFileSync(resolve(__dirname, '../demo-vue/node_modules/@mdi/font/scss/_variables.scss')).toString());
+        const symbolsParser = require('scss-symbols-parser');
+        const mdiSymbols = symbolsParser.parseSymbols(readFileSync(resolve(__dirname, './node_modules/@mdi/font/scss/_variables.scss')).toString());
         const mdiIcons = JSON.parse(`{${mdiSymbols.variables[mdiSymbols.variables.length - 1].value.replace(/" (F|0)(.*?)([,\n]|$)/g, '": "$1$2"$3')}}`);
 
         const scssPrepend = `$mdi-fontFamily: ${platform === 'android' ? 'materialdesignicons-webfont' : 'Material Design Icons'};`;
@@ -56,7 +56,7 @@ module.exports = (env, webpack) => {
             .end()
             .test(/\.(ts|js|scss|css|vue)$/)
             .use('string-replace-loader')
-            .loader(resolve(__dirname, '../demo-vue/node_modules/string-replace-loader'))
+            .loader(resolve(__dirname, './node_modules/string-replace-loader'))
             .options({
                 search: 'mdi-([a-z0-9-_]+)',
                 replace: (match, p1, offset, str) => {
@@ -71,7 +71,7 @@ module.exports = (env, webpack) => {
             {
                 patterns: [
                     {
-                        from: resolve(__dirname, '../demo-vue/node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf'),
+                        from: resolve(__dirname, './node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf'),
                         to: 'fonts'
                     }
                 ]
