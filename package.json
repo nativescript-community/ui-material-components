@@ -44,7 +44,7 @@
         "sync.test": "node ./tools/sync.js",
         "tsc": "cpy '**/*.d.ts' '../plugin' --parents --cwd=src && tsc -skipLibCheck -d",
         "update": "node ./tools/update.js",
-        "doc": "node tools/builddoc.mjs && git add docs/* && git commit -m \"chore:doc\""
+        "doc": "node tools/builddoc.mjs"
     },
     "keywords": [
         "NativeScript",
