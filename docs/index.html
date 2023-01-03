@@ -1,177 +1,160 @@
-<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Nativescript UI Material Components</title><meta name="description" content="Documentation for Nativescript UI Material Components"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">Nativescript UI Material Components</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1> Nativescript UI Material Components</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
-<a href="#nativescript-material-components" id="nativescript-material-components" style="color: inherit; text-decoration: none;">
-  <h1>Nativescript Material Components</h1>
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Nativescript UI Material Components</title><meta name="description" content="Documentation for Nativescript UI Material Components"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container">
+<div class="table-cell" id="tsd-search" data-base=".">
+<div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
+<div class="field">
+<div id="tsd-toolbar-links"></div></div>
+<ul class="results">
+<li class="state loading">Preparing search index...</li>
+<li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">Nativescript UI Material Components</a></div>
+<div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
+<div class="container container-main">
+<div class="col-8 col-content">
+<div class="tsd-page-title">
+<h2>Nativescript UI Material Components</h2></div>
+<div class="tsd-panel tsd-typography">
+<a href="#management" id="management" style="color: inherit; text-decoration: none;">
+  <h1>Management</h1>
 </a>
-<p><a href="https://lerna.js.org/"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna"></a></p>
-<p>Build beautiful, usable products using Material Components for NativeScript.</p>
+<p>Tools used with GitHub Actions to help maintain Community plugins. This creates a GitHub Action called <code>Update Plugins</code> where up to three different commands can be ran across all supported plugins: <code>Update Submodules</code>, <code>Sync Common Files</code>, and <code>Build Plugin Test</code>.</p>
 
-<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-  <h2>Installation</h2>
+<a href="#currently-supported-repos" id="currently-supported-repos" style="color: inherit; text-decoration: none;">
+  <h2>Currently Supported Repos</h2>
 </a>
-
-<a href="#android" id="android" style="color: inherit; text-decoration: none;">
-  <h3>Android</h3>
-</a>
-<p>Ensure your Android Theme is inheriting from <code>MaterialComponents</code>.
-Inside <code>App_resources/android/res/values/styles.xml</code> replace all occurences of <code>Theme.AppCompat</code> with <code>Theme.MaterialComponents</code>
-You can see an example in the demo-vue app.</p>
-
-<a href="#theming" id="theming" style="color: inherit; text-decoration: none;">
-  <h2>Theming</h2>
-</a>
-<p>Defining the theme and the default colors must be done a bit differently on iOS and Android</p>
 <ul>
-<li><strong>Android</strong>:  You must set the colors through <a href="https://github.com/material-components/material-components-android/blob/master/docs/getting-started.md#appcompat-themes">android Style</a></li>
-<li><strong>iOS</strong>: You must set the colors programmatically at your app startup<pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">themer</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@nativescript-community/ui-material-core&#39;</span><span class="hl-1">;</span><br/><span class="hl-0">if</span><span class="hl-1"> (</span><span class="hl-2">global</span><span class="hl-1">.</span><span class="hl-2">isIOS</span><span class="hl-1">) {</span><br/><span class="hl-1">  </span><span class="hl-2">themer</span><span class="hl-1">.</span><span class="hl-4">setPrimaryColor</span><span class="hl-1">(</span><span class="hl-3">&#39;#bff937&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-2">themer</span><span class="hl-1">.</span><span class="hl-4">setAccentColor</span><span class="hl-1">(</span><span class="hl-3">&#39;#ff8a39&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-2">themer</span><span class="hl-1">.</span><span class="hl-4">setSecondaryColor</span><span class="hl-1">(</span><span class="hl-3">&#39;#a830d7&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">}</span>
-</code></pre>
-</li>
+<li><input checked="" disabled="" type="checkbox"> algolia</li>
+<li><input disabled="" type="checkbox"> appurl</li>
+<li><input disabled="" type="checkbox"> ble</li>
+<li><input disabled="" type="checkbox"> css-theme</li>
+<li><input disabled="" type="checkbox"> extendedinfo</li>
+<li><input disabled="" type="checkbox"> flipper</li>
+<li><input disabled="" type="checkbox"> fonticon</li>
+<li><input disabled="" type="checkbox"> geocoding</li>
+<li><input checked="" disabled="" type="checkbox"> gesturehandler</li>
+<li><input disabled="" type="checkbox"> gps</li>
+<li><input disabled="" type="checkbox"> https</li>
+<li><input disabled="" type="checkbox"> insomnia</li>
+<li><input disabled="" type="checkbox"> l</li>
+<li><input disabled="" type="checkbox"> licenses</li>
+<li><input disabled="" type="checkbox"> nativescript-drawingpad</li>
+<li><input disabled="" type="checkbox"> nativescript-health-data</li>
+<li><input disabled="" type="checkbox"> observable</li>
+<li><input disabled="" type="checkbox"> perms</li>
+<li><input checked="" disabled="" type="checkbox"> plugin-seed</li>
+<li><input disabled="" type="checkbox"> preferences</li>
+<li><input disabled="" type="checkbox"> push</li>
+<li><input disabled="" type="checkbox"> sensors</li>
+<li><input disabled="" type="checkbox"> sentry</li>
+<li><input disabled="" type="checkbox"> sqlite</li>
+<li><input disabled="" type="checkbox"> systemui</li>
+<li><input disabled="" type="checkbox"> text</li>
+<li><input disabled="" type="checkbox"> texttospeech</li>
+<li><input disabled="" type="checkbox"> tween</li>
+<li><input disabled="" type="checkbox"> ui-barcodeview</li>
+<li><input disabled="" type="checkbox"> ui-blurview</li>
+<li><input disabled="" type="checkbox"> ui-canvas</li>
+<li><input disabled="" type="checkbox"> ui-canvaslabel</li>
+<li><input checked="" disabled="" type="checkbox"> ui-carto</li>
+<li><input disabled="" type="checkbox"> ui-chart</li>
+<li><input checked="" disabled="" type="checkbox"> ui-collectionview</li>
+<li><input checked="" disabled="" type="checkbox"> ui-document-picker</li>
+<li><input checked="" disabled="" type="checkbox"> ui-drawer</li>
+<li><input disabled="" type="checkbox"> ui-image</li>
+<li><input disabled="" type="checkbox"> ui-label</li>
+<li><input disabled="" type="checkbox"> ui-lottie</li>
+<li><input disabled="" type="checkbox"> ui-mapbox</li>
+<li><input checked="" disabled="" type="checkbox"> ui-material-components</li>
+<li><input checked="" disabled="" type="checkbox"> ui-pager</li>
+<li><input checked="" disabled="" type="checkbox"> ui-persistent-bottomsheet</li>
+<li><input disabled="" type="checkbox"> ui-pulltorefresh</li>
+<li><input disabled="" type="checkbox"> ui-share-file</li>
+<li><input disabled="" type="checkbox"> ui-social-share</li>
+<li><input disabled="" type="checkbox"> ui-svg</li>
+<li><input checked="" disabled="" type="checkbox"> ui-webview</li>
+<li><input checked="" disabled="" type="checkbox"> universal-links</li>
 </ul>
 
-<a href="#mixins" id="mixins" style="color: inherit; text-decoration: none;">
-  <h2>Mixins</h2>
+<a href="#running" id="running" style="color: inherit; text-decoration: none;">
+  <h2>Running</h2>
 </a>
-<p>Through this component you can apply <code>elevation</code> or <code>rippleColor</code> to any <code>View</code>. To enable that feature your must &quot;install&quot; the mixins. Make sure you do it before creating any view.</p>
-<pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">installMixins</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@nativescript-community/ui-material-core&#39;</span><span class="hl-1">;</span><br/><span class="hl-4">installMixins</span><span class="hl-1">();</span>
-</code></pre>
+<p>The GitHub Action can only be ran from a manual trigger. </p>
+<p>To run the workflow:</p>
+<ol>
+<li>Go to the <code>Actions</code> tab for this repo.</li>
+<li>On the left sidebar, select the workflow <code>Update Plugins</code>.</li>
+<li>Click the <code>Run workflow</code> button on the right side of the page.</li>
+<li>Configure workflow options (by default it will <code>Update Submodules</code>, <code>Sync Common Files</code>, and <code>Build Plugin Test</code>) and then click <code>Run workflow</code>.</li>
+<li>Click on the running workflow once it appears.</li>
+<li>You will now be able to see each individual process running for each plugin. If anything fails, you will be able to go into the specific job to see more details.</li>
+</ol>
 
-<a href="#components" id="components" style="color: inherit; text-decoration: none;">
-  <h2>Components</h2>
+<a href="#commands" id="commands" style="color: inherit; text-decoration: none;">
+  <h2>Commands</h2>
 </a>
-<table>
-<thead>
-<tr>
-<th align="center">Name</th>
-<th align="center">README</th>
-<th align="center">npm</th>
-<th align="center">Material design</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Circular progress indicator</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/activityindicator/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-activityindicator">@nativescript-community/ui-material-activityindicator</a></td>
-<td align="center"><a href="https://material.io/components/progress-indicators#circular-progress-indicators">Circular progress indicators</a></td>
-</tr>
-<tr>
-<td align="center">Bottom navigation</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/bottom-navigation/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-bottom-navigation">@nativescript-community/ui-material-bottom-navigation</a></td>
-<td align="center"><a href="https://material.io/components/bottom-navigation">Bottom navigation</a></td>
-</tr>
-<tr>
-<td align="center">Bottom navigation bar</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/bottomnavigationbar/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar">@nativescript-community/ui-material-bottomnavigationbar</a></td>
-<td align="center"><a href="https://material.io/components/bottom-navigation">Bottom navigation</a></td>
-</tr>
-<tr>
-<td align="center">Bottom sheet</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/bottomsheet/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-bottomsheet">@nativescript-community/ui-material-bottomsheet</a></td>
-<td align="center"><a href="https://material.io/components/sheets-bottom">Sheets: bottom</a></td>
-</tr>
-<tr>
-<td align="center">Button</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/button/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-button">@nativescript-community/ui-material-button</a></td>
-<td align="center"><a href="https://material.io/components/buttons">Buttons</a></td>
-</tr>
-<tr>
-<td align="center">Card</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/cardview/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-cardview">@nativescript-community/ui-material-cardview</a></td>
-<td align="center"><a href="https://material.io/components/cards">Cards</a></td>
-</tr>
-<tr>
-<td align="center">Dialogs</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/dialogs/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-dialogs">@nativescript-community/ui-material-dialogs</a></td>
-<td align="center"><a href="https://material.io/components/dialogs">Dialogs</a></td>
-</tr>
-<tr>
-<td align="center">Floating action button</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/floatingactionbutton/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-floatingactionbutton">@nativescript-community/ui-material-floatingactionbutton</a></td>
-<td align="center"><a href="https://material.io/components/buttons-floating-action-button">Buttons: floating action button</a></td>
-</tr>
-<tr>
-<td align="center">Linear progress indicator</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/progress/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-progress">@nativescript-community/ui-material-progress</a></td>
-<td align="center"><a href="https://material.io/components/progress-indicators#linear-progress-indicators">Linear progress indicators</a></td>
-</tr>
-<tr>
-<td align="center">Ripple</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/ripple/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-ripple">@nativescript-community/ui-material-ripple</a></td>
-<td align="center"><a href="https://material.io/design/interaction/states.html#pressed">Ripple</a></td>
-</tr>
-<tr>
-<td align="center">Slider</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/slider/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-slider">@nativescript-community/ui-material-slider</a></td>
-<td align="center"><a href="https://material.io/components/sliders">Sliders</a></td>
-</tr>
-<tr>
-<td align="center">Snackbar</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/snackbar/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-snackbar">@nativescript-community/ui-material-snackbar</a></td>
-<td align="center"><a href="https://material.io/components/snackbars">Snackbars</a></td>
-</tr>
-<tr>
-<td align="center">Speed dial</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/speeddial/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-speeddial">@nativescript-community/ui-material-speeddial</a></td>
-<td align="center"><a href="https://material.io/components/buttons-floating-action-button#types-of-transitions">Speed dial</a></td>
-</tr>
-<tr>
-<td align="center">Tabs</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/tabs/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-tabs">@nativescript-community/ui-material-tabs</a></td>
-<td align="center"><a href="https://material.io/components/tabs">Tabs</a></td>
-</tr>
-<tr>
-<td align="center">Text field</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/textfield/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-textfield">@nativescript-community/ui-material-textfield</a></td>
-<td align="center"><a href="https://material.io/components/text-fields">Text fields</a></td>
-</tr>
-<tr>
-<td align="center">Text view</td>
-<td align="center"><a href="https://github.com/nativescript-community/ui-material-components/blob/master/packages/textview/README.md">README.md</a></td>
-<td align="center"><a href="https://www.npmjs.com/package/@nativescript-community/ui-material-textview">@nativescript-community/ui-material-textview</a></td>
-<td align="center"><a href="https://material.io/develop/android/components/material-text-view">Material Text View</a></td>
-</tr>
-</tbody></table>
 
-<a href="#faq" id="faq" style="color: inherit; text-decoration: none;">
-  <h2>FAQ</h2>
+<a href="#update-submodules" id="update-submodules" style="color: inherit; text-decoration: none;">
+  <h3>Update Submodules</h3>
 </a>
-<p><strong>Question:</strong> How to use the latest version of this plugin for iOS?</p>
-<p><strong>Answer:</strong> To get latest versions of Material Components for iOS (&gt; 112.1) you will need to change Pod min version to 10.0
-To do that modify or create <code>App_Resources/iOS/Podfile</code> to add <code>platform :ios, &#39;10.0&#39;</code>.
-You can see an example in the demo-vue app.</p>
+<p>Will clone each supported plugin repo and find all of the submodules it is using and update them to the latest <code>master</code> branch. The changes will then be committed and pushed.</p>
 
-<a href="#" id="" style="color: inherit; text-decoration: none;">
-  <h2></h2>
+<a href="#sync-common-files" id="sync-common-files" style="color: inherit; text-decoration: none;">
+  <h3>Sync Common Files</h3>
 </a>
-<p><strong>Q:</strong> How to migrate to AndroidX with this plugin installed (Android only)?</p>
-<p><strong>A:</strong> For Material Components to work correctly with {N} 6 and AndroidX you need to update your android app theme.
-Inside <code>App_resources/android/res/values/styles.xml</code> replace all occurences of <code>Theme.AppCompat</code> with <code>Theme.MaterialComponents</code>
-You can see an example in the demo-vue app.</p>
+<p>Will clone each supported plugin repo and run <code>npm run sync</code> from the plugin&#39;s root. This will copy over all of the standard files from <code>./tools/common</code> as well as update the <code>scripts</code> portion for the <code>package.json</code> (as well as some other little things).</p>
 
-<a href="#-1" id="-1" style="color: inherit; text-decoration: none;">
-  <h2></h2>
+<a href="#build-plugin-test" id="build-plugin-test" style="color: inherit; text-decoration: none;">
+  <h3>Build Plugin Test</h3>
 </a>
-<p><strong>Q:</strong> What is the difference between Bottom Navigation and Bottom Navigation Bar component?</p>
-<p><strong>A:</strong> The <em>Bottom Navigation Bar</em> is a new component to draw a bottom navigation bar in material design.
-The <em>Bottom Navigation</em> component is a simple extract of the <a href="https://docs.nativescript.org/ui/components/bottom-navigation">eponymous component from NativeScript</a>, which probably will be removed in the future so this one can be used for easy transition.</p>
+<p>Will clone each supported plugin repo, install its dependencies, and build the plugin using either <code>npm run build.all</code> or <code>npm run build</code>.</p>
 
-<a href="#-2" id="-2" style="color: inherit; text-decoration: none;">
-  <h2></h2>
+<a href="#addremove-plugin-repos" id="addremove-plugin-repos" style="color: inherit; text-decoration: none;">
+  <h2>Add/Remove Plugin Repos</h2>
 </a>
-<p><strong>Q:</strong> How can I contribute?</p>
-<p><strong>A:</strong></p>
-<pre><code class="language-bash"><span class="hl-1">npm i</span><br/><span class="hl-1">npm run setup </span><span class="hl-5"># this should happen for every typescript update</span><br/><span class="hl-1">npm run build.all</span><br/><span class="hl-1">npm run demo.ios</span><br/><span class="hl-1">npm run demo.android</span>
-</code></pre>
-</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Modules</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_activityindicator.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>activityindicator</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_bottom_navigation.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>bottom-<wbr/>navigation</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_bottomnavigationbar.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>bottomnavigationbar</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_bottomsheet.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>bottomsheet</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_button.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>button</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_cardview.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>cardview</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_core.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>core</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_core_tab_navigation_base_tab_strip.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>core/tab-<wbr/>navigation-<wbr/>base/tab-<wbr/>strip</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_core_tab_navigation_base_tab_strip_item.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>core/tab-<wbr/>navigation-<wbr/>base/tab-<wbr/>strip-<wbr/>item</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_dialogs.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>dialogs</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_floatingactionbutton.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>floatingactionbutton</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_progress.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>progress</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_ripple.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>ripple</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_slider.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>slider</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_snackbar.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>snackbar</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_speedial.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>speedial</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_tabs.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>tabs</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_textfield.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>textfield</a></li><li class=" tsd-kind-module"><a href="modules/_nativescript_community_ui_material_textview.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>textview</a></li><li class=" tsd-kind-module"><a href="modules/core_tab_navigation_base_tab_content_item.html">core/tab-<wbr/>navigation-<wbr/>base/tab-<wbr/>content-<wbr/>item</a></li><li class=" tsd-kind-module"><a href="modules/core_tab_navigation_base_tab_navigation_base.html">core/tab-<wbr/>navigation-<wbr/>base/tab-<wbr/>navigation-<wbr/>base</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li><li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li><li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li><li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
+<p>To add/remove a plugin from being in the default list of supported plugin repos, simply edit the YML file <a href=".github/workflows/update.yml#L22">here</a>.</p>
+</div></div>
+<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+<div class="tsd-navigation settings">
+<details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility">
+<h4 class="uppercase">Member Visibility</h4><form>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></form></div>
+<div class="tsd-theme-toggle">
+<h4 class="uppercase">Theme</h4><select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<nav class="tsd-navigation primary">
+<details class="tsd-index-accordion" open><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Modules</h3></summary>
+<div class="tsd-accordion-details">
+<ul>
+<li class="current selected"><a href="modules.html">Nativescript UI <wbr/>Material <wbr/>Components</a>
+<ul>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_activityindicator.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>activityindicator</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_bottom_navigation.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>bottom-<wbr/>navigation</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_bottomnavigationbar.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>bottomnavigationbar</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_bottomsheet.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>bottomsheet</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_button.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>button</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_cardview.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>cardview</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_core.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>core</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_core_tabs_tab_navigation.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>core-<wbr/>tabs/tab-<wbr/>navigation</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_core_tabs_tab_navigation_base.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>core-<wbr/>tabs/tab-<wbr/>navigation-<wbr/>base</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_core_tabs_tab_strip.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>core-<wbr/>tabs/tab-<wbr/>strip</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_core_tabs_tab_strip_item.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>core-<wbr/>tabs/tab-<wbr/>strip-<wbr/>item</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_dialogs.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>dialogs</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_floatingactionbutton.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>floatingactionbutton</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_progress.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>progress</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_ripple.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>ripple</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_slider.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>slider</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_snackbar.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>snackbar</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_speedial.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>speedial</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_tabs.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>tabs</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_textfield.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>textfield</a></li>
+<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_textview.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>textview</a></li>
+<li class="tsd-kind-module"><a href="modules/appbar_appbar.html">appbar/appbar</a></li>
+<li class="tsd-kind-module"><a href="modules/core_tabs_tab_content_item.html">core-<wbr/>tabs/tab-<wbr/>content-<wbr/>item</a></li>
+<li class="tsd-kind-module"><a href="modules/page_page.html">page/page</a></li></ul></li></ul></div></details></nav></div></div>
+<div class="container tsd-generator">
+<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
+<div class="overlay"></div><script src="assets/main.js"></script></body></html>
