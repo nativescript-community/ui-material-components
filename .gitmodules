@@ -1,15 +1,15 @@
 [submodule "demo-react"]
 	path = demo-react
-	url = git@github.com:nativescript-community/plugin-seed-demo-react.git
+	url = https://github.com/nativescript-community/plugin-seed-demo-react.git
 [submodule "demo-svelte"]
 	path = demo-svelte
-	url = git@github.com:nativescript-community/plugin-seed-demo-svelte.git
+	url = https://github.com/nativescript-community/plugin-seed-demo-svelte.git
 [submodule "demo-ng"]
 	path = demo-ng
-	url = git@github.com:nativescript-community/plugin-seed-demo-ng.git
+	url = https://github.com/nativescript-community/plugin-seed-demo-ng.git
 [submodule "demo-vue"]
 	path = demo-vue
-	url = git@github.com:nativescript-community/plugin-seed-demo-vue.git
+	url = https://github.com/nativescript-community/plugin-seed-demo-vue.git
 [submodule "tools"]
 	path = tools
 	url = https://github.com/nativescript-community/plugin-seed-tools.git
