@@ -13,7 +13,6 @@
     },
     "license": "ISC",
     "scripts": {
-        "setup.yarn": "lerna run setup.yarn",
         "build": "lerna run build",
         "build.watch": "lerna run build.watch",
         "build.all": "lerna run build.all",
@@ -41,8 +40,6 @@
         "start": "./node_modules/.bin/ntl -A -s 15 -o",
         "submodules": "git submodule update --init",
         "sync": "node ./tools/sync.js",
-        "sync.test": "node ./tools/sync.js",
-        "tsc": "cpy '**/*.d.ts' '../plugin' --parents --cwd=src && tsc -skipLibCheck -d",
         "update": "node ./tools/update.js",
         "doc": "node tools/builddoc.mjs"
     },
