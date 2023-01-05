@@ -9,7 +9,6 @@
         "tsc": "cpy ../../src/tabs/index.d.ts ./ && tsc -d",
         "tsc-win": "cpy ..\\..\\src\\tabs\\index.d.ts .\\ && tsc -d",
         "build": "npm run tsc",
-        "setup.yarn": "yarn install",
         "build.win": "npm run tsc-win",
         "build.watch": "npm run tsc -- -w",
         "build.all": "npm run build && npm run build.angular",
