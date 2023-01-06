@@ -1,4 +1,4 @@
-import { Color, Frame, Page, Utils } from '@nativescript/core';
+import { Color, Frame, Page, Utils, View } from '@nativescript/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
 
 function _getReason(value: number) {
@@ -48,9 +48,13 @@ export class SnackBar extends SnackBarBase {
     public initSnack(options: SnackBarOptions, resolve?: Function) {
         options.hideDelay = options.hideDelay ? options.hideDelay : 3000;
 
-        let attachView = options.view || Frame.topmost().currentPage;
-        while (attachView['_modal']) {
-            attachView = attachView['_modal'];
+        let attachView = options.view;
+        if (!attachView) {
+            attachView = Frame.topmost().currentPage;
+            const modalViews = attachView._getRootModalViews();
+            if (modalViews.length) {
+                attachView = modalViews[modalViews.length - 1] as View;
+            }
         }
         const page = attachView instanceof Page ? attachView : attachView.page;
         let nView = (page.nativeViewProtected as android.view.View).getParent();
