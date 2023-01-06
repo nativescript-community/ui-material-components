@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.34](https://github.com/nativescript-community/ui-material-component/compare/v7.0.33...v7.0.34) (2023-01-06)
+
+
+### Bug Fixes
+
+* **snackbar:** if no view passed ensure we show over any modal view ([fcd6622](https://github.com/nativescript-community/ui-material-component/commit/fcd6622228ac3b5667318ebe6bc044dbf8a777c3))
+
+
+
+
+
 ## [7.0.33](https://github.com/nativescript-community/ui-material-component/compare/v7.0.32...v7.0.33) (2022-12-16)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
