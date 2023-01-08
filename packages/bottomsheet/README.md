@@ -122,7 +122,7 @@ export function openBottomSheet(args) {
 
 ##
 
-### NativeScript + Vue
+### NativeScript + Vue 2
 ```typescript
 import Vue from 'nativescript-vue';
 import BottomSheetPlugin from '@nativescript-community/ui-material-bottomsheet/vue';
@@ -139,6 +139,31 @@ import MyComponent from 'MyComponent.vue';
 const options: VueBottomSheetOptions = {
 };
 this.$showBottomSheet(MyComponent, options)
+```
+
+### NativeScript + Vue 3
+```typescript
+import Vue from 'nativescript-vue';
+import { BottomSheetPlugin } from '@nativescript-community/ui-material-bottomsheet/vue-3';
+import { install } from "@nativescript-community/ui-material-bottomsheet";
+install();
+
+app.use(BottomSheetPlugin);
+```
+Then you can show a Vue component:
+```typescript 
+import { useBottomSheet } from "@nativescript-community/ui-material-bottomsheet/vue-3";
+import MyComponent from 'MyComponent.vue';
+
+
+const options: VueBottomSheetOptions = {
+    ...
+};
+
+const { showBottomSheet, closeBottomSheet } = useBottomSheet()
+
+showBottomSheet(MyComponent, options);
+closeBottomSheet();
 ```
 
 ##
