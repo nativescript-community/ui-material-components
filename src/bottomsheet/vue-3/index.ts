@@ -70,9 +70,9 @@ declare module '@vue/runtime-core' {
     }
 }
 
-export interface VueBottomSheetOptions extends Omit<BottomSheetOptions, 'view'> {
+interface VueBottomSheetOptions extends Partial<BottomSheetOptions> {
     view?: string | ViewBase;
     props?: any;
 }
 
-export { BottomSheetPlugin, useBottomSheet };
+export { BottomSheetPlugin, VueBottomSheetOptions, useBottomSheet };
