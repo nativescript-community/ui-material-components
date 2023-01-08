@@ -143,11 +143,12 @@ this.$showBottomSheet(MyComponent, options)
 
 ### NativeScript + Vue 3
 ```typescript
-import Vue from 'nativescript-vue';
+import { createApp } from 'nativescript-vue';
 import { BottomSheetPlugin } from '@nativescript-community/ui-material-bottomsheet/vue-3';
 import { install } from "@nativescript-community/ui-material-bottomsheet";
 install();
 
+const app = createApp(...);
 app.use(BottomSheetPlugin);
 ```
 Then you can show a Vue component:
