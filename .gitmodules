@@ -13,3 +13,6 @@
 [submodule "tools"]
 	path = tools
 	url = https://github.com/nativescript-community/plugin-seed-tools.git
+[submodule "demo-vue3"]
+	path = demo-vue3
+	url = https://github.com/nativescript-community/plugin-seed-demo-vue3.git
