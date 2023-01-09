@@ -1,4 +1,4 @@
-import { App, createApp } from 'nativescript-vue-3';
+import { App, createApp } from 'nativescript-vue3';
 import { Frame, View, ViewBase } from '@nativescript/core';
 import { BottomSheetOptions } from '../bottomsheet';
 
