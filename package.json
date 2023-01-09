@@ -42,6 +42,7 @@
         "setup": "npm run submodules && ts-patch install",
         "start": "./node_modules/.bin/ntl -A -s 15 -o",
         "submodules": "git submodule update --init",
+        "submodules.update": "git submodule -q foreach git pull -q origin master && git add .",
         "sync": "node ./tools/sync.js",
         "update": "node ./tools/update.js",
         "doc": "node tools/builddoc.mjs"
@@ -80,12 +81,15 @@
             "demo.svelte.ios": "Runs the Svelte demo on iOS.",
             "demo.vue.android": "Runs the Vue demo on Android.",
             "demo.vue.ios": "Runs the Vue demo on iOS.",
+            "demo.vue3.android": "Runs the Vue3 demo on Android.",
+            "demo.vue3.ios": "Runs the Vue3 demo on iOS.",
             "watch": "Watch for changes in the plugin source and re-build."
         }
     },
     "workspaces": [
         "packages/*",
         "demo-vue",
+        "demo-vue3",
         "demo-ng",
         "demo-svelte",
         "demo-react",
