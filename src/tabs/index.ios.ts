@@ -162,34 +162,43 @@ class UIPageViewControllerImpl extends UIPageViewController {
         let scrollViewHeight = this.view.bounds.size.height + conditionalSafeAreaBottom;
 
         if (owner.tabStrip && this.tabBar) {
-            const viewWidth = this.view.bounds.size.width;
-            const viewHeight = this.view.bounds.size.height;
-            const tabBarHeight = this.tabBar.frame.size.height;
-            let tabBarTop = safeAreaInsetsTop;
-
-            scrollViewTop = tabBarHeight;
-            scrollViewHeight = this.view.bounds.size.height - tabBarHeight + conditionalSafeAreaBottom;
-
-            const tabsPosition = owner.tabsPosition;
-            if (tabsPosition === TabsPosition.Bottom) {
-                tabBarTop = viewHeight - tabBarHeight - safeAreaInsetsBottom;
-                scrollViewTop = this.view.frame.origin.y;
-                scrollViewHeight = viewHeight - tabBarHeight;
+            if (owner.tabStrip.visibility === 'visible') {
+                this.tabBar.hidden = false;
+            } else {
+                this.tabBar.hidden = true;
             }
+            // failsafe with !this.tabBar.hidden just in some really odd case where hidden is false and collapse is true
+            // which should never happen
+            if (!owner.tabStrip.isCollapsed || !this.tabBar.hidden) {
+                const viewWidth = this.view.bounds.size.width;
+                const viewHeight = this.view.bounds.size.height;
+                const tabBarHeight = this.tabBar.frame.size.height;
+                let tabBarTop = safeAreaInsetsTop;
 
-            let parent = owner.parent;
+                scrollViewTop = tabBarHeight;
+                scrollViewHeight = this.view.bounds.size.height - tabBarHeight + conditionalSafeAreaBottom;
 
-            // Handle Angular scenario where Tabs is in a ProxyViewContainer
-            // It is possible to wrap components in ProxyViewContainers indefinitely
-            while (parent && !parent.nativeViewProtected) {
-                parent = parent.parent;
+                const tabsPosition = owner.tabsPosition;
+                if (tabsPosition === TabsPosition.Bottom) {
+                    tabBarTop = viewHeight - tabBarHeight - safeAreaInsetsBottom;
+                    scrollViewTop = this.view.frame.origin.y;
+                    scrollViewHeight = viewHeight - tabBarHeight;
+                }
+
+                let parent = owner.parent;
+
+                // Handle Angular scenario where Tabs is in a ProxyViewContainer
+                // It is possible to wrap components in ProxyViewContainers indefinitely
+                while (parent && !parent.nativeViewProtected) {
+                    parent = parent.parent;
+                }
+
+                if (parent && majorVersion > 10) {
+                    // TODO: Figure out a better way to handle ViewController nesting/Safe Area nesting
+                    tabBarTop = Math.max(tabBarTop, parent.nativeView.safeAreaInsets.top);
+                }
+                this.tabBar.frame = CGRectMake(0, tabBarTop, viewWidth, tabBarHeight);
             }
-
-            if (parent && majorVersion > 10) {
-                // TODO: Figure out a better way to handle ViewController nesting/Safe Area nesting
-                tabBarTop = Math.max(tabBarTop, parent.nativeView.safeAreaInsets.top);
-            }
-            this.tabBar.frame = CGRectMake(0, tabBarTop, viewWidth, tabBarHeight);
         } else {
             this.tabBar.hidden = true;
         }
