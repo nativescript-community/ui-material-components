@@ -1,13 +1,4 @@
 {
 	"name": "@nativescript-community/ui-material-appbar-angular",
-	"main": "index.js",
-	"ngPackage": {
-		"dest": "../../../packages/appbar/angular",
-		"lib": {
-			"entryFile": "index.ts"
-		},
-		"allowedNonPeerDependencies": [
-			"."
-		]
-	}
+	"main": "index.js"
 }

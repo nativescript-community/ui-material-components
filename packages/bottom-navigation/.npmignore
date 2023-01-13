@@ -1,9 +1,8 @@
-*.map
-*.ts
-!*.d.ts
 .DS_Store
 tsconfig.json
-scripts/*
-platforms/android/*
-!platforms/android/include.gradle
- 
+node_modules/
+pnpm-global/
+CHANGELOG.md
+blueprint.md
+*.aar
+*.jar

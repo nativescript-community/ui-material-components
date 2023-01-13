@@ -39,7 +39,6 @@ import {
 } from '@nativescript/core';
 import { secureProperty } from '@nativescript/core/ui/text-field';
 import { TextFieldBase } from './textfield.common';
-import { layout } from '@nativescript/core/utils';
 
 let LayoutInflater: typeof android.view.LayoutInflater;
 let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
@@ -140,13 +139,13 @@ export class TextField extends TextFieldBase {
     [placeholderColorProperty.setNative](value: Color) {
         const placeholderColor = value instanceof Color ? value.android : value;
         const floatingColor = this.floatingColor instanceof Color ? this.floatingColor.android : placeholderColor;
-        this.layoutView.setHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
+        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
     }
 
     [floatingColorProperty.setNative](value: Color) {
         const floatingColor = value instanceof Color ? value.android : value;
         const placeholderColor = this.floatingInactiveColor instanceof Color ? this.floatingInactiveColor.android : undefined;
-        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
+        this.layoutView.setHintTextColor(getFullColorStateList(floatingColor, placeholderColor));
     }
 
     [floatingInactiveColorProperty.setNative](value: Color) {
@@ -154,7 +153,7 @@ export class TextField extends TextFieldBase {
 
         const primaryColor = themer.getPrimaryColor();
         const floatingColor = this.floatingColor || (primaryColor instanceof Color ? primaryColor : new Color(primaryColor));
-        this.layoutView.setDefaultHintTextColor(getFullColorStateList(floatingColor instanceof Color ? floatingColor.android : floatingColor, floatingInactiveColor));
+        this.layoutView.setHintTextColor(getFullColorStateList(floatingColor instanceof Color ? floatingColor.android : floatingColor, floatingInactiveColor));
     }
     [helperColorProperty.setNative](value) {
         const color = value instanceof Color ? value.android : value;
@@ -334,25 +333,25 @@ export class TextField extends TextFieldBase {
     [paddingTopProperty.setNative](value: CoreTypes.LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingTop(
             this.nativeTextViewProtected,
-            layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0))
+            Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0))
         );
     }
     [paddingRightProperty.setNative](value: CoreTypes.LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingRight(
             this.nativeTextViewProtected,
-            layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0))
+            Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0))
         );
     }
     [paddingBottomProperty.setNative](value: CoreTypes.LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingBottom(
             this.nativeTextViewProtected,
-            layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0))
+            Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0))
         );
     }
     [paddingLeftProperty.setNative](value: CoreTypes.LengthType) {
         org.nativescript.widgets.ViewHelper.setPaddingLeft(
             this.nativeTextViewProtected,
-            layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0))
+            Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0))
         );
     }
     [textAlignmentProperty.setNative](value: CoreTypes.TextAlignmentType) {

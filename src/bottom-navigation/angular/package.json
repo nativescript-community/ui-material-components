@@ -1,13 +1,4 @@
 {
 	"name": "@nativescript-community/ui-material-bottom-navigation-angular",
-	"main": "index.js",
-	"ngPackage": {
-		"dest": "../../../packages/bottom-navigation/angular",
-		"lib": {
-			"entryFile": "index.ts"
-		},
-		"allowedNonPeerDependencies": [
-			"."
-		]
-	}
+	"main": "index.js"
 }

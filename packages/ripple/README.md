@@ -18,11 +18,6 @@ Material Design's [Ripple](https://material.io/design/interaction/states.html#pr
 
 ## Installation
 
-### :warning: Warning :warning:
-From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
-
-##
-
 For NativeScript 7.0+
 * `tns plugin add @nativescript-community/ui-material-ripple`
 

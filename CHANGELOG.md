@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.34](https://github.com/nativescript-community/ui-material-component/compare/v7.0.33...v7.0.34) (2023-01-06)
+
+
+### Bug Fixes
+
+* **snackbar:** if no view passed ensure we show over any modal view ([fcd6622](https://github.com/nativescript-community/ui-material-component/commit/fcd6622228ac3b5667318ebe6bc044dbf8a777c3))
+
+
+
+
+
+## [7.0.33](https://github.com/nativescript-community/ui-material-component/compare/v7.0.32...v7.0.33) (2022-12-16)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+
+
+
+
+## [7.0.32](https://github.com/nativescript-community/ui-material-component/compare/v7.0.31...v7.0.32) (2022-12-09)
+
+
+### Bug Fixes
+
+* **tabs:** active tabitem isn't visible ([fc286a5](https://github.com/nativescript-community/ui-material-component/commit/fc286a55a67b08403aff027fa49d66f6a7022200))
+
+
+
+
+
+## [7.0.31](https://github.com/nativescript-community/ui-material-component/compare/v7.0.30...v7.0.31) (2022-12-01)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+
+
+
+
+## [7.0.30](https://github.com/nativescript-community/ui-material-component/compare/v7.0.29...v7.0.30) (2022-11-18)
+
+
+### Bug Fixes
+
+* **dialogs:** iOS ensure we dont show a dialog from another one ([e68a13b](https://github.com/nativescript-community/ui-material-component/commit/e68a13b45047b3542f64240b537d1b400d610f35))
+
+
+
+
+
+## [7.0.29](https://github.com/nativescript-community/ui-material-component/compare/v7.0.28...v7.0.29) (2022-10-24)
+
+
+### Bug Fixes
+
+* **bottomnavigationbar:** select tab native view ([7a0debe](https://github.com/nativescript-community/ui-material-component/commit/7a0debee97405416ef1f0a8eb9f69d7989732c9b))
+* **BottomSheet:**  Back-to-blade motion is fluid ([09f7e2f](https://github.com/nativescript-community/ui-material-component/commit/09f7e2f77b44fa820ff628f4f0c1f6f42083fe9a))
+* **textfield:** wrong hint colors ([8055347](https://github.com/nativescript-community/ui-material-component/commit/805534779fc91b25ff095242ca4cf30b76286404))
+
+
+
+
+
 ## [7.0.28](https://github.com/nativescript-community/ui-material-component/compare/v7.0.27...v7.0.28) (2022-09-16)
 
 

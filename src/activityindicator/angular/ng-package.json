@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/activityindicator/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}

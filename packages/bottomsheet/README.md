@@ -74,6 +74,7 @@ export interface BottomSheetOptions {
     //(iOS only) A Boolean value that controls whether the height of the keyboard should affect the bottom sheet's frame when the keyboard shows on the screen. (Default: true)
     onChangeState?: onChangeStateBottomSheet; 
     // One works to be called on the scroll of the sheet. Parameters: state (CLOSED, DRAGGING, DRAGGING, COLLAPSED) and slideOffset is the new offset of this bottom sheet within [-1,1] range. Offset increases as this bottom sheet is moving upward. From 0 to 1 the sheet is between collapsed and expanded states and from -1 to 0 it is between hidden and collapsed states.
+    canTouchBehind?: boolean //(Android only) allows to interact with the screen behind the sheet. For it to work properly need dismissOnBackgroundTap set to true.
 }
 ```
 
@@ -121,7 +122,7 @@ export function openBottomSheet(args) {
 
 ##
 
-### NativeScript + Vue
+### NativeScript + Vue 2
 ```typescript
 import Vue from 'nativescript-vue';
 import BottomSheetPlugin from '@nativescript-community/ui-material-bottomsheet/vue';
@@ -138,6 +139,32 @@ import MyComponent from 'MyComponent.vue';
 const options: VueBottomSheetOptions = {
 };
 this.$showBottomSheet(MyComponent, options)
+```
+
+### NativeScript + Vue 3
+```typescript
+import { createApp } from 'nativescript-vue';
+import { BottomSheetPlugin } from '@nativescript-community/ui-material-bottomsheet/vue3';
+import { install } from "@nativescript-community/ui-material-bottomsheet";
+install();
+
+const app = createApp(...);
+app.use(BottomSheetPlugin);
+```
+Then you can show a Vue component:
+```typescript 
+import { useBottomSheet } from "@nativescript-community/ui-material-bottomsheet/vue3";
+import MyComponent from 'MyComponent.vue';
+
+
+const options: VueBottomSheetOptions = {
+    ...
+};
+
+const { showBottomSheet, closeBottomSheet } = useBottomSheet()
+
+showBottomSheet(MyComponent, options);
+closeBottomSheet();
 ```
 
 ##

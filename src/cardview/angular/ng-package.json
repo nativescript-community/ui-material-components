@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/cardview/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}

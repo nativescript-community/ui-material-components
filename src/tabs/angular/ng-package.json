@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/tabs/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}

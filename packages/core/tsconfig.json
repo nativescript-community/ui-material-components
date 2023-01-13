@@ -7,6 +7,6 @@
             "*": ["node_modules/*", "packages/*"]
         }
     },
-    "include": ["../../src/core/**/*.ts", "../../references.d.ts", "../../src/references.d.ts"],
+    "include": ["../../src/core/**/*.ts", "../../references.d.ts", "../../tools/references.d.ts", "../../src/references.d.ts"],
     "exclude": ["../../src/core/scripts/**/*.ts", "../../src/core/angular/**"]
 }

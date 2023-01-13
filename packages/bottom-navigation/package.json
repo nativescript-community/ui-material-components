@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-bottom-navigation",
-    "version": "7.0.28",
+    "version": "7.0.34",
     "description": "Material Design Bottom Navigation bars allow movement between primary destinations in an app. Tapping on a bottom navigation icon takes you directly to the associated view or refreshes the currently active view.",
     "main": "bottomnavigation",
     "sideEffects": false,
@@ -12,16 +12,16 @@
         }
     },
     "scripts": {
-        "tsc": "../../node_modules/.bin/cpy ../../src/bottom-navigation/index.d.ts ./ && ../../node_modules/.bin/tsc -d",
-        "tsc-win": "..\\..\\node_modules\\.bin\\cpy ..\\..\\src\\bottom-navigation\\index.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc -d",
+        "tsc": "cpy ../../src/bottom-navigation/index.d.ts ./ && tsc -d",
+        "tsc-win": "cpy ..\\..\\src\\bottom-navigation\\index.d.ts .\\ && tsc -d",
         "build": "npm run tsc",
         "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win",
         "build.all": "npm run build && npm run build.angular",
         "build.all.win": "npm run build.win && npm run build.angular.win",
-        "build.angular": "../../node_modules/.bin/ng-packagr -p ../../src/bottom-navigation/angular/package.json -c ../../src/bottom-navigation/angular/tsconfig.json",
-        "build.angular.win": "..\\..\\node_modules\\.bin\\ng-packagr -p ..\\..\\src\\bottom-navigation\\angular\\package.json -c ..\\..\\src\\bottom-navigation\\angular\\tsconfig.json",
-        "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
+        "build.angular": "ng-packagr -p ../../src/bottom-navigation/angular/ng-package.json -c ../../src/bottom-navigation/angular/tsconfig.json",
+        "build.angular.win": "ng-packagr -p ..\\..\\src\\bottom-navigation\\angular\\package.json -c ..\\..\\src\\bottom-navigation\\angular\\tsconfig.json",
+        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "keywords": [
         "NativeScript",
@@ -51,8 +51,8 @@
     },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^7.0.28",
-        "@nativescript-community/ui-material-core-tabs": "^7.0.28"
+        "@nativescript-community/ui-material-core": "^7.0.34",
+        "@nativescript-community/ui-material-core-tabs": "^7.0.34"
     },
     "gitHead": "240457b7952c4f0258aabc46615de63d1473ead1"
 }

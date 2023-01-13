@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/ripple/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}

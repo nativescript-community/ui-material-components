@@ -1,19 +1,19 @@
 {
     "name": "@nativescript-community/ui-material-core",
-    "version": "7.0.28",
+    "version": "7.0.34",
     "description": "Material Core component",
     "main": "./index",
     "sideEffects": false,
     "typings": "./index.d.ts",
     "scripts": {
-        "tsc": "../../node_modules/.bin/cpy '**/*.d.ts' '../../packages/core' --cwd=../../src/core --parents && ../../node_modules/.bin/tsc -d",
-        "tsc-win": "..\\..\\node_modules\\.bin\\cpy **/*.d.ts ..\\..\\packages\\core --cwd=..\\..\\src\\core --parents && ..\\..\\node_modules\\.bin\\tsc -d",
+        "tsc": "cpy '**/*.d.ts' '../../packages/core' --cwd=../../src/core --parents && tsc -d",
+        "tsc-win": "cpy **/*.d.ts ..\\..\\packages\\core --cwd=..\\..\\src\\core --parents && tsc -d",
         "build": "npm run tsc",
         "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win",
         "build.all": "npm run build",
         "build.all.win": "npm run build.win",
-        "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map android"
+        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map android"
     },
     "nativescript": {
         "platforms": {

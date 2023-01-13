@@ -1,6 +1,7 @@
 {
     "name": "@nativescript-community/template-snippet",
     "version": "0.0.1",
+    "private": true,
     "nativescript": {
         "platforms": {
             "android": "*"
@@ -19,29 +20,27 @@
     },
     "dependencies": {
         "@mdi/font": "6.5.95",
-        "@nativescript-community/ui-material-activityindicator": "link:../packages/activityindicator",
-        "@nativescript-community/ui-material-bottom-navigation": "link:../packages/bottom-navigation",
-        "@nativescript-community/ui-material-bottomnavigationbar": "link:../packages/bottomnavigationbar",
-        "@nativescript-community/ui-material-bottomsheet": "link:../packages/bottomsheet",
-        "@nativescript-community/ui-material-button": "link:../packages/button",
-        "@nativescript-community/ui-material-cardview": "link:../packages/cardview",
-        "@nativescript-community/ui-material-core": "link:../packages/core",
-        "@nativescript-community/ui-material-core-tabs": "link:../packages/core-tabs",
-        "@nativescript-community/ui-material-dialogs": "link:../packages/dialogs",
-        "@nativescript-community/ui-material-floatingactionbutton": "link:../packages/floatingactionbutton",
-        "@nativescript-community/ui-material-progress": "link:../packages/progress",
-        "@nativescript-community/ui-material-ripple": "link:../packages/ripple",
-        "@nativescript-community/ui-material-slider": "link:../packages/slider",
-        "@nativescript-community/ui-material-snackbar": "link:../packages/snackbar",
-        "@nativescript-community/ui-material-speeddial": "link:../packages/speeddial",
-        "@nativescript-community/ui-material-tabs": "link:../packages/tabs",
-        "@nativescript-community/ui-material-textfield": "link:../packages/textfield",
-        "@nativescript-community/ui-material-textview": "link:../packages/textview",
+        "@nativescript-community/ui-material-activityindicator": "7.0.33",
+        "@nativescript-community/ui-material-bottom-navigation": "7.0.33",
+        "@nativescript-community/ui-material-bottomnavigationbar": "7.0.33",
+        "@nativescript-community/ui-material-bottomsheet": "7.0.33",
+        "@nativescript-community/ui-material-button": "7.0.33",
+        "@nativescript-community/ui-material-cardview": "7.0.33",
+        "@nativescript-community/ui-material-core": "7.0.33",
+        "@nativescript-community/ui-material-core-tabs": "7.0.33",
+        "@nativescript-community/ui-material-dialogs": "7.0.33",
+        "@nativescript-community/ui-material-floatingactionbutton": "7.0.33",
+        "@nativescript-community/ui-material-progress": "7.0.33",
+        "@nativescript-community/ui-material-ripple": "7.0.33",
+        "@nativescript-community/ui-material-slider": "7.0.33",
+        "@nativescript-community/ui-material-snackbar": "7.0.33",
+        "@nativescript-community/ui-material-speeddial": "7.0.33",
+        "@nativescript-community/ui-material-tabs": "7.0.33",
+        "@nativescript-community/ui-material-textfield": "7.0.33",
+        "@nativescript-community/ui-material-textview": "7.0.33",
         "@nativescript/hook": "~2.0.0",
-        "copy-webpack-plugin": "^10.2.4"
-    },
-    "devDependencies": {
-        "nativescript-vue-template-compiler": "~2.9.0",
+        "copy-webpack-plugin": "^11.0.0",
+        "nativescript-vue-template-compiler": "~2.9.3",
         "scss-symbols-parser": "^2.0.1",
         "string-replace-loader": "^3.1.0"
     }

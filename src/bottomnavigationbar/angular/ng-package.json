@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/bottomnavigationbar/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}

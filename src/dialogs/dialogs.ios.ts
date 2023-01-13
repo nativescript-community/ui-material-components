@@ -532,7 +532,7 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
 
         let viewController = Application.ios.rootController;
 
-        while (viewController && viewController.presentedViewController) {
+        while (viewController && viewController.presentedViewController && !(viewController.presentedViewController instanceof MDCAlertControllerImpl)) {
             viewController = viewController.presentedViewController;
         }
 

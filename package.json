@@ -2,6 +2,7 @@
     "name": "@nativescript-community/ui-material-components",
     "description": "Nativescript UI Material Components",
     "version": "1.0.0",
+    "private": true,
     "homepage": "https://github.com/nativescript-community/ui-material-components#readme",
     "bugs": {
         "url": "https://github.com/nativescript-community/ui-material-component/issues"
@@ -17,32 +18,34 @@
         "build.all": "lerna run build.all",
         "build.all.win": "lerna run build.all.win",
         "build.angular": "lerna run build.angular",
-        "clean": "rimraf 'packages/**/*.d.ts' 'packages/**/*.js' 'packages/**/*.js.map' 'packages/**/*.metadata.json' 'packages/**/*.ngsummary.json' 'packages/**/*.mjs' 'packages/**/*.mjs.map' 'packages/**/angular/package.json'",
-        "fullclean": "npm run clean && rimraf 'packages/**/node_modules' 'package-lock.json' 'pnpm-lock.yaml' 'node_modules'",
+        "clean": "rimraf 'packages/**/*.d.ts' 'packages/**/*.js' 'packages/**/*.js.map' 'packages/**/*.metada' 'packages/**/angular/ng-package.json'",
+        "fullclean": "npm run clean && rimraf 'packages/**/node_modules' 'demo-*/hooks' 'demo-*/node_modules' 'package-lock.json' 'pnpm-lock.yaml' 'node_modules'",
         "commitmsg": "commitlint -e $GIT_PARAMS",
-        "demo.ng.android": "cd ./demo-ng && ns run android --no-hmr",
+        "demo.ng.android": "cd ./demo-ng && ns run android --no-hmr --env.watchNodeModules",
         "demo.ng.clean": "cd ./demo-ng && ns clean",
-        "demo.ng.ios": "cd ./demo-ng && ns run ios --no-hmr",
-        "demo.react.android": "cd ./demo-react && ns run android --no-hmr",
+        "demo.ng.ios": "cd ./demo-ng && ns run ios --no-hmr --env.watchNodeModules",
+        "demo.react.android": "cd ./demo-react && ns run android --no-hmr --env.watchNodeModules",
         "demo.react.clean": "cd ./demo-react && ns clean",
-        "demo.react.ios": "cd ./demo-react && ns run ios --no-hmr",
-        "demo.svelte.android": "cd ./demo-svelte && ns run android --no-hmr",
+        "demo.react.ios": "cd ./demo-react && ns run ios --no-hmr --env.watchNodeModules",
+        "demo.svelte.android": "cd ./demo-svelte && ns run android --no-hmr --env.watchNodeModules",
         "demo.svelte.clean": "cd ./demo-svelte && ns clean",
-        "demo.svelte.ios": "cd ./demo-svelte && ns run ios --no-hmr",
-        "demo.vue.android": "cd ./demo-vue && ns run android --no-hmr",
+        "demo.svelte.ios": "cd ./demo-svelte && ns run ios --no-hmr --env.watchNodeModules",
+        "demo.vue.android": "cd ./demo-vue && ns run android --no-hmr --env.watchNodeModules",
         "demo.vue.clean": "cd ./demo-vue && ns clean",
-        "demo.vue.ios": "cd ./demo-vue && ns run ios --no-hmr",
+        "demo.vue.ios": "cd ./demo-vue && ns run ios --no-hmr --env.watchNodeModules",
+        "demo.vue3.android": "cd ./demo-vue3 && ns run android --no-hmr --env.watchNodeModules",
+        "demo.vue3.clean": "cd ./demo-vue3 && ns clean",
+        "demo.vue3.ios": "cd ./demo-vue3 && ns run ios --no-hmr --env.watchNodeModules",
         "postinstall": "npm run setup",
-        "publish": "npm run setup && npm run clean && npm run build.all && lerna publish --create-release=github --force-publish",
-        "readme": "node ./tools/readme.js",
+        "publish": "npm run clean && npm run build.all && npm run readme && npm run doc && lerna publish --no-private --create-release=github --force-publish",
+        "readme": "lerna run readme && node ./tools/readme.js",
         "setup": "npm run submodules && ts-patch install",
         "start": "./node_modules/.bin/ntl -A -s 15 -o",
         "submodules": "git submodule update --init",
+        "submodules.update": "git submodule -q foreach git pull -q origin master && git add .",
         "sync": "node ./tools/sync.js",
-        "sync.test": "node ./tools/sync.js",
-        "tsc": "cpy '**/*.d.ts' '../plugin' --parents --cwd=src && tsc -skipLibCheck -d",
         "update": "node ./tools/update.js",
-        "doc": "node tools/builddoc.mjs && git add docs/* && git commit -m \"chore:doc\""
+        "doc": "node tools/builddoc.mjs"
     },
     "keywords": [
         "NativeScript",
@@ -57,7 +60,7 @@
     "readmeFilename": "README.md",
     "dependencies": {
         "@nativescript-community/plugin-seed-tools": "file:tools",
-        "@nativescript-community/text": "^1.5.6"
+        "@nativescript-community/text": "1.5.11"
     },
     "commitlint": {
         "extends": [
@@ -78,17 +81,24 @@
             "demo.svelte.ios": "Runs the Svelte demo on iOS.",
             "demo.vue.android": "Runs the Vue demo on Android.",
             "demo.vue.ios": "Runs the Vue demo on iOS.",
+            "demo.vue3.android": "Runs the Vue3 demo on Android.",
+            "demo.vue3.ios": "Runs the Vue3 demo on iOS.",
             "watch": "Watch for changes in the plugin source and re-build."
         }
     },
-    "dependenciesMeta": {
-        "@nativescript-community/plugin-seed-tools": {
-            "injected": true
-        }
-    },
+    "workspaces": [
+        "packages/*",
+        "demo-vue",
+        "demo-vue3",
+        "demo-ng",
+        "demo-svelte",
+        "demo-react",
+        "demo-snippets"
+    ],
     "engines": {
         "npm": "please use yarn or pnpm",
-        "yarn": ">= 1.19.1",
-        "pnpm": ">= 7.0.0"
+        "yarn": ">=1.19.1",
+        "pnpm": ">=7.0.0",
+        "node": "^14.20.0 || ^16.13.0 || >=18.10.0"
     }
 }

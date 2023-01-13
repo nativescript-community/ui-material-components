@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.34](https://github.com/nativescript-community/ui-material-components/compare/v7.0.33...v7.0.34) (2023-01-06)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-textview
+
+
+
+
+
+## [7.0.33](https://github.com/nativescript-community/ui-material-components/compare/v7.0.32...v7.0.33) (2022-12-16)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-textview
+
+
+
+
+
+## [7.0.32](https://github.com/nativescript-community/ui-material-components/compare/v7.0.31...v7.0.32) (2022-12-09)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-textview
+
+
+
+
+
+## [7.0.31](https://github.com/nativescript-community/ui-material-components/compare/v7.0.30...v7.0.31) (2022-12-01)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-textview
+
+
+
+
+
+## [7.0.30](https://github.com/nativescript-community/ui-material-components/compare/v7.0.29...v7.0.30) (2022-11-18)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-textview
+
+
+
+
+
+## [7.0.29](https://github.com/nativescript-community/ui-material-components/compare/v7.0.28...v7.0.29) (2022-10-24)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-textview
+
+
+
+
+
 ## [7.0.28](https://github.com/nativescript-community/ui-material-components/compare/v7.0.27...v7.0.28) (2022-09-16)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-textview

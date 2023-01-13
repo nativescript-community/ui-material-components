@@ -1,13 +1,4 @@
 {
 	"name": "@nativescript-community/ui-material-cardview-angular",
-	"main": "index.js",
-	"ngPackage": {
-		"dest": "../../../packages/cardview/angular",
-		"lib": {
-			"entryFile": "index.ts"
-		},
-		"allowedNonPeerDependencies": [
-			"."
-		]
-	}
+	"main": "index.js"
 }

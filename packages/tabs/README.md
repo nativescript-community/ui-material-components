@@ -17,11 +17,6 @@ Material Design's [Tabs](https://material.io/components/tabs) component for Nati
     - [React](#nativescript--react)
 5.  [API](#api)
 
-## Installation
-
-### :warning: Warning :warning:
-From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
-
 ##
 
 ```
@@ -44,73 +39,73 @@ IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-materia
 
 ```XML
 <Page xmlns:mdt="@nativescript-community/ui-material-tabs">
-    <mdt:MDTabs selectedIndex="1">
+    <mdt:Tabs selectedIndex="1">
         <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-        <mdt:MDTabStrip>
-            <mdt:MDTabStripItem>
+        <mdt:TabStrip>
+            <mdt:TabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
-            </MDTabStripItem>
-            <mdt:MDTabStripItem>Item class="special">
+            </TabStripItem>
+            <mdt:TabStripItem> class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
-            </MDTabStripItem>
-            <mdt:MDTabStripItem>Item class="special">
+            </mdt:TabStripItem>
+            <mdt:TabStripItem> class="special">
                 <Label text="Search"></Label>
                 <Image src="font://&#xf00e;" class="fas"></Image>
-            </MDTabStripItem>
-        </MDTabStrip>
+            </mdt:TabStripItem>
+        </mdt:TabStrip>
 
         <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
-        <mdt:MDTabContentItem>
+        <mdt:TabContentItem>
             <GridLayout>
                 <Label text="Home Page" class="h2 text-center"></Label>
             </GridLayout>
-        </MDTabContentItem>
-        <mdt:MDTabContentItem>
+        </mdt:TabContentItem>
+        <mdt:TabContentItem>
             <GridLayout>
                 <Label text="Account Page" class="h2 text-center"></Label>
             </GridLayout>
-        </MDTabContentItem>
-        <mdt:MDTabContentItem>
+        </mdt:TabContentItem>
+        <mdt:TabContentItem>
             <GridLayout>
                 <Label text="Search Page" class="h2 text-center"></Label>
             </GridLayout>
-        </MDTabContentItem>
-    </Tabs>
+        </mdt:TabContentItem>
+    </mdt:Tabs>
 </Page>
 ```
 
 #### CSS
 
 ```CSS
-MDTabs.bottom-nav {
+Tabs.bottom-nav {
     background-color: orangered;
     color: gold;
     font-size: 18;
 }
 
-MDTabStripItem.tabstripitem-active {
+TabStripItem.tabstripitem-active {
     background-color: teal;
 }
 
-MDTabStripItem.tabstripitem-active:active {
+TabStripItem.tabstripitem-active:active {
     background-color: yellowgreen;
 }
 
-MDTabContentItem.first-tabcontent {
+TabContentItem.first-tabcontent {
     background-color: seashell;
     color: olive;
 }
-MDTabContentItem.second-tabcontent {
+TabContentItem.second-tabcontent {
     background-color: slategray;
     color: aquamarine;
 }
-MDTabContentItem.third-tabcontent {
+TabContentItem.third-tabcontent {
     background-color: blueviolet;
     color: antiquewhite;
 }
-MDTabs MDTabStrip {
+Tabs MDTabStrip {
     highlight-color: red;
 }
 ```

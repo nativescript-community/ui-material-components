@@ -38,7 +38,6 @@ import {
 } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
 import { TextFieldBase } from './textfield.common';
-import { layout } from '@nativescript/core/utils';
 
 @NativeClass
 class MDCFilledTextFieldImpl extends MDCFilledTextField {
@@ -185,8 +184,8 @@ export class TextField extends TextFieldBase {
 
     private mCanAutoSize = false;
     public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
-        const widthMode = layout.getMeasureSpecMode(widthMeasureSpec);
-        this.mCanAutoSize = widthMode !== layout.EXACTLY;
+        const widthMode = Utils.layout.getMeasureSpecMode(widthMeasureSpec);
+        this.mCanAutoSize = widthMode !== Utils.layout.EXACTLY;
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
@@ -306,6 +305,8 @@ export class TextField extends TextFieldBase {
         this._updateAttributedPlaceholder();
     }
     [placeholderColorProperty.setNative](value: UIColor | Color) {
+        const color = value instanceof Color ? value.ios : value;
+        this.nativeViewProtected.setNormalLabelColorForState(color, MDCTextControlState.Normal);
         this._updateAttributedPlaceholder();
     }
     [hintProperty.setNative](value: string) {

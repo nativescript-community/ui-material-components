@@ -1,21 +1,21 @@
 {
     "name": "@nativescript-community/ui-material-floatingactionbutton",
-    "version": "7.0.28",
+    "version": "7.0.34",
     "description": "Material Design FAB performs the primary, or most common, action on a screen. It appears in front of all screen content, typically as a circular shape with an icon in its center.",
     "main": "./floatingactionbutton",
     "sideEffects": false,
     "typings": "./floatingactionbutton.d.ts",
     "scripts": {
-        "tsc": "../../node_modules/.bin/cpy ../../src/floatingactionbutton/floatingactionbutton.d.ts ./ && ../../node_modules/.bin/tsc -d",
-        "tsc-win": "..\\..\\node_modules\\.bin\\cpy ..\\..\\src\\floatingactionbutton\\floatingactionbutton.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc -d",
+        "tsc": "cpy ../../src/floatingactionbutton/floatingactionbutton.d.ts ./ && tsc -d",
+        "tsc-win": "cpy ..\\..\\src\\floatingactionbutton\\floatingactionbutton.d.ts .\\ && tsc -d",
         "build": "npm run tsc",
         "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win",
         "build.all": "npm run build && npm run build.angular",
         "build.all.win": "npm run build.win && npm run build.angular.win",
-        "build.angular": "../../node_modules/.bin/ng-packagr -p ../../src/floatingactionbutton/angular/package.json -c ../../src/floatingactionbutton/angular/tsconfig.json",
-        "build.angular.win": "..\\..\\node_modules\\.bin\\ng-packagr -p ..\\..\\src\\floatingactionbutton\\angular\\package.json -c ..\\..\\src\\floatingactionbutton\\angular\\tsconfig.json",
-        "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
+        "build.angular": "ng-packagr -p ../../src/floatingactionbutton/angular/ng-package.json -c ../../src/floatingactionbutton/angular/tsconfig.json",
+        "build.angular.win": "ng-packagr -p ..\\..\\src\\floatingactionbutton\\angular\\package.json -c ..\\..\\src\\floatingactionbutton\\angular\\tsconfig.json",
+        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "nativescript": {
         "platforms": {
@@ -46,7 +46,7 @@
     "license": "Apache-2.0",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^7.0.28"
+        "@nativescript-community/ui-material-core": "^7.0.34"
     },
     "gitHead": "240457b7952c4f0258aabc46615de63d1473ead1"
 }

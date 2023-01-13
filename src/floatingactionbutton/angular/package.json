@@ -1,13 +1,4 @@
 {
 	"name": "@nativescript-community/ui-material-floatingactionbutton-angular",
-	"main": "index.js",
-	"ngPackage": {
-		"dest": "../../../packages/floatingactionbutton/angular",
-		"lib": {
-			"entryFile": "index.ts"
-		},
-		"allowedNonPeerDependencies": [
-			"."
-		]
-	}
+	"main": "index.js"
 }

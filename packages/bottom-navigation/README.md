@@ -19,11 +19,6 @@ Material Design's [Bottom navigation](https://material.io/components/bottom-navi
 
 ## Installation
 
-### :warning: Warning :warning:
-From NativeScript 5.x using this component will break the [NativeScript tab component](https://docs.nativescript.org/ui/components/tabs) on iOS (which is bound to be removed). This is needed to allow using the latest native iOS features. If needed you can use either [bottomnavigationbar](https://www.npmjs.com/package/@nativescript-community/ui-material-bottomnavigationbar) (this one is the best choice, closest to material design) or [material-tabs](https://www.npmjs.com/package/@nativescript-community/ui-material-tabs) (clone of the NativeScript one, but with a little less features).
-
-##
-
 ```bash
 ns plugin add @nativescript-community/ui-material-bottom-navigation
 ```
@@ -44,40 +39,51 @@ IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-materia
 
 ```XML
 <Page xmlns:mdt="@nativescript-community/ui-material-bottom-navigation">
-    <mdt:BottomNavigation selectedIndex="1">
-        <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-        <mdt:MDTabStrip>
-            <mdt:MDTabStripItem>
-                <Label text="Home"></Label>
-                <Image src="font://&#xf015;" class="fas"></Image>
-            </mdt:MDTabStripItem>
-            <mdt:MDTabStripItem class="special">
-                <Label text="Account"></Label>
-                <Image src="font://&#xf007;" class="fas"></Image>
-            </mdt:MDTabStripItem>
-            <mdt:MDTabStripItem class="special">
-                <Label text="Search"></Label>
-                <Image src="font://&#xf00e;" class="fas"></Image>
-            </mdt:MDTabStripItem>
-        </mdt:MDTabStrip>
+    <mdt:BottomNavigation width="100%" id="main-tabview" class="main-tabview"
+                selectedIndexChanged="{{onSelectedIndexChanged}}"
+                iosOverflowSafeArea="true" selectedIndex="0" tabsPosition="bottom" swipeEnabled="false">
+            <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
+            <mdt:TabStrip backgroundColor="{{ color('dark')}}" color="{{ color('blue')}}">
+                <mdt:TabStripItem  class="tab-item">
+                    <Image src="font://&#xe1b0;" class="fal"></Image>
+                    <Label text="Home" ios:fontSize="10" android:fontSize="12"></Label>
+                </mdt:TabStripItem>
+                <mdt:TabStripItem class="tab-item">
+                    <Label text="{{ L('search') }}" ios:fontSize="10" android:fontSize="12"></Label>
+                    <Image src="font://&#xe024;" class="fal"></Image>
+                </mdt:TabStripItem>
+                <mdt:TabStripItem  class="tab-item">
+                    <Label text="{{ L('trips') }}" ios:fontSize="10" android:fontSize="12"></Label>
+                    <Image src="font://&#xf03a;" class="fal"></Image>
+                </mdt:TabStripItem>
+                <mdt:TabStripItem class="tab-item">
+                    <Label text="{{ L('inbox') }}" ios:fontSize="10" android:fontSize="12"></Label>
+                    <Image src="font://&#xf4b6;" class="fal" id="tab-inbox-icon-fal"></Image>
+                </mdt:TabStripItem>
+            </mdt:TabStrip>
 
-        <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
-        <mdt:MDTabContentItem>
-            <GridLayout>
-                <Label text="Home Page" class="h2 text-center"></Label>
-            </GridLayout>
-        </mdt:MDTabContentItem>
-        <mdt:MDTabContentItem>
-            <GridLayout>
-                <Label text="Account Page" class="h2 text-center"></Label>
-            </GridLayout>
-        </mdt:MDTabContentItem>
-        <mdt:MDTabContentItem>
-            <GridLayout>
-                <Label text="Search Page" class="h2 text-center"></Label>
-            </GridLayout>
-        </mdt:MDTabContentItem>
-    </mdt:BottomNavigation>
+            <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
+            <mdt:TabContentItem>
+                <GridLayout>
+                    <Label text="Home" class="h2 text-center"></Label>
+                </GridLayout>
+            </mdt:TabContentItem>
+            <mdt:TabContentItem>
+                <GridLayout>
+                    <Label text="Search Page" class="h2 text-center"></Label>
+                </GridLayout>
+            </mdt:TabContentItem>
+            <mdt:TabContentItem>
+                <GridLayout>
+                    <Label text="TRansactions" class="h2 text-center"></Label>
+                </GridLayout>
+            </mdt:TabContentItem>
+            <mdt:TabContentItem>
+                <GridLayout>
+                    <Label text="Inbox" class="h2 text-center"></Label>
+                </GridLayout>
+            </mdt:TabContentItem>
+        </mdt:BottomNavigation>
 </Page>
 ```
 

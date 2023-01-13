@@ -61,11 +61,7 @@ export class SnackBar extends SnackBarBase {
 
         let nAttachedView: UIView;
         if (options.view) {
-            let attachView = options.view || Frame.topmost().currentPage;
-            while (attachView['_modal']) {
-                attachView = attachView['_modal'];
-            }
-            nAttachedView = attachView.nativeViewProtected;
+            nAttachedView = options.view.nativeViewProtected;
         } else {
             let viewController = Application.ios.rootController;
 

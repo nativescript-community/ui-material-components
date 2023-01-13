@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/slider/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}
