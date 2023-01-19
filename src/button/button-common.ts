@@ -5,14 +5,42 @@ import { VerticalTextAlignment } from '@nativescript-community/text';
 @CSSType('MDButton')
 export abstract class ButtonBase extends Button {
     public variant = 'contained';
+
+    /**
+     * Gets or sets the elevation of the button.
+     */
     @cssProperty elevation: number;
+
+    /**
+     * Gets or sets the dynamic elevation offset of the button.
+     */
     @cssProperty dynamicElevationOffset: number;
-    @cssProperty rippleColor: Color;
+
+    /**
+     * Gets or sets the ripple-color of the button.
+     */
+    @cssProperty rippleColor: Color | string;
+
+    /**
+     * Gets or sets the {@link VerticalTextAlignment|vertical text alignment} of the button.
+     */
     @cssProperty verticalTextAlignment: VerticalTextAlignment;
+
+    /**
+     * Gets or sets the shape of the button.
+     */
     @cssProperty shape: string;
 
+    /**
+     * Gets or sets the icon imageSource of the button.
+     */
     public imageSource: ImageSource;
+
+    /**
+     * Gets or sets the icon src of the button.
+     */
     public src: string | ImageSource;
+
     public isLoading: boolean;
     /**
      * @internal //copied from image common

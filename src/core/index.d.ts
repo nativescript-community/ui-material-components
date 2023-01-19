@@ -10,6 +10,27 @@ declare module '@nativescript/core/ui/core/view' {
         _getRootFragmentManager(): androidx.fragment.app.FragmentManager;
         clearFocus(): void;
         requestFocus(): void;
+
+        /**
+         * @nativescript-community/ui-material-core {@link installMixins}.
+         *
+         * Gets or sets the elevation of the view.
+         */
+        elevation: number;
+
+        /**
+         * @nativescript-community/ui-material-core {@link installMixins}.
+         *
+         * Gets or sets the dynamic elevation offset of the view.
+         */
+        dynamicElevationOffset: number;
+
+        /**
+         * @nativescript-community/ui-material-core {@link installMixins}.
+         *
+         * Gets or sets the ripple-color of the view.
+         */
+        rippleColor: Color | string;
     }
 }
 
