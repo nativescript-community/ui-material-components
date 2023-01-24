@@ -6,6 +6,7 @@
         "android.os:Build",
         "android.content.res:ColorStateList",
         "com.google.android.material.shape:ShapeAppearanceModel",
+        "com.google.android.material.shape:ShapeAppearanceModel.Builder",
         "com.google.android.material.shape:MaterialShapeDrawable",
         "com.google.android.material.shape:CornerTreatment",
         "com.google.android.material.shape:CutCornerTreatment",
