@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.36](https://github.com/nativescript-community/ui-material-component/compare/v7.0.35...v7.0.36) (2023-01-24)
+
+
+### Bug Fixes
+
+* **core:** android native-api-usage fix ([56f43c8](https://github.com/nativescript-community/ui-material-component/commit/56f43c8b13697b1b010b6b94c3b6e7cc5b9a13a7))
+
+
+
+
+
 ## [7.0.35](https://github.com/nativescript-community/ui-material-component/compare/v7.0.34...v7.0.35) (2023-01-24)
 
 
