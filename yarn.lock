@@ -3361,7 +3361,7 @@ __metadata:
 
 "@nativescript-community/plugin-seed-tools@file:tools::locator=%40nativescript-community%2Fui-material-components%40workspace%3A.":
   version: 1.0.0
-  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=ef26b1&locator=%40nativescript-community%2Fui-material-components%40workspace%3A."
+  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=1e4713&locator=%40nativescript-community%2Fui-material-components%40workspace%3A."
   dependencies:
     "@angular/animations": ~14.2.12
     "@angular/common": ~14.2.12
@@ -3385,6 +3385,7 @@ __metadata:
     "@types/react": ^16.14.34
     "@typescript-eslint/eslint-plugin": 5.48.0
     "@typescript-eslint/parser": 5.48.0
+    "@vue/runtime-core": 3.2.45
     cpy-cli: ^3.1.1
     detox: 20.1.1
     eslint: 8.31.0
@@ -3421,7 +3422,7 @@ __metadata:
     vue: ~2.6.14
     yargs: ^17.6.2
     zone.js: ~0.12.0
-  checksum: cfa7b121edb9928699e3ed5eaf0db22434d32d3be4b32a3c795a2d532bc5a93598b03ff2250095cda6e003cbd4269cb2802eade767c16bc3a93855a56fdfd11c
+  checksum: 30bb5bd46d33a96a73f13718f07e6c40f5bc9ed8138313b3558ade4688424f497f7fec0453770e7dc87c77f1bfc41d44123e2beacda3a2786a81b8661243e806
   languageName: node
   linkType: hard
 
