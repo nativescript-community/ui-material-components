@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.35](https://github.com/nativescript-community/ui-material-component/compare/v7.0.34...v7.0.35) (2023-01-24)
+
+
+### Bug Fixes
+
+* **android:** native-api-usage fix ([60c0ef2](https://github.com/nativescript-community/ui-material-component/commit/60c0ef218e3b5b4a0903b214f129fe7671a2ebbf))
+* **BottomSheet:** types ([ef80352](https://github.com/nativescript-community/ui-material-component/commit/ef80352e85fc27d6d2fde5eb3a29ea10df78357d))
+* **tabs:** handle removing, re-adding, and changing visibility of tabstrip ([7297d7e](https://github.com/nativescript-community/ui-material-component/commit/7297d7e9be2a601cdff3559040a2327b42cc564e))
+
+
+### Features
+
+* add demo-vue3 ([c13c088](https://github.com/nativescript-community/ui-material-component/commit/c13c0889d667969849bb3e2d849494990d7f112d))
+* **BottomSheet:** add vue 3 support ([0d2549e](https://github.com/nativescript-community/ui-material-component/commit/0d2549e17149c1cdf0948173ba7bddebc5c5c491))
+
+
+
+
+
 ## [7.0.34](https://github.com/nativescript-community/ui-material-component/compare/v7.0.33...v7.0.34) (2023-01-06)
 
 
