@@ -790,12 +790,21 @@
 </a>
 
 <a href="#nativescript--vue-2" id="nativescript--vue-2" style="color: inherit; text-decoration: none;">
-  <h3>NativeScript + Vue</h3>
+  <h3>NativeScript + Vue 2</h3>
 </a>
 <pre><code class="language-typescript"><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">Vue</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;nativescript-vue&#39;</span><span class="hl-2">;</span><br/><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">BottomSheetPlugin</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;@nativescript-community/ui-material-bottomsheet/vue&#39;</span><span class="hl-2">;</span><br/><span class="hl-6">import</span><span class="hl-2"> { </span><span class="hl-7">install</span><span class="hl-2"> } </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&quot;@nativescript-community/ui-material-bottomsheet&quot;</span><span class="hl-2">;</span><br/><span class="hl-9">install</span><span class="hl-2">();</span><br/><br/><span class="hl-7">Vue</span><span class="hl-2">.</span><span class="hl-9">use</span><span class="hl-2">(</span><span class="hl-7">BottomSheetPlugin</span><span class="hl-2">);</span>
 </code></pre>
 <p>Then you can show a Vue component:</p>
 <pre><code class="language-typescript"><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">MyComponent</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;MyComponent.vue&#39;</span><span class="hl-2">;</span><br/><br/><span class="hl-11">//inside another Vue component</span><br/><span class="hl-12">const</span><span class="hl-2"> </span><span class="hl-15">options</span><span class="hl-2">: </span><span class="hl-16">VueBottomSheetOptions</span><span class="hl-2"> = {</span><br/><span class="hl-2">};</span><br/><span class="hl-12">this</span><span class="hl-2">.</span><span class="hl-9">$showBottomSheet</span><span class="hl-2">(</span><span class="hl-7">MyComponent</span><span class="hl-2">, </span><span class="hl-7">options</span><span class="hl-2">)</span>
+</code></pre>
+
+<a href="#nativescript--vue-3" id="nativescript--vue-3" style="color: inherit; text-decoration: none;">
+  <h3>NativeScript + Vue 3</h3>
+</a>
+<pre><code class="language-typescript"><span class="hl-6">import</span><span class="hl-2"> { </span><span class="hl-7">createApp</span><span class="hl-2"> } </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;nativescript-vue&#39;</span><span class="hl-2">;</span><br/><span class="hl-6">import</span><span class="hl-2"> { </span><span class="hl-7">BottomSheetPlugin</span><span class="hl-2"> } </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;@nativescript-community/ui-material-bottomsheet/vue3&#39;</span><span class="hl-2">;</span><br/><span class="hl-6">import</span><span class="hl-2"> { </span><span class="hl-7">install</span><span class="hl-2"> } </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&quot;@nativescript-community/ui-material-bottomsheet&quot;</span><span class="hl-2">;</span><br/><span class="hl-9">install</span><span class="hl-2">();</span><br/><br/><span class="hl-12">const</span><span class="hl-2"> </span><span class="hl-15">app</span><span class="hl-2"> = </span><span class="hl-9">createApp</span><span class="hl-2">(...);</span><br/><span class="hl-7">app</span><span class="hl-2">.</span><span class="hl-9">use</span><span class="hl-2">(</span><span class="hl-7">BottomSheetPlugin</span><span class="hl-2">);</span>
+</code></pre>
+<p>Then you can show a Vue component:</p>
+<pre><code class="language-typescript"><span class="hl-6">import</span><span class="hl-2"> { </span><span class="hl-7">useBottomSheet</span><span class="hl-2"> } </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&quot;@nativescript-community/ui-material-bottomsheet/vue3&quot;</span><span class="hl-2">;</span><br/><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">MyComponent</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;MyComponent.vue&#39;</span><span class="hl-2">;</span><br/><br/><br/><span class="hl-12">const</span><span class="hl-2"> </span><span class="hl-15">options</span><span class="hl-2">: </span><span class="hl-16">VueBottomSheetOptions</span><span class="hl-2"> = {</span><br/><span class="hl-2">    ...</span><br/><span class="hl-2">};</span><br/><br/><span class="hl-12">const</span><span class="hl-2"> { </span><span class="hl-15">showBottomSheet</span><span class="hl-2">, </span><span class="hl-15">closeBottomSheet</span><span class="hl-2"> } = </span><span class="hl-9">useBottomSheet</span><span class="hl-2">()</span><br/><br/><span class="hl-9">showBottomSheet</span><span class="hl-2">(</span><span class="hl-7">MyComponent</span><span class="hl-2">, </span><span class="hl-7">options</span><span class="hl-2">);</span><br/><span class="hl-9">closeBottomSheet</span><span class="hl-2">();</span>
 </code></pre>
 
 <a href="#-13" id="-13" style="color: inherit; text-decoration: none;">
@@ -950,7 +959,7 @@
   <h2></h2>
 </a>
 
-<a href="#nativescript--vue-3" id="nativescript--vue-3" style="color: inherit; text-decoration: none;">
+<a href="#nativescript--vue-4" id="nativescript--vue-4" style="color: inherit; text-decoration: none;">
   <h3>NativeScript + Vue</h3>
 </a>
 <pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">Vue</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;nativescript-vue&#39;</span><span class="hl-2">;</span><br/><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">ButtonPlugin</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;@nativescript-community/ui-material-button/vue&#39;</span><span class="hl-2">;</span><br/><br/><span class="hl-7">Vue</span><span class="hl-2">.</span><span class="hl-9">use</span><span class="hl-2">(</span><span class="hl-7">ButtonPlugin</span><span class="hl-2">);</span>
@@ -1086,7 +1095,7 @@
   <h2></h2>
 </a>
 
-<a href="#nativescript--vue-4" id="nativescript--vue-4" style="color: inherit; text-decoration: none;">
+<a href="#nativescript--vue-5" id="nativescript--vue-5" style="color: inherit; text-decoration: none;">
   <h3>NativeScript + Vue</h3>
 </a>
 <pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">Vue</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;nativescript-vue&#39;</span><span class="hl-2">;</span><br/><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">CardViewPlugin</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;@nativescript-community/ui-material-cardview/vue&#39;</span><span class="hl-2">;</span><br/><br/><span class="hl-7">Vue</span><span class="hl-2">.</span><span class="hl-9">use</span><span class="hl-2">(</span><span class="hl-7">CardViewPlugin</span><span class="hl-2">);</span>
@@ -1318,7 +1327,7 @@
   <h2></h2>
 </a>
 
-<a href="#nativescript--vue-5" id="nativescript--vue-5" style="color: inherit; text-decoration: none;">
+<a href="#nativescript--vue-6" id="nativescript--vue-6" style="color: inherit; text-decoration: none;">
   <h3>NativeScript + Vue</h3>
 </a>
 <pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">Vue</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;nativescript-vue&#39;</span><span class="hl-2">;</span><br/><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">FloatingActionButtonPlugin</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;@nativescript-community/ui-material-floatingactionbutton/vue&#39;</span><span class="hl-2">;</span><br/><br/><span class="hl-7">Vue</span><span class="hl-2">.</span><span class="hl-9">use</span><span class="hl-2">(</span><span class="hl-7">FloatingActionButtonPlugin</span><span class="hl-2">);</span>
@@ -1454,7 +1463,7 @@
   <h2></h2>
 </a>
 
-<a href="#nativescript--vue-6" id="nativescript--vue-6" style="color: inherit; text-decoration: none;">
+<a href="#nativescript--vue-7" id="nativescript--vue-7" style="color: inherit; text-decoration: none;">
   <h3>NativeScript + Vue</h3>
 </a>
 <pre><code class="language-typescript"><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">ProgressPlugin</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;@nativescript-community/ui-material-progress/vue&#39;</span><span class="hl-2">;</span><br/><br/><span class="hl-7">Vue</span><span class="hl-2">.</span><span class="hl-9">use</span><span class="hl-2">(</span><span class="hl-7">ProgressPlugin</span><span class="hl-2">);</span>
@@ -1586,7 +1595,7 @@
   <h2></h2>
 </a>
 
-<a href="#nativescript--vue-7" id="nativescript--vue-7" style="color: inherit; text-decoration: none;">
+<a href="#nativescript--vue-8" id="nativescript--vue-8" style="color: inherit; text-decoration: none;">
   <h3>NativeScript + Vue</h3>
 </a>
 <pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">Vue</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;nativescript-vue&#39;</span><span class="hl-2">;</span><br/><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">RipplePlugin</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;@nativescript-community/ui-material-ripple/vue&#39;</span><span class="hl-2">;</span><br/><br/><span class="hl-7">Vue</span><span class="hl-2">.</span><span class="hl-9">use</span><span class="hl-2">(</span><span class="hl-7">RipplePlugin</span><span class="hl-2">);</span>
@@ -1714,7 +1723,7 @@
   <h2></h2>
 </a>
 
-<a href="#nativescript--vue-8" id="nativescript--vue-8" style="color: inherit; text-decoration: none;">
+<a href="#nativescript--vue-9" id="nativescript--vue-9" style="color: inherit; text-decoration: none;">
   <h3>NativeScript + Vue</h3>
 </a>
 <pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">SliderPlugin</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;@nativescript-community/ui-material-slider/vue&#39;</span><span class="hl-2">;</span><br/><br/><span class="hl-7">Vue</span><span class="hl-2">.</span><span class="hl-9">use</span><span class="hl-2">(</span><span class="hl-7">SliderPlugin</span><span class="hl-2">);</span>
@@ -1887,7 +1896,7 @@
   <h2>Usage</h2>
 </a>
 
-<a href="#nativescript--vue-9" id="nativescript--vue-9" style="color: inherit; text-decoration: none;">
+<a href="#nativescript--vue-10" id="nativescript--vue-10" style="color: inherit; text-decoration: none;">
   <h3>NativeScript + Vue</h3>
 </a>
 <pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">Vue</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;nativescript-vue&#39;</span><span class="hl-2">;</span><br/><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">speeddialPlugin</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;@nativescript-community/ui-material-speeddial/vue&#39;</span><span class="hl-2">;</span><br/><br/><span class="hl-7">Vue</span><span class="hl-2">.</span><span class="hl-9">use</span><span class="hl-2">(</span><span class="hl-7">speeddialPlugin</span><span class="hl-2">);</span>
@@ -1979,7 +1988,7 @@
   <h2></h2>
 </a>
 
-<a href="#nativescript--vue-10" id="nativescript--vue-10" style="color: inherit; text-decoration: none;">
+<a href="#nativescript--vue-11" id="nativescript--vue-11" style="color: inherit; text-decoration: none;">
   <h3>NativeScript + Vue</h3>
 </a>
 <pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">TabsPlugin</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;@nativescript-community/ui-material-tabs/vue&#39;</span><span class="hl-2">;</span><br/><br/><span class="hl-7">Vue</span><span class="hl-2">.</span><span class="hl-9">use</span><span class="hl-2">(</span><span class="hl-7">TabsPlugin</span><span class="hl-2">);</span>
@@ -2196,7 +2205,7 @@
   <h2></h2>
 </a>
 
-<a href="#nativescript--vue-11" id="nativescript--vue-11" style="color: inherit; text-decoration: none;">
+<a href="#nativescript--vue-12" id="nativescript--vue-12" style="color: inherit; text-decoration: none;">
   <h3>NativeScript + Vue</h3>
 </a>
 <pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">TextFieldPlugin</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;@nativescript-community/ui-material-textfield/vue&#39;</span><span class="hl-2">;</span><br/><br/><span class="hl-7">Vue</span><span class="hl-2">.</span><span class="hl-9">use</span><span class="hl-2">(</span><span class="hl-7">TextFieldPlugin</span><span class="hl-2">);</span>
@@ -2339,7 +2348,7 @@
   <h2></h2>
 </a>
 
-<a href="#nativescript--vue-12" id="nativescript--vue-12" style="color: inherit; text-decoration: none;">
+<a href="#nativescript--vue-13" id="nativescript--vue-13" style="color: inherit; text-decoration: none;">
   <h3>NativeScript + Vue</h3>
 </a>
 <pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-2"> </span><span class="hl-7">TextViewPlugin</span><span class="hl-2"> </span><span class="hl-6">from</span><span class="hl-2"> </span><span class="hl-8">&#39;@nativescript-community/ui-material-textview/vue&#39;</span><span class="hl-2">;</span><br/><br/><span class="hl-7">Vue</span><span class="hl-2">.</span><span class="hl-9">use</span><span class="hl-2">(</span><span class="hl-7">TextViewPlugin</span><span class="hl-2">);</span>
@@ -2375,7 +2384,95 @@
 <li><strong>floating</strong> <em>optional</em></li>
 </ul>
 <p>A boolean attribute to set the floating state of the textview.</p>
-</details></div></div>
+</details>
+
+<p><a href="#demos-and-development"></a></p>
+
+<a href="#demos-and-development" id="demos-and-development" style="color: inherit; text-decoration: none;">
+  <h2>Demos and Development</h2>
+</a>
+
+<a href="#repo-setup" id="repo-setup" style="color: inherit; text-decoration: none;">
+  <h3>Repo Setup</h3>
+</a>
+<p>The repo uses submodules. If you did not clone with <code> --recursive</code> then you need to call</p>
+<pre><code><span class="hl-7">git</span><span class="hl-2"> </span><span class="hl-7">submodule</span><span class="hl-2"> </span><span class="hl-7">update</span><span class="hl-2"> --</span><span class="hl-7">init</span>
+</code></pre>
+<p>The package manager used to install and link dependencies must be <code>pnpm</code> or <code>yarn</code>. <code>npm</code> wont work.</p>
+<p>To develop and test:
+if you use <code>yarn</code> then run <code>yarn</code>
+if you use <code>pnpm</code> then run <code>pnpm i</code></p>
+<p><strong>Interactive Menu:</strong></p>
+<p>To start the interactive menu, run <code>npm start</code> (or <code>yarn start</code> or <code>pnpm start</code>). This will list all of the commonly used scripts.</p>
+
+<a href="#build" id="build" style="color: inherit; text-decoration: none;">
+  <h3>Build</h3>
+</a>
+<pre><code class="language-bash"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">build.all</span>
+</code></pre>
+<p>WARNING: it seems <code>yarn build.all</code> wont always work (not finding binaries in <code>node_modules/.bin</code>) which is why the doc explicitly uses <code>npm run</code></p>
+
+<a href="#demos" id="demos" style="color: inherit; text-decoration: none;">
+  <h3>Demos</h3>
+</a>
+<pre><code class="language-bash"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">demo.[ng</span><span class="hl-2">|react|svelte|vue].[ios|android]</span><br/><br/><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">demo.svelte.ios</span><span class="hl-2"> </span><span class="hl-11"># Example</span>
+</code></pre>
+<p>Demo setup is a bit special in the sense that if you want to modify/add demos you dont work directly in <code>demo-[ng|react|svelte|vue]</code>
+Instead you work in <code>demo-snippets/[ng|react|svelte|vue]</code>
+You can start from the <code>install.ts</code> of each flavor to see how to register new demos </p>
+<p><a href="#contributing"></a></p>
+
+<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+  <h2>Contributing</h2>
+</a>
+
+<a href="#update-repo" id="update-repo" style="color: inherit; text-decoration: none;">
+  <h3>Update repo</h3>
+</a>
+<p>You can update the repo files quite easily</p>
+<p>First update the submodules</p>
+<pre><code class="language-bash"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">update</span>
+</code></pre>
+<p>Then commit the changes
+Then update common files</p>
+<pre><code class="language-bash"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">sync</span>
+</code></pre>
+<p>Then you can run <code>yarn|pnpm</code>, commit changed files if any</p>
+
+<a href="#update-readme" id="update-readme" style="color: inherit; text-decoration: none;">
+  <h3>Update readme</h3>
+</a>
+<pre><code class="language-bash"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">readme</span>
+</code></pre>
+
+<a href="#update-doc" id="update-doc" style="color: inherit; text-decoration: none;">
+  <h3>Update doc</h3>
+</a>
+<pre><code class="language-bash"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">doc</span>
+</code></pre>
+
+<a href="#publish" id="publish" style="color: inherit; text-decoration: none;">
+  <h3>Publish</h3>
+</a>
+<p>The publishing is completely handled by <code>lerna</code> (you can add <code>-- --bump major</code> to force a major release)
+Simply run </p>
+<pre><code class="language-shell"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">publish</span>
+</code></pre>
+
+<a href="#modifying-submodules" id="modifying-submodules" style="color: inherit; text-decoration: none;">
+  <h3>modifying submodules</h3>
+</a>
+<p>The repo uses https:// for submodules which means you won&#39;t be able to push directly into the submodules.
+One easy solution is t modify <code>~/.gitconfig</code> and add</p>
+<pre><code><span class="hl-2">[</span><span class="hl-7">url</span><span class="hl-2"> </span><span class="hl-8">&quot;ssh://git@github.com/&quot;</span><span class="hl-2">]</span><br/><span class="hl-2">    </span><span class="hl-7">pushInsteadOf</span><span class="hl-2"> = </span><span class="hl-18">https</span><span class="hl-2">:</span><span class="hl-11">//github.com/</span>
+</code></pre>
+<p><a href="#questions"></a></p>
+
+<a href="#questions" id="questions" style="color: inherit; text-decoration: none;">
+  <h2>Questions</h2>
+</a>
+<p>If you have any questions/issues/comments please feel free to create an issue or start a conversation in the <a href="https://nativescript.org/discord">NativeScript Community Discord</a>.</p>
+</div></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
