@@ -1,6 +1,14 @@
 import { App, createApp } from 'nativescript-vue3';
 import { Frame, View, ViewBase } from '@nativescript/core';
 import { BottomSheetOptions } from '../bottomsheet';
+import { ComponentCustomProperties } from '@vue/runtime-core';
+
+declare module '@vue/runtime-core' {
+    interface ComponentCustomProperties {
+        $showBottomSheet: (component: any, options: VueBottomSheetOptions) => Promise<any>;
+        $closeBottomSheet(...args);
+    }
+}
 
 const modalStack = [];
 
@@ -63,12 +71,6 @@ const BottomSheetPlugin = {
 
 const createNativeView = (component: any, props?: any): App => createApp(component, props);
 
-declare module '@vue/runtime-core' {
-    interface ComponentCustomProperties {
-        $showBottomSheet: (component: any, options: VueBottomSheetOptions) => Promise<any>;
-        $closeBottomSheet(...args);
-    }
-}
 
 interface VueBottomSheetOptions extends Partial<BottomSheetOptions> {
     view?: string | ViewBase;
