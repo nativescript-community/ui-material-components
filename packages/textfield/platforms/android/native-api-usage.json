@@ -1,10 +1,10 @@
 {
     "uses": [
-        "android.view:LayoutInflater*",
-        "android.widget.LinearLayout:LayoutParams*",
-        "android.view:ViewGroup*",
-        "android.text.method:DigitsKeyListener*",
-        "com.nativescript.material.textfield:TextInputLayout*",
-        "com.nativescript.material.textfield:TextInputEditText*"
+        "android.view:LayoutInflater",
+        "android.widget:LinearLayout.LayoutParams",
+        "android.view:ViewGroup",
+        "android.text.method:DigitsKeyListener",
+        "com.nativescript.material.textfield:TextInputLayout",
+        "com.nativescript.material.textfield:TextInputEditText"
     ]
 }

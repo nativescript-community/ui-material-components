@@ -1,10 +1,10 @@
 {
     "uses": [
-        "android.os:Bundle*",
-        "android.graphics:Bitmap*",
-        "android.view.View:OnAttachStateChangeListener*",
-        "com.nativescript.material.core:TabViewPager*",
-        "com.nativescript.material.core:TabsBar*",
-        "com.nativescript.material.core:TabItemSpec*"
+        "android.os:Bundle",
+        "android.graphics:Bitmap",
+        "android.view:View.OnAttachStateChangeListener",
+        "com.nativescript.material.core:TabViewPager",
+        "com.nativescript.material.core:TabsBar",
+        "com.nativescript.material.core:TabItemSpec"
     ]
 }

@@ -1,5 +1,5 @@
 {
     "uses": [
-        "com.google.android.material.floatingactionbutton:ExtendedFloatingActionButton*"
+        "com.google.android.material.floatingactionbutton:ExtendedFloatingActionButton"
     ]
 }
