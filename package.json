@@ -37,7 +37,7 @@
         "demo.vue3.clean": "cd ./demo-vue3 && ns clean",
         "demo.vue3.ios": "cd ./demo-vue3 && ns run ios --no-hmr --env.watchNodeModules",
         "postinstall": "npm run setup",
-        "publish": "npm run clean && npm run build.all && npm run readme && npm run doc && lerna publish --no-private --create-release=github --force-publish",
+        "publish": "npm run clean ; npm run build.all ; npm run readme ; npm run doc ; npm run commit_readme_doc_changes ; lerna publish",
         "readme": "lerna run readme && node ./tools/readme.js",
         "setup": "npm run submodules && ts-patch install",
         "start": "./node_modules/.bin/ntl -A -s 15 -o",
@@ -45,7 +45,8 @@
         "submodules.update": "git submodule -q foreach git pull -q origin master && git add .",
         "sync": "node ./tools/sync.js",
         "update": "node ./tools/update.js",
-        "doc": "node tools/builddoc.mjs"
+        "doc": "node tools/builddoc.mjs",
+        "commit_readme_doc_changes": "git add docs *.md ; git commit -m \"readme/doc\""
     },
     "keywords": [
         "NativeScript",
@@ -81,15 +82,12 @@
             "demo.svelte.ios": "Runs the Svelte demo on iOS.",
             "demo.vue.android": "Runs the Vue demo on Android.",
             "demo.vue.ios": "Runs the Vue demo on iOS.",
-            "demo.vue3.android": "Runs the Vue3 demo on Android.",
-            "demo.vue3.ios": "Runs the Vue3 demo on iOS.",
             "watch": "Watch for changes in the plugin source and re-build."
         }
     },
     "workspaces": [
         "packages/*",
         "demo-vue",
-        "demo-vue3",
         "demo-ng",
         "demo-svelte",
         "demo-react",

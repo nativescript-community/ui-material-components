@@ -1,4 +1,5 @@
 {
+    "version": "7.0.36",
     "packages": [
         "packages/*"
     ],
@@ -7,9 +8,30 @@
     "command": {
         "publish": {
             "conventionalCommits": true,
+            "conventionalBlacklist": [
+                "chore"
+            ],
+            "changelogPreset": "angular",
+            "createRelease": "github",
+            "commitHooks": false,
+            "private": false,
             "ignoreChanges": [
-                "ignored-file",
-                "*.md"
+                "*.md",
+                "docs/**"
+            ]
+        },
+        "version": {
+            "conventionalCommits": true,
+            "conventionalBlacklist": [
+                "chore"
+            ],
+            "changelogPreset": "angular",
+            "createRelease": "github",
+            "commitHooks": false,
+            "private": false,
+            "ignoreChanges": [
+                "*.md",
+                "docs/**"
             ]
         },
         "bootstrap": {
@@ -17,6 +39,5 @@
                 "--no-package-lock"
             ]
         }
-    },
-    "version": "7.0.36"
+    }
 }

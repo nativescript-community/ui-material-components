@@ -43,6 +43,7 @@ build
 Pods
 !packages/platforms
 /packages/**/*.aar
+/demo-snippets/**/*.aar
 *.xcuserdatad
 /packages/README.md
 packages/**/*js.map
