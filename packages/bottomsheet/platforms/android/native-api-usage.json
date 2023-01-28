@@ -1,5 +1,7 @@
 {
     "uses": [
+        "android.view:WindowManager",
+        "android.view:WindowManager.LayoutParams",
         "com.google.android.material.bottomsheet:BottomSheetBehavior",
         "com.google.android.material.bottomsheet:BottomSheetBehavior.BottomSheetCallback"
     ]
