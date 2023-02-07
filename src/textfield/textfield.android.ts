@@ -106,7 +106,7 @@ export class TextField extends TextFieldBase {
             if (!FrameLayoutLayoutParams) {
                 FrameLayoutLayoutParams = android.widget.FrameLayout.LayoutParams;
             }
-            editText.setLayoutParams(new android.widget.LinearLayout.LayoutParams(FrameLayoutLayoutParams.MATCH_PARENT, FrameLayoutLayoutParams.WRAP_CONTENT));
+            editText.setLayoutParams(new android.widget.LinearLayout.LayoutParams(FrameLayoutLayoutParams.MATCH_PARENT, FrameLayoutLayoutParams.MATCH_PARENT));
             layoutView.addView(editText);
         }
         if (needsTransparent) {
