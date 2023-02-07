@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.38](https://github.com/nativescript-community/ui-material-component/compare/v7.0.37...v7.0.38) (2023-02-07)
+
+
+### Bug Fixes
+
+* **textfield,textview:** android fix with components not sizing correctly ([ffaff43](https://github.com/nativescript-community/ui-material-component/commit/ffaff43ff44b921b3533e099e73d159e5dcb531d))
+
+
+
+
+
 ## [7.0.37](https://github.com/nativescript-community/ui-material-component/compare/v7.0.36...v7.0.37) (2023-01-28)
 
 
