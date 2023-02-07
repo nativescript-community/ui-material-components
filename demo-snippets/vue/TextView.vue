@@ -4,7 +4,7 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap"></NavigationButton>
         </ActionBar>
         <ScrollView>
-            <StackLayout>
+            <StackLayout padding="10">
                 <MDTextView
                     id="textView1"
                     height="200"
@@ -27,7 +27,7 @@
                     </FormattedString>
                 </MDTextView>
                 <MDTextView id="textView2" editable="false" counterMaxLength="10" maxLength="10" hint="hint me" @textChange="onTextChange" @returnPress="onReturnPress" />
-                <MDTextView id="textView3" placeholderColor="green" floatingColor="yellow" color="red" variant="outline" hint="text should be red" @textChange="onTextChange" v-model="value" @returnPress="onReturnPress" />
+                <MDTextView id="textView3" placeholderColor="green" floatingColor="yellow" color="red" variant="outline" hint="text should be red" @textChange="onTextChange" v-model="value" @returnPress="onReturnPress"  height="200" backgroundColor="blue"/>
                 <MDTextView variant="filled" required="true" email="true" hint="fill this out..." @textChange="onTextChange" @returnPress="onReturnPress" />
                 <MDTextView hint="fill this out..." />
             </StackLayout>
