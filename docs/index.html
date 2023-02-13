@@ -170,7 +170,7 @@
 <a href="#installation-1" id="installation-1" style="color: inherit; text-decoration: none;">
   <h2>Installation</h2>
 </a>
-<pre><code class="language-bash"><span class="hl-2">ns </span><span class="hl-8">plugin</span><span class="hl-2"> </span><span class="hl-8">add</span><span class="hl-2"> </span><span class="hl-8">@nativescript-community/ui-material-bottom-navigation</span>
+<pre><code class="language-bash"><span class="hl-2">ns plugin add @nativescript-community/ui-material-bottom-navigation</span>
 </code></pre>
 <p>Be sure to run a new build after adding plugins to avoid any issues.</p>
 <p><a href="#changelogchangelogmd"></a></p>
@@ -1877,7 +1877,7 @@
 <a href="#installation-12" id="installation-12" style="color: inherit; text-decoration: none;">
   <h2>Installation</h2>
 </a>
-<pre><code class="language-bash"><span class="hl-2">ns </span><span class="hl-8">plugin</span><span class="hl-2"> </span><span class="hl-8">add</span><span class="hl-2"> </span><span class="hl-8">@nativescript-community/ui-material-speeddial</span>
+<pre><code class="language-bash"><span class="hl-2">ns plugin add @nativescript-community/ui-material-speeddial</span>
 </code></pre>
 <p>Be sure to run a new build after adding plugins to avoid any issues.</p>
 <p><a href="#changelogchangelogmd"></a></p>
@@ -2408,14 +2408,14 @@ if you use <code>pnpm</code> then run <code>pnpm i</code></p>
 <a href="#build" id="build" style="color: inherit; text-decoration: none;">
   <h3>Build</h3>
 </a>
-<pre><code class="language-bash"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">build.all</span>
+<pre><code class="language-bash"><span class="hl-2">npm run build.all</span>
 </code></pre>
 <p>WARNING: it seems <code>yarn build.all</code> wont always work (not finding binaries in <code>node_modules/.bin</code>) which is why the doc explicitly uses <code>npm run</code></p>
 
 <a href="#demos" id="demos" style="color: inherit; text-decoration: none;">
   <h3>Demos</h3>
 </a>
-<pre><code class="language-bash"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">demo.[ng</span><span class="hl-2">|react|svelte|vue].[ios|android]</span><br/><br/><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">demo.svelte.ios</span><span class="hl-2"> </span><span class="hl-11"># Example</span>
+<pre><code class="language-bash"><span class="hl-2">npm run demo.[ng|react|svelte|vue].[ios|android]</span><br/><br/><span class="hl-2">npm run demo.svelte.ios </span><span class="hl-11"># Example</span>
 </code></pre>
 <p>Demo setup is a bit special in the sense that if you want to modify/add demos you dont work directly in <code>demo-[ng|react|svelte|vue]</code>
 Instead you work in <code>demo-snippets/[ng|react|svelte|vue]</code>
@@ -2431,24 +2431,24 @@ You can start from the <code>install.ts</code> of each flavor to see how to regi
 </a>
 <p>You can update the repo files quite easily</p>
 <p>First update the submodules</p>
-<pre><code class="language-bash"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">update</span>
+<pre><code class="language-bash"><span class="hl-2">npm run update</span>
 </code></pre>
 <p>Then commit the changes
 Then update common files</p>
-<pre><code class="language-bash"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">sync</span>
+<pre><code class="language-bash"><span class="hl-2">npm run sync</span>
 </code></pre>
 <p>Then you can run <code>yarn|pnpm</code>, commit changed files if any</p>
 
 <a href="#update-readme" id="update-readme" style="color: inherit; text-decoration: none;">
   <h3>Update readme</h3>
 </a>
-<pre><code class="language-bash"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">readme</span>
+<pre><code class="language-bash"><span class="hl-2">npm run readme</span>
 </code></pre>
 
 <a href="#update-doc" id="update-doc" style="color: inherit; text-decoration: none;">
   <h3>Update doc</h3>
 </a>
-<pre><code class="language-bash"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">doc</span>
+<pre><code class="language-bash"><span class="hl-2">npm run doc</span>
 </code></pre>
 
 <a href="#publish" id="publish" style="color: inherit; text-decoration: none;">
@@ -2456,7 +2456,7 @@ Then update common files</p>
 </a>
 <p>The publishing is completely handled by <code>lerna</code> (you can add <code>-- --bump major</code> to force a major release)
 Simply run </p>
-<pre><code class="language-shell"><span class="hl-2">npm </span><span class="hl-8">run</span><span class="hl-2"> </span><span class="hl-8">publish</span>
+<pre><code class="language-shell"><span class="hl-2">npm run publish</span>
 </code></pre>
 
 <a href="#modifying-submodules" id="modifying-submodules" style="color: inherit; text-decoration: none;">
@@ -2499,14 +2499,11 @@ One easy solution is t modify <code>~/.gitconfig</code> and add</p>
 <li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_button.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>button</a></li>
 <li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_cardview.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>cardview</a></li>
 <li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_core.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>core</a></li>
-<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_dialogs.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>dialogs</a></li>
 <li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_floatingactionbutton.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>floatingactionbutton</a></li>
 <li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_progress.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>progress</a></li>
 <li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_ripple.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>ripple</a></li>
 <li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_slider.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>slider</a></li>
 <li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_snackbar.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>snackbar</a></li>
-<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_speedial.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>speedial</a></li>
-<li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_tabs.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>tabs</a></li>
 <li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_textfield.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>textfield</a></li>
 <li class="tsd-kind-module"><a href="modules/_nativescript_community_ui_material_textview.html">@nativescript-<wbr/>community/ui-<wbr/>material-<wbr/>textview</a></li></ul></li></ul></div></details></nav></div></div>
 <div class="container tsd-generator">
