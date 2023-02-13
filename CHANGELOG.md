@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.39](https://github.com/nativescript-community/ui-material-component/compare/v7.0.38...v7.0.39) (2023-02-13)
+
+
+### Bug Fixes
+
+* **snackbar:** android options.view can be any view now ([763db37](https://github.com/nativescript-community/ui-material-component/commit/763db372ea5add56cde366cc51714d161bb848d6))
+
+
+
+
+
 ## [7.0.38](https://github.com/nativescript-community/ui-material-component/compare/v7.0.37...v7.0.38) (2023-02-07)
 
 
