@@ -2,6 +2,7 @@
     <GridLayout id="test1" rows="auto auto" backgroundColor="yellow">
         <!-- highlighted in red to demonstrate movement -->
         <Stacklayout id="test2" row="0" backgroundColor="red" verticalAlignment="top" marginLeft="10" marginRight="10">
+            <Button @tap="$emit('indexChanged', 200)" text="Emit value"></Button>
             <Button @tap="toggleExtraContent" text="Toggle extra content"></Button>
             <Button @tap="openAnotherInner" text="Open second"></Button>
             <Button id="innerButton" @tap="onButtonTap" text="close with result"></Button>
