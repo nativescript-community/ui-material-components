@@ -4,7 +4,6 @@
             <Button id="innerButtonK" @tap="onButtonTap" text="close with result k"></Button>
         </Stacklayout>
         <MDTextField margin="10" variant="filled" hint="Working TextView hint 🤪" />
-        <PreviousNextView />
     </StackLayout>
 </template>
 
