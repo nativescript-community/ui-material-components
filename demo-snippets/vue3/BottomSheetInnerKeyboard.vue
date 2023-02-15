@@ -10,15 +10,14 @@
 
 <script lang="ts" setup>
 import * as frameModule from '@nativescript/core/ui/frame';
-import { inject } from 'vue';
-
-const $closeBottomSheet = inject('$closeBottomSheet');
+import { useBottomSheet } from "@nativescript-community/ui-material-bottomsheet/vue3";
+const { showBottomSheet, closeBottomSheet } = useBottomSheet()
 
 function onShownInBottomSheet(args) {
     console.log('onShownInBottomSheet');
 }
 
 function onButtonTap(event) {
-    $closeBottomSheet(event.object.id);
+    closeBottomSheet(event.object.id);
 }
 </script>

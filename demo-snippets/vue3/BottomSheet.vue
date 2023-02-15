@@ -18,14 +18,14 @@
 import { EventData, View } from '@nativescript/core';
 import * as frameModule from '@nativescript/core/ui/frame';
 import { NativeScriptVue } from 'nativescript-vue';
-import { inject } from 'vue';
 import BottomSheetInner from './BottomSheetInner.vue';
 import BottomSheetInnerKeyboard from './BottomSheetInnerKeyboard.vue';
+import { useBottomSheet } from "@nativescript-community/ui-material-bottomsheet/vue3";
 
 const title = 'BottomSheet sample';
 const name = 'BottomSheet';
-const $showBottomSheet = inject('$showBottomSheet')
 
+const { showBottomSheet, closeBottomSheet } = useBottomSheet()
 function onNavigationButtonTap() {
     frameModule.Frame.topmost().goBack();
 }
@@ -36,7 +36,7 @@ function onTap(args: EventData) {
     console.log('onTap', objId, obj);
     switch (objId) {
         case 'bottomsheet': {
-            $showBottomSheet(BottomSheetInner, {
+            showBottomSheet(BottomSheetInner, {
                 // transparent: true,
                 on: {
                     indexChanged: (x) => { console.log('listener', x) }
@@ -48,7 +48,7 @@ function onTap(args: EventData) {
             break;
         }
         case 'dont_ignore_top_safe_area': {
-            $showBottomSheet(BottomSheetInner, {
+            showBottomSheet(BottomSheetInner, {
                 ignoreTopSafeArea: false,
                 // transparent:true,
                 closeCallback: (...args) => {
@@ -58,7 +58,7 @@ function onTap(args: EventData) {
             break;
         }
         case 'ignore_bottom_safe_area': {
-            $showBottomSheet(BottomSheetInner, {
+            showBottomSheet(BottomSheetInner, {
                 // transparent:true,
                 ignoreBottomSafeArea: true,
                 closeCallback: (...args) => {
@@ -68,7 +68,7 @@ function onTap(args: EventData) {
             break;
         }
         case 'dont_ignore_top_ignore_bottom_safe_area': {
-            $showBottomSheet(BottomSheetInner, {
+            showBottomSheet(BottomSheetInner, {
                 // transparent:true,
                 ignoreTopSafeArea: false,
                 ignoreBottomSafeArea: true,
@@ -79,7 +79,7 @@ function onTap(args: EventData) {
             break;
         }
         case 'bottomsheet-keyboard': {
-            $showBottomSheet(BottomSheetInnerKeyboard, {
+            showBottomSheet(BottomSheetInnerKeyboard, {
                 closeCallback: (...args) => {
                     console.log('bottom sheet closed', args);
                 }
@@ -87,7 +87,7 @@ function onTap(args: EventData) {
             break;
         }
         case 'bottomsheet-peekheight': {
-            $showBottomSheet(BottomSheetInner, {
+            showBottomSheet(BottomSheetInner, {
                 peekHeight: 100,
                 trackingScrollView: 'scrollView',
                 // transparent: true,

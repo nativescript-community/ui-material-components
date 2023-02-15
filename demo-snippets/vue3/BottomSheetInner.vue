@@ -12,15 +12,6 @@
                 <MDTextField hint="Edit text to filter..." style="font-size: 16" />
                 <MDActivityIndicator *ngIf="processing" width="50" height="50" />
             </StackLayout>
-            <ListView height="150" :items="items" id="scrollView">
-                <v-template let-item="item" let-odd="odd" let-even="even">
-                    <GridLayout height="64" backgroundColor="green">
-                        <Image horizontalAlignment="left" width="64" />
-                        <Label horizontalAlignment="center" />
-                        <Label horizontalAlignment="right" />
-                    </GridLayout>
-                </v-template>
-            </ListView>
             <Button text="Cancel" horizontalAlignment="center" />
         </StackLayout>
     </GridLayout>
@@ -30,16 +21,14 @@
 <script lang="ts" setup>
 import * as frameModule from '@nativescript/core/ui/frame';
 import BottomSheetInnerKeyboardVue from './BottomSheetInnerKeyboard.vue';
-import { inject } from 'vue';
-
-const $closeBottomSheet = inject('$closeBottomSheet');
-const $showBottomSheet = inject('$showBottomSheet');
+import { useBottomSheet } from "@nativescript-community/ui-material-bottomsheet/vue3";
+const { showBottomSheet, closeBottomSheet } = useBottomSheet()
 
 const showExtraContent = false;
 const items = [{}, {}, {}, {}, {}, {}]
 
 function onButtonTap(event) {
-    $closeBottomSheet(event.object.id);
+    closeBottomSheet(event.object.id);
 }
 
 function onShownInBottomSheet(args) {
@@ -51,7 +40,7 @@ function toggleExtraContent() {
 }
 
 function openAnotherInner() {
-    $showBottomSheet(BottomSheetInnerKeyboardVue, {
+    showBottomSheet(BottomSheetInnerKeyboardVue, {
         // transparent:true,
         ignoreBottomSafeArea: true,
         closeCallback: (...args) => {

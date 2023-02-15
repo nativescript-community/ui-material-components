@@ -77,8 +77,6 @@ const BottomSheetPlugin = {
 
         globals.$showBottomSheet = showSheet;
         globals.$closeBottomSheet = closeSheet;
-        app.provide('$showBottomSheet', showSheet);
-        app.provide('$closeBottomSheet', closeSheet);
     }
 };
 
