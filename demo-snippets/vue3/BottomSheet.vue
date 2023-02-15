@@ -1,7 +1,7 @@
 <template>
     <Page>
         <ActionBar :title="title">
-            <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap"></NavigationButton>
+            <NavigationButton text="Back"  @tap="onNavigationButtonTap"></NavigationButton>
         </ActionBar>
         <StackLayout>
             <MDButton id="bottomsheet" text="bottomsheet" @tap="onTap" />
@@ -14,93 +14,89 @@
     </Page>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { EventData, View } from '@nativescript/core';
 import * as frameModule from '@nativescript/core/ui/frame';
 import { NativeScriptVue } from 'nativescript-vue';
-import Vue from 'vue';
+import { inject } from 'vue';
 import BottomSheetInner from './BottomSheetInner.vue';
 import BottomSheetInnerKeyboard from './BottomSheetInnerKeyboard.vue';
 
-export const title = 'BottomSheet sample';
+const title = 'BottomSheet sample';
+const name = 'BottomSheet';
+const $showBottomSheet = inject('$showBottomSheet')
 
-export default Vue.extend({
-    data() {
-        return {
-            name: 'BottomSheet',
-            title
-        };
-    },
-    methods: {
-        onNavigationButtonTap() {
-            frameModule.Frame.topmost().goBack();
-        },
-        onTap(args: EventData) {
-            const obj = args.object as View;
-            const objId = obj.id;
-            console.log('onTap', objId, obj);
-            switch (objId) {
-                case 'bottomsheet': {
-                    (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
-                        // transparent: true,
-                        closeCallback: (...args) => {
-                            console.log('bottom sheet closed', args);
-                        }
-                    });
-                    break;
+function onNavigationButtonTap() {
+    frameModule.Frame.topmost().goBack();
+}
+
+function onTap(args: EventData) {
+    const obj = args.object as View;
+    const objId = obj.id;
+    console.log('onTap', objId, obj);
+    switch (objId) {
+        case 'bottomsheet': {
+            $showBottomSheet(BottomSheetInner, {
+                // transparent: true,
+                on: {
+                    indexChanged: (x) => { console.log('listener', x) }
+                },
+                closeCallback: (...args) => {
+                    console.log('bottom sheet closed', args);
                 }
-                case 'dont_ignore_top_safe_area': {
-                    (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
-                        ignoreTopSafeArea: false,
-                        // transparent:true,
-                        closeCallback: (...args) => {
-                            console.log('bottom sheet closed', args);
-                        }
-                    });
-                    break;
+            });
+            break;
+        }
+        case 'dont_ignore_top_safe_area': {
+            $showBottomSheet(BottomSheetInner, {
+                ignoreTopSafeArea: false,
+                // transparent:true,
+                closeCallback: (...args) => {
+                    console.log('bottom sheet closed', args);
                 }
-                case 'ignore_bottom_safe_area': {
-                    (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
-                        // transparent:true,
-                        ignoreBottomSafeArea: true,
-                        closeCallback: (...args) => {
-                            console.log('bottom sheet closed', args);
-                        }
-                    });
-                    break;
+            });
+            break;
+        }
+        case 'ignore_bottom_safe_area': {
+            $showBottomSheet(BottomSheetInner, {
+                // transparent:true,
+                ignoreBottomSafeArea: true,
+                closeCallback: (...args) => {
+                    console.log('bottom sheet closed', args);
                 }
-                case 'dont_ignore_top_ignore_bottom_safe_area': {
-                    (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
-                        // transparent:true,
-                        ignoreTopSafeArea: false,
-                        ignoreBottomSafeArea: true,
-                        closeCallback: (...args) => {
-                            console.log('bottom sheet closed', args);
-                        }
-                    });
-                    break;
+            });
+            break;
+        }
+        case 'dont_ignore_top_ignore_bottom_safe_area': {
+            $showBottomSheet(BottomSheetInner, {
+                // transparent:true,
+                ignoreTopSafeArea: false,
+                ignoreBottomSafeArea: true,
+                closeCallback: (...args) => {
+                    console.log('bottom sheet closed', args);
                 }
-                case 'bottomsheet-keyboard': {
-                    (this as NativeScriptVue).$showBottomSheet(BottomSheetInnerKeyboard, {
-                        closeCallback: (...args) => {
-                            console.log('bottom sheet closed', args);
-                        }
-                    });
-                    break;
+            });
+            break;
+        }
+        case 'bottomsheet-keyboard': {
+            $showBottomSheet(BottomSheetInnerKeyboard, {
+                closeCallback: (...args) => {
+                    console.log('bottom sheet closed', args);
                 }
-                case 'bottomsheet-peekheight': {
-                    (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
-                        peekHeight: 100,
-                        trackingScrollView: 'scrollView',
-                        // transparent: true,
-                        closeCallback: (...args) => {
-                            console.log('bottom sheet closed', args);
-                        }
-                    });
-                    break;
+            });
+            break;
+        }
+        case 'bottomsheet-peekheight': {
+            $showBottomSheet(BottomSheetInner, {
+                peekHeight: 100,
+                trackingScrollView: 'scrollView',
+                // transparent: true,
+                closeCallback: (...args) => {
+                    console.log('bottom sheet closed', args);
                 }
-            }
+            });
+            break;
         }
     }
-});
+}
 </script>

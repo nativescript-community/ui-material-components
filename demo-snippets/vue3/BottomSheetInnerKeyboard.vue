@@ -8,21 +8,17 @@
     </StackLayout>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import * as frameModule from '@nativescript/core/ui/frame';
-import Vue from 'vue';
+import { inject } from 'vue';
 
-export default Vue.extend({
-    data() {
-        return {};
-    },
-    methods: {
-        onShownInBottomSheet(args) {
-            console.log('onShownInBottomSheet');
-        },
-        onButtonTap(event) {
-            this.$closeBottomSheet(event.object.id);
-        }
-    }
-});
+const $closeBottomSheet = inject('$closeBottomSheet');
+
+function onShownInBottomSheet(args) {
+    console.log('onShownInBottomSheet');
+}
+
+function onButtonTap(event) {
+    $closeBottomSheet(event.object.id);
+}
 </script>
