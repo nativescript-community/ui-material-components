@@ -26,9 +26,20 @@ const showSheet = (component, options: VueBottomSheetOptions) =>
     new Promise((resolve: any) => {
         let resolved = false;
 
-        let navEntryInstance = createNativeView(component, {
-            props: options.props
-        }).mount();
+        const listeners = Object.entries(options.on ?? {}).reduce((listeners, [key, value]) => {
+            listeners['on' + key.charAt(0).toUpperCase() + key.slice(1)] = value;
+            return listeners;
+        }, {});
+
+        let navEntryInstance = createNativeView(
+            component,
+            Object.assign(
+                {
+                    props: options.props
+                },
+                listeners
+            )
+        ).mount();
 
         const viewAttached = (options.view as View) ?? Frame.topmost().currentPage;
 
@@ -66,6 +77,8 @@ const BottomSheetPlugin = {
 
         globals.$showBottomSheet = showSheet;
         globals.$closeBottomSheet = closeSheet;
+        app.provide('$showBottomSheet', showSheet);
+        app.provide('$closeBottomSheet', closeSheet);
     }
 };
 
@@ -75,6 +88,7 @@ const createNativeView = (component: any, props?: any): App => createApp(compone
 interface VueBottomSheetOptions extends Partial<BottomSheetOptions> {
     view?: string | ViewBase;
     props?: any;
+    on?: Record<string, (...args: any[]) => any>;
 }
 
 export { BottomSheetPlugin, VueBottomSheetOptions, useBottomSheet };
