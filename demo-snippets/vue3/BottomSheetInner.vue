@@ -15,11 +15,9 @@
             <Button text="Cancel" horizontalAlignment="center" />
         </StackLayout>
     </GridLayout>
-    <!-- </MDCardView> -->
 </template>
 
 <script lang="ts" setup>
-import * as frameModule from '@nativescript/core/ui/frame';
 import BottomSheetInnerKeyboardVue from './BottomSheetInnerKeyboard.vue';
 import { useBottomSheet } from "@nativescript-community/ui-material-bottomsheet/vue3";
 const { showBottomSheet, closeBottomSheet } = useBottomSheet()
