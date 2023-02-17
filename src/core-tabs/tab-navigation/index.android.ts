@@ -587,7 +587,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         if (!tabStripItem.nativeViewProtected) {
             return;
         }
-        const itemColor = tabStripItem.index === this.selectedIndex ? this.mSelectedItemColor : tabStripItem.style.color || this.mUnSelectedItemColor;
+        const itemColor = tabStripItem.index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor || tabStripItem.style.color;
         // set label color
         if (itemColor) {
             tabStripItem.nativeViewProtected.setTextColor(itemColor.android || null);

@@ -4,25 +4,19 @@
             <Button id="innerButtonK" @tap="onButtonTap" text="close with result k"></Button>
         </Stacklayout>
         <MDTextField margin="10" variant="filled" hint="Working TextView hint 🤪" />
-        <PreviousNextView />
     </StackLayout>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import * as frameModule from '@nativescript/core/ui/frame';
-import Vue from 'vue';
+import { useBottomSheet } from "@nativescript-community/ui-material-bottomsheet/vue3";
+const { showBottomSheet, closeBottomSheet } = useBottomSheet()
 
-export default Vue.extend({
-    data() {
-        return {};
-    },
-    methods: {
-        onShownInBottomSheet(args) {
-            console.log('onShownInBottomSheet');
-        },
-        onButtonTap(event) {
-            this.$closeBottomSheet(event.object.id);
-        }
-    }
-});
+function onShownInBottomSheet(args) {
+    console.log('onShownInBottomSheet');
+}
+
+function onButtonTap(event) {
+    closeBottomSheet(event.object.id);
+}
 </script>
