@@ -43,6 +43,9 @@ export default Vue.extend({
                 case 'bottomsheet': {
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
                         // transparent: true,
+                        on: {
+                            indexChanged: (x) => { console.log('listener', x) }
+                        },
                         closeCallback: (...args) => {
                             console.log('bottom sheet closed', args);
                         }

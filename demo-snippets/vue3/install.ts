@@ -4,7 +4,7 @@ import ActivityIndicatorPlugin from '@nativescript-community/ui-material-activit
 import BottomNavigationPlugin from '@nativescript-community/ui-material-bottom-navigation/vue';
 import BottomNavigationBarPlugin from '@nativescript-community/ui-material-bottomnavigationbar/vue';
 import { install as installBottomSheet } from '@nativescript-community/ui-material-bottomsheet';
-/*import {BottomSheetPlugin} from '@nativescript-community/ui-material-bottomsheet/vue3';*/
+import { BottomSheetPlugin } from '@nativescript-community/ui-material-bottomsheet/vue3';
 import ButtonPlugin from '@nativescript-community/ui-material-button/vue';
 
 import CardViewPlugin from '@nativescript-community/ui-material-cardview/vue';
@@ -72,7 +72,7 @@ export function installPlugin(app: any) {
     app.use(TextFieldPlugin);
     app.use(TextViewPlugin);
     // TODO: wait for publish new version BottomSheetPlugin
-    //app.use(BottomSheetPlugin);
+    app.use(BottomSheetPlugin);
 }
 
 export const demos = [
@@ -88,7 +88,7 @@ export const demos = [
     { name: 'SnackBar', path: 'SnackBar', component: SnackBar },
     { name: 'TextFields', path: 'TextFields', component: TextFields },
     { name: 'TextViews', path: 'TextViews', component: TextViews },
-    // { name: 'BottomSheet', path: 'BottomSheet', component: BottomSheet },
+    { name: 'BottomSheet', path: 'BottomSheet', component: BottomSheet },
     // { name: 'SpeedDial', path: 'SpeedDial', component: SpeedDial },
     // { name: 'Tabs', path: 'Tabs', component: Tabs },
     { name: 'Mixins', path: 'Mixins', component: Mixins }
