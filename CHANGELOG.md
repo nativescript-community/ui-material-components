@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.42](https://github.com/nativescript-community/ui-material-component/compare/v7.0.41...v7.0.42) (2023-02-23)
+
+
+### Bug Fixes
+
+* **dialogs:** missing native-api-usage ([3f628b7](https://github.com/nativescript-community/ui-material-component/commit/3f628b7e4d75584c256b6fc883e66ed30ce4c9dc))
+
+
+
+
+
 ## [7.0.41](https://github.com/nativescript-community/ui-material-component/compare/v7.0.40...v7.0.41) (2023-02-17)
 
 
