@@ -1,5 +1,6 @@
 {
     "uses": [
+        "android.content:DialogInterface.OnKeyListener",
         "com.google.android.material.dialog:MaterialAlertDialogBuilder",
         "android.widget:TextView",
         "android.view:KeyEvent",
