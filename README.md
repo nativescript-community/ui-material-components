@@ -941,6 +941,15 @@ import MyComponent from 'MyComponent.vue';
 
 //inside another Vue component
 const options: VueBottomSheetOptions = {
+    // props to be passed to MyComponent
+    props: {
+        someProp: true,
+        anotherProp: false
+    },
+    // listeners to be connected to MyComponent
+    on: {
+        someEvent: (value) => { console.log(value) }
+    }
 };
 this.$showBottomSheet(MyComponent, options)
 ```
@@ -962,7 +971,15 @@ import MyComponent from 'MyComponent.vue';
 
 
 const options: VueBottomSheetOptions = {
-    ...
+    // props to be passed to MyComponent
+    props: {
+        someProp: true,
+        anotherProp: false
+    },
+    // listeners to be connected to MyComponent
+    on: {
+        someEvent: (value) => { console.log(value) }
+    }
 };
 
 const { showBottomSheet, closeBottomSheet } = useBottomSheet()

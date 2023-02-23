@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.41](https://github.com/nativescript-community/ui-material-component/compare/v7.0.40...v7.0.41) (2023-02-17)
+
+
+### Bug Fixes
+
+* **android:** TabStrip style for the unselected item is not working ([73ff6de](https://github.com/nativescript-community/ui-material-component/commit/73ff6deca54c74c3f590ef9d1aa48e105e8a25a2))
+* **tabs:** Android, restore state issue ([b363af2](https://github.com/nativescript-community/ui-material-component/commit/b363af2de18a9207683f0fa8dae824d2388f5922))
+
+
+### Features
+
+* add vue2 listener support to bottomsheet ([55a51fd](https://github.com/nativescript-community/ui-material-component/commit/55a51fd35eb6b49e85d01e61676d234f4480d608))
+
+
+
+
+
+## [7.0.40](https://github.com/nativescript-community/ui-material-component/compare/v7.0.39...v7.0.40) (2023-02-14)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+
+
+
+
+## [7.0.39](https://github.com/nativescript-community/ui-material-component/compare/v7.0.38...v7.0.39) (2023-02-13)
+
+
+### Bug Fixes
+
+* **snackbar:** android options.view can be any view now ([763db37](https://github.com/nativescript-community/ui-material-component/commit/763db372ea5add56cde366cc51714d161bb848d6))
+
+
+
+
+
 ## [7.0.38](https://github.com/nativescript-community/ui-material-component/compare/v7.0.37...v7.0.38) (2023-02-07)
 
 

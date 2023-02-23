@@ -56,8 +56,8 @@ export class SnackBar extends SnackBarBase {
                 attachView = modalViews[modalViews.length - 1] as View;
             }
         }
-        const page = attachView instanceof Page ? attachView : attachView.page;
-        let nView = (page.nativeViewProtected as android.view.View).getParent();
+        const page = (attachView instanceof Page ? attachView : attachView.page) || attachView;
+        let nView = page instanceof Page ? (page.nativeViewProtected as android.view.View).getParent() : attachView.nativeViewProtected;
         let nCoordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout = (page as any).nCoordinatorLayout;
         if (!nCoordinatorLayout && !(nView instanceof androidx.coordinatorlayout.widget.CoordinatorLayout) && nView instanceof android.view.ViewGroup) {
             nCoordinatorLayout = new androidx.coordinatorlayout.widget.CoordinatorLayout(attachView._context);
@@ -76,7 +76,7 @@ export class SnackBar extends SnackBarBase {
 
             nView = nCoordinatorLayout;
         }
-        this._snackbar = com.google.android.material.snackbar.Snackbar.make(nView as any, options.message, options.hideDelay);
+        this._snackbar = com.google.android.material.snackbar.Snackbar.make(nView, options.message, options.hideDelay);
         if (options.anchorView) {
             this._snackbar.setAnchorView(options.anchorView.nativeViewProtected);
         }

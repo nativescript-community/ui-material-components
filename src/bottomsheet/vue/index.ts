@@ -5,6 +5,7 @@ import { View } from '@nativescript/core';
 
 export interface VueBottomSheetOptions extends Omit<BottomSheetOptions, 'view'> {
     props?: any;
+    on?: Record<string, (...args: any[]) => any>;
 }
 
 declare module 'nativescript-vue' {
@@ -43,6 +44,7 @@ const BottomSheetPlugin = {
                     render: (h) =>
                         h(component, {
                             props: options.props,
+                            on: options.on,
                             key: serializeModalOptions(options)
                         })
                 });

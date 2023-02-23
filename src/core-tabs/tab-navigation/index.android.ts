@@ -238,7 +238,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         this.mViewPager = viewPager;
         setElevation(nativeView, null, this.tabsPosition);
         if (this.tabStrip) {
-            this.handleTabStripChanged(nativeView, null, this.tabStrip);
+            this.handleTabStripChanged(nativeView, true, this.tabStrip);
         }
 
         return nativeView;
@@ -250,9 +250,9 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     protected abstract getTabBarItemTextView(index: number);
     protected abstract selectTabBar(oldIndex: number, newIndex: number);
 
-    private handleTabStripChanged(nativeView: org.nativescript.widgets.GridLayout, oldTabStrip: TabStrip, newTabStrip: TabStrip) {
+    private handleTabStripChanged(nativeView: org.nativescript.widgets.GridLayout, isNewView: boolean, newTabStrip: TabStrip) {
         if (this.mTabsBar) {
-            nativeView.removeView(this.mTabsBar);
+            if (!isNewView) nativeView.removeView(this.mTabsBar);
             nativeView['tabsBar'] = null;
             this.mTabsBar = null;
         }
@@ -276,7 +276,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         if (!nativeView) {
             return;
         }
-        this.handleTabStripChanged(nativeView, oldTabStrip, newTabStrip);
+        this.handleTabStripChanged(nativeView, false, newTabStrip);
     }
 
     onSelectedIndexChanged(oldIndex: number, newIndex: number) {
@@ -587,7 +587,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         if (!tabStripItem.nativeViewProtected) {
             return;
         }
-        const itemColor = tabStripItem.index === this.selectedIndex ? this.mSelectedItemColor : tabStripItem.style.color || this.mUnSelectedItemColor;
+        const itemColor = tabStripItem.index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor || tabStripItem.style.color;
         // set label color
         if (itemColor) {
             tabStripItem.nativeViewProtected.setTextColor(itemColor.android || null);
