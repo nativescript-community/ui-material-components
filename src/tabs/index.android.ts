@@ -86,6 +86,9 @@ export class Tabs extends TabNavigation<TabsBar> {
 
     protected override setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[]) {
         this.mTabsBar.setItems(tabItems);
+        setTimeout(() => {
+            this.mTabsBar.scrollToTab(this.selectedIndex);
+        }, 0);
     }
 
     protected override selectTabBar(oldIndex: number, newIndex: number) {

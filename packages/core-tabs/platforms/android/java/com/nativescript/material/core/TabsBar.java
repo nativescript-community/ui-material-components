@@ -184,6 +184,10 @@ public class TabsBar extends HorizontalScrollView {
         
     }
 
+    public void scrollToTab(int tabIndex) {
+        scrollToTab(tabIndex, 0);
+    }
+    
     /**
      * Updates the UI of an item at specified index
      */
