@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.43](https://github.com/nativescript-community/ui-material-component/compare/v7.0.42...v7.0.43) (2023-03-20)
+
+
+### Bug Fixes
+
+* **android:** active tab not displaying after nav back to page ([c93f5bb](https://github.com/nativescript-community/ui-material-component/commit/c93f5bb187561cc60c2f6a56b9e55f99939a8f21))
+* **android:** added comment to clarify why it's necessary to use the setTimeout ([4d8afcf](https://github.com/nativescript-community/ui-material-component/commit/4d8afcfb7b5f93c7ffe7537545690ad0a79217cf))
+
+
+
+
+
 ## [7.0.42](https://github.com/nativescript-community/ui-material-component/compare/v7.0.41...v7.0.42) (2023-02-23)
 
 

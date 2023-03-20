@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-core-tabs",
-    "version": "7.0.42",
+    "version": "7.0.43",
     "description": "Material Core Tabs component",
     "main": "./index",
     "sideEffects": false,
