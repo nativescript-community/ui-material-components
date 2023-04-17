@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/nativescript-community/ui-material-component/compare/v7.0.43...v7.1.0) (2023-04-17)
+
+
+### Bug Fixes
+
+* **android:** null adapter ([4fbf824](https://github.com/nativescript-community/ui-material-component/commit/4fbf824744b6ffd9af2ff8bb7d355f96b8b2adf6))
+* **tabs:** NSArray Indexing ([fefabde](https://github.com/nativescript-community/ui-material-component/commit/fefabde01f591caeab7c3dec2843d5f072c1e15a))
+
+
+### Features
+
+* new Switch component (material3). For now iOS uses system switch ([7c00acf](https://github.com/nativescript-community/ui-material-component/commit/7c00acff3357b90a905a958c04ad3b8cdebddaa2))
+
+
+
+
+
 ## [7.0.43](https://github.com/nativescript-community/ui-material-component/compare/v7.0.42...v7.0.43) (2023-03-20)
 
 
