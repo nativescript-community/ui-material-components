@@ -207,7 +207,7 @@ class UIPageViewControllerImpl extends UIPageViewController {
         let scrollView: UIScrollView = null;
 
         for (let i = 0; i < subViews.count; i++) {
-            const view: UIView = subViews[i];
+            const view: UIView = subViews.objectAtIndex(i);
             if (view instanceof UIScrollView && !(view instanceof MDCTabBarView)) {
                 scrollView = view;
             }

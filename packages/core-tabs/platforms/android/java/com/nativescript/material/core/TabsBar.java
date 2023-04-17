@@ -178,7 +178,7 @@ public class TabsBar extends HorizontalScrollView {
     public void setItems(TabItemSpec[] items) {
         mTabStrip.removeAllViews();
         mTabItems = items;
-        if (mViewPager != null) {
+        if (mViewPager != null && mViewPager.getAdapter() != null) {
             populateTabStrip();
         }
         
