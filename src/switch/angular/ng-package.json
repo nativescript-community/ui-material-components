@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/switch/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}

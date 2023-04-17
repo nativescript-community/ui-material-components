@@ -1,0 +1,8 @@
+.DS_Store
+tsconfig.json
+node_modules/
+pnpm-global/
+CHANGELOG.md
+blueprint.md
+*.aar
+*.jar
