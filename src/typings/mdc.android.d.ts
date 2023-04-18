@@ -13933,7 +13933,7 @@ declare module com {
 		export module android {
 			export module material {
 				export module materialswitch {
-					export class MaterialSwitch {
+					export class MaterialSwitch extends androidx.appcompat.widget.SwitchCompat {
 						public static class: java.lang.Class<com.google.android.material.materialswitch.MaterialSwitch>;
 						public setTrackDecorationTintList(param0: globalAndroid.content.res.ColorStateList): void;
 						public constructor(param0: globalAndroid.content.Context);
