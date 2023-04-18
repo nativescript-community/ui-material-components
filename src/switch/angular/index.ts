@@ -11,4 +11,4 @@ export class MaterialSwitchDirective {}
 })
 export class NativeScriptMaterialSwitchModule {}
 
-registerElement('MDSwitch', () => ProSwitchgress);
+registerElement('MDSwitch', () => Switch);
