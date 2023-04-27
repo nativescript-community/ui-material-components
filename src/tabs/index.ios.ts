@@ -23,30 +23,35 @@ class MDCTabBarViewDelegateImpl extends NSObject implements MDCTabBarViewDelegat
     }
 
     public tabBarViewShouldSelectItem(tabBar: MDCTabBarView, item: UITabBarItem): boolean {
-        const owner = this._owner.get();
-        const shouldSelectItem = owner.mCanSelectItem;
-        const selectedIndex = owner.tabBarItems.indexOf(item);
+        const owner = this._owner?.get();
+        if (owner) {
+            const shouldSelectItem = owner.mCanSelectItem;
+            const selectedIndex = owner.tabBarItems.indexOf(item);
 
-        if (owner.selectedIndex !== selectedIndex) {
-            owner.beginTabTransition();
+            if (owner.selectedIndex !== selectedIndex) {
+                owner.beginTabTransition();
+            }
+
+            const tabStrip = owner.tabStrip;
+            const tabStripItems = tabStrip && tabStrip.items;
+
+            if (tabStripItems && tabStripItems[selectedIndex]) {
+                tabStripItems[selectedIndex]._emit(TabStripItem.tapEvent);
+                tabStrip.notify({ eventName: TabStrip.itemTapEvent, object: tabStrip, index: selectedIndex });
+            }
+
+            return shouldSelectItem;
         }
-
-        const tabStrip = owner.tabStrip;
-        const tabStripItems = tabStrip && tabStrip.items;
-
-        if (tabStripItems && tabStripItems[selectedIndex]) {
-            tabStripItems[selectedIndex]._emit(TabStripItem.tapEvent);
-            tabStrip.notify({ eventName: TabStrip.itemTapEvent, object: tabStrip, index: selectedIndex });
-        }
-
-        return shouldSelectItem;
+        return false;
     }
 
     public tabBarViewDidSelectItem(tabBar: MDCTabBarView, selectedItem: UITabBarItem): void {
-        const owner = this._owner.get();
-        const tabBarItems = owner.tabBarItems;
-        const selectedIndex = tabBarItems.indexOf(selectedItem);
-        owner.selectedIndex = selectedIndex;
+        const owner = this._owner?.get();
+        if (owner) {
+            const tabBarItems = owner.tabBarItems;
+            const selectedIndex = tabBarItems.indexOf(selectedItem);
+            owner.selectedIndex = selectedIndex;
+        }
     }
 }
 
