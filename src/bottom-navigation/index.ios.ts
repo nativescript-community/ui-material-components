@@ -6,7 +6,7 @@ import { TabStrip } from '@nativescript-community/ui-material-core-tabs/tab-stri
 import { TabStripItem } from '@nativescript-community/ui-material-core-tabs/tab-strip-item';
 // Types
 // Requires
-import { CSSType, Color, CoreTypes, Device, Font, Frame, IOSHelper, ImageSource, Property, Utils, View, booleanConverter } from '@nativescript/core';
+import { CSSType, Color, CoreTypes, Device, Font, Frame, IOSHelper, ImageSource, ImageAsset, Property, Utils, View, booleanConverter } from '@nativescript/core';
 import { getTransformedText } from '@nativescript/core/ui/text-base';
 import { iOSNativeHelper } from '@nativescript/core/utils';
 export { TabContentItem, TabStrip, TabStripItem };
@@ -690,19 +690,28 @@ export class BottomNavigation extends TabNavigationBase {
         }
         const iconTag = [iconSource, font.fontStyle, font.fontWeight, font.fontSize, font.fontFamily, color].join(';');
 
-        let isFontIcon = false;
+        const isFontIcon = false;
         let image: UIImage = this.mIconsCache[iconTag];
         if (!image) {
-            let is;
-            if (Utils.isFontIconURI(iconSource)) {
-                isFontIcon = true;
-                const fontIconCode = iconSource.split('//')[1];
-                is = ImageSource.fromFontIconCodeSync(fontIconCode, font, color);
+            let is: ImageSource | ImageAsset;
+            if (typeof iconSource === 'string') {
+                if (Utils.isFontIconURI(iconSource)) {
+                    const fontIconCode = iconSource.split('//')[1];
+                    const target = tabStripItem.image ? tabStripItem.image : tabStripItem;
+                    const font = target.style.fontInternal;
+                    if (!color) {
+                        color = target.style.color;
+                    }
+                    is = ImageSource.fromFontIconCodeSync(fontIconCode, font, color);
+                } else {
+                    is = ImageSource.fromFileOrResourceSync(iconSource);
+                }
             } else {
-                is = ImageSource.fromFileOrResourceSync(iconSource);
+                is = iconSource;
             }
 
-            if (is && is.ios) {
+            image = is?.ios;
+            if (image) {
                 image = is.ios;
 
                 if (this.tabStrip && this.tabStrip.isIconSizeFixed) {
