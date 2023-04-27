@@ -87,9 +87,9 @@ export class Tabs extends TabNavigation<TabsBar> {
     protected override setTabBarItems(tabItems: com.nativescript.material.core.TabItemSpec[]) {
         this.mTabsBar.setItems(tabItems);
         // The setTimeout below is necessary to ensure the scrollToTab is executed only after
-        // all tabs are recreated. The tabs' recreation is triggered by the setItems call above. 
+        // all tabs are recreated. The tabs' recreation is triggered by the setItems call above.
         //
-        // The setTimeout is necessary to fix an Android issue: 
+        // The setTimeout is necessary to fix an Android issue:
         // Android Issue: Active Tab item not displaying after nav back
         // Reproduce steps:
         //      1. On app with multiple (overflown) tab items, Switch to the last tab item

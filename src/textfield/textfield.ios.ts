@@ -123,6 +123,7 @@ declare module '@nativescript/core/ui/text-field' {
 export class TextField extends TextFieldBase {
     nativeViewProtected: MDCBaseTextField;
     nativeTextViewProtected: MDCBaseTextField;
+    //@ts-ignore
     public readonly style: Style & { variant: 'outline' | 'underline' | 'filled' };
     public nsdigits?: NSCharacterSet;
     firstEdit: boolean;
