@@ -6,7 +6,7 @@
 import { Animation, AnimationDefinition, CSSType, Color, CoreTypes, EventData, FlexboxLayout, GridLayout, ImageSource, isUserInteractionEnabledProperty } from '@nativescript/core';
 import { Button } from '@nativescript-community/ui-material-button';
 import { LinearGradient } from '@nativescript/core/ui/styling/linear-gradient';
-import { NotifyData } from '@nativescript/core/data/observable';
+import { Optional } from '@nativescript/core/utils/typescript-utils';
 
 export class SpeedDialItemBase extends GridLayout {}
 
@@ -139,7 +139,7 @@ export class SpeedDialItem extends SpeedDialItemBase {
     }
 
     notifyChildEvent(child, superNotifyMethod) {
-        return <T extends NotifyData>(data: T) => {
+        return <T extends Optional<EventData, 'object'>>(data: T) => {
             (data as any).speeddialItem = this;
             if (data.eventName === 'tap') {
                 if (this.isMain) {
