@@ -1,11 +1,11 @@
-import { App, createApp } from 'nativescript-vue3';
+import { App, createApp } from 'nativescript-vue';
 import { Frame, View, ViewBase } from '@nativescript/core';
 import { BottomSheetOptions } from '../bottomsheet';
 import { ComponentCustomProperties } from '@vue/runtime-core';
 
 declare module '@vue/runtime-core' {
     interface ComponentCustomProperties {
-        $showBottomSheet: (component: any, options: VueBottomSheetOptions) => Promise<any>;
+        $showBottomSheet(component: any, options: VueBottomSheetOptions): Promise<any>;
         $closeBottomSheet(...args);
     }
 }
