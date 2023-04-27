@@ -1,7 +1,7 @@
 /**
  * @module @nativescript-community/ui-material-core-tabs/tab-strip-item
  */
-import { AddChildFromBuilder, CSSType, Color, CoreTypes, Image, Label, PropertyChangeData, PseudoClassHandler, View, ViewBase } from '@nativescript/core';
+import { AddChildFromBuilder, CSSType, Color, CoreTypes, Image, ImageAsset, ImageSource, Label, PropertyChangeData, PseudoClassHandler, View, ViewBase } from '@nativescript/core';
 import { backgroundColorProperty, backgroundInternalProperty } from '@nativescript/core/ui/styling/style-properties';
 import { textTransformProperty } from '@nativescript/core/ui/text-base';
 import { TabStripItem as TabStripItemDefinition } from '.';
@@ -19,7 +19,7 @@ export class TabStripItem extends View implements TabStripItemDefinition, AddChi
     private mIndex: number;
 
     private mTitle: string;
-    private mIconSource: string;
+    private mIconSource: string | ImageSource | ImageAsset;
     private mIconClass: string;
 
     private mHighlightedHandler: () => void;
@@ -73,7 +73,7 @@ export class TabStripItem extends View implements TabStripItemDefinition, AddChi
         }
     }
 
-    get iconSource() {
+    get iconSource(): string | ImageSource | ImageAsset {
         if (this.isLoaded) {
             return this.image.src;
         }
@@ -81,7 +81,7 @@ export class TabStripItem extends View implements TabStripItemDefinition, AddChi
         return this.mIconSource;
     }
 
-    set iconSource(value: string) {
+    set iconSource(value: string | ImageSource | ImageAsset) {
         this.mIconSource = value;
 
         if (this.isLoaded) {
