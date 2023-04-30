@@ -1,4 +1,4 @@
-import { Application, Color, CoreTypes, Font, ImageSource, Utils, getTransformedText } from '@nativescript/core';
+import { Application, Color, CoreTypes, Font, ImageAsset, ImageSource, Utils, getTransformedText } from '@nativescript/core';
 import { TabContentItem } from '../tab-content-item';
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '../tab-navigation-base';
 import { TabStrip } from '../tab-strip';
@@ -459,25 +459,29 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     }
 
     private getOriginalIcon(tabStripItem: TabStripItem, color?: Color): android.graphics.Bitmap {
-        const iconSource = tabStripItem.image && tabStripItem.image.src;
+        const iconSource = tabStripItem.image?.src;
         if (!iconSource) {
             return null;
         }
 
-        let is: ImageSource;
-        if (Utils.isFontIconURI(iconSource)) {
-            const fontIconCode = iconSource.split('//')[1];
-            const target = tabStripItem.image ? tabStripItem.image : tabStripItem;
-            const font = target.style.fontInternal;
-            if (!color) {
-                color = target.style.color;
+        let is: ImageSource | ImageAsset;
+        if (typeof iconSource === 'string') {
+            if (Utils.isFontIconURI(iconSource)) {
+                const fontIconCode = iconSource.split('//')[1];
+                const target = tabStripItem.image ? tabStripItem.image : tabStripItem;
+                const font = target.style.fontInternal;
+                if (!color) {
+                    color = target.style.color;
+                }
+                is = ImageSource.fromFontIconCodeSync(fontIconCode, font, color);
+            } else {
+                is = ImageSource.fromFileOrResourceSync(iconSource);
             }
-            is = ImageSource.fromFontIconCodeSync(fontIconCode, font, color);
         } else {
-            is = ImageSource.fromFileOrResourceSync(iconSource);
+            is = iconSource;
         }
 
-        return is && is.android;
+        return is?.android;
     }
 
     private getDrawableInfo(image: android.graphics.Bitmap): IconInfo {

@@ -38,5 +38,11 @@
             "@nativescript-community/ui-material-speeddial": ["src/speeddial/index"],
             "@nativescript-community/ui-material-speeddial/*": ["src/speeddial/*"],
         }
-    }
+    },
+    "references": [
+        {
+            //Need for IDE
+            "path": "./tsconfig.vue3.json"
+        }
+    ]
 }
