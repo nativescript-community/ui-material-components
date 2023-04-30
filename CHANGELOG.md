@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.2](https://github.com/nativescript-community/ui-material-component/compare/v7.1.1...v7.1.2) (2023-04-30)
+
+
+### Bug Fixes
+
+* **core-tabs:** getOriginalIcon fix for ImageSource and ImageAsset ([e1d2553](https://github.com/nativescript-community/ui-material-component/commit/e1d25539ac182de49e9ec4775d3e710f304d2661))
+* **switch:** android native-api-usage fix ([e7e04f6](https://github.com/nativescript-community/ui-material-component/commit/e7e04f693e8c9e065868b568c4e4952dc0d4a55c))
+
+
+### Features
+
+* **bottomsheet:** `closedBottomSheet` event ([c16ce20](https://github.com/nativescript-community/ui-material-component/commit/c16ce2035d9b60eda333da8c006d900be5984b50))
+
+
+
+
+
 ## [7.1.1](https://github.com/nativescript-community/ui-material-component/compare/v7.1.0...v7.1.1) (2023-04-18)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
