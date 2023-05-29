@@ -690,12 +690,13 @@ export class BottomNavigation extends TabNavigationBase {
         }
         const iconTag = [iconSource, font.fontStyle, font.fontWeight, font.fontSize, font.fontFamily, color].join(';');
 
-        const isFontIcon = false;
+        let isFontIcon = false;
         let image: UIImage = this.mIconsCache[iconTag];
         if (!image) {
             let is: ImageSource | ImageAsset;
             if (typeof iconSource === 'string') {
                 if (Utils.isFontIconURI(iconSource)) {
+                    isFontIcon = true;
                     const fontIconCode = iconSource.split('//')[1];
                     const target = tabStripItem.image ? tabStripItem.image : tabStripItem;
                     const font = target.style.fontInternal;
