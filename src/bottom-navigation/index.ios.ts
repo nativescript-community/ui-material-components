@@ -695,8 +695,8 @@ export class BottomNavigation extends TabNavigationBase {
         if (!image) {
             let is: ImageSource | ImageAsset;
             if (typeof iconSource === 'string') {
-                isFontIcon = true;
                 if (Utils.isFontIconURI(iconSource)) {
+                    isFontIcon = true;
                     const fontIconCode = iconSource.split('//')[1];
                     const target = tabStripItem.image ? tabStripItem.image : tabStripItem;
                     const font = target.style.fontInternal;
