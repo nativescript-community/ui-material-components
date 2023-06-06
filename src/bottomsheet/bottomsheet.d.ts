@@ -84,10 +84,3 @@ declare module '@nativescript/core/ui/core/view' {
         showBottomSheet(options: BottomSheetOptions): ViewBase;
     }
 }
-
-declare module '@nativescript/core' {
-    interface View {
-        closeBottomSheet(...args: any): void;
-        showBottomSheet(options: BottomSheetOptions): ViewBase;
-    }
-}
