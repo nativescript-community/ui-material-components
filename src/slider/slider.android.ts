@@ -105,12 +105,15 @@ export class Slider extends View {
         if (color) {
             this.nativeViewProtected.setTrackTintList(sliderGetEnabledColorStateList(color));
             if (!this.trackBackgroundColor) {
-                this.trackBackgroundColor = new Color(61.2, color.r, color.g, color.b);
+                this[trackBackgroundColorProperty.setNative](new Color(61.2, color.r, color.g, color.b));
             }
         } else {
             this.nativeViewProtected.setTrackTintList(null);
             if (!this.trackBackgroundColor) {
                 this.trackBackgroundColor = null;
+                this[trackBackgroundColorProperty.setNative](null);
+            // } else {
+                // this[trackBackgroundColorProperty.setNative](this.trackBackgroundColor);
             }
         }
 
@@ -118,7 +121,10 @@ export class Slider extends View {
         //     this.trackFillColor = color;
         // }
         if (!this.thumbColor) {
-            this.thumbColor = color;
+            this[thumbColorProperty.setNative](color);
+            if (!this.rippleColor) {
+                this[rippleColorProperty.setNative](color);
+            }
         } else {
             // trackFillColor overrides also the thumbColor
             this[thumbColorProperty.setNative](this.thumbColor);
@@ -188,7 +194,7 @@ export class Slider extends View {
     [thumbColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setThumbTintList(sliderGetEnabledColorStateList(color));
         if (!this.rippleColor) {
-            this.rippleColor = color;
+            this[rippleColorProperty.setNative](color);
         } else {
             // trackFillColor overrides also the thumbColor
             this[rippleColorProperty.setNative](this.rippleColor);
