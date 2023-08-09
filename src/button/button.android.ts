@@ -118,7 +118,9 @@ export class Button extends ButtonBase {
         if (!this.createStateListAnimatorTimeout) {
             this.createStateListAnimatorTimeout = setTimeout(() => {
                 this.createStateListAnimatorTimeout = null;
-                createStateListAnimator(this, this.nativeViewProtected);
+                if (this._context) {
+                    createStateListAnimator(this, this.nativeViewProtected);
+                }
             });
         }
     }
