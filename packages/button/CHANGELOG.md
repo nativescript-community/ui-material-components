@@ -3,208 +3,111 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [7.1.3](https://github.com/nativescript-community/ui-material-components/compare/v7.1.2...v7.1.3) (2023-04-30)
+## [7.1.4](https://github.com/nativescript-community/ui-material-components/compare/v7.1.3...v7.1.4) (2023-08-09)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
+## [7.1.3](https://github.com/nativescript-community/ui-material-components/compare/v7.1.2...v7.1.3) (2023-04-30)
 
-
-
+**Note:** Version bump only for package @nativescript-community/ui-material-button
 
 ## [7.1.2](https://github.com/nativescript-community/ui-material-components/compare/v7.1.1...v7.1.2) (2023-04-30)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
-
-
-
-
 ## [7.1.1](https://github.com/nativescript-community/ui-material-components/compare/v7.1.0...v7.1.1) (2023-04-18)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
-
-
-
-
 
 # [7.1.0](https://github.com/nativescript-community/ui-material-components/compare/v7.0.43...v7.1.0) (2023-04-17)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
-
-
-
-
 ## [7.0.42](https://github.com/nativescript-community/ui-material-components/compare/v7.0.41...v7.0.42) (2023-02-23)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
-
-
-
-
 
 ## [7.0.41](https://github.com/nativescript-community/ui-material-components/compare/v7.0.40...v7.0.41) (2023-02-17)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
-
-
-
-
 ## [7.0.40](https://github.com/nativescript-community/ui-material-components/compare/v7.0.39...v7.0.40) (2023-02-14)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
-
-
-
-
 
 ## [7.0.39](https://github.com/nativescript-community/ui-material-components/compare/v7.0.38...v7.0.39) (2023-02-13)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
-
-
-
-
 ## [7.0.37](https://github.com/nativescript-community/ui-material-components/compare/v7.0.36...v7.0.37) (2023-01-28)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
-
-
-
-
 
 ## [7.0.36](https://github.com/nativescript-community/ui-material-components/compare/v7.0.35...v7.0.36) (2023-01-24)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
-
-
-
-
 ## [7.0.35](https://github.com/nativescript-community/ui-material-components/compare/v7.0.34...v7.0.35) (2023-01-24)
-
 
 ### Bug Fixes
 
 * **android:** native-api-usage fix ([60c0ef2](https://github.com/nativescript-community/ui-material-components/commit/60c0ef218e3b5b4a0903b214f129fe7671a2ebbf))
 
-
-
-
-
 ## [7.0.34](https://github.com/nativescript-community/ui-material-components/compare/v7.0.33...v7.0.34) (2023-01-06)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
-
-
-
-
 
 ## [7.0.33](https://github.com/nativescript-community/ui-material-components/compare/v7.0.32...v7.0.33) (2022-12-16)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
-
-
-
-
 ## [7.0.32](https://github.com/nativescript-community/ui-material-components/compare/v7.0.31...v7.0.32) (2022-12-09)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
-
-
-
-
 
 ## [7.0.31](https://github.com/nativescript-community/ui-material-components/compare/v7.0.30...v7.0.31) (2022-12-01)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
-
-
-
-
 ## [7.0.30](https://github.com/nativescript-community/ui-material-components/compare/v7.0.29...v7.0.30) (2022-11-18)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
-
-
-
-
 
 ## [7.0.29](https://github.com/nativescript-community/ui-material-components/compare/v7.0.28...v7.0.29) (2022-10-24)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
-
-
-
-
 ## [7.0.28](https://github.com/nativescript-community/ui-material-components/compare/v7.0.27...v7.0.28) (2022-09-16)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
-
-
-
-
 
 ## [7.0.27](https://github.com/nativescript-community/ui-material-components/compare/v7.0.26...v7.0.27) (2022-09-16)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
-
-
-
-
 ## [7.0.26](https://github.com/nativescript-community/ui-material-components/compare/v7.0.25...v7.0.26) (2022-09-14)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
-
-
-
-
 
 ## [7.0.25](https://github.com/nativescript-community/ui-material-components/compare/v7.0.24...v7.0.25) (2022-07-19)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
-
-
-
-
 ## [7.0.24](https://github.com/nativescript-community/ui-material-components/compare/v7.0.23...v7.0.24) (2022-06-24)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
-
-
-
-
 
 ## [7.0.23](https://github.com/nativescript-community/ui-material-components/compare/v7.0.22...v7.0.23) (2022-06-23)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
-
-
-
-
 ## [7.0.22](https://github.com/nativescript-community/ui-material-components/compare/v7.0.21...v7.0.22) (2022-06-22)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
 
-
-
-
-
 ## [7.0.21](https://github.com/nativescript-community/ui-material-components/compare/v7.0.20...v7.0.21) (2022-06-21)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-button
-
-
-
-
 
 ## [7.0.20](https://github.com/nativescript-community/ui-material-components/compare/v7.0.19...v7.0.20) (2022-06-16)
 

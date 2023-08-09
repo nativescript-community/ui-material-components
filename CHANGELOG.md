@@ -3,150 +3,96 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.4](https://github.com/nativescript-community/ui-material-component/compare/v7.1.3...v7.1.4) (2023-08-09)
+
+### Bug Fixes
+
+* **android:** button fix for error after view was removed ([c8ab14b](https://github.com/nativescript-community/ui-material-component/commit/c8ab14b8082068bd937423343d9aebef9a5087be))
+* **android:** slider fixes ([8187bd0](https://github.com/nativescript-community/ui-material-component/commit/8187bd0d5254da1fe22a45cfb205e57ef08b5596))
+
 ## [7.1.3](https://github.com/nativescript-community/ui-material-component/compare/v7.1.2...v7.1.3) (2023-04-30)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
 
-
-
-
-
 ## [7.1.2](https://github.com/nativescript-community/ui-material-component/compare/v7.1.1...v7.1.2) (2023-04-30)
-
 
 ### Bug Fixes
 
 * **core-tabs:** getOriginalIcon fix for ImageSource and ImageAsset ([e1d2553](https://github.com/nativescript-community/ui-material-component/commit/e1d25539ac182de49e9ec4775d3e710f304d2661))
 * **switch:** android native-api-usage fix ([e7e04f6](https://github.com/nativescript-community/ui-material-component/commit/e7e04f693e8c9e065868b568c4e4952dc0d4a55c))
 
-
 ### Features
 
 * **bottomsheet:** `closedBottomSheet` event ([c16ce20](https://github.com/nativescript-community/ui-material-component/commit/c16ce2035d9b60eda333da8c006d900be5984b50))
-
-
-
-
 
 ## [7.1.1](https://github.com/nativescript-community/ui-material-component/compare/v7.1.0...v7.1.1) (2023-04-18)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
 
-
-
-
-
 # [7.1.0](https://github.com/nativescript-community/ui-material-component/compare/v7.0.43...v7.1.0) (2023-04-17)
-
 
 ### Bug Fixes
 
 * **android:** null adapter ([4fbf824](https://github.com/nativescript-community/ui-material-component/commit/4fbf824744b6ffd9af2ff8bb7d355f96b8b2adf6))
 * **tabs:** NSArray Indexing ([fefabde](https://github.com/nativescript-community/ui-material-component/commit/fefabde01f591caeab7c3dec2843d5f072c1e15a))
 
-
 ### Features
 
 * new Switch component (material3). For now iOS uses system switch ([7c00acf](https://github.com/nativescript-community/ui-material-component/commit/7c00acff3357b90a905a958c04ad3b8cdebddaa2))
 
-
-
-
-
 ## [7.0.43](https://github.com/nativescript-community/ui-material-component/compare/v7.0.42...v7.0.43) (2023-03-20)
-
 
 ### Bug Fixes
 
 * **android:** active tab not displaying after nav back to page ([c93f5bb](https://github.com/nativescript-community/ui-material-component/commit/c93f5bb187561cc60c2f6a56b9e55f99939a8f21))
 * **android:** added comment to clarify why it's necessary to use the setTimeout ([4d8afcf](https://github.com/nativescript-community/ui-material-component/commit/4d8afcfb7b5f93c7ffe7537545690ad0a79217cf))
 
-
-
-
-
 ## [7.0.42](https://github.com/nativescript-community/ui-material-component/compare/v7.0.41...v7.0.42) (2023-02-23)
-
 
 ### Bug Fixes
 
 * **dialogs:** missing native-api-usage ([3f628b7](https://github.com/nativescript-community/ui-material-component/commit/3f628b7e4d75584c256b6fc883e66ed30ce4c9dc))
 
-
-
-
-
 ## [7.0.41](https://github.com/nativescript-community/ui-material-component/compare/v7.0.40...v7.0.41) (2023-02-17)
-
 
 ### Bug Fixes
 
 * **android:** TabStrip style for the unselected item is not working ([73ff6de](https://github.com/nativescript-community/ui-material-component/commit/73ff6deca54c74c3f590ef9d1aa48e105e8a25a2))
 * **tabs:** Android, restore state issue ([b363af2](https://github.com/nativescript-community/ui-material-component/commit/b363af2de18a9207683f0fa8dae824d2388f5922))
 
-
 ### Features
 
 * add vue2 listener support to bottomsheet ([55a51fd](https://github.com/nativescript-community/ui-material-component/commit/55a51fd35eb6b49e85d01e61676d234f4480d608))
-
-
-
-
 
 ## [7.0.40](https://github.com/nativescript-community/ui-material-component/compare/v7.0.39...v7.0.40) (2023-02-14)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
 
-
-
-
-
 ## [7.0.39](https://github.com/nativescript-community/ui-material-component/compare/v7.0.38...v7.0.39) (2023-02-13)
-
 
 ### Bug Fixes
 
 * **snackbar:** android options.view can be any view now ([763db37](https://github.com/nativescript-community/ui-material-component/commit/763db372ea5add56cde366cc51714d161bb848d6))
 
-
-
-
-
 ## [7.0.38](https://github.com/nativescript-community/ui-material-component/compare/v7.0.37...v7.0.38) (2023-02-07)
-
 
 ### Bug Fixes
 
 * **textfield,textview:** android fix with components not sizing correctly ([ffaff43](https://github.com/nativescript-community/ui-material-component/commit/ffaff43ff44b921b3533e099e73d159e5dcb531d))
 
-
-
-
-
 ## [7.0.37](https://github.com/nativescript-community/ui-material-component/compare/v7.0.36...v7.0.37) (2023-01-28)
-
 
 ### Bug Fixes
 
 * **bottomsheet:** android native-api-usage fix ([a7673ff](https://github.com/nativescript-community/ui-material-component/commit/a7673ff6d90569d90e5d309f9bdf152a5baa81fd))
 
-
-
-
-
 ## [7.0.36](https://github.com/nativescript-community/ui-material-component/compare/v7.0.35...v7.0.36) (2023-01-24)
-
 
 ### Bug Fixes
 
 * **core:** android native-api-usage fix ([56f43c8](https://github.com/nativescript-community/ui-material-component/commit/56f43c8b13697b1b010b6b94c3b6e7cc5b9a13a7))
 
-
-
-
-
 ## [7.0.35](https://github.com/nativescript-community/ui-material-component/compare/v7.0.34...v7.0.35) (2023-01-24)
-
 
 ### Bug Fixes
 
@@ -154,67 +100,38 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **BottomSheet:** types ([ef80352](https://github.com/nativescript-community/ui-material-component/commit/ef80352e85fc27d6d2fde5eb3a29ea10df78357d))
 * **tabs:** handle removing, re-adding, and changing visibility of tabstrip ([7297d7e](https://github.com/nativescript-community/ui-material-component/commit/7297d7e9be2a601cdff3559040a2327b42cc564e))
 
-
 ### Features
 
 * add demo-vue3 ([c13c088](https://github.com/nativescript-community/ui-material-component/commit/c13c0889d667969849bb3e2d849494990d7f112d))
 * **BottomSheet:** add vue 3 support ([0d2549e](https://github.com/nativescript-community/ui-material-component/commit/0d2549e17149c1cdf0948173ba7bddebc5c5c491))
 
-
-
-
-
 ## [7.0.34](https://github.com/nativescript-community/ui-material-component/compare/v7.0.33...v7.0.34) (2023-01-06)
-
 
 ### Bug Fixes
 
 * **snackbar:** if no view passed ensure we show over any modal view ([fcd6622](https://github.com/nativescript-community/ui-material-component/commit/fcd6622228ac3b5667318ebe6bc044dbf8a777c3))
 
-
-
-
-
 ## [7.0.33](https://github.com/nativescript-community/ui-material-component/compare/v7.0.32...v7.0.33) (2022-12-16)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
 
-
-
-
-
 ## [7.0.32](https://github.com/nativescript-community/ui-material-component/compare/v7.0.31...v7.0.32) (2022-12-09)
-
 
 ### Bug Fixes
 
 * **tabs:** active tabitem isn't visible ([fc286a5](https://github.com/nativescript-community/ui-material-component/commit/fc286a55a67b08403aff027fa49d66f6a7022200))
 
-
-
-
-
 ## [7.0.31](https://github.com/nativescript-community/ui-material-component/compare/v7.0.30...v7.0.31) (2022-12-01)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
 
-
-
-
-
 ## [7.0.30](https://github.com/nativescript-community/ui-material-component/compare/v7.0.29...v7.0.30) (2022-11-18)
-
 
 ### Bug Fixes
 
 * **dialogs:** iOS ensure we dont show a dialog from another one ([e68a13b](https://github.com/nativescript-community/ui-material-component/commit/e68a13b45047b3542f64240b537d1b400d610f35))
 
-
-
-
-
 ## [7.0.29](https://github.com/nativescript-community/ui-material-component/compare/v7.0.28...v7.0.29) (2022-10-24)
-
 
 ### Bug Fixes
 
@@ -222,105 +139,60 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **BottomSheet:**  Back-to-blade motion is fluid ([09f7e2f](https://github.com/nativescript-community/ui-material-component/commit/09f7e2f77b44fa820ff628f4f0c1f6f42083fe9a))
 * **textfield:** wrong hint colors ([8055347](https://github.com/nativescript-community/ui-material-component/commit/805534779fc91b25ff095242ca4cf30b76286404))
 
-
-
-
-
 ## [7.0.28](https://github.com/nativescript-community/ui-material-component/compare/v7.0.27...v7.0.28) (2022-09-16)
-
 
 ### Bug Fixes
 
 * correctly search for the tab fragment ([#405](https://github.com/nativescript-community/ui-material-component/issues/405)) ([2e91650](https://github.com/nativescript-community/ui-material-component/commit/2e916508622faf06e9bfc76de9c8c0b31cb417c1))
 
-
-
-
-
 ## [7.0.27](https://github.com/nativescript-community/ui-material-component/compare/v7.0.26...v7.0.27) (2022-09-16)
-
 
 ### Bug Fixes
 
 * **bottomsheet:** android ensure props are set in the right order ([9076a8d](https://github.com/nativescript-community/ui-material-component/commit/9076a8d87706de4ced3d78b68d8c7fc23a0d4650))
 
-
-
-
-
 ## [7.0.26](https://github.com/nativescript-community/ui-material-component/compare/v7.0.25...v7.0.26) (2022-09-14)
-
 
 ### Bug Fixes
 
 * **bottomsheet:** android ensure coordinator is a view ([8a7bed7](https://github.com/nativescript-community/ui-material-component/commit/8a7bed7d62e9100f5422925ea14700fe8239b4cb))
 * **tabs:** ensure we return the correct fragment manager ([23b25b9](https://github.com/nativescript-community/ui-material-component/commit/23b25b9055faddee4a2cb73f977d60f76145aadf))
 
-
 ### Features
 
 * **BottomSheet:** (Android only) allows to interact with the screen behind the sheet ([aaf9e0e](https://github.com/nativescript-community/ui-material-component/commit/aaf9e0e8c04a81fce6e6fd46055dd57dd615e6ce))
 
-
-
-
-
 ## [7.0.25](https://github.com/nativescript-community/ui-material-component/compare/v7.0.24...v7.0.25) (2022-07-19)
-
 
 ### Bug Fixes
 
 * **core:** themer fix ([bc62d50](https://github.com/nativescript-community/ui-material-component/commit/bc62d504d02210c25f5a8c850b1f4cceb479728e))
 * **speedial:** crash fix ([6602ab0](https://github.com/nativescript-community/ui-material-component/commit/6602ab0b07ae519c30ce65feface37ef243d1f73))
 
-
-
-
-
 ## [7.0.24](https://github.com/nativescript-community/ui-material-component/compare/v7.0.23...v7.0.24) (2022-06-24)
-
 
 ### Bug Fixes
 
 * **bottomsheet,ios:** crash fix when closing the bottomsheet ([a48c33f](https://github.com/nativescript-community/ui-material-component/commit/a48c33ffda10db46b6d40b976f6a9a32e36671a9))
 
-
-
-
-
 ## [7.0.23](https://github.com/nativescript-community/ui-material-component/compare/v7.0.22...v7.0.23) (2022-06-23)
-
 
 ### Bug Fixes
 
 * **bottom-navigation,ios:** remove warnings ([87c5975](https://github.com/nativescript-community/ui-material-component/commit/87c5975d4232c53ea47a0d99ff0b5469441c034a))
 * **tabs,ios:** fix tabs not swipable after first scroll ([3984b50](https://github.com/nativescript-community/ui-material-component/commit/3984b50bfdc8f52fa2fdc5d4e1bd03da5bdd7d99))
 
-
-
-
-
 ## [7.0.22](https://github.com/nativescript-community/ui-material-component/compare/v7.0.21...v7.0.22) (2022-06-22)
-
 
 ### Bug Fixes
 
 * **bottomsheet:** import options in readme ([c4529a3](https://github.com/nativescript-community/ui-material-component/commit/c4529a35e98c322a5030b71981eb724d1e866b70))
 
-
-
-
-
 ## [7.0.21](https://github.com/nativescript-community/ui-material-component/compare/v7.0.20...v7.0.21) (2022-06-21)
-
 
 ### Bug Fixes
 
 * **tabs,android:** fix for wrong first position of the tabsbar ([dc5e64b](https://github.com/nativescript-community/ui-material-component/commit/dc5e64b449c0018d9a672dec7d2ad00ae0d02878))
-
-
-
-
 
 ## [7.0.20](https://github.com/nativescript-community/ui-material-component/compare/v7.0.19...v7.0.20) (2022-06-16)
 
