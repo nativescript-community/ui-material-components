@@ -99,7 +99,7 @@ export class TextField extends TextFieldBase {
                 inflater = LayoutInflater.from(this._context);
             }
             layoutView = this.layoutView = inflater.inflate(layoutId, null) as com.google.android.material.textfield.TextInputLayout;
-            editText = this.editText = layoutView.getEditText() as com.nativescript.material.textfield.TextInputEditText;
+            editText = this.editText = layoutView.getEditText() as any as com.nativescript.material.textfield.TextInputEditText;
         } else {
             layoutView = this.layoutView = new com.google.android.material.textfield.TextInputLayout(this._context);
             editText = this.editText = new com.nativescript.material.textfield.TextInputEditText(layoutView.getContext());
