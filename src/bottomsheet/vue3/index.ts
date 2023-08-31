@@ -1,4 +1,4 @@
-import { App, createApp } from 'nativescript-vue';
+import { createNativeView } from 'nativescript-vue';
 import { Frame, View, ViewBase } from '@nativescript/core';
 import { BottomSheetOptions } from '../bottomsheet';
 import { ComponentCustomProperties } from '@vue/runtime-core';
@@ -25,7 +25,6 @@ const useBottomSheet = () => {
 const showSheet = (component, options: VueBottomSheetOptions) =>
     new Promise((resolve: any) => {
         let resolved = false;
-
         const listeners = Object.entries(options.on ?? {}).reduce((listeners, [key, value]) => {
             listeners['on' + key.charAt(0).toUpperCase() + key.slice(1)] = value;
             return listeners;
@@ -34,18 +33,17 @@ const showSheet = (component, options: VueBottomSheetOptions) =>
         let navEntryInstance = createNativeView(
             component,
             Object.assign(
-                {
-                    props: options.props
-                },
+                options.props ?? {},
                 listeners
             )
-        ).mount();
+        );
+        navEntryInstance.mount();
 
         const viewAttached = (options.view as View) ?? Frame.topmost().currentPage;
 
         viewAttached.showBottomSheet(
             Object.assign({}, options, {
-                view: navEntryInstance.$el.nativeView,
+                view: navEntryInstance.nativeView,
                 closeCallback: (...args) => {
                     if (resolved) {
                         return;
@@ -54,20 +52,19 @@ const showSheet = (component, options: VueBottomSheetOptions) =>
                     if (navEntryInstance && navEntryInstance) {
                         options.closeCallback && options.closeCallback.apply(undefined, args);
                         resolve(...args);
-                        navEntryInstance.$emit('bottomsheet:close');
-                        navEntryInstance.$el = null;
-                        navEntryInstance = null;
-                        modalStack.splice(modalStack.length, 1);
+                        navEntryInstance.unmount();
+                        modalStack.pop();
                     }
                 }
             })
         );
         modalStack.push(navEntryInstance);
     });
+
 const closeSheet = (...args) => {
     const modalPageInstanceInfo = modalStack[modalStack.length - 1];
     if (modalPageInstanceInfo) {
-        modalPageInstanceInfo.$el.nativeView.closeBottomSheet(args);
+        modalPageInstanceInfo.nativeView.closeBottomSheet(args);
     }
 };
 
@@ -79,9 +76,6 @@ const BottomSheetPlugin = {
         globals.$closeBottomSheet = closeSheet;
     }
 };
-
-const createNativeView = (component: any, props?: any): App => createApp(component, props);
-
 
 interface VueBottomSheetOptions extends Partial<BottomSheetOptions> {
     view?: string | ViewBase;
