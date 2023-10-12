@@ -190,11 +190,11 @@ function createForegroundShape(radius) {
     }
     return NUtils.createForegroundShape(radius);
 }
-export function createRippleDrawable(rippleColor: number, radius = 0) {
+export function createRippleDrawable(rippleColor: number, topLeftRadius = 0, topRightRadius = 0, bottomRightRadius = 0, bottomLeftRadius = 0) {
     if (!NUtils) {
         NUtils = (com as any).nativescript.material.core.Utils;
     }
-    return NUtils.createRippleDrawable(rippleColor, radius);
+    return NUtils.createRippleDrawable(rippleColor, topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius);
 }
 
 export function handleClearFocus(view: android.view.View) {

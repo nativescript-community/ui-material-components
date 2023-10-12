@@ -1,21 +1,9 @@
-import {
-    Application,
-    Background,
-    Button,
-    Color,
-    Length,
-    PercentLength,
-    Utils,
-    View,
-    androidDynamicElevationOffsetProperty,
-    androidElevationProperty,
-    backgroundInternalProperty
-} from '@nativescript/core';
-import { createRippleDrawable, createStateListAnimator, getAttrColor, getColorStateList, handleClearFocus, isPostLollipop, isPostLollipopMR1, isPostMarshmallow } from './android/utils';
-import { CornerFamily, applyMixins } from './index.common';
-import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
+import { Background, Button, Color, Length, PercentLength, Utils, View, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty } from '@nativescript/core';
 import { ad } from '@nativescript/core/utils';
 import { ShapeProperties } from '.';
+import { createRippleDrawable, createStateListAnimator, getAttrColor, getColorStateList, handleClearFocus, isPostLollipop, isPostMarshmallow } from './android/utils';
+import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
+import { CornerFamily, applyMixins } from './index.common';
 export * from './cssproperties';
 export { applyMixins };
 
@@ -232,9 +220,9 @@ export function overrideViewBase() {
             return getRippleColor(themer.getAccentColor());
         }
 
-        setRippleDrawable(view: android.view.View, radius = 0) {
+        setRippleDrawable(view: android.view.View, topLeftRadius = 0, topRightRadius = 0, bottomRightRadius = 0, bottomLeftRadius = 0) {
             if (!this.rippleDrawable) {
-                this.rippleDrawable = createRippleDrawable(this.getRippleColor(), radius);
+                this.rippleDrawable = createRippleDrawable(this.getRippleColor(), topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius);
                 if (isPostMarshmallow) {
                     view.setForeground(this.rippleDrawable);
                 }
@@ -259,7 +247,13 @@ export function overrideViewBase() {
             nativeViewProtected.setClickable(this.isUserInteractionEnabled);
             const rippleDrawable = this.rippleDrawable;
             if (!rippleDrawable) {
-                this.setRippleDrawable(nativeViewProtected, Length.toDevicePixels(this.style.borderTopLeftRadius));
+                this.setRippleDrawable(
+                    nativeViewProtected,
+                    Length.toDevicePixels(this.style.borderTopLeftRadius),
+                    Length.toDevicePixels(this.style.borderTopRightRadius),
+                    Length.toDevicePixels(this.style.borderBottomRightRadius),
+                    Length.toDevicePixels(this.style.borderBottomLeftRadius)
+                );
             } else {
                 if (isPostLollipop) {
                     (rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(getColorStateList(rippleColor));
@@ -277,7 +271,13 @@ export function overrideViewBase() {
                     // native button have on the background. Setting color will remove the ripple!
                     if (this.rippleDrawable || (value.color && this instanceof Button && this.rippleColor)) {
                         this.rippleDrawable = null;
-                        this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius);
+                        this.setRippleDrawable(
+                            this.nativeViewProtected,
+                            Length.toDevicePixels(this.style.borderTopLeftRadius),
+                            Length.toDevicePixels(this.style.borderTopRightRadius),
+                            Length.toDevicePixels(this.style.borderBottomRightRadius),
+                            Length.toDevicePixels(this.style.borderBottomLeftRadius)
+                        );
                     }
                 }
             }
