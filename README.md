@@ -1,4 +1,51 @@
-<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->This monorepo contains multiple packages:<br><br><details>
+<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->
+[](#nativescript-material-components)
+
+# Nativescript Material Components
+
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%20v2-yellow.svg)](https://opensource.org/license/apache-2-0/)
+[![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
+[![lerna--lite](https://img.shields.io/badge/maintained%20with-lerna--lite-e137ff)](https://github.com/lerna-lite/lerna-lite)
+
+Build beautiful, usable products using Material Components for NativeScript.
+
+
+[](#installation)
+
+## Installation
+
+### Android 
+Ensure your Android Theme is inheriting from `MaterialComponents`.
+Inside ```App_resources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
+You can see an example in the demo-vue app.
+
+
+[](#theming)
+
+## Theming
+Defining the theme and the default colors must be done a bit differently on iOS and Android
+
+* **Android**:  You must set the colors through [android Style](https://github.com/material-components/material-components-android/blob/master/docs/getting-started.md#appcompat-themes)
+* **iOS**: You must set the colors programmatically at your app startup
+```typescript
+import { themer } from '@nativescript-community/ui-material-core';
+if (global.isIOS) {
+    themer.setPrimaryColor('#bff937');
+    themer.setAccentColor('#ff8a39');
+    themer.setSecondaryColor('#a830d7');
+}
+```
+
+
+[](#mixins)
+
+## Mixins
+Through this component you can apply `elevation` or `rippleColor` to any `View`. To enable that feature your must "install" the mixins. Make sure you do it before creating any view.
+```typescript
+import { installMixins } from '@nativescript-community/ui-material-core';
+installMixins();
+```
+This monorepo contains multiple packages:<br><br><details>
 <summary><b>activityindicator</b></summary>
 
 [](#nativescript-material-circular-progress-indicator)
@@ -2980,6 +3027,34 @@ An attribute to set the helper text of the textview.
 A boolean attribute to set the floating state of the textview.
 
 </details>
+
+[](#faq)
+
+## FAQ
+
+**Question:** How to use the latest version of this plugin for iOS?
+
+**Answer:** To get latest versions of Material Components for iOS (> 112.1) you will need to change Pod min version to 10.0
+To do that modify or create `App_Resources/iOS/Podfile` to add `platform :ios, '10.0'`.
+You can see an example in the demo-vue app.
+
+##
+
+**Q:** How to migrate to AndroidX with this plugin installed (Android only)?
+
+**A:** For Material Components to work correctly with {N} 6 and AndroidX you need to update your android app theme.
+Inside ```App_resources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
+You can see an example in the demo-vue app.
+
+##
+
+**Q:** What is the difference between Bottom Navigation and Bottom Navigation Bar component?
+
+**A:** The _Bottom Navigation Bar_ is a new component to draw a bottom navigation bar in material design.
+The _Bottom Navigation_ component is a simple extract of the [eponymous component from NativeScript](https://docs.nativescript.org/ui/components/bottom-navigation), which probably will be removed in the future so this one can be used for easy transition.
+
+##
+
 
 [](#demos-and-development)
 
