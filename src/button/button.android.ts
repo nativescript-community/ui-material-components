@@ -125,7 +125,7 @@ export class Button extends ButtonBase {
         }
     }
     [elevationProperty.setNative](value: number) {
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
@@ -133,7 +133,7 @@ export class Button extends ButtonBase {
         }
     }
     [dynamicElevationOffsetProperty.setNative](value: number) {
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);

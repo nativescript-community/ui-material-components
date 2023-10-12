@@ -235,7 +235,7 @@ export function overrideViewBase() {
         setRippleDrawable(view: android.view.View, radius = 0) {
             if (!this.rippleDrawable) {
                 this.rippleDrawable = createRippleDrawable(this.getRippleColor(), radius);
-                if (isPostMarshmallow()) {
+                if (isPostMarshmallow) {
                     view.setForeground(this.rippleDrawable);
                 }
             }
@@ -244,7 +244,7 @@ export function overrideViewBase() {
             const rippleColor = getRippleColor(color);
             const nativeViewProtected = this.nativeViewProtected;
             const RippleDrawable = android.graphics.drawable.RippleDrawable;
-            if (this instanceof Button && isPostMarshmallow()) {
+            if (this instanceof Button && isPostMarshmallow) {
                 const foreground = (nativeViewProtected as android.widget.Button).getForeground();
                 if (foreground instanceof RippleDrawable) {
                     foreground.setColor(getColorStateList(rippleColor));
@@ -261,7 +261,7 @@ export function overrideViewBase() {
             if (!rippleDrawable) {
                 this.setRippleDrawable(nativeViewProtected, Length.toDevicePixels(this.style.borderTopLeftRadius));
             } else {
-                if (isPostLollipop()) {
+                if (isPostLollipop) {
                     (rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(getColorStateList(rippleColor));
                 } else if ((rippleDrawable as any).rippleShape) {
                     (rippleDrawable as any).rippleShape.getPaint().setColor(rippleColor);
@@ -301,7 +301,7 @@ export function overrideViewBase() {
         }
 
         [elevationProperty.setNative](value: number) {
-            if (isPostLollipop()) {
+            if (isPostLollipop) {
                 this.createStateListAnimator();
             } else {
                 const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
@@ -320,7 +320,7 @@ export function overrideViewBase() {
         }
         [dynamicElevationOffsetProperty.setNative](value: number) {
             this.nativeViewProtected.setClickable(this.isUserInteractionEnabled);
-            if (isPostLollipop()) {
+            if (isPostLollipop) {
                 this.createStateListAnimator();
             } else {
                 const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);

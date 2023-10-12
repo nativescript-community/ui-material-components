@@ -229,14 +229,14 @@ export class CardView extends CardViewBase {
     _borderRadius = 0;
 
     getDefaultElevation(): number {
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             return 1; // 1dp @dimen/mtrl_card_elevation
         }
         return 0; // 1dp @dimen/mtrl_card_elevation
     }
 
     getDefaultDynamicElevationOffset(): number {
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             return 5; // 5dp @dimen/mtrl_card_dragged_z
         }
 
@@ -247,7 +247,7 @@ export class CardView extends CardViewBase {
         initMDCCardView();
         initializeOutlineProvider();
         const view = new MDCCardView(this._context);
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             createStateListAnimator(this, view);
         }
         view.setClickable(this.isUserInteractionEnabled);
@@ -342,7 +342,7 @@ export class CardView extends CardViewBase {
         if (!this.nativeViewProtected) {
             return;
         }
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
@@ -353,7 +353,7 @@ export class CardView extends CardViewBase {
         if (!this.nativeViewProtected) {
             return;
         }
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
@@ -362,7 +362,7 @@ export class CardView extends CardViewBase {
     }
     [rippleColorProperty.setNative](color: Color) {
         const rippleColor = color ? color.android : -1;
-        // if (isPostLollipopMR1()) {
+        // if (isPostLollipopMR1) {
         //     (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(getColorStateList(rippleColor));
         // } else {
         //     this.rippleShape.getPaint().setColor(rippleColor);
