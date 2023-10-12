@@ -355,7 +355,7 @@ export function confirm(arg: any): Promise<boolean> {
                 defaultOptions,
                 !isDialogOptions(arg)
                     ? {
-                        message: arg + ''
+                          message: arg + ''
                       }
                     : arg
             );
