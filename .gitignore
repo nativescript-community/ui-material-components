@@ -24,6 +24,7 @@ yarn-error.log*
 .gradle
 .project
 .yarn
+.cxx
 tmp/
 
 !.eslintrc.js
@@ -34,6 +35,7 @@ tmp/
 devices.js
 
 *.framework
+*.xcframework
 **/*.js.map
 src/**/*.js
 packages/**/*.js
