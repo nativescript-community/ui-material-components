@@ -24,7 +24,7 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
     }
     bottomSheetControllerDidChangeYOffsetYOffset(controller: MDCBottomSheetController, yOffset: number) {
         const owner = this._owner.get();
-        if (owner && owner._onChangeStateBottomSheetCallback) {
+        if (owner?._onChangeStateBottomSheetCallback) {
             const presentationController = controller.presentationController as MDCBottomSheetPresentationController;
             const heightScreen = Screen.mainScreen.heightDIPs;
             const heightCollapsedSheet = presentationController.preferredSheetHeight || controller.preferredContentSize.height;

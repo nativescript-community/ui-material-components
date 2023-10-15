@@ -84,7 +84,7 @@ const createNativeView = (component: any, props?: any): App => createApp(compone
 
 
 interface VueBottomSheetOptions extends Partial<BottomSheetOptions> {
-    view?: string | ViewBase;
+    view?: string | View;
     props?: any;
     on?: Record<string, (...args: any[]) => any>;
 }

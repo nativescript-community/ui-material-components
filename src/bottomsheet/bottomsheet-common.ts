@@ -28,7 +28,7 @@ export const showingInBottomSheetEvent = 'showingInBottomSheet';
 export const closedSheetEvent = 'closedBottomSheet';
 
 export interface BottomSheetOptions {
-    view: string | ViewBase; // View instance to be shown in bottom sheet. Or the name of the module to load starting from the application root.
+    view: string | View; // View instance to be shown in bottom sheet. Or the name of the module to load starting from the application root.
     context?: any; // Any context you want to pass to the view shown in bottom sheet. This same context will be available in the arguments of the shownInBottomSheet event handler.
     animated?: boolean; // An optional parameter specifying whether to show the sheet view with animation.
     dismissOnBackgroundTap?: boolean; // An optional parameter specifying whether to dismiss the sheet when clicking on background.
@@ -173,7 +173,7 @@ export abstract class ViewWithBottomSheetBase extends View {
         }
     }
 
-    public showBottomSheet(options: BottomSheetOptions): ViewBase {
+    public showBottomSheet(options: BottomSheetOptions): View {
         if (arguments.length === 0) {
             throw new Error('showModal without parameters is deprecated. Please call showModal on a view instance instead.');
         } else {
