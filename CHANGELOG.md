@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/nativescript-community/ui-material-component/compare/v7.1.4...v7.2.0) (2023-10-15)
+
+### Bug Fixes
+
+* **switch:** non working vue component ([6139b96](https://github.com/nativescript-community/ui-material-component/commit/6139b9674d597d4a9e5dfb7c5f5fe17da751c55e))
+
+### Features
+
+* **android:** rippleColor and elevation now support none uniform corner radius ([075ffa9](https://github.com/nativescript-community/ui-material-component/commit/075ffa9318940a92ac9370fa750ef53001c457a1))
+
 ## [7.1.4](https://github.com/nativescript-community/ui-material-component/compare/v7.1.3...v7.1.4) (2023-08-09)
 
 ### Bug Fixes

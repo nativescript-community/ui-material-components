@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/nativescript-community/ui-material-components/compare/v7.1.4...v7.2.0) (2023-10-15)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-core-tabs
+
 ## [7.1.4](https://github.com/nativescript-community/ui-material-components/compare/v7.1.3...v7.1.4) (2023-08-09)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-core-tabs
