@@ -61,7 +61,7 @@
     "readmeFilename": "README.md",
     "dependencies": {
         "@nativescript-community/plugin-seed-tools": "file:tools",
-        "@nativescript-community/text": "1.5.11"
+        "@nativescript-community/text": "^1.5.33"
     },
     "commitlint": {
         "extends": [
@@ -98,5 +98,6 @@
         "yarn": ">=1.19.1",
         "pnpm": ">=7.0.0",
         "node": "^14.20.0 || ^16.13.0 || >=18.10.0"
-    }
+    },
+    "packageManager": "yarn@3.6.4"
 }

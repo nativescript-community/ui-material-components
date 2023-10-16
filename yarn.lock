@@ -198,18 +198,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/animations@npm:~15.2.8":
-  version: 15.2.8
-  resolution: "@angular/animations@npm:15.2.8"
-  dependencies:
-    tslib: ^2.3.0
-  peerDependencies:
-    "@angular/core": 15.2.8
-  checksum: 9935fdce029de07b5510a9b3081baf1bb5317cc58134911c99a978360fb7955118608450a5b744d794c949551ac0bed4d253f0436b0cd506adeba8ef294e5618
-  languageName: node
-  linkType: hard
-
-"@angular/animations@npm:~16.2.8":
+"@angular/animations@npm:~16.2.8, @angular/animations@npm:~16.2.9":
   version: 16.2.9
   resolution: "@angular/animations@npm:16.2.9"
   dependencies:
@@ -220,19 +209,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/common@npm:~15.2.8":
-  version: 15.2.8
-  resolution: "@angular/common@npm:15.2.8"
-  dependencies:
-    tslib: ^2.3.0
-  peerDependencies:
-    "@angular/core": 15.2.8
-    rxjs: ^6.5.3 || ^7.4.0
-  checksum: a4c8c33ec27a409c5352653b6a3f0529acb766a0a402d62cb6bd7a9f378c2061dfecf3ce42cb4b2b188b0cf407dee3e302cadc6de4cc769dbf01ecb566ba9bd6
-  languageName: node
-  linkType: hard
-
-"@angular/common@npm:~16.2.8":
+"@angular/common@npm:~16.2.8, @angular/common@npm:~16.2.9":
   version: 16.2.9
   resolution: "@angular/common@npm:16.2.9"
   dependencies:
@@ -292,21 +269,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/compiler@npm:~15.2.8":
-  version: 15.2.8
-  resolution: "@angular/compiler@npm:15.2.8"
-  dependencies:
-    tslib: ^2.3.0
-  peerDependencies:
-    "@angular/core": 15.2.8
-  peerDependenciesMeta:
-    "@angular/core":
-      optional: true
-  checksum: 77e5331e3ab33de3871a91f5bfdbc51641300a53071cec049d3d59c75b2dd4864cb8040826948cc3c239dd077acca17e90c29f321022b2a5d7d3c4ca8c7ace78
-  languageName: node
-  linkType: hard
-
-"@angular/compiler@npm:~16.2.8":
+"@angular/compiler@npm:~16.2.8, @angular/compiler@npm:~16.2.9":
   version: 16.2.9
   resolution: "@angular/compiler@npm:16.2.9"
   dependencies:
@@ -320,19 +283,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/core@npm:~15.2.8":
-  version: 15.2.8
-  resolution: "@angular/core@npm:15.2.8"
-  dependencies:
-    tslib: ^2.3.0
-  peerDependencies:
-    rxjs: ^6.5.3 || ^7.4.0
-    zone.js: ~0.11.4 || ~0.12.0 || ~0.13.0
-  checksum: befdf1517ca107c66eeda8a8d146909089e282d4c4a4274bcc43cdc90c9e1e2bf035a5cd83908d51e7def72c0d04c7652f2fbc81226722eb0496ca152634c126
-  languageName: node
-  linkType: hard
-
-"@angular/core@npm:~16.2.8":
+"@angular/core@npm:~16.2.8, @angular/core@npm:~16.2.9":
   version: 16.2.9
   resolution: "@angular/core@npm:16.2.9"
   dependencies:
@@ -344,21 +295,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/forms@npm:~15.2.8":
-  version: 15.2.8
-  resolution: "@angular/forms@npm:15.2.8"
-  dependencies:
-    tslib: ^2.3.0
-  peerDependencies:
-    "@angular/common": 15.2.8
-    "@angular/core": 15.2.8
-    "@angular/platform-browser": 15.2.8
-    rxjs: ^6.5.3 || ^7.4.0
-  checksum: 15c0b937f31a19117049bbb6e67b023377ac7178ece608831e53b74de8ade89889f3498dce420cc1b4ee849e1cc8a4480ca461c9843019ae03381c953aebd8c7
-  languageName: node
-  linkType: hard
-
-"@angular/forms@npm:~16.2.8":
+"@angular/forms@npm:~16.2.8, @angular/forms@npm:~16.2.9":
   version: 16.2.9
   resolution: "@angular/forms@npm:16.2.9"
   dependencies:
@@ -372,21 +309,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/platform-browser-dynamic@npm:~15.2.8":
-  version: 15.2.8
-  resolution: "@angular/platform-browser-dynamic@npm:15.2.8"
-  dependencies:
-    tslib: ^2.3.0
-  peerDependencies:
-    "@angular/common": 15.2.8
-    "@angular/compiler": 15.2.8
-    "@angular/core": 15.2.8
-    "@angular/platform-browser": 15.2.8
-  checksum: fe5b04c5f7538a42cda650d2174fda90c433169ffc5ed1bafecd623853c7e5299d8ebdcd22a4d139eb626d6e7a191b5e3550e2ab9c7543f2d824569e8c67c309
-  languageName: node
-  linkType: hard
-
-"@angular/platform-browser-dynamic@npm:~16.2.8":
+"@angular/platform-browser-dynamic@npm:~16.2.8, @angular/platform-browser-dynamic@npm:~16.2.9":
   version: 16.2.9
   resolution: "@angular/platform-browser-dynamic@npm:16.2.9"
   dependencies:
@@ -400,23 +323,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/platform-browser@npm:~15.2.8":
-  version: 15.2.8
-  resolution: "@angular/platform-browser@npm:15.2.8"
-  dependencies:
-    tslib: ^2.3.0
-  peerDependencies:
-    "@angular/animations": 15.2.8
-    "@angular/common": 15.2.8
-    "@angular/core": 15.2.8
-  peerDependenciesMeta:
-    "@angular/animations":
-      optional: true
-  checksum: ed92ba2391731ce5c223efcc2b2b6fcf8a72437c8e50dfa9e101733d7f43a7c8f21c1cfededa69b9c408a7e67fb0772feb954b3b167bbd4cf1918497b34e08e0
-  languageName: node
-  linkType: hard
-
-"@angular/platform-browser@npm:~16.2.8":
+"@angular/platform-browser@npm:~16.2.8, @angular/platform-browser@npm:~16.2.9":
   version: 16.2.9
   resolution: "@angular/platform-browser@npm:16.2.9"
   dependencies:
@@ -432,21 +339,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/router@npm:~15.2.8":
-  version: 15.2.8
-  resolution: "@angular/router@npm:15.2.8"
-  dependencies:
-    tslib: ^2.3.0
-  peerDependencies:
-    "@angular/common": 15.2.8
-    "@angular/core": 15.2.8
-    "@angular/platform-browser": 15.2.8
-    rxjs: ^6.5.3 || ^7.4.0
-  checksum: cd4fdf8e46e9f3bfd27a3de143e0e3b795f7a689864cbba3b595d481ed75ab6cc8656ff3eb299f50e154a2ff7a6ff70ffd242763c4de753cc0062fe119b309e4
-  languageName: node
-  linkType: hard
-
-"@angular/router@npm:~16.2.8":
+"@angular/router@npm:~16.2.8, @angular/router@npm:~16.2.9":
   version: 16.2.9
   resolution: "@angular/router@npm:16.2.9"
   dependencies:
@@ -2431,31 +2324,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/is-ignored@npm:^17.7.0":
-  version: 17.7.0
-  resolution: "@commitlint/is-ignored@npm:17.7.0"
+"@commitlint/is-ignored@npm:^17.8.0":
+  version: 17.8.0
+  resolution: "@commitlint/is-ignored@npm:17.8.0"
   dependencies:
     "@commitlint/types": ^17.4.4
     semver: 7.5.4
-  checksum: aa0b695d6e7bee5e732f96a2ff383347ff476eb48f9d3b4ed75b098cafa27e56da15563833d3cf4e1268fc26819180cd8b5bdc322b087073a63bc94f699944b2
+  checksum: ae18943cae8370476049fcbf08c18256f44e2063c9be553eb282a81231ec50a8aff1b861e93108dc823fe6331e1aedcdd7c74c777b57e564308eeb7f7b9da33c
   languageName: node
   linkType: hard
 
 "@commitlint/lint@npm:^17.7.0":
-  version: 17.7.0
-  resolution: "@commitlint/lint@npm:17.7.0"
+  version: 17.8.0
+  resolution: "@commitlint/lint@npm:17.8.0"
   dependencies:
-    "@commitlint/is-ignored": ^17.7.0
+    "@commitlint/is-ignored": ^17.8.0
     "@commitlint/parse": ^17.7.0
     "@commitlint/rules": ^17.7.0
     "@commitlint/types": ^17.4.4
-  checksum: 72765e0f2c6b78faa1c7ceb1050ef624d505deb0f95c5ac2ce1959c3ee8c2ce579d4f5aaf9434adf244727a97653be4d7fbc0d75cda2d8915e563ebeb7b886ae
+  checksum: 7a2729575de88b15c296619d78bb7cde4da535adb35b8a5f5834585d3ae293cc01352a2bbb98cb02c6938cedb871c787c5086d47d42750b311094a459b33cbc9
   languageName: node
   linkType: hard
 
 "@commitlint/load@npm:^17.7.2":
-  version: 17.7.2
-  resolution: "@commitlint/load@npm:17.7.2"
+  version: 17.8.0
+  resolution: "@commitlint/load@npm:17.8.0"
   dependencies:
     "@commitlint/config-validator": ^17.6.7
     "@commitlint/execute-rule": ^17.4.0
@@ -2471,7 +2364,7 @@ __metadata:
     resolve-from: ^5.0.0
     ts-node: ^10.8.1
     typescript: ^4.6.4 || ^5.0.0
-  checksum: dda9f7efd6413309266617a5ee026df65cc8c590b86c312f5905285fcbef5ae3ec983694c145007d89402c9f728882465f016167b156f43f6ed414c3b8ca079a
+  checksum: 24287a9dfbf57f7d824ffc7f6a3df2f4771db501ce05219ed93abd00b68dc629a41a70c4d6c142ca05c4f29d38a1cf823353886c2378f5dd77d6e0cf2c540ffc
   languageName: node
   linkType: hard
 
@@ -3637,7 +3530,7 @@ __metadata:
 
 "@nativescript-community/plugin-seed-tools@file:tools::locator=%40nativescript-community%2Fui-material-components%40workspace%3A.":
   version: 1.0.0
-  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=d74ef1&locator=%40nativescript-community%2Fui-material-components%40workspace%3A."
+  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=794d3f&locator=%40nativescript-community%2Fui-material-components%40workspace%3A."
   dependencies:
     "@angular/animations": ~16.2.8
     "@angular/common": ~16.2.8
@@ -3702,7 +3595,7 @@ __metadata:
     vue: ~2.6.14
     yargs: ^17.7.2
     zone.js: ~0.14.0
-  checksum: f7d8e2d02655fd2112fa7d6258dbfbdd91941d7d6cacb36817b332ad40a726896796414abb1bb664b85286090d06cf6d032b400b80a5cc8a606c90f89c80d6bc
+  checksum: a2945d2bcdc80d8c5ffb0e6f17e7ebfd853452581dae89673279ac95b70259fd9adef433e014fce58c5244af4531eece250bebe5dda0e6596defd276847808c0
   languageName: node
   linkType: hard
 
@@ -3737,10 +3630,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/text@npm:1.5.11, @nativescript-community/text@npm:^1.5.2":
+"@nativescript-community/text@npm:^1.5.2":
   version: 1.5.11
   resolution: "@nativescript-community/text@npm:1.5.11"
   checksum: f4fd9df93911266d3a4ab026d99828934f01b51be1183783d40a79e6c74e6e7def652ea2dc7d9abfb387bdf97a62c92781865798ee621df709c33dac06180c69
+  languageName: node
+  linkType: hard
+
+"@nativescript-community/text@npm:^1.5.33":
+  version: 1.5.33
+  resolution: "@nativescript-community/text@npm:1.5.33"
+  checksum: 6e98b7cbd7f1150738d2b4954f5154332a0ccc27d27f6a0261459bb9f39bf517c2f9b489e1a478fc9931ef93e81420b6105da8a85b78a4218acd5a5113e7bba2
   languageName: node
   linkType: hard
 
@@ -3748,7 +3648,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-activityindicator@workspace:packages/activityindicator"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3756,8 +3656,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-bottom-navigation@workspace:packages/bottom-navigation"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
-    "@nativescript-community/ui-material-core-tabs": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
+    "@nativescript-community/ui-material-core-tabs": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3765,7 +3665,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-bottomnavigationbar@workspace:packages/bottomnavigationbar"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3773,16 +3673,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-bottomsheet@workspace:packages/bottomsheet"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-button@*, @nativescript-community/ui-material-button@^7.1.4, @nativescript-community/ui-material-button@workspace:packages/button":
+"@nativescript-community/ui-material-button@*, @nativescript-community/ui-material-button@^7.2.1, @nativescript-community/ui-material-button@workspace:packages/button":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-button@workspace:packages/button"
   dependencies:
     "@nativescript-community/text": ^1.5.2
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3790,7 +3690,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-cardview@workspace:packages/cardview"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3799,19 +3699,19 @@ __metadata:
   resolution: "@nativescript-community/ui-material-components@workspace:."
   dependencies:
     "@nativescript-community/plugin-seed-tools": "file:tools"
-    "@nativescript-community/text": 1.5.11
+    "@nativescript-community/text": ^1.5.33
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-core-tabs@*, @nativescript-community/ui-material-core-tabs@^7.1.4, @nativescript-community/ui-material-core-tabs@workspace:packages/core-tabs":
+"@nativescript-community/ui-material-core-tabs@*, @nativescript-community/ui-material-core-tabs@^7.2.1, @nativescript-community/ui-material-core-tabs@workspace:packages/core-tabs":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-core-tabs@workspace:packages/core-tabs"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-core@*, @nativescript-community/ui-material-core@^7.1.4, @nativescript-community/ui-material-core@workspace:packages/core":
+"@nativescript-community/ui-material-core@*, @nativescript-community/ui-material-core@^7.2.1, @nativescript-community/ui-material-core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-core@workspace:packages/core"
   languageName: unknown
@@ -3821,8 +3721,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-dialogs@workspace:packages/dialogs"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
-    "@nativescript-community/ui-material-textfield": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
+    "@nativescript-community/ui-material-textfield": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3830,7 +3730,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-floatingactionbutton@workspace:packages/floatingactionbutton"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3838,7 +3738,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-progress@workspace:packages/progress"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3846,7 +3746,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-ripple@workspace:packages/ripple"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3854,7 +3754,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-slider@workspace:packages/slider"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3862,7 +3762,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-snackbar@workspace:packages/snackbar"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3870,8 +3770,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-speeddial@workspace:packages/speeddial"
   dependencies:
-    "@nativescript-community/ui-material-button": ^7.1.4
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-button": ^7.2.1
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3879,7 +3779,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-switch@workspace:packages/switch"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3887,17 +3787,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-tabs@workspace:packages/tabs"
   dependencies:
-    "@nativescript-community/ui-material-core": ^7.1.4
-    "@nativescript-community/ui-material-core-tabs": ^7.1.4
+    "@nativescript-community/ui-material-core": ^7.2.1
+    "@nativescript-community/ui-material-core-tabs": ^7.2.1
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-textfield@*, @nativescript-community/ui-material-textfield@^7.1.4, @nativescript-community/ui-material-textfield@workspace:packages/textfield":
+"@nativescript-community/ui-material-textfield@*, @nativescript-community/ui-material-textfield@^7.2.1, @nativescript-community/ui-material-textfield@workspace:packages/textfield":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-textfield@workspace:packages/textfield"
   dependencies:
-    "@nativescript-community/text": ^1.5.2
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/text": ^1.5.33
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3905,8 +3805,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-textview@workspace:packages/textview"
   dependencies:
-    "@nativescript-community/text": ^1.5.2
-    "@nativescript-community/ui-material-core": ^7.1.4
+    "@nativescript-community/text": ^1.5.33
+    "@nativescript-community/ui-material-core": ^7.2.1
   languageName: unknown
   linkType: soft
 
@@ -3924,17 +3824,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nativescript/angular@npm:~15.2.0":
-  version: 15.2.0
-  resolution: "@nativescript/angular@npm:15.2.0"
-  dependencies:
-    "@nativescript/zone-js": ^3.0.0
-    tslib: ^2.3.0
-  checksum: d7507d517865810a4f82a6fdb783331c059a952691c5a9ef03b02cda979f6da7520cc6a48465a696182943b679960f5f456665cddf7d1f09ab1a090b3d637c58
-  languageName: node
-  linkType: hard
-
-"@nativescript/angular@npm:~16.0.0":
+"@nativescript/angular@npm:~16.0.0, @nativescript/angular@npm:~16.0.1":
   version: 16.0.1
   resolution: "@nativescript/angular@npm:16.0.1"
   dependencies:
@@ -3957,21 +3847,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nativescript/core@npm:~8.5.0, @nativescript/core@npm:~8.5.1":
-  version: 8.5.2
-  resolution: "@nativescript/core@npm:8.5.2"
-  dependencies:
-    "@nativescript/hook": ~2.0.0
-    acorn: ^8.7.0
-    css-tree: ^1.1.2
-    emoji-regex: ^10.2.1
-    reduce-css-calc: ^2.1.7
-    tslib: ^2.0.0
-  checksum: d7715e58f6905c3d60b46e241d11087a7ed3f443de1b2884e1ab7c8f9aa8acb574aaa1005b599e13de52aef9b2852a8ee3ec914be58fee0c80986e50cc350471
-  languageName: node
-  linkType: hard
-
-"@nativescript/core@npm:~8.5.9":
+"@nativescript/core@npm:~8.5.0, @nativescript/core@npm:~8.5.9":
   version: 8.5.9
   resolution: "@nativescript/core@npm:8.5.9"
   dependencies:
@@ -3982,6 +3858,20 @@ __metadata:
     reduce-css-calc: ^2.1.7
     tslib: ^2.0.0
   checksum: 67a9c057decc843b662470247473d969ea9ccea9fe4775c56ac2b4bed1b0f31af14e1ace5bc9656ffc3d0d522736b82ec76d76557a2de2d2ba46be7ec2a8046a
+  languageName: node
+  linkType: hard
+
+"@nativescript/core@npm:~8.5.1":
+  version: 8.5.2
+  resolution: "@nativescript/core@npm:8.5.2"
+  dependencies:
+    "@nativescript/hook": ~2.0.0
+    acorn: ^8.7.0
+    css-tree: ^1.1.2
+    emoji-regex: ^10.2.1
+    reduce-css-calc: ^2.1.7
+    tslib: ^2.0.0
+  checksum: d7715e58f6905c3d60b46e241d11087a7ed3f443de1b2884e1ab7c8f9aa8acb574aaa1005b599e13de52aef9b2852a8ee3ec914be58fee0c80986e50cc350471
   languageName: node
   linkType: hard
 
@@ -4094,27 +3984,27 @@ __metadata:
   dependencies:
     "@akylas/nativescript": ~8.4.1
     "@angular-devkit/build-angular": ^15.2.6
-    "@angular/animations": ~15.2.8
-    "@angular/common": ~15.2.8
-    "@angular/compiler": ~15.2.8
+    "@angular/animations": ~16.2.9
+    "@angular/common": ~16.2.9
+    "@angular/compiler": ~16.2.9
     "@angular/compiler-cli": ^15.2.8
-    "@angular/core": ~15.2.8
-    "@angular/forms": ~15.2.8
-    "@angular/platform-browser": ~15.2.8
-    "@angular/platform-browser-dynamic": ~15.2.8
-    "@angular/router": ~15.2.8
-    "@nativescript-community/template-snippet": 0.0.1
+    "@angular/core": ~16.2.9
+    "@angular/forms": ~16.2.9
+    "@angular/platform-browser": ~16.2.9
+    "@angular/platform-browser-dynamic": ~16.2.9
+    "@angular/router": ~16.2.9
+    "@nativescript-community/template-snippet": "*"
     "@nativescript/android": ~8.4.0
-    "@nativescript/angular": ~15.2.0
+    "@nativescript/angular": ~16.0.1
     "@nativescript/core": ~8.5.1
     "@nativescript/ios": 8.4.0
     "@nativescript/theme": ~3.0.2
     "@nativescript/types": ~8.4.0
     "@nativescript/webpack": ~5.0.14
     "@ngtools/webpack": ~15.2.6
-    rxjs: ~7.8.0
+    rxjs: ~7.8.1
     typescript: ~4.8.4
-    zone.js: ~0.13.0
+    zone.js: ~0.14.0
   languageName: unknown
   linkType: soft
 
@@ -17554,7 +17444,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rxjs@npm:>= 6, rxjs@npm:^7.5.5, rxjs@npm:~7.8.0":
+"rxjs@npm:>= 6, rxjs@npm:^7.5.5":
   version: 7.8.0
   resolution: "rxjs@npm:7.8.0"
   dependencies:
@@ -18950,12 +18840,12 @@ __metadata:
   linkType: hard
 
 "svelte-native@npm:~1.0.6":
-  version: 1.0.8
-  resolution: "svelte-native@npm:1.0.8"
+  version: 1.0.9
+  resolution: "svelte-native@npm:1.0.9"
   peerDependencies:
     "@nativescript/core": ~8.5.1
     svelte: ~3.58.0
-  checksum: 8b6d102a6de530ba99b0ce37b6b644f0172d11894b4d292a9f8fd18647a4f70b7f2c5b9700fcbfbdb4b3ec01795ea3f0ea32d314d66d921524bc416c2678779b
+  checksum: 95deedfee1b8097b15436f64c5a66cafb415096391307a48504846a86641ab0e9acf03d9c00a686114894fb0fd533a96c5633534f58bc53fe00354b1448c945b
   languageName: node
   linkType: hard
 
@@ -19819,11 +19709,11 @@ __metadata:
 
 "typescript@patch:typescript@^4.6.4 || ^5.0.0#~builtin<compat/typescript>":
   version: 5.0.4
-  resolution: "typescript@patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=ad5954"
+  resolution: "typescript@patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 6a1fe9a77bb9c5176ead919cc4a1499ee63e46b4e05bf667079f11bf3a8f7887f135aa72460a4c3b016e6e6bb65a822cb8689a6d86cbfe92d22cc9f501f09213
+  checksum: d26b6ba97b6d163c55dbdffd9bbb4c211667ebebc743accfeb2c8c0154aace7afd097b51165a72a5bad2cf65a4612259344ff60f8e642362aa1695c760d303ac
   languageName: node
   linkType: hard
 
@@ -19839,21 +19729,21 @@ __metadata:
 
 "typescript@patch:typescript@~4.8.4#~builtin<compat/typescript>":
   version: 4.8.4
-  resolution: "typescript@patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=0102e9"
+  resolution: "typescript@patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=1a91c8"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 301459fc3eb3b1a38fe91bf96d98eb55da88a9cb17b4ef80b4d105d620f4d547ba776cc27b44cc2ef58b66eda23fe0a74142feb5e79a6fb99f54fc018a696afa
+  checksum: c981e82b77a5acdcc4e69af9c56cdecf5b934a87a08e7b52120596701e389a878b8e3f860e73ffb287bf649cc47a8c741262ce058148f71de4cdd88bb9c75153
   languageName: node
   linkType: hard
 
 "typescript@patch:typescript@~4.9.5#~builtin<compat/typescript>":
   version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=ad5954"
+  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=289587"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 8f6260acc86b56bfdda6004bc53f32ea548f543e8baef7071c8e34d29d292f3e375c8416556c8de10b24deef6933cd1c16a8233dc84a3dd43a13a13265d0faab
+  checksum: 1f8f3b6aaea19f0f67cba79057674ba580438a7db55057eb89cc06950483c5d632115c14077f6663ea76fd09fce3c190e6414bb98582ec80aa5a4eaf345d5b68
   languageName: node
   linkType: hard
 
@@ -21128,15 +21018,6 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: f77b3d8d00310def622123df93d4ee654fc6a0096182af8bd60679ddcdfb3474c56c6c7190817c84a2785648cdee9d721c0154eb45698c62176c322fb46fc700
-  languageName: node
-  linkType: hard
-
-"zone.js@npm:~0.13.0":
-  version: 0.13.0
-  resolution: "zone.js@npm:0.13.0"
-  dependencies:
-    tslib: ^2.3.0
-  checksum: 1889a915dc94dfa0e421fdef0143bc241a680c0119ae4f6043f096361f30aa6d3f3dd397e4a867955adbf033003d5fc23d0a4025f3983608d81b7f322136b0c5
   languageName: node
   linkType: hard
 
