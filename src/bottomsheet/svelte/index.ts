@@ -29,7 +29,7 @@ export function resolveComponentElement<T>(viewSpec: typeof SvelteComponent<T>, 
     return { element, viewInstance };
 }
 
-export function showBottomSheet<T, U = any>(modalOptions: SvelteShowBottomSheetOptions<U>): Promise<T> {
+export function showBottomSheet<T = any, U = any>(modalOptions: SvelteShowBottomSheetOptions<U>): Promise<T> {
     const { view, parent, props = {}, ...options } = modalOptions;
     // Get this before any potential new frames are created by component below
     const modalLauncher: View = (parent && (parent instanceof View ? parent : parent.nativeView)) || Frame.topmost().currentPage;
