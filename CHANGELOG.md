@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.4](https://github.com/nativescript-community/ui-material-component/compare/v7.2.3...v7.2.4) (2023-10-19)
+
+### Bug Fixes
+
+* **bottomsheet:** svelte showBottomSheet default return to any ([b6ab49c](https://github.com/nativescript-community/ui-material-component/commit/b6ab49cf61250db8b31f0f24ecfba30f469b0a1a))
+* **bottomsheet:** vue3 component fix ([85eb398](https://github.com/nativescript-community/ui-material-component/commit/85eb3983ccb1c639f2f82720ce087ec0e4c3359f))
+
 ## [7.2.3](https://github.com/nativescript-community/ui-material-component/compare/v7.2.2...v7.2.3) (2023-10-16)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
