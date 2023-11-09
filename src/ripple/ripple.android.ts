@@ -245,7 +245,7 @@ export class Ripple extends RippleBase {
             if (value instanceof android.graphics.drawable.Drawable) {
             } else {
                 this.rippleDrawable = null;
-                this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius);
+                this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius, value.borderTopRightRadius, value.borderBottomRightRadius, value.borderBottomLeftRadius);
             }
         }
     }
