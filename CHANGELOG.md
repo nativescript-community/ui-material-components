@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.5](https://github.com/nativescript-community/ui-material-component/compare/v7.2.4...v7.2.5) (2023-11-09)
+
+### Bug Fixes
+
+* **ripple:** android fix for ripple and borderRadius ([09bb63a](https://github.com/nativescript-community/ui-material-component/commit/09bb63a165362bf1192ef1a39a77c66b9811abb4))
+
 ## [7.2.4](https://github.com/nativescript-community/ui-material-component/compare/v7.2.3...v7.2.4) (2023-10-19)
 
 ### Bug Fixes
