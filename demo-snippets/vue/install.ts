@@ -75,6 +75,7 @@ export function installPlugin() {
 }
 
 export const demos = [
+    { name: 'Mixins', path: 'Mixins', component: Mixins },
     { name: 'ActivityIndicators', path: 'ActivityIndicators', component: ActivityIndicators },
     { name: 'BottomNavigationBar', path: 'BottomNavigationBar', component: BottomNavigationBar },
     { name: 'BottomNavigation', path: 'BottomNavigation', component: BottomNavigation },
@@ -89,6 +90,5 @@ export const demos = [
     { name: 'TextViews', path: 'TextViews', component: TextViews },
     { name: 'BottomSheet', path: 'BottomSheet', component: BottomSheet },
     { name: 'SpeedDial', path: 'SpeedDial', component: SpeedDial },
-    { name: 'Tabs', path: 'Tabs', component: Tabs },
-    { name: 'Mixins', path: 'Mixins', component: Mixins }
+    { name: 'Tabs', path: 'Tabs', component: Tabs }
 ];

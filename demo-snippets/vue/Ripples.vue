@@ -4,8 +4,8 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap"></NavigationButton>
         </ActionBar>
         <StackLayout>
-            <MDRipple backgroundColor="gray" rippleColor="green" width="100" height="100" @tap="onTap"/>
-            <MDRipple width="100" height="100" rippleColor="green" borderRadius="50%"  @tap="onTap"/>
+            <MDRipple backgroundColor="gray" rippleColor="green" width="100" height="100" @tap="onTap" horizontalAlignment="left"/>
+            <MDRipple width="100" height="100" rippleColor="green" borderRadius="50%"  @tap="onTap" horizontalAlignment="left"/>
         </StackLayout>
     </Page>
 </template>

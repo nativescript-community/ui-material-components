@@ -4,11 +4,11 @@
             <NavigationButton text="Back" android.systemIcon="ic_menu_back" @tap="onNavigationButtonTap"></NavigationButton>
         </ActionBar>
         <StackLayout>
-            <StackLayout backgroundColor="yellow" elevation="10" dynamicElevationOffset="3">
-                <Button margin="10" elevation="5" rippleColor="red" backgroundColor="green" borderRadius="10" fontSize="20" text="elevated button" @tap="onButtonTap" />
+            <StackLayout backgroundColor="pink" elevation="10" dynamicElevationOffset="3">
+                <Button margin="10" elevation="5" rippleColor="red" backgroundColor="green" borderRadius="50%" fontSize="20" text="elevated button" @tap="onButtonTap" id="button" />
                 <Button margin="10" rippleColor="red" fontSize="20" text="elevated button" />
-                <Label margin="10" horizontalAlignment="center" backgroundColor="yellow" padding="10" elevation="1" borderRadius="20" rippleColor="red" text="elevated text" />
-                <Label margin="10" horizontalAlignment="center" padding="10" backgroundColor="yellow" dynamicElevationOffset="3" elevation="1" rippleColor="red" text="elevated text" />
+                <Label margin="10" horizontalAlignment="center" backgroundColor="yellow" padding="10" elevation="1" dynamicElevationOffset="3" rippleColor="red" text="elevated text"  borderRadius="50% 10% 4 0" borderWidth="1" borderColor="blue" id="label"/>
+                <Label margin="10" horizontalAlignment="center" padding="10" backgroundColor="yellow" dynamicElevationOffset="3" elevation="1" rippleColor="red" text="elevated text" borderRadius="20"/>
                 <StackLayout class="cardView" height="100" orientation="horizontal">
                     <Label width="100%" textAlignment="center" verticalAlignment="center" text="elevated text" />
                 </StackLayout>
