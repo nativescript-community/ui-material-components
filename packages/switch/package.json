@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-switch",
-    "version": "7.2.5",
+    "version": "7.2.6",
     "description": "Material Switch",
     "main": "./index",
     "sideEffects": false,
@@ -46,7 +46,7 @@
     },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^7.2.5"
+        "@nativescript-community/ui-material-core": "^7.2.6"
     },
     "gitHead": "d8c4a676e11bb01ed7bc708aaa73716f8ae7d12f"
 }

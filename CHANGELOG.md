@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.6](https://github.com/nativescript-community/ui-material-component/compare/v7.2.5...v7.2.6) (2023-11-10)
+
+### Bug Fixes
+
+* **ios:** borderRadius not supporting % in mixins ([e707f3e](https://github.com/nativescript-community/ui-material-component/commit/e707f3e9be72b5bcb2b7266ea77ba9d2ae0211a4))
+
 ## [7.2.5](https://github.com/nativescript-community/ui-material-component/compare/v7.2.4...v7.2.5) (2023-11-09)
 
 ### Bug Fixes
