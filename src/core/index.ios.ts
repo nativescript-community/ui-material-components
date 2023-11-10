@@ -218,6 +218,7 @@ export function overrideViewBase() {
         @cssProperty rippleColor: Color;
         inkTouchController: MDCRippleTouchController;
         shadowLayer: MDCShadowLayer;
+        // shadowView: UIView;
 
         nativeViewProtected: UIView;
 
@@ -228,9 +229,10 @@ export function overrideViewBase() {
                 // this.inkTouchController.addInkView();
                 // const colorScheme = themer.getAppColorScheme();
                 // MDCInkColorThemer.applyColorSchemeToInkView(colorScheme, this.inkTouchController.defaultInkView);
-                if (this.style.backgroundInternal) {
-                    this.inkTouchController.rippleView.layer.cornerRadius = Utils.layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
-                }
+                this.inkTouchController.rippleView.usesSuperviewShadowLayerAsMask = true;
+                // if (this.style.backgroundInternal) {
+                //     this.inkTouchController.rippleView.layer.cornerRadius = Utils.layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
+                // }
             }
             return this.inkTouchController;
         }
@@ -239,27 +241,52 @@ export function overrideViewBase() {
                 this._shadowElevations = this._shadowElevations || {};
 
                 // create the shadow Layer
+                //@ts-ignore
+                // const shadowView = ShadowView.alloc().init();
+                // this.shadowView = shadowView;
+                // this.shadowView.userInteractionEnabled = false;
+                // shadowView.clipsToBounds = false;
                 const layer = (this.shadowLayer = MDCShadowLayer.alloc().init());
+                // const layer = (this.shadowLayer = shadowView.layer);
                 layer.shouldRasterize = true;
                 layer.rasterizationScale = UIScreen.mainScreen.scale;
+                // shadowView.frame = this.nativeViewProtected.layer.bounds;
                 layer.frame = this.nativeViewProtected.layer.bounds;
+                // this.nativeViewProtected.addSubview(shadowView);
                 this.nativeViewProtected.layer.addSublayer(this.shadowLayer);
                 // we need to set clipToBounds to false. For now it overrides user choice.
                 this['clipToBounds'] = false;
                 this.nativeViewProtected.clipsToBounds = false;
-                if (this.style.backgroundInternal) {
-                    layer.cornerRadius = Utils.layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
-                }
+                layer.cornerRadius = this.nativeViewProtected.layer.cornerRadius;
+                layer.mask = this.nativeViewProtected.layer.mask;
+                // if (this.style.backgroundInternal) {
+                //     layer.cornerRadius = Utils.layout.toDeviceIndependentPixels(this.style.backgroundInternal.borderTopLeftRadius);
+                // }
                 if (this.nativeViewProtected instanceof UIControl) {
                     this.startElevationStateChangeHandler();
                 }
             }
             return this.shadowLayer;
         }
-        _onSizeChanged(): void {
-            if (this.nativeViewProtected && this.shadowLayer) {
-                this.shadowLayer.frame = this.nativeViewProtected.layer.bounds;
+
+        updateLayers() {
+            const layer = this.nativeViewProtected.layer;
+            if (layer) {
+                const mask = layer.mask;
+                if (layer && this.inkTouchController) {
+                    this.inkTouchController.rippleView.layer.cornerRadius = layer.cornerRadius;
+                    this.inkTouchController.rippleView.layer.mask = layer.mask;
+                }
+                if (layer && this.shadowLayer) {
+                    this.shadowLayer.frame = this.nativeViewProtected.layer.bounds;
+                    this.shadowLayer.cornerRadius = layer.cornerRadius;
+                    this.shadowLayer.mask = layer.mask;
+                }
+                layer.mask = mask;
             }
+        }
+        _onSizeChanged(): void {
+            this.updateLayers();
         }
         _setNativeClipToBounds() {
             if (this.shadowLayer) {
@@ -360,14 +387,20 @@ export function overrideViewBase() {
             this._shadowElevations['highlighted'] = value + elevation;
         }
 
-        [backgroundInternalProperty.setNative](value: Background) {
-            // base impl will be called before
-            // if (this.shadowLayer) {
-            //     this.shadowLayer.cornerRadius = Utils.layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
-            // }
+        [backgroundInternalProperty.setNative](value) {
+            const layer = this.nativeViewProtected.layer;
             if (this.inkTouchController) {
-                this.inkTouchController.rippleView.layer.cornerRadius = Utils.layout.toDeviceIndependentPixels(value.borderTopLeftRadius);
+                this.inkTouchController.rippleView.layer.cornerRadius = layer.cornerRadius;
+                this.inkTouchController.rippleView.layer.mask = layer.mask;
             }
+            if (this.shadowLayer) {
+                this.shadowLayer.cornerRadius = layer.cornerRadius;
+                this.shadowLayer.mask = layer.mask;
+            }
+        }
+
+        _redrawNativeBackground(value) {
+            this.updateLayers();
         }
     }
     // we need mixins to be applied after (run default implementation first) because of _setNativeClipToBounds.
