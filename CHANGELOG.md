@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.8](https://github.com/nativescript-community/ui-material-component/compare/v7.2.7...v7.2.8) (2023-11-13)
+
+### Bug Fixes
+
+* **core:** ios safe guard from null `nativeViewProtected` ([deba361](https://github.com/nativescript-community/ui-material-component/commit/deba3615d7b758355d709842657a296e3e76b5ca))
+
 ## [7.2.7](https://github.com/nativescript-community/ui-material-component/compare/v7.2.6...v7.2.7) (2023-11-10)
 
 ### Bug Fixes
