@@ -41,8 +41,11 @@ export function showBottomSheet<T = any, U = any>(modalOptions: SvelteShowBottom
         let resolved = false;
         const closeCallback = (result: T) => {
             if (resolved) return;
-            modalStack.pop();
             resolved = true;
+            if (options.closeCallback) {
+                options.closeCallback(result,componentInstanceInfo.viewInstance);
+            }
+            modalStack.pop();
             resolve(result);
             modalView._tearDownUI();
             componentInstanceInfo.viewInstance.$destroy(); // don't let an exception in destroy kill the promise callback

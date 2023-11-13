@@ -52,14 +52,16 @@ const BottomSheetPlugin = {
                 this.nativeView.showBottomSheet(
                     Object.assign({}, options, {
                         view: navEntryInstance.nativeView,
-                        closeCallback: (...args) => {
+                        closeCallback: (result) => {
                             if (resolved) {
                                 return;
                             }
                             resolved = true;
+                            if (options.closeCallback) {
+                                options.closeCallback(result, navEntryInstance);
+                            }
+                            resolve(result);
                             if (navEntryInstance && navEntryInstance.nativeView) {
-                                options.closeCallback && options.closeCallback.apply(undefined, args);
-                                resolve(...args);
                                 navEntryInstance.$emit('bottomsheet:close');
                                 navEntryInstance.$destroy();
                                 navEntryInstance = null;

@@ -105,14 +105,15 @@ export abstract class ViewWithBottomSheetBase extends View {
             }
             this._raiseClosedBottomSheetEvent();
             this._onDismissBottomSheetCallback = null;
-            this._closeBottomSheetCallback = null;
             this._bottomSheetClosed();
             if (this._bottomSheetContext.closeCallback) {
+                this._bottomSheetContext.closeCallback();
                 // only called if not already called by _closeBottomSheetCallback
-                if (typeof options.closeCallback === 'function') {
-                    options.closeCallback.apply(undefined, originalArgs);
-                }
+                // if (typeof options.closeCallback === 'function') {
+                //     options.closeCallback.apply(undefined, originalArgs);
+                // }
             }
+            this._closeBottomSheetCallback = null;
             this._bottomSheetContext = null;
         };
         this._closeBottomSheetCallback = (...originalArgs) => {
@@ -164,7 +165,7 @@ export abstract class ViewWithBottomSheetBase extends View {
     public closeBottomSheet(...args) {
         const closeCallback = this._closeBottomSheetCallback;
         if (closeCallback) {
-            closeCallback.apply(undefined, arguments);
+            closeCallback.apply(undefined, args);
         } else {
             const parent = this.parent as ViewWithBottomSheetBase;
             if (parent) {

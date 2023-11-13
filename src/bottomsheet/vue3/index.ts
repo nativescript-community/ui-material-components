@@ -45,14 +45,15 @@ const showSheet = (component, options: VueBottomSheetOptions) =>
         viewAttached.showBottomSheet(
             Object.assign({}, options, {
                 view: navEntryInstance.nativeView,
-                closeCallback: (...args) => {
+                closeCallback: (result) => {
                     if (resolved) {
                         return;
                     }
-                    resolved = true;
+                    if (options.closeCallback) {
+                        options.closeCallback(result, navEntryInstance);
+                    }
+                    resolve(result);
                     if (navEntryInstance && navEntryInstance) {
-                        options.closeCallback && options.closeCallback.apply(undefined, args);
-                        resolve(...args);
                         navEntryInstance.unmount();
                         modalStack.pop();
                     }

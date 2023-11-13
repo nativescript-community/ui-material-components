@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.7](https://github.com/nativescript-community/ui-material-component/compare/v7.2.6...v7.2.7) (2023-11-10)
+
+### Bug Fixes
+
+* **bottomsheet:** options `closeCallback` not being called on background dismiss. ([f4e4674](https://github.com/nativescript-community/ui-material-component/commit/f4e46741ccfd7996f267fd05100e73437e330e7f))
+
 ## [7.2.6](https://github.com/nativescript-community/ui-material-component/compare/v7.2.5...v7.2.6) (2023-11-10)
 
 ### Bug Fixes
