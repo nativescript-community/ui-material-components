@@ -270,7 +270,7 @@ export function overrideViewBase() {
         }
 
         updateLayers() {
-            const layer = this.nativeViewProtected.layer;
+            const layer = this.nativeViewProtected?.layer;
             if (layer) {
                 const mask = layer.mask;
                 if (layer && this.inkTouchController) {
