@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.9](https://github.com/nativescript-community/ui-material-component/compare/v7.2.8...v7.2.9) (2023-11-13)
+
+### Bug Fixes
+
+* **android:** edge case fixes ([1b35d53](https://github.com/nativescript-community/ui-material-component/commit/1b35d532437e1e57057b78431373b366fb1f3c36))
+
 ## [7.2.8](https://github.com/nativescript-community/ui-material-component/compare/v7.2.7...v7.2.8) (2023-11-13)
 
 ### Bug Fixes
