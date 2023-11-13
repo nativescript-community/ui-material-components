@@ -163,7 +163,7 @@ function prepareAndCreateAlertDialog(
 ) {
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
-    const onDone = function (result: boolean, dialog?: android.content.DialogInterface) {
+    const onDone = function (result: boolean, dialog?: android.content.DialogInterface, toBeCalledBeforeCallback?) {
         if (options && options.shouldResolveOnAction && !options.shouldResolveOnAction(validationArgs ? validationArgs(result) : result)) {
             return;
         }
@@ -186,6 +186,9 @@ function prepareAndCreateAlertDialog(
         if (dialog) {
             dialog.cancel();
         }
+        if (toBeCalledBeforeCallback) {
+            toBeCalledBeforeCallback();
+        }
         callback && callback(result);
     };
     if (!DialogInterface) {
@@ -194,14 +197,16 @@ function prepareAndCreateAlertDialog(
     builder.setOnDismissListener(
         new DialogInterface.OnDismissListener({
             onDismiss() {
-                onDone(false);
-                if ((builder as any)._currentModalCustomView) {
-                    const view = (builder as any)._currentModalCustomView;
-                    view.callUnloaded();
-                    view._tearDownUI(true);
-                    view._isAddedToNativeVisualTree = false;
-                    (builder as any)._currentModalCustomView = null;
-                }
+                // ensure callback is called after destroying the custom view
+                onDone(false, undefined, ()=>{
+                    if ((builder as any)._currentModalCustomView) {
+                        const view = (builder as any)._currentModalCustomView;
+                        view.callUnloaded();
+                        view._tearDownUI(true);
+                        view._isAddedToNativeVisualTree = false;
+                        (builder as any)._currentModalCustomView = null;
+                    }
+                });
             }
         })
     );
@@ -335,12 +340,13 @@ export class AlertDialog {
     }
     async hide() {
         if (this.dialog) {
-            return new Promise((resolve) => {
+            return new Promise<void>((resolve) => {
                 this.onCloseListeners.push(resolve);
                 this.dialog.cancel();
                 this.dialog = null;
             });
         }
+        return null;
     }
 }
 
