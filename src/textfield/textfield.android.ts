@@ -168,8 +168,10 @@ export class TextField extends TextFieldBase {
             // }
             this.layoutView.requestFocus();
             setTimeout(() => {
-                this.layoutView.setDescendantFocusability(oldDesc);
-                Utils.android.showSoftInput(this.nativeTextViewProtected);
+                if (this.layoutView) {
+                    this.layoutView.setDescendantFocusability(oldDesc);
+                    Utils.android.showSoftInput(this.nativeTextViewProtected);
+                }
             }, 0);
         }
 

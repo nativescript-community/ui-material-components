@@ -314,7 +314,9 @@ export function overrideViewBase() {
             if (!this.createStateListAnimatorTimeout) {
                 this.createStateListAnimatorTimeout = setTimeout(() => {
                     this.createStateListAnimatorTimeout = null;
-                    createStateListAnimator(this, this.nativeViewProtected);
+                    if (this.nativeViewProtected) {
+                        createStateListAnimator(this, this.nativeViewProtected);
+                    }
                 });
             }
         }

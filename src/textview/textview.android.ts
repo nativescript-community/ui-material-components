@@ -167,8 +167,10 @@ export class TextView extends TextViewBase {
             // }
             layoutView.requestFocus();
             setTimeout(() => {
-                layoutView.setDescendantFocusability(oldDesc);
-                Utils.android.showSoftInput(this.nativeTextViewProtected);
+                if (this.layoutView) {
+                    layoutView.setDescendantFocusability(oldDesc);
+                    Utils.android.showSoftInput(this.nativeTextViewProtected);
+                }
                 // this.focus();
             }, 0);
         }

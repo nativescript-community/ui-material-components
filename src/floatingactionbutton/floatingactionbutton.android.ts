@@ -42,7 +42,9 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         if (!this.createStateListAnimatorTimeout) {
             this.createStateListAnimatorTimeout = setTimeout(() => {
                 this.createStateListAnimatorTimeout = null;
-                createStateListAnimator(this, this.nativeViewProtected);
+                if(this.nativeViewProtected) {
+                    createStateListAnimator(this, this.nativeViewProtected);
+                }
             });
         }
     }
