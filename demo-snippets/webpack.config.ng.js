@@ -11,13 +11,9 @@ function fixedFromCharCode(codePt) {
     }
 }
 
-
 module.exports = (env, webpack) => {
     const platform = env && ((env.android && 'android') || (env.ios && 'ios'));
     webpack.chainWebpack((config) => {
-
-
-
         const symbolsParser = require('scss-symbols-parser');
         const mdiSymbols = symbolsParser.parseSymbols(readFileSync(resolve(__dirname, './node_modules/@mdi/font/scss/_variables.scss')).toString());
         const mdiIcons = JSON.parse(`{${mdiSymbols.variables[mdiSymbols.variables.length - 1].value.replace(/" (F|0)(.*?)([,\n]|$)/g, '": "$1$2"$3')}}`);
