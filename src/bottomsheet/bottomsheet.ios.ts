@@ -454,10 +454,11 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         if (this.isLoaded) {
             this.callUnloaded();
         }
+        
+        this._onDismissBottomSheetCallback && this._onDismissBottomSheetCallback();
         // it is very important to clear the viewController as N does not do it
         // and the destroy of the view from svelte could trigger a layout pass on the viewController
         this.viewController = null;
-        this._onDismissBottomSheetCallback && this._onDismissBottomSheetCallback();
     }
 }
 
