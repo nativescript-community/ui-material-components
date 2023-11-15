@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.10](https://github.com/nativescript-community/ui-material-component/compare/v7.2.9...v7.2.10) (2023-11-15)
+
+### Bug Fixes
+
+* bottomSheet viewController undefined on tap in background ([aa6d9c2](https://github.com/nativescript-community/ui-material-component/commit/aa6d9c270e81327bfb3601778b61db1f39dee558))
+* **dialog:** ensure that when hide returns, the view is custom view is destroyed ([a899d71](https://github.com/nativescript-community/ui-material-component/commit/a899d711b6fc4e8c03c6b617d36285df289e538d))
+
 ## [7.2.9](https://github.com/nativescript-community/ui-material-component/compare/v7.2.8...v7.2.9) (2023-11-13)
 
 ### Bug Fixes
