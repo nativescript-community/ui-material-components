@@ -1,4 +1,4 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { NativeScriptCommonModule } from '@nativescript/angular';
 import { NativeScriptMaterialTabsModule } from '@nativescript-community/ui-material-tabs/angular';
 import { TabsComponent } from './tabs.component';

@@ -1,4 +1,4 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { NativeScriptCommonModule } from '@nativescript/angular';
 import { NativeScriptMaterialBottomSheetModule } from '@nativescript-community/ui-material-bottomsheet/angular';
 
@@ -7,7 +7,7 @@ import { BottomSheetComponent } from './bottom-sheet.component';
 
 @NgModule({
     declarations: [BottomSheetComponent, LoginOptionsComponent],
-    entryComponents: [LoginOptionsComponent],
+    // entryComponents: [LoginOptionsComponent],
     // Recommendation: The NativeScriptMaterialBottomSheetModule should be imported in your app.module
     // Right now the Module doesn't work well with HMR
     // so if you are having troubles enable the legacy workflow in your nsconfig.json

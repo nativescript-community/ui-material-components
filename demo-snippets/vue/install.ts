@@ -75,20 +75,20 @@ export function installPlugin() {
 }
 
 export const demos = [
-    { name: 'Mixins', path: 'Mixins', component: Mixins },
     { name: 'ActivityIndicators', path: 'ActivityIndicators', component: ActivityIndicators },
     { name: 'BottomNavigationBar', path: 'BottomNavigationBar', component: BottomNavigationBar },
     { name: 'BottomNavigation', path: 'BottomNavigation', component: BottomNavigation },
+    { name: 'BottomSheet', path: 'BottomSheet', component: BottomSheet },
     { name: 'Buttons', path: 'Buttons', component: Buttons },
     { name: 'CardViews', path: 'CardViews', component: CardViews },
     { name: 'Dialogs', path: 'Dialogs', component: Dialogs },
+    { name: 'Mixins', path: 'Mixins', component: Mixins },
     { name: 'ProgressBars', path: 'ProgressBars', component: ProgressBars },
     { name: 'Ripples', path: 'Ripples', component: Ripples },
     { name: 'Sliders', path: 'Sliders', component: Sliders },
     { name: 'SnackBar', path: 'SnackBar', component: SnackBar },
+    { name: 'SpeedDial', path: 'SpeedDial', component: SpeedDial },
     { name: 'TextFields', path: 'TextFields', component: TextFields },
     { name: 'TextViews', path: 'TextViews', component: TextViews },
-    { name: 'BottomSheet', path: 'BottomSheet', component: BottomSheet },
-    { name: 'SpeedDial', path: 'SpeedDial', component: SpeedDial },
     { name: 'Tabs', path: 'Tabs', component: Tabs }
 ];
