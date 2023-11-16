@@ -1,4 +1,4 @@
-import { elevationProperty, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
+import { elevationProperty, getRippleColor, rippleColorAlphaProperty, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
 import { Color, backgroundColorProperty, colorProperty } from '@nativescript/core';
 import { maxValueProperty } from '@nativescript/core/ui/progress';
 import { minValueProperty } from '@nativescript/core/ui/slider/slider-common';
@@ -37,7 +37,12 @@ export class Slider extends SliderBase {
         }
     }
     [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.rippleColor = color ? (color.ios as UIColor).colorWithAlphaComponent(0.26) : null;
+        this.nativeViewProtected.rippleColor = color ? getRippleColor(color, this.rippleColorAlpha) : null;
+    }
+    [rippleColorAlphaProperty.setNative](value: number) {
+        if (this.rippleColor) {
+            this[rippleColorProperty.setNative](this.rippleColor);
+        }
     }
 
     [thumbColorProperty.setNative](color: Color) {

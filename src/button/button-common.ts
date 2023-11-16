@@ -19,7 +19,12 @@ export abstract class ButtonBase extends Button {
     /**
      * Gets or sets the ripple-color of the button.
      */
-    @cssProperty rippleColor: Color | string;
+    @cssProperty rippleColor: Color;
+
+    /**
+     * Gets or sets the ripple-color alpha of the button.
+     */
+    @cssProperty rippleColorAlpha: number;
 
     /**
      * Gets or sets the {@link VerticalTextAlignment|vertical text alignment} of the button.

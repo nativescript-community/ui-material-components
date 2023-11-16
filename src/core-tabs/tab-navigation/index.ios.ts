@@ -7,6 +7,7 @@ import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty
 import { TabStrip } from '../tab-strip';
 import { TabStripItem } from '../tab-strip-item';
 import { TabNavigationBase, swipeEnabledProperty } from './index-common';
+import { getRippleColor } from '@nativescript-community/ui-material-core';
 
 export { TabContentItem, TabStrip, TabStripItem };
 
@@ -905,9 +906,9 @@ export abstract class TabNavigation<
         });
     }
 
-    public setTabBarRippleColor(value: Color) {
+    public setTabBarRippleColor(value: Color, alpha?:number) {
         this.mRippleColor = value;
-        this.viewController.tabBar.rippleColor = value.ios;
+        this.viewController.tabBar.rippleColor = getRippleColor(value, alpha);
     }
 
     public getTabBarRippleColor(): Color {

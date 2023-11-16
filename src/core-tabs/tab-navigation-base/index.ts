@@ -270,7 +270,7 @@ export class TabNavigationBase extends View implements TabNavigationBaseDefiniti
         // overridden by inheritors
     }
 
-    public setTabBarRippleColor(value: Color) {
+    public setTabBarRippleColor(value: Color, alpha?:number) {
         // overridden by inheritors
     }
 

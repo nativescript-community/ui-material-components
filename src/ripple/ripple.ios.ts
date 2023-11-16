@@ -1,4 +1,4 @@
-import { getRippleColor, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
+import { getRippleColor, rippleColorAlphaProperty, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
 import { Color } from '@nativescript/core';
 import { RippleBase } from './ripple-common';
 
@@ -17,6 +17,11 @@ export class Ripple extends RippleBase {
         return view;
     }
     [rippleColorProperty.setNative](color: Color) {
-        this.inkTouchController.rippleView.rippleColor = getRippleColor(color);
+        this.inkTouchController.rippleView.rippleColor = getRippleColor(color, this.rippleColorAlpha);
+    }
+    [rippleColorAlphaProperty.setNative](value: number) {
+        if (this.rippleColor) {
+            this[rippleColorProperty.setNative](this.rippleColor);
+        }
     }
 }

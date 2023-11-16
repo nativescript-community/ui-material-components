@@ -1,4 +1,4 @@
-import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorAlphaProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
 import {
     Background,
     Color,
@@ -225,7 +225,14 @@ export class Button extends ButtonBase {
         this.nativeViewProtected.uppercaseTitle = value !== 'none';
     }
     [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.inkColor = getRippleColor(color);
+        this.nativeViewProtected.inkColor = getRippleColor(color, this.rippleColorAlpha);
+    }
+
+    [rippleColorAlphaProperty.setNative](value: number) {
+        const rippleColor = this.rippleColor;
+        if (rippleColor) {
+            this.nativeViewProtected.inkColor = getRippleColor(rippleColor, value);
+        }
     }
 
     [elevationProperty.setNative](value: number) {

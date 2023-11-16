@@ -1,5 +1,5 @@
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorAlphaProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
 import { createStateListAnimator, getColorStateList, getHorizontalGravity, getLayout, getVerticalGravity, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import {
     Background,
@@ -87,8 +87,13 @@ export class Button extends ButtonBase {
     //     (<any>nativeView).clickListener = clickListener;
     // }
     [rippleColorProperty.setNative](value: Color) {
-        const color = !value || value instanceof Color ? value : new Color(value);
-        this.nativeViewProtected.setRippleColor(color ? getColorStateList(color.android) : null);
+        this.nativeViewProtected.setRippleColor(value ? getColorStateList(getRippleColor(value, this.rippleColorAlpha)) : null);
+    }
+    [rippleColorAlphaProperty.setNative](value: number) {
+        const rippleColor = this.rippleColor;
+        if (rippleColor) {
+            this.nativeViewProtected.setRippleColor(getColorStateList(getRippleColor(rippleColor, value)));
+        }
     }
     defaultAppearanceModel;
     [shapeProperty.setNative](shape: string) {

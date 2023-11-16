@@ -2,7 +2,7 @@ import { Background, Button, Color, Length, PercentLength, Utils, View, androidD
 import { ad } from '@nativescript/core/utils';
 import { ShapeProperties } from '.';
 import { createRippleDrawable, createStateListAnimator, getAttrColor, getColorStateList, handleClearFocus, isPostLollipop, isPostMarshmallow } from './android/utils';
-import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
+import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorAlphaProperty, rippleColorProperty } from './cssproperties';
 import { CornerFamily, applyMixins } from './index.common';
 export * from './cssproperties';
 export { applyMixins };
@@ -197,10 +197,13 @@ export const themer = new Themer();
 
 export function install() {}
 
-export function getRippleColor(color: string | Color) {
+export function getRippleColor(color: string | Color, alpha = 61.5) {
     if (color) {
         const temp = color instanceof Color ? color : new Color(color);
-        return new Color(temp.a !== 255 ? temp.a : 61.5, temp.r, temp.g, temp.b).android; // default alpha is 0.24
+        if (temp.a !== 255) {
+            return temp.android;
+        }
+        return temp.setAlpha(alpha).android;
     }
     return null;
 }
@@ -212,6 +215,7 @@ export function overrideViewBase() {
         @cssProperty elevation = 0;
         @cssProperty dynamicElevationOffset = 0;
         @cssProperty rippleColor: Color;
+        @cssProperty rippleColorAlpha: number;
         rippleDrawable: android.graphics.drawable.Drawable;
         getRippleColor() {
             if (this.rippleColor) {
@@ -229,7 +233,7 @@ export function overrideViewBase() {
             }
         }
         [rippleColorProperty.setNative](color: Color) {
-            const rippleColor = getRippleColor(color);
+            const rippleColor = getRippleColor(color, this.rippleColorAlpha);
             const nativeViewProtected = this.nativeViewProtected;
             const RippleDrawable = android.graphics.drawable.RippleDrawable;
             if (this instanceof Button && isPostMarshmallow) {
@@ -262,6 +266,13 @@ export function overrideViewBase() {
                 }
             }
         }
+
+    [rippleColorAlphaProperty.setNative](value: number) {
+        const rippleColor = this.rippleColor;
+        if (rippleColor) {
+            this[rippleColorProperty.setNative](rippleColor);
+        }
+    }
 
         [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
             if (this.nativeViewProtected) {

@@ -14,7 +14,7 @@ import {
 } from '@nativescript/core';
 import { ShapeProperties, TypographyOptions } from '.';
 import { CornerFamily, applyMixins } from './index.common';
-import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty } from './cssproperties';
+import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorAlphaProperty, rippleColorProperty } from './cssproperties';
 export * from './cssproperties';
 export { applyMixins };
 
@@ -201,11 +201,13 @@ export const themer = new Themer();
 
 export function install() {}
 
-export function getRippleColor(color: string | Color): UIColor {
+export function getRippleColor(color: string | Color, alpha = 61.5): UIColor {
     if (color) {
         const temp = color instanceof Color ? color : new Color(color);
-        // return UIColor.colorWithRedGreenBlueAlpha(temp.r / 255, temp.g / 255, temp.b, temp.a !== 255 ? temp.a / 255 : 0.14);
-        return new Color(temp.a !== 255 ? temp.a : 61.5, temp.r, temp.g, temp.b).ios; // default alpha is 0.24
+        if (temp.a !== 255) {
+            return temp.ios;
+        }
+        return temp.setAlpha(alpha).ios;
     }
     return null;
 }
@@ -216,6 +218,7 @@ export function overrideViewBase() {
         @cssProperty elevation: number;
         @cssProperty dynamicElevationOffset: number;
         @cssProperty rippleColor: Color;
+        @cssProperty rippleColorAlpha: number;
         inkTouchController: MDCRippleTouchController;
         shadowLayer: MDCShadowLayer;
         // shadowView: UIView;
@@ -319,7 +322,13 @@ export function overrideViewBase() {
         }
         [rippleColorProperty.setNative](color: Color) {
             this.getOrCreateRippleController();
-            this.inkTouchController.rippleView.rippleColor = getRippleColor(color);
+            this.inkTouchController.rippleView.rippleColor = getRippleColor(color, this.rippleColorAlpha);
+        }
+        [rippleColorAlphaProperty.setNative](value: number) {
+            const rippleColor = this.rippleColor;
+            if (rippleColor) {
+                this[rippleColorProperty.setNative](rippleColor);
+            }
         }
 
         startElevationStateChangeHandler() {

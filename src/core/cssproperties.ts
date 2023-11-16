@@ -19,6 +19,12 @@ export const rippleColorProperty = new CssProperty<Style, Color>({
     valueConverter: (v) => new Color(v)
 });
 rippleColorProperty.register(Style);
+export const rippleColorAlphaProperty = new CssProperty<Style, number>({
+    name: 'rippleColorAlpha',
+    cssName: 'ripple-color-alpha',
+    valueConverter: parseFloat
+});
+rippleColorAlphaProperty.register(Style);
 export const elevationProperty = new CssProperty<Style, CoreTypes.LengthType>({
     name: 'elevation',
     cssName: 'elevation',
