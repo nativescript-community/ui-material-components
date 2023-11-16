@@ -55,6 +55,7 @@ class UIViewAutoSizeUIViewAutoSize extends UIView {
 function createUIViewAutoSizeUIViewAutoSize(view: View) {
     const self = UIViewAutoSizeUIViewAutoSize.new() as UIViewAutoSizeUIViewAutoSize;
     view._setupAsRootView({});
+    view.parent = Application.getRootView();
     view._isAddedToNativeVisualTree = true;
     view.callLoaded();
     self._view = view;
@@ -104,6 +105,7 @@ class MDCAlertControllerImpl extends MDCAlertController {
             const view = this.accessoryView._view;
             view.callUnloaded();
             view._tearDownUI(true);
+            view.parent = null;
             view._isAddedToNativeVisualTree = false;
             this.accessoryView._view = null;
         }
@@ -174,8 +176,8 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
             options.view instanceof View
                 ? options.view
                 : Builder.createViewFromEntry({
-                    moduleName: options.view as string
-                });
+                      moduleName: options.view as string
+                  });
 
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
@@ -277,8 +279,8 @@ export function confirm(arg: any): Promise<boolean> {
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
-                    message: arg + ''
-                })
+                      message: arg + ''
+                  })
                 : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
 
@@ -540,7 +542,7 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
             if (alertController.popoverPresentationController) {
                 alertController.popoverPresentationController.sourceView = viewController.view;
                 alertController.popoverPresentationController.sourceRect = CGRectMake(viewController.view.bounds.size.width / 2.0, viewController.view.bounds.size.height / 2.0, 1.0, 1.0);
-                alertController.popoverPresentationController.permittedArrowDirections = 0;
+                alertController.popoverPresentationController.permittedArrowDirections = 0 as any;
             }
             viewController.presentViewControllerAnimatedCompletion(alertController, true, null);
         }

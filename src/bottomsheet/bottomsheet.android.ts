@@ -146,6 +146,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 savedInstanceState: android.os.Bundle
             ): android.view.View {
                 owner._setupAsRootView(fragment.getActivity());
+                owner.parent = Application.getRootView();
                 owner._isAddedToNativeVisualTree = true;
                 return owner.nativeViewProtected;
             },
@@ -237,6 +238,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     }
                     owner._isAddedToNativeVisualTree = false;
                     owner._tearDownUI(true);
+                    owner.parent = null;
                 }
             }
         });

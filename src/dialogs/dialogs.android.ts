@@ -72,6 +72,7 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
 
         (builder as any)._currentModalCustomView = view;
         view._setupAsRootView(activity);
+        view.parent = Application.getRootView();
         view._isAddedToNativeVisualTree = true;
         view.callLoaded();
 
@@ -176,7 +177,7 @@ function prepareAndCreateAlertDialog(
             Utils.android.dismissSoftInput(options.view.nativeView);
         } else {
             const activity = (Application.android.foregroundActivity || Application.android.startActivity) as globalAndroid.app.Activity;
-            const context = ad.getApplicationContext() as android.content.Context;
+            const context = ad.getApplicationContext();
             const view = activity != null ? activity.getCurrentFocus() : null;
             if (view) {
                 const imm = context.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager;
@@ -198,11 +199,12 @@ function prepareAndCreateAlertDialog(
         new DialogInterface.OnDismissListener({
             onDismiss() {
                 // ensure callback is called after destroying the custom view
-                onDone(false, undefined, ()=>{
+                onDone(false, undefined, () => {
                     if ((builder as any)._currentModalCustomView) {
                         const view = (builder as any)._currentModalCustomView;
                         view.callUnloaded();
                         view._tearDownUI(true);
+                        view.parent = null;
                         view._isAddedToNativeVisualTree = false;
                         (builder as any)._currentModalCustomView = null;
                     }

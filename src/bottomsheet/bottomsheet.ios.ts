@@ -361,6 +361,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             return;
         }
         this._setupAsRootView({});
+        this.parent = Application.getRootView();
 
         this._commonShowNativeBottomSheet(parentWithController, options);
         let controller: IMDLayoutViewController = this.viewController;
@@ -454,7 +455,10 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         if (this.isLoaded) {
             this.callUnloaded();
         }
-        
+        this._isAddedToNativeVisualTree = false;
+        this._tearDownUI(true);
+        this.parent = null;
+
         this._onDismissBottomSheetCallback && this._onDismissBottomSheetCallback();
         // it is very important to clear the viewController as N does not do it
         // and the destroy of the view from svelte could trigger a layout pass on the viewController
