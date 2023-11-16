@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.12](https://github.com/nativescript-community/ui-material-component/compare/v7.2.11...v7.2.12) (2023-11-16)
+
+### Bug Fixes
+
+* allow dialogs and bottomsheet views to access `ns-root` css variables ([ae4d6cc](https://github.com/nativescript-community/ui-material-component/commit/ae4d6cc89fd6f5a13f8542be5e93777855605878))
+
+### Features
+
+* rippleColorAlpha property ([84d241b](https://github.com/nativescript-community/ui-material-component/commit/84d241bdfa5230119d8bbd82e68e264be3c2a836))
+
 ## [7.2.11](https://github.com/nativescript-community/ui-material-component/compare/v7.2.10...v7.2.11) (2023-11-15)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
