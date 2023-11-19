@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.14](https://github.com/nativescript-community/ui-material-component/compare/v7.2.13...v7.2.14) (2023-11-19)
+
+### Bug Fixes
+
+* **android:** prevent error because of N bug ([be1ed23](https://github.com/nativescript-community/ui-material-component/commit/be1ed23d1bf1c0183a3d4987137788b5f20ce473))
+
 ## [7.2.13](https://github.com/nativescript-community/ui-material-component/compare/v7.2.12...v7.2.13) (2023-11-19)
 
 ### Bug Fixes
