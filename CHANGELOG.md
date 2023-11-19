@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.13](https://github.com/nativescript-community/ui-material-component/compare/v7.2.12...v7.2.13) (2023-11-19)
+
+### Bug Fixes
+
+* **android:** progress color set fix ([c646547](https://github.com/nativescript-community/ui-material-component/commit/c646547ad3dadf294e3298339d15f1650b6ff6ee))
+
 ## [7.2.12](https://github.com/nativescript-community/ui-material-component/compare/v7.2.11...v7.2.12) (2023-11-16)
 
 ### Bug Fixes
