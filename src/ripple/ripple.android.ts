@@ -231,9 +231,9 @@ export class Ripple extends RippleBase {
                 Length.toDevicePixels(this.style.borderBottomLeftRadius)
             );
         } else {
-            const nColor = getRippleColor(color, this.rippleColorAlpha)
+            const nColor = getRippleColor(color, this.rippleColorAlpha);
             if (isPostLollipopMR1) {
-                (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(color?getColorStateList(nColor):null);
+                (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(color ? getColorStateList(nColor) : null);
             } else {
                 (this.rippleDrawable as any).rippleShape.getPaint().setColor(nColor);
             }

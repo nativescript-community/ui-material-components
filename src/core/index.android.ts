@@ -203,7 +203,9 @@ export function getRippleColor(color: string | Color, alpha = 0) {
         if (temp.a !== 255 && alpha === 0) {
             return temp.android;
         }
-        return temp.setAlpha(alpha || 61.5).android;
+        // TODO: we cant use setAlpha until it is fixed in Nativescript or android will be undefined
+        return new Color(alpha || 61.5, temp.r, temp.g, temp.b).android;
+        // return temp.setAlpha(alpha || 61.5).android;
     }
     return null;
 }
