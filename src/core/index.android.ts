@@ -197,13 +197,13 @@ export const themer = new Themer();
 
 export function install() {}
 
-export function getRippleColor(color: string | Color, alpha = 61.5) {
+export function getRippleColor(color: string | Color, alpha = 0) {
     if (color) {
         const temp = color instanceof Color ? color : new Color(color);
-        if (temp.a !== 255) {
+        if (temp.a !== 255 && alpha === 0) {
             return temp.android;
         }
-        return temp.setAlpha(alpha).android;
+        return temp.setAlpha(alpha || 61.5).android;
     }
     return null;
 }
