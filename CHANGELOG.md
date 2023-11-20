@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.15](https://github.com/nativescript-community/ui-material-component/compare/v7.2.14...v7.2.15) (2023-11-20)
+
+### Bug Fixes
+
+* **bottomsheet:** ios regression fix ([b3b8940](https://github.com/nativescript-community/ui-material-component/commit/b3b8940d97cc88c39bd37b1b45a1f4b4675e5cf9))
+
 ## [7.2.14](https://github.com/nativescript-community/ui-material-component/compare/v7.2.13...v7.2.14) (2023-11-19)
 
 ### Bug Fixes
