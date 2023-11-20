@@ -361,7 +361,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             return;
         }
         this._setupAsRootView({});
-        this.parent = Application.getRootView();
 
         this._commonShowNativeBottomSheet(parentWithController, options);
         let controller: IMDLayoutViewController = this.viewController;
@@ -385,6 +384,8 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
             this.viewController = controller; // store the viewController so that safeArea overflow is applied correctly
         }
+        // calling this before the controller set makes it fail. Would have to investigate this
+        this.parent = Application.getRootView();
 
         this._raiseShowingBottomSheetEvent();
         const bottomSheet = (this.bottomSheetController = MDCBottomSheetController.alloc().initWithContentViewController(controller));
