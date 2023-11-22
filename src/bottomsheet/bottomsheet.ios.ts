@@ -50,8 +50,14 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
     }
     bottomSheetControllerDidDismissBottomSheet(controller: MDCBottomSheetController) {
         // called when clicked on background
-        const owner = this._owner.get();
-        owner && owner._unloadBottomSheet();
+        // this is called too soon to "dispose" the view. But we dont have a way
+        // to know when the animation is finished.
+        //Consequently with background tap we see the view disappear
+        // so we timeout a bit
+        setTimeout(() => {
+            const owner = this._owner.get();
+            owner && owner._unloadBottomSheet();
+        }, 200);
     }
     bottomSheetControllerStateChangedState(controller: MDCBottomSheetController, state: MDCSheetState) {
         // called when swiped
@@ -434,13 +440,25 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     }
 
     _bottomSheetClosed() {
+        console.log('_bottomSheetClosed');
+        super._bottomSheetClosed();
+
         if (this.bottomSheetController) {
             this.bottomSheetController.delegate = null;
             this.bottomSheetController = null;
         }
         this.bottomSheetControllerDelegate = null;
+        // it is very important to clear the viewController as N does not do it
+        // and the destroy of the view from svelte could trigger a layout pass on the viewController
+        this.viewController = null;
     }
     protected _hideNativeBottomSheet(parent: View, whenClosedCallback: () => void) {
+        if (!this.viewController) {
+            // when clicking on background we dont need to dismiss, already done
+            whenClosedCallback?.();
+            return;
+        }
+        console.log('_hideNativeBottomSheet', new Error().stack);
         const parentWithController = IOSHelper.getParentWithViewController(parent);
         if (!parent || !parentWithController) {
             Trace.error('Trying to hide bottom-sheet view but no parent with viewController specified.');
@@ -453,17 +471,11 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     }
 
     _unloadBottomSheet() {
+        console.log('_unloadBottomSheet');
         if (this.isLoaded) {
             this.callUnloaded();
         }
-        this._isAddedToNativeVisualTree = false;
-        this._tearDownUI(true);
-        this.parent = null;
-
         this._onDismissBottomSheetCallback && this._onDismissBottomSheetCallback();
-        // it is very important to clear the viewController as N does not do it
-        // and the destroy of the view from svelte could trigger a layout pass on the viewController
-        this.viewController = null;
     }
 }
 

@@ -77,7 +77,10 @@ export abstract class ViewWithBottomSheetBase extends View {
         const _rootModalViews = this._getRootModalViews();
         const modalIndex = _rootModalViews.indexOf(this);
         _rootModalViews.splice(modalIndex);
-        this._tearDownUI();
+
+        this._isAddedToNativeVisualTree = false;
+        this._tearDownUI(true);
+        this.parent = null;
         // if a frame _removeFromFrameStack will be called from _tearDownUI
         // if (this instanceof Frame) {
         //     this._removeFromFrameStack();
@@ -182,7 +185,7 @@ export abstract class ViewWithBottomSheetBase extends View {
                 options.view instanceof View
                     ? (options.view as any as ViewWithBottomSheetBase)
                     : (Builder.createViewFromEntry({
-                          moduleName: options.view as string
+                          moduleName: options.view
                       }) as ViewWithBottomSheetBase);
             view._showNativeBottomSheet(this, options);
             return view;
