@@ -269,12 +269,12 @@ export function overrideViewBase() {
             }
         }
 
-    [rippleColorAlphaProperty.setNative](value: number) {
-        const rippleColor = this.rippleColor;
-        if (rippleColor) {
-            this[rippleColorProperty.setNative](rippleColor);
+        [rippleColorAlphaProperty.setNative](value: number) {
+            const rippleColor = this.rippleColor;
+            if (rippleColor) {
+                this[rippleColorProperty.setNative](rippleColor);
+            }
         }
-    }
 
         [backgroundInternalProperty.setNative](value: android.graphics.drawable.Drawable | Background) {
             if (this.nativeViewProtected) {
