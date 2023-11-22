@@ -52,10 +52,16 @@ function cornerTreatment(cornerFamily: CornerFamily, cornerSize: number | CoreTy
     }
     return corner;
 }
+
+function getIOSColor(value: string | Color) {
+    return (value instanceof Color ? value : new Color(value)).ios;
+}
 export class Themer {
     appColorScheme: MDCSemanticColorScheme;
     appTypoScheme: MDCTypographyScheme;
     primaryColor: string | Color;
+    backgroundColor: string | Color;
+    onBackgroundColor: string | Color;
     onPrimaryColor: string | Color;
     secondaryColor: string | Color;
     accentColor: string | Color;
@@ -81,8 +87,7 @@ export class Themer {
     setPrimaryColor(value: string | Color) {
         this.primaryColor = value;
         const colorTheme = this.getOrcreateAppColorScheme();
-        const color = value instanceof Color ? value : new Color(value);
-        colorTheme.primaryColor = color.ios;
+        colorTheme.primaryColor = getIOSColor(value);
         this.appColorScheme.primaryColorVariant = this.appColorScheme.primaryColor.colorWithAlphaComponent(0.24);
     }
     getPrimaryColor(): string | Color {
@@ -92,8 +97,7 @@ export class Themer {
     setOnPrimaryColor(value) {
         this.onPrimaryColor = value;
         const colorTheme = this.getOrcreateAppColorScheme();
-        const color = value instanceof Color ? value : new Color(value);
-        colorTheme.onPrimaryColor = color.ios;
+        colorTheme.onPrimaryColor = getIOSColor(value);
     }
     getOnPrimaryColor() {
         return this.onPrimaryColor;
@@ -101,8 +105,7 @@ export class Themer {
     setSecondaryColor(value: string | Color) {
         this.secondaryColor = value;
         const colorTheme = this.getOrcreateAppColorScheme();
-        const color = value instanceof Color ? value : new Color(value);
-        colorTheme.secondaryColor = color.ios;
+        colorTheme.secondaryColor = getIOSColor(value);
     }
     getSecondaryColor(): string | Color {
         return this.secondaryColor;
@@ -118,9 +121,9 @@ export class Themer {
     setSurfaceColor(value: string | Color) {
         this.surfaceColor = value;
         const colorTheme = this.getOrcreateAppColorScheme();
-        const color = value instanceof Color ? value : new Color(value);
-        colorTheme.surfaceColor = color.ios;
-        colorTheme.onSurfaceColor = color.ios;
+        const color = getIOSColor(value);
+        colorTheme.surfaceColor = color;
+        colorTheme.onSurfaceColor = color;
     }
     getSurfaceColor(): string | Color {
         return this.surfaceColor;
@@ -128,19 +131,34 @@ export class Themer {
     setOnSurfaceColor(value: string | Color) {
         this.onSurfaceColor = value;
         const colorTheme = this.getOrcreateAppColorScheme();
-        const color = value instanceof Color ? value : new Color(value);
-        colorTheme.onSurfaceColor = color.ios;
+        colorTheme.onSurfaceColor = getIOSColor(value);
     }
     getOnSurfaceColor(): string | Color {
         return this.onSurfaceColor;
     }
     setPrimaryColorVariant(value: string | Color) {
         this.primaryColorVariant = value;
-        const color = value instanceof Color ? value : new Color(value);
-        this.getOrcreateAppColorScheme().primaryColorVariant = color.ios;
+        this.getOrcreateAppColorScheme().primaryColorVariant = getIOSColor(value);
     }
     getPrimaryColorVariant(): string | Color {
         return this.primaryColorVariant;
+    }
+
+    setBackgroundColor(value: string | Color) {
+        this.backgroundColor = value;
+        const colorTheme = this.getOrcreateAppColorScheme();
+        colorTheme.backgroundColor = getIOSColor(value);
+    }
+    getBackgroundColor(): string | Color {
+        return this.backgroundColor;
+    }
+    setOnBackgroundColor(value: string | Color) {
+        this.onBackgroundColor = value;
+        const colorTheme = this.getOrcreateAppColorScheme();
+        colorTheme.onBackgroundColor = getIOSColor(value);
+    }
+    getOnBackgroundColor(): string | Color {
+        return this.onBackgroundColor;
     }
 
     getOrcreateAppTypographyScheme() {
@@ -207,7 +225,8 @@ export function getRippleColor(color: string | Color, alpha = 61.5): UIColor {
         if (temp.a !== 255) {
             return temp.ios;
         }
-        return temp.setAlpha(alpha).ios;
+        // TODO: we cant use setAlpha until it is fixed in Nativescript or ios will be undefined
+        return new Color(alpha || 61.5, temp.r, temp.g, temp.b).ios;
     }
     return null;
 }
