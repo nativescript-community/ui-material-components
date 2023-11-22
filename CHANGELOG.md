@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.16](https://github.com/nativescript-community/ui-material-component/compare/v7.2.15...v7.2.16) (2023-11-22)
+
+### Bug Fixes
+
+* **bottomsheet:** ios fix on bottomsheet close ([b571fc7](https://github.com/nativescript-community/ui-material-component/commit/b571fc703479cb517d9e8e97ad106e2169edb9f3))
+* **ios:** color theming fix ([d72a2fd](https://github.com/nativescript-community/ui-material-component/commit/d72a2fd612d1dbca8b9e976c556a1ffa9b508e62))
+
 ## [7.2.15](https://github.com/nativescript-community/ui-material-component/compare/v7.2.14...v7.2.15) (2023-11-20)
 
 ### Bug Fixes
