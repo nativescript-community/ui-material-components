@@ -458,7 +458,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             whenClosedCallback?.();
             return;
         }
-        console.log('_hideNativeBottomSheet', new Error().stack);
         const parentWithController = IOSHelper.getParentWithViewController(parent);
         if (!parent || !parentWithController) {
             Trace.error('Trying to hide bottom-sheet view but no parent with viewController specified.');
