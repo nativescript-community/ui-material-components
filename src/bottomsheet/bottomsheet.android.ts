@@ -75,6 +75,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         this._bottomSheetFragment = null;
     }
 
+
     protected _showNativeBottomSheet(parent: View, options: BottomSheetOptions) {
         this._commonShowNativeBottomSheet(parent, options);
         const owner = this;
@@ -218,27 +219,17 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             },
 
             onDismiss(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment, dialog: android.content.DialogInterface): void {
-                const manager = fragment.getFragmentManager();
-                if (manager) {
-                    bottomSheetOptions.dismissCallback();
+                if (owner) {
+                    owner._bottomSheetCloseIgnore = true;
                 }
-
-                if (owner && owner.isLoaded) {
-                    owner.callUnloaded();
-                }
+                bottomSheetOptions.dismissCallback();
             },
 
             onDestroy(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment): void {
                 (df as any).nListener = null;
                 if (owner) {
-                    // Android calls onDestroy before onDismiss.
-                    // Make sure we unload first and then call _tearDownUI.
-                    if (owner.isLoaded) {
-                        owner.callUnloaded();
-                    }
-                    owner._isAddedToNativeVisualTree = false;
-                    owner._tearDownUI(true);
-                    owner.parent = null;
+                    owner._bottomSheetCloseIgnore = false;
+                    owner._bottomSheetClosed();
                 }
             }
         });

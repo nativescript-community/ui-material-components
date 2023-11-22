@@ -73,7 +73,11 @@ export abstract class ViewWithBottomSheetBase extends View {
         this.notify(args);
     }
 
+    _bottomSheetCloseIgnore = false;
     public _bottomSheetClosed(): void {
+        if (this._bottomSheetCloseIgnore) {
+            return;
+        }
         const _rootModalViews = this._getRootModalViews();
         const modalIndex = _rootModalViews.indexOf(this);
         _rootModalViews.splice(modalIndex);
@@ -108,6 +112,7 @@ export abstract class ViewWithBottomSheetBase extends View {
             }
             this._raiseClosedBottomSheetEvent();
             this._onDismissBottomSheetCallback = null;
+            console.log('_onDismissBottomSheetCallback', this);
             this._bottomSheetClosed();
             if (this._bottomSheetContext.closeCallback) {
                 this._bottomSheetContext.closeCallback();
