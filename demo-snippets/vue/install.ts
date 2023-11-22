@@ -36,17 +36,18 @@ import Mixins from './Mixins.vue';
 
 import '../app.scss';
 
-import {Trace} from '@nativescript/core';
+import { Trace } from '@nativescript/core';
 Trace.addCategories(Trace.categories.NativeLifecycle);
 Trace.addCategories(Trace.categories.ViewHierarchy);
 // Trace.enable();
 installMixins();
 installBottomSheet();
 if (__IOS__) {
-    themer.setPrimaryColor('#bff937');
-    themer.setPrimaryColorVariant('#33B5E5');
-    themer.setAccentColor('#ff8a39');
-    themer.setSecondaryColor('#a830d7');
+    themer.setPrimaryColor('#006E25');
+    themer.setOnPrimaryColor('#FFFFFF');
+    themer.setSecondaryColor('#526350');
+    themer.setSurfaceColor('#F9FAF4');
+    themer.setOnSurfaceColor('#1A1C19');
 }
 themer.createShape('cut', {
     cornerFamily: 'cut' as any,
@@ -57,7 +58,6 @@ themer.createShape('cut', {
 });
 
 export function installPlugin() {
-
     Vue.use(ActivityIndicatorPlugin);
     Vue.use(ButtonPlugin);
     Vue.use(CardViewPlugin);

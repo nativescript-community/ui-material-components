@@ -6,7 +6,7 @@
                         @tap="onNavigationButtonTap"></NavigationButton>
     </ActionBar>
     <StackLayout>
-      <MDProgress :value="value" maxValue="100" color="red" padding="0"></MDProgress>
+      <MDProgress :value="value" maxValue="100" padding="0"  height="10"></MDProgress>
             <MDProgress busy indeterminate="true" height="10"  padding="0"/>
             <AbsoluteLayout height="10" width="100%" backgroundColor="green"/>
       <MDProgress value="50" maxValue="100" ></MDProgress>
