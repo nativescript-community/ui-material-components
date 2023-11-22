@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.17](https://github.com/nativescript-community/ui-material-component/compare/v7.2.16...v7.2.17) (2023-11-22)
+
+### Bug Fixes
+
+* **bottomsheet:** ios removed log ([86f6b39](https://github.com/nativescript-community/ui-material-component/commit/86f6b39349eaa7312f19128c23219fefb6a6530f))
+
 ## [7.2.16](https://github.com/nativescript-community/ui-material-component/compare/v7.2.15...v7.2.16) (2023-11-22)
 
 ### Bug Fixes
