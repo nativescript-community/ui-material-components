@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.21](https://github.com/nativescript-community/ui-material-component/compare/v7.2.20...v7.2.21) (2023-11-24)
+
+### Bug Fixes
+
+* **dialogs:** ios corner case fix ([1ba94f6](https://github.com/nativescript-community/ui-material-component/commit/1ba94f6e0a40534d0e9fb2f3d31b43d79e2474ca))
+
 ## [7.2.20](https://github.com/nativescript-community/ui-material-component/compare/v7.2.19...v7.2.20) (2023-11-24)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
