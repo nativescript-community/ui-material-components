@@ -284,14 +284,17 @@ export class AlertDialog {
             this.presentingController = showUIAlertController(this.alertController, this.options);
         }
     }
+    hiding = false;
     async hide() {
-        if (this.presentingController) {
+        if (this.presentingController && !this.hiding) {
+            this.hiding = true;
             return new Promise<void>((resolve) => {
                 this.presentingController.dismissViewControllerAnimatedCompletion(true, () => {
                     resolve?.();
                     this.alertController.clear();
                     this.presentingController = null;
                     this.alertController = null;
+                    this.hiding = false;
                 });
             });
         }
