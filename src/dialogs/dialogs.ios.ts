@@ -290,9 +290,9 @@ export class AlertDialog {
                 this.presentingController.dismissViewControllerAnimatedCompletion(true, () => {
                     resolve?.();
                     this.alertController.clear();
+                    this.presentingController = null;
+                    this.alertController = null;
                 });
-                this.presentingController = null;
-                this.alertController = null;
             });
         }
     }
