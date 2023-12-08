@@ -1,6 +1,7 @@
 import { getRippleColor, themer } from '@nativescript-community/ui-material-core';
 import { Application, Color, Frame, Page } from '@nativescript/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
+export { DismissReasons, SnackBarAction };
 
 export class SnackBar extends SnackBarBase {
     static _snackbarManager: MDCSnackbarManager = MDCSnackbarManager.defaultManager;

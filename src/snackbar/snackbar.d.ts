@@ -4,6 +4,7 @@
  */
 
 import { View } from '@nativescript/core';
+export { SnackBarAction, DismissReasons } from './snackbar-common';
 
 export declare class SnackBar {
     /**
@@ -26,9 +27,7 @@ export declare class SnackBar {
      */
     dismiss(): Promise<any>;
 
-    showSnack(
-        options: SnackBarOptions
-    ): Promise<{
+    showSnack(options: SnackBarOptions): Promise<{
         action: SnackBarAction;
         reason: DismissReasons;
     }>;
@@ -89,15 +88,3 @@ export interface SnackBarOptions {
     anchorView?: View;
 }
 
-export enum DismissReasons {
-    SWIPE = 'Swipe',
-    ACTION = 'Action',
-    TIMEOUT = 'Timeout',
-    MANUAL = 'Manual',
-    CONSECUTIVE = 'Consecutive',
-}
-
-export enum SnackBarAction {
-    NONE = 'None',
-    DISMISS = 'Dismiss',
-}

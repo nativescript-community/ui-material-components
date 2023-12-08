@@ -1,5 +1,6 @@
 import { Color, Frame, Page, Utils, View } from '@nativescript/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
+export { DismissReasons, SnackBarAction };
 
 function _getReason(value: number) {
     switch (value) {
