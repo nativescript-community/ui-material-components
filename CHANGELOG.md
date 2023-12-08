@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.22](https://github.com/nativescript-community/ui-material-component/compare/v7.2.21...v7.2.22) (2023-12-08)
+
+### Bug Fixes
+
+* **snackbar:** typings fix and export `SnackBarAction` and `DismissReasons` ([18d4c57](https://github.com/nativescript-community/ui-material-component/commit/18d4c572172514153e44bda70df2bd5678b5040f))
+
 ## [7.2.21](https://github.com/nativescript-community/ui-material-component/compare/v7.2.20...v7.2.21) (2023-11-24)
 
 ### Bug Fixes
