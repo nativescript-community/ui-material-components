@@ -25,3 +25,5 @@ export interface MDCAlertControlerOptions {
 export function isDialogOptions(arg) {
     return typeof arg === 'object';
 }
+
+export const showingDialogs = [];

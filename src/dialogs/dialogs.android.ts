@@ -19,7 +19,7 @@ import {
 } from '@nativescript/core';
 import { ad } from '@nativescript/core/utils';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
-import { isDialogOptions } from './dialogs-common';
+import { isDialogOptions, showingDialogs } from './dialogs-common';
 
 export { capitalizationType, inputType };
 
@@ -152,6 +152,7 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
             }
         });
     }
+    showingDialogs.push(dlg);
     dlg.show();
     return dlg;
 }
@@ -164,11 +165,14 @@ function prepareAndCreateAlertDialog(
 ) {
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
-    const onDone = function (result: boolean, dialog?: android.content.DialogInterface, toBeCalledBeforeCallback?) {
+    const onDone = function (result: any, dialog?: android.content.DialogInterface, toBeCalledBeforeCallback?) {
         if (options && options.shouldResolveOnAction && !options.shouldResolveOnAction(validationArgs ? validationArgs(result) : result)) {
             return;
         }
         if (onDoneCalled) {
+            if (toBeCalledBeforeCallback) {
+                toBeCalledBeforeCallback();
+            }
             return;
         }
         //ensure we hide any keyboard
@@ -177,7 +181,7 @@ function prepareAndCreateAlertDialog(
             Utils.android.dismissSoftInput(options.view.nativeView);
         } else {
             const activity = (Application.android.foregroundActivity || Application.android.startActivity) as globalAndroid.app.Activity;
-            const context = ad.getApplicationContext();
+            const context = Utils.android.getApplicationContext();
             const view = activity != null ? activity.getCurrentFocus() : null;
             if (view) {
                 const imm = context.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager;
@@ -197,7 +201,11 @@ function prepareAndCreateAlertDialog(
     }
     builder.setOnDismissListener(
         new DialogInterface.OnDismissListener({
-            onDismiss() {
+            onDismiss(dialog) {
+                const index = showingDialogs.indexOf(dialog);
+                if (index !== -1) {
+                    showingDialogs.splice(index, 1);
+                }
                 // ensure callback is called after destroying the custom view
                 onDone(false, undefined, () => {
                     if ((builder as any)._currentModalCustomView) {
@@ -213,6 +221,7 @@ function prepareAndCreateAlertDialog(
         })
     );
     const dlg = builder.create();
+    dlg['onDone'] = onDone;
     if (!options) {
         return dlg;
     }
@@ -220,10 +229,10 @@ function prepareAndCreateAlertDialog(
         const view = (builder as any)._currentModalCustomView as View;
         const context = options.context || {};
         context.closeCallback = function (...originalArgs) {
-            dlg.dismiss();
-            if (callback) {
-                callback.apply(this, originalArgs);
-            }
+            onDone(originalArgs);
+            // if (callback) {
+            //     callback.apply(this, originalArgs);
+            // }
         };
         view.bindingContext = fromObject(context);
     }
@@ -340,11 +349,15 @@ export class AlertDialog {
             showDialog(this.dialog, this.options);
         }
     }
-    async hide() {
+    async hide(result) {
         if (this.dialog) {
             return new Promise<void>((resolve) => {
                 this.onCloseListeners.push(resolve);
-                this.dialog.cancel();
+                if (this.dialog['onDone']) {
+                    this.dialog['onDone'](result);
+                } else {
+                    this.dialog.cancel();
+                }
                 this.dialog = null;
             });
         }

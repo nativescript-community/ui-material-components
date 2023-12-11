@@ -21,7 +21,7 @@ import {
     inputType
 } from '@nativescript/core';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
-import { isDialogOptions } from './dialogs-common';
+import { isDialogOptions, showingDialogs } from './dialogs-common';
 
 export { capitalizationType, inputType };
 
@@ -181,6 +181,10 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     }
 
     const clear = (alertController.clear = function clear() {
+        const index = showingDialogs.indexOf(alertController);
+        if (index !== -1) {
+            showingDialogs.splice(index, 1);
+        }
         alertController._resolveFunction = null;
         if (alertController.accessoryView instanceof UIViewAutoSizeUIViewAutoSize) {
             const view = alertController.accessoryView._view;
@@ -212,9 +216,9 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
         alertController._resolveFunction = resolve;
         const context = options.context || {};
         context.closeCallback = function (...originalArgs) {
-            if (alertController._resolveFunction && resolve) {
+            if (alertController._resolveFunction) {
+                alertController._resolveFunction.apply(this, originalArgs);
                 alertController._resolveFunction = null;
-                resolve.apply(this, originalArgs);
             }
             alertController.dismissViewControllerAnimatedCompletion(true, () => {
                 clear();
@@ -285,11 +289,15 @@ export class AlertDialog {
         }
     }
     hiding = false;
-    async hide() {
+    async hide(result) {
         if (this.presentingController && !this.hiding) {
             this.hiding = true;
             return new Promise<void>((resolve) => {
                 this.presentingController.dismissViewControllerAnimatedCompletion(true, () => {
+                    if (this.alertController._resolveFunction) {
+                        this.alertController._resolveFunction(result);
+                        this.alertController._resolveFunction = null;
+                    }
                     resolve?.();
                     this.alertController.clear();
                     this.presentingController = null;
@@ -569,7 +577,7 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
         while (viewController && viewController.presentedViewController) {
             viewController = viewController.presentedViewController;
         }
-
+        showingDialogs.push(alertController);
         if (viewController) {
             if (alertController.popoverPresentationController) {
                 alertController.popoverPresentationController.sourceView = viewController.view;
