@@ -87,6 +87,7 @@ class MDCAlertControllerImpl extends MDCAlertController {
     clear: Function;
     _resolveFunction?: Function;
     _disableContentInsets: boolean;
+    _savedPreferredContentSize: CGSize
     viewDidAppear(animated: boolean) {
         super.viewDidAppear(animated);
         if (this.autoFocusTextField) {
@@ -104,8 +105,16 @@ class MDCAlertControllerImpl extends MDCAlertController {
     viewDidLayoutSubviews() {
         // we enforce the bounds first
         // when showing a modal on top of us and then hiding the modal, our size gets messed up
+        if(this._savedPreferredContentSize) {
+            this.preferredContentSize = this._savedPreferredContentSize;
+            this._savedPreferredContentSize = null;
+        }
         this.view.bounds = CGRectMake(0, 0, this.preferredContentSize.width, this.preferredContentSize.height);
         super.viewDidLayoutSubviews();
+    }
+    viewDidDisappear(animated: boolean) {
+        super.viewDidDisappear(animated);
+        this._savedPreferredContentSize = this.preferredContentSize;
     }
     // viewDidUnload is not called anymore
     // viewDidUnload() {
