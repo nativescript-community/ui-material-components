@@ -445,7 +445,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     }
 
     _bottomSheetClosed() {
-        console.log('_bottomSheetClosed');
         super._bottomSheetClosed();
 
         if (this.bottomSheetController) {
@@ -475,7 +474,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     }
 
     _unloadBottomSheet() {
-        console.log('_unloadBottomSheet');
         if (this.isLoaded) {
             this.callUnloaded();
         }

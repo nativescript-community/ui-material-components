@@ -113,7 +113,6 @@ export abstract class ViewWithBottomSheetBase extends View {
             }
             this._raiseClosedBottomSheetEvent();
             this._onDismissBottomSheetCallback = null;
-            console.log('_onDismissBottomSheetCallback', this);
             this._bottomSheetClosed();
             if (this._bottomSheetContext.closeCallback) {
                 this._bottomSheetContext.closeCallback();
