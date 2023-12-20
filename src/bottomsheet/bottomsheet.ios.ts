@@ -425,7 +425,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             if (!(this instanceof Page)) {
                 controller.view.backgroundColor = majorVersion <= 12 && !UIColor.systemBackgroundColor ? UIColor.whiteColor : UIColor.systemBackgroundColor;
             }
-            if (options.backgroundOpacity) {
+            if (options.backgroundOpacity && controller.view.backgroundColor) {
                 controller.view.backgroundColor = controller.view.backgroundColor.colorWithAlphaComponent(options.backgroundOpacity);
             }
         }
