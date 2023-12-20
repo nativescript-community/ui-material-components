@@ -332,30 +332,30 @@ export class TextField extends TextFieldBase {
             this.nativeTextViewProtected.setTypeface(value instanceof Font ? value.getAndroidTypeface() : value);
         }
     }
-    [paddingTopProperty.setNative](value: CoreTypes.LengthType) {
-        org.nativescript.widgets.ViewHelper.setPaddingTop(
-            this.nativeTextViewProtected,
-            Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0))
-        );
-    }
-    [paddingRightProperty.setNative](value: CoreTypes.LengthType) {
-        org.nativescript.widgets.ViewHelper.setPaddingRight(
-            this.nativeTextViewProtected,
-            Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0))
-        );
-    }
-    [paddingBottomProperty.setNative](value: CoreTypes.LengthType) {
-        org.nativescript.widgets.ViewHelper.setPaddingBottom(
-            this.nativeTextViewProtected,
-            Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0))
-        );
-    }
-    [paddingLeftProperty.setNative](value: CoreTypes.LengthType) {
-        org.nativescript.widgets.ViewHelper.setPaddingLeft(
-            this.nativeTextViewProtected,
-            Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0))
-        );
-    }
+    // [paddingTopProperty.setNative](value: CoreTypes.LengthType) {
+    //     org.nativescript.widgets.ViewHelper.setPaddingTop(
+    //         this.nativeTextViewProtected,
+    //         Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0))
+    //     );
+    // }
+    // [paddingRightProperty.setNative](value: CoreTypes.LengthType) {
+    //     org.nativescript.widgets.ViewHelper.setPaddingRight(
+    //         this.nativeTextViewProtected,
+    //         Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0))
+    //     );
+    // }
+    // [paddingBottomProperty.setNative](value: CoreTypes.LengthType) {
+    //     org.nativescript.widgets.ViewHelper.setPaddingBottom(
+    //         this.nativeTextViewProtected,
+    //         Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0))
+    //     );
+    // }
+    // [paddingLeftProperty.setNative](value: CoreTypes.LengthType) {
+    //     org.nativescript.widgets.ViewHelper.setPaddingLeft(
+    //         this.nativeTextViewProtected,
+    //         Utils.layout.toDeviceIndependentPixels(Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0))
+    //     );
+    // }
     [textAlignmentProperty.setNative](value: CoreTypes.TextAlignmentType) {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(value) | getVerticalGravity(this.verticalTextAlignment));
     }
