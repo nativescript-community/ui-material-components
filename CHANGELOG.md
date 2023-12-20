@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.24](https://github.com/nativescript-community/ui-material-component/compare/v7.2.23...v7.2.24) (2023-12-20)
+
+### Bug Fixes
+
+* **dialogs:** allow AlertDialog to hide while resolving the show promise ([77aaa7c](https://github.com/nativescript-community/ui-material-component/commit/77aaa7c442111b9040df4947b6a22feff5285db3))
+* removed logs ([26322ca](https://github.com/nativescript-community/ui-material-component/commit/26322ca541c3e6ac5d67cc23a7ab0e5eae7049a8))
+* **textfield,textview:** android padding was using wrong unit ([6e285ae](https://github.com/nativescript-community/ui-material-component/commit/6e285aedce8c4369c51b1c40cef1d2a44d8e2bd3))
+
+### Features
+
+* **bottomsheet:** `backgroundOpacity` option ([09ab3a1](https://github.com/nativescript-community/ui-material-component/commit/09ab3a1d34952655cbedf3b4b82580d558f2431a))
+
 ## [7.2.23](https://github.com/nativescript-community/ui-material-component/compare/v7.2.22...v7.2.23) (2023-12-12)
 
 ### Bug Fixes
