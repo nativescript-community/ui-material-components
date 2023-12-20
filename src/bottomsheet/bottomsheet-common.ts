@@ -37,6 +37,7 @@ export interface BottomSheetOptions {
     closeCallback?: Function; //  A function that will be called when the view is closed. Any arguments provided when calling shownInBottomSheet.closeCallback will be available here.
     trackingScrollView?: string; // optional id of the scroll view to track
     transparent?: boolean; // optional parameter to make the bottomsheet transparent
+    backgroundOpacity?: number; // optional parameter to make the bottomsheet background semi transparent
     ignoreTopSafeArea?: boolean; // optional ios parameter to top safe area. Default is true
     ignoreBottomSafeArea?: boolean; // optional ios parameter to bottom safe area. Default is false
     disableDimBackground?: boolean; // optional parameter to remove the dim background

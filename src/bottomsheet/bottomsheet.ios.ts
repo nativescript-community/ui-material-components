@@ -421,8 +421,13 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             controller.view.backgroundColor = UIColor.clearColor;
             // for it to be prettier let s disable elevation
             controller.view['elevation'] = 0;
-        } else if (!(this instanceof Page)) {
-            controller.view.backgroundColor = majorVersion <= 12 && !UIColor.systemBackgroundColor ? UIColor.whiteColor : UIColor.systemBackgroundColor;
+        } else {
+            if (!(this instanceof Page)) {
+                controller.view.backgroundColor = majorVersion <= 12 && !UIColor.systemBackgroundColor ? UIColor.whiteColor : UIColor.systemBackgroundColor;
+            }
+            if (options.backgroundOpacity) {
+                controller.view.backgroundColor = controller.view.backgroundColor.colorWithAlphaComponent(options.backgroundOpacity);
+            }
         }
         const transitionCoordinator = bottomSheet.transitionCoordinator;
         if (transitionCoordinator) {

@@ -75,7 +75,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         this._bottomSheetFragment = null;
     }
 
-
     protected _showNativeBottomSheet(parent: View, options: BottomSheetOptions) {
         this._commonShowNativeBottomSheet(parent, options);
         const owner = this;
@@ -153,7 +152,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             },
 
             onStart(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment): void {
-                const color = owner.backgroundColor;
                 const contentViewId = getId('design_bottom_sheet');
                 const view = fragment.getDialog().findViewById(contentViewId);
                 const transparent = bottomSheetOptions.options?.transparent === true;
@@ -161,6 +159,13 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     // we need delay it just a bit or it wont work
                     setTimeout(() => {
                         view.setBackground(null);
+                    }, 0);
+                } else if (bottomSheetOptions.options?.backgroundOpacity) {
+                    // we need delay it just a bit or it wont work
+                    setTimeout(() => {
+                        const backgroundDrawable = view.getBackground();
+                        backgroundDrawable.setAlpha(bottomSheetOptions.options?.backgroundOpacity * 255);
+                        view.setBackground(backgroundDrawable);
                     }, 0);
                 }
 
