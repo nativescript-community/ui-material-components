@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.25](https://github.com/nativescript-community/ui-material-component/compare/v7.2.24...v7.2.25) (2023-12-21)
+
+### Bug Fixes
+
+* **dialogs:** regression fix where `AlertDialog` woould not hide anymore ([4a16612](https://github.com/nativescript-community/ui-material-component/commit/4a16612ce41f71c0e930ce418dcc74db60b251bd))
+
 ## [7.2.24](https://github.com/nativescript-community/ui-material-component/compare/v7.2.23...v7.2.24) (2023-12-20)
 
 ### Bug Fixes
