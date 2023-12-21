@@ -354,7 +354,7 @@ export class AlertDialog {
             return new Promise<void>((resolve) => {
                 this.onCloseListeners.push(resolve);
                 if (this.dialog['onDone']) {
-                    this.dialog['onDone'](result);
+                    this.dialog['onDone'](result, this.dialog);
                 } else {
                     this.dialog.cancel();
                 }
