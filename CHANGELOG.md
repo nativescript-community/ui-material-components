@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.26](https://github.com/nativescript-community/ui-material-component/compare/v7.2.25...v7.2.26) (2023-12-23)
+
+### Bug Fixes
+
+* **dialogs:** another android fix for context.closeCallback (not dismissing the dialog) ([5a79223](https://github.com/nativescript-community/ui-material-component/commit/5a79223444ca40fc79f4ff26065ba0efa23e0417))
+
 ## [7.2.25](https://github.com/nativescript-community/ui-material-component/compare/v7.2.24...v7.2.25) (2023-12-21)
 
 ### Bug Fixes
