@@ -229,7 +229,7 @@ function prepareAndCreateAlertDialog(
         const view = (builder as any)._currentModalCustomView as View;
         const context = options.context || {};
         context.closeCallback = function (...originalArgs) {
-            onDone(originalArgs);
+            onDone(originalArgs, dlg);
             // if (callback) {
             //     callback.apply(this, originalArgs);
             // }
