@@ -224,7 +224,7 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
 
         alertController._resolveFunction = resolve;
         const context = options.context || {};
-        context.closeCallback = function (...originalArgs) {
+        context.closeCallback = function (originalArgs) {
             if (alertController._resolveFunction) {
                 alertController._resolveFunction.apply(this, originalArgs);
                 alertController._resolveFunction = null;
