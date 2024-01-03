@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.28](https://github.com/nativescript-community/ui-material-component/compare/v7.2.27...v7.2.28) (2024-01-03)
+
+### Bug Fixes
+
+* **dialogs:** ios fix to correctly select controller to show dialog from ([d969c34](https://github.com/nativescript-community/ui-material-component/commit/d969c348b9d3e5274e0bd587f170359638a5fd21))
+* **snackbar:** ios fix to select view to show snackbar on (ignoring dialogs) ([5a7ed3c](https://github.com/nativescript-community/ui-material-component/commit/5a7ed3c3aef28026501cee5d9f975150cfebf385))
+
 ## [7.2.27](https://github.com/nativescript-community/ui-material-component/compare/v7.2.26...v7.2.27) (2023-12-26)
 
 ### Bug Fixes
