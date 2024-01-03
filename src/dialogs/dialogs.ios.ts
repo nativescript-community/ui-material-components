@@ -87,7 +87,7 @@ class MDCAlertControllerImpl extends MDCAlertController {
     clear: Function;
     _resolveFunction?: Function;
     _disableContentInsets: boolean;
-    _savedPreferredContentSize: CGSize
+    _savedPreferredContentSize: CGSize;
     viewDidAppear(animated: boolean) {
         super.viewDidAppear(animated);
         if (this.autoFocusTextField) {
@@ -105,7 +105,7 @@ class MDCAlertControllerImpl extends MDCAlertController {
     viewDidLayoutSubviews() {
         // we enforce the bounds first
         // when showing a modal on top of us and then hiding the modal, our size gets messed up
-        if(this._savedPreferredContentSize) {
+        if (this._savedPreferredContentSize) {
             this.preferredContentSize = this._savedPreferredContentSize;
             this._savedPreferredContentSize = null;
         }
@@ -581,11 +581,22 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
     if (currentView) {
         currentView = currentView.modal || currentView;
 
-        let viewController = Application.ios.rootController;
+        let viewController = currentView.viewController;
 
-        while (viewController && viewController.presentedViewController) {
-            viewController = viewController.presentedViewController;
+        while (viewController.presentedViewController) {
+            while (
+                viewController.presentedViewController instanceof UIAlertController ||
+                (viewController.presentedViewController['isAlertController'] && viewController.presentedViewController.presentedViewController)
+            ) {
+                viewController = viewController.presentedViewController;
+            }
+            if (viewController.presentedViewController instanceof UIAlertController || viewController.presentedViewController['isAlertController']) {
+                break;
+            } else {
+                viewController = viewController.presentedViewController;
+            }
         }
+        let v;
         showingDialogs.push(alertController);
         if (viewController) {
             if (alertController.popoverPresentationController) {
