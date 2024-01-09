@@ -226,7 +226,7 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
         const context = options.context || {};
         context.closeCallback = function (originalArgs) {
             if (alertController._resolveFunction) {
-                alertController._resolveFunction.apply(this, originalArgs);
+                alertController._resolveFunction(originalArgs);
                 alertController._resolveFunction = null;
             }
             alertController.dismissViewControllerAnimatedCompletion(true, () => {
