@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.29](https://github.com/nativescript-community/ui-material-component/compare/v7.2.28...v7.2.29) (2024-01-09)
+
+### Bug Fixes
+
+* **dialogs:** closeCallback fix on iOS ([74d99ab](https://github.com/nativescript-community/ui-material-component/commit/74d99ab315ef1ef4dfdd8b3276e5a6f613b3acab))
+
 ## [7.2.28](https://github.com/nativescript-community/ui-material-component/compare/v7.2.27...v7.2.28) (2024-01-03)
 
 ### Bug Fixes
