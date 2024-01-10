@@ -99,6 +99,7 @@
                     maxLength="10"
                     hint="fill this out..."
                     @focus="onFocus"
+                    placeholderColor="blue"
                     @blur="onBlur"
                     floating="false"
                     @textChange="onTextChange"
