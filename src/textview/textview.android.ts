@@ -217,13 +217,10 @@ export class TextView extends TextViewBase {
     [strokeInactiveColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
         const layoutView = this.layoutView;
-        // TODO: find why it fails in cli build
-        //@ts-ignore
         if (layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : layoutView.getBoxStrokeColor();
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
             const colorStateList = getFullColorStateList(activeColor, color, disabledColor);
-            //@ts-ignore
             layoutView.setBoxStrokeColorStateList(colorStateList);
         }
     }
@@ -231,13 +228,10 @@ export class TextView extends TextViewBase {
     [strokeDisabledColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
         const layoutView = this.layoutView;
-        // TODO: find why it fails in cli build
-        //@ts-ignore
         if (layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : layoutView.getBoxStrokeColor();
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
             const colorStateList = getFullColorStateList(activeColor, inactiveColor, color);
-            //@ts-ignore
             layoutView.setBoxStrokeColorStateList(colorStateList);
         }
     }
@@ -245,14 +239,11 @@ export class TextView extends TextViewBase {
     [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
         const layoutView = this.layoutView;
-        // TODO: find why it fails in cli build
-        //@ts-ignore
         if (layoutView.setBoxStrokeColorStateList) {
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
             const colorStateList = getFullColorStateList(color, inactiveColor, disabledColor);
             if (colorStateList) {
-                //@ts-ignore
                 layoutView.setBoxStrokeColorStateList(colorStateList);
             }
         } else {

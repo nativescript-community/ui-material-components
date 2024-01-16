@@ -196,7 +196,6 @@ export class TextField extends TextFieldBase {
         const nColor = getColorStateList(color);
         this.layoutView.setErrorTextColor(nColor);
         // TODO: find why it fails in cli build
-        //@ts-ignore
         this.layoutView.setBoxStrokeErrorColor(nColor);
     }
 
@@ -223,26 +222,19 @@ export class TextField extends TextFieldBase {
         this.layoutView.setHintEnabled(!!value);
     }
     [strokeWidthProperty.setNative](value: CoreTypes.LengthType) {
-        // TODO: find why it fails in cli build
-        //@ts-ignore
         this.layoutView.setBoxStrokeWidth(Length.toDevicePixels(value, 0));
     }
 
     [strokeWidthFocusedProperty.setNative](value: CoreTypes.LengthType) {
-        // TODO: find why it fails in cli build
-        //@ts-ignore
         this.layoutView.setBoxStrokeWidthFocused(Length.toDevicePixels(value, 0));
     }
 
     [strokeColorProperty.setNative](value: Color | string) {
         const color = value ? (value instanceof Color ? value.android : new Color(value).android) : null;
-        // TODO: find why it fails in cli build
-        //@ts-ignore
         if (this.layoutView.setBoxStrokeColorStateList) {
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
             const colorStateList = getFullColorStateList(color, inactiveColor, disabledColor);
-            //@ts-ignore
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         } else {
             this.layoutView.setBoxStrokeColor(color);
@@ -251,27 +243,20 @@ export class TextField extends TextFieldBase {
 
     [strokeInactiveColorProperty.setNative](value: Color | string) {
         const color = value ? (value instanceof Color ? value.android : new Color(value).android) : null;
-
-        // TODO: find why it fails in cli build
-        //@ts-ignore
         if (this.layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
             const colorStateList = getFullColorStateList(activeColor, color, disabledColor);
-            //@ts-ignore
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         }
     }
 
     [strokeDisabledColorProperty.setNative](value: Color | string) {
         const color = value ? (value instanceof Color ? value.android : new Color(value).android) : null;
-        // TODO: find why it fails in cli build
-        //@ts-ignore
         if (this.layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
             const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
             const colorStateList = getFullColorStateList(activeColor, inactiveColor, color);
-            //@ts-ignore
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         }
     }
