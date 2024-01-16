@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.30](https://github.com/nativescript-community/ui-material-component/compare/v7.2.29...v7.2.30) (2024-01-16)
+
+### Bug Fixes
+
+* **activityindicator:** ios crash on closing page ([f6fd8b6](https://github.com/nativescript-community/ui-material-component/commit/f6fd8b6f9643dc7fe26e2be6bd12fdfe62bd8355))
+* bump android native lib default version to 1.10.0 ([f0752c5](https://github.com/nativescript-community/ui-material-component/commit/f0752c566bcb7cfb66f116a22fff5a42d4fc29ac))
+
 ## [7.2.29](https://github.com/nativescript-community/ui-material-component/compare/v7.2.28...v7.2.29) (2024-01-09)
 
 ### Bug Fixes
