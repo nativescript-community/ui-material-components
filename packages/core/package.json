@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-core",
-    "version": "7.2.33",
+    "version": "7.2.34",
     "description": "Material Core component",
     "main": "./index",
     "sideEffects": false,
