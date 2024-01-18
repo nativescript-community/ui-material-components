@@ -73,17 +73,17 @@ export class TextField extends TextFieldBase {
         let needsTransparent = false;
         if (variant === 'filled') {
             if (!filledId) {
-                filledId = getLayout(this._context, 'material_text_field_filled');
+                filledId = getLayout(this._context, 'ns_material_text_field_filled');
             }
             layoutId = filledId;
         } else if (variant === 'outline') {
             if (!outlineId) {
-                outlineId = getLayout(this._context, 'material_text_field_outline');
+                outlineId = getLayout(this._context, 'ns_material_text_field_outline');
             }
             layoutId = outlineId;
         } else {
             if (!noneId) {
-                noneId = getLayout(this._context, 'material_text_field');
+                noneId = getLayout(this._context, 'ns_material_text_field');
             }
             layoutId = noneId;
             needsTransparent = true;
