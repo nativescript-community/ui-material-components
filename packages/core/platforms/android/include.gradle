@@ -1,6 +1,6 @@
 
 dependencies {
-	def androidXMaterial =  project.hasProperty("androidXMaterial") ? project.androidXMaterial : "1.10.0"
+	def androidXMaterial =  project.hasProperty("androidXMaterial") ? project.androidXMaterial : "1.8.0"
 	implementation "com.google.android.material:material:$androidXMaterial"
 
 	def androidxViewPager2Version =  project.hasProperty("androidxViewPager2Version") ? project.androidxViewPager2Version : "1.0.0"
