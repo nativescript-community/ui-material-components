@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.31](https://github.com/nativescript-community/ui-material-component/compare/v7.2.30...v7.2.31) (2024-01-18)
+
+### Reverts
+
+* Revert "fix: bump android native lib default version to 1.10.0" ([44c1da8](https://github.com/nativescript-community/ui-material-component/commit/44c1da836a0ca48f1d93fbd7cc580bfb4b7f9341))
+
 ## [7.2.30](https://github.com/nativescript-community/ui-material-component/compare/v7.2.29...v7.2.30) (2024-01-16)
 
 ### Bug Fixes
