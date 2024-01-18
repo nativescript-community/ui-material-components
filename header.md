@@ -13,6 +13,9 @@ Ensure your Android Theme is inheriting from `MaterialComponents`.
 Inside ```App_resources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
 You can see an example in the demo-vue app.
 
+### Production build
+If you are using proguard on Android build you need ensure some resource from this plugin are not minified. You need to add ` tools:keep="@layout/ns_*"` as explained [here](https://developer.android.com/build/shrink-code#keep-resources)
+
 ## Theming
 Defining the theme and the default colors must be done a bit differently on iOS and Android
 
