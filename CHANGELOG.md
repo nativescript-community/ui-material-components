@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.33](https://github.com/nativescript-community/ui-material-component/compare/v7.2.32...v7.2.33) (2024-01-18)
+
+### Bug Fixes
+
+* **android:** renamed layout resources to easily keep then in minified production builds ([cfaac0f](https://github.com/nativescript-community/ui-material-component/commit/cfaac0f82dc527c516bf854ac8374f9aa9b27722))
+
 ## [7.2.32](https://github.com/nativescript-community/ui-material-component/compare/v7.2.31...v7.2.32) (2024-01-18)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
