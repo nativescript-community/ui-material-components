@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.35](https://github.com/nativescript-community/ui-material-component/compare/v7.2.34...v7.2.35) (2024-02-01)
+
+### Bug Fixes
+
+* **dialogs,ios:** ensure we try to hide the correct view controller on hide ([5da476d](https://github.com/nativescript-community/ui-material-component/commit/5da476deef156566b82d9ca7db67fcf31b7d93ea))
+* **textfield,android:** `strokeColor` was not applied correctly ([22ff0aa](https://github.com/nativescript-community/ui-material-component/commit/22ff0aaf7c2caff39a794b884b5d503212eb4944))
+* **textview,android:** `strokeColor` was not applied correctly ([359d908](https://github.com/nativescript-community/ui-material-component/commit/359d908a8bd2dc7f775b8b865508981942834931))
+
 ## [7.2.34](https://github.com/nativescript-community/ui-material-component/compare/v7.2.33...v7.2.34) (2024-01-18)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
