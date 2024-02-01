@@ -232,7 +232,7 @@ export class TextField extends TextFieldBase {
     [strokeColorProperty.setNative](value: Color | string) {
         const color = value ? (value instanceof Color ? value.android : new Color(value).android) : null;
         if (this.layoutView.setBoxStrokeColorStateList) {
-            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
+            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : color;
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
             const colorStateList = getFullColorStateList(color, inactiveColor, disabledColor);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
@@ -255,7 +255,7 @@ export class TextField extends TextFieldBase {
         const color = value ? (value instanceof Color ? value.android : new Color(value).android) : null;
         if (this.layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
-            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
+            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : activeColor;
             const colorStateList = getFullColorStateList(activeColor, inactiveColor, color);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         }
