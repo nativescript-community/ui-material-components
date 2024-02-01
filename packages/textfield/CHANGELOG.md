@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.36](https://github.com/nativescript-community/ui-material-components/compare/v7.2.35...v7.2.36) (2024-02-01)
+
+### Bug Fixes
+
+* **textfield,textview,android:** allow to override themes ([ead7592](https://github.com/nativescript-community/ui-material-components/commit/ead75925177dac800ad6af07eabdb7be9b3d043d))
+
 ## [7.2.35](https://github.com/nativescript-community/ui-material-components/compare/v7.2.34...v7.2.35) (2024-02-01)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-textfield
