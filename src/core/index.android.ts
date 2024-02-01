@@ -237,8 +237,8 @@ export function overrideViewBase() {
         [rippleColorProperty.setNative](color: Color) {
             const rippleColor = getRippleColor(color, this.rippleColorAlpha);
             const nativeViewProtected = this.nativeViewProtected;
-            const RippleDrawable = android.graphics.drawable.RippleDrawable;
             if (this instanceof Button && isPostMarshmallow) {
+                const RippleDrawable = android.graphics.drawable.RippleDrawable;
                 const foreground = (nativeViewProtected as android.widget.Button).getForeground();
                 if (foreground instanceof RippleDrawable) {
                     foreground.setColor(getColorStateList(rippleColor));
