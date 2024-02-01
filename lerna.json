@@ -1,5 +1,6 @@
 {
     "version": "7.2.36",
+    "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
     "packages": [
         "packages/*"
     ],
@@ -7,37 +8,25 @@
     "useWorkspaces": true,
     "command": {
         "publish": {
-            "conventionalCommits": true,
-            "conventionalBlacklist": [
-                "chore"
-            ],
-            "changelogPreset": "angular",
-            "createRelease": "github",
-            "commitHooks": false,
-            "private": false,
-            "ignoreChanges": [
-                "*.md",
-                "docs/**"
-            ]
-        },
-        "version": {
-            "conventionalCommits": true,
-            "conventionalBlacklist": [
-                "chore"
-            ],
-            "changelogPreset": "angular",
-            "createRelease": "github",
-            "commitHooks": false,
-            "private": false,
-            "ignoreChanges": [
-                "*.md",
-                "docs/**"
-            ]
-        },
-        "bootstrap": {
-            "npmClientArgs": [
-                "--no-package-lock"
+            "cleanupTempFiles": true,
+            "removePackageFields": [
+                "devDependencies",
+                "scripts"
             ]
         }
-    }
+    },
+    "npmClientArgs": [
+        "--no-package-lock"
+    ],
+    "commitHooks": false,
+    "createRelease": "github",
+    "conventionalCommits": true,
+    "private": false,
+    "message": "chore(release): publish new version %v",
+    "changelogPreset": "conventional-changelog-conventionalcommits",
+    "ignoreChanges": [
+        "**/__fixtures__/**",
+        "**/__tests__/**",
+        "**/*.md"
+    ]
 }
