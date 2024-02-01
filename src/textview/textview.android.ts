@@ -230,7 +230,7 @@ export class TextView extends TextViewBase {
         const layoutView = this.layoutView;
         if (layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : layoutView.getBoxStrokeColor();
-            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
+            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : activeColor;
             const colorStateList = getFullColorStateList(activeColor, inactiveColor, color);
             layoutView.setBoxStrokeColorStateList(colorStateList);
         }
@@ -240,7 +240,7 @@ export class TextView extends TextViewBase {
         const color = value instanceof Color ? value.android : value;
         const layoutView = this.layoutView;
         if (layoutView.setBoxStrokeColorStateList) {
-            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
+            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : color;
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
             const colorStateList = getFullColorStateList(color, inactiveColor, disabledColor);
             if (colorStateList) {
