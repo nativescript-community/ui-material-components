@@ -1,5 +1,5 @@
-import { Color, PercentLength, backgroundColorProperty, backgroundInternalProperty, colorProperty, heightProperty } from '@nativescript/core';
-import { ProgressBase, busyProperty, indeterminateProperty, progressBackgroundColorProperty, progressColorProperty } from './progress-common';
+import { Color, Length, PercentLength, backgroundColorProperty, backgroundInternalProperty, colorProperty, heightProperty } from '@nativescript/core';
+import { ProgressBase, busyProperty, indeterminateProperty, progressBackgroundColorProperty, progressColorProperty, trackCornerRadiusProperty } from './progress-common';
 import { getRippleColor } from '@nativescript-community/ui-material-core';
 import { inflateLayout } from '@nativescript-community/ui-material-core/android/utils';
 
@@ -68,5 +68,9 @@ export class Progress extends ProgressBase {
     }
     [backgroundInternalProperty.setNative](value) {
         //
+    }
+
+    [trackCornerRadiusProperty.setNative](value) {
+        this.nativeViewProtected.setTrackCornerRadius(Length.toDevicePixels(value, 0))
     }
 }

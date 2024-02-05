@@ -1,5 +1,5 @@
 import { cssProperty } from '@nativescript-community/ui-material-core';
-import { CSSType, Color, CssProperty, Progress as NSProgress, Property, Style, booleanConverter } from '@nativescript/core';
+import { CoreTypes, CSSType, Color, CssProperty, Length, Progress as NSProgress, Property, Style, booleanConverter } from '@nativescript/core';
 
 @CSSType('MDProgress')
 export abstract class ProgressBase extends NSProgress {
@@ -37,6 +37,15 @@ export const indeterminateProperty = new Property<ProgressBase, boolean>({
     defaultValue: false,
     valueConverter: booleanConverter
 });
+
+
+export const trackCornerRadiusProperty = new CssProperty<Style, CoreTypes.LengthType>({
+    name: 'trackCornerRadius',
+    cssName: 'track-corner-radius',
+    valueConverter: Length.parse
+});
+trackCornerRadiusProperty.register(Style);
+
 busyProperty.register(ProgressBase);
 indeterminateProperty.register(ProgressBase);
 progressColorProperty.register(Style);
