@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.37](https://github.com/nativescript-community/ui-material-component/compare/v7.2.36...v7.2.37) (2024-02-05)
+
+### Features
+
+* **progress,android:** new `trackCornerRadius` property ([53a9008](https://github.com/nativescript-community/ui-material-component/commit/53a900856c50c2e4cf8c071acc1e4f91b30931a0))
+
+### Bug Fixes
+
+* **android:** more views created using inflator allowing to customize the theme ([0387a46](https://github.com/nativescript-community/ui-material-component/commit/0387a46194e4c1995d36c9adacd69fc3b1bc779d))
+
 ## [7.2.36](https://github.com/nativescript-community/ui-material-component/compare/v7.2.35...v7.2.36) (2024-02-01)
 
 ### Bug Fixes
