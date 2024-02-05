@@ -445,7 +445,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     }
 
     _bottomSheetClosed() {
-        super._bottomSheetClosed();
+        // super already closed we are just a mixin
 
         if (this.bottomSheetController) {
             this.bottomSheetController.delegate = null;
