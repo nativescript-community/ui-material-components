@@ -256,3 +256,10 @@ export function getVerticalGravity(textAlignment: VerticalTextAlignment) {
             return 80; //Gravity.BOTTOM
     }
 }
+
+export function inflateLayout(context: android.content.Context, layoutId: string) {
+    if (!NUtils) {
+        NUtils = (com as any).nativescript.material.core.Utils;
+    }
+    return NUtils.inflateLayout(context, layoutId);
+}

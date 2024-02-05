@@ -3,6 +3,7 @@ package com.nativescript.material.core;
 import android.animation.StateListAnimator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Context;
@@ -19,6 +20,7 @@ public class Utils {
     static final int shortAnimTime = android.R.integer.config_shortAnimTime;
     static final int statePressed = android.R.attr.state_pressed;
     static final int stateEnabled = android.R.attr.state_enabled;
+    static LayoutInflater inflater = null;
 
     public static void createStateListAnimator(Context context, View view, float elevation, float pressedZ) {
         int duration = context.getResources().getInteger(shortAnimTime);
@@ -101,5 +103,13 @@ public class Utils {
                 ((ViewGroup) root).setDescendantFocusability(oldDesc);
             }
         }
+    }
+
+    public static View inflateLayout(Context context, String layoutStringId) {
+        int layoutId = context.getResources().getIdentifier(layoutStringId, "layout", context.getPackageName());
+        if (inflater == null) {
+            inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+        return (View)inflater.inflate(layoutId, null);
     }
 }
