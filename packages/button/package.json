@@ -1,10 +1,22 @@
 {
     "name": "@nativescript-community/ui-material-button",
-    "version": "7.2.38",
+    "version": "7.2.37",
     "description": "Material Design Buttons allow users to take actions, and make choices, with a single tap.",
     "main": "./button",
     "sideEffects": false,
     "typings": "./button.d.ts",
+    "scripts": {
+        "tsc": "cpy ../../src/button/button.d.ts ./ && tsc -d",
+        "tsc-win": "cpy ..\\..\\src\\button\\button.d.ts .\\ && tsc -d",
+        "build": "npm run tsc",
+        "build.watch": "npm run tsc -- -w",
+        "build.win": "npm run tsc-win",
+        "build.all": "npm run build && npm run build.angular",
+        "build.all.win": "npm run build.win && npm run build.angular.win",
+        "build.angular": "ng-packagr -p ../../src/button/angular/ng-package.json -c ../../src/button/angular/tsconfig.json",
+        "build.angular.win": "ng-packagr -p ..\\..\\src\\button\\angular\\package.json -c ..\\..\\src\\button\\angular\\tsconfig.json",
+        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
+    },
     "nativescript": {
         "platforms": {
             "android": "6.2.0",
@@ -35,7 +47,7 @@
     "readmeFilename": "README.md",
     "dependencies": {
         "@nativescript-community/text": "^1.5.2",
-        "@nativescript-community/ui-material-core": "^7.2.38"
+        "@nativescript-community/ui-material-core": "^7.2.37"
     },
-    "gitHead": "7ba6701f51ee9c445019f281eee4b5ef9fd86dae"
+    "gitHead": "d8c4a676e11bb01ed7bc708aaa73716f8ae7d12f"
 }

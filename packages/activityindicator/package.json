@@ -1,10 +1,22 @@
 {
     "name": "@nativescript-community/ui-material-activityindicator",
-    "version": "7.2.38",
+    "version": "7.2.37",
     "description": "Material Design Activity Indicator expresses an unspecified wait time.",
     "main": "./index",
     "sideEffects": false,
     "typings": "./index.d.ts",
+    "scripts": {
+        "tsc": "cpy ../../src/activityindicator/index.d.ts ./ && tsc -d",
+        "tsc-win": "cpy ..\\..\\src\\activityindicator\\index.d.ts .\\ && tsc -d",
+        "build": "npm run tsc",
+        "build.watch": "npm run tsc -- -w",
+        "build.win": "npm run tsc-win",
+        "build.all": "npm run build && npm run build.angular",
+        "build.all.win": "npm run build.win && npm run build.angular.win",
+        "build.angular": "ng-packagr -p ../../src/activityindicator/angular/ng-package.json -c ../../src/activityindicator/angular/tsconfig.json",
+        "build.angular.win": "ng-packagr -p ..\\..\\src\\activityindicator\\angular\\package.json -c ..\\..\\src\\activityindicator\\angular\\tsconfig.json",
+        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
+    },
     "nativescript": {
         "platforms": {
             "android": "6.2.0",
@@ -35,7 +47,7 @@
     "readmeFilename": "README.md",
     "homepage": "https://nativescript-community.github.io/ui-material-components/modules/_nativescript_community_ui_material_activityindicator.html",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^7.2.38"
+        "@nativescript-community/ui-material-core": "^7.2.37"
     },
-    "gitHead": "7ba6701f51ee9c445019f281eee4b5ef9fd86dae"
+    "gitHead": "d8c4a676e11bb01ed7bc708aaa73716f8ae7d12f"
 }

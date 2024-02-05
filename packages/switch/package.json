@@ -1,10 +1,22 @@
 {
     "name": "@nativescript-community/ui-material-switch",
-    "version": "7.2.38",
+    "version": "7.2.37",
     "description": "Material Switch",
     "main": "./index",
     "sideEffects": false,
     "typings": "./index.d.ts",
+    "scripts": {
+        "tsc": "cpy ../../src/switch/index.d.ts ./ && tsc -d",
+        "tsc-win": "cpy ..\\..\\src\\switch\\index.d.ts .\\ && tsc -d",
+        "build": "npm run tsc",
+        "build.watch": "npm run tsc -- -w",
+        "build.win": "npm run tsc-win",
+        "build.all": "npm run build && npm run build.angular",
+        "build.all.win": "npm run build.win && npm run build.angular.win",
+        "build.angular": "ng-packagr -p ../../src/switch/angular/ng-package.json -c ../../src/switch/angular/tsconfig.json",
+        "build.angular.win": "ng-packagr -p ..\\..\\src\\switch\\angular\\package.json -c ..\\..\\src\\switch\\angular\\tsconfig.json",
+        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
+    },
     "nativescript": {
         "platforms": {
             "android": "6.2.0",
@@ -34,7 +46,7 @@
     },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^7.2.38"
+        "@nativescript-community/ui-material-core": "^7.2.37"
     },
-    "gitHead": "7ba6701f51ee9c445019f281eee4b5ef9fd86dae"
+    "gitHead": "d8c4a676e11bb01ed7bc708aaa73716f8ae7d12f"
 }
