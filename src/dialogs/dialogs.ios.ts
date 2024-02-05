@@ -576,12 +576,17 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
         }
     }
 
-    let currentView = getCurrentPage() || Application.getRootView();
-
+    let rootView =  Application.getRootView();
+    if (rootView.parent) {
+        rootView = rootView.parent as any;
+    }
+    let currentView = getCurrentPage() || rootView;
     if (currentView) {
         currentView = currentView.modal || currentView;
-
         let viewController = currentView.viewController;
+        if (!viewController.presentedViewController && rootView.viewController.presentedViewController) {
+            viewController = rootView.viewController.presentedViewController;
+        }
 
         while (viewController.presentedViewController) {
             while (
