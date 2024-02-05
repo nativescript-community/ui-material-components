@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-bottomnavigationbar",
-    "version": "7.2.37",
+    "version": "7.2.38",
     "description": "Material Design Bottom Navigation bars allow movement between primary destinations in an app. Tapping on a bottom navigation icon takes you directly to the associated view or refreshes the currently active view.",
     "main": "bottomnavigationbar",
     "sideEffects": false,
@@ -10,18 +10,6 @@
             "android": "6.2.0",
             "ios": "6.2.0"
         }
-    },
-    "scripts": {
-        "tsc": "cpy ../../src/bottomnavigationbar/bottomnavigationbar.d.ts ./ && tsc -d",
-        "tsc-win": "cpy ..\\..\\src\\bottomnavigationbar\\bottomnavigationbar.d.ts .\\ && tsc -d",
-        "build": "npm run tsc",
-        "build.watch": "npm run tsc -- -w",
-        "build.win": "npm run tsc-win",
-        "build.all": "npm run build && npm run build.angular",
-        "build.all.win": "npm run build.win && npm run build.angular.win",
-        "build.angular": "ng-packagr -p ../../src/bottomnavigationbar/angular/ng-package.json -c ../../src/bottomnavigationbar/angular/tsconfig.json",
-        "build.angular.win": "ng-packagr -p ..\\..\\src\\bottomnavigationbar\\angular\\package.json -c ..\\..\\src\\bottomnavigationbar\\angular\\tsconfig.json",
-        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "keywords": [
         "NativeScript",
@@ -52,7 +40,7 @@
     },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^7.2.37"
+        "@nativescript-community/ui-material-core": "^7.2.38"
     },
-    "gitHead": "d8c4a676e11bb01ed7bc708aaa73716f8ae7d12f"
+    "gitHead": "7ba6701f51ee9c445019f281eee4b5ef9fd86dae"
 }

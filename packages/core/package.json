@@ -1,20 +1,10 @@
 {
     "name": "@nativescript-community/ui-material-core",
-    "version": "7.2.37",
+    "version": "7.2.38",
     "description": "Material Core component",
     "main": "./index",
     "sideEffects": false,
     "typings": "./index.d.ts",
-    "scripts": {
-        "tsc": "cpy '**/*.d.ts' '../../packages/core' --cwd=../../src/core --parents && tsc -d",
-        "tsc-win": "cpy **/*.d.ts ..\\..\\packages\\core --cwd=..\\..\\src\\core --parents && tsc -d",
-        "build": "npm run tsc",
-        "build.watch": "npm run tsc -- -w",
-        "build.win": "npm run tsc-win",
-        "build.all": "npm run build",
-        "build.all.win": "npm run build.win",
-        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map android"
-    },
     "nativescript": {
         "platforms": {
             "android": "6.2.0",
@@ -38,5 +28,5 @@
     "homepage": "https://github.com/nativescript-community/ui-material-components",
     "repository": "https://github.com/nativescript-community/ui-material-components",
     "readmeFilename": "README.md",
-    "gitHead": "d8c4a676e11bb01ed7bc708aaa73716f8ae7d12f"
+    "gitHead": "7ba6701f51ee9c445019f281eee4b5ef9fd86dae"
 }
