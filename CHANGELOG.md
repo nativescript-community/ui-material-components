@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.41](https://github.com/nativescript-community/ui-material-component/compare/v7.2.40...v7.2.41) (2024-02-05)
+
+### Bug Fixes
+
+* **dialogs,ios:** better choosing of the right controller to show in ([845c2da](https://github.com/nativescript-community/ui-material-component/commit/845c2da5a6d8655f4c580603734a612a67deab42))
+
 ## [7.2.40](https://github.com/nativescript-community/ui-material-component/compare/v7.2.39...v7.2.40) (2024-02-05)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
