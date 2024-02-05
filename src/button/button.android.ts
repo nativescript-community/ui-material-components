@@ -1,11 +1,10 @@
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorAlphaProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
-import { createStateListAnimator, getColorStateList, getHorizontalGravity, getLayout, getVerticalGravity, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
+import { createStateListAnimator, getColorStateList, getHorizontalGravity, getVerticalGravity, inflateLayout, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import {
     Background,
     Color,
     CoreTypes,
-    Font,
     ImageSource,
     Length,
     Utils,
@@ -18,10 +17,6 @@ import {
 import { textAlignmentProperty, textTransformProperty } from '@nativescript/core/ui/text-base';
 import { ButtonBase, imageSourceProperty, srcProperty } from './button-common';
 
-let LayoutInflater: typeof android.view.LayoutInflater;
-
-const layoutIds = {};
-
 export class Button extends ButtonBase {
     nativeViewProtected: com.google.android.material.button.MaterialButton;
     nativeTextViewProtected: com.google.android.material.button.MaterialButton;
@@ -30,18 +25,18 @@ export class Button extends ButtonBase {
 
     @profile
     public createNativeView() {
-        let layoutId;
+        // let layoutId;
         const variant = this.variant;
-        // let layoutIdName = 'material_button';
+        // let layoutIdName = 'ns_material_button';
         let layoutStringId: string;
         if (variant === 'text') {
-            layoutStringId = 'material_button_text';
+            layoutStringId = 'ns_material_button_text';
         } else if (variant === 'flat') {
-            layoutStringId = 'material_button_flat';
+            layoutStringId = 'ns_material_button_flat';
         } else if (variant === 'outline') {
-            layoutStringId = 'material_button_outline';
+            layoutStringId = 'ns_material_button_outline';
         } else {
-            layoutStringId = 'material_button';
+            layoutStringId = 'ns_material_button';
             // contained
             // we need to set the default through css or user would not be able to overload it through css...
             this.style['css:margin-left'] = 10;
@@ -52,16 +47,8 @@ export class Button extends ButtonBase {
         if (this.src) {
             layoutStringId += '_icon';
         }
-        layoutId = layoutIds[layoutStringId];
-        if (!layoutId) {
-            layoutId = layoutIds[layoutStringId] = getLayout(this._context, layoutStringId);
-        }
-        if (!LayoutInflater) {
-            LayoutInflater = android.view.LayoutInflater;
-        }
-        const view = LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.button.MaterialButton;
+        const view = inflateLayout(this._context, layoutStringId) as com.google.android.material.button.MaterialButton;
         if (this.src) {
-            layoutStringId += '_icon';
             view.setIconGravity(0x2); //com.google.android.material.button.MaterialButton.ICON_GRAVITY_TEXT_START
             // view.setIconSize(Utils.layout.toDevicePixels(24));
         }

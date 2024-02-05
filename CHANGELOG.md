@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.40](https://github.com/nativescript-community/ui-material-component/compare/v7.2.39...v7.2.40) (2024-02-05)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+## [7.2.39](https://github.com/nativescript-community/ui-material-component/compare/v7.2.38...v7.2.39) (2024-02-05)
+
+### Reverts
+
+* Revert "chore(release): publish new version 7.2.38" ([feae655](https://github.com/nativescript-community/ui-material-component/commit/feae6558bba0d9620a79072499e45d3d2b89cea8))
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+## [7.2.38](https://github.com/nativescript-community/ui-material-component/compare/v7.2.37...v7.2.38) (2024-02-05)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+## [7.2.37](https://github.com/nativescript-community/ui-material-component/compare/v7.2.36...v7.2.37) (2024-02-05)
+
+### Features
+
+* **progress,android:** new `trackCornerRadius` property ([53a9008](https://github.com/nativescript-community/ui-material-component/commit/53a900856c50c2e4cf8c071acc1e4f91b30931a0))
+
+### Bug Fixes
+
+* **android:** more views created using inflator allowing to customize the theme ([0387a46](https://github.com/nativescript-community/ui-material-component/commit/0387a46194e4c1995d36c9adacd69fc3b1bc779d))
+
+## [7.2.36](https://github.com/nativescript-community/ui-material-component/compare/v7.2.35...v7.2.36) (2024-02-01)
+
+### Bug Fixes
+
+* **textfield,textview,android:** allow to override themes ([ead7592](https://github.com/nativescript-community/ui-material-component/commit/ead75925177dac800ad6af07eabdb7be9b3d043d))
+
+## [7.2.35](https://github.com/nativescript-community/ui-material-component/compare/v7.2.34...v7.2.35) (2024-02-01)
+
+### Bug Fixes
+
+* **dialogs,ios:** ensure we try to hide the correct view controller on hide ([5da476d](https://github.com/nativescript-community/ui-material-component/commit/5da476deef156566b82d9ca7db67fcf31b7d93ea))
+* **textfield,android:** `strokeColor` was not applied correctly ([22ff0aa](https://github.com/nativescript-community/ui-material-component/commit/22ff0aaf7c2caff39a794b884b5d503212eb4944))
+* **textview,android:** `strokeColor` was not applied correctly ([359d908](https://github.com/nativescript-community/ui-material-component/commit/359d908a8bd2dc7f775b8b865508981942834931))
+
+## [7.2.34](https://github.com/nativescript-community/ui-material-component/compare/v7.2.33...v7.2.34) (2024-01-18)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+## [7.2.33](https://github.com/nativescript-community/ui-material-component/compare/v7.2.32...v7.2.33) (2024-01-18)
+
+### Bug Fixes
+
+* **android:** renamed layout resources to easily keep then in minified production builds ([cfaac0f](https://github.com/nativescript-community/ui-material-component/commit/cfaac0f82dc527c516bf854ac8374f9aa9b27722))
+
+## [7.2.32](https://github.com/nativescript-community/ui-material-component/compare/v7.2.31...v7.2.32) (2024-01-18)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+## [7.2.31](https://github.com/nativescript-community/ui-material-component/compare/v7.2.30...v7.2.31) (2024-01-18)
+
+### Reverts
+
+* Revert "fix: bump android native lib default version to 1.10.0" ([44c1da8](https://github.com/nativescript-community/ui-material-component/commit/44c1da836a0ca48f1d93fbd7cc580bfb4b7f9341))
+
 ## [7.2.30](https://github.com/nativescript-community/ui-material-component/compare/v7.2.29...v7.2.30) (2024-01-16)
 
 ### Bug Fixes

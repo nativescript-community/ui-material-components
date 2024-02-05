@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.40](https://github.com/nativescript-community/ui-material-components/compare/v7.2.39...v7.2.40) (2024-02-05)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-switch
+
+## [7.2.39](https://github.com/nativescript-community/ui-material-components/compare/v7.2.38...v7.2.39) (2024-02-05)
+
+### Reverts
+
+* Revert "chore(release): publish new version 7.2.38" ([feae655](https://github.com/nativescript-community/ui-material-components/commit/feae6558bba0d9620a79072499e45d3d2b89cea8))
+
+**Note:** Version bump only for package @nativescript-community/ui-material-switch
+
+## [7.2.38](https://github.com/nativescript-community/ui-material-components/compare/v7.2.37...v7.2.38) (2024-02-05)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-switch
+
+## [7.2.37](https://github.com/nativescript-community/ui-material-components/compare/v7.2.36...v7.2.37) (2024-02-05)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-switch
+
+## [7.2.36](https://github.com/nativescript-community/ui-material-components/compare/v7.2.35...v7.2.36) (2024-02-01)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-switch
+
+## [7.2.35](https://github.com/nativescript-community/ui-material-components/compare/v7.2.34...v7.2.35) (2024-02-01)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-switch
+
+## [7.2.34](https://github.com/nativescript-community/ui-material-components/compare/v7.2.33...v7.2.34) (2024-01-18)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-switch
+
+## [7.2.33](https://github.com/nativescript-community/ui-material-components/compare/v7.2.32...v7.2.33) (2024-01-18)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-switch
+
+## [7.2.32](https://github.com/nativescript-community/ui-material-components/compare/v7.2.31...v7.2.32) (2024-01-18)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-switch
+
+## [7.2.31](https://github.com/nativescript-community/ui-material-components/compare/v7.2.30...v7.2.31) (2024-01-18)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-switch
+
 ## [7.2.30](https://github.com/nativescript-community/ui-material-components/compare/v7.2.29...v7.2.30) (2024-01-16)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-switch

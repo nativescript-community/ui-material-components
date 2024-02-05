@@ -302,7 +302,7 @@ export class AlertDialog {
         if (this.presentingController && !this.hiding) {
             this.hiding = true;
             return new Promise<void>((resolve) => {
-                this.presentingController.dismissViewControllerAnimatedCompletion(true, () => {
+                this.alertController.dismissViewControllerAnimatedCompletion(true, () => {
                     if (this.alertController._resolveFunction) {
                         this.alertController._resolveFunction(result);
                         this.alertController._resolveFunction = null;

@@ -1,5 +1,4 @@
 import { Background, Button, Color, Length, PercentLength, Utils, View, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty } from '@nativescript/core';
-import { ad } from '@nativescript/core/utils';
 import { ShapeProperties } from '.';
 import { createRippleDrawable, createStateListAnimator, getAttrColor, getColorStateList, handleClearFocus, isPostLollipop, isPostMarshmallow } from './android/utils';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorAlphaProperty, rippleColorProperty } from './cssproperties';
@@ -20,7 +19,7 @@ function cornerTreat(cornerFamily: CornerFamily): com.google.android.material.sh
 let context: android.content.Context;
 function getContext() {
     if (!context) {
-        context = Utils.ad.getApplicationContext();
+        context = Utils.android.getApplicationContext();
     }
     return context;
 }
@@ -237,8 +236,8 @@ export function overrideViewBase() {
         [rippleColorProperty.setNative](color: Color) {
             const rippleColor = getRippleColor(color, this.rippleColorAlpha);
             const nativeViewProtected = this.nativeViewProtected;
-            const RippleDrawable = android.graphics.drawable.RippleDrawable;
             if (this instanceof Button && isPostMarshmallow) {
+                const RippleDrawable = android.graphics.drawable.RippleDrawable;
                 const foreground = (nativeViewProtected as android.widget.Button).getForeground();
                 if (foreground instanceof RippleDrawable) {
                     foreground.setColor(getColorStateList(rippleColor));
@@ -299,7 +298,7 @@ export function overrideViewBase() {
             this.focus();
         }
         public clearFocus() {
-            ad.dismissSoftInput(this.nativeViewProtected);
+            Utils.android.dismissSoftInput(this.nativeViewProtected);
             handleClearFocus(this.nativeViewProtected);
         }
 

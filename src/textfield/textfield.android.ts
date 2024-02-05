@@ -1,6 +1,6 @@
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 import { themer } from '@nativescript-community/ui-material-core';
-import { getColorStateList, getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
+import { getColorStateList, getFullColorStateList, getHorizontalGravity, getVerticalGravity, inflateLayout } from '@nativescript-community/ui-material-core/android/utils';
 import {
     counterMaxLengthProperty,
     digitsProperty,
@@ -29,10 +29,6 @@ import {
     editableProperty,
     fontInternalProperty,
     hintProperty,
-    paddingBottomProperty,
-    paddingLeftProperty,
-    paddingRightProperty,
-    paddingTopProperty,
     placeholderColorProperty,
     profile,
     textAlignmentProperty
@@ -40,12 +36,7 @@ import {
 import { secureProperty } from '@nativescript/core/ui/text-field';
 import { TextFieldBase } from './textfield.common';
 
-let LayoutInflater: typeof android.view.LayoutInflater;
 let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
-let filledId;
-let outlineId;
-let noneId;
-let inflater;
 export class TextField extends TextFieldBase {
     editText: com.nativescript.material.textfield.TextInputEditText;
     layoutView: com.google.android.material.textfield.TextInputLayout;
@@ -68,37 +59,23 @@ export class TextField extends TextFieldBase {
 
     @profile
     public createNativeView() {
-        let layoutId = 0;
+        let layoutIdString = 'ns_material_text_field';
         const variant = this.variant;
         let needsTransparent = false;
         if (variant === 'filled') {
-            if (!filledId) {
-                filledId = getLayout(this._context, 'material_text_field_filled');
-            }
-            layoutId = filledId;
+     
+            layoutIdString = 'ns_material_text_field_filled';
         } else if (variant === 'outline') {
-            if (!outlineId) {
-                outlineId = getLayout(this._context, 'material_text_field_outline');
-            }
-            layoutId = outlineId;
+        
+            layoutIdString = 'ns_material_text_field_outline';
         } else {
-            if (!noneId) {
-                noneId = getLayout(this._context, 'material_text_field');
-            }
-            layoutId = noneId;
             needsTransparent = true;
         }
 
         let layoutView: com.google.android.material.textfield.TextInputLayout;
         let editText: com.nativescript.material.textfield.TextInputEditText;
-        if (layoutId !== 0) {
-            if (!LayoutInflater) {
-                LayoutInflater = android.view.LayoutInflater;
-            }
-            if (!inflater) {
-                inflater = LayoutInflater.from(this._context);
-            }
-            layoutView = this.layoutView = inflater.inflate(layoutId, null) as com.google.android.material.textfield.TextInputLayout;
+        if (layoutIdString) {
+            layoutView = this.layoutView = inflateLayout(this._context, layoutIdString) as com.google.android.material.textfield.TextInputLayout;
             editText = this.editText = layoutView.getEditText() as any as com.nativescript.material.textfield.TextInputEditText;
         } else {
             layoutView = this.layoutView = new com.google.android.material.textfield.TextInputLayout(this._context);
@@ -232,7 +209,7 @@ export class TextField extends TextFieldBase {
     [strokeColorProperty.setNative](value: Color | string) {
         const color = value ? (value instanceof Color ? value.android : new Color(value).android) : null;
         if (this.layoutView.setBoxStrokeColorStateList) {
-            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
+            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : color;
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
             const colorStateList = getFullColorStateList(color, inactiveColor, disabledColor);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
@@ -255,7 +232,7 @@ export class TextField extends TextFieldBase {
         const color = value ? (value instanceof Color ? value.android : new Color(value).android) : null;
         if (this.layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : this.layoutView.getBoxStrokeColor();
-            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
+            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : activeColor;
             const colorStateList = getFullColorStateList(activeColor, inactiveColor, color);
             this.layoutView.setBoxStrokeColorStateList(colorStateList);
         }
