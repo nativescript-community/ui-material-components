@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.39](https://github.com/nativescript-community/ui-material-components/compare/v7.2.38...v7.2.39) (2024-02-05)
+
+### Reverts
+
+* Revert "chore(release): publish new version 7.2.38" ([feae655](https://github.com/nativescript-community/ui-material-components/commit/feae6558bba0d9620a79072499e45d3d2b89cea8))
+
 **Note:** Version bump only for package @nativescript-community/ui-material-textfield
 
 ## [7.2.38](https://github.com/nativescript-community/ui-material-components/compare/v7.2.37...v7.2.38) (2024-02-05)
