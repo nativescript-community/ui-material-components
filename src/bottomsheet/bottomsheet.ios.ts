@@ -282,7 +282,7 @@ class MDLayoutViewController extends UIViewController {
         if (!owner) {
             return;
         }
-        if (!owner.parent) {
+        if (!owner.isLoaded) {
             owner.callLoaded();
         }
         // Unify translucent and opaque bars layout
@@ -366,6 +366,8 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             Trace.write('Parent page is not part of the window hierarchy.', Trace.categories.ViewHierarchy, Trace.messageType.error);
             return;
         }
+
+        this.parent = Application.getRootView();
         this._setupAsRootView({});
 
         this._commonShowNativeBottomSheet(parentWithController, options);
@@ -390,8 +392,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
             this.viewController = controller; // store the viewController so that safeArea overflow is applied correctly
         }
-        // calling this before the controller set makes it fail. Would have to investigate this
-        this.parent = Application.getRootView();
 
         this._raiseShowingBottomSheetEvent();
         const bottomSheet = (this.bottomSheetController = MDCBottomSheetController.alloc().initWithContentViewController(controller));
