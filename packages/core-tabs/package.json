@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-core-tabs",
-    "version": "7.2.42",
+    "version": "7.2.43",
     "description": "Material Core Tabs component",
     "main": "./index",
     "sideEffects": false,
@@ -39,7 +39,7 @@
     "repository": "https://github.com/nativescript-community/ui-material-components",
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^7.2.42"
+        "@nativescript-community/ui-material-core": "^7.2.43"
     },
     "gitHead": "697b090447072136d11b45a40fb7d642270b34f3"
 }

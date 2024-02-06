@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.43](https://github.com/nativescript-community/ui-material-component/compare/v7.2.42...v7.2.43) (2024-02-06)
+
+### Bug Fixes
+
+* **bottomsheet,ios:** allow to read root css variables from bottomsheet ([cbd325c](https://github.com/nativescript-community/ui-material-component/commit/cbd325c082afb57912f212449c13ccdd2b0e0d53))
+
 ## [7.2.42](https://github.com/nativescript-community/ui-material-component/compare/v7.2.41...v7.2.42) (2024-02-05)
 
 ### Bug Fixes
