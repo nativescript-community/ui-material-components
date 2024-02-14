@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.44](https://github.com/nativescript-community/ui-material-component/compare/v7.2.43...v7.2.44) (2024-02-14)
+
+### Bug Fixes
+
+* **textfiled:** debug code removal ([9e22c72](https://github.com/nativescript-community/ui-material-component/commit/9e22c72837d728028f49910b09b998cf2a0858a4))
+
 ## [7.2.43](https://github.com/nativescript-community/ui-material-component/compare/v7.2.42...v7.2.43) (2024-02-06)
 
 ### Bug Fixes
