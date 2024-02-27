@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.44](https://github.com/nativescript-community/ui-material-component/compare/v7.2.43...v7.2.44) (2024-02-14)
+
+### Bug Fixes
+
+* **textfiled:** debug code removal ([9e22c72](https://github.com/nativescript-community/ui-material-component/commit/9e22c72837d728028f49910b09b998cf2a0858a4))
+
+## [7.2.43](https://github.com/nativescript-community/ui-material-component/compare/v7.2.42...v7.2.43) (2024-02-06)
+
+### Bug Fixes
+
+* **bottomsheet,ios:** allow to read root css variables from bottomsheet ([cbd325c](https://github.com/nativescript-community/ui-material-component/commit/cbd325c082afb57912f212449c13ccdd2b0e0d53))
+
+## [7.2.42](https://github.com/nativescript-community/ui-material-component/compare/v7.2.41...v7.2.42) (2024-02-05)
+
+### Bug Fixes
+
+* **bottomsheet,ios:** prevent dupliced close call ([f1341d5](https://github.com/nativescript-community/ui-material-component/commit/f1341d5e0ffa0d8256dc823a4f6bcc90e33f06e0))
+
+## [7.2.41](https://github.com/nativescript-community/ui-material-component/compare/v7.2.40...v7.2.41) (2024-02-05)
+
+### Bug Fixes
+
+* **dialogs,ios:** better choosing of the right controller to show in ([845c2da](https://github.com/nativescript-community/ui-material-component/commit/845c2da5a6d8655f4c580603734a612a67deab42))
+
 ## [7.2.40](https://github.com/nativescript-community/ui-material-component/compare/v7.2.39...v7.2.40) (2024-02-05)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components

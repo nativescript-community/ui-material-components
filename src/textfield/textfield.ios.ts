@@ -428,7 +428,6 @@ export class TextField extends TextFieldBase {
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
         // TODO: not working for now
         const view = this.nativeTextViewProtected;
-        view.backgroundColor = UIColor.redColor;
         switch (value) {
             case 'initial':
             case 'top':
