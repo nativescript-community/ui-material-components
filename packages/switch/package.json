@@ -13,7 +13,7 @@
         "build.win": "npm run tsc-win",
         "build.all": "npm run build && npm run build.angular",
         "build.all.win": "npm run build.win && npm run build.angular.win",
-        "build.angular": "ng-packagr -p ../../src/switch/angular/ng-package.json -c ../../src/switch/angular/tsconfig.json",
+        "build.angular": "ng-packagr -p ../../src/switch/angular/ng-package.json -c ../../src/switch/angular/tsconfig.json && rm angular/.npmignore",
         "build.angular.win": "ng-packagr -p ..\\..\\src\\switch\\angular\\package.json -c ..\\..\\src\\switch\\angular\\tsconfig.json",
         "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
     },

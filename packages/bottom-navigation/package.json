@@ -19,7 +19,7 @@
         "build.win": "npm run tsc-win",
         "build.all": "npm run build && npm run build.angular",
         "build.all.win": "npm run build.win && npm run build.angular.win",
-        "build.angular": "ng-packagr -p ../../src/bottom-navigation/angular/ng-package.json -c ../../src/bottom-navigation/angular/tsconfig.json",
+        "build.angular": "ng-packagr -p ../../src/bottom-navigation/angular/ng-package.json -c ../../src/bottom-navigation/angular/tsconfig.json && rm angular/.npmignore",
         "build.angular.win": "ng-packagr -p ..\\..\\src\\bottom-navigation\\angular\\package.json -c ..\\..\\src\\bottom-navigation\\angular\\tsconfig.json",
         "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
     },
