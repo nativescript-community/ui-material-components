@@ -10,7 +10,8 @@
         "publish": {
             "cleanupTempFiles": true,
             "removePackageFields": [
-                "devDependencies"
+                "devDependencies",
+                "scripts"
             ]
         }
     },
