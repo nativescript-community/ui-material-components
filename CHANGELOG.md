@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.46](https://github.com/nativescript-community/ui-material-component/compare/v7.2.45...v7.2.46) (2024-03-28)
+
+### Bug Fixes
+
+* **textview, textfield, android:** accessibility fix ([0f2ce73](https://github.com/nativescript-community/ui-material-component/commit/0f2ce73a0a505ab07f65ce88e1b8263e78271d6b))
+
 ## [7.2.45](https://github.com/nativescript-community/ui-material-component/compare/v7.2.44...v7.2.45) (2024-03-06)
 
 ### Bug Fixes
