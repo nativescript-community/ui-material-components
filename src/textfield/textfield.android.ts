@@ -335,11 +335,11 @@ export class TextField extends TextFieldBase {
     }
 
     [testIDProperty.setNative](value: string): void {
-		this.setAccessibilityIdentifier(this.nativeTextViewProtected, value);
+		this.setAccessibilityIdentifier(this.nativeViewProtected, value);
 	}
 
 	[accessibilityIdentifierProperty.setNative](value: string): void {
-		this.setAccessibilityIdentifier(this.nativeTextViewProtected, value);
+		this.setAccessibilityIdentifier(this.nativeViewProtected, value);
 	}
 }
 

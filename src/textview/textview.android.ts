@@ -306,11 +306,11 @@ export class TextView extends TextViewBase {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(this.textAlignment) | getVerticalGravity(value));
     }
     [testIDProperty.setNative](value: string): void {
-		this.setAccessibilityIdentifier(this.nativeTextViewProtected, value);
+		this.setAccessibilityIdentifier(this.nativeViewProtected, value);
 	}
 
 	[accessibilityIdentifierProperty.setNative](value: string): void {
-		this.setAccessibilityIdentifier(this.nativeTextViewProtected, value);
+		this.setAccessibilityIdentifier(this.nativeViewProtected, value);
 	}
 }
 
