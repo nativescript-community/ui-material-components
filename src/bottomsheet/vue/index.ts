@@ -1,5 +1,4 @@
 import { NativeScriptVue } from 'nativescript-vue';
-import Vue from 'vue';
 import { BottomSheetOptions } from '../bottomsheet';
 import { View } from '@nativescript/core';
 
@@ -9,8 +8,8 @@ export interface VueBottomSheetOptions extends Omit<BottomSheetOptions, 'view'> 
 }
 
 declare module 'nativescript-vue' {
-    interface NativeScriptVue<V = View> extends Vue {
-        $showBottomSheet(component: typeof Vue, options?: VueBottomSheetOptions): Promise<any>;
+    interface NativeScriptVue<V = View> extends NativeScriptVue {
+        $showBottomSheet(component: typeof NativeScriptVue, options?: VueBottomSheetOptions): Promise<any>;
         $closeBottomSheet(...args);
     }
 }
