@@ -52,10 +52,12 @@ Pods
 /packages/README.md
 packages/**/*js.map
 packages/**/*js
-packages/**/angular/*.json
-packages/*.ngsummary.json
-packages/*.metadata.json
 packages/angular
 packages/typings
+packages/**/angular/*.json
+packages/**/*.ngsummary.json
+packages/**/*.metadata.json
+
+.vscode/settings.json
 
 /blueprint.md

@@ -350,16 +350,27 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     bottomSheetController: MDCBottomSheetController;
     protected _showNativeBottomSheet(parent: View, options: BottomSheetOptions) {
         options.context = options.context || {};
-        const parentWithController = IOSHelper.getParentWithViewController(parent);
-        if (!parentWithController) {
-            Trace.write(`Could not find parent with viewController for ${parent} while showing bottom sheet view.`, Trace.categories.ViewHierarchy, Trace.messageType.error);
-            return;
+        let rootView = Application.getRootView();
+        if (rootView.parent) {
+            rootView = rootView.parent as any;
         }
-
-        const parentController = parentWithController.viewController;
-        if (parentController.presentedViewController) {
-            Trace.write('Parent is already presenting view controller. Close the current bottom sheet page before showing another one!', Trace.categories.ViewHierarchy, Trace.messageType.error);
-            return;
+        let currentView = parent.page || rootView;
+        currentView = currentView.modal || currentView;
+        let parentController = currentView.viewController;
+        if (!parentController.presentedViewController && rootView.viewController.presentedViewController) {
+            parentController = rootView.viewController.presentedViewController;
+        }
+        while (parentController.presentedViewController) {
+            while (parentController.presentedViewController instanceof UIAlertController ||
+                (parentController.presentedViewController['isAlertController'] && parentController.presentedViewController.presentedViewController)) {
+                    parentController = parentController.presentedViewController;
+            }
+            if (parentController.presentedViewController instanceof UIAlertController || parentController.presentedViewController['isAlertController']) {
+                break;
+            }
+            else {
+                parentController = parentController.presentedViewController;
+            }
         }
 
         if (!parentController.view || !parentController.view.window) {
@@ -370,7 +381,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         this.parent = Application.getRootView();
         this._setupAsRootView({});
 
-        this._commonShowNativeBottomSheet(parentWithController, options);
+        this._commonShowNativeBottomSheet(currentView, options);
         let controller: IMDLayoutViewController = this.viewController;
         if (!controller) {
             const nativeView = this.ios || this.nativeViewProtected;
@@ -462,13 +473,27 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             whenClosedCallback?.();
             return;
         }
-        const parentWithController = IOSHelper.getParentWithViewController(parent);
-        if (!parent || !parentWithController) {
-            Trace.error('Trying to hide bottom-sheet view but no parent with viewController specified.');
-            return;
+        let rootView = Application.getRootView();
+        if (rootView.parent) {
+            rootView = rootView.parent as any;
         }
-
-        const parentController = parentWithController.viewController;
+        let currentView = parent.modal || parent;
+        let parentController = currentView.viewController;
+        if (!parentController.presentedViewController && rootView.viewController.presentedViewController) {
+            parentController = rootView.viewController.presentedViewController;
+        }
+        while (parentController.presentedViewController) {
+            while (parentController.presentedViewController instanceof UIAlertController ||
+                (parentController.presentedViewController['isAlertController'] && parentController.presentedViewController.presentedViewController)) {
+                    parentController = parentController.presentedViewController;
+            }
+            if (parentController.presentedViewController instanceof UIAlertController || parentController.presentedViewController['isAlertController']) {
+                break;
+            }
+            else {
+                parentController = parentController.presentedViewController;
+            }
+        }
         const animated = this.viewController.nsAnimated;
         parentController.dismissViewControllerAnimatedCompletion(animated, whenClosedCallback);
     }

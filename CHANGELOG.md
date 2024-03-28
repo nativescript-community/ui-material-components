@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.45](https://github.com/nativescript-community/ui-material-component/compare/v7.2.44...v7.2.45) (2024-03-06)
+
+### Bug Fixes
+
+* **bottomsheet,ios:** allow to show bottomsheet on top of another one ([9a524e0](https://github.com/nativescript-community/ui-material-component/commit/9a524e01a58cfda2a20800427c874f3cb5d96950))
+
 ## [7.2.44](https://github.com/nativescript-community/ui-material-component/compare/v7.2.43...v7.2.44) (2024-02-14)
 
 ### Bug Fixes

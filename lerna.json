@@ -1,5 +1,5 @@
 {
-    "version": "7.2.44",
+    "version": "7.2.45",
     "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
     "packages": [
         "packages/*"
@@ -10,7 +10,8 @@
         "publish": {
             "cleanupTempFiles": true,
             "removePackageFields": [
-                "devDependencies"
+                "devDependencies",
+                "scripts"
             ]
         }
     },
