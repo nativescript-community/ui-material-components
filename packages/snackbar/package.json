@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-snackbar",
-    "version": "7.2.47",
+    "version": "7.2.48",
     "description": "Material Design Snackbars provide brief messages about app processes at the bottom of the screen.",
     "main": "./snackbar",
     "sideEffects": false,
@@ -44,7 +44,7 @@
     },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^7.2.47"
+        "@nativescript-community/ui-material-core": "^7.2.48"
     },
     "gitHead": "697b090447072136d11b45a40fb7d642270b34f3"
 }

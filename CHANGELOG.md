@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.48](https://github.com/nativescript-community/ui-material-component/compare/v7.2.47...v7.2.48) (2024-04-08)
+
+### Bug Fixes
+
+* **dialogs:** allow custom view to be added to `prompt/login` (for now under the text fields) ([33eac9d](https://github.com/nativescript-community/ui-material-component/commit/33eac9d44fef3fa04c9f8871e7be2305a7a40c36))
+
 ## [7.2.47](https://github.com/nativescript-community/ui-material-component/compare/v7.2.46...v7.2.47) (2024-03-28)
 
 ### Bug Fixes
