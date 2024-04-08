@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.49](https://github.com/nativescript-community/ui-material-component/compare/v7.2.48...v7.2.49) (2024-04-08)
+
+### Bug Fixes
+
+* ensure custom view has no parent ([7d3dd07](https://github.com/nativescript-community/ui-material-component/commit/7d3dd07bb5c56424f45287f907e405732e7f2e41))
+
 ## [7.2.48](https://github.com/nativescript-community/ui-material-component/compare/v7.2.47...v7.2.48) (2024-04-08)
 
 ### Bug Fixes
