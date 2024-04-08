@@ -459,6 +459,9 @@ export function prompt(arg: any): Promise<PromptResult> {
                 }
             }
             stackLayout.addChild(textField);
+            if (options.view instanceof View) {
+                stackLayout.addChild(options.view);
+            }
             options.view = stackLayout;
             const alert = createAlertDialogBuilder(options);
 
@@ -532,6 +535,10 @@ export function login(arg: any): Promise<LoginResult> {
 
             stackLayout.addChild(userNameTextField);
             stackLayout.addChild(passwordTextField);
+
+            if (options.view instanceof View) {
+                stackLayout.addChild(options.view);
+            }
             options.view = stackLayout;
 
             const alert = createAlertDialogBuilder(options);
