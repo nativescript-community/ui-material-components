@@ -65,7 +65,9 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
                 : Builder.createViewFromEntry({
                       moduleName: options.view as string
                   });
-
+        if (view.parent) {
+            view.parent._removeView(view)
+        }
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
         modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
@@ -170,9 +172,7 @@ function prepareAndCreateAlertDialog(
             return;
         }
         if (onDoneCalled) {
-            if (toBeCalledBeforeCallback) {
-                toBeCalledBeforeCallback();
-            }
+            toBeCalledBeforeCallback?.();
             return;
         }
         //ensure we hide any keyboard
@@ -191,9 +191,8 @@ function prepareAndCreateAlertDialog(
         if (dialog) {
             dialog.cancel();
         }
-        if (toBeCalledBeforeCallback) {
-            toBeCalledBeforeCallback();
-        }
+        toBeCalledBeforeCallback?.();
+
         callback && callback(result);
     };
     if (!DialogInterface) {
