@@ -218,7 +218,7 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
                       moduleName: options.view as string
                   });
         if (view.parent) {
-            view.parent._removeView(view)
+            view.parent._removeView(view);
         }
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
@@ -582,7 +582,7 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
         }
     }
 
-    let rootView =  Application.getRootView();
+    let rootView = Application.getRootView();
     if (rootView.parent) {
         rootView = rootView.parent as any;
     }
@@ -591,14 +591,15 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
         currentView = currentView.modal || currentView;
         let viewController = currentView.viewController;
         if (!viewController) {
-			throw new Error("no_controller_to_show_dialog");
-		}
+            throw new Error('no_controller_to_show_dialog');
+        }
         if (!viewController.presentedViewController && rootView.viewController.presentedViewController && !rootView.viewController.presentedViewController.beingDismissed) {
             viewController = rootView.viewController.presentedViewController;
         }
 
         while (viewController.presentedViewController && !viewController.presentedViewController.beingDismissed) {
-            while ( viewController.presentedViewController instanceof UIAlertController ||
+            while (
+                viewController.presentedViewController instanceof UIAlertController ||
                 (viewController.presentedViewController['isAlertController'] && viewController.presentedViewController.presentedViewController)
             ) {
                 viewController = viewController.presentedViewController;
@@ -610,7 +611,7 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
             }
         }
         showingDialogs.push(alertController);
-        function block(){
+        function block() {
             if (alertController.popoverPresentationController) {
                 alertController.popoverPresentationController.sourceView = viewController.view;
                 alertController.popoverPresentationController.sourceRect = CGRectMake(viewController.view.bounds.size.width / 2.0, viewController.view.bounds.size.height / 2.0, 1.0, 1.0);
@@ -624,7 +625,7 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
                     block();
                 });
             } else {
-                throw new Error("controller_already_presented");
+                throw new Error('controller_already_presented');
             }
         } else {
             block();
