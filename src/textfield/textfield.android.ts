@@ -33,6 +33,8 @@ import {
     profile,
     textAlignmentProperty
 } from '@nativescript/core';
+import { accessibilityIdentifierProperty } from '@nativescript/core/accessibility/accessibility-properties';
+import { testIDProperty } from '@nativescript/core/ui/core/view/view-common';
 import { secureProperty } from '@nativescript/core/ui/text-field';
 import { TextFieldBase } from './textfield.common';
 
@@ -331,5 +333,13 @@ export class TextField extends TextFieldBase {
         const nativeView = this.nativeTextViewProtected;
         nativeView.setFocusable(value);
     }
+
+    [testIDProperty.setNative](value: string): void {
+		this.setAccessibilityIdentifier(this.nativeViewProtected, value);
+	}
+
+	[accessibilityIdentifierProperty.setNative](value: string): void {
+		this.setAccessibilityIdentifier(this.nativeViewProtected, value);
+	}
 }
-//
+

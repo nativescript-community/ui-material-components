@@ -1,6 +1,6 @@
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 import { themer } from '@nativescript-community/ui-material-core';
-import { getColorStateList, getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity, inflateLayout } from '@nativescript-community/ui-material-core/android/utils';
+import { getColorStateList, getFullColorStateList, getHorizontalGravity, getVerticalGravity, inflateLayout } from '@nativescript-community/ui-material-core/android/utils';
 import {
     counterMaxLengthProperty,
     errorColorProperty,
@@ -19,20 +19,18 @@ import {
     Color,
     CoreTypes,
     Font,
-    Length,
     Utils,
     backgroundInternalProperty,
     borderBottomLeftRadiusProperty,
     fontInternalProperty,
     hintProperty,
-    paddingBottomProperty,
-    paddingLeftProperty,
-    paddingRightProperty,
-    paddingTopProperty,
     placeholderColorProperty,
     textAlignmentProperty
 } from '@nativescript/core';
 import { TextViewBase } from './textview.common';
+
+import { accessibilityIdentifierProperty } from '@nativescript/core/accessibility/accessibility-properties';
+import { testIDProperty } from '@nativescript/core/ui/core/view/view-common';
 
 let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
 let filledId;
@@ -307,5 +305,12 @@ export class TextView extends TextViewBase {
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(this.textAlignment) | getVerticalGravity(value));
     }
+    [testIDProperty.setNative](value: string): void {
+		this.setAccessibilityIdentifier(this.nativeViewProtected, value);
+	}
+
+	[accessibilityIdentifierProperty.setNative](value: string): void {
+		this.setAccessibilityIdentifier(this.nativeViewProtected, value);
+	}
 }
-//
+

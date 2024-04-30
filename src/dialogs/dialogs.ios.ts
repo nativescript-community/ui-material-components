@@ -217,7 +217,9 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
                 : Builder.createViewFromEntry({
                       moduleName: options.view as string
                   });
-
+        if (view.parent) {
+            view.parent._removeView(view)
+        }
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
         modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
@@ -413,6 +415,9 @@ export function prompt(arg: any): Promise<PromptResult> {
                 }
             }
             stackLayout.addChild(textField);
+            if (options.view instanceof View) {
+                stackLayout.addChild(options.view);
+            }
             options.view = stackLayout;
 
             const alertController = createAlertController(options, resolve);
@@ -486,6 +491,9 @@ export function login(arg: any): Promise<LoginResult> {
 
             stackLayout.addChild(userNameTextField);
             stackLayout.addChild(passwordTextField);
+            if (options.view instanceof View) {
+                stackLayout.addChild(options.view);
+            }
             options.view = stackLayout;
             const alertController = createAlertController(options, resolve);
 
