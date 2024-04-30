@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.50](https://github.com/nativescript-community/ui-material-component/compare/v7.2.49...v7.2.50) (2024-04-30)
+
+### Bug Fixes
+
+* **dialogs:** ios option `iosForceClosePresentedViewController` ([48aed7f](https://github.com/nativescript-community/ui-material-component/commit/48aed7f207df5ac4c9570ed5989fbd2534bbdc35))
+
 ## [7.2.49](https://github.com/nativescript-community/ui-material-component/compare/v7.2.48...v7.2.49) (2024-04-08)
 
 ### Bug Fixes

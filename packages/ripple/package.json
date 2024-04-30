@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-ripple",
-    "version": "7.2.49",
+    "version": "7.2.50",
     "description": "The Material Design Ripple component provides a radial action in the form of a visual ripple expanding outward from the user's touch. Ripple is a visual form of feedback for touch events providing users a clear signal that an element is being touched.",
     "main": "./ripple",
     "sideEffects": false,
@@ -46,7 +46,7 @@
     },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^7.2.49"
+        "@nativescript-community/ui-material-core": "^7.2.50"
     },
     "gitHead": "697b090447072136d11b45a40fb7d642270b34f3"
 }
