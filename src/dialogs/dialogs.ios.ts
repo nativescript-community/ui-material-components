@@ -541,8 +541,6 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
     }
     if (options.titleColor) {
         alertController.titleColor = options.titleColor.ios;
-        // } else if (lblColor) {
-        // alertController.titleColor = lblColor.ios;
     }
     if (options.titleIconTintColor) {
         alertController.titleIconTintColor = options.titleIconTintColor.ios;
@@ -584,13 +582,15 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
     if (currentView) {
         currentView = currentView.modal || currentView;
         let viewController = currentView.viewController;
-        if (!viewController.presentedViewController && rootView.viewController.presentedViewController) {
+        if (!viewController) {
+			throw new Error("no_controller_to_show_dialog");
+		}
+        if (!viewController.presentedViewController && rootView.viewController.presentedViewController && !rootView.viewController.presentedViewController.beingDismissed) {
             viewController = rootView.viewController.presentedViewController;
         }
 
-        while (viewController.presentedViewController) {
-            while (
-                viewController.presentedViewController instanceof UIAlertController ||
+        while (viewController.presentedViewController && !viewController.presentedViewController.beingDismissed) {
+            while ( viewController.presentedViewController instanceof UIAlertController ||
                 (viewController.presentedViewController['isAlertController'] && viewController.presentedViewController.presentedViewController)
             ) {
                 viewController = viewController.presentedViewController;
@@ -601,15 +601,25 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
                 viewController = viewController.presentedViewController;
             }
         }
-        let v;
         showingDialogs.push(alertController);
-        if (viewController) {
+        function block(){
             if (alertController.popoverPresentationController) {
                 alertController.popoverPresentationController.sourceView = viewController.view;
                 alertController.popoverPresentationController.sourceRect = CGRectMake(viewController.view.bounds.size.width / 2.0, viewController.view.bounds.size.height / 2.0, 1.0, 1.0);
                 alertController.popoverPresentationController.permittedArrowDirections = 0 as any;
             }
             viewController.presentViewControllerAnimatedCompletion(alertController, true, null);
+        }
+        if (viewController.presentedViewController) {
+            if (viewController.presentedViewController.beingDismissed || options.iosForceClosePresentedViewController === true) {
+                viewController.dismissViewControllerAnimatedCompletion(true, () => {
+                    block();
+                });
+            } else {
+                throw new Error("controller_already_presented");
+            }
+        } else {
+            block();
         }
         return viewController;
     }

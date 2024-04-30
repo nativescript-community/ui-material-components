@@ -20,6 +20,7 @@ export interface MDCAlertControlerOptions {
     dismissOnBackgroundTap?: boolean;
     closeCallback?: Function;
     shouldResolveOnAction?: (result) => boolean;
+    iosForceClosePresentedViewController?: boolean // iOS only: if a viewController is already presenting this will close it.If set to false an error will be thrown
 }
 
 export function isDialogOptions(arg) {
