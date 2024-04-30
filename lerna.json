@@ -8,11 +8,7 @@
     "useWorkspaces": true,
     "command": {
         "publish": {
-            "cleanupTempFiles": true,
-            "removePackageFields": [
-                "devDependencies",
-                "scripts"
-            ]
+            "cleanupTempFiles": true
         }
     },
     "npmClientArgs": [
