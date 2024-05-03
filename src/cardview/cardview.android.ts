@@ -210,7 +210,7 @@ function initializeOutlineProvider() {
             return global.__native(this);
         }
         getOutline(view: android.view.View, outline: any) {
-            const cardView = this.owner && this.owner.get();
+            const cardView = this.owner?.get();
             if (cardView) {
                 outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), cardView._borderRadius - cardView._strokeWidth);
             }
