@@ -289,34 +289,15 @@ IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-materia
 #### CSS
 
 ```CSS
-BottomNavigation.bottom-nav {
-    background-color: orangered;
-    color: gold;
-    font-size: 18;
+MDTabStrip {
+  background-color: #40aeff;
+  selected-item-color: #ffffff;
+  un-selected-item-color: #aeddfc; //#b7e2ff;
+  highlight-color: #ffffff;
 }
 
-MDTabStripItem.tabstripitem-active {
-    background-color: teal;
-}
-
-MDTabStripItem.tabstripitem-active:active {
-    background-color: yellowgreen;
-}
-
-MDTabContentItem.first-tabcontent {
-    background-color: seashell;
-    color: olive;
-}
-MDTabContentItem.second-tabcontent {
-    background-color: slategray;
-    color: aquamarine;
-}
-MDTabContentItem.third-tabcontent {
-    background-color: blueviolet;
-    color: antiquewhite;
-}
-BottomNavigation TabStrip {
-    highlight-color: red;
+TabStripClassStyle MDTabStripItem {
+  background-color: #40aeff;
 }
 ```
 
