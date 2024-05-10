@@ -8329,7 +8329,7 @@ declare module com {
 		export module android {
 			export module material {
 				export module card {
-					export class MaterialCardView implements globalAndroid.widget.Checkable, com.google.android.material.shape.Shapeable {
+					export class MaterialCardView extends androidx.cardview.widget.CardView implements globalAndroid.widget.Checkable, com.google.android.material.shape.Shapeable {
 						public static class: java.lang.Class<com.google.android.material.card.MaterialCardView>;
 						public static CHECKED_ICON_GRAVITY_TOP_START: number;
 						public static CHECKED_ICON_GRAVITY_BOTTOM_START: number;

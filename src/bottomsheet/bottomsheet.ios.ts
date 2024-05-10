@@ -278,7 +278,7 @@ class MDLayoutViewController extends UIViewController {
 
     viewDidLoad(): void {
         super.viewDidLoad();
-        const owner = this.owner.get();
+        const owner = this.owner?.get();
         if (!owner) {
             return;
         }
@@ -292,7 +292,7 @@ class MDLayoutViewController extends UIViewController {
 
     viewWillLayoutSubviews(): void {
         super.viewWillLayoutSubviews();
-        const owner = this.owner.get();
+        const owner = this.owner?.get();
         if (owner) {
             owner.iosOverflowSafeArea = true;
             IOSHelper.updateConstraints(this, owner);
@@ -301,7 +301,7 @@ class MDLayoutViewController extends UIViewController {
 
     viewDidLayoutSubviews(): void {
         super.viewDidLayoutSubviews();
-        const owner = this.owner.get();
+        const owner = this.owner?.get();
         if (owner) {
             layoutView(this, owner);
         }
@@ -309,7 +309,7 @@ class MDLayoutViewController extends UIViewController {
 
     viewWillAppear(animated: boolean): void {
         super.viewWillAppear(animated);
-        const owner = this.owner.get();
+        const owner = this.owner?.get();
         if (!owner) {
             return;
         }
@@ -333,7 +333,7 @@ class MDLayoutViewController extends UIViewController {
         super.traitCollectionDidChange(previousTraitCollection);
 
         if (majorVersion >= 13) {
-            const owner = this.owner.get();
+            const owner = this.owner?.get();
             if (
                 owner &&
                 this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection &&

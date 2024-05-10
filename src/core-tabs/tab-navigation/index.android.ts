@@ -57,7 +57,7 @@ function initializeNativeClasses() {
         }
 
         onPageSelected(position: number) {
-            const owner = this.owner && this.owner.get();
+            const owner = this.owner?.get();
             if (owner) {
                 owner.selectedIndex = position;
                 const tabItems = owner.items;

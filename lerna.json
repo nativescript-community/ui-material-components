@@ -1,5 +1,5 @@
 {
-    "version": "7.2.49",
+    "version": "7.2.53",
     "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
     "packages": [
         "packages/*"
@@ -8,11 +8,7 @@
     "useWorkspaces": true,
     "command": {
         "publish": {
-            "cleanupTempFiles": true,
-            "removePackageFields": [
-                "devDependencies",
-                "scripts"
-            ]
+            "cleanupTempFiles": true
         }
     },
     "npmClientArgs": [

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.53](https://github.com/nativescript-community/ui-material-component/compare/v7.2.52...v7.2.53) (2024-05-03)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+## [7.2.52](https://github.com/nativescript-community/ui-material-component/compare/v7.2.51...v7.2.52) (2024-05-03)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+## [7.2.51](https://github.com/nativescript-community/ui-material-component/compare/v7.2.50...v7.2.51) (2024-05-03)
+
+### Bug Fixes
+
+* WeakRef possible crash fix ([f597674](https://github.com/nativescript-community/ui-material-component/commit/f5976746c69711cef0aadeffea89a61bd244c608))
+
+## [7.2.50](https://github.com/nativescript-community/ui-material-component/compare/v7.2.49...v7.2.50) (2024-04-30)
+
+### Bug Fixes
+
+* **dialogs:** ios option `iosForceClosePresentedViewController` ([48aed7f](https://github.com/nativescript-community/ui-material-component/commit/48aed7f207df5ac4c9570ed5989fbd2534bbdc35))
+
 ## [7.2.49](https://github.com/nativescript-community/ui-material-component/compare/v7.2.48...v7.2.49) (2024-04-08)
 
 ### Bug Fixes
