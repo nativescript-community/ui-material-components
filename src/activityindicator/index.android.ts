@@ -1,6 +1,5 @@
-import { heightProperty } from '@nativescript/core';
-import { ActivityIndicatorBase, indeterminateProperty, maxValueProperty, valueProperty } from './index-common';
 import { inflateLayout } from '@nativescript-community/ui-material-core/android/utils';
+import { ActivityIndicatorBase, indeterminateProperty, maxValueProperty, valueProperty } from './index-common';
 
 export class ActivityIndicator extends ActivityIndicatorBase {
     nativeViewProtected: com.google.android.material.progressindicator.CircularProgressIndicator;
