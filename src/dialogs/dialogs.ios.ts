@@ -33,6 +33,14 @@ class UIViewAutoSizeUIViewAutoSize extends UIView {
         if (!view) {
             return CGSizeZero;
         }
+        // if message is set on the dialog 
+        // this is called with an infinite boundsSize.width which would
+        // make the view size itself to as big as possible
+        // which we never want
+        // instead we try and return our previously measured size
+        if (boundsSize.width >= Number.MAX_SAFE_INTEGER) {
+            return this.bounds.size;
+        }
         const actualWidth = Math.min(boundsSize.width, Screen.mainScreen.widthPixels);
         const widthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(actualWidth), Utils.layout.EXACTLY);
         const heighthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(boundsSize.height), Utils.layout.UNSPECIFIED);
