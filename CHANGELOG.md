@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.54](https://github.com/nativescript-community/ui-material-component/compare/v7.2.53...v7.2.54) (2024-05-15)
+
+### Bug Fixes
+
+* **dialogs:** ios fix for custom view with message set ([71d3580](https://github.com/nativescript-community/ui-material-component/commit/71d3580d752f126597978b0fb0c9aeaccc23d4eb))
+
 ## [7.2.53](https://github.com/nativescript-community/ui-material-component/compare/v7.2.52...v7.2.53) (2024-05-03)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
