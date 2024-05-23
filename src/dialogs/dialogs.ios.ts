@@ -33,7 +33,7 @@ class UIViewAutoSizeUIViewAutoSize extends UIView {
         if (!view) {
             return CGSizeZero;
         }
-        // if message is set on the dialog 
+        // if message is set on the dialog
         // this is called with an infinite boundsSize.width which would
         // make the view size itself to as big as possible
         // which we never want
@@ -65,7 +65,6 @@ function createUIViewAutoSizeUIViewAutoSize(view: View) {
     view._setupAsRootView({});
     view.parent = Application.getRootView();
     view._isAddedToNativeVisualTree = true;
-    view.callLoaded();
     self._view = view;
     self.addSubview(view.nativeViewProtected);
     (view.nativeViewProtected as UIView).autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
@@ -106,6 +105,11 @@ class MDCAlertControllerImpl extends MDCAlertController {
     }
     viewDidLoad() {
         super.viewDidLoad();
+        // we call callLoaded here to prevent  callLoaded from triggering loadView to be called
+        // again from callLoaded in loadView (controller.view would not be set yet)
+        if (this.accessoryView instanceof UIViewAutoSizeUIViewAutoSize) {
+            this.accessoryView._view.callLoaded();
+        }
         if (this._disableContentInsets) {
             (this.view as MDCAlertControllerView).contentInsets = UIEdgeInsetsZero;
         }
