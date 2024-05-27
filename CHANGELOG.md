@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.55](https://github.com/nativescript-community/ui-material-component/compare/v7.2.54...v7.2.55) (2024-05-27)
+
+### Bug Fixes
+
+* **bottom-navigation:** iOS TabStrip. color not applied [#464](https://github.com/nativescript-community/ui-material-component/issues/464) ([7883c8f](https://github.com/nativescript-community/ui-material-component/commit/7883c8f8e95d176e9577ef09e62e7ceb6039039b))
+* **bottomsheet:** iOS fix for RADSideDrawer ([db2587c](https://github.com/nativescript-community/ui-material-component/commit/db2587c612a056354543accb0b46795d80445d1b))
+
 ## [7.2.54](https://github.com/nativescript-community/ui-material-component/compare/v7.2.53...v7.2.54) (2024-05-15)
 
 ### Bug Fixes
