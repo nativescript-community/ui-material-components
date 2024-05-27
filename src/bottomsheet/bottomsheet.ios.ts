@@ -361,14 +361,15 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             parentController = rootView.viewController.presentedViewController;
         }
         while (parentController.presentedViewController) {
-            while (parentController.presentedViewController instanceof UIAlertController ||
-                (parentController.presentedViewController['isAlertController'] && parentController.presentedViewController.presentedViewController)) {
-                    parentController = parentController.presentedViewController;
+            while (
+                parentController.presentedViewController instanceof UIAlertController ||
+                (parentController.presentedViewController['isAlertController'] && parentController.presentedViewController.presentedViewController)
+            ) {
+                parentController = parentController.presentedViewController;
             }
             if (parentController.presentedViewController instanceof UIAlertController || parentController.presentedViewController['isAlertController']) {
                 break;
-            }
-            else {
+            } else {
                 parentController = parentController.presentedViewController;
             }
         }
@@ -379,7 +380,15 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         }
 
         this.parent = Application.getRootView();
+
+        // dirty trick for RADSideDrawer. as we set parent for css variables/classes, _setupAsRootView
+        // will call _addViewToNativeVisualTree which breaks the bottomSheet with RADSiderDrawer
+        // so we disable _addViewToNativeVisualTree for _setupAsRootView
+        // should be fixed in N. we could say if _setupAsRootView then NO _addViewToNativeVisualTree
+        const oldAddViewToNativeVisualTree = this.parent._addViewToNativeVisualTree;
+        this.parent._addViewToNativeVisualTree = () => false;
         this._setupAsRootView({});
+        this.parent._addViewToNativeVisualTree = oldAddViewToNativeVisualTree;
 
         this._commonShowNativeBottomSheet(currentView, options);
         let controller: IMDLayoutViewController = this.viewController;
@@ -477,20 +486,21 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         if (rootView.parent) {
             rootView = rootView.parent as any;
         }
-        let currentView = parent.modal || parent;
+        const currentView = parent.modal || parent;
         let parentController = currentView.viewController;
         if (!parentController.presentedViewController && rootView.viewController.presentedViewController) {
             parentController = rootView.viewController.presentedViewController;
         }
         while (parentController.presentedViewController) {
-            while (parentController.presentedViewController instanceof UIAlertController ||
-                (parentController.presentedViewController['isAlertController'] && parentController.presentedViewController.presentedViewController)) {
-                    parentController = parentController.presentedViewController;
+            while (
+                parentController.presentedViewController instanceof UIAlertController ||
+                (parentController.presentedViewController['isAlertController'] && parentController.presentedViewController.presentedViewController)
+            ) {
+                parentController = parentController.presentedViewController;
             }
             if (parentController.presentedViewController instanceof UIAlertController || parentController.presentedViewController['isAlertController']) {
                 break;
-            }
-            else {
+            } else {
                 parentController = parentController.presentedViewController;
             }
         }
