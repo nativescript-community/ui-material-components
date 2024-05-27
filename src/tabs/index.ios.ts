@@ -266,7 +266,7 @@ class UIPageViewControllerImpl extends UIPageViewController {
     }
 }
 
-export class Tabs extends TabNavigation<UIPageViewControllerImpl> {
+export class Tabs extends TabNavigation {
     protected createViewController() {
         return UIPageViewControllerImpl.initWithOwner(new WeakRef(this));
     }

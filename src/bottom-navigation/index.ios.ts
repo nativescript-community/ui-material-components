@@ -6,16 +6,15 @@ import { TabStrip } from '@nativescript-community/ui-material-core-tabs/tab-stri
 import { TabStripItem } from '@nativescript-community/ui-material-core-tabs/tab-strip-item';
 // Types
 // Requires
-import { CSSType, Color, CoreTypes, Device, Font, Frame, IOSHelper, ImageSource, ImageAsset, Property, Utils, View, booleanConverter } from '@nativescript/core';
+import { CSSType, Color, CoreTypes, Device, Font, Frame, IOSHelper, ImageAsset, ImageSource, Property, Utils, View, booleanConverter } from '@nativescript/core';
 import { getTransformedText } from '@nativescript/core/ui/text-base';
-import { iOSNativeHelper } from '@nativescript/core/utils';
+import { SDK_VERSION } from '@nativescript/core/utils';
 export { TabContentItem, TabStrip, TabStripItem };
 
 // TODO:
 // import { profile } from "../../profiling";
 
 const maxTabsCount = 5;
-const majorVersion = iOSNativeHelper.MajorVersion;
 const isPhone = Device.deviceType === 'Phone';
 
 @NativeClass
@@ -29,8 +28,11 @@ class MDTabBarControllerImpl extends UITabBarController {
         return handler;
     }
 
-    // TODO
-    // @profile
+    public viewDidLoad() {
+        super.viewDidLoad();
+        this.tabBar.backgroundColor = new Color('#fff').ios;
+    }
+
     public viewWillAppear(animated: boolean): void {
         super.viewWillAppear(animated);
         const owner = this._owner.get();
@@ -48,8 +50,6 @@ class MDTabBarControllerImpl extends UITabBarController {
         }
     }
 
-    // TODO
-    // @profile
     public viewDidDisappear(animated: boolean): void {
         super.viewDidDisappear(animated);
 
@@ -80,7 +80,7 @@ class MDTabBarControllerImpl extends UITabBarController {
     public traitCollectionDidChange(previousTraitCollection: UITraitCollection): void {
         super.traitCollectionDidChange(previousTraitCollection);
 
-        if (majorVersion >= 13) {
+        if (SDK_VERSION >= 13) {
             const owner = this._owner.get();
             if (
                 owner &&
@@ -224,7 +224,7 @@ function updateBackgroundPositions(tabStrip: TabStrip, tabStripItem: TabStripIte
     } else {
         // always default to at least a solid white background as fallback
         // building with Xcode 13 causes bgView with no background to be fully transparent unless a css background-color is set - this allows original default behavior to work as it always did
-        bgView.backgroundColor = new Color('#fff').ios;
+        bgView.backgroundColor = null;
     }
 }
 
@@ -237,7 +237,7 @@ function updateTitleAndIconPositions(tabStripItem: TabStripItem, tabBarItem: UIT
     // For iOS 11 icon is above the text *only* on phones in portrait mode.
     const orientation = controller.interfaceOrientation;
     const isPortrait = orientation !== UIInterfaceOrientation.LandscapeLeft && orientation !== UIInterfaceOrientation.LandscapeRight;
-    const isIconAboveTitle = majorVersion < 11 || (isPhone && isPortrait);
+    const isIconAboveTitle = SDK_VERSION < 11 || (isPhone && isPortrait);
 
     if (!tabStripItem.iconSource) {
         if (isIconAboveTitle) {
@@ -392,7 +392,7 @@ export class BottomNavigation extends TabNavigationBase {
     }
 
     public setTabBarBackgroundColor(value: UIColor | Color): void {
-        this.viewController.tabBar.barTintColor = value instanceof Color ? value.ios : value;
+        this.viewController.tabBar.backgroundColor = this.viewController.tabBar.barTintColor = value instanceof Color ? value.ios : value;
         this.updateAllItemsColors();
     }
 
@@ -840,7 +840,7 @@ export class BottomNavigation extends TabNavigationBase {
         // to fix the above issue we are applying the selected fix only for the case, when there is no background set
         // in that case we have the following known issue:
         // // we will set the color to all unselected items, so you won't be able to set different colors for the different not selected items
-        if (!this.viewController.tabBar.barTintColor && attributes[UITextAttributeTextColor] && majorVersion > 9) {
+        if (!this.viewController.tabBar.barTintColor && attributes[UITextAttributeTextColor] && SDK_VERSION > 9) {
             this.viewController.tabBar.unselectedItemTintColor = attributes[UITextAttributeTextColor];
         }
     }

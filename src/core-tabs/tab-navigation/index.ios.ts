@@ -906,7 +906,7 @@ export abstract class TabNavigation<
         });
     }
 
-    public setTabBarRippleColor(value: Color, alpha?:number) {
+    public setTabBarRippleColor(value: Color, alpha?: number) {
         this.mRippleColor = value;
         this.viewController.tabBar.rippleColor = getRippleColor(value, alpha);
     }

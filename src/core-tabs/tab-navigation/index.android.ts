@@ -119,7 +119,10 @@ function initializeNativeClasses() {
 
     @NativeClass
     class FragmentPagerAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
-        constructor(public owner: WeakRef<TabNavigation>, fragmentActivity: androidx.fragment.app.FragmentActivity) {
+        constructor(
+            public owner: WeakRef<TabNavigation>,
+            fragmentActivity: androidx.fragment.app.FragmentActivity
+        ) {
             super(fragmentActivity);
             return global.__native(this);
         }

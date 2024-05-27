@@ -92,12 +92,15 @@ export class TabStrip extends View implements TabStripDefinition, AddChildFromBu
     [backgroundColorProperty.getDefault](): Color {
         const parent = this.parent as TabNavigationBase;
 
-        return parent && parent.getTabBarBackgroundColor();
+        return parent?.getTabBarBackgroundColor();
+        // always default to at least a solid white background as fallback
+        // building with Xcode 13 causes bgView with no background to be fully transparent unless a css background-color is set - this allows original default behavior to work as it always did
+        // bgView.backgroundColor = new Color('#fff').ios;;
     }
     [backgroundColorProperty.setNative](value: Color) {
         const parent = this.parent as TabNavigationBase;
 
-        return parent && parent.setTabBarBackgroundColor(value);
+        return parent?.setTabBarBackgroundColor(value);
     }
 
     [backgroundInternalProperty.getDefault](): any {
