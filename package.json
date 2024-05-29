@@ -45,7 +45,7 @@
         "submodules.update": "git submodule -q foreach git pull -q origin master && git add .",
         "sync": "node ./tools/sync.js",
         "update": "node ./tools/update.js",
-        "doc": "node tools/builddoc.mjs",
+        "doc": "node tools/builddoc.js",
         "commit_readme_doc_changes": "git add docs/** *.md ; git commit -m \"readme/doc\" ; echo \"commit readme doc done\""
     },
     "keywords": [
