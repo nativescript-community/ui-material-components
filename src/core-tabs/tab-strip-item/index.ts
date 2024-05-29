@@ -258,16 +258,12 @@ export class TabStripItem extends View implements TabStripItemDefinition, AddChi
     }
 
     [backgroundColorProperty.getDefault](): Color {
-        const parent = this.parent as TabStrip;
-        const tabStripParent = parent && (parent.parent as TabNavigationBase);
-
-        return tabStripParent && tabStripParent.getTabBarBackgroundColor();
+        const tabStripParent = (this.parent as TabStrip)?.parent as TabNavigationBase;
+        return tabStripParent?.getTabBarBackgroundColor();
     }
     [backgroundColorProperty.setNative](value: Color) {
-        const parent = this.parent as TabStrip;
-        const tabStripParent = parent && (parent.parent as TabNavigationBase);
-
-        return tabStripParent && tabStripParent.setTabBarItemBackgroundColor(this, value);
+        const tabStripParent = (this.parent as TabStrip)?.parent as TabNavigationBase;
+        return tabStripParent?.setTabBarItemBackgroundColor(this, value);
     }
 
     [textTransformProperty.getDefault](): CoreTypes.TextTransformType {

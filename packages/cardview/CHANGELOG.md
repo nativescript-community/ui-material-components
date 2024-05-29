@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.55](https://github.com/nativescript-community/ui-material-components/compare/v7.2.54...v7.2.55) (2024-05-27)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-cardview
+
+## [7.2.54](https://github.com/nativescript-community/ui-material-components/compare/v7.2.53...v7.2.54) (2024-05-15)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-cardview
+
 ## [7.2.53](https://github.com/nativescript-community/ui-material-components/compare/v7.2.52...v7.2.53) (2024-05-03)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-cardview
