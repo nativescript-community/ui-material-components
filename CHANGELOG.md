@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.56](https://github.com/nativescript-community/ui-material-component/compare/v7.2.55...v7.2.56) (2024-05-29)
+
+### Bug Fixes
+
+* **bottomsheet:** fix broken modal stack when opening multiple modals ([27878f5](https://github.com/nativescript-community/ui-material-component/commit/27878f5742f35424bfb66d5877b6bac5360f7ad7))
+
 ## [7.2.55](https://github.com/nativescript-community/ui-material-component/compare/v7.2.54...v7.2.55) (2024-05-27)
 
 ### Bug Fixes
