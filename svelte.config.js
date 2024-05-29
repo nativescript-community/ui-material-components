@@ -8,6 +8,7 @@ module.exports = {
     preprocess: [
         sveltePreprocess({
             typescript: {
+                tsconfigFile:'./tools/tsconfig.eslint.json',
                 compilerOptions: {
                     target: 'es2020'
                 }
