@@ -81,7 +81,7 @@ export abstract class ViewWithBottomSheetBase extends View {
         }
         const _rootModalViews = this._getRootModalViews();
         const modalIndex = _rootModalViews.indexOf(this);
-        _rootModalViews.splice(modalIndex);
+        _rootModalViews.splice(modalIndex, 1);
 
         this._isAddedToNativeVisualTree = false;
         this._tearDownUI(true);
