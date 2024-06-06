@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.58](https://github.com/nativescript-community/ui-material-component/compare/v7.2.57...v7.2.58) (2024-06-06)
+
+### Bug Fixes
+
+* **dialogs:** ios fix rollback ([a896053](https://github.com/nativescript-community/ui-material-component/commit/a89605352d9b30200c86d51744a3cd17829df4e3))
+
 ## [7.2.57](https://github.com/nativescript-community/ui-material-component/compare/v7.2.56...v7.2.57) (2024-06-06)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-components
