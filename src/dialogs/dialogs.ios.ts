@@ -251,14 +251,13 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
         alertController.accessoryView = createUIViewAutoSizeUIViewAutoSize(view);
 
         // if no title or message disable contentInsets to be like android
-        // TODO: do we really need this? need to find an exact usecase
-        // if (!options.title && !options.message) {
-        //     if (alertController.view) {
-        //         (alertController.view as MDCAlertControllerView).contentInsets = UIEdgeInsetsZero;
-        //     } else {
-        //         alertController._disableContentInsets = true;
-        //     }
-        // }
+        if (!options.title && !options.message) {
+            if (alertController.view) {
+                (alertController.view as MDCAlertControllerView).contentInsets = UIEdgeInsetsZero;
+            } else {
+                alertController._disableContentInsets = true;
+            }
+        }
         view.viewController = alertController; // needed to prevent a crash in layoutChild
     }
     const dialogPresentationControllerDelegate = MDCDialogPresentationControllerDelegateImpl.initWithCallback(() => {
