@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.58](https://github.com/nativescript-community/ui-material-components/compare/v7.2.57...v7.2.58) (2024-06-06)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-textfield
+
+## [7.2.57](https://github.com/nativescript-community/ui-material-components/compare/v7.2.56...v7.2.57) (2024-06-06)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-textfield
+
 ## [7.2.56](https://github.com/nativescript-community/ui-material-components/compare/v7.2.55...v7.2.56) (2024-05-29)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-textfield
