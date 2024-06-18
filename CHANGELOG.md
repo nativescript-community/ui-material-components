@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.59](https://github.com/nativescript-community/ui-material-component/compare/v7.2.58...v7.2.59) (2024-06-18)
+
+### Bug Fixes
+
+* **bottomsheet:** android fix for certain dismiss cases ([b6bbcf5](https://github.com/nativescript-community/ui-material-component/commit/b6bbcf52f392bfcd693b91c767cb374ac22c05f7))
+
 ## [7.2.58](https://github.com/nativescript-community/ui-material-component/compare/v7.2.57...v7.2.58) (2024-06-06)
 
 ### Bug Fixes

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.59](https://github.com/nativescript-community/ui-material-components/compare/v7.2.58...v7.2.59) (2024-06-18)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-switch
+
 ## [7.2.58](https://github.com/nativescript-community/ui-material-components/compare/v7.2.57...v7.2.58) (2024-06-06)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-switch
