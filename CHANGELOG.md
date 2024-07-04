@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.60](https://github.com/nativescript-community/ui-material-component/compare/v7.2.59...v7.2.60) (2024-07-04)
+
+### Bug Fixes
+
+* **snackbar:** android prevent error if view to attach it too is not loaded ([a3efb3a](https://github.com/nativescript-community/ui-material-component/commit/a3efb3a9c816cf4b19977b3dd507331db5afe3ea))
+
 ## [7.2.59](https://github.com/nativescript-community/ui-material-component/compare/v7.2.58...v7.2.59) (2024-06-18)
 
 ### Bug Fixes
