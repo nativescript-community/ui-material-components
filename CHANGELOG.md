@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.61](https://github.com/nativescript-community/ui-material-component/compare/v7.2.60...v7.2.61) (2024-07-09)
+
+### Bug Fixes
+
+* **textfield,textview:** android fix for `editable` property ([acf3ad7](https://github.com/nativescript-community/ui-material-component/commit/acf3ad743aaf85f27862c70cabcf50b2d2741b0b))
+
 ## [7.2.60](https://github.com/nativescript-community/ui-material-component/compare/v7.2.59...v7.2.60) (2024-07-04)
 
 ### Bug Fixes
