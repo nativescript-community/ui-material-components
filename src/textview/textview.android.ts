@@ -62,10 +62,8 @@ export class TextView extends TextViewBase {
         const variant = this.variant;
         let needsTransparent = false;
         if (variant === 'filled') {
-     
             layoutIdString = 'ns_material_text_view_filled';
         } else if (variant === 'outline') {
-        
             layoutIdString = 'ns_material_text_view_outline';
         } else {
             needsTransparent = true;
@@ -306,11 +304,10 @@ export class TextView extends TextViewBase {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(this.textAlignment) | getVerticalGravity(value));
     }
     [testIDProperty.setNative](value: string): void {
-		this.setAccessibilityIdentifier(this.nativeViewProtected, value);
-	}
+        this.setAccessibilityIdentifier(this.nativeViewProtected, value);
+    }
 
-	[accessibilityIdentifierProperty.setNative](value: string): void {
-		this.setAccessibilityIdentifier(this.nativeViewProtected, value);
-	}
+    [accessibilityIdentifierProperty.setNative](value: string): void {
+        this.setAccessibilityIdentifier(this.nativeViewProtected, value);
+    }
 }
-
