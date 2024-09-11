@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.62](https://github.com/nativescript-community/ui-material-component/compare/v7.2.61...v7.2.62) (2024-09-11)
+
+### Bug Fixes
+
+* **dialogs:** ios fix for modal presented dialogs ([c6a69ae](https://github.com/nativescript-community/ui-material-component/commit/c6a69ae40f0529a149d7f7ca56f63e38a72f7ff4))
+
 ## [7.2.61](https://github.com/nativescript-community/ui-material-component/compare/v7.2.60...v7.2.61) (2024-07-09)
 
 ### Bug Fixes
