@@ -58,7 +58,11 @@ export class SnackBar extends SnackBarBase {
             }
         }
         const page = (attachView instanceof Page ? attachView : attachView.page) || attachView;
-        let nView = page instanceof Page ? (page.nativeViewProtected as android.view.View).getParent() : attachView.nativeViewProtected;
+        let nView = page instanceof Page ? (page.nativeViewProtected as android.view.View)?.getParent() : attachView.nativeViewProtected;
+        if (!nView) {
+            console.warn(`the snackbar parent ${page} is not loaded`);
+            return;
+        }
         let nCoordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout = (page as any).nCoordinatorLayout;
         if (!nCoordinatorLayout && !(nView instanceof androidx.coordinatorlayout.widget.CoordinatorLayout) && nView instanceof android.view.ViewGroup) {
             nCoordinatorLayout = new androidx.coordinatorlayout.widget.CoordinatorLayout(attachView._context);

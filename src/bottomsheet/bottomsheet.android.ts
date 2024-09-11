@@ -86,7 +86,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 this.bindingContext = fromObject(options.context);
                 this._raiseShownBottomSheetEvent();
             },
-            dismissCallback: () => this._onDismissBottomSheetCallback()
+            dismissCallback: () => this._onDismissBottomSheetCallback?.()
         };
         const dfListener = new com.nativescript.material.bottomsheet.BottomSheetDialogFragment.BottomSheetDialogFragmentListener({
             onCreateDialog(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment, savedInstanceState: android.os.Bundle): android.app.Dialog {

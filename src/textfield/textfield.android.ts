@@ -65,10 +65,8 @@ export class TextField extends TextFieldBase {
         const variant = this.variant;
         let needsTransparent = false;
         if (variant === 'filled') {
-     
             layoutIdString = 'ns_material_text_field_filled';
         } else if (variant === 'outline') {
-        
             layoutIdString = 'ns_material_text_field_outline';
         } else {
             needsTransparent = true;
@@ -328,18 +326,17 @@ export class TextField extends TextFieldBase {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(this.textAlignment) | getVerticalGravity(value));
     }
 
-    [editableProperty.setNative](value: boolean) {
-        super[editableProperty.setNative](value);
-        const nativeView = this.nativeTextViewProtected;
-        nativeView.setFocusable(value);
-    }
+    // [editableProperty.setNative](value: boolean) {
+    //     super[editableProperty.setNative](value);
+    //     // const nativeView = this.nativeTextViewProtected;
+    //     // nativeView.setFocusable(value);
+    // }
 
     [testIDProperty.setNative](value: string): void {
-		this.setAccessibilityIdentifier(this.nativeViewProtected, value);
-	}
+        this.setAccessibilityIdentifier(this.nativeViewProtected, value);
+    }
 
-	[accessibilityIdentifierProperty.setNative](value: string): void {
-		this.setAccessibilityIdentifier(this.nativeViewProtected, value);
-	}
+    [accessibilityIdentifierProperty.setNative](value: string): void {
+        this.setAccessibilityIdentifier(this.nativeViewProtected, value);
+    }
 }
-

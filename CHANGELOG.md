@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.61](https://github.com/nativescript-community/ui-material-component/compare/v7.2.60...v7.2.61) (2024-07-09)
+
+### Bug Fixes
+
+* **textfield,textview:** android fix for `editable` property ([acf3ad7](https://github.com/nativescript-community/ui-material-component/commit/acf3ad743aaf85f27862c70cabcf50b2d2741b0b))
+
+## [7.2.60](https://github.com/nativescript-community/ui-material-component/compare/v7.2.59...v7.2.60) (2024-07-04)
+
+### Bug Fixes
+
+* **snackbar:** android prevent error if view to attach it too is not loaded ([a3efb3a](https://github.com/nativescript-community/ui-material-component/commit/a3efb3a9c816cf4b19977b3dd507331db5afe3ea))
+
+## [7.2.59](https://github.com/nativescript-community/ui-material-component/compare/v7.2.58...v7.2.59) (2024-06-18)
+
+### Bug Fixes
+
+* **bottomsheet:** android fix for certain dismiss cases ([b6bbcf5](https://github.com/nativescript-community/ui-material-component/commit/b6bbcf52f392bfcd693b91c767cb374ac22c05f7))
+
 ## [7.2.58](https://github.com/nativescript-community/ui-material-component/compare/v7.2.57...v7.2.58) (2024-06-06)
 
 ### Bug Fixes
