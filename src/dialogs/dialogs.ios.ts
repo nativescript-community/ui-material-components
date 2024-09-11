@@ -605,7 +605,14 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
         if (!viewController) {
             throw new Error('no_controller_to_show_dialog');
         }
-        if (!viewController.presentedViewController && rootView.viewController.presentedViewController && !rootView.viewController.presentedViewController.beingDismissed) {
+
+        // we check root modal view if there is no currently presented one or if the current one is an alert dialog without a child presented view
+        if (
+            (!viewController.presentedViewController ||
+                (viewController.presentedViewController && viewController.presentedViewController['isAlertController'] && !viewController.presentedViewController.presentedViewController)) &&
+            rootView.viewController.presentedViewController &&
+            !rootView.viewController.presentedViewController.beingDismissed
+        ) {
             viewController = rootView.viewController.presentedViewController;
         }
 
