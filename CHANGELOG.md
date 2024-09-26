@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.63](https://github.com/nativescript-community/ui-material-component/compare/v7.2.62...v7.2.63) (2024-09-26)
+
+### Bug Fixes
+
+* **ios:** ensure _bottomSheetClosed is called as soon as possible ([50d724a](https://github.com/nativescript-community/ui-material-component/commit/50d724a2f1a5c075cc31e35222674622289595fc))
+
 ## [7.2.62](https://github.com/nativescript-community/ui-material-component/compare/v7.2.61...v7.2.62) (2024-09-11)
 
 ### Bug Fixes

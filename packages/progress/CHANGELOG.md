@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.63](https://github.com/nativescript-community/ui-material-components/compare/v7.2.62...v7.2.63) (2024-09-26)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-progress
+
 ## [7.2.62](https://github.com/nativescript-community/ui-material-components/compare/v7.2.61...v7.2.62) (2024-09-11)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-progress
