@@ -135,6 +135,7 @@ export abstract class ViewWithBottomSheetBase extends View {
                 this._bottomSheetContext.closeCallback = null;
             }
             const whenClosedCallback = () => {
+                this._bottomSheetClosed();
                 if (typeof options.closeCallback === 'function') {
                     options.closeCallback.apply(undefined, originalArgs);
                 }
