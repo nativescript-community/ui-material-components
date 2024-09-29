@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.65](https://github.com/nativescript-community/ui-material-component/compare/v7.2.64...v7.2.65) (2024-09-29)
+
+### Bug Fixes
+
+* **button:** ios fix for default buttons text color (OnPrimaryColor) ([f2683b8](https://github.com/nativescript-community/ui-material-component/commit/f2683b892055ea54d7d81e406b37c8fc6e220b7f))
+
 ## [7.2.64](https://github.com/nativescript-community/ui-material-component/compare/v7.2.63...v7.2.64) (2024-09-26)
 
 ### Bug Fixes
