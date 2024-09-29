@@ -191,12 +191,15 @@ export class Button extends ButtonBase {
             this.style['css:color'] = themer.getPrimaryColor() as Color;
             view.applyTextThemeWithScheme(scheme);
         } else if (this.variant === 'flat') {
+            this.style['css:color'] = themer.getOnPrimaryColor();
             if (colorScheme) {
                 MDCButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
             }
         } else if (this.variant === 'outline') {
+            this.style['css:color'] = themer.getOnPrimaryColor();
             view.applyOutlinedThemeWithScheme(scheme);
         } else {
+            this.style['css:color'] = themer.getOnPrimaryColor();
             // contained
             view.applyContainedThemeWithScheme(scheme);
             // we need to set the default through css or user would not be able to overload it through css...
