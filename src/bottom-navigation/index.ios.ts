@@ -20,16 +20,26 @@ const isPhone = Device.deviceType === 'Phone';
 @NativeClass
 class MDTabBarControllerImpl extends UITabBarController {
     private _owner: WeakRef<BottomNavigation>;
+    private _preventTraitCollectionChanges: boolean;
 
     public static initWithOwner(owner: WeakRef<BottomNavigation>): MDTabBarControllerImpl {
         const handler = MDTabBarControllerImpl.alloc().init() as MDTabBarControllerImpl;
         handler._owner = owner;
+        handler._preventTraitCollectionChanges = false;
 
         return handler;
     }
 
     public viewDidLoad() {
         super.viewDidLoad();
+        if (SDK_VERSION >= 18) {
+            try {
+                this._preventTraitCollectionChanges = true;
+                this.traitOverrides.horizontalSizeClass = UIUserInterfaceSizeClass.Compact;
+            } finally {
+                this._preventTraitCollectionChanges = false;
+            }
+        }
         this.tabBar.backgroundColor = new Color('#fff').ios;
     }
 
@@ -61,9 +71,12 @@ class MDTabBarControllerImpl extends UITabBarController {
 
     public viewWillTransitionToSizeWithTransitionCoordinator(size: CGSize, coordinator: UIViewControllerTransitionCoordinator): void {
         super.viewWillTransitionToSizeWithTransitionCoordinator(size, coordinator);
+        if (!this._owner?.get()) {
+            return;
+        }
         coordinator.animateAlongsideTransitionCompletion(() => {
-            const owner = this._owner.get();
-            if (owner && owner.tabStrip && owner.tabStrip.items) {
+            const owner = this._owner?.get();
+            if (owner?.tabStrip?.items) {
                 const tabStrip = owner.tabStrip;
                 tabStrip.items.forEach((tabStripItem) => {
                     updateBackgroundPositions(tabStrip, tabStripItem);
@@ -79,14 +92,13 @@ class MDTabBarControllerImpl extends UITabBarController {
     // Mind implementation for other controllers
     public traitCollectionDidChange(previousTraitCollection: UITraitCollection): void {
         super.traitCollectionDidChange(previousTraitCollection);
+        if (this._preventTraitCollectionChanges) {
+            return;
+        }
 
         if (SDK_VERSION >= 13) {
-            const owner = this._owner.get();
-            if (
-                owner &&
-                this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection &&
-                this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection(previousTraitCollection)
-            ) {
+            const owner = this._owner?.get();
+            if (owner && this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection?.(previousTraitCollection)) {
                 owner.notify({
                     eventName: IOSHelper.traitCollectionColorAppearanceChangedEvent,
                     object: owner
