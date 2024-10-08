@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.66](https://github.com/nativescript-community/ui-material-component/compare/v7.2.65...v7.2.66) (2024-10-08)
+
+### Bug Fixes
+
+* **bottom-navigation:** consistent styling on iOS 18 ([c29f593](https://github.com/nativescript-community/ui-material-component/commit/c29f5936b5c0bddf7b457eb4f711d2c5eac92598))
+
 ## [7.2.65](https://github.com/nativescript-community/ui-material-component/compare/v7.2.64...v7.2.65) (2024-09-29)
 
 ### Bug Fixes
