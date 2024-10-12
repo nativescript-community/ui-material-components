@@ -29,6 +29,7 @@ declare namespace com {
                     constructor(context: globalAndroid.content.Context, attrs: globalAndroid.util.AttributeSet);
                     constructor(context: globalAndroid.content.Context, attrs: globalAndroid.util.AttributeSet, defStyle: number);
 
+                    forceTransitionToPosition(position: number): void;
                     setSelectedIndicatorColors(color: Array<number>): void;
                     getSelectedIndicatorColors(): Array<number>;
                     setTabTextColor(color: number): void;
