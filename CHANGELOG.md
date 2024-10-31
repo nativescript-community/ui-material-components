@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.67](https://github.com/nativescript-community/ui-material-component/compare/v7.2.66...v7.2.67) (2024-10-31)
+
+### Bug Fixes
+
+* **dialogs:** autoFocus not working ([c722b59](https://github.com/nativescript-community/ui-material-component/commit/c722b59ae31d6b721b346fb2e16fb381f950790d))
+
 ## [7.2.66](https://github.com/nativescript-community/ui-material-component/compare/v7.2.65...v7.2.66) (2024-10-08)
 
 ### Bug Fixes
