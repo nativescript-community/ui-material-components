@@ -1,4 +1,6 @@
 {
+    "version": "7.2.67",
+    "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
     "packages": [
         "packages/*"
     ],
@@ -6,17 +8,21 @@
     "useWorkspaces": true,
     "command": {
         "publish": {
-            "conventionalCommits": true,
-            "ignoreChanges": [
-                "ignored-file",
-                "*.md"
-            ]
-        },
-        "bootstrap": {
-            "npmClientArgs": [
-                "--no-package-lock"
-            ]
+            "cleanupTempFiles": true
         }
     },
-    "version": "7.0.34"
+    "npmClientArgs": [
+        "--no-package-lock"
+    ],
+    "commitHooks": false,
+    "createRelease": "github",
+    "conventionalCommits": true,
+    "private": false,
+    "message": "chore(release): publish new version %v",
+    "changelogPreset": "conventional-changelog-conventionalcommits",
+    "ignoreChanges": [
+        "**/__fixtures__/**",
+        "**/__tests__/**",
+        "**/*.md"
+    ]
 }

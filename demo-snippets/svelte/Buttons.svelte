@@ -19,7 +19,7 @@
 </script>
 
 <page>
-    <actionBar :title="title">
+    <actionBar title="title">
         <stackLayout orientation="horizontal" width="100%">
             <mdbutton v-show="isEditing" variant="flat" text="test" on:tap={() => (isEditing = !isEditing)} />
             <mdbutton text="save" on:tap={() => (isEditing = !isEditing)} />

@@ -14,12 +14,12 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-
-<com.google.android.material.textfield.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-        android:layout_width="match_parent"
+<com.google.android.material.textfield.TextInputLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/TextInputLayout"
+    android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <com.nativescript.material.textfield.TextInputEditText
+    <com.nativescript.material.textview.TextViewInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"/>
 </com.google.android.material.textfield.TextInputLayout>

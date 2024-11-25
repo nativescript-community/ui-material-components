@@ -24,7 +24,7 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
     }
     bottomSheetControllerDidChangeYOffsetYOffset(controller: MDCBottomSheetController, yOffset: number) {
         const owner = this._owner.get();
-        if (owner && owner._onChangeStateBottomSheetCallback) {
+        if (owner?._onChangeStateBottomSheetCallback) {
             const presentationController = controller.presentationController as MDCBottomSheetPresentationController;
             const heightScreen = Screen.mainScreen.heightDIPs;
             const heightCollapsedSheet = presentationController.preferredSheetHeight || controller.preferredContentSize.height;
@@ -50,8 +50,14 @@ class MDCBottomSheetControllerDelegateImpl extends NSObject {
     }
     bottomSheetControllerDidDismissBottomSheet(controller: MDCBottomSheetController) {
         // called when clicked on background
-        const owner = this._owner.get();
-        owner && owner._unloadBottomSheet();
+        // this is called too soon to "dispose" the view. But we dont have a way
+        // to know when the animation is finished.
+        //Consequently with background tap we see the view disappear
+        // so we timeout a bit
+        setTimeout(() => {
+            const owner = this._owner.get();
+            owner && owner._unloadBottomSheet();
+        }, 200);
     }
     bottomSheetControllerStateChangedState(controller: MDCBottomSheetController, state: MDCSheetState) {
         // called when swiped
@@ -272,11 +278,11 @@ class MDLayoutViewController extends UIViewController {
 
     viewDidLoad(): void {
         super.viewDidLoad();
-        const owner = this.owner.get();
+        const owner = this.owner?.get();
         if (!owner) {
             return;
         }
-        if (!owner.parent) {
+        if (!owner.isLoaded) {
             owner.callLoaded();
         }
         // Unify translucent and opaque bars layout
@@ -286,7 +292,7 @@ class MDLayoutViewController extends UIViewController {
 
     viewWillLayoutSubviews(): void {
         super.viewWillLayoutSubviews();
-        const owner = this.owner.get();
+        const owner = this.owner?.get();
         if (owner) {
             owner.iosOverflowSafeArea = true;
             IOSHelper.updateConstraints(this, owner);
@@ -295,7 +301,7 @@ class MDLayoutViewController extends UIViewController {
 
     viewDidLayoutSubviews(): void {
         super.viewDidLayoutSubviews();
-        const owner = this.owner.get();
+        const owner = this.owner?.get();
         if (owner) {
             layoutView(this, owner);
         }
@@ -303,7 +309,7 @@ class MDLayoutViewController extends UIViewController {
 
     viewWillAppear(animated: boolean): void {
         super.viewWillAppear(animated);
-        const owner = this.owner.get();
+        const owner = this.owner?.get();
         if (!owner) {
             return;
         }
@@ -327,7 +333,7 @@ class MDLayoutViewController extends UIViewController {
         super.traitCollectionDidChange(previousTraitCollection);
 
         if (majorVersion >= 13) {
-            const owner = this.owner.get();
+            const owner = this.owner?.get();
             if (
                 owner &&
                 this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection &&
@@ -344,25 +350,47 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     bottomSheetController: MDCBottomSheetController;
     protected _showNativeBottomSheet(parent: View, options: BottomSheetOptions) {
         options.context = options.context || {};
-        const parentWithController = IOSHelper.getParentWithViewController(parent);
-        if (!parentWithController) {
-            Trace.write(`Could not find parent with viewController for ${parent} while showing bottom sheet view.`, Trace.categories.ViewHierarchy, Trace.messageType.error);
-            return;
+        let rootView = Application.getRootView();
+        if (rootView.parent) {
+            rootView = rootView.parent as any;
         }
-
-        const parentController = parentWithController.viewController;
-        if (parentController.presentedViewController) {
-            Trace.write('Parent is already presenting view controller. Close the current bottom sheet page before showing another one!', Trace.categories.ViewHierarchy, Trace.messageType.error);
-            return;
+        let currentView = parent.page || rootView;
+        currentView = currentView.modal || currentView;
+        let parentController = currentView.viewController;
+        if (!parentController.presentedViewController && rootView.viewController.presentedViewController) {
+            parentController = rootView.viewController.presentedViewController;
+        }
+        while (parentController.presentedViewController) {
+            while (
+                parentController.presentedViewController instanceof UIAlertController ||
+                (parentController.presentedViewController['isAlertController'] && parentController.presentedViewController.presentedViewController)
+            ) {
+                parentController = parentController.presentedViewController;
+            }
+            if (parentController.presentedViewController instanceof UIAlertController || parentController.presentedViewController['isAlertController']) {
+                break;
+            } else {
+                parentController = parentController.presentedViewController;
+            }
         }
 
         if (!parentController.view || !parentController.view.window) {
             Trace.write('Parent page is not part of the window hierarchy.', Trace.categories.ViewHierarchy, Trace.messageType.error);
             return;
         }
-        this._setupAsRootView({});
 
-        this._commonShowNativeBottomSheet(parentWithController, options);
+        this.parent = Application.getRootView();
+
+        // dirty trick for RADSideDrawer. as we set parent for css variables/classes, _setupAsRootView
+        // will call _addViewToNativeVisualTree which breaks the bottomSheet with RADSiderDrawer
+        // so we disable _addViewToNativeVisualTree for _setupAsRootView
+        // should be fixed in N. we could say if _setupAsRootView then NO _addViewToNativeVisualTree
+        const oldAddViewToNativeVisualTree = this.parent._addViewToNativeVisualTree;
+        this.parent._addViewToNativeVisualTree = () => false;
+        this._setupAsRootView({});
+        this.parent._addViewToNativeVisualTree = oldAddViewToNativeVisualTree;
+
+        this._commonShowNativeBottomSheet(currentView, options);
         let controller: IMDLayoutViewController = this.viewController;
         if (!controller) {
             const nativeView = this.ios || this.nativeViewProtected;
@@ -413,8 +441,13 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             controller.view.backgroundColor = UIColor.clearColor;
             // for it to be prettier let s disable elevation
             controller.view['elevation'] = 0;
-        } else if (!(this instanceof Page)) {
-            controller.view.backgroundColor = majorVersion <= 12 && !UIColor.systemBackgroundColor ? UIColor.whiteColor : UIColor.systemBackgroundColor;
+        } else {
+            if (!(this instanceof Page)) {
+                controller.view.backgroundColor = majorVersion <= 12 && !UIColor.systemBackgroundColor ? UIColor.whiteColor : UIColor.systemBackgroundColor;
+            }
+            if (options.backgroundOpacity && controller.view.backgroundColor) {
+                controller.view.backgroundColor = controller.view.backgroundColor.colorWithAlphaComponent(options.backgroundOpacity);
+            }
         }
         const transitionCoordinator = bottomSheet.transitionCoordinator;
         if (transitionCoordinator) {
@@ -432,20 +465,45 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
     }
 
     _bottomSheetClosed() {
+        // super already called we are just a mixin
+
         if (this.bottomSheetController) {
             this.bottomSheetController.delegate = null;
             this.bottomSheetController = null;
         }
         this.bottomSheetControllerDelegate = null;
+        // it is very important to clear the viewController as N does not do it
+        // and the destroy of the view from svelte could trigger a layout pass on the viewController
+        this.viewController = null;
     }
     protected _hideNativeBottomSheet(parent: View, whenClosedCallback: () => void) {
-        const parentWithController = IOSHelper.getParentWithViewController(parent);
-        if (!parent || !parentWithController) {
-            Trace.error('Trying to hide bottom-sheet view but no parent with viewController specified.');
+        if (!this.viewController) {
+            // when clicking on background we dont need to dismiss, already done
+            whenClosedCallback?.();
             return;
         }
-
-        const parentController = parentWithController.viewController;
+        let rootView = Application.getRootView();
+        if (rootView.parent) {
+            rootView = rootView.parent as any;
+        }
+        const currentView = parent.modal || parent;
+        let parentController = currentView.viewController;
+        if (!parentController.presentedViewController && rootView.viewController.presentedViewController) {
+            parentController = rootView.viewController.presentedViewController;
+        }
+        while (parentController.presentedViewController) {
+            while (
+                parentController.presentedViewController instanceof UIAlertController ||
+                (parentController.presentedViewController['isAlertController'] && parentController.presentedViewController.presentedViewController)
+            ) {
+                parentController = parentController.presentedViewController;
+            }
+            if (parentController.presentedViewController instanceof UIAlertController || parentController.presentedViewController['isAlertController']) {
+                break;
+            } else {
+                parentController = parentController.presentedViewController;
+            }
+        }
         const animated = this.viewController.nsAnimated;
         parentController.dismissViewControllerAnimatedCompletion(animated, whenClosedCallback);
     }
@@ -454,9 +512,6 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         if (this.isLoaded) {
             this.callUnloaded();
         }
-        // it is very important to clear the viewController as N does not do it
-        // and the destroy of the view from svelte could trigger a layout pass on the viewController
-        this.viewController = null;
         this._onDismissBottomSheetCallback && this._onDismissBottomSheetCallback();
     }
 }

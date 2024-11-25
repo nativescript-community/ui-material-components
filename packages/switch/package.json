@@ -1,0 +1,52 @@
+{
+    "name": "@nativescript-community/ui-material-switch",
+    "version": "7.2.67",
+    "description": "Material Switch",
+    "main": "./index",
+    "sideEffects": false,
+    "typings": "./index.d.ts",
+    "scripts": {
+        "tsc": "cpy ../../src/switch/index.d.ts ./ && tsc -d",
+        "tsc-win": "cpy ..\\..\\src\\switch\\index.d.ts .\\ && tsc -d",
+        "build": "npm run tsc",
+        "build.watch": "npm run tsc -- -w",
+        "build.win": "npm run tsc-win",
+        "build.all": "npm run build && npm run build.angular",
+        "build.all.win": "npm run build.win && npm run build.angular.win",
+        "build.angular": "ng-packagr -p ../../src/switch/angular/ng-package.json -c ../../src/switch/angular/tsconfig.json && rm angular/.npmignore",
+        "build.angular.win": "ng-packagr -p ..\\..\\src\\switch\\angular\\package.json -c ..\\..\\src\\switch\\angular\\tsconfig.json",
+        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
+    },
+    "nativescript": {
+        "platforms": {
+            "android": "6.2.0",
+            "ios": "6.2.0"
+        }
+    },
+    "keywords": [
+        "NativeScript",
+        "JavaScript",
+        "Android",
+        "iOS",
+        "Vue",
+        "Angular",
+        "preview|https://raw.githubusercontent.com/nativescript-community/ui-material-components/master/images/demo-switch.gif"
+    ],
+    "author": {
+        "name": "Martin Guillon",
+        "email": "martin@akylas.fr"
+    },
+    "bugs": {
+        "url": "https://github.com/nativescript-community/ui-material-components/issues"
+    },
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nativescript-community/ui-material-components/tree/master/packages/switch"
+    },
+    "readmeFilename": "README.md",
+    "dependencies": {
+        "@nativescript-community/ui-material-core": "^7.2.67"
+    },
+    "gitHead": "65eb2d66b4128ce58b4d3e35c83a68a6f921222c"
+}

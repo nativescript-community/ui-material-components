@@ -1,4 +1,4 @@
-import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorAlphaProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
 import { Color, ImageSource, borderBottomLeftRadiusProperty, borderBottomRightRadiusProperty, borderTopLeftRadiusProperty, borderTopRightRadiusProperty, colorProperty } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
 import { FloatingActionButtonBase, expandedProperty, imageSourceProperty, srcProperty } from './floatingactionbutton-common';
@@ -134,7 +134,12 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         this.nativeViewProtected.tintColor = value.ios;
     }
     [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.inkColor = getRippleColor(color);
+        this.nativeViewProtected.inkColor = getRippleColor(color, this.rippleColorAlpha);
+    }
+    [rippleColorAlphaProperty.setNative](value: number) {
+        if (this.rippleColor) {
+            this[rippleColorProperty.setNative](this.rippleColor);
+        }
     }
     [textProperty.setNative](value: string) {
         this.nativeViewProtected.setTitleForState(value, UIControlState.Normal);

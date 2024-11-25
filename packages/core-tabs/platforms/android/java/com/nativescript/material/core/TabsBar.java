@@ -189,12 +189,16 @@ public class TabsBar extends HorizontalScrollView {
     public void setItems(TabItemSpec[] items) {
         mTabStrip.removeAllViews();
         mTabItems = items;
-        if (mViewPager != null) {
+        if (mViewPager != null && mViewPager.getAdapter() != null) {
             populateTabStrip();
         }
         
     }
 
+    public void scrollToTab(int tabIndex) {
+        scrollToTab(tabIndex, 0);
+    }
+    
     /**
      * Updates the UI of an item at specified index
      */

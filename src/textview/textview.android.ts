@@ -1,6 +1,6 @@
 import { VerticalTextAlignment, verticalTextAlignmentProperty } from '@nativescript-community/text';
 import { themer } from '@nativescript-community/ui-material-core';
-import { getColorStateList, getFullColorStateList, getHorizontalGravity, getLayout, getVerticalGravity } from '@nativescript-community/ui-material-core/android/utils';
+import { getColorStateList, getFullColorStateList, getHorizontalGravity, getVerticalGravity, inflateLayout } from '@nativescript-community/ui-material-core/android/utils';
 import {
     counterMaxLengthProperty,
     errorColorProperty,
@@ -19,20 +19,18 @@ import {
     Color,
     CoreTypes,
     Font,
-    Length,
     Utils,
     backgroundInternalProperty,
     borderBottomLeftRadiusProperty,
     fontInternalProperty,
     hintProperty,
-    paddingBottomProperty,
-    paddingLeftProperty,
-    paddingRightProperty,
-    paddingTopProperty,
     placeholderColorProperty,
     textAlignmentProperty
 } from '@nativescript/core';
 import { TextViewBase } from './textview.common';
+
+import { accessibilityIdentifierProperty } from '@nativescript/core/accessibility/accessibility-properties';
+import { testIDProperty } from '@nativescript/core/ui/core/view/view-common';
 
 let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
 let filledId;
@@ -60,32 +58,22 @@ export class TextView extends TextViewBase {
     }
 
     public createNativeView() {
-        let layoutId;
+        let layoutIdString = 'ns_material_text_view';
         const variant = this.variant;
         let needsTransparent = false;
         if (variant === 'filled') {
-            if (!filledId) {
-                filledId = getLayout(this._context, 'material_text_view_filled');
-            }
-            layoutId = filledId;
+            layoutIdString = 'ns_material_text_view_filled';
         } else if (variant === 'outline') {
-            if (!outlineId) {
-                outlineId = getLayout(this._context, 'material_text_view_outline');
-            }
-            layoutId = outlineId;
+            layoutIdString = 'ns_material_text_view_outline';
         } else {
-            if (!noneId) {
-                noneId = getLayout(this._context, 'material_text_view');
-            }
-            layoutId = noneId;
             needsTransparent = true;
         }
 
         let layoutView: com.google.android.material.textfield.TextInputLayout;
         let editText: com.nativescript.material.textview.TextViewInputEditText;
 
-        if (layoutId !== 0) {
-            layoutView = this.layoutView = android.view.LayoutInflater.from(this._context).inflate(layoutId, null, false) as com.google.android.material.textfield.TextInputLayout;
+        if (layoutIdString) {
+            layoutView = this.layoutView = inflateLayout(this._context, layoutIdString) as com.google.android.material.textfield.TextInputLayout;
             editText = this.editText = layoutView.getEditText() as com.nativescript.material.textview.TextViewInputEditText;
         } else {
             layoutView = this.layoutView = new com.google.android.material.textfield.TextInputLayout(this._context);
@@ -93,7 +81,7 @@ export class TextView extends TextViewBase {
             if (!FrameLayoutLayoutParams) {
                 FrameLayoutLayoutParams = android.widget.FrameLayout.LayoutParams;
             }
-            editText.setLayoutParams(new android.widget.LinearLayout.LayoutParams(FrameLayoutLayoutParams.MATCH_PARENT, FrameLayoutLayoutParams.WRAP_CONTENT));
+            editText.setLayoutParams(new android.widget.LinearLayout.LayoutParams(FrameLayoutLayoutParams.MATCH_PARENT, FrameLayoutLayoutParams.MATCH_PARENT));
             layoutView.addView(editText);
         }
         if (needsTransparent) {
@@ -167,8 +155,10 @@ export class TextView extends TextViewBase {
             // }
             layoutView.requestFocus();
             setTimeout(() => {
-                layoutView.setDescendantFocusability(oldDesc);
-                Utils.android.showSoftInput(this.nativeTextViewProtected);
+                if (this.layoutView) {
+                    layoutView.setDescendantFocusability(oldDesc);
+                    Utils.android.showSoftInput(this.nativeTextViewProtected);
+                }
                 // this.focus();
             }, 0);
         }
@@ -215,13 +205,10 @@ export class TextView extends TextViewBase {
     [strokeInactiveColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
         const layoutView = this.layoutView;
-        // TODO: find why it fails in cli build
-        //@ts-ignore
         if (layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : layoutView.getBoxStrokeColor();
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
             const colorStateList = getFullColorStateList(activeColor, color, disabledColor);
-            //@ts-ignore
             layoutView.setBoxStrokeColorStateList(colorStateList);
         }
     }
@@ -229,13 +216,10 @@ export class TextView extends TextViewBase {
     [strokeDisabledColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
         const layoutView = this.layoutView;
-        // TODO: find why it fails in cli build
-        //@ts-ignore
         if (layoutView.setBoxStrokeColorStateList) {
             const activeColor = this.strokeColor instanceof Color ? this.strokeColor.android : layoutView.getBoxStrokeColor();
-            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
+            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : activeColor;
             const colorStateList = getFullColorStateList(activeColor, inactiveColor, color);
-            //@ts-ignore
             layoutView.setBoxStrokeColorStateList(colorStateList);
         }
     }
@@ -243,14 +227,11 @@ export class TextView extends TextViewBase {
     [strokeColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.android : value;
         const layoutView = this.layoutView;
-        // TODO: find why it fails in cli build
-        //@ts-ignore
         if (layoutView.setBoxStrokeColorStateList) {
-            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : undefined;
+            const inactiveColor = this.strokeInactiveColor instanceof Color ? this.strokeInactiveColor.android : color;
             const disabledColor = this.strokeDisabledColor instanceof Color ? this.strokeDisabledColor.android : undefined;
             const colorStateList = getFullColorStateList(color, inactiveColor, disabledColor);
             if (colorStateList) {
-                //@ts-ignore
                 layoutView.setBoxStrokeColorStateList(colorStateList);
             }
         } else {
@@ -304,23 +285,29 @@ export class TextView extends TextViewBase {
             this.nativeTextViewProtected.setTypeface(value instanceof Font ? value.getAndroidTypeface() : value);
         }
     }
-    [paddingTopProperty.setNative](value: CoreTypes.LengthType) {
-        org.nativescript.widgets.ViewHelper.setPaddingTop(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0));
-    }
-    [paddingRightProperty.setNative](value: CoreTypes.LengthType) {
-        org.nativescript.widgets.ViewHelper.setPaddingRight(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0));
-    }
-    [paddingBottomProperty.setNative](value: CoreTypes.LengthType) {
-        org.nativescript.widgets.ViewHelper.setPaddingBottom(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0));
-    }
-    [paddingLeftProperty.setNative](value: CoreTypes.LengthType) {
-        org.nativescript.widgets.ViewHelper.setPaddingLeft(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0));
-    }
+    // [paddingTopProperty.setNative](value: CoreTypes.LengthType) {
+    //     org.nativescript.widgets.ViewHelper.setPaddingTop(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderTopWidth, 0));
+    // }
+    // [paddingRightProperty.setNative](value: CoreTypes.LengthType) {
+    //     org.nativescript.widgets.ViewHelper.setPaddingRight(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderRightWidth, 0));
+    // }
+    // [paddingBottomProperty.setNative](value: CoreTypes.LengthType) {
+    //     org.nativescript.widgets.ViewHelper.setPaddingBottom(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderBottomWidth, 0));
+    // }
+    // [paddingLeftProperty.setNative](value: CoreTypes.LengthType) {
+    //     org.nativescript.widgets.ViewHelper.setPaddingLeft(this.nativeViewProtected, Length.toDevicePixels(value, 0) + Length.toDevicePixels(this.style.borderLeftWidth, 0));
+    // }
     [textAlignmentProperty.setNative](value: CoreTypes.TextAlignmentType) {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(value) | getVerticalGravity(this.verticalTextAlignment));
     }
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
         this.nativeTextViewProtected.setGravity(getHorizontalGravity(this.textAlignment) | getVerticalGravity(value));
     }
+    [testIDProperty.setNative](value: string): void {
+        this.setAccessibilityIdentifier(this.nativeViewProtected, value);
+    }
+
+    [accessibilityIdentifierProperty.setNative](value: string): void {
+        this.setAccessibilityIdentifier(this.nativeViewProtected, value);
+    }
 }
-//

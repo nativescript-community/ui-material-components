@@ -1,4 +1,4 @@
-import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorAlphaProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
 import {
     Background,
     Color,
@@ -191,12 +191,15 @@ export class Button extends ButtonBase {
             this.style['css:color'] = themer.getPrimaryColor() as Color;
             view.applyTextThemeWithScheme(scheme);
         } else if (this.variant === 'flat') {
+            this.style['css:color'] = themer.getOnPrimaryColor();
             if (colorScheme) {
                 MDCButtonColorThemer.applySemanticColorSchemeToButton(colorScheme, view);
             }
         } else if (this.variant === 'outline') {
+            this.style['css:color'] = themer.getOnPrimaryColor();
             view.applyOutlinedThemeWithScheme(scheme);
         } else {
+            this.style['css:color'] = themer.getOnPrimaryColor();
             // contained
             view.applyContainedThemeWithScheme(scheme);
             // we need to set the default through css or user would not be able to overload it through css...
@@ -225,7 +228,14 @@ export class Button extends ButtonBase {
         this.nativeViewProtected.uppercaseTitle = value !== 'none';
     }
     [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.inkColor = getRippleColor(color);
+        this.nativeViewProtected.inkColor = getRippleColor(color, this.rippleColorAlpha);
+    }
+
+    [rippleColorAlphaProperty.setNative](value: number) {
+        const rippleColor = this.rippleColor;
+        if (rippleColor) {
+            this.nativeViewProtected.inkColor = getRippleColor(rippleColor, value);
+        }
     }
 
     [elevationProperty.setNative](value: number) {

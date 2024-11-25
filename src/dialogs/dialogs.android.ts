@@ -19,7 +19,7 @@ import {
 } from '@nativescript/core';
 import { ad } from '@nativescript/core/utils';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
-import { isDialogOptions } from './dialogs-common';
+import { isDialogOptions, showingDialogs } from './dialogs-common';
 
 export { capitalizationType, inputType };
 
@@ -65,13 +65,16 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
                 : Builder.createViewFromEntry({
                       moduleName: options.view as string
                   });
-
+        if (view.parent) {
+            view.parent._removeView(view);
+        }
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
         modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
 
         (builder as any)._currentModalCustomView = view;
         view._setupAsRootView(activity);
+        view.parent = Application.getRootView();
         view._isAddedToNativeVisualTree = true;
         view.callLoaded();
 
@@ -151,6 +154,7 @@ function showDialog(dlg: androidx.appcompat.app.AlertDialog, options: DialogOpti
             }
         });
     }
+    showingDialogs.push(dlg);
     dlg.show();
     return dlg;
 }
@@ -163,11 +167,12 @@ function prepareAndCreateAlertDialog(
 ) {
     // onDismiss will always be called. Prevent calling callback multiple times
     let onDoneCalled = false;
-    const onDone = function (result: boolean, dialog?: android.content.DialogInterface) {
+    const onDone = function (result: any, dialog?: android.content.DialogInterface, toBeCalledBeforeCallback?) {
         if (options && options.shouldResolveOnAction && !options.shouldResolveOnAction(validationArgs ? validationArgs(result) : result)) {
             return;
         }
         if (onDoneCalled) {
+            toBeCalledBeforeCallback?.();
             return;
         }
         //ensure we hide any keyboard
@@ -176,7 +181,7 @@ function prepareAndCreateAlertDialog(
             Utils.android.dismissSoftInput(options.view.nativeView);
         } else {
             const activity = (Application.android.foregroundActivity || Application.android.startActivity) as globalAndroid.app.Activity;
-            const context = ad.getApplicationContext() as android.content.Context;
+            const context = Utils.android.getApplicationContext();
             const view = activity != null ? activity.getCurrentFocus() : null;
             if (view) {
                 const imm = context.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager;
@@ -186,6 +191,8 @@ function prepareAndCreateAlertDialog(
         if (dialog) {
             dialog.cancel();
         }
+        toBeCalledBeforeCallback?.();
+
         callback && callback(result);
     };
     if (!DialogInterface) {
@@ -193,30 +200,38 @@ function prepareAndCreateAlertDialog(
     }
     builder.setOnDismissListener(
         new DialogInterface.OnDismissListener({
-            onDismiss() {
-                onDone(false);
-                if ((builder as any)._currentModalCustomView) {
-                    const view = (builder as any)._currentModalCustomView;
-                    view.callUnloaded();
-                    view._tearDownUI(true);
-                    view._isAddedToNativeVisualTree = false;
-                    (builder as any)._currentModalCustomView = null;
+            onDismiss(dialog) {
+                const index = showingDialogs.indexOf(dialog);
+                if (index !== -1) {
+                    showingDialogs.splice(index, 1);
                 }
+                // ensure callback is called after destroying the custom view
+                onDone(false, undefined, () => {
+                    if ((builder as any)._currentModalCustomView) {
+                        const view = (builder as any)._currentModalCustomView;
+                        view.callUnloaded();
+                        view._tearDownUI(true);
+                        view.parent = null;
+                        view._isAddedToNativeVisualTree = false;
+                        (builder as any)._currentModalCustomView = null;
+                    }
+                });
             }
         })
     );
     const dlg = builder.create();
+    dlg['onDone'] = onDone;
     if (!options) {
         return dlg;
     }
     if ((builder as any)._currentModalCustomView) {
         const view = (builder as any)._currentModalCustomView as View;
         const context = options.context || {};
-        context.closeCallback = function (...originalArgs) {
-            dlg.dismiss();
-            if (callback) {
-                callback.apply(this, originalArgs);
-            }
+        context.closeCallback = function (originalArgs) {
+            onDone(originalArgs, dlg);
+            // if (callback) {
+            //     callback.apply(this, originalArgs);
+            // }
         };
         view.bindingContext = fromObject(context);
     }
@@ -333,14 +348,19 @@ export class AlertDialog {
             showDialog(this.dialog, this.options);
         }
     }
-    async hide() {
+    async hide(result) {
         if (this.dialog) {
-            return new Promise((resolve) => {
+            return new Promise<void>((resolve) => {
                 this.onCloseListeners.push(resolve);
-                this.dialog.cancel();
+                if (this.dialog['onDone']) {
+                    this.dialog['onDone'](result, this.dialog);
+                } else {
+                    this.dialog.cancel();
+                }
                 this.dialog = null;
             });
         }
+        return null;
     }
 }
 
@@ -355,7 +375,7 @@ export function confirm(arg: any): Promise<boolean> {
                 defaultOptions,
                 !isDialogOptions(arg)
                     ? {
-                        message: arg + ''
+                          message: arg + ''
                       }
                     : arg
             );
@@ -438,6 +458,9 @@ export function prompt(arg: any): Promise<PromptResult> {
                 }
             }
             stackLayout.addChild(textField);
+            if (options.view instanceof View) {
+                stackLayout.addChild(options.view);
+            }
             options.view = stackLayout;
             const alert = createAlertDialogBuilder(options);
 
@@ -452,6 +475,13 @@ export function prompt(arg: any): Promise<PromptResult> {
 
             showDialog(dlg, options);
             if (options.autoFocus) {
+                // seems not to work if called too soon so we call it again
+                // once the view is focused and ready
+                textField.once('focus', () => {
+                    setTimeout(() => {
+                        textField.requestFocus();
+                    }, 100);
+                });
                 textField.requestFocus();
             }
         } catch (ex) {
@@ -511,6 +541,10 @@ export function login(arg: any): Promise<LoginResult> {
 
             stackLayout.addChild(userNameTextField);
             stackLayout.addChild(passwordTextField);
+
+            if (options.view instanceof View) {
+                stackLayout.addChild(options.view);
+            }
             options.view = stackLayout;
 
             const alert = createAlertDialogBuilder(options);
@@ -532,6 +566,13 @@ export function login(arg: any): Promise<LoginResult> {
             );
             showDialog(dlg, options);
             if (options.autoFocus) {
+                // seems not to work if called too soon so we call it again
+                // once the view is focused and ready
+                userNameTextField.once('focus', () => {
+                    setTimeout(() => {
+                        userNameTextField.requestFocus();
+                    }, 100);
+                });
                 userNameTextField.requestFocus();
             }
         } catch (ex) {

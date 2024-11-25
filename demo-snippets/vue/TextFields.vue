@@ -90,7 +90,9 @@
                     placeholderColor="blue"
                     strokeColor="green"
                     margin="10"
+                     :editable="!disabled"
                 />
+                <MDButton :text="disabled ? 'Enable' : 'Disable'" @tap="onButtonTap" />
                 <MDTextField
                     id="textField6"
                     variant="filled"
@@ -99,6 +101,7 @@
                     maxLength="10"
                     hint="fill this out..."
                     @focus="onFocus"
+                    placeholderColor="blue"
                     @blur="onBlur"
                     floating="false"
                     @textChange="onTextChange"
@@ -147,12 +150,15 @@ export default Vue.extend({
 
     data() {
         return {
-            title,
+            disabled: false,       title,
             value: ''
         };
     },
 
     methods: {
+        onButtonTap() {
+      this.disabled = !this.disabled;
+    },
         onNavigationButtonTap() {
             frameModule.Frame.topmost().goBack();
         },

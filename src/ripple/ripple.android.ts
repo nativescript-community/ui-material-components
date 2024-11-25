@@ -1,6 +1,6 @@
-import { getRippleColor, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
-import { Background, Color, backgroundInternalProperty } from '@nativescript/core';
-import { createRippleDrawable, getAttrColor, getColorStateList, isPostLollipopMR1, isPostMarshmallow } from '@nativescript-community/ui-material-core/android/utils';
+import { getRippleColor, rippleColorAlphaProperty, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
+import { createRippleDrawable, getColorStateList, isPostLollipopMR1, isPostMarshmallow } from '@nativescript-community/ui-material-core/android/utils';
+import { Background, Color, Length, backgroundInternalProperty } from '@nativescript/core';
 import { RippleBase } from './ripple-common';
 
 let MDStackLayout: typeof org.nativescript.widgets.StackLayout;
@@ -8,7 +8,7 @@ let MDStackLayout: typeof org.nativescript.widgets.StackLayout;
 const DEFAULT_STROKE_VALUE = -1;
 function initMDStackLayout() {
     if (!MDStackLayout) {
-        if (isPostLollipopMR1()) {
+        if (isPostLollipopMR1) {
             MDStackLayout = org.nativescript.widgets.StackLayout;
         } else {
             initializePreLollipopStackLayout();
@@ -213,23 +213,35 @@ export class Ripple extends RippleBase {
         }
         return getRippleColor(themer.getAccentColor());
     }
-    setRippleDrawable(view: android.view.View, radius = 0) {
+    setRippleDrawable(view: android.view.View, topLeftRadius = 0, topRightRadius = 0, bottomRightRadius = 0, bottomLeftRadius = 0) {
         if (!this.rippleDrawable) {
-            this.rippleDrawable = createRippleDrawable(this.getRippleColor(), radius);
-            if (isPostMarshmallow()) {
+            this.rippleDrawable = createRippleDrawable(this.getRippleColor(), topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius);
+            if (isPostMarshmallow) {
                 view.setForeground(this.rippleDrawable);
             }
         }
     }
     [rippleColorProperty.setNative](color: Color) {
         if (!this.rippleDrawable) {
-            this.setRippleDrawable(this.nativeViewProtected);
+            this.setRippleDrawable(
+                this.nativeViewProtected,
+                Length.toDevicePixels(this.style.borderTopLeftRadius),
+                Length.toDevicePixels(this.style.borderTopRightRadius),
+                Length.toDevicePixels(this.style.borderBottomRightRadius),
+                Length.toDevicePixels(this.style.borderBottomLeftRadius)
+            );
         } else {
-            if (isPostLollipopMR1()) {
-                (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(getColorStateList(color.android));
+            const nColor = getRippleColor(color, this.rippleColorAlpha);
+            if (isPostLollipopMR1) {
+                (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(color ? getColorStateList(nColor) : null);
             } else {
-                (this.rippleDrawable as any).rippleShape.getPaint().setColor(getRippleColor(color));
+                (this.rippleDrawable as any).rippleShape.getPaint().setColor(nColor);
             }
+        }
+    }
+    [rippleColorAlphaProperty.setNative](value: number) {
+        if (this.rippleColor) {
+            this[rippleColorProperty.setNative](this.rippleColor);
         }
     }
 
@@ -239,7 +251,7 @@ export class Ripple extends RippleBase {
             if (value instanceof android.graphics.drawable.Drawable) {
             } else {
                 this.rippleDrawable = null;
-                this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius);
+                this.setRippleDrawable(this.nativeViewProtected, value.borderTopLeftRadius, value.borderTopRightRadius, value.borderBottomRightRadius, value.borderBottomLeftRadius);
             }
         }
     }

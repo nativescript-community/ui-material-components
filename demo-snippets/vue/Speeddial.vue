@@ -41,7 +41,7 @@
                         <MDButton dock="bottom" text="test2" />
                         <MDButton class="btn" dock="right" text="test3" />
                     </DockLayout>
-                    <MDSpeedDial text="mdi-one-up" buttonClass="mdi">
+                    <MDSpeedDial text="mdi-one-up" buttonClass="mdi" horizontalAlignment="right">
                         <MDSpeedDialItem icon="res://ic_action_add" title="test1" backgroundColor="red" @tap="onTap" />
                         <MDSpeedDialItem text="mdi-card-account-mail" title="test2" buttonClass="mdi" backgroundColor="green" @tap="onTap" />
                         <MDSpeedDialItem backgroundImage="~/images/iu.jpg" backgroundColor="blue" @tap="onTap" />

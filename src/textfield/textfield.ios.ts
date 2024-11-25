@@ -123,6 +123,7 @@ declare module '@nativescript/core/ui/text-field' {
 export class TextField extends TextFieldBase {
     nativeViewProtected: MDCBaseTextField;
     nativeTextViewProtected: MDCBaseTextField;
+    //@ts-ignore
     public readonly style: Style & { variant: 'outline' | 'underline' | 'filled' };
     public nsdigits?: NSCharacterSet;
     firstEdit: boolean;
@@ -427,7 +428,6 @@ export class TextField extends TextFieldBase {
     [verticalTextAlignmentProperty.setNative](value: VerticalTextAlignment) {
         // TODO: not working for now
         const view = this.nativeTextViewProtected;
-        view.backgroundColor = UIColor.redColor;
         switch (value) {
             case 'initial':
             case 'top':

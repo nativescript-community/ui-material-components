@@ -3,6 +3,7 @@ package com.nativescript.material.core;
 import android.animation.StateListAnimator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Context;
@@ -19,6 +20,7 @@ public class Utils {
     static final int shortAnimTime = android.R.integer.config_shortAnimTime;
     static final int statePressed = android.R.attr.state_pressed;
     static final int stateEnabled = android.R.attr.state_enabled;
+    static LayoutInflater inflater = null;
 
     public static void createStateListAnimator(Context context, View view, float elevation, float pressedZ) {
         int duration = context.getResources().getInteger(shortAnimTime);
@@ -60,18 +62,18 @@ public class Utils {
         return new android.content.res.ColorStateList(states, colors);
     }
 
-    public static ShapeDrawable createForegroundShape(float radius) {
+    public static ShapeDrawable createForegroundShape(float topLeftRadius, float topRightRadius, float bottomRightRadius, float bottomLeftRadius) {
         RoundRectShape shape = new RoundRectShape(
-                new float[] { radius, radius, radius, radius, radius, radius, radius, radius }, null, null);
+                new float[] { topLeftRadius, topLeftRadius, topRightRadius, topRightRadius, bottomRightRadius, bottomRightRadius, bottomLeftRadius, bottomLeftRadius }, null, null);
         return new ShapeDrawable(shape);
     }
 
-    public static Drawable createRippleDrawable(int rippleColor, float radius) {
+    public static Drawable createRippleDrawable(int rippleColor, float topLeftRadius, float topRightRadius, float bottomRightRadius, float bottomLeftRadius) {
         if (Build.VERSION.SDK_INT >= 21) {
-            ShapeDrawable rippleShape = radius != 0 ? createForegroundShape(radius) : null;
+            ShapeDrawable rippleShape = createForegroundShape(topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius);
             return new RippleDrawable(ColorStateList.valueOf(rippleColor), null, rippleShape);
         } else {
-            ShapeDrawable rippleShape = createForegroundShape(radius);
+            ShapeDrawable rippleShape = createForegroundShape(topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius);
             StateListDrawable rippleDrawable = new StateListDrawable();
             if (rippleShape != null) {
                 rippleShape.getPaint().setColor(rippleColor);
@@ -101,5 +103,13 @@ public class Utils {
                 ((ViewGroup) root).setDescendantFocusability(oldDesc);
             }
         }
+    }
+
+    public static View inflateLayout(Context context, String layoutStringId) {
+        int layoutId = context.getResources().getIdentifier(layoutStringId, "layout", context.getPackageName());
+        if (inflater == null) {
+            inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+        return (View)inflater.inflate(layoutId, null);
     }
 }

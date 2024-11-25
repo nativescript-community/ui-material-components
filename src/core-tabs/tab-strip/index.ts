@@ -1,13 +1,14 @@
 /**
  * @module @nativescript-community/ui-material-core-tabs/tab-strip
  */
-import { rippleColorProperty } from '@nativescript-community/ui-material-core/cssproperties';
+import { rippleColorAlphaProperty, rippleColorProperty } from '@nativescript-community/ui-material-core/cssproperties';
 import { AddArrayFromBuilder, AddChildFromBuilder, CSSType, Color, CssProperty, Property, Style, View, ViewBase, booleanConverter } from '@nativescript/core';
 import { backgroundColorProperty, backgroundInternalProperty, colorProperty, fontInternalProperty } from '@nativescript/core/ui/styling/style-properties';
 import { textTransformProperty } from '@nativescript/core/ui/text-base';
 import { TabNavigationBase } from '../tab-navigation-base';
 import { TabStripItem } from '../tab-strip-item';
 import { TabStrip as TabStripDefinition } from '.';
+import { getRippleColor } from '@nativescript-community/ui-material-core/index.ios';
 
 // Place this on top because the webpack ts-loader doesn't work when export
 // is after reference
@@ -91,12 +92,15 @@ export class TabStrip extends View implements TabStripDefinition, AddChildFromBu
     [backgroundColorProperty.getDefault](): Color {
         const parent = this.parent as TabNavigationBase;
 
-        return parent && parent.getTabBarBackgroundColor();
+        return parent?.getTabBarBackgroundColor();
+        // always default to at least a solid white background as fallback
+        // building with Xcode 13 causes bgView with no background to be fully transparent unless a css background-color is set - this allows original default behavior to work as it always did
+        // bgView.backgroundColor = new Color('#fff').ios;;
     }
     [backgroundColorProperty.setNative](value: Color) {
         const parent = this.parent as TabNavigationBase;
 
-        return parent && parent.setTabBarBackgroundColor(value);
+        return parent?.setTabBarBackgroundColor(value);
     }
 
     [backgroundInternalProperty.getDefault](): any {
@@ -180,8 +184,11 @@ export class TabStrip extends View implements TabStripDefinition, AddChildFromBu
 
     [rippleColorProperty.setNative](value: Color) {
         const parent = this.parent as TabNavigationBase;
-
-        return parent && parent.setTabBarRippleColor(value);
+        return parent && parent.setTabBarRippleColor(value, this.rippleColorAlpha);
+    }
+    [rippleColorAlphaProperty.setNative](value: number) {
+        const parent = this.parent as TabNavigationBase;
+        return parent && parent.setTabBarRippleColor(this.rippleColor, value);
     }
 }
 

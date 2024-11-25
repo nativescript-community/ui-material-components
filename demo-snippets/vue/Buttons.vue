@@ -9,7 +9,7 @@
         </ActionBar>
         <ScrollView>
             <StackLayout>
-                <MDButton text="raised button" @tap="onTap" />
+                <MDButton id="raised" text="raised button" @tap="onTap" />
                 <MDButton src="res://ic_action_add" text="button with icon" @tap="onTap" />
                 <MDButton variant="text" color="red" src="res://ic_action_add" text="button with icon and tint" @tap="onTap" />
                 <MDButton variant="text" text="text button" @tap="onTap" />

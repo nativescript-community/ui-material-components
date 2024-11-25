@@ -1,28 +1,10 @@
 import { VerticalTextAlignment } from '@nativescript-community/text';
-import { Application, Color, CoreTypes, Utils, ViewBase, profile } from '@nativescript/core';
+import { CoreTypes, Device, Utils, ViewBase, profile } from '@nativescript/core';
 
-let isPostLollipopVar: boolean;
-export function isPostLollipop() {
-    if (isPostLollipopVar === undefined) {
-        isPostLollipopVar = android.os.Build.VERSION.SDK_INT >= 21;
-    }
-    return isPostLollipopVar;
-}
-
-let isPostLollipopMR1Var: boolean;
-export function isPostLollipopMR1() {
-    if (isPostLollipopMR1Var === undefined) {
-        isPostLollipopMR1Var = android.os.Build.VERSION.SDK_INT >= 22;
-    }
-    return isPostLollipopMR1Var;
-}
-let isPostMarshmallowVar: boolean;
-export function isPostMarshmallow() {
-    if (isPostMarshmallowVar === undefined) {
-        isPostMarshmallowVar = android.os.Build.VERSION.SDK_INT >= 23;
-    }
-    return isPostMarshmallowVar;
-}
+export const sdkVersion = parseInt(Device.sdkVersion, 10);
+export const isPostLollipop = sdkVersion >= 21;
+export const isPostLollipopMR1 = sdkVersion >= 22;
+export const isPostMarshmallow = sdkVersion >= 23;
 
 export const state = {
     get selected() {
@@ -208,11 +190,11 @@ function createForegroundShape(radius) {
     }
     return NUtils.createForegroundShape(radius);
 }
-export function createRippleDrawable(rippleColor: number, radius = 0) {
+export function createRippleDrawable(rippleColor: number, topLeftRadius = 0, topRightRadius = 0, bottomRightRadius = 0, bottomLeftRadius = 0) {
     if (!NUtils) {
         NUtils = (com as any).nativescript.material.core.Utils;
     }
-    return NUtils.createRippleDrawable(rippleColor, radius);
+    return NUtils.createRippleDrawable(rippleColor, topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius);
 }
 
 export function handleClearFocus(view: android.view.View) {
@@ -273,4 +255,11 @@ export function getVerticalGravity(textAlignment: VerticalTextAlignment) {
         case 'bottom':
             return 80; //Gravity.BOTTOM
     }
+}
+
+export function inflateLayout(context: android.content.Context, layoutId: string) {
+    if (!NUtils) {
+        NUtils = (com as any).nativescript.material.core.Utils;
+    }
+    return NUtils.inflateLayout(context, layoutId);
 }

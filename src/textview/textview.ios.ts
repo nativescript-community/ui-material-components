@@ -154,6 +154,7 @@ export class TextView extends TextViewBase {
     nativeViewProtected: MDCMultilineTextField;
     private _controller: MDCTextInputControllerBase;
     public _isEditing: boolean;
+    //@ts-ignore
     public readonly style: Style & { variant: 'outline' | 'underline' | 'filled' };
 
     public clearFocus() {

@@ -1,4 +1,54 @@
-<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->This monorepo contains multiple packages:<br><br><details>
+<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->
+[](#nativescript-material-components)
+
+# Nativescript Material Components
+
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%20v2-yellow.svg)](https://opensource.org/license/apache-2-0/)
+[![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
+[![lerna--lite](https://img.shields.io/badge/maintained%20with-lerna--lite-e137ff)](https://github.com/lerna-lite/lerna-lite)
+
+Build beautiful, usable products using Material Components for NativeScript.
+
+
+[](#installation)
+
+## Installation
+
+### Android 
+Ensure your Android Theme is inheriting from `MaterialComponents`.
+Inside ```App_resources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
+You can see an example in the demo-vue app.
+
+### Production build
+If you are using proguard on Android build you need ensure some resource from this plugin are not minified. You need to add ` tools:keep="@layout/ns_*"` as explained [here](https://developer.android.com/build/shrink-code#keep-resources)
+
+
+[](#theming)
+
+## Theming
+Defining the theme and the default colors must be done a bit differently on iOS and Android
+
+* **Android**:  You must set the colors through [android Style](https://github.com/material-components/material-components-android/blob/master/docs/getting-started.md#appcompat-themes)
+* **iOS**: You must set the colors programmatically at your app startup
+```typescript
+import { themer } from '@nativescript-community/ui-material-core';
+if (global.isIOS) {
+    themer.setPrimaryColor('#bff937');
+    themer.setAccentColor('#ff8a39');
+    themer.setSecondaryColor('#a830d7');
+}
+```
+
+
+[](#mixins)
+
+## Mixins
+Through this component you can apply `elevation` or `rippleColor` to any `View`. To enable that feature your must "install" the mixins. Make sure you do it before creating any view.
+```typescript
+import { installMixins } from '@nativescript-community/ui-material-core';
+installMixins();
+```
+This monorepo contains multiple packages:<br><br><details>
 <summary><b>activityindicator</b></summary>
 
 [](#nativescript-material-circular-progress-indicator)
@@ -926,7 +976,7 @@ export function openBottomSheet(args) {
 
 ##
 
-### NativeScript + Vue
+### NativeScript + Vue 2
 ```typescript
 import Vue from 'nativescript-vue';
 import BottomSheetPlugin from '@nativescript-community/ui-material-bottomsheet/vue';
@@ -941,8 +991,51 @@ import MyComponent from 'MyComponent.vue';
 
 //inside another Vue component
 const options: VueBottomSheetOptions = {
+    // props to be passed to MyComponent
+    props: {
+        someProp: true,
+        anotherProp: false
+    },
+    // listeners to be connected to MyComponent
+    on: {
+        someEvent: (value) => { console.log(value) }
+    }
 };
 this.$showBottomSheet(MyComponent, options)
+```
+
+### NativeScript + Vue 3
+```typescript
+import { createApp } from 'nativescript-vue';
+import { BottomSheetPlugin } from '@nativescript-community/ui-material-bottomsheet/vue3';
+import { install } from "@nativescript-community/ui-material-bottomsheet";
+install();
+
+const app = createApp(...);
+app.use(BottomSheetPlugin);
+```
+Then you can show a Vue component:
+```typescript 
+import { useBottomSheet } from "@nativescript-community/ui-material-bottomsheet/vue3";
+import MyComponent from 'MyComponent.vue';
+
+
+const options: VueBottomSheetOptions = {
+    // props to be passed to MyComponent
+    props: {
+        someProp: true,
+        anotherProp: false
+    },
+    // listeners to be connected to MyComponent
+    on: {
+        someEvent: (value) => { console.log(value) }
+    }
+};
+
+const { showBottomSheet, closeBottomSheet } = useBottomSheet()
+
+showBottomSheet(MyComponent, options);
+closeBottomSheet();
 ```
 
 ##
@@ -2153,6 +2246,131 @@ Vue.use(speeddialPlugin);
 ```
 
 </details><details>
+<summary><b>switch</b></summary>
+
+[](#nativescript-material-switch)
+
+# NativeScript Material Switch
+
+Material Design's [Switch](https://m3.material.io/components/switch/overview) component for NativeScript.
+
+[![npm](https://img.shields.io/npm/v/@nativescript-community/ui-material-switch.svg)](https://www.npmjs.com/package/@nativescript-community/ui-material-prswitchogress)
+[![npm](https://img.shields.io/npm/dt/@nativescript-community/ui-material-switch.svg?label=npm%20downloads)](https://www.npmjs.com/package/@nativescript-community/ui-material-switch)
+
+
+[](#contents)
+
+## Contents
+
+1. [Installation](#installation)
+2. [Changelog](#changelog)
+3. [FAQ](#faq)
+4.  [Usage](#usage)
+    - [Plain NativeScript](#plain-nativescript)
+    - [Angular](#nativescript--angular)
+    - [Vue](#nativescript--vue)
+5.  [API](#api)
+
+
+[](#installation)
+
+## Installation
+
+For NativeScript 7.0+
+* `tns plugin add @nativescript-community/ui-material-switch`
+
+##
+
+For NativeScript 6.x
+* `tns plugin add nativescript-material-switch`
+
+##
+
+Be sure to run a new build after adding plugins to avoid any issues.
+
+
+[](#changelogchangelogmd)
+
+## [Changelog](./CHANGELOG.md)
+
+
+[](#faqreadmemdfaq)
+
+## [FAQ](../../README.md#faq)
+
+
+[](#usage)
+
+## Usage
+
+### Plain NativeScript
+
+<span style="color:red">IMPORTANT: </span>_Make sure you include `xmlns:mdp="@nativescript-community/ui-material-progress"` on the Page element_
+
+#### XML
+
+```XML
+<Page xmlns:mdp="@nativescript-community/ui-material-switch">
+    <StackLayout horizontalAlignment="center">
+        <mdp:Switch />
+   </StackLayout>
+</Page>
+```
+
+#### CSS
+
+```CSS
+mdswitch{
+    ripple-color: blue;
+    elevation: 4;
+}
+```
+
+##
+
+### NativeScript + Angular
+
+```typescript
+import { NativeScriptMaterialSwitchModule } from "@nativescript-community/ui-material-switch/angular";
+
+@NgModule({
+    imports: [
+        NativeScriptMaterialSwitchModule,
+        ...
+    ],
+    ...
+})
+```
+
+```html
+<MDSwitch v-model="value"></MDSwitch>
+```
+
+##
+
+### NativeScript + Vue
+
+```typescript
+import SwitchPlugin from '@nativescript-community/ui-material-switch/vue';
+
+Vue.use(SwitchPlugin);
+```
+
+```html
+<MDSwitch></MDSwitch>
+```
+
+
+[](#api)
+
+## API
+
+### Attributes
+
+Inherits from NativeScript [Switch](https://docs.nativescript.org/ui/components/switch) so it already has all the same attributes.
+
+
+</details><details>
 <summary><b>tabs</b></summary>
 
 [](#nativescript-material-tabs)
@@ -2812,3 +3030,128 @@ An attribute to set the helper text of the textview.
 A boolean attribute to set the floating state of the textview.
 
 </details>
+
+[](#faq)
+
+## FAQ
+
+**Question:** How to use the latest version of this plugin for iOS?
+
+**Answer:** To get latest versions of Material Components for iOS (> 112.1) you will need to change Pod min version to 10.0
+To do that modify or create `App_Resources/iOS/Podfile` to add `platform :ios, '10.0'`.
+You can see an example in the demo-vue app.
+
+##
+
+**Q:** How to migrate to AndroidX with this plugin installed (Android only)?
+
+**A:** For Material Components to work correctly with {N} 6 and AndroidX you need to update your android app theme.
+Inside ```App_resources/android/res/values/styles.xml``` replace all occurences of ```Theme.AppCompat``` with ```Theme.MaterialComponents```
+You can see an example in the demo-vue app.
+
+##
+
+**Q:** What is the difference between Bottom Navigation and Bottom Navigation Bar component?
+
+**A:** The _Bottom Navigation Bar_ is a new component to draw a bottom navigation bar in material design.
+The _Bottom Navigation_ component is a simple extract of the [eponymous component from NativeScript](https://docs.nativescript.org/ui/components/bottom-navigation), which probably will be removed in the future so this one can be used for easy transition.
+
+##
+
+
+[](#demos-and-development)
+
+## Demos and Development
+
+
+### Repo Setup
+
+The repo uses submodules. If you did not clone with ` --recursive` then you need to call
+```
+git submodule update --init
+```
+
+The package manager used to install and link dependencies must be `pnpm` or `yarn`. `npm` wont work.
+
+To develop and test:
+if you use `yarn` then run `yarn`
+if you use `pnpm` then run `pnpm i`
+
+**Interactive Menu:**
+
+To start the interactive menu, run `npm start` (or `yarn start` or `pnpm start`). This will list all of the commonly used scripts.
+
+### Build
+
+```bash
+npm run build.all
+```
+WARNING: it seems `yarn build.all` wont always work (not finding binaries in `node_modules/.bin`) which is why the doc explicitly uses `npm run`
+
+### Demos
+
+```bash
+npm run demo.[ng|react|svelte|vue].[ios|android]
+
+npm run demo.svelte.ios # Example
+```
+
+Demo setup is a bit special in the sense that if you want to modify/add demos you dont work directly in `demo-[ng|react|svelte|vue]`
+Instead you work in `demo-snippets/[ng|react|svelte|vue]`
+You can start from the `install.ts` of each flavor to see how to register new demos 
+
+
+[](#contributing)
+
+## Contributing
+
+### Update repo 
+
+You can update the repo files quite easily
+
+First update the submodules
+
+```bash
+npm run update
+```
+
+Then commit the changes
+Then update common files
+
+```bash
+npm run sync
+```
+Then you can run `yarn|pnpm`, commit changed files if any
+
+### Update readme 
+```bash
+npm run readme
+```
+
+### Update doc 
+```bash
+npm run doc
+```
+
+### Publish
+
+The publishing is completely handled by `lerna` (you can add `-- --bump major` to force a major release)
+Simply run 
+```shell
+npm run publish
+```
+
+### modifying submodules
+
+The repo uses https:// for submodules which means you won't be able to push directly into the submodules.
+One easy solution is t modify `~/.gitconfig` and add
+```
+[url "ssh://git@github.com/"]
+	pushInsteadOf = https://github.com/
+```
+
+[](#questions)
+
+## Questions
+
+If you have any questions/issues/comments please feel free to create an issue or start a conversation in the [NativeScript Community Discord](https://nativescript.org/discord).

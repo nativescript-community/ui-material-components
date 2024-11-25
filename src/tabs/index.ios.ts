@@ -23,30 +23,35 @@ class MDCTabBarViewDelegateImpl extends NSObject implements MDCTabBarViewDelegat
     }
 
     public tabBarViewShouldSelectItem(tabBar: MDCTabBarView, item: UITabBarItem): boolean {
-        const owner = this._owner.get();
-        const shouldSelectItem = owner.mCanSelectItem;
-        const selectedIndex = owner.tabBarItems.indexOf(item);
+        const owner = this._owner?.get();
+        if (owner) {
+            const shouldSelectItem = owner.mCanSelectItem;
+            const selectedIndex = owner.tabBarItems.indexOf(item);
 
-        if (owner.selectedIndex !== selectedIndex) {
-            owner.beginTabTransition();
+            if (owner.selectedIndex !== selectedIndex) {
+                owner.beginTabTransition();
+            }
+
+            const tabStrip = owner.tabStrip;
+            const tabStripItems = tabStrip && tabStrip.items;
+
+            if (tabStripItems && tabStripItems[selectedIndex]) {
+                tabStripItems[selectedIndex]._emit(TabStripItem.tapEvent);
+                tabStrip.notify({ eventName: TabStrip.itemTapEvent, object: tabStrip, index: selectedIndex });
+            }
+
+            return shouldSelectItem;
         }
-
-        const tabStrip = owner.tabStrip;
-        const tabStripItems = tabStrip && tabStrip.items;
-
-        if (tabStripItems && tabStripItems[selectedIndex]) {
-            tabStripItems[selectedIndex]._emit(TabStripItem.tapEvent);
-            tabStrip.notify({ eventName: TabStrip.itemTapEvent, object: tabStrip, index: selectedIndex });
-        }
-
-        return shouldSelectItem;
+        return false;
     }
 
     public tabBarViewDidSelectItem(tabBar: MDCTabBarView, selectedItem: UITabBarItem): void {
-        const owner = this._owner.get();
-        const tabBarItems = owner.tabBarItems;
-        const selectedIndex = tabBarItems.indexOf(selectedItem);
-        owner.selectedIndex = selectedIndex;
+        const owner = this._owner?.get();
+        if (owner) {
+            const tabBarItems = owner.tabBarItems;
+            const selectedIndex = tabBarItems.indexOf(selectedItem);
+            owner.selectedIndex = selectedIndex;
+        }
     }
 }
 
@@ -162,34 +167,43 @@ class UIPageViewControllerImpl extends UIPageViewController {
         let scrollViewHeight = this.view.bounds.size.height + conditionalSafeAreaBottom;
 
         if (owner.tabStrip && this.tabBar) {
-            const viewWidth = this.view.bounds.size.width;
-            const viewHeight = this.view.bounds.size.height;
-            const tabBarHeight = this.tabBar.frame.size.height;
-            let tabBarTop = safeAreaInsetsTop;
-
-            scrollViewTop = tabBarHeight;
-            scrollViewHeight = this.view.bounds.size.height - tabBarHeight + conditionalSafeAreaBottom;
-
-            const tabsPosition = owner.tabsPosition;
-            if (tabsPosition === TabsPosition.Bottom) {
-                tabBarTop = viewHeight - tabBarHeight - safeAreaInsetsBottom;
-                scrollViewTop = this.view.frame.origin.y;
-                scrollViewHeight = viewHeight - tabBarHeight;
+            if (owner.tabStrip.visibility === 'visible') {
+                this.tabBar.hidden = false;
+            } else {
+                this.tabBar.hidden = true;
             }
+            // failsafe with !this.tabBar.hidden just in some really odd case where hidden is false and collapse is true
+            // which should never happen
+            if (!owner.tabStrip.isCollapsed || !this.tabBar.hidden) {
+                const viewWidth = this.view.bounds.size.width;
+                const viewHeight = this.view.bounds.size.height;
+                const tabBarHeight = this.tabBar.frame.size.height;
+                let tabBarTop = safeAreaInsetsTop;
 
-            let parent = owner.parent;
+                scrollViewTop = tabBarHeight;
+                scrollViewHeight = this.view.bounds.size.height - tabBarHeight + conditionalSafeAreaBottom;
 
-            // Handle Angular scenario where Tabs is in a ProxyViewContainer
-            // It is possible to wrap components in ProxyViewContainers indefinitely
-            while (parent && !parent.nativeViewProtected) {
-                parent = parent.parent;
+                const tabsPosition = owner.tabsPosition;
+                if (tabsPosition === TabsPosition.Bottom) {
+                    tabBarTop = viewHeight - tabBarHeight - safeAreaInsetsBottom;
+                    scrollViewTop = this.view.frame.origin.y;
+                    scrollViewHeight = viewHeight - tabBarHeight;
+                }
+
+                let parent = owner.parent;
+
+                // Handle Angular scenario where Tabs is in a ProxyViewContainer
+                // It is possible to wrap components in ProxyViewContainers indefinitely
+                while (parent && !parent.nativeViewProtected) {
+                    parent = parent.parent;
+                }
+
+                if (parent && majorVersion > 10) {
+                    // TODO: Figure out a better way to handle ViewController nesting/Safe Area nesting
+                    tabBarTop = Math.max(tabBarTop, parent.nativeView.safeAreaInsets.top);
+                }
+                this.tabBar.frame = CGRectMake(0, tabBarTop, viewWidth, tabBarHeight);
             }
-
-            if (parent && majorVersion > 10) {
-                // TODO: Figure out a better way to handle ViewController nesting/Safe Area nesting
-                tabBarTop = Math.max(tabBarTop, parent.nativeView.safeAreaInsets.top);
-            }
-            this.tabBar.frame = CGRectMake(0, tabBarTop, viewWidth, tabBarHeight);
         } else {
             this.tabBar.hidden = true;
         }
@@ -198,7 +212,7 @@ class UIPageViewControllerImpl extends UIPageViewController {
         let scrollView: UIScrollView = null;
 
         for (let i = 0; i < subViews.count; i++) {
-            const view: UIView = subViews[i];
+            const view: UIView = subViews.objectAtIndex(i);
             if (view instanceof UIScrollView && !(view instanceof MDCTabBarView)) {
                 scrollView = view;
             }
@@ -252,7 +266,7 @@ class UIPageViewControllerImpl extends UIPageViewController {
     }
 }
 
-export class Tabs extends TabNavigation<UIPageViewControllerImpl> {
+export class Tabs extends TabNavigation {
     protected createViewController() {
         return UIPageViewControllerImpl.initWithOwner(new WeakRef(this));
     }

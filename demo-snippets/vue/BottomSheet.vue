@@ -5,6 +5,7 @@
         </ActionBar>
         <StackLayout>
             <MDButton id="bottomsheet" text="bottomsheet" @tap="onTap" />
+            <MDButton id="bottomsheet_frame" text="bottomsheet_frame" @tap="onTap" />
             <MDButton id="dont_ignore_top_safe_area" text="dont_ignore_top_safe_area" @tap="onTap" />
             <MDButton id="ignore_bottom_safe_area" text="ignore_bottom_safe_area" @tap="onTap" />
             <MDButton id="dont_ignore_top_ignore_bottom_safe_area" text="dont_ignore_top_ignore_bottom_safe_area" @tap="onTap" />
@@ -20,6 +21,7 @@ import * as frameModule from '@nativescript/core/ui/frame';
 import { NativeScriptVue } from 'nativescript-vue';
 import Vue from 'vue';
 import BottomSheetInner from './BottomSheetInner.vue';
+import BottomSheetInnerFrame from './BottomSheetInnerFrame.vue';
 import BottomSheetInnerKeyboard from './BottomSheetInnerKeyboard.vue';
 
 export const title = 'BottomSheet sample';
@@ -43,6 +45,25 @@ export default Vue.extend({
                 case 'bottomsheet': {
                     (this as NativeScriptVue).$showBottomSheet(BottomSheetInner, {
                         // transparent: true,
+                        on: {
+                            indexChanged: (x) => {
+                                console.log('listener', x);
+                            }
+                        },
+                        closeCallback: (...args) => {
+                            console.log('bottom sheet closed', args);
+                        }
+                    });
+                    break;
+                }
+                case 'bottomsheet_frame': {
+                    (this as NativeScriptVue).$showBottomSheet(BottomSheetInnerFrame, {
+                        // transparent: true,
+                        on: {
+                            indexChanged: (x) => {
+                                console.log('listener', x);
+                            }
+                        },
                         closeCallback: (...args) => {
                             console.log('bottom sheet closed', args);
                         }

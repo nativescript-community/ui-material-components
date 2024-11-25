@@ -1,12 +1,13 @@
-import { Color, PercentLength, heightProperty } from '@nativescript/core';
-import { ProgressBase, busyProperty, indeterminateProperty, progressBackgroundColorProperty, progressColorProperty } from './progress-common';
+import { Color, Length, PercentLength, backgroundColorProperty, backgroundInternalProperty, colorProperty, heightProperty } from '@nativescript/core';
+import { ProgressBase, busyProperty, indeterminateProperty, progressBackgroundColorProperty, progressColorProperty, trackCornerRadiusProperty } from './progress-common';
+import { getRippleColor } from '@nativescript-community/ui-material-core';
+import { inflateLayout } from '@nativescript-community/ui-material-core/android/utils';
 
 export class Progress extends ProgressBase {
     nativeViewProtected: com.google.android.material.progressindicator.LinearProgressIndicator;
 
-    // added in 1.3.0
     createNativeView() {
-        return new com.google.android.material.progressindicator.LinearProgressIndicator(this._context);
+        return inflateLayout(this._context, 'ns_material_linear_progress') as com.google.android.material.progressindicator.LinearProgressIndicator;
     }
 
     [progressColorProperty.setNative](color: Color) {
@@ -53,5 +54,23 @@ export class Progress extends ProgressBase {
     }
     public stopAnimating() {
         this.busy = false;
+    }
+    [colorProperty.setNative](color) {
+        const array = Array.create('int', 1);
+        array[0] = color.android;
+        this.nativeViewProtected.setIndicatorColor(array);
+        if (!this.backgroundColor) {
+            this.nativeViewProtected.setTrackColor(getRippleColor(color));
+        }
+    }
+    [backgroundColorProperty.setNative](color) {
+        this.nativeViewProtected.setTrackColor(color.android);
+    }
+    [backgroundInternalProperty.setNative](value) {
+        //
+    }
+
+    [trackCornerRadiusProperty.setNative](value) {
+        this.nativeViewProtected.setTrackCornerRadius(Length.toDevicePixels(value, 0))
     }
 }

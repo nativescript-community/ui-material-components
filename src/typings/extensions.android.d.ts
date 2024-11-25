@@ -41,6 +41,7 @@ declare namespace com {
 
                     setViewPager(viewPager: androidx.viewpager2.widget.ViewPager2): void;
                     setItems(items: Array<TabItemSpec>): void;
+                    scrollToTab(tabIndex: Int); 
                     updateItemAt(position: number, itemSpec: TabItemSpec): void;
 
                     setSelectedPosition(position: number): void;

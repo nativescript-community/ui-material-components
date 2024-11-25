@@ -1,15 +1,15 @@
 import { NativeScriptVue } from 'nativescript-vue';
-import Vue from 'vue';
 import { BottomSheetOptions } from '../bottomsheet';
 import { View } from '@nativescript/core';
 
 export interface VueBottomSheetOptions extends Omit<BottomSheetOptions, 'view'> {
     props?: any;
+    on?: Record<string, (...args: any[]) => any>;
 }
 
 declare module 'nativescript-vue' {
-    interface NativeScriptVue<V = View> extends Vue {
-        $showBottomSheet(component: typeof Vue, options?: VueBottomSheetOptions): Promise<any>;
+    interface NativeScriptVue<V = View> extends NativeScriptVue {
+        $showBottomSheet(component: typeof NativeScriptVue, options?: VueBottomSheetOptions): Promise<any>;
         $closeBottomSheet(...args);
     }
 }
@@ -43,6 +43,7 @@ const BottomSheetPlugin = {
                     render: (h) =>
                         h(component, {
                             props: options.props,
+                            on: options.on,
                             key: serializeModalOptions(options)
                         })
                 });
@@ -50,14 +51,16 @@ const BottomSheetPlugin = {
                 this.nativeView.showBottomSheet(
                     Object.assign({}, options, {
                         view: navEntryInstance.nativeView,
-                        closeCallback: (...args) => {
+                        closeCallback: (result) => {
                             if (resolved) {
                                 return;
                             }
                             resolved = true;
+                            if (options.closeCallback) {
+                                options.closeCallback(result, navEntryInstance);
+                            }
+                            resolve(result);
                             if (navEntryInstance && navEntryInstance.nativeView) {
-                                options.closeCallback && options.closeCallback.apply(undefined, args);
-                                resolve(...args);
                                 navEntryInstance.$emit('bottomsheet:close');
                                 navEntryInstance.$destroy();
                                 navEntryInstance = null;

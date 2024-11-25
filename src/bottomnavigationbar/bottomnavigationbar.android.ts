@@ -257,8 +257,8 @@ export class BottomNavigationTab extends BottomNavigationTabBase {
             this.inactiveColor instanceof Color
                 ? this.inactiveColor.android
                 : this.nativeViewProtected.getIconTintList()
-                ? this.nativeViewProtected.getIconTintList().getColorForState(stateSets.BACKGROUND_DEFAULT_STATE_2, color1)
-                : 0;
+                  ? this.nativeViewProtected.getIconTintList().getColorForState(stateSets.BACKGROUND_DEFAULT_STATE_2, color1)
+                  : 0;
         const colorStateList = createColorStateList(color1, color2);
         // this.nativeViewProtected.color(colorStateList); // can we set the text color?
         this.nativeViewProtected.setIconTintList(colorStateList);
@@ -271,8 +271,8 @@ export class BottomNavigationTab extends BottomNavigationTabBase {
             this.activeColor instanceof Color
                 ? this.activeColor.android
                 : this.nativeViewProtected.getIconTintList()
-                ? this.nativeViewProtected.getIconTintList().getColorForState(stateSets.SELECTED_STATE_SET, color2)
-                : 0;
+                  ? this.nativeViewProtected.getIconTintList().getColorForState(stateSets.SELECTED_STATE_SET, color2)
+                  : 0;
         const colorStateList = createColorStateList(color1, color2);
         // this.nativeViewProtected.setText(colorStateList); // can we set the text color?
         this.nativeViewProtected.setIconTintList(colorStateList);

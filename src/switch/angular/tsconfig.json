@@ -1,0 +1,16 @@
+{
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "./",
+        "paths": {
+            "@nativescript-community/ui-material-core": ["packages/core/index"],
+            "@nativescript-community/ui-material-core/*": ["packages/core/*"],
+            "@nativescript-community/ui-material-switch": ["packages/switch/index"],
+            "@nativescript-community/ui-material-switch/*": ["packages/switch/*"]
+        }
+    },
+    "include": ["./**/*.ts", "../../../references.d.ts", "../../references.d.ts"],
+    "angularCompilerOptions": {
+        "enableIvy": true
+    }
+}

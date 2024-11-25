@@ -1,8 +1,9 @@
-import { dynamicElevationOffsetProperty, elevationProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, rippleColorAlphaProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
 import { createStateListAnimator, getColorStateList, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import { Background, Color, ImageSource, Length, backgroundInternalProperty, colorProperty } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
 import { FloatingActionButtonBase, expandedProperty, imageSourceProperty, sizeProperty, srcProperty } from './floatingactionbutton-common';
+import { getRippleColor } from '@nativescript-community/ui-material-core/index.android';
 
 let MDCFabButton: typeof com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
@@ -42,12 +43,14 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         if (!this.createStateListAnimatorTimeout) {
             this.createStateListAnimatorTimeout = setTimeout(() => {
                 this.createStateListAnimatorTimeout = null;
-                createStateListAnimator(this, this.nativeViewProtected);
+                if(this.nativeViewProtected) {
+                    createStateListAnimator(this, this.nativeViewProtected);
+                }
             });
         }
     }
     [elevationProperty.setNative](value: number) {
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
@@ -55,7 +58,7 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         }
     }
     [dynamicElevationOffsetProperty.setNative](value: number) {
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             this.createStateListAnimator();
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
@@ -96,12 +99,12 @@ export class FloatingActionButton extends FloatingActionButtonBase {
         this.nativeViewProtected.setIconTint(getColorStateList(color.android));
     }
     [rippleColorProperty.setNative](value: Color) {
-        const color = !value || value instanceof Color ? value : new Color(value);
-        this.nativeViewProtected.setRippleColor(getColorStateList(color.android));
+        this.nativeViewProtected.setRippleColor(value? getColorStateList(getRippleColor(value, this.rippleColorAlpha)): null);
     }
-    [rippleColorProperty.setNative](value: Color) {
-        const color = !value || value instanceof Color ? value : new Color(value);
-        this.nativeViewProtected.setRippleColor(getColorStateList(color.android));
+    [rippleColorAlphaProperty.setNative](value: number) {
+        if (this.rippleColor) {
+            this[rippleColorProperty.setNative](this.rippleColor);
+        }
     }
     [expandedProperty.setNative](value: boolean) {
         if (value) {

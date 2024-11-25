@@ -7,4 +7,5 @@ export abstract class CardViewBase extends ContentView {
     @cssProperty dynamicElevationOffset: number;
     @cssProperty rippleColor: Color;
     @cssProperty shape: string;
+    @cssProperty rippleColorAlpha: number;
 }

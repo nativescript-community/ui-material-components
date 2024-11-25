@@ -16,10 +16,10 @@
 -->
 
 <com.google.android.material.textfield.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/TextInputLayout.Filled"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <com.nativescript.material.textview.TextViewInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"/>
 </com.google.android.material.textfield.TextInputLayout>

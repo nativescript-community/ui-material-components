@@ -18,7 +18,7 @@ export class Page extends INSPage {
     contentLayout: android.widget.LinearLayout;
 
     createNativeView() {
-        const layout = android.view.LayoutInflater.from(this._context).inflate(getLayout('material_page'), null, false) as androidx.coordinatorlayout.widget.CoordinatorLayout;
+        const layout = android.view.LayoutInflater.from(this._context).inflate(getLayout('ns_material_page'), null, false) as androidx.coordinatorlayout.widget.CoordinatorLayout;
 
         this.appBarLayout = layout.findViewById(getId('appbarLayout')) as com.google.android.material.appbar.AppBarLayout;
         this.collapsingToolbarLayout = layout.findViewById(getId('collapsingToolbarLayout')) as com.google.android.material.appbar.CollapsingToolbarLayout;

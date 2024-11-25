@@ -1,16 +1,17 @@
 {
     "uses": [
-        "com.nativescript.material.core:Utils*",
-        "android.graphics:Color*",
-        "android.graphics.drawable:RippleDrawable*",
-        "android.os:Build*",
-        "android.content.res:ColorStateList*",
-        "com.google.android.material.shape:ShapeAppearanceModel*",
-        "com.google.android.material.shape:MaterialShapeDrawable*",
-        "com.google.android.material.shape:CornerTreatment*",
-        "com.google.android.material.shape:CutCornerTreatment*",
-        "com.google.android.material.shape:RelativeCornerSize*",
-        "com.google.android.material.shape:RoundedCornerTreatment*",
-        "android.content.res:TypedArray*"
+        "com.nativescript.material.core:Utils",
+        "android.graphics:Color",
+        "android.graphics.drawable:RippleDrawable",
+        "android.os:Build",
+        "android.content.res:ColorStateList",
+        "com.google.android.material.shape:ShapeAppearanceModel",
+        "com.google.android.material.shape:ShapeAppearanceModel.Builder",
+        "com.google.android.material.shape:MaterialShapeDrawable",
+        "com.google.android.material.shape:CornerTreatment",
+        "com.google.android.material.shape:CutCornerTreatment",
+        "com.google.android.material.shape:RelativeCornerSize",
+        "com.google.android.material.shape:RoundedCornerTreatment",
+        "android.content.res:TypedArray"
     ]
 }

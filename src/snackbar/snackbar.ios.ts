@@ -1,6 +1,7 @@
 import { getRippleColor, themer } from '@nativescript-community/ui-material-core';
 import { Application, Color, Frame, Page } from '@nativescript/core';
 import { DismissReasons, SnackBarAction, SnackBarBase, SnackBarOptions } from './snackbar-common';
+export { DismissReasons, SnackBarAction };
 
 export class SnackBar extends SnackBarBase {
     static _snackbarManager: MDCSnackbarManager = MDCSnackbarManager.defaultManager;
@@ -61,12 +62,23 @@ export class SnackBar extends SnackBarBase {
 
         let nAttachedView: UIView;
         if (options.view) {
-            nAttachedView = options.view.nativeViewProtected;
+            nAttachedView = options.view.nativeViewProtected || options.view;
         } else {
-            let viewController = Application.ios.rootController;
-
-            while (viewController && viewController.presentedViewController) {
-                viewController = viewController.presentedViewController;
+            let currentView = Frame.topmost().currentPage || Application.getRootView();
+            currentView = currentView.modal || currentView;
+            let viewController = currentView.viewController;
+            while (viewController.presentedViewController) {
+                while (
+                    viewController.presentedViewController instanceof UIAlertController ||
+                    (viewController.presentedViewController['isAlertController'] && viewController.presentedViewController.presentedViewController)
+                ) {
+                    viewController = viewController.presentedViewController;
+                }
+                if (viewController.presentedViewController instanceof UIAlertController || viewController.presentedViewController['isAlertController']) {
+                    break;
+                } else {
+                    viewController = viewController.presentedViewController;
+                }
             }
             nAttachedView = viewController.view;
         }

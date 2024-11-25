@@ -36,17 +36,18 @@ import Mixins from './Mixins.vue';
 
 import '../app.scss';
 
-import {Trace} from '@nativescript/core';
+import { Trace } from '@nativescript/core';
 Trace.addCategories(Trace.categories.NativeLifecycle);
 Trace.addCategories(Trace.categories.ViewHierarchy);
 // Trace.enable();
 installMixins();
 installBottomSheet();
 if (__IOS__) {
-    themer.setPrimaryColor('#bff937');
-    themer.setPrimaryColorVariant('#33B5E5');
-    themer.setAccentColor('#ff8a39');
-    themer.setSecondaryColor('#a830d7');
+    themer.setPrimaryColor('#006E25');
+    themer.setOnPrimaryColor('#FFFFFF');
+    themer.setSecondaryColor('#526350');
+    themer.setSurfaceColor('#F9FAF4');
+    themer.setOnSurfaceColor('#1A1C19');
 }
 themer.createShape('cut', {
     cornerFamily: 'cut' as any,
@@ -57,7 +58,6 @@ themer.createShape('cut', {
 });
 
 export function installPlugin() {
-
     Vue.use(ActivityIndicatorPlugin);
     Vue.use(ButtonPlugin);
     Vue.use(CardViewPlugin);
@@ -78,17 +78,17 @@ export const demos = [
     { name: 'ActivityIndicators', path: 'ActivityIndicators', component: ActivityIndicators },
     { name: 'BottomNavigationBar', path: 'BottomNavigationBar', component: BottomNavigationBar },
     { name: 'BottomNavigation', path: 'BottomNavigation', component: BottomNavigation },
+    { name: 'BottomSheet', path: 'BottomSheet', component: BottomSheet },
     { name: 'Buttons', path: 'Buttons', component: Buttons },
     { name: 'CardViews', path: 'CardViews', component: CardViews },
     { name: 'Dialogs', path: 'Dialogs', component: Dialogs },
+    { name: 'Mixins', path: 'Mixins', component: Mixins },
     { name: 'ProgressBars', path: 'ProgressBars', component: ProgressBars },
     { name: 'Ripples', path: 'Ripples', component: Ripples },
     { name: 'Sliders', path: 'Sliders', component: Sliders },
     { name: 'SnackBar', path: 'SnackBar', component: SnackBar },
+    { name: 'SpeedDial', path: 'SpeedDial', component: SpeedDial },
     { name: 'TextFields', path: 'TextFields', component: TextFields },
     { name: 'TextViews', path: 'TextViews', component: TextViews },
-    { name: 'BottomSheet', path: 'BottomSheet', component: BottomSheet },
-    { name: 'SpeedDial', path: 'SpeedDial', component: SpeedDial },
-    { name: 'Tabs', path: 'Tabs', component: Tabs },
-    { name: 'Mixins', path: 'Mixins', component: Mixins }
+    { name: 'Tabs', path: 'Tabs', component: Tabs }
 ];

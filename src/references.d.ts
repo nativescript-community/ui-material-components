@@ -1,4 +1,5 @@
 /// <reference path="./typings/mdc.android.d.ts" />
+/// <reference path="./typings/extensions.android.d.ts" />
 /// <reference path="./typings/mdc.ios.d.ts" />
 
 interface MDCAlertController {

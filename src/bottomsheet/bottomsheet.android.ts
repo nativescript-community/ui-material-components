@@ -86,7 +86,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 this.bindingContext = fromObject(options.context);
                 this._raiseShownBottomSheetEvent();
             },
-            dismissCallback: () => this._onDismissBottomSheetCallback()
+            dismissCallback: () => this._onDismissBottomSheetCallback?.()
         };
         const dfListener = new com.nativescript.material.bottomsheet.BottomSheetDialogFragment.BottomSheetDialogFragmentListener({
             onCreateDialog(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment, savedInstanceState: android.os.Bundle): android.app.Dialog {
@@ -146,12 +146,12 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 savedInstanceState: android.os.Bundle
             ): android.view.View {
                 owner._setupAsRootView(fragment.getActivity());
+                owner.parent = Application.getRootView();
                 owner._isAddedToNativeVisualTree = true;
                 return owner.nativeViewProtected;
             },
 
             onStart(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment): void {
-                const color = owner.backgroundColor;
                 const contentViewId = getId('design_bottom_sheet');
                 const view = fragment.getDialog().findViewById(contentViewId);
                 const transparent = bottomSheetOptions.options?.transparent === true;
@@ -159,6 +159,13 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     // we need delay it just a bit or it wont work
                     setTimeout(() => {
                         view.setBackground(null);
+                    }, 0);
+                } else if (bottomSheetOptions.options?.backgroundOpacity) {
+                    // we need delay it just a bit or it wont work
+                    setTimeout(() => {
+                        const backgroundDrawable = view.getBackground();
+                        backgroundDrawable.setAlpha(bottomSheetOptions.options?.backgroundOpacity * 255);
+                        view.setBackground(backgroundDrawable);
                     }, 0);
                 }
 
@@ -217,26 +224,17 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             },
 
             onDismiss(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment, dialog: android.content.DialogInterface): void {
-                const manager = fragment.getFragmentManager();
-                if (manager) {
-                    bottomSheetOptions.dismissCallback();
+                if (owner) {
+                    owner._bottomSheetCloseIgnore = true;
                 }
-
-                if (owner && owner.isLoaded) {
-                    owner.callUnloaded();
-                }
+                bottomSheetOptions.dismissCallback();
             },
 
             onDestroy(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment): void {
                 (df as any).nListener = null;
                 if (owner) {
-                    // Android calls onDestroy before onDismiss.
-                    // Make sure we unload first and then call _tearDownUI.
-                    if (owner.isLoaded) {
-                        owner.callUnloaded();
-                    }
-                    owner._isAddedToNativeVisualTree = false;
-                    owner._tearDownUI(true);
+                    owner._bottomSheetCloseIgnore = false;
+                    owner._bottomSheetClosed();
                 }
             }
         });

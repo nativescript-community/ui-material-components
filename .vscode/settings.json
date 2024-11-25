@@ -14,5 +14,6 @@
     ],
     "editor.snippetSuggestions": "top",
     "NE.enable.snippets": true,
-    "java.configuration.updateBuildConfiguration": "disabled"
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "typescript.tsdk": "node_modules/typescript/lib"
 }

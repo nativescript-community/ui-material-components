@@ -1,4 +1,3 @@
-
 /**
  * Material BottomSheet component
  * @module @nativescript-community/ui-material-bottomsheet
@@ -14,28 +13,28 @@ export declare abstract class ViewWithBottomSheetBase extends View {
     /**
      * @hidden
      */
-     protected _closeBottomSheetCallback: Function;
+    protected _closeBottomSheetCallback: Function;
 
     // used when the bottomSheet is dismissed
     /**
      * @hidden
      */
-     public _onDismissBottomSheetCallback: Function;
+    public _onDismissBottomSheetCallback: Function;
 
     /**
      * @hidden
      */
-     _bottomSheetFragment: any; // com.google.android.material.bottomsheet.BottomSheetDialogFragment
+    _bottomSheetFragment: any; // com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
     /**
      * @hidden
      */
-     protected abstract _hideNativeBottomSheet(parent: any, whenClosedCallback: any): void;
+    protected abstract _hideNativeBottomSheet(parent: any, whenClosedCallback: any): void;
 
     /**
      * @hidden
      */
-     protected _bottomSheetContext: any;
+    protected _bottomSheetContext: any;
 
     /**
      * @hidden
@@ -55,13 +54,12 @@ export declare abstract class ViewWithBottomSheetBase extends View {
     /**
      * @hidden
      */
-     protected _commonShowNativeBottomSheet(parent: View, options: BottomSheetOptions): void;
-    
+    protected _commonShowNativeBottomSheet(parent: View, options: BottomSheetOptions): void;
+
     /**
      * @hidden
      */
     protected _raiseShowingBottomSheetEvent(): void;
-
 
     /**
      * closes the current BottomSheet
@@ -69,7 +67,6 @@ export declare abstract class ViewWithBottomSheetBase extends View {
      * @param args anything you want as a result of the `showBottomSheet` Promise
      */
     public closeBottomSheet(...args: any): void;
-
 
     /**
      *  shows a modal BottomSheet

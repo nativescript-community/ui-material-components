@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-speeddial",
-    "version": "7.0.34",
+    "version": "7.2.67",
     "description": "When pressed, the Material Design component can display three to six related actions in the form of a speed dial.",
     "main": "./index",
     "sideEffects": false,
@@ -13,7 +13,7 @@
         "build.win": "npm run tsc-win",
         "build.all": "npm run build && npm run build.angular",
         "build.all.win": "npm run build.win && npm run build.angular.win",
-        "build.angular": "ng-packagr -p ../../src/speeddial/angular/ng-package.json -c ../../src/speeddial/angular/tsconfig.json",
+        "build.angular": "ng-packagr -p ../../src/speeddial/angular/ng-package.json -c ../../src/speeddial/angular/tsconfig.json && rm angular/.npmignore",
         "build.angular.win": "ng-packagr -p ..\\..\\src\\speeddial\\angular\\package.json -c ..\\..\\src\\speeddial\\angular\\tsconfig.json",
         "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
     },
@@ -46,8 +46,8 @@
     },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-button": "^7.0.34",
-        "@nativescript-community/ui-material-core": "^7.0.34"
+        "@nativescript-community/ui-material-button": "^7.2.67",
+        "@nativescript-community/ui-material-core": "^7.2.67"
     },
-    "gitHead": "240457b7952c4f0258aabc46615de63d1473ead1"
+    "gitHead": "65eb2d66b4128ce58b4d3e35c83a68a6f921222c"
 }

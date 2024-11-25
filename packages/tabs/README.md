@@ -45,7 +45,7 @@ IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-materia
             <mdt:TabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
-            </TabStripItem>
+            </mdt:TabStripItem>
             <mdt:TabStripItem> class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>

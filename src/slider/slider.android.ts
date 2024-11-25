@@ -1,7 +1,8 @@
-import { cssProperty, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
+import { cssProperty, rippleColorAlphaProperty, rippleColorProperty, themer } from '@nativescript-community/ui-material-core';
 import { getColorStateList, getEnabledColorStateList, state } from '@nativescript-community/ui-material-core/android/utils';
 import { CoercibleProperty, Color, Property, View, backgroundColorProperty, backgroundInternalProperty, colorProperty } from '@nativescript/core';
 import { stepSizeProperty, thumbColorProperty, trackBackgroundColorProperty, trackFillColorProperty } from './cssproperties';
+import { getRippleColor } from '@nativescript-community/ui-material-core/index.android';
 
 let ASlider: typeof com.google.android.material.slider.Slider;
 
@@ -105,12 +106,15 @@ export class Slider extends View {
         if (color) {
             this.nativeViewProtected.setTrackTintList(sliderGetEnabledColorStateList(color));
             if (!this.trackBackgroundColor) {
-                this.trackBackgroundColor = new Color(61.2, color.r, color.g, color.b);
+                this[trackBackgroundColorProperty.setNative](new Color(61.2, color.r, color.g, color.b));
             }
         } else {
             this.nativeViewProtected.setTrackTintList(null);
             if (!this.trackBackgroundColor) {
                 this.trackBackgroundColor = null;
+                this[trackBackgroundColorProperty.setNative](null);
+            // } else {
+                // this[trackBackgroundColorProperty.setNative](this.trackBackgroundColor);
             }
         }
 
@@ -118,7 +122,10 @@ export class Slider extends View {
         //     this.trackFillColor = color;
         // }
         if (!this.thumbColor) {
-            this.thumbColor = color;
+            this[thumbColorProperty.setNative](color);
+            if (!this.rippleColor) {
+                this[rippleColorProperty.setNative](color);
+            }
         } else {
             // trackFillColor overrides also the thumbColor
             this[thumbColorProperty.setNative](this.thumbColor);
@@ -183,12 +190,17 @@ export class Slider extends View {
     }
 
     [rippleColorProperty.setNative](color: Color) {
-        this.nativeViewProtected.setHaloTintList(color ? getColorStateList(color.android) : null);
+        this.nativeViewProtected.setHaloTintList(color ? getColorStateList(getRippleColor(color, this.rippleColorAlpha)) : null);
+    }
+    [rippleColorAlphaProperty.setNative](value: number) {
+        if (this.rippleColor) {
+            this[rippleColorProperty.setNative](this.rippleColor);
+        }
     }
     [thumbColorProperty.setNative](color: Color) {
         this.nativeViewProtected.setThumbTintList(sliderGetEnabledColorStateList(color));
         if (!this.rippleColor) {
-            this.rippleColor = color;
+            this[rippleColorProperty.setNative](color);
         } else {
             // trackFillColor overrides also the thumbColor
             this[rippleColorProperty.setNative](this.rippleColor);

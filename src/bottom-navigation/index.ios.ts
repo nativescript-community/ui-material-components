@@ -6,31 +6,43 @@ import { TabStrip } from '@nativescript-community/ui-material-core-tabs/tab-stri
 import { TabStripItem } from '@nativescript-community/ui-material-core-tabs/tab-strip-item';
 // Types
 // Requires
-import { CSSType, Color, CoreTypes, Device, Font, Frame, IOSHelper, ImageSource, Property, Utils, View, booleanConverter } from '@nativescript/core';
+import { CSSType, Color, CoreTypes, Device, Font, Frame, IOSHelper, ImageAsset, ImageSource, Property, Utils, View, booleanConverter } from '@nativescript/core';
 import { getTransformedText } from '@nativescript/core/ui/text-base';
-import { iOSNativeHelper } from '@nativescript/core/utils';
+import { SDK_VERSION } from '@nativescript/core/utils';
 export { TabContentItem, TabStrip, TabStripItem };
 
 // TODO:
 // import { profile } from "../../profiling";
 
 const maxTabsCount = 5;
-const majorVersion = iOSNativeHelper.MajorVersion;
 const isPhone = Device.deviceType === 'Phone';
 
 @NativeClass
 class MDTabBarControllerImpl extends UITabBarController {
     private _owner: WeakRef<BottomNavigation>;
+    private _preventTraitCollectionChanges: boolean;
 
     public static initWithOwner(owner: WeakRef<BottomNavigation>): MDTabBarControllerImpl {
         const handler = MDTabBarControllerImpl.alloc().init() as MDTabBarControllerImpl;
         handler._owner = owner;
+        handler._preventTraitCollectionChanges = false;
 
         return handler;
     }
 
-    // TODO
-    // @profile
+    public viewDidLoad() {
+        super.viewDidLoad();
+        if (SDK_VERSION >= 18) {
+            try {
+                this._preventTraitCollectionChanges = true;
+                this.traitOverrides.horizontalSizeClass = UIUserInterfaceSizeClass.Compact;
+            } finally {
+                this._preventTraitCollectionChanges = false;
+            }
+        }
+        this.tabBar.backgroundColor = new Color('#fff').ios;
+    }
+
     public viewWillAppear(animated: boolean): void {
         super.viewWillAppear(animated);
         const owner = this._owner.get();
@@ -48,8 +60,6 @@ class MDTabBarControllerImpl extends UITabBarController {
         }
     }
 
-    // TODO
-    // @profile
     public viewDidDisappear(animated: boolean): void {
         super.viewDidDisappear(animated);
 
@@ -61,9 +71,12 @@ class MDTabBarControllerImpl extends UITabBarController {
 
     public viewWillTransitionToSizeWithTransitionCoordinator(size: CGSize, coordinator: UIViewControllerTransitionCoordinator): void {
         super.viewWillTransitionToSizeWithTransitionCoordinator(size, coordinator);
+        if (!this._owner?.get()) {
+            return;
+        }
         coordinator.animateAlongsideTransitionCompletion(() => {
-            const owner = this._owner.get();
-            if (owner && owner.tabStrip && owner.tabStrip.items) {
+            const owner = this._owner?.get();
+            if (owner?.tabStrip?.items) {
                 const tabStrip = owner.tabStrip;
                 tabStrip.items.forEach((tabStripItem) => {
                     updateBackgroundPositions(tabStrip, tabStripItem);
@@ -79,14 +92,13 @@ class MDTabBarControllerImpl extends UITabBarController {
     // Mind implementation for other controllers
     public traitCollectionDidChange(previousTraitCollection: UITraitCollection): void {
         super.traitCollectionDidChange(previousTraitCollection);
+        if (this._preventTraitCollectionChanges) {
+            return;
+        }
 
-        if (majorVersion >= 13) {
-            const owner = this._owner.get();
-            if (
-                owner &&
-                this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection &&
-                this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection(previousTraitCollection)
-            ) {
+        if (SDK_VERSION >= 13) {
+            const owner = this._owner?.get();
+            if (owner && this.traitCollection.hasDifferentColorAppearanceComparedToTraitCollection?.(previousTraitCollection)) {
                 owner.notify({
                     eventName: IOSHelper.traitCollectionColorAppearanceChangedEvent,
                     object: owner
@@ -224,7 +236,7 @@ function updateBackgroundPositions(tabStrip: TabStrip, tabStripItem: TabStripIte
     } else {
         // always default to at least a solid white background as fallback
         // building with Xcode 13 causes bgView with no background to be fully transparent unless a css background-color is set - this allows original default behavior to work as it always did
-        bgView.backgroundColor = new Color('#fff').ios;
+        bgView.backgroundColor = null;
     }
 }
 
@@ -237,7 +249,7 @@ function updateTitleAndIconPositions(tabStripItem: TabStripItem, tabBarItem: UIT
     // For iOS 11 icon is above the text *only* on phones in portrait mode.
     const orientation = controller.interfaceOrientation;
     const isPortrait = orientation !== UIInterfaceOrientation.LandscapeLeft && orientation !== UIInterfaceOrientation.LandscapeRight;
-    const isIconAboveTitle = majorVersion < 11 || (isPhone && isPortrait);
+    const isIconAboveTitle = SDK_VERSION < 11 || (isPhone && isPortrait);
 
     if (!tabStripItem.iconSource) {
         if (isIconAboveTitle) {
@@ -392,7 +404,7 @@ export class BottomNavigation extends TabNavigationBase {
     }
 
     public setTabBarBackgroundColor(value: UIColor | Color): void {
-        this.viewController.tabBar.barTintColor = value instanceof Color ? value.ios : value;
+        this.viewController.tabBar.backgroundColor = this.viewController.tabBar.barTintColor = value instanceof Color ? value.ios : value;
         this.updateAllItemsColors();
     }
 
@@ -693,16 +705,26 @@ export class BottomNavigation extends TabNavigationBase {
         let isFontIcon = false;
         let image: UIImage = this.mIconsCache[iconTag];
         if (!image) {
-            let is;
-            if (Utils.isFontIconURI(iconSource)) {
-                isFontIcon = true;
-                const fontIconCode = iconSource.split('//')[1];
-                is = ImageSource.fromFontIconCodeSync(fontIconCode, font, color);
+            let is: ImageSource | ImageAsset;
+            if (typeof iconSource === 'string') {
+                if (Utils.isFontIconURI(iconSource)) {
+                    isFontIcon = true;
+                    const fontIconCode = iconSource.split('//')[1];
+                    const target = tabStripItem.image ? tabStripItem.image : tabStripItem;
+                    const font = target.style.fontInternal;
+                    if (!color) {
+                        color = target.style.color;
+                    }
+                    is = ImageSource.fromFontIconCodeSync(fontIconCode, font, color);
+                } else {
+                    is = ImageSource.fromFileOrResourceSync(iconSource);
+                }
             } else {
-                is = ImageSource.fromFileOrResourceSync(iconSource);
+                is = iconSource;
             }
 
-            if (is && is.ios) {
+            image = is?.ios;
+            if (image) {
                 image = is.ios;
 
                 if (this.tabStrip && this.tabStrip.isIconSizeFixed) {
@@ -830,7 +852,7 @@ export class BottomNavigation extends TabNavigationBase {
         // to fix the above issue we are applying the selected fix only for the case, when there is no background set
         // in that case we have the following known issue:
         // // we will set the color to all unselected items, so you won't be able to set different colors for the different not selected items
-        if (!this.viewController.tabBar.barTintColor && attributes[UITextAttributeTextColor] && majorVersion > 9) {
+        if (!this.viewController.tabBar.barTintColor && attributes[UITextAttributeTextColor] && SDK_VERSION > 9) {
             this.viewController.tabBar.unselectedItemTintColor = attributes[UITextAttributeTextColor];
         }
     }

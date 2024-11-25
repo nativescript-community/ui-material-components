@@ -1,20 +1,23 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <style name="TextInputEditText" parent="@style/Widget.MaterialComponents.TextInputEditText.FilledBox">
+    <style name="TextInputEditText"
+        parent="@style/Widget.MaterialComponents.TextInputEditText.FilledBox">
         <item name="backgroundColor">@null</item>
         <item name="android:paddingLeft">0dp</item>
         <item name="android:paddingRight">0dp</item>
         <item name="android:paddingTop">13dp</item>
         <item name="android:paddingBottom">13dp</item>
     </style>
-    <style name="ThemeOverlay" parent="@style/ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox">
+    <style name="ThemeOverlay"
+        parent="@style/ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox">
         <item name="editTextStyle">@style/TextInputEditText</item>
     </style>
     <style name="ShapeAppearanceOverlay" parent="">
-        
+
     </style>
-    <style name="TextInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+    <style name="TextInputLayout"
+        parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="materialThemeOverlay">@style/ThemeOverlay</item>
         <item name="boxBackgroundColor">@null</item>
         <item name="boxBackgroundMode">none</item>
@@ -25,7 +28,11 @@
         <item name="boxCornerRadiusTopEnd">0dp</item>
         <item name="boxCornerRadiusBottomStart">0dp</item>
         <item name="boxCornerRadiusBottomEnd">0dp</item>
-
-        <!-- <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay</item> -->
+    </style>
+    <style name="TextInputLayout.Filled"
+        parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+    </style>
+    <style name="TextInputLayout.Outlined"
+        parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
     </style>
 </resources>

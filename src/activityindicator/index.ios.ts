@@ -33,13 +33,16 @@ export class ActivityIndicator extends ActivityIndicatorBase {
 
     private updateStrokeRadius(width: number, height: number) {
         // radius is maxed to 72
-        const min = Math.min(Math.min(width, height), 144);
-        const strokeWidth = min / 25;
-        const scale = Screen.mainScreen.scale;
+        const nativeView = this.nativeViewProtected;
+        if (nativeView) {
+            const min = Math.min(Math.min(width, height), 144);
+            const strokeWidth = min / 25;
+            const scale = Screen.mainScreen.scale;
 
-        const radius = min / 2 - strokeWidth / 2;
-        this.nativeViewProtected.strokeWidth = strokeWidth;
-        this.nativeViewProtected.radius = radius / scale;
+            const radius = min / 2 - strokeWidth / 2;
+            nativeView.strokeWidth = strokeWidth;
+            nativeView.radius = radius / scale;
+        }
     }
 
     public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {

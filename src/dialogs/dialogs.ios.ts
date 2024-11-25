@@ -21,7 +21,7 @@ import {
     inputType
 } from '@nativescript/core';
 import { LoginOptions, MDCAlertControlerOptions, PromptOptions } from './dialogs';
-import { isDialogOptions } from './dialogs-common';
+import { isDialogOptions, showingDialogs } from './dialogs-common';
 
 export { capitalizationType, inputType };
 
@@ -32,6 +32,14 @@ class UIViewAutoSizeUIViewAutoSize extends UIView {
         const view = this._view;
         if (!view) {
             return CGSizeZero;
+        }
+        // if message is set on the dialog
+        // this is called with an infinite boundsSize.width which would
+        // make the view size itself to as big as possible
+        // which we never want
+        // instead we try and return our previously measured size
+        if (boundsSize.width >= Number.MAX_SAFE_INTEGER) {
+            return this.bounds.size;
         }
         const actualWidth = Math.min(boundsSize.width, Screen.mainScreen.widthPixels);
         const widthSpec = Utils.layout.makeMeasureSpec(Utils.layout.toDevicePixels(actualWidth), Utils.layout.EXACTLY);
@@ -55,8 +63,8 @@ class UIViewAutoSizeUIViewAutoSize extends UIView {
 function createUIViewAutoSizeUIViewAutoSize(view: View) {
     const self = UIViewAutoSizeUIViewAutoSize.new() as UIViewAutoSizeUIViewAutoSize;
     view._setupAsRootView({});
+    view.parent = Application.getRootView();
     view._isAddedToNativeVisualTree = true;
-    view.callLoaded();
     self._view = view;
     self.addSubview(view.nativeViewProtected);
     (view.nativeViewProtected as UIView).autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
@@ -73,6 +81,7 @@ class MDCDialogPresentationControllerDelegateImpl extends NSObject {
         return delegate;
     }
     dialogPresentationControllerDidDismiss(controller: MDCDialogPresentationController) {
+        // WARNING: only called when clicked on background!
         const callback = this._callback;
         if (callback) {
             callback();
@@ -82,8 +91,10 @@ class MDCDialogPresentationControllerDelegateImpl extends NSObject {
 @NativeClass
 class MDCAlertControllerImpl extends MDCAlertController {
     autoFocusTextField?: TextField;
+    clear: Function;
     _resolveFunction?: Function;
     _disableContentInsets: boolean;
+    _savedPreferredContentSize: CGSize;
     viewDidAppear(animated: boolean) {
         super.viewDidAppear(animated);
         if (this.autoFocusTextField) {
@@ -94,23 +105,44 @@ class MDCAlertControllerImpl extends MDCAlertController {
     }
     viewDidLoad() {
         super.viewDidLoad();
+        // we call callLoaded here to prevent  callLoaded from triggering loadView to be called
+        // again from callLoaded in loadView (controller.view would not be set yet)
+        if (this.accessoryView instanceof UIViewAutoSizeUIViewAutoSize) {
+            this.accessoryView._view.callLoaded();
+        }
         if (this._disableContentInsets) {
             (this.view as MDCAlertControllerView).contentInsets = UIEdgeInsetsZero;
         }
     }
-    viewDidUnload() {
-        super.viewDidUnload();
-        if (this.accessoryView instanceof UIViewAutoSizeUIViewAutoSize) {
-            const view = this.accessoryView._view;
-            view.callUnloaded();
-            view._tearDownUI(true);
-            view._isAddedToNativeVisualTree = false;
-            this.accessoryView._view = null;
+    viewDidLayoutSubviews() {
+        // we enforce the bounds first
+        // when showing a modal on top of us and then hiding the modal, our size gets messed up
+        if (this._savedPreferredContentSize) {
+            this.preferredContentSize = this._savedPreferredContentSize;
+            this._savedPreferredContentSize = null;
         }
+        this.view.bounds = CGRectMake(0, 0, this.preferredContentSize.width, this.preferredContentSize.height);
+        super.viewDidLayoutSubviews();
     }
+    viewDidDisappear(animated: boolean) {
+        super.viewDidDisappear(animated);
+        this._savedPreferredContentSize = this.preferredContentSize;
+    }
+    // viewDidUnload is not called anymore
+    // viewDidUnload() {
+    //     super.viewDidUnload();
+    //     if (this.accessoryView instanceof UIViewAutoSizeUIViewAutoSize) {
+    //         const view = this.accessoryView._view;
+    //         view.callUnloaded();
+    //         view._tearDownUI(true);
+    //         view.parent = null;
+    //         view._isAddedToNativeVisualTree = false;
+    //         this.accessoryView._view = null;
+    //     }
+    // }
 }
 
-function addButtonsToAlertController(alertController: MDCAlertController, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any): void {
+function addButtonsToAlertController(alertController: MDCAlertControllerImpl, options: ConfirmOptions & MDCAlertControlerOptions, callback?: Function, validationArgs?: (r) => any): void {
     if (!options) {
         return;
     }
@@ -126,7 +158,9 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
         if (Utils.isFunction(callback)) {
             callback(result);
         }
-        alertController.dismissModalViewControllerAnimated(true);
+        alertController.dismissViewControllerAnimatedCompletion(true, () => {
+            alertController.clear();
+        });
     }
     let buttonsFont;
 
@@ -157,6 +191,7 @@ function addButtonsToAlertController(alertController: MDCAlertController, option
 
 function createAlertController(options: DialogOptions & MDCAlertControlerOptions, resolve?: Function) {
     const alertController = MDCAlertControllerImpl.alloc().init() as MDCAlertControllerImpl;
+    alertController['isAlertController'] = true;
     alertController.mdc_adjustsFontForContentSizeCategory = true;
 
     if (options.title) {
@@ -165,6 +200,24 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
     if (options.message) {
         alertController.message = options.message;
     }
+
+    const clear = (alertController.clear = function clear() {
+        const index = showingDialogs.indexOf(alertController);
+        if (index !== -1) {
+            showingDialogs.splice(index, 1);
+        }
+        alertController._resolveFunction = null;
+        if (alertController.accessoryView instanceof UIViewAutoSizeUIViewAutoSize) {
+            const view = alertController.accessoryView._view;
+            view.callUnloaded();
+            view._tearDownUI(true);
+            view.parent = null;
+            view._isAddedToNativeVisualTree = false;
+            alertController.accessoryView._view = null;
+        }
+        alertController._resolveFunction = null;
+        alertController.mdc_dialogPresentationController.delegate = null;
+    });
     // if (options.buttonFont) {
     //     alertController.buttonFont = options.buttonFont.getUIFont(alertController.buttonFont);
     // }
@@ -174,21 +227,25 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
             options.view instanceof View
                 ? options.view
                 : Builder.createViewFromEntry({
-                    moduleName: options.view as string
-                });
-
+                      moduleName: options.view as string
+                  });
+        if (view.parent) {
+            view.parent._removeView(view);
+        }
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
         modalRootViewCssClasses.forEach((c) => view.cssClasses.add(c));
 
         alertController._resolveFunction = resolve;
         const context = options.context || {};
-        context.closeCallback = function (...originalArgs) {
-            alertController.dismissModalViewControllerAnimated(true);
-            if (alertController._resolveFunction && resolve) {
+        context.closeCallback = function (originalArgs) {
+            if (alertController._resolveFunction) {
+                alertController._resolveFunction(originalArgs);
                 alertController._resolveFunction = null;
-                resolve.apply(this, originalArgs);
             }
+            alertController.dismissViewControllerAnimatedCompletion(true, () => {
+                clear();
+            });
         };
         view.bindingContext = fromObject(context);
         alertController.accessoryView = createUIViewAutoSizeUIViewAutoSize(view);
@@ -204,9 +261,8 @@ function createAlertController(options: DialogOptions & MDCAlertControlerOptions
         view.viewController = alertController; // needed to prevent a crash in layoutChild
     }
     const dialogPresentationControllerDelegate = MDCDialogPresentationControllerDelegateImpl.initWithCallback(() => {
-        resolve && resolve();
-        alertController._resolveFunction = null;
-        alertController.mdc_dialogPresentationController.delegate = null;
+        resolve?.();
+        clear();
     });
     alertController.mdc_dialogPresentationController.dialogPresentationControllerDelegate = dialogPresentationControllerDelegate;
 
@@ -234,7 +290,6 @@ export function alert(arg: any): Promise<any> {
             const alertController = createAlertController(options, resolve);
 
             addButtonsToAlertController(alertController, options, (result) => {
-                alertController._resolveFunction = null;
                 resolve(result);
             });
 
@@ -246,7 +301,7 @@ export function alert(arg: any): Promise<any> {
 }
 
 export class AlertDialog {
-    alertController: MDCAlertController;
+    alertController: MDCAlertControllerImpl;
     presentingController: UIViewController;
     constructor(private options: any) {}
 
@@ -256,12 +311,22 @@ export class AlertDialog {
             this.presentingController = showUIAlertController(this.alertController, this.options);
         }
     }
-    async hide() {
-        if (this.presentingController) {
+    hiding = false;
+    async hide(result) {
+        if (this.presentingController && !this.hiding) {
+            this.hiding = true;
             return new Promise<void>((resolve) => {
-                this.presentingController.dismissViewControllerAnimatedCompletion(true, resolve);
-                this.presentingController = null;
-                this.alertController = null;
+                this.alertController.dismissViewControllerAnimatedCompletion(true, () => {
+                    if (this.alertController._resolveFunction) {
+                        this.alertController._resolveFunction(result);
+                        this.alertController._resolveFunction = null;
+                    }
+                    resolve?.();
+                    this.alertController.clear();
+                    this.presentingController = null;
+                    this.alertController = null;
+                    this.hiding = false;
+                });
             });
         }
     }
@@ -277,8 +342,8 @@ export function confirm(arg: any): Promise<boolean> {
             };
             const options = !isDialogOptions(arg)
                 ? Object.assign(defaultOptions, {
-                    message: arg + ''
-                })
+                      message: arg + ''
+                  })
                 : Object.assign(defaultOptions, arg);
             const alertController = createAlertController(options, resolve);
 
@@ -362,6 +427,9 @@ export function prompt(arg: any): Promise<PromptResult> {
                 }
             }
             stackLayout.addChild(textField);
+            if (options.view instanceof View) {
+                stackLayout.addChild(options.view);
+            }
             options.view = stackLayout;
 
             const alertController = createAlertController(options, resolve);
@@ -435,6 +503,9 @@ export function login(arg: any): Promise<LoginResult> {
 
             stackLayout.addChild(userNameTextField);
             stackLayout.addChild(passwordTextField);
+            if (options.view instanceof View) {
+                stackLayout.addChild(options.view);
+            }
             options.view = stackLayout;
             const alertController = createAlertController(options, resolve);
 
@@ -490,8 +561,6 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
     }
     if (options.titleColor) {
         alertController.titleColor = options.titleColor.ios;
-        // } else if (lblColor) {
-        // alertController.titleColor = lblColor.ios;
     }
     if (options.titleIconTintColor) {
         alertController.titleIconTintColor = options.titleIconTintColor.ios;
@@ -525,24 +594,60 @@ function showUIAlertController(alertController: MDCAlertController, options: Dia
         }
     }
 
-    let currentView = getCurrentPage() || Application.getRootView();
-
+    let rootView = Application.getRootView();
+    if (rootView.parent) {
+        rootView = rootView.parent as any;
+    }
+    let currentView = getCurrentPage() || rootView;
     if (currentView) {
         currentView = currentView.modal || currentView;
-
-        let viewController = Application.ios.rootController;
-
-        while (viewController && viewController.presentedViewController && !(viewController.presentedViewController instanceof MDCAlertControllerImpl)) {
-            viewController = viewController.presentedViewController;
+        let viewController = currentView.viewController;
+        if (!viewController) {
+            throw new Error('no_controller_to_show_dialog');
         }
 
-        if (viewController) {
+        // we check root modal view if there is no currently presented one or if the current one is an alert dialog without a child presented view
+        if (
+            (!viewController.presentedViewController ||
+                (viewController.presentedViewController && viewController.presentedViewController['isAlertController'] && !viewController.presentedViewController.presentedViewController)) &&
+            rootView.viewController.presentedViewController &&
+            !rootView.viewController.presentedViewController.beingDismissed
+        ) {
+            viewController = rootView.viewController.presentedViewController;
+        }
+
+        while (viewController.presentedViewController && !viewController.presentedViewController.beingDismissed) {
+            while (
+                viewController.presentedViewController instanceof UIAlertController ||
+                (viewController.presentedViewController['isAlertController'] && viewController.presentedViewController.presentedViewController)
+            ) {
+                viewController = viewController.presentedViewController;
+            }
+            if (viewController.presentedViewController instanceof UIAlertController || viewController.presentedViewController['isAlertController']) {
+                break;
+            } else {
+                viewController = viewController.presentedViewController;
+            }
+        }
+        showingDialogs.push(alertController);
+        function block() {
             if (alertController.popoverPresentationController) {
                 alertController.popoverPresentationController.sourceView = viewController.view;
                 alertController.popoverPresentationController.sourceRect = CGRectMake(viewController.view.bounds.size.width / 2.0, viewController.view.bounds.size.height / 2.0, 1.0, 1.0);
-                alertController.popoverPresentationController.permittedArrowDirections = 0;
+                alertController.popoverPresentationController.permittedArrowDirections = 0 as any;
             }
             viewController.presentViewControllerAnimatedCompletion(alertController, true, null);
+        }
+        if (viewController.presentedViewController) {
+            if (viewController.presentedViewController.beingDismissed || options.iosForceClosePresentedViewController === true) {
+                viewController.dismissViewControllerAnimatedCompletion(true, () => {
+                    block();
+                });
+            } else {
+                throw new Error('controller_already_presented');
+            }
+        } else {
+            block();
         }
         return viewController;
     }

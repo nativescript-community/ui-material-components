@@ -1,4 +1,4 @@
-import { Application, Color, CoreTypes, Font, ImageSource, Utils, getTransformedText } from '@nativescript/core';
+import { Application, Color, CoreTypes, Font, ImageAsset, ImageSource, Utils, getTransformedText } from '@nativescript/core';
 import { TabContentItem } from '../tab-content-item';
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '../tab-navigation-base';
 import { TabStrip } from '../tab-strip';
@@ -57,7 +57,7 @@ function initializeNativeClasses() {
         }
 
         onPageSelected(position: number) {
-            const owner = this.owner && this.owner.get();
+            const owner = this.owner?.get();
             if (owner) {
                 owner.selectedIndex = position;
                 const tabItems = owner.items;
@@ -119,7 +119,10 @@ function initializeNativeClasses() {
 
     @NativeClass
     class FragmentPagerAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
-        constructor(public owner: WeakRef<TabNavigation>, fragmentActivity: androidx.fragment.app.FragmentActivity) {
+        constructor(
+            public owner: WeakRef<TabNavigation>,
+            fragmentActivity: androidx.fragment.app.FragmentActivity
+        ) {
             super(fragmentActivity);
             return global.__native(this);
         }
@@ -238,7 +241,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         this.mViewPager = viewPager;
         setElevation(nativeView, null, this.tabsPosition);
         if (this.tabStrip) {
-            this.handleTabStripChanged(nativeView, null, this.tabStrip);
+            this.handleTabStripChanged(nativeView, true, this.tabStrip);
         }
 
         return nativeView;
@@ -253,9 +256,9 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         // noop
     }
 
-    private handleTabStripChanged(nativeView: org.nativescript.widgets.GridLayout, oldTabStrip: TabStrip, newTabStrip: TabStrip) {
+    private handleTabStripChanged(nativeView: org.nativescript.widgets.GridLayout, isNewView: boolean, newTabStrip: TabStrip) {
         if (this.mTabsBar) {
-            nativeView.removeView(this.mTabsBar);
+            if (!isNewView) nativeView.removeView(this.mTabsBar);
             nativeView['tabsBar'] = null;
             this.mTabsBar = null;
         }
@@ -279,7 +282,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         if (!nativeView) {
             return;
         }
-        this.handleTabStripChanged(nativeView, oldTabStrip, newTabStrip);
+        this.handleTabStripChanged(nativeView, false, newTabStrip);
     }
 
     onSelectedIndexChanged(oldIndex: number, newIndex: number) {
@@ -462,25 +465,29 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
     }
 
     private getOriginalIcon(tabStripItem: TabStripItem, color?: Color): android.graphics.Bitmap {
-        const iconSource = tabStripItem.image && tabStripItem.image.src;
+        const iconSource = tabStripItem.image?.src;
         if (!iconSource) {
             return null;
         }
 
-        let is: ImageSource;
-        if (Utils.isFontIconURI(iconSource)) {
-            const fontIconCode = iconSource.split('//')[1];
-            const target = tabStripItem.image ? tabStripItem.image : tabStripItem;
-            const font = target.style.fontInternal;
-            if (!color) {
-                color = target.style.color;
+        let is: ImageSource | ImageAsset;
+        if (typeof iconSource === 'string') {
+            if (Utils.isFontIconURI(iconSource)) {
+                const fontIconCode = iconSource.split('//')[1];
+                const target = tabStripItem.image ? tabStripItem.image : tabStripItem;
+                const font = target.style.fontInternal;
+                if (!color) {
+                    color = target.style.color;
+                }
+                is = ImageSource.fromFontIconCodeSync(fontIconCode, font, color);
+            } else {
+                is = ImageSource.fromFileOrResourceSync(iconSource);
             }
-            is = ImageSource.fromFontIconCodeSync(fontIconCode, font, color);
         } else {
-            is = ImageSource.fromFileOrResourceSync(iconSource);
+            is = iconSource;
         }
 
-        return is && is.android;
+        return is?.android;
     }
 
     private getDrawableInfo(image: android.graphics.Bitmap): IconInfo {
@@ -590,7 +597,7 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         if (!tabStripItem.nativeViewProtected) {
             return;
         }
-        const itemColor = tabStripItem.index === this.selectedIndex ? this.mSelectedItemColor : tabStripItem.style.color || this.mUnSelectedItemColor;
+        const itemColor = tabStripItem.index === this.selectedIndex ? this.mSelectedItemColor : this.mUnSelectedItemColor || tabStripItem.style.color;
         // set label color
         if (itemColor) {
             tabStripItem.nativeViewProtected.setTextColor(itemColor.android || null);

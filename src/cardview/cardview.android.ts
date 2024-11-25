@@ -1,4 +1,4 @@
-import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
+import { dynamicElevationOffsetProperty, elevationProperty, getRippleColor, rippleColorAlphaProperty, rippleColorProperty, shapeProperty, themer } from '@nativescript-community/ui-material-core';
 import { createStateListAnimator, getAttrColor, getColorStateList, isPostLollipop } from '@nativescript-community/ui-material-core/android/utils';
 import { Color, Length, backgroundInternalProperty } from '@nativescript/core';
 import { CardViewBase } from './cardview-common';
@@ -210,7 +210,7 @@ function initializeOutlineProvider() {
             return global.__native(this);
         }
         getOutline(view: android.view.View, outline: any) {
-            const cardView = this.owner && this.owner.get();
+            const cardView = this.owner?.get();
             if (cardView) {
                 outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), cardView._borderRadius - cardView._strokeWidth);
             }
@@ -229,14 +229,14 @@ export class CardView extends CardViewBase {
     _borderRadius = 0;
 
     getDefaultElevation(): number {
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             return 1; // 1dp @dimen/mtrl_card_elevation
         }
         return 0; // 1dp @dimen/mtrl_card_elevation
     }
 
     getDefaultDynamicElevationOffset(): number {
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             return 5; // 5dp @dimen/mtrl_card_dragged_z
         }
 
@@ -247,7 +247,7 @@ export class CardView extends CardViewBase {
         initMDCCardView();
         initializeOutlineProvider();
         const view = new MDCCardView(this._context);
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             createStateListAnimator(this, view);
         }
         view.setClickable(this.isUserInteractionEnabled);
@@ -342,7 +342,7 @@ export class CardView extends CardViewBase {
         if (!this.nativeViewProtected) {
             return;
         }
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
@@ -353,20 +353,20 @@ export class CardView extends CardViewBase {
         if (!this.nativeViewProtected) {
             return;
         }
-        if (isPostLollipop()) {
+        if (isPostLollipop) {
             createStateListAnimator(this, this.nativeViewProtected);
         } else {
             const newValue = Length.toDevicePixels(typeof value === 'string' ? Length.parse(value) : value, 0);
             androidx.core.view.ViewCompat.setTranslationZ(this.nativeViewProtected, newValue);
         }
     }
-    [rippleColorProperty.setNative](color: Color) {
-        const rippleColor = color ? color.android : -1;
-        // if (isPostLollipopMR1()) {
-        //     (this.rippleDrawable as android.graphics.drawable.RippleDrawable).setColor(getColorStateList(rippleColor));
-        // } else {
-        //     this.rippleShape.getPaint().setColor(rippleColor);
-        // }
-        (this.nativeViewProtected as any).setRippleColor(getColorStateList(rippleColor));
+    [rippleColorProperty.setNative](value: Color) {
+        this.nativeViewProtected.setRippleColor(value ? getColorStateList(getRippleColor(value, this.rippleColorAlpha)) : null);
+    }
+    [rippleColorAlphaProperty.setNative](value: number) {
+        const rippleColor = this.rippleColor;
+        if (rippleColor) {
+            this.nativeViewProtected.setRippleColor(getColorStateList(getRippleColor(rippleColor, value)));
+        }
     }
 }

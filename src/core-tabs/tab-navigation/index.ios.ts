@@ -1,12 +1,13 @@
 ﻿/**
  * @module @nativescript-community/ui-material-core-tabs/tab-navigation
  */
-import { Color, CoreTypes, Device, Font, Frame, IOSHelper, ImageSource, Property, Utils, View, ViewBase, booleanConverter, getTransformedText } from '@nativescript/core';
+import { Color, CoreTypes, Device, Font, Frame, IOSHelper, ImageAsset, ImageSource, Property, Utils, View, ViewBase, booleanConverter, getTransformedText } from '@nativescript/core';
 import { TabContentItem } from '../tab-content-item';
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '../tab-navigation-base';
 import { TabStrip } from '../tab-strip';
 import { TabStripItem } from '../tab-strip-item';
 import { TabNavigationBase, swipeEnabledProperty } from './index-common';
+import { getRippleColor } from '@nativescript-community/ui-material-core';
 
 export { TabContentItem, TabStrip, TabStripItem };
 
@@ -253,6 +254,7 @@ export abstract class TabNavigation<
     public nativeViewProtected: UIView;
     public selectedIndex: number;
     public mCanSelectItem: boolean;
+    //@ts-ignore
     public isLoaded: boolean;
     public viewController: T;
     public items: TabContentItem[];
@@ -630,21 +632,28 @@ export abstract class TabNavigation<
         }
         const iconTag = [iconSource, font.fontStyle, font.fontWeight, font.fontSize, font.fontFamily, color].join(';');
 
-        let isFontIcon = false;
+        const isFontIcon = false;
         let image: UIImage = this.mIconsCache[iconTag];
         if (!image) {
-            let is: ImageSource;
-            if (Utils.isFontIconURI(iconSource)) {
-                isFontIcon = true;
-                const fontIconCode = iconSource.split('//')[1];
-                is = ImageSource.fromFontIconCodeSync(fontIconCode, font, color);
+            let is: ImageSource | ImageAsset;
+            if (typeof iconSource === 'string') {
+                if (Utils.isFontIconURI(iconSource)) {
+                    const fontIconCode = iconSource.split('//')[1];
+                    const target = tabStripItem.image ? tabStripItem.image : tabStripItem;
+                    const font = target.style.fontInternal;
+                    if (!color) {
+                        color = target.style.color;
+                    }
+                    is = ImageSource.fromFontIconCodeSync(fontIconCode, font, color);
+                } else {
+                    is = ImageSource.fromFileOrResourceSync(iconSource);
+                }
             } else {
-                is = ImageSource.fromFileOrResourceSync(iconSource);
+                is = iconSource;
             }
 
-            if (is && is.ios) {
-                image = is.ios;
-
+            image = is?.ios;
+            if (image) {
                 if (this.tabStrip && this.tabStrip.isIconSizeFixed) {
                     image = this.getFixedSizeIcon(image);
                 }
@@ -897,9 +906,9 @@ export abstract class TabNavigation<
         });
     }
 
-    public setTabBarRippleColor(value: Color) {
+    public setTabBarRippleColor(value: Color, alpha?: number) {
         this.mRippleColor = value;
-        this.viewController.tabBar.rippleColor = value.ios;
+        this.viewController.tabBar.rippleColor = getRippleColor(value, alpha);
     }
 
     public getTabBarRippleColor(): Color {

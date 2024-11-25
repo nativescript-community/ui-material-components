@@ -1,6 +1,6 @@
 {
     "uses": [
-        "android.graphics:Rect*",
-        "android.view:Gravity*"
+        "android.graphics:Rect",
+        "android.view:Gravity"
     ]
 }

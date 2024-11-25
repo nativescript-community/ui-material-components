@@ -1,12 +1,19 @@
 import { BottomSheetOptions } from '../bottomsheet';
-import { Frame, View, ViewBase } from '@nativescript/core';
+import { Frame, View } from '@nativescript/core';
 import { NativeViewElementNode, createElement } from 'svelte-native/dom';
 import { PageSpec } from 'svelte-native/dom/navigation';
 
-export interface ShowBottomSheetOptions extends Omit<BottomSheetOptions, 'view'> {
-    view: PageSpec;
-    parent: NativeViewElementNode<View> | View;
-    props?: any;
+declare module '@nativescript/core/ui/core/view' {
+    interface View {
+        closeBottomSheet(...args: any): void;
+        showBottomSheet(options: BottomSheetOptions): View;
+    }
+}
+
+export interface SvelteShowBottomSheetOptions<U> extends Omit<BottomSheetOptions, 'view'> {
+    view: PageSpec<U>;
+    parent?: NativeViewElementNode<View> | View;
+    props?: U;
 }
 interface ComponentInstanceInfo {
     element: NativeViewElementNode<View>;
@@ -15,31 +22,32 @@ interface ComponentInstanceInfo {
 
 const modalStack: ComponentInstanceInfo[] = [];
 
-export function resolveComponentElement(viewSpec: PageSpec, props?: any): ComponentInstanceInfo {
-    const dummy = createElement('fragment');
+export function resolveComponentElement<T>(viewSpec: typeof SvelteComponent<T>, props?: any): ComponentInstanceInfo {
+    const dummy = createElement('fragment', window.document as any);
     const viewInstance = new viewSpec({ target: dummy, props });
     const element = dummy.firstElement() as NativeViewElementNode<View>;
     return { element, viewInstance };
 }
 
-export function showBottomSheet<T>(modalOptions: ShowBottomSheetOptions): Promise<T> {
+export function showBottomSheet<T = any, U = any>(modalOptions: SvelteShowBottomSheetOptions<U>): Promise<T> {
     const { view, parent, props = {}, ...options } = modalOptions;
     // Get this before any potential new frames are created by component below
-    const modalLauncher = (parent && (parent instanceof View ? parent : parent.nativeView)) || Frame.topmost().currentPage;
+    const modalLauncher: View = (parent && (parent instanceof View ? parent : parent.nativeView)) || Frame.topmost().currentPage;
 
     const componentInstanceInfo = resolveComponentElement(view, props);
-    const modalView: ViewBase = componentInstanceInfo.element.nativeView;
+    let modalView: View = componentInstanceInfo.element.nativeView;
 
     return new Promise(async (resolve, reject) => {
         let resolved = false;
         const closeCallback = (result: T) => {
             if (resolved) return;
-            const index = modalStack.indexOf(componentInstanceInfo);
-            if (index !== -1) {
-                modalStack.splice(index, 1);
-            }
             resolved = true;
+            if (options.closeCallback) {
+                options.closeCallback(result,componentInstanceInfo.viewInstance);
+            }
+            modalStack.pop();
             resolve(result);
+            modalView._tearDownUI();
             componentInstanceInfo.viewInstance.$destroy(); // don't let an exception in destroy kill the promise callback
         };
         try {
