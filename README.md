@@ -48,8 +48,10 @@ Through this component you can apply `elevation` or `rippleColor` to any `View`.
 import { installMixins } from '@nativescript-community/ui-material-core';
 installMixins();
 ```
-This monorepo contains multiple packages:<br><br><details>
+This monorepo contains multiple packages:<br><br>
+<details open>
 <summary><b>activityindicator</b></summary>
+
 
 [](#nativescript-material-circular-progress-indicator)
 
@@ -177,8 +179,10 @@ Vue.use(ActivityIndicatorPlugin);
 
 Inherite from NativeScript [Activity Indicator](https://docs.nativescript.org/ui/ns-ui-widgets/activity-indicator) so it already has all the same attributes
 
-</details><details>
+</details>
+<details open>
 <summary><b>bottom-navigation</b></summary>
+
 
 [](#nativescript-material-bottom-navigation)
 
@@ -527,8 +531,10 @@ Make sure that you have:
 | unloaded | Emitted when the view is unloaded. |
 | layoutChanged | Emitted when the layout bounds of a view changes due to layout processing. |
 
-</details><details>
+</details>
+<details open>
 <summary><b>bottomnavigationbar</b></summary>
+
 
 [](#nativescript-material-bottom-navigation-bar)
 
@@ -829,8 +835,10 @@ Properties settable through XML/HTML
 | icon         | true     | null    | `string`  | Icon of the tab                             |
 | isSelectable | false    | true    | `boolean` | Determine if the tab can be selected or not |
 
-</details><details>
+</details>
+<details open>
 <summary><b>bottomsheet</b></summary>
+
 
 [](#nativescript-material-bottom-sheet)
 
@@ -1128,8 +1136,10 @@ export class ShareOptionsComponent implements OnInit {
 }
 ```
 
-</details><details>
+</details>
+<details open>
 <summary><b>button</b></summary>
+
 
 [](#nativescript-material-button)
 
@@ -1283,8 +1293,10 @@ An attribute to set the variant of the button. Can be ```flat``` or ```text```. 
 
 An attribute to set the ripple color of the button.
 
-</details><details>
+</details>
+<details open>
 <summary><b>cardview</b></summary>
+
 
 [](#nativescript-material-card)
 
@@ -1422,9 +1434,11 @@ An attribute to set the elevation of the cardview. This will increase the 'drop-
 
 An attribute to set the ripple color of the cardview.
 
-</details><details>
+</details>
+<details open>
 <summary><b>core</b></summary>
 
+
 [](#nativescript-material-core)
 
 # Nativescript Material Core
@@ -1432,9 +1446,11 @@ An attribute to set the ripple color of the cardview.
 [npm-url]:https://npmjs.org/package/nativescript-material-components
 
 Core module for all Nativescript material components
-</details><details>
+</details>
+<details open>
 <summary><b>core-tabs</b></summary>
 
+
 [](#nativescript-material-core)
 
 # Nativescript Material Core
@@ -1442,8 +1458,10 @@ Core module for all Nativescript material components
 [npm-url]:https://npmjs.org/package/nativescript-material-components
 
 Core module for all Nativescript material components
-</details><details>
+</details>
+<details open>
 <summary><b>dialogs</b></summary>
+
 
 [](#nativescript-material-dialogs)
 
@@ -1519,8 +1537,10 @@ alert("Your message").then(()=> {
 
 ```
 
-</details><details>
+</details>
+<details open>
 <summary><b>floatingactionbutton</b></summary>
+
 
 [](#nativescript-material-floating-action-button)
 
@@ -1656,8 +1676,10 @@ An attribute to set the elevation of the floatingactionbutton. This will increas
 
 An attribute to set the ripple color of the floatingactionbutton.
 
-</details><details>
+</details>
+<details open>
 <summary><b>progress</b></summary>
+
 
 [](#nativescript-material-linear-progress-indicator)
 
@@ -1793,8 +1815,10 @@ An attribute to set the elevation of the progress. This will increase the 'drop-
 
 An attribute to set the ripple color of the progress.
 
-</details><details>
+</details>
+<details open>
 <summary><b>ripple</b></summary>
+
 
 [](#nativescript-material-ripple)
 
@@ -1926,8 +1950,10 @@ Inherite from NativeScript [StackLayout](https://docs.nativescript.org/ui/layout
 
 An attribute to set the ripple color of the ripple.
 
-</details><details>
+</details>
+<details open>
 <summary><b>slider</b></summary>
+
 
 [](#nativescript-material-slider)
 
@@ -2084,8 +2110,10 @@ Inherite from NativeScript [Slider](https://docs.nativescript.org/ui/ns-ui-widge
 
 
 
-</details><details>
+</details>
+<details open>
 <summary><b>snackbar</b></summary>
+
 
 [](#nativescript-material-snackbar)
 
@@ -2179,8 +2207,10 @@ export function showColorfulSnackbar() {
 
 ```
 
-</details><details>
+</details>
+<details open>
 <summary><b>speeddial</b></summary>
+
 
 [](#nativescript-material-speed-dial)
 
@@ -2245,8 +2275,10 @@ Vue.use(speeddialPlugin);
 </MDSpeedDial>
 ```
 
-</details><details>
+</details>
+<details open>
 <summary><b>switch</b></summary>
+
 
 [](#nativescript-material-switch)
 
@@ -2370,8 +2402,10 @@ Vue.use(SwitchPlugin);
 Inherits from NativeScript [Switch](https://docs.nativescript.org/ui/components/switch) so it already has all the same attributes.
 
 
-</details><details>
+</details>
+<details open>
 <summary><b>tabs</b></summary>
+
 
 [](#nativescript-material-tabs)
 
@@ -2434,7 +2468,7 @@ IMPORTANT: _Make sure you include `xmlns:mds="@nativescript-community/ui-materia
             <mdt:TabStripItem>
                 <Label text="Home"></Label>
                 <Image src="font://&#xf015;" class="fas"></Image>
-            </TabStripItem>
+            </mdt:TabStripItem>
             <mdt:TabStripItem> class="special">
                 <Label text="Account"></Label>
                 <Image src="font://&#xf007;" class="fas"></Image>
@@ -2705,8 +2739,10 @@ Make sure that you have:
 | unloaded                  | Emitted when the view is unloaded.                                            |
 | layoutChanged             | Emitted when the layout bounds of a view changes due to layout processing.    |
 
-</details><details>
+</details>
+<details open>
 <summary><b>textfield</b></summary>
+
 
 [](#nativescript-material-text-field)
 
@@ -2867,8 +2903,10 @@ An attribute to set the helper text of the textfield.
 
 A boolean attribute to set the floating state of the textfield.
 
-</details><details>
+</details>
+<details open>
 <summary><b>textview</b></summary>
+
 
 [](#nativescript-material-text-view)
 
