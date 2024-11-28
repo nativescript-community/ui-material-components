@@ -292,7 +292,6 @@ export class TextField extends TextFieldBase {
     }
     [editableProperty.setNative](value: boolean) {
         this.clearFocus();
-        // this.nativeTextViewProtected.enabled = value;
     }
     [floatingColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;

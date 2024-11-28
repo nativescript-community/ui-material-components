@@ -307,6 +307,7 @@ export class TextView extends TextViewBase {
     }
     [editableProperty.setNative](value: boolean) {
         (this.nativeTextViewProtected as UITextView).editable = value;
+        (this.nativeTextViewProtected as UITextView).selectable = value;
     }
     [floatingColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value.ios : value;
