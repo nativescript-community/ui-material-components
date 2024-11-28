@@ -66,7 +66,7 @@ function createAlertDialogBuilder(options?: DialogOptions & MDCAlertControlerOpt
                       moduleName: options.view as string
                   });
         if (view.parent) {
-            view.parent._removeView(view)
+            view.parent._removeView(view);
         }
         view.cssClasses.add(CSSUtils.MODAL_ROOT_VIEW_CSS_CLASS);
         const modalRootViewCssClasses = CSSUtils.getSystemCssClasses();
@@ -475,6 +475,13 @@ export function prompt(arg: any): Promise<PromptResult> {
 
             showDialog(dlg, options);
             if (options.autoFocus) {
+                // seems not to work if called too soon so we call it again
+                // once the view is focused and ready
+                textField.once('focus', () => {
+                    setTimeout(() => {
+                        textField.requestFocus();
+                    }, 100);
+                });
                 textField.requestFocus();
             }
         } catch (ex) {
@@ -559,6 +566,13 @@ export function login(arg: any): Promise<LoginResult> {
             );
             showDialog(dlg, options);
             if (options.autoFocus) {
+                // seems not to work if called too soon so we call it again
+                // once the view is focused and ready
+                userNameTextField.once('focus', () => {
+                    setTimeout(() => {
+                        userNameTextField.requestFocus();
+                    }, 100);
+                });
                 userNameTextField.requestFocus();
             }
         } catch (ex) {
