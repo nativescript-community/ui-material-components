@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.68](https://github.com/nativescript-community/ui-material-components/compare/v7.2.67...v7.2.68) (2024-11-28)
+
+### Bug Fixes
+
+* close tag mdt:TabStrip ([70934c7](https://github.com/nativescript-community/ui-material-components/commit/70934c7a6aae13438cfb25ba4c66286aa486ebf6))
+
 ## [7.2.67](https://github.com/nativescript-community/ui-material-components/compare/v7.2.66...v7.2.67) (2024-10-31)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-tabs

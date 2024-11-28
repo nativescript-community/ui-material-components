@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.68](https://github.com/nativescript-community/ui-material-component/compare/v7.2.67...v7.2.68) (2024-11-28)
+
+### Bug Fixes
+
+* close tag mdt:TabStrip ([70934c7](https://github.com/nativescript-community/ui-material-component/commit/70934c7a6aae13438cfb25ba4c66286aa486ebf6))
+* **tabs:** fix weird behavior when disabling animations on tabstrip ([469ea7e](https://github.com/nativescript-community/ui-material-component/commit/469ea7e667d4942557995b6f00792d5e749ccee1))
+* **textview:** ios fix for text selectable when not editable ([6c3c5ad](https://github.com/nativescript-community/ui-material-component/commit/6c3c5ad590489a7f5128a3b4493c29569fae9861))
+
 ## [7.2.67](https://github.com/nativescript-community/ui-material-component/compare/v7.2.66...v7.2.67) (2024-10-31)
 
 ### Bug Fixes

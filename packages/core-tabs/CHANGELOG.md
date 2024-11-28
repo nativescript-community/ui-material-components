@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.68](https://github.com/nativescript-community/ui-material-components/compare/v7.2.67...v7.2.68) (2024-11-28)
+
+### Bug Fixes
+
+* **tabs:** fix weird behavior when disabling animations on tabstrip ([469ea7e](https://github.com/nativescript-community/ui-material-components/commit/469ea7e667d4942557995b6f00792d5e749ccee1))
+
 ## [7.2.67](https://github.com/nativescript-community/ui-material-components/compare/v7.2.66...v7.2.67) (2024-10-31)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-core-tabs
