@@ -68,6 +68,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akylas/nativescript@npm:~8.8.9":
+  version: 8.8.9
+  resolution: "@akylas/nativescript@npm:8.8.9"
+  dependencies:
+    "@nativescript/hook": "npm:~2.0.0"
+    acorn: "npm:^8.7.0"
+    css-tree: "npm:^1.1.2"
+    css-what: "npm:^6.1.0"
+    emoji-regex: "npm:^10.3.0"
+    reduce-css-calc: "npm:^2.1.8"
+    tslib: "npm:^2.6.3"
+  checksum: e02f6bf42ab00bda65f830cac71a6faa6fd0b5ff924cc8e068638cd9b16aa8595cf7ce7b53d2fe25b5ab6141324290e49b029d1bc3c440e816186443b2f1f3e8
+  languageName: node
+  linkType: hard
+
 "@ampproject/remapping@npm:2.3.0, @ampproject/remapping@npm:^2.2.0, @ampproject/remapping@npm:^2.2.1":
   version: 2.3.0
   resolution: "@ampproject/remapping@npm:2.3.0"
@@ -3189,7 +3204,7 @@ __metadata:
 
 "@nativescript-community/plugin-seed-tools@file:tools::locator=%40nativescript-community%2Fui-material-components%40workspace%3A.":
   version: 1.0.0
-  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=f13806&locator=%40nativescript-community%2Fui-material-components%40workspace%3A."
+  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=1b00a0&locator=%40nativescript-community%2Fui-material-components%40workspace%3A."
   dependencies:
     "@angular/animations": "npm:~17.3.8"
     "@angular/common": "npm:~17.3.8"
@@ -3218,6 +3233,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:7.10.0"
     "@typescript-eslint/parser": "npm:7.10.0"
     "@vue/runtime-core": "npm:3.4.27"
+    "@vue/runtime-dom": "npm:3.4.27"
     copy-webpack-plugin: "npm:12.0.2"
     cpy-cli: "npm:^3.1.1"
     eslint: "npm:~8.57.0"
@@ -3253,7 +3269,7 @@ __metadata:
     vue: "npm:^2.7.16"
     yargs: "npm:^17.7.2"
     zone.js: "npm:~0.14.5"
-  checksum: 18c33c5028880d1b9936299b5c4f84f9985f17e3e8997718855e513e809bc632a2c033ab38e7cdb909782f940d7b4d0f01b4f4be700686481a06826a620e34bb
+  checksum: 574f1f249beebea9ab51095bb00fcdf986079eab9027ebce781acc4ac5380f4f1017a5516f1a81e28464431c7ed632ec3ecaef3930677fc62ab8f71e759fff49
   languageName: node
   linkType: hard
 
@@ -3299,7 +3315,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-activityindicator@workspace:packages/activityindicator"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3307,8 +3323,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-bottom-navigation@workspace:packages/bottom-navigation"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
-    "@nativescript-community/ui-material-core-tabs": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core-tabs": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3316,7 +3332,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-bottomnavigationbar@workspace:packages/bottomnavigationbar"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3324,16 +3340,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-bottomsheet@workspace:packages/bottomsheet"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-button@npm:*, @nativescript-community/ui-material-button@npm:^7.2.62, @nativescript-community/ui-material-button@workspace:packages/button":
+"@nativescript-community/ui-material-button@npm:*, @nativescript-community/ui-material-button@npm:^7.2.67, @nativescript-community/ui-material-button@workspace:packages/button":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-button@workspace:packages/button"
   dependencies:
     "@nativescript-community/text": "npm:^1.5.2"
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3341,7 +3357,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-cardview@workspace:packages/cardview"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3354,15 +3370,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-core-tabs@npm:*, @nativescript-community/ui-material-core-tabs@npm:^7.2.62, @nativescript-community/ui-material-core-tabs@workspace:packages/core-tabs":
+"@nativescript-community/ui-material-core-tabs@npm:*, @nativescript-community/ui-material-core-tabs@npm:^7.2.67, @nativescript-community/ui-material-core-tabs@workspace:packages/core-tabs":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-core-tabs@workspace:packages/core-tabs"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-core@npm:*, @nativescript-community/ui-material-core@npm:^7.2.62, @nativescript-community/ui-material-core@workspace:packages/core":
+"@nativescript-community/ui-material-core@npm:*, @nativescript-community/ui-material-core@npm:^7.2.67, @nativescript-community/ui-material-core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-core@workspace:packages/core"
   languageName: unknown
@@ -3372,8 +3388,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-dialogs@workspace:packages/dialogs"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
-    "@nativescript-community/ui-material-textfield": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-textfield": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3381,7 +3397,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-floatingactionbutton@workspace:packages/floatingactionbutton"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3389,7 +3405,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-progress@workspace:packages/progress"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3397,7 +3413,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-ripple@workspace:packages/ripple"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3405,7 +3421,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-slider@workspace:packages/slider"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3413,7 +3429,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-snackbar@workspace:packages/snackbar"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3421,8 +3437,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-speeddial@workspace:packages/speeddial"
   dependencies:
-    "@nativescript-community/ui-material-button": "npm:^7.2.62"
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-button": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3430,7 +3446,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-switch@workspace:packages/switch"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3438,17 +3454,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-tabs@workspace:packages/tabs"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
-    "@nativescript-community/ui-material-core-tabs": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core-tabs": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-textfield@npm:*, @nativescript-community/ui-material-textfield@npm:^7.2.62, @nativescript-community/ui-material-textfield@workspace:packages/textfield":
+"@nativescript-community/ui-material-textfield@npm:*, @nativescript-community/ui-material-textfield@npm:^7.2.67, @nativescript-community/ui-material-textfield@workspace:packages/textfield":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-textfield@workspace:packages/textfield"
   dependencies:
     "@nativescript-community/text": "npm:^1.5.33"
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3457,7 +3473,7 @@ __metadata:
   resolution: "@nativescript-community/ui-material-textview@workspace:packages/textview"
   dependencies:
     "@nativescript-community/text": "npm:^1.5.33"
-    "@nativescript-community/ui-material-core": "npm:^7.2.62"
+    "@nativescript-community/ui-material-core": "npm:^7.2.67"
   languageName: unknown
   linkType: soft
 
@@ -3486,6 +3502,13 @@ __metadata:
   version: 8.7.0
   resolution: "@nativescript/android@npm:8.7.0"
   checksum: 41494f5d8311e04b262bdc31c28bc36ad84c5c6e58673c2aa69815888931d3234b98214c3c607b41cd1da3e2823ca37c97f7acd1adaf50ba8f508f65c58dbbd8
+  languageName: node
+  linkType: hard
+
+"@nativescript/android@npm:~8.8.6":
+  version: 8.8.6
+  resolution: "@nativescript/android@npm:8.8.6"
+  checksum: a8f60f567c069e3c606dd4ee05ea87fc2b7339c426401aa81c966064b3fe77cfd9d69b556a971637c21a8ad48ca8da80f5e4522dce386a9a222905c5a9e2726b
   languageName: node
   linkType: hard
 
@@ -3565,6 +3588,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nativescript/core@npm:~8.8.2":
+  version: 8.8.6
+  resolution: "@nativescript/core@npm:8.8.6"
+  dependencies:
+    "@nativescript/hook": "npm:~2.0.0"
+    acorn: "npm:^8.7.0"
+    css-tree: "npm:^1.1.2"
+    css-what: "npm:^6.1.0"
+    emoji-regex: "npm:^10.2.1"
+    reduce-css-calc: "npm:^2.1.7"
+    tslib: "npm:^2.0.0"
+  checksum: 5d1e85d9260b3b6135fbdfcba6d005acab9446ce25e3b6b37a2ec89be5531d6c3f628354affb589004881e7fddccd91bd7b2f17c1ed503d10602ea7b0c3343eb
+  languageName: node
+  linkType: hard
+
 "@nativescript/hook@npm:~2.0.0":
   version: 2.0.0
   resolution: "@nativescript/hook@npm:2.0.0"
@@ -3600,6 +3638,13 @@ __metadata:
   version: 8.7.1
   resolution: "@nativescript/ios@npm:8.7.1"
   checksum: 3093241c34189873ead8f9758093c1f0b6008198c69ec63e56504a010364f19d9c998ebbb18f53ee55952f1f5de88d28246c88a3f42f09e8b2cedd97e5bba211
+  languageName: node
+  linkType: hard
+
+"@nativescript/ios@npm:8.8.2":
+  version: 8.8.2
+  resolution: "@nativescript/ios@npm:8.8.2"
+  checksum: 128faae63cb190214713d34d4bb11f0ce82975fb4140a82067f1f4bb784868cc253d64d429bea5261579e749bffe598a6ef2de9bb995df98f7f7cc4aa785d363
   languageName: node
   linkType: hard
 
@@ -3652,18 +3697,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript/template-blank-vue-ts@workspace:demo-vue"
   dependencies:
-    "@akylas/nativescript": "npm:~8.6.4"
+    "@akylas/nativescript": "npm:~8.8.9"
     "@nativescript-community/template-snippet": "npm:0.0.1"
-    "@nativescript/android": "npm:~8.6.2"
-    "@nativescript/core": "npm:~8.6.2"
-    "@nativescript/ios": "npm:8.6.3"
-    "@nativescript/theme": "npm:~3.0.2"
-    "@nativescript/types": "npm:~8.6.1"
-    "@nativescript/webpack": "npm:5.0.18"
+    "@nativescript/android": "npm:~8.8.6"
+    "@nativescript/core": "npm:~8.8.2"
+    "@nativescript/ios": "npm:8.8.2"
+    "@nativescript/theme": "npm:~3.1.0"
+    "@nativescript/types": "npm:~8.8.0"
+    "@nativescript/webpack": "npm:5.0.22"
     "@types/node": "npm:~18.11.19"
     nativescript-vue: "npm:~2.9.3"
     nativescript-vue-template-compiler: "npm:~2.9.3"
-    typescript: "npm:5.3.3"
+    typescript: "npm:5.6.3"
     vue: "npm:^2.7.16"
   languageName: unknown
   linkType: soft
@@ -3724,10 +3769,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nativescript/theme@npm:~3.1.0":
+  version: 3.1.0
+  resolution: "@nativescript/theme@npm:3.1.0"
+  checksum: 42adad22fc40f3d2b3a66c69976c0917eb21755dfbf859aa2acf83144960f8dc8f8ce0bd781b0cb7004afd86abd27c6fcd634e17d9bbba579dc76b20939ba308
+  languageName: node
+  linkType: hard
+
 "@nativescript/types-android@npm:8.7.0, @nativescript/types-android@npm:~8.7.0":
   version: 8.7.0
   resolution: "@nativescript/types-android@npm:8.7.0"
   checksum: 44b1c7702f48d800fa354287afc52402958e8fd47460141a7df91c967a092f6b4e04f396cd80ae6cf85aa038270e4a0adf7cf4733460b8463a22eaaf6ca50741
+  languageName: node
+  linkType: hard
+
+"@nativescript/types-android@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@nativescript/types-android@npm:8.8.0"
+  checksum: 8cec884901c6c9412be119536bd4f1a2f8698f7b6a94d7007de137bda96ed67b59b901b5a22331009cf161e3d169c67f9a15731b31fb9e303b4be7c1cfe27b00
   languageName: node
   linkType: hard
 
@@ -3756,6 +3815,13 @@ __metadata:
   version: 8.7.0
   resolution: "@nativescript/types-ios@npm:8.7.0"
   checksum: d1e7eaf4da409b24a252862ffdd0fca2b2270b37ccf0ea42b805fb391a9ea3b08c22e5b70d223e86f7158248f2e0425ddee0db7a0f55024b7bc3f0093f6ce7a8
+  languageName: node
+  linkType: hard
+
+"@nativescript/types-ios@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@nativescript/types-ios@npm:8.8.0"
+  checksum: ad175e569f31788fee4ae0e5b2305a3302f5a443cf560bfea9ea19b2fe80cffac5ffc4d98de71ff653c975e4023a8be961a495ea65e3bb78a3f1546348fa942b
   languageName: node
   linkType: hard
 
@@ -3820,6 +3886,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nativescript/types@npm:~8.8.0":
+  version: 8.8.0
+  resolution: "@nativescript/types@npm:8.8.0"
+  dependencies:
+    "@nativescript/types-android": "npm:8.8.0"
+    "@nativescript/types-ios": "npm:8.8.0"
+  checksum: a8c42a05f65ef40f5e2005f68e39d3e5d7dc643681b60938b5f1138de5504f074e598c3329bf16be4411a9074c3ef1f8f301bc2a44659d8541973e666c34af25
+  languageName: node
+  linkType: hard
+
 "@nativescript/webpack@npm:5.0.17":
   version: 5.0.17
   resolution: "@nativescript/webpack@npm:5.0.17"
@@ -3870,7 +3946,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nativescript/webpack@npm:5.0.18, @nativescript/webpack@npm:~5.0.12, @nativescript/webpack@npm:~5.0.18":
+"@nativescript/webpack@npm:5.0.22":
+  version: 5.0.22
+  resolution: "@nativescript/webpack@npm:5.0.22"
+  dependencies:
+    "@babel/core": "npm:^7.0.0"
+    "@pmmmwh/react-refresh-webpack-plugin": "npm:~0.5.7"
+    acorn: "npm:^8.0.0"
+    acorn-stage3: "npm:^4.0.0"
+    ansi-colors: "npm:^4.1.3"
+    babel-loader: "npm:^8.0.0"
+    cli-highlight: "npm:^2.0.0"
+    commander: "npm:^8.0.0"
+    copy-webpack-plugin: "npm:^9.0.0"
+    css: "npm:^3.0.0"
+    css-loader: "npm:^6.0.0"
+    dotenv-webpack: "npm:^7.0.0"
+    fork-ts-checker-webpack-plugin: "npm:^7.0.0"
+    loader-utils: "npm:^2.0.0 || ^3.0.0"
+    lodash.get: "npm:^4.0.0"
+    micromatch: "npm:^4.0.0"
+    postcss: "npm:^8.0.0"
+    postcss-import: "npm:^14.0.0"
+    postcss-loader: "npm:^7.0.0"
+    raw-loader: "npm:^4.0.0"
+    react-refresh: "npm:~0.14.0"
+    sass: "npm:^1.0.0"
+    sass-loader: "npm:^13.0.0"
+    sax: "npm:^1.0.0"
+    semver: "npm:^7.0.0 || ^6.0.0"
+    source-map: "npm:^0.7.0"
+    terser-webpack-plugin: "npm:^5.0.0"
+    ts-dedent: "npm:^2.0.0"
+    ts-loader: "npm:^9.0.0"
+    vue-loader: "npm:^15.0.0 <= 15.9.8"
+    webpack: "npm:^5.30.0 <= 5.50.0 || ^5.51.2"
+    webpack-bundle-analyzer: "npm:^4.0.0"
+    webpack-chain: "npm:^6.0.0"
+    webpack-cli: "npm:^4.0.0"
+    webpack-merge: "npm:^5.0.0"
+    webpack-virtual-modules: "npm:^0.4.0"
+  peerDependencies:
+    nativescript-vue-template-compiler: ^2.8.1
+  peerDependenciesMeta:
+    nativescript-vue-template-compiler:
+      optional: true
+  bin:
+    nativescript-webpack: dist/bin/index.js
+  checksum: 569824ce667e03098cda366a599ed526cf1d932ad6ecb7460491bcf3d51569e3c5e04bb5a4e86d3c8f2a881844694b5705ddbedff67acaf442cb1abb718d27c4
+  languageName: node
+  linkType: hard
+
+"@nativescript/webpack@npm:~5.0.12, @nativescript/webpack@npm:~5.0.18":
   version: 5.0.18
   resolution: "@nativescript/webpack@npm:5.0.18"
   dependencies:
@@ -5599,6 +5726,17 @@ __metadata:
     "@vue/shared": "npm:3.4.21"
     csstype: "npm:^3.1.3"
   checksum: e5092bcca64713a5fdb445764b7bde1727dddb78ffd95d8d5f7346de6b47697944db14140519492a7ea7fd5dd2a829d83586a0e8fa58eaee0781324d25639318
+  languageName: node
+  linkType: hard
+
+"@vue/runtime-dom@npm:3.4.27":
+  version: 3.4.27
+  resolution: "@vue/runtime-dom@npm:3.4.27"
+  dependencies:
+    "@vue/runtime-core": "npm:3.4.27"
+    "@vue/shared": "npm:3.4.27"
+    csstype: "npm:^3.1.3"
+  checksum: 35d81866f8f43a1b938e53e196c01addc6380eeb00caae1da5c28f2c2de215017466edb7ec647af4f93962047a42aa9f01c59ba47e5b528ecddd3ea2f2c6d8f8
   languageName: node
   linkType: hard
 
@@ -8346,6 +8484,13 @@ __metadata:
   version: 10.3.0
   resolution: "emoji-regex@npm:10.3.0"
   checksum: b9b084ebe904f13bb4b66ee4c29fb41a7a4a1165adcc33c1ce8056c0194b882cc91ebdc782f1a779b5d7ea7375c5064643a7734893d7c657b44c5c6b9d7bf1e7
+  languageName: node
+  linkType: hard
+
+"emoji-regex@npm:^10.3.0":
+  version: 10.4.0
+  resolution: "emoji-regex@npm:10.4.0"
+  checksum: 76bb92c5bcf0b6980d37e535156231e4a9d0aa6ab3b9f5eabf7690231d5aa5d5b8e516f36e6804cbdd0f1c23dfef2a60c40ab7bb8aedd890584281a565b97c50
   languageName: node
   linkType: hard
 
@@ -15055,7 +15200,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reduce-css-calc@npm:^2.1.7":
+"reduce-css-calc@npm:^2.1.7, reduce-css-calc@npm:^2.1.8":
   version: 2.1.8
   resolution: "reduce-css-calc@npm:2.1.8"
   dependencies:
@@ -17276,6 +17421,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tslib@npm:^2.6.3":
+  version: 2.8.1
+  resolution: "tslib@npm:2.8.1"
+  checksum: 3e2e043d5c2316461cb54e5c7fe02c30ef6dccb3384717ca22ae5c6b5bc95232a6241df19c622d9c73b809bea33b187f6dbc73030963e29950c2141bc32a79f7
+  languageName: node
+  linkType: hard
+
 "tuf-js@npm:^2.2.0":
   version: 2.2.0
   resolution: "tuf-js@npm:2.2.0"
@@ -17483,13 +17635,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.3.3, typescript@npm:~5.3.3":
-  version: 5.3.3
-  resolution: "typescript@npm:5.3.3"
+"typescript@npm:5.6.3":
+  version: 5.6.3
+  resolution: "typescript@npm:5.6.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 6e4e6a14a50c222b3d14d4ea2f729e79f972fa536ac1522b91202a9a65af3605c2928c4a790a4a50aa13694d461c479ba92cedaeb1e7b190aadaa4e4b96b8e18
+  checksum: c328e418e124b500908781d9f7b9b93cf08b66bf5936d94332b463822eea2f4e62973bfb3b8a745fdc038785cb66cf59d1092bac3ec2ac6a3e5854687f7833f1
   languageName: node
   linkType: hard
 
@@ -17513,6 +17665,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:~5.3.3":
+  version: 5.3.3
+  resolution: "typescript@npm:5.3.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 6e4e6a14a50c222b3d14d4ea2f729e79f972fa536ac1522b91202a9a65af3605c2928c4a790a4a50aa13694d461c479ba92cedaeb1e7b190aadaa4e4b96b8e18
+  languageName: node
+  linkType: hard
+
 "typescript@npm:~5.4.5":
   version: 5.4.5
   resolution: "typescript@npm:5.4.5"
@@ -17523,13 +17685,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A~5.3.3#optional!builtin<compat/typescript>":
-  version: 5.3.3
-  resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"
+"typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>":
+  version: 5.6.3
+  resolution: "typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=e012d7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: c93786fcc9a70718ba1e3819bab56064ead5817004d1b8186f8ca66165f3a2d0100fee91fa64c840dcd45f994ca5d615d8e1f566d39a7470fc1e014dbb4cf15d
+  checksum: dc4bec403cd33a204b655b1152a096a08e7bad2c931cb59ef8ff26b6f2aa541bf98f09fc157958a60c921b1983a8dde9a85b692f9de60fa8f574fd131e3ae4dd
   languageName: node
   linkType: hard
 
@@ -17550,6 +17712,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 5d81fd8cf5152091a0c0b84ebc868de8433583072a340c4899e0fc7ad6a80314b880a1466868c9a6a1f640c3d1f2fe7f41f8c541b99d78c8b414263dfa27eba3
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A~5.3.3#optional!builtin<compat/typescript>":
+  version: 5.3.3
+  resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: c93786fcc9a70718ba1e3819bab56064ead5817004d1b8186f8ca66165f3a2d0100fee91fa64c840dcd45f994ca5d615d8e1f566d39a7470fc1e014dbb4cf15d
   languageName: node
   linkType: hard
 
