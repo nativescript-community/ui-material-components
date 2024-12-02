@@ -3204,7 +3204,7 @@ __metadata:
 
 "@nativescript-community/plugin-seed-tools@file:tools::locator=%40nativescript-community%2Fui-material-components%40workspace%3A.":
   version: 1.0.0
-  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=1b00a0&locator=%40nativescript-community%2Fui-material-components%40workspace%3A."
+  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=282286&locator=%40nativescript-community%2Fui-material-components%40workspace%3A."
   dependencies:
     "@angular/animations": "npm:~17.3.8"
     "@angular/common": "npm:~17.3.8"
@@ -3269,7 +3269,7 @@ __metadata:
     vue: "npm:^2.7.16"
     yargs: "npm:^17.7.2"
     zone.js: "npm:~0.14.5"
-  checksum: 574f1f249beebea9ab51095bb00fcdf986079eab9027ebce781acc4ac5380f4f1017a5516f1a81e28464431c7ed632ec3ecaef3930677fc62ab8f71e759fff49
+  checksum: c4418502532ff592a2d92a51a11f5be8c145375f0c7119523b2a38cf55e4a2b751425f1b806442e9b9928cdbc168283d5460a03fa9a56e3c9d352fd9c7e808af
   languageName: node
   linkType: hard
 
@@ -3315,7 +3315,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-activityindicator@workspace:packages/activityindicator"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3323,8 +3323,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-bottom-navigation@workspace:packages/bottom-navigation"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
-    "@nativescript-community/ui-material-core-tabs": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core-tabs": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3332,7 +3332,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-bottomnavigationbar@workspace:packages/bottomnavigationbar"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3340,16 +3340,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-bottomsheet@workspace:packages/bottomsheet"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-button@npm:*, @nativescript-community/ui-material-button@npm:^7.2.67, @nativescript-community/ui-material-button@workspace:packages/button":
+"@nativescript-community/ui-material-button@npm:*, @nativescript-community/ui-material-button@npm:^7.2.68, @nativescript-community/ui-material-button@workspace:packages/button":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-button@workspace:packages/button"
   dependencies:
     "@nativescript-community/text": "npm:^1.5.2"
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3357,7 +3357,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-cardview@workspace:packages/cardview"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3370,15 +3370,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-core-tabs@npm:*, @nativescript-community/ui-material-core-tabs@npm:^7.2.67, @nativescript-community/ui-material-core-tabs@workspace:packages/core-tabs":
+"@nativescript-community/ui-material-core-tabs@npm:*, @nativescript-community/ui-material-core-tabs@npm:^7.2.68, @nativescript-community/ui-material-core-tabs@workspace:packages/core-tabs":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-core-tabs@workspace:packages/core-tabs"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-core@npm:*, @nativescript-community/ui-material-core@npm:^7.2.67, @nativescript-community/ui-material-core@workspace:packages/core":
+"@nativescript-community/ui-material-core@npm:*, @nativescript-community/ui-material-core@npm:^7.2.68, @nativescript-community/ui-material-core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-core@workspace:packages/core"
   languageName: unknown
@@ -3388,8 +3388,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-dialogs@workspace:packages/dialogs"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
-    "@nativescript-community/ui-material-textfield": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-textfield": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3397,7 +3397,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-floatingactionbutton@workspace:packages/floatingactionbutton"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3405,7 +3405,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-progress@workspace:packages/progress"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3413,7 +3413,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-ripple@workspace:packages/ripple"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3421,7 +3421,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-slider@workspace:packages/slider"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3429,7 +3429,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-snackbar@workspace:packages/snackbar"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3437,8 +3437,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-speeddial@workspace:packages/speeddial"
   dependencies:
-    "@nativescript-community/ui-material-button": "npm:^7.2.67"
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-button": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3446,7 +3446,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-switch@workspace:packages/switch"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3454,17 +3454,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-tabs@workspace:packages/tabs"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
-    "@nativescript-community/ui-material-core-tabs": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core-tabs": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-textfield@npm:*, @nativescript-community/ui-material-textfield@npm:^7.2.67, @nativescript-community/ui-material-textfield@workspace:packages/textfield":
+"@nativescript-community/ui-material-textfield@npm:*, @nativescript-community/ui-material-textfield@npm:^7.2.68, @nativescript-community/ui-material-textfield@workspace:packages/textfield":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-textfield@workspace:packages/textfield"
   dependencies:
     "@nativescript-community/text": "npm:^1.5.33"
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -3473,7 +3473,7 @@ __metadata:
   resolution: "@nativescript-community/ui-material-textview@workspace:packages/textview"
   dependencies:
     "@nativescript-community/text": "npm:^1.5.33"
-    "@nativescript-community/ui-material-core": "npm:^7.2.67"
+    "@nativescript-community/ui-material-core": "npm:^7.2.68"
   languageName: unknown
   linkType: soft
 
@@ -17687,7 +17687,7 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>":
   version: 5.6.3
-  resolution: "typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=e012d7"
+  resolution: "typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=29ae49"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
@@ -17717,17 +17717,17 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A~5.3.3#optional!builtin<compat/typescript>":
   version: 5.3.3
-  resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"
+  resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=29ae49"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: c93786fcc9a70718ba1e3819bab56064ead5817004d1b8186f8ca66165f3a2d0100fee91fa64c840dcd45f994ca5d615d8e1f566d39a7470fc1e014dbb4cf15d
+  checksum: 57bf073a0b88f9bf76e5a24be3df864a8f9d0e70f8316969f4992ae26e30cb8d078708922da2ade1f2c8d1faee13b28bcb69876ebb1e37910e31c54aa9126aa2
   languageName: node
   linkType: hard
 
 "typescript@patch:typescript@npm%3A~5.4.5#optional!builtin<compat/typescript>":
   version: 5.4.5
-  resolution: "typescript@patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=e012d7"
+  resolution: "typescript@patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=29ae49"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
