@@ -1,4 +1,4 @@
-import { Color, Length, PercentLength, backgroundColorProperty, backgroundInternalProperty, colorProperty, heightProperty } from '@nativescript/core';
+import { Color, Length, PercentLength, backgroundColorProperty, backgroundInternalProperty, colorProperty, heightProperty, visibilityProperty } from '@nativescript/core';
 import { ProgressBase, busyProperty, indeterminateProperty, progressBackgroundColorProperty, progressColorProperty, trackCornerRadiusProperty } from './progress-common';
 import { getRippleColor } from '@nativescript-community/ui-material-core';
 import { inflateLayout } from '@nativescript-community/ui-material-core/android/utils';
@@ -17,38 +17,18 @@ export class Progress extends ProgressBase {
         this.nativeViewProtected.setProgressBackgroundTintList(color ? android.content.res.ColorStateList.valueOf(color.android) : null);
     }
     [indeterminateProperty.setNative](value: boolean) {
-        if (this.nativeViewProtected.getVisibility() === android.view.View.VISIBLE) {
-            this.nativeViewProtected.setVisibility(android.view.View.GONE);
-            this.nativeViewProtected.setIndeterminate(value);
-            this.nativeViewProtected.setVisibility(this.busy ? android.view.View.VISIBLE : android.view.View.INVISIBLE);
-        } else {
-            this.nativeViewProtected.setIndeterminate(value);
-        }
-    }
-    [busyProperty.getDefault]() {
-        return false;
+        this.nativeViewProtected.setIndeterminate(value);
+        this[visibilityProperty.setNative](this.visibility);
     }
     [busyProperty.setNative](value) {
-        this.nativeViewProtected.setVisibility(value ? android.view.View.VISIBLE : android.view.View.INVISIBLE);
+        this[visibilityProperty.setNative](this.visibility);
     }
     [heightProperty.setNative](value) {
         this.nativeViewProtected.setTrackThickness(PercentLength.toDevicePixels(value));
     }
-    // [visibilityProperty.setNative](value) {
-    //     switch (value) {
-    //         case Visibility.VISIBLE:
-    //             this.nativeViewProtected.setVisibility(this.busy ? android.view.View.VISIBLE : android.view.View.INVISIBLE);
-    //             break;
-    //         case Visibility.HIDDEN:
-    //             this.nativeViewProtected.setVisibility(android.view.View.INVISIBLE);
-    //             break;
-    //         case Visibility.COLLAPSE:
-    //             this.nativeViewProtected.setVisibility(android.view.View.GONE);
-    //             break;
-    //         default:
-    //             throw new Error(`Invalid visibility value: ${value}. Valid values are: "${Visibility.VISIBLE}", "${Visibility.HIDDEN}", "${Visibility.COLLAPSE}".`);
-    //     }
-    // }
+    [visibilityProperty.setNative](value) {
+        super[visibilityProperty.setNative](this.busy || !this.indeterminate ? value : 'hidden');
+    }
     public startAnimating() {
         this.busy = true;
     }
@@ -71,6 +51,6 @@ export class Progress extends ProgressBase {
     }
 
     [trackCornerRadiusProperty.setNative](value) {
-        this.nativeViewProtected.setTrackCornerRadius(Length.toDevicePixels(value, 0))
+        this.nativeViewProtected.setTrackCornerRadius(Length.toDevicePixels(value, 0));
     }
 }
