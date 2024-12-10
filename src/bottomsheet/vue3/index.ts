@@ -24,20 +24,14 @@ const useBottomSheet = () => {
 
 const showSheet = (component, options: VueBottomSheetOptions) =>
     new Promise((resolve: any) => {
-        let resolved = false;
+        const resolved = false;
 
         const listeners = Object.entries(options.on ?? {}).reduce((listeners, [key, value]) => {
             listeners['on' + key.charAt(0).toUpperCase() + key.slice(1)] = value;
             return listeners;
         }, {});
 
-        let navEntryInstance = createNativeView(
-            component,
-            Object.assign(
-                options.props ?? {},
-                listeners
-            )
-        );
+        const navEntryInstance = createNativeView(component, Object.assign(options.props ?? {}, listeners));
         navEntryInstance.mount();
 
         const viewAttached = (options.view as View) ?? Frame.topmost().currentPage;
