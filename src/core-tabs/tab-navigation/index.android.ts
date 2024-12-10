@@ -222,13 +222,13 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         const lp = new org.nativescript.widgets.CommonLayoutParams();
         lp.row = 1;
         if (this.tabsPosition === 'top') {
-            nativeView.addRow(new org.nativescript.widgets.ItemSpec(1, org.nativescript.widgets.GridUnitType.auto));
-            nativeView.addRow(new org.nativescript.widgets.ItemSpec(1, org.nativescript.widgets.GridUnitType.star));
+            nativeView.addRow(1, org.nativescript.widgets.GridUnitType.auto);
+            nativeView.addRow(1, org.nativescript.widgets.GridUnitType.star);
 
             viewPager.setLayoutParams(lp);
         } else {
-            nativeView.addRow(new org.nativescript.widgets.ItemSpec(1, org.nativescript.widgets.GridUnitType.star));
-            nativeView.addRow(new org.nativescript.widgets.ItemSpec(1, org.nativescript.widgets.GridUnitType.auto));
+            nativeView.addRow(1, org.nativescript.widgets.GridUnitType.star);
+            nativeView.addRow(1, org.nativescript.widgets.GridUnitType.auto);
             this.tabBarLayoutParams = lp;
         }
 

@@ -3479,7 +3479,7 @@ __metadata:
 
 "@nativescript-community/plugin-seed-tools@file:tools::locator=%40nativescript-community%2Fui-material-components%40workspace%3A.":
   version: 1.0.0
-  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=e2683f&locator=%40nativescript-community%2Fui-material-components%40workspace%3A."
+  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=a59b86&locator=%40nativescript-community%2Fui-material-components%40workspace%3A."
   dependencies:
     "@angular/animations": "npm:~18.2.13"
     "@angular/common": "npm:~18.2.13"
@@ -3544,7 +3544,7 @@ __metadata:
     vue: "npm:^2.7.16"
     yargs: "npm:^17.7.2"
     zone.js: "npm:~0.15.0"
-  checksum: f5c4a092a89a21dec1551628fcb3808022a0b2ad738e5aebeb3e8c706a860cd489b497441406ac4aa662aed78880dedda89ff19612fc7a82746db72fd6fd84dd
+  checksum: 92e5d131cc644278522669a1e0053b5ada10ae5deb4cf385ed8047d594e5b2927c56f92923aa7e9250f4d1204d9c0eaa6987b7791a35e3462d7ecfa04b241a27
   languageName: node
   linkType: hard
 
