@@ -322,7 +322,7 @@ export function overrideViewBase() {
                 if (this._elevationStateChangedHandler.stop) {
                     this._elevationStateChangedHandler.stop();
                 } else {
-                    this.off(GestureTypes.touch, this._elevationStateChangedHandler);
+                    this.off('touch', this._elevationStateChangedHandler);
                 }
             }
         }
@@ -372,7 +372,7 @@ export function overrideViewBase() {
                                     break;
                             }
                         });
-                    this.on(GestureTypes.touch, this._elevationStateChangedHandler);
+                    this.on('touch', this._elevationStateChangedHandler);
                 }
             }
         }
