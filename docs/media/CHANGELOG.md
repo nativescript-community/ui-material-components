@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.69](https://github.com/nativescript-community/ui-material-component/compare/v7.2.68...v7.2.69) (2024-12-10)
+
+### Bug Fixes
+
+* **ios:** touch gesture error fix for dynamicElevation ([69f1a2f](https://github.com/nativescript-community/ui-material-component/commit/69f1a2f5f0bb9d6eaca9c8688632360e442378a1))
+* **progress:** fix for changing busy/indeterminate rendering the view invisible ([86a9596](https://github.com/nativescript-community/ui-material-component/commit/86a9596877d1e8903c8c9d8cbd33c474480bb349))
+
 ## [7.2.68](https://github.com/nativescript-community/ui-material-component/compare/v7.2.67...v7.2.68) (2024-11-28)
 
 ### Bug Fixes
