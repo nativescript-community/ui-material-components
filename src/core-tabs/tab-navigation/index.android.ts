@@ -1,4 +1,5 @@
 import { Application, Color, CoreTypes, Font, ImageAsset, ImageSource, Utils, getTransformedText } from '@nativescript/core';
+import { addGridLayoutRow } from '@nativescript-community/ui-material-core/android/utils';
 import { TabContentItem } from '../tab-content-item';
 import { getIconSpecSize, itemsProperty, selectedIndexProperty, tabStripProperty } from '../tab-navigation-base';
 import { TabStrip } from '../tab-strip';
@@ -222,13 +223,13 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         const lp = new org.nativescript.widgets.CommonLayoutParams();
         lp.row = 1;
         if (this.tabsPosition === 'top') {
-            nativeView.addRow(1, org.nativescript.widgets.GridUnitType.auto);
-            nativeView.addRow(1, org.nativescript.widgets.GridUnitType.star);
+            addGridLayoutRow(nativeView, 1, org.nativescript.widgets.GridUnitType.auto);
+            addGridLayoutRow(nativeView, 1, org.nativescript.widgets.GridUnitType.star);
 
             viewPager.setLayoutParams(lp);
         } else {
-            nativeView.addRow(1, org.nativescript.widgets.GridUnitType.star);
-            nativeView.addRow(1, org.nativescript.widgets.GridUnitType.auto);
+            addGridLayoutRow(nativeView, 1, org.nativescript.widgets.GridUnitType.star);
+            addGridLayoutRow(nativeView, 1, org.nativescript.widgets.GridUnitType.auto);
             this.tabBarLayoutParams = lp;
         }
 

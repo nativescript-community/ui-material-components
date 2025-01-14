@@ -263,3 +263,23 @@ export function inflateLayout(context: android.content.Context, layoutId: string
     }
     return NUtils.inflateLayout(context, layoutId);
 }
+
+let isNewGridAPI: boolean | undefined;
+
+export function addGridLayoutRow(gridLayout: org.nativescript.widgets.GridLayout, value: number, unitType: org.nativescript.widgets.GridUnitType) {
+    if (isNewGridAPI === undefined) {
+        try {
+            gridLayout.addRow(value, unitType);
+            isNewGridAPI = true;
+            return;
+        } catch (e) {
+            isNewGridAPI = false;
+        }
+    }
+    if (isNewGridAPI) {
+        gridLayout.addRow(value, unitType);
+    } else {
+        // @ts-expect-error older API
+        gridLayout.addRow(new org.nativescript.widgets.ItemSpec(value, unitType));
+    }
+}
