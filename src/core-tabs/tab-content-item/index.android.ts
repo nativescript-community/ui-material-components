@@ -1,4 +1,5 @@
 import { GridLayout, Trace, View } from '@nativescript/core';
+import { addGridLayoutRow } from '@nativescript-community/ui-material-core/android/utils';
 import { TabContentItem as TabContentItemDefinition } from '.';
 import { TabContentItemBase } from './tab-content-item-common';
 
@@ -14,7 +15,7 @@ export class TabContentItem extends TabContentItemBase {
 
     public createNativeView() {
         const layout = new org.nativescript.widgets.GridLayout(this._context);
-        layout.addRow(1, org.nativescript.widgets.GridUnitType.star);
+        addGridLayoutRow(layout, 1, org.nativescript.widgets.GridUnitType.star);
 
         return layout;
     }
