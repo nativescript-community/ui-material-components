@@ -3590,7 +3590,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-activityindicator@workspace:packages/activityindicator"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3598,8 +3598,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-bottom-navigation@workspace:packages/bottom-navigation"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
-    "@nativescript-community/ui-material-core-tabs": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
+    "@nativescript-community/ui-material-core-tabs": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3607,7 +3607,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-bottomnavigationbar@workspace:packages/bottomnavigationbar"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3615,16 +3615,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-bottomsheet@workspace:packages/bottomsheet"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-button@npm:*, @nativescript-community/ui-material-button@npm:^7.2.68, @nativescript-community/ui-material-button@workspace:packages/button":
+"@nativescript-community/ui-material-button@npm:*, @nativescript-community/ui-material-button@npm:^7.2.69, @nativescript-community/ui-material-button@workspace:packages/button":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-button@workspace:packages/button"
   dependencies:
     "@nativescript-community/text": "npm:^1.5.2"
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3632,7 +3632,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-cardview@workspace:packages/cardview"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3645,15 +3645,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-core-tabs@npm:*, @nativescript-community/ui-material-core-tabs@npm:^7.2.68, @nativescript-community/ui-material-core-tabs@workspace:packages/core-tabs":
+"@nativescript-community/ui-material-core-tabs@npm:*, @nativescript-community/ui-material-core-tabs@npm:^7.2.69, @nativescript-community/ui-material-core-tabs@workspace:packages/core-tabs":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-core-tabs@workspace:packages/core-tabs"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-core@npm:*, @nativescript-community/ui-material-core@npm:^7.2.68, @nativescript-community/ui-material-core@workspace:packages/core":
+"@nativescript-community/ui-material-core@npm:*, @nativescript-community/ui-material-core@npm:^7.2.69, @nativescript-community/ui-material-core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-core@workspace:packages/core"
   languageName: unknown
@@ -3663,8 +3663,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-dialogs@workspace:packages/dialogs"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
-    "@nativescript-community/ui-material-textfield": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
+    "@nativescript-community/ui-material-textfield": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3672,7 +3672,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-floatingactionbutton@workspace:packages/floatingactionbutton"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3680,7 +3680,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-progress@workspace:packages/progress"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3688,7 +3688,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-ripple@workspace:packages/ripple"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3696,7 +3696,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-slider@workspace:packages/slider"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3704,7 +3704,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-snackbar@workspace:packages/snackbar"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3712,8 +3712,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-speeddial@workspace:packages/speeddial"
   dependencies:
-    "@nativescript-community/ui-material-button": "npm:^7.2.68"
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-button": "npm:^7.2.69"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3721,7 +3721,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-switch@workspace:packages/switch"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3729,17 +3729,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-tabs@workspace:packages/tabs"
   dependencies:
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
-    "@nativescript-community/ui-material-core-tabs": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
+    "@nativescript-community/ui-material-core-tabs": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-textfield@npm:*, @nativescript-community/ui-material-textfield@npm:^7.2.68, @nativescript-community/ui-material-textfield@workspace:packages/textfield":
+"@nativescript-community/ui-material-textfield@npm:*, @nativescript-community/ui-material-textfield@npm:^7.2.69, @nativescript-community/ui-material-textfield@workspace:packages/textfield":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-textfield@workspace:packages/textfield"
   dependencies:
     "@nativescript-community/text": "npm:^1.5.33"
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 
@@ -3748,7 +3748,7 @@ __metadata:
   resolution: "@nativescript-community/ui-material-textview@workspace:packages/textview"
   dependencies:
     "@nativescript-community/text": "npm:^1.5.33"
-    "@nativescript-community/ui-material-core": "npm:^7.2.68"
+    "@nativescript-community/ui-material-core": "npm:^7.2.69"
   languageName: unknown
   linkType: soft
 

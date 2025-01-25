@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.70](https://github.com/nativescript-community/ui-material-component/compare/v7.2.69...v7.2.70) (2025-01-14)
+
+### Bug Fixes
+
+* support both old and new gridlayout addRow APIs ([9f9b157](https://github.com/nativescript-community/ui-material-component/commit/9f9b157ec832308d0ef3fc58c116cfc127e5b0fa))
+
 ## [7.2.69](https://github.com/nativescript-community/ui-material-component/compare/v7.2.68...v7.2.69) (2024-12-10)
 
 ### Bug Fixes
