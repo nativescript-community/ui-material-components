@@ -85,10 +85,12 @@ export class Slider extends View {
     initNativeView() {
         super.initNativeView();
         const nativeView = this.nativeViewProtected;
+        const that = new WeakRef(this);
         this.listener = new com.google.android.material.slider.Slider.OnChangeListener({
             onValueChange: (param0: any, value: number, fromUser: boolean) => {
-                if (fromUser) {
-                    valueProperty.nativeValueChange(this as any, value);
+                const owner = that?.get();
+                if (owner && fromUser) {
+                    valueProperty.nativeValueChange(owner, value);
                 }
             }
         });
@@ -113,8 +115,6 @@ export class Slider extends View {
             if (!this.trackBackgroundColor) {
                 this.trackBackgroundColor = null;
                 this[trackBackgroundColorProperty.setNative](null);
-            // } else {
-                // this[trackBackgroundColorProperty.setNative](this.trackBackgroundColor);
             }
         }
 

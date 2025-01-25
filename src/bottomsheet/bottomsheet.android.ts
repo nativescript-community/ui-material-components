@@ -18,31 +18,30 @@ function getId(id: string) {
 
 @NativeClass
 class ChangeStateBottomSheet extends com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback {
-    private owner: ViewWithBottomSheet;
-
-    constructor(owner: ViewWithBottomSheet) {
+    constructor(private owner: WeakRef<ViewWithBottomSheet>) {
         super();
-        this.owner = owner;
         return global.__native(this);
     }
 
     onSlide(bottomSheet: android.view.View, slideOffset: number) {
-        if (this.checkActiveCallback()) {
-            this.owner._onChangeStateBottomSheetCallback(StateBottomSheet.DRAGGING, slideOffset);
+        const owner = this.owner?.get();
+        if (owner && this.checkActiveCallback()) {
+            owner._onChangeStateBottomSheetCallback(StateBottomSheet.DRAGGING, slideOffset);
         }
     }
 
     onStateChanged(bottomSheet: android.view.View, newState: number) {
-        if (this.checkActiveCallback()) {
+        const owner = this.owner?.get();
+        if (owner && this.checkActiveCallback()) {
             const status = this.getStateBottomSheetFromBottomSheetBehavior(newState);
             if (status !== undefined) {
-                this.owner._onChangeStateBottomSheetCallback(status);
+                owner._onChangeStateBottomSheetCallback(status);
             }
         }
     }
 
     private checkActiveCallback() {
-        return this.owner && this.owner._onChangeStateBottomSheetCallback;
+        return this.owner?.get()?._onChangeStateBottomSheetCallback;
     }
 
     public getStateBottomSheetFromBottomSheetBehavior(state: number): StateBottomSheet | undefined {
@@ -77,7 +76,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
     protected _showNativeBottomSheet(parent: View, options: BottomSheetOptions) {
         this._commonShowNativeBottomSheet(parent, options);
-        const owner = this;
+        const that = new WeakRef(this);
         const domId = this._domId;
         const bottomSheetOptions: BottomSheetDataOptions = {
             owner: this,
@@ -100,7 +99,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                         if (bottomSheetOptions.options && bottomSheetOptions.options.dismissOnBackButton === false) {
                             return true;
                         }
-
+                        const owner = that?.get();
                         if (!owner) {
                             return false;
                         }
@@ -145,13 +144,21 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                 container: android.view.ViewGroup,
                 savedInstanceState: android.os.Bundle
             ): android.view.View {
-                owner._setupAsRootView(fragment.getActivity());
-                owner.parent = Application.getRootView();
-                owner._isAddedToNativeVisualTree = true;
-                return owner.nativeViewProtected;
+                const owner = that?.get();
+                if (owner) {
+                    owner._setupAsRootView(fragment.getActivity());
+                    owner.parent = Application.getRootView();
+                    owner._isAddedToNativeVisualTree = true;
+                    return owner.nativeViewProtected;
+                }
+                return null;
             },
 
             onStart(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment): void {
+                const owner = that?.get();
+                if (!owner) {
+                    return;
+                }
                 const contentViewId = getId('design_bottom_sheet');
                 const view = fragment.getDialog().findViewById(contentViewId);
                 const transparent = bottomSheetOptions.options?.transparent === true;
@@ -195,9 +202,9 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
                 const onChangeState = bottomSheetOptions.options?.onChangeState;
                 if (onChangeState) {
-                    const changeStateBottomSheet = new ChangeStateBottomSheet(owner);
+                    const changeStateBottomSheet = new ChangeStateBottomSheet(that);
                     behavior.addBottomSheetCallback(changeStateBottomSheet);
-                    owner._onChangeStateBottomSheetCallback(changeStateBottomSheet.getStateBottomSheetFromBottomSheetBehavior(behavior.getState()));
+                    that?.get()?._onChangeStateBottomSheetCallback(changeStateBottomSheet.getStateBottomSheetFromBottomSheetBehavior(behavior.getState()));
                 }
 
                 if (owner && !owner.isLoaded) {
@@ -224,6 +231,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
             },
 
             onDismiss(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment, dialog: android.content.DialogInterface): void {
+                const owner = that?.get();
                 if (owner) {
                     owner._bottomSheetCloseIgnore = true;
                 }
@@ -232,6 +240,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
 
             onDestroy(fragment: com.nativescript.material.bottomsheet.BottomSheetDialogFragment): void {
                 (df as any).nListener = null;
+                const owner = that?.get();
                 if (owner) {
                     owner._bottomSheetCloseIgnore = false;
                     owner._bottomSheetClosed();

@@ -16,7 +16,7 @@ declare type OnNavigationItemSelectedListener = com.google.android.material.bott
 declare type OnNavigationItemReselectedListener = com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemReselectedListener;
 
 // Listeners
-type OnTabSelectedlistener = new (owner: BottomNavigationBar) => OnNavigationItemSelectedListener;
+type OnTabSelectedlistener = new (owner: WeakRef<BottomNavigationBar>) => OnNavigationItemSelectedListener;
 
 // eslint-disable-next-line no-redeclare
 let OnTabSelectedlistener: OnTabSelectedlistener;
@@ -29,24 +29,26 @@ const getOnTabSelectedlistener = () => {
     @NativeClass
     @Interfaces([com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener])
     class OnTabSelectedlistenerImpl extends java.lang.Object implements OnNavigationItemSelectedListener {
-        constructor(public owner: BottomNavigationBar) {
+        constructor(public owner: WeakRef<BottomNavigationBar>) {
             super();
-
             // necessary when extending TypeScript constructors
             return global.__native(this);
         }
 
         public onNavigationItemSelected(menuItem: globalAndroid.view.MenuItem): boolean {
-            const index = menuItem.getItemId();
-            const bottomNavigationTab = this.owner.items[index];
+            const owner = this.owner?.get();
+            if (owner) {
+                const index = menuItem.getItemId();
+                const bottomNavigationTab = owner.items[index];
 
-            if (bottomNavigationTab.isSelectable) {
-                this.owner._emitTabSelected(index);
-            } else {
-                this.owner._emitTabPressed(index);
+                if (bottomNavigationTab.isSelectable) {
+                    owner._emitTabSelected(index);
+                } else {
+                    owner._emitTabPressed(index);
+                }
+                return bottomNavigationTab.isSelectable;
             }
-
-            return bottomNavigationTab.isSelectable;
+            return false;
         }
     }
 
@@ -55,7 +57,7 @@ const getOnTabSelectedlistener = () => {
     return OnTabSelectedlistener;
 };
 
-type OnTabReselectedListener = new (owner: BottomNavigationBar) => OnNavigationItemReselectedListener;
+type OnTabReselectedListener = new (owner: WeakRef<BottomNavigationBar>) => OnNavigationItemReselectedListener;
 
 // eslint-disable-next-line no-redeclare
 let OnTabReselectedListener: OnTabReselectedListener;
@@ -67,15 +69,14 @@ const getOnTabReselectedListener = () => {
     @NativeClass
     @Interfaces([com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemReselectedListener])
     class OnTabReselectedListenerImpl extends java.lang.Object implements OnNavigationItemReselectedListener {
-        constructor(public owner: BottomNavigationBar) {
+        constructor(public owner: WeakRef<BottomNavigationBar>) {
             super();
-
             // necessary when extending TypeScript constructors
             return global.__native(this);
         }
 
         public onNavigationItemReselected(menuItem: globalAndroid.view.MenuItem): void {
-            this.owner._emitTabReselected(menuItem.getItemId());
+            this.owner?.get()?._emitTabReselected(menuItem.getItemId());
         }
     }
 
@@ -115,8 +116,9 @@ export class BottomNavigationBar extends BottomNavigationBarBase {
         super.initNativeView();
         const OnTabReselectedListener = getOnTabReselectedListener();
         const OnTabSelectedListener = getOnTabSelectedlistener();
-        this.reselectListener = new OnTabReselectedListener(this);
-        this.selectListener = new OnTabSelectedListener(this);
+        const that = new WeakRef(this);
+        this.reselectListener = new OnTabReselectedListener(that);
+        this.selectListener = new OnTabSelectedListener(that);
         this.nativeViewProtected.setOnNavigationItemReselectedListener(this.reselectListener);
         this.nativeViewProtected.setOnNavigationItemSelectedListener(this.selectListener);
         // Create the tabs before setting the default values for each tab

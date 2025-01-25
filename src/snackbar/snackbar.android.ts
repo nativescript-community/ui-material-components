@@ -131,6 +131,7 @@ export class SnackBar extends SnackBarBase {
             tv.setLayoutDirection(android.view.View.LAYOUT_DIRECTION_RTL);
         }
         if (resolve) {
+            const that = new WeakRef(this);
             const listener = new android.view.View.OnClickListener({
                 onClick: (args) => {
                     resolve({
@@ -138,11 +139,14 @@ export class SnackBar extends SnackBarBase {
                         reason: _getReason(1),
                         event: args
                     });
-                    if (this._snackbarCallback) {
-                        this._snackbarCallback.cb = null;
-                        this._snackbarCallback = null;
+                    const owner = that?.get();
+                    if (owner) {
+                        if (owner._snackbarCallback) {
+                            owner._snackbarCallback.cb = null;
+                            owner._snackbarCallback = null;
+                        }
+                        owner._snackbar = null;
                     }
-                    this._snackbar = null;
                 }
             });
 
