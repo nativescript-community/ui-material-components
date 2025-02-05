@@ -168,6 +168,7 @@ public class TabsBar extends HorizontalScrollView {
             return;
         }
         mTabStrip.onTabsViewPagerPageChanged(position, 0);
+        makeTabVisible(position, true);
     }
 
     /**
@@ -423,6 +424,54 @@ public class TabsBar extends HorizontalScrollView {
         }
     }
 
+    private void makeTabVisible(int tabIndex) {
+        makeTabVisible(tabIndex, true);
+    }
+
+    private void makeTabVisible(int tabIndex, boolean smoothScroll) {
+        final int tabStripChildCount = mTabStrip.getChildCount();
+        if (tabStripChildCount == 0 || tabIndex < 0 || tabIndex >= tabStripChildCount) {
+            return;
+        }
+
+        View selectedChild = mTabStrip.getChildAt(tabIndex);
+        if (selectedChild == null) {
+            return;
+        }
+        int selectedLeft = selectedChild.getLeft();
+        int selectedRight = selectedChild.getRight();
+
+        int myWidth = getWidth();
+
+        // add padding to the sides so it's clear that we have more tabs to scroll to
+        if (tabIndex > 0) {
+            selectedLeft = selectedLeft - mTitleOffset;
+        }
+        if (tabIndex < tabStripChildCount - 1) {
+            selectedRight = selectedRight + mTitleOffset;
+        }
+
+        int scrollX = getScrollX();
+        if (selectedLeft < scrollX && selectedRight > myWidth + scrollX) {
+            // the tab is already visible and can't fit the screen, no need to scroll
+            return;
+        }
+
+        if (selectedLeft < scrollX) {
+            if (smoothScroll) {
+                smoothScrollTo(selectedLeft, 0);
+            } else {
+                scrollTo(selectedLeft, 0);
+            }
+        } else if (selectedRight > myWidth + scrollX) {
+            if (smoothScroll) {
+                smoothScrollTo(selectedRight - myWidth, 0);
+            } else {
+                scrollTo(selectedRight - myWidth, 0);
+            }
+        }
+    }
+
     private class InternalViewPagerListener extends OnPageChangeCallback {
         private int mScrollState;
 
@@ -434,7 +483,7 @@ public class TabsBar extends HorizontalScrollView {
             }
             mTabStrip.onTabsViewPagerPageChanged(position, positionOffset);
             if (positionOffset == 0 && mScrollState == androidx.viewpager.widget.ViewPager.SCROLL_STATE_SETTLING) {
-                scrollToTab(position, 0);
+                makeTabVisible(position);
             }
         }
 
