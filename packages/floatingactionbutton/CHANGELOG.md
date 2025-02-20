@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.71](https://github.com/nativescript-community/ui-material-components/compare/v7.2.70...v7.2.71) (2025-02-20)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-floatingactionbutton
+
 ## [7.2.70](https://github.com/nativescript-community/ui-material-components/compare/v7.2.69...v7.2.70) (2025-01-14)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-floatingactionbutton
