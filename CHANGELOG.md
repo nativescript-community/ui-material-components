@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.77](https://github.com/nativescript-community/ui-material-component/compare/v7.2.76...v7.2.77) (2025-10-02)
+
+### Bug Fixes
+
+* **snackbar:** iOS new option iosIgnorePresentedViewController ([98d25f5](https://github.com/nativescript-community/ui-material-component/commit/98d25f51348d76ff45a10a4daaaa3d8f8dcce387))
+
 ## [7.2.76](https://github.com/nativescript-community/ui-material-component/compare/v7.2.71...v7.2.76) (2025-10-02)
 
 ### Bug Fixes
