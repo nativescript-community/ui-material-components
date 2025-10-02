@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.76](https://github.com/nativescript-community/ui-material-component/compare/v7.2.71...v7.2.76) (2025-10-02)
+
+### Bug Fixes
+
+* **bottom-navigation:** broken package fix ([bc61839](https://github.com/nativescript-community/ui-material-component/commit/bc61839bbcafe4bb45a8bb21d268bc7a49c28d95))
+* **cardview:** iOS fix for shape not applied from css ([c1fc94f](https://github.com/nativescript-community/ui-material-component/commit/c1fc94f5f08830052b0d40c01e59dfd389a79683))
+
 ## [7.2.71](https://github.com/nativescript-community/ui-material-component/compare/v7.2.70...v7.2.71) (2025-02-20)
 
 ### Bug Fixes

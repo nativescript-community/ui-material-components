@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-slider",
-    "version": "7.2.71",
+    "version": "7.2.76",
     "description": "Material Design Sliders allow users to make selections from a range of values.",
     "main": "./slider",
     "sideEffects": false,
@@ -46,7 +46,7 @@
     },
     "readmeFilename": "README.md",
     "dependencies": {
-        "@nativescript-community/ui-material-core": "^7.2.71"
+        "@nativescript-community/ui-material-core": "^7.2.76"
     },
     "gitHead": "65eb2d66b4128ce58b4d3e35c83a68a6f921222c"
 }
