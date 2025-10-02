@@ -3,7 +3,7 @@
  * @module @nativescript-community/ui-material-snackbar
  */
 
-import { View } from '@nativescript/core';
+import { Color, View } from '@nativescript/core';
 export { SnackBarAction, DismissReasons } from './snackbar-common';
 
 export declare class SnackBar {
@@ -55,17 +55,17 @@ export interface SnackBarOptions {
     /**
      * Action Text Color of the snackbar.
      */
-    actionTextColor?: string;
+    actionTextColor?: string | Color;
 
     /**
      * Text Color of the snackbar.
      */
-    textColor?: string;
+    textColor?: string | Color;
 
     /**
      * Background Color of the snackbar.
      */
-    backgroundColor?: string;
+    backgroundColor?: string | Color;
     /**
      * *Android Only*
      * Set the maxLines if you are displaying a long string of text and it will wrap.
