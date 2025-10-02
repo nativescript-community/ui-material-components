@@ -86,5 +86,10 @@ export interface SnackBarOptions {
      * The snackbar will appear above that view
      */
     anchorView?: View;
+    /**
+     * iOS function to ignore special case of presentedViewController
+     * like not wanting to show a snack inside a Popover
+     */
+    iosIgnorePresentedViewController?: (controller) => boolean;
 }
 
