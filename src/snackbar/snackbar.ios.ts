@@ -68,13 +68,20 @@ export class SnackBar extends SnackBarBase {
             currentView = currentView.modal || currentView;
             let viewController = currentView.viewController;
             while (viewController.presentedViewController) {
+                // if there is alertDialog presenting another controller let s find it.
+                // this can happen because if a page(controller) is showing an alert and we 
+                // want to show a modal/other page over that page we need to use the 
+                // current alert controller as presenting. So it will be the alertcontroller which
+                // will actually be the presenting controller
                 while (
                     viewController.presentedViewController instanceof UIAlertController ||
                     (viewController.presentedViewController['isAlertController'] && viewController.presentedViewController.presentedViewController)
                 ) {
                     viewController = viewController.presentedViewController;
                 }
-                if (viewController.presentedViewController instanceof UIAlertController || viewController.presentedViewController['isAlertController']) {
+                // we are now in a case where we have the parent presenting controller
+                // let ignore or not the presentedViewController (alert dialog, popover ...)
+                if (viewController.presentedViewController instanceof UIAlertController || viewController.presentedViewController['isAlertController'] || options.iosIgnorePresentedViewController?.(viewController.presentedViewController)) {
                     break;
                 } else {
                     viewController = viewController.presentedViewController;
