@@ -1,7 +1,7 @@
 import { Color, View } from '@nativescript/core';
 
-import { SnackBarOptions } from './';
-export { SnackBarOptions } from './';
+import { SnackBarOptions } from './snackbar';
+export { SnackBarOptions } from './snackbar';
 
 export enum DismissReasons {
     SWIPE = 'swipe',
