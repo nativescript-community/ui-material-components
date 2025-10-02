@@ -66,7 +66,7 @@ export class CardView extends CardViewBase {
     }
     applyShapeScheme() {
         if (this.scheme) {
-            this.scheme.shapeScheme = this.shapeScheme;
+            this.scheme.shapeScheme = this.getShapeScheme();
             this.nativeViewProtected.applyThemeWithScheme(this.scheme);
         }
     }
@@ -201,6 +201,6 @@ export class CardView extends CardViewBase {
     }
 
     [shapeProperty.setNative](shape) {
-        this.getShapeScheme();
+        this.applyShapeScheme();
     }
 }
