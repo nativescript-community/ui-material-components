@@ -69,25 +69,25 @@ export class Slider extends SliderBase {
     }
     [minValueProperty.setNative](value) {
         this.nativeViewProtected.minimumValue = value;
-        if (this.stepSize !== 0) {
+        if (this.stepSize) {
             // add one to get amount of values and not difference between min and max
             const valuesCount = this.maxValue - this.minValue + 1;
-            this.nativeViewProtected.numberOfDiscreteValues = Math.ceil(valuesCount / value);
+            this.nativeViewProtected.numberOfDiscreteValues = Math.ceil(valuesCount / this.stepSize);
         }
     }
     [maxValueProperty.setNative](value) {
         this.nativeViewProtected.maximumValue = value;
-        if (this.stepSize !== 0) {
+        if (this.stepSize) {
             // add one to get amount of values and not difference between min and max
             const valuesCount = this.maxValue - this.minValue + 1;
-            this.nativeViewProtected.numberOfDiscreteValues = Math.ceil(valuesCount / value);
+            this.nativeViewProtected.numberOfDiscreteValues = Math.ceil(valuesCount / this.stepSize);
         }
     }
     [stepSizeProperty.getDefault]() {
         return 0;
     }
     [stepSizeProperty.setNative](value) {
-        if (value === 0) {
+        if (!value) {
             this.nativeViewProtected.discrete = false;
         } else {
             this.nativeViewProtected.discrete = true;
