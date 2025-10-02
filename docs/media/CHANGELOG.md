@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.71](https://github.com/nativescript-community/ui-material-component/compare/v7.2.70...v7.2.71) (2025-02-20)
+
+### Bug Fixes
+
+* **android:** potential memory leaks fix ([b86d2fe](https://github.com/nativescript-community/ui-material-component/commit/b86d2feae6751b19f5a4ad028543ef5246c108de))
+* lazy tab bar slow with or without animations ([e51e5c9](https://github.com/nativescript-community/ui-material-component/commit/e51e5c9a116cc03745ebe8b6c7bfb1cb114cc847))
+
 ## [7.2.70](https://github.com/nativescript-community/ui-material-component/compare/v7.2.69...v7.2.70) (2025-01-14)
 
 ### Bug Fixes
