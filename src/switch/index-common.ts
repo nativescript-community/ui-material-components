@@ -5,6 +5,7 @@ import { CSSType, Color, CssProperty, Switch as NSSwitch, Property, Style, boole
 export abstract class SwitchBase extends NSSwitch {
     // @cssProperty progressColor: Color;
     // @cssProperty progressBackgroundColor: Color;
+    onBackgroundColor: Color;
     // public indeterminate: boolean;
     // public busy: boolean;
     // public startAnimating() {
