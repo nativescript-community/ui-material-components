@@ -14,7 +14,12 @@ export abstract class SwitchBase extends NSSwitch {
     //     this.busy = false;
     // }
 }
-
+export const onBackgroundColorProperty = new Property<SwitchBase, Color>({
+    name: 'onBackgroundColor',
+    equalityComparer: Color.equals,
+    valueConverter: v => new Color(v),
+});
+onBackgroundColorProperty.register(SwitchBase);
 // export const progressColorProperty = new CssProperty<Style, Color>({
 //     cssName: 'progress-color',
 //     name: 'progressColor',
