@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.78](https://github.com/nativescript-community/ui-material-component/compare/v7.2.77...v7.2.78) (2025-10-03)
+
+### Features
+
+* **switch:** onBackgroundColor property ([c456a6b](https://github.com/nativescript-community/ui-material-component/commit/c456a6bb3a3eb9da3d2649e53c4455298115ba33))
+
+### Bug Fixes
+
+* **slider:** iOS fix for when stepSize is set or null ([bfb4ac8](https://github.com/nativescript-community/ui-material-component/commit/bfb4ac85bb5e011ca398e8b10b955b109208bfac))
+
 ## [7.2.77](https://github.com/nativescript-community/ui-material-component/compare/v7.2.76...v7.2.77) (2025-10-02)
 
 ### Bug Fixes
