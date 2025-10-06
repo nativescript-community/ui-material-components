@@ -79,7 +79,7 @@ jobs:
         if: steps.yarn-node_modules.outputs.cache-hit != 'true'
         uses: bahmutov/npm-install@v1
         with:
-          install-command: yarn install --silent
+          install-command: corepack yarn --silent
         env: 
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
 
