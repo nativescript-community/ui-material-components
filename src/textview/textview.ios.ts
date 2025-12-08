@@ -227,7 +227,8 @@ export class TextView extends TextViewBase {
             this._controller.underlineHeightActive = 0;
             this._controller.underlineHeightNormal = 0;
         }
-
+        view.textView.font = UIFont.systemFontOfSize(19)
+        this._controller.inlinePlaceholderFont = UIFont.systemFontOfSize(16)
         // view.textInsetsMode = MDCTextInputTextInsetsMode.IfContent;
 
         return view;
