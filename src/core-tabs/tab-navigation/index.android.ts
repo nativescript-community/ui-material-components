@@ -552,6 +552,9 @@ export abstract class TabNavigation<T extends android.view.ViewGroup = any> exte
         } else {
             this.mTabsBar.setBackground(tryCloneDrawable(value, this.nativeViewProtected.getResources()));
         }
+        this.tabStrip.items?.forEach((item) => {
+            this.updateItem(item);
+        });
     }
 
     public getTabBarHighlightColor(): number {
