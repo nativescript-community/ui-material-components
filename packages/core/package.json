@@ -6,14 +6,15 @@
     "sideEffects": false,
     "typings": "./index.d.ts",
     "scripts": {
-        "tsc": "cpy '**/*.d.ts' '../../packages/core' --cwd=../../src/core --parents && tsc -d",
+        "tsc": "cpy '**/*.d.ts' '../../packages/core' --parents --cwd=../../src/core && tsc  --build",
         "tsc-win": "cpy **/*.d.ts ..\\..\\packages\\core --cwd=..\\..\\src\\core --parents && tsc -d",
-        "build": "npm run tsc",
+        "build": "npm run tsc && npm run readme",
         "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win",
         "build.all": "npm run build",
         "build.all.win": "npm run build.win",
-        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map android"
+        "clean": "bin/rimraf ./*.d.ts ./*.js ./*.js.map ./*.tsbuildinfo ./*.mjs ./*.mjs.map ./angular ./svelte ./vue* ./react",
+        "readme": "readme generate -c ../../tools/readme/blueprint.json"
     },
     "nativescript": {
         "platforms": {

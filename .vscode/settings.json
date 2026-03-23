@@ -1,19 +1,51 @@
 {
-    "files.exclude": {
-        "schema": true
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "svelte.plugin.svelte.compilerWarnings": {
+        "missing-declaration": "ignore",
+        "a11y-aria-attributes": "ignore",
+        "a11y-incorrect-aria-attribute-type": "ignore",
+        "a11y-unknown-aria-attribute": "ignore",
+        "a11y-hidden": "ignore",
+        "a11y-misplaced-role": "ignore",
+        "a11y-unknown-role": "ignore",
+        "a11y-no-abstract-role": "ignore",
+        "a11y-no-redundant-roles": "ignore",
+        "a11y-role-has-required-aria-props": "ignore",
+        "a11y-accesskey": "ignore",
+        "a11y-autofocus": "ignore",
+        "a11y-misplaced-scope": "ignore",
+        "a11y-positive-tabindex": "ignore",
+        "a11y-invalid-attribute": "ignore",
+        "a11y-missing-attribute": "ignore",
+        "a11y-img-redundant-alt": "ignore",
+        "a11y-label-has-associated-control": "ignore",
+        "a11y-media-has-caption": "ignore",
+        "a11y-distracting-elements": "ignore",
+        "a11y-structure": "ignore",
+        "a11y-mouse-events-have-key-events": "ignore",
+        "a11y-missing-content": "ignore",
+        "illegal-attribute-character": "ignore"
     },
-    "search.exclude": {
-        "**/platforms": false,
-        "packages/**/platforms": false
-    },
-    "xml.fileAssociations": [
-        {
-            "systemId": "/Volumes/data/dev/nativescript/nativescript-material-components/schema/tns.xsd",
-            "pattern": "**/**/*.xml"
-        }
-    ],
-    "editor.snippetSuggestions": "top",
-    "NE.enable.snippets": true,
-    "java.configuration.updateBuildConfiguration": "disabled",
-    "typescript.tsdk": "node_modules/typescript/lib"
+    "scss.lint.validProperties": [
+        "max-font-size",
+        "min-font-size",
+        "ios-a11y-adjusts-font-size",
+        "status-bar-style",
+        "navigation-bar-color",
+        "status-bar-color",
+        "ripple-color",
+        "stroke-color",
+        "fill-color",
+        "on-check-color",
+        "on-tint-color",
+        "shape",
+        "elevation",
+        "horizontal-align",
+        "horizontal-alignment",
+        "vertical-text-alignment",
+        "floating",
+        "vertical-alignment",
+        "placeholder-color",
+        "variant"
+    ]
 }

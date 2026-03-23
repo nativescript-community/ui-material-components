@@ -6,16 +6,17 @@
     "sideEffects": false,
     "typings": "./progress.d.ts",
     "scripts": {
-        "tsc": "cpy ../../src/progress/progress.d.ts ./ && tsc -d",
+        "tsc": "cpy '**/*.d.ts' '../../packages/progress' --parents --cwd=../../src/progress && tsc  --build",
         "tsc-win": "cpy ..\\..\\src\\progress\\progress.d.ts .\\ && tsc -d",
-        "build": "npm run tsc",
+        "build": "npm run tsc && npm run readme",
         "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win",
         "build.all": "npm run build && npm run build.angular",
         "build.all.win": "npm run build.win && npm run build.angular.win",
         "build.angular": "ng-packagr -p ../../src/progress/angular/ng-package.json -c ../../src/progress/angular/tsconfig.json && rm angular/.npmignore",
         "build.angular.win": "ng-packagr -p ..\\..\\src\\progress\\angular\\package.json -c ..\\..\\src\\progress\\angular\\tsconfig.json",
-        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
+        "clean": "bin/rimraf ./*.d.ts ./*.js ./*.js.map ./*.tsbuildinfo ./*.mjs ./*.mjs.map ./angular ./svelte ./vue* ./react",
+        "readme": "readme generate -c ../../tools/readme/blueprint.json"
     },
     "nativescript": {
         "platforms": {

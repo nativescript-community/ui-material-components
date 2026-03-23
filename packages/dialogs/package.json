@@ -6,13 +6,14 @@
     "sideEffects": false,
     "typings": "./dialogs.d.ts",
     "scripts": {
-        "tsc": "cpy ../../src/dialogs/dialogs.d.ts ./ && tsc -d",
+        "tsc": "cpy '**/*.d.ts' '../../packages/dialogs' --parents --cwd=../../src/dialogs && tsc  --build",
         "tsc-win": "cpy ..\\..\\src\\dialogs\\dialogs.d.ts .\\ && tsc -d",
-        "build": "npm run tsc",
+        "build": "npm run tsc && npm run readme",
         "build.win": "npm run tsc-win",
         "build.all": "npm run build",
         "build.all.win": "npm run build.win",
-        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
+        "clean": "bin/rimraf ./*.d.ts ./*.js ./*.js.map ./*.tsbuildinfo ./*.mjs ./*.mjs.map ./angular ./svelte ./vue* ./react",
+        "readme": "readme generate -c ../../tools/readme/blueprint.json"
     },
     "nativescript": {
         "platforms": {
