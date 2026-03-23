@@ -41,6 +41,10 @@ import { TextFieldBase } from './textfield.common';
 
 let FrameLayoutLayoutParams: typeof android.widget.FrameLayout.LayoutParams;
 export class TextField extends TextFieldBase {
+
+    //TODO: remove as it needs to be added after TS 5.7 change https://github.com/microsoft/TypeScript/pull/59860
+    [key: symbol]: (...args: any[]) => any | void;
+
     editText: com.nativescript.material.textfield.TextInputEditText;
     layoutView: com.google.android.material.textfield.TextInputLayout;
 
@@ -110,7 +114,11 @@ export class TextField extends TextFieldBase {
     [hintProperty.setNative](value: string) {
         const text = value === null || value === undefined ? null : value.toString();
         try {
-            this.layoutView.setHint(text);
+            if (this.floating) {
+                this.layoutView.setHint(text);
+            } else {
+                this.nativeTextViewProtected.setHint(text);
+            }
         } catch (error) {}
     }
     [lineBreakProperty.setNative](value: string) {
@@ -217,6 +225,10 @@ export class TextField extends TextFieldBase {
 
     [floatingProperty.setNative](value: boolean) {
         this.layoutView.setHintEnabled(!!value);
+        if (this.hint) {
+            // we need to enable hint on the editText if set
+            this[hintProperty.setNative](this.hint);
+        }
     }
     [strokeWidthProperty.setNative](value: CoreTypes.LengthType) {
         this.layoutView.setBoxStrokeWidth(Length.toDevicePixels(value, 0));
