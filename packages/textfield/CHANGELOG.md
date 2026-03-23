@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.79](https://github.com/nativescript-community/ui-material-components/compare/v7.2.78...v7.2.79) (2026-03-23)
+
+### Bug Fixes
+
+* **textfield:** support lineBreak ([bc5bc3c](https://github.com/nativescript-community/ui-material-components/commit/bc5bc3c962926cd72fdbad73aabef65a6f46e94b))
+
 ## [7.2.78](https://github.com/nativescript-community/ui-material-components/compare/v7.2.77...v7.2.78) (2025-10-03)
 
 **Note:** Version bump only for package @nativescript-community/ui-material-textfield

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.79](https://github.com/nativescript-community/ui-material-component/compare/v7.2.78...v7.2.79) (2026-03-23)
+
+### Bug Fixes
+
+* **core-tabs:** tab bar background color not applying on `tabStripItems` ([5ba67db](https://github.com/nativescript-community/ui-material-component/commit/5ba67db4e09a986516bb7621603c44b42fa62e48))
+* **textfield:** android fix for hint without floating ([81192e7](https://github.com/nativescript-community/ui-material-component/commit/81192e74f53a6e9e8548494958a320368f21ce66))
+* **textfield:** support lineBreak ([bc5bc3c](https://github.com/nativescript-community/ui-material-component/commit/bc5bc3c962926cd72fdbad73aabef65a6f46e94b))
+* **textview:** iOS default font size fix (was too small) ([a28c73d](https://github.com/nativescript-community/ui-material-component/commit/a28c73d37c995d4b83fb1dacc1751dc06ca6caeb))
+
 ## [7.2.78](https://github.com/nativescript-community/ui-material-component/compare/v7.2.77...v7.2.78) (2025-10-03)
 
 ### Features
