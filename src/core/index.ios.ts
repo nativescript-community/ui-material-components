@@ -18,6 +18,8 @@ import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleC
 export * from './cssproperties';
 export { applyMixins };
 
+const observableVisualStates = ['highlighted']; // States like :disabled are handled elsewhere
+
 function createCornerFamily(cornerFamily: CornerFamily): MDCShapeCornerFamily {
     switch (cornerFamily) {
         case CornerFamily.CUT:
@@ -234,6 +236,10 @@ export function getRippleColor(color: string | Color, alpha = 61.5): UIColor {
 export function overrideViewBase() {
     const NSView = require('@nativescript/core').View;
     class ViewWithElevationAndRipple extends View {
+        
+        //TODO: remove as it needs to be added after TS 5.7 change https://github.com/microsoft/TypeScript/pull/59860
+        [key: symbol]: (...args: any[]) => any | void;
+
         @cssProperty elevation: number;
         @cssProperty dynamicElevationOffset: number;
         @cssProperty rippleColor: Color;
@@ -355,7 +361,7 @@ export function overrideViewBase() {
                 if (this.nativeViewProtected instanceof UIControl) {
                     this._elevationStateChangedHandler =
                         this._elevationStateChangedHandler ||
-                        new ControlStateChangeListener(this.nativeViewProtected, (s: string) => {
+                        new ControlStateChangeListener(this.nativeViewProtected, observableVisualStates, (s: string) => {
                             this.updateShadowElevation(s);
                         });
                     this._elevationStateChangedHandler.start();
