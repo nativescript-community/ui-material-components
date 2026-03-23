@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.78](https://github.com/nativescript-community/ui-material-component/compare/v7.2.77...v7.2.78) (2025-10-03)
+
+### Features
+
+* **switch:** onBackgroundColor property ([c456a6b](https://github.com/nativescript-community/ui-material-component/commit/c456a6bb3a3eb9da3d2649e53c4455298115ba33))
+
+### Bug Fixes
+
+* **slider:** iOS fix for when stepSize is set or null ([bfb4ac8](https://github.com/nativescript-community/ui-material-component/commit/bfb4ac85bb5e011ca398e8b10b955b109208bfac))
+
+## [7.2.77](https://github.com/nativescript-community/ui-material-component/compare/v7.2.76...v7.2.77) (2025-10-02)
+
+### Bug Fixes
+
+* **snackbar:** iOS new option iosIgnorePresentedViewController ([98d25f5](https://github.com/nativescript-community/ui-material-component/commit/98d25f51348d76ff45a10a4daaaa3d8f8dcce387))
+
+## [7.2.76](https://github.com/nativescript-community/ui-material-component/compare/v7.2.71...v7.2.76) (2025-10-02)
+
+### Bug Fixes
+
+* **bottom-navigation:** broken package fix ([bc61839](https://github.com/nativescript-community/ui-material-component/commit/bc61839bbcafe4bb45a8bb21d268bc7a49c28d95))
+* **cardview:** iOS fix for shape not applied from css ([c1fc94f](https://github.com/nativescript-community/ui-material-component/commit/c1fc94f5f08830052b0d40c01e59dfd389a79683))
+
+## [7.2.71](https://github.com/nativescript-community/ui-material-component/compare/v7.2.70...v7.2.71) (2025-02-20)
+
+### Bug Fixes
+
+* **android:** potential memory leaks fix ([b86d2fe](https://github.com/nativescript-community/ui-material-component/commit/b86d2feae6751b19f5a4ad028543ef5246c108de))
+* lazy tab bar slow with or without animations ([e51e5c9](https://github.com/nativescript-community/ui-material-component/commit/e51e5c9a116cc03745ebe8b6c7bfb1cb114cc847))
+
 ## [7.2.70](https://github.com/nativescript-community/ui-material-component/compare/v7.2.69...v7.2.70) (2025-01-14)
 
 ### Bug Fixes
