@@ -4,7 +4,7 @@ import { NativeScriptMaterialTextFieldModule } from '@nativescript-community/ui-
 import { TextFieldComponent } from './text-field.component';
 
 @NgModule({
-    declarations: [TextFieldComponent],
+    imports: [TextFieldComponent],
     imports: [NativeScriptCommonModule, NativeScriptMaterialTextFieldModule],
     schemas: [NO_ERRORS_SCHEMA]
 })

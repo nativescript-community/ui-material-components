@@ -6,7 +6,7 @@ import { Switch } from '@nativescript-community/ui-material-switch';
 export class MaterialSwitchDirective {}
 
 @NgModule({
-    declarations: [MaterialSwitchDirective],
+    imports: [MaterialSwitchDirective],
     exports: [MaterialSwitchDirective]
 })
 export class NativeScriptMaterialSwitchModule {}

@@ -8,7 +8,7 @@ export { TextValueAccessor };
 export const FORMS_DIRECTIVES = [TextValueAccessor];
 
 @NgModule({
-    declarations: FORMS_DIRECTIVES,
+    imports: FORMS_DIRECTIVES,
     exports: FORMS_DIRECTIVES,
 })
 export class NativeScriptMaterialTextViewModule {}

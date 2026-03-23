@@ -4,6 +4,9 @@ import { getRippleColor } from '@nativescript-community/ui-material-core';
 import { inflateLayout } from '@nativescript-community/ui-material-core/android/utils';
 
 export class Progress extends ProgressBase {
+    //TODO: remove as it needs to be added after TS 5.7 change https://github.com/microsoft/TypeScript/pull/59860
+    [key: symbol]: (...args: any[]) => any | void;
+    
     nativeViewProtected: com.google.android.material.progressindicator.LinearProgressIndicator;
 
     createNativeView() {

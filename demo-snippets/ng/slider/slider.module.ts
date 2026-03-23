@@ -4,7 +4,7 @@ import { NativeScriptMaterialSliderModule } from '@nativescript-community/ui-mat
 import { SliderComponent } from './slider.component';
 
 @NgModule({
-    declarations: [SliderComponent],
+    imports: [SliderComponent],
     imports: [NativeScriptCommonModule, NativeScriptMaterialSliderModule],
     schemas: [NO_ERRORS_SCHEMA]
 })

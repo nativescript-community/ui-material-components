@@ -4,7 +4,7 @@ import { NativeScriptMaterialRippleModule } from '@nativescript-community/ui-mat
 import { RippleComponent } from './ripple.component';
 
 @NgModule({
-    declarations: [RippleComponent],
+    imports: [RippleComponent],
     imports: [NativeScriptCommonModule, NativeScriptMaterialRippleModule],
     schemas: [NO_ERRORS_SCHEMA]
 })

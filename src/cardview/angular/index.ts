@@ -6,7 +6,7 @@ import { CardView } from '@nativescript-community/ui-material-cardview';
 export class MaterialCardViewDirective {}
 
 @NgModule({
-    declarations: [MaterialCardViewDirective],
+    imports: [MaterialCardViewDirective],
     exports: [MaterialCardViewDirective]
 })
 export class NativeScriptMaterialCardViewModule {}

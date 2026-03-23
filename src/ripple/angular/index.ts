@@ -6,7 +6,7 @@ import { Ripple } from '@nativescript-community/ui-material-ripple';
 export class MaterialRippleDirective {}
 
 @NgModule({
-    declarations: [MaterialRippleDirective],
+    imports: [MaterialRippleDirective],
     exports: [MaterialRippleDirective],
 })
 export class NativeScriptMaterialRippleModule {}

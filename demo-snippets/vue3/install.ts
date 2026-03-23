@@ -1,8 +1,4 @@
-// @ts-ignore
-import { registerElement } from 'nativescript-vue';
 import ActivityIndicatorPlugin from '@nativescript-community/ui-material-activityindicator/vue';
-import BottomNavigationPlugin from '@nativescript-community/ui-material-bottom-navigation/vue';
-import BottomNavigationBarPlugin from '@nativescript-community/ui-material-bottomnavigationbar/vue';
 import { install as installBottomSheet } from '@nativescript-community/ui-material-bottomsheet';
 import { BottomSheetPlugin } from '@nativescript-community/ui-material-bottomsheet/vue3';
 import ButtonPlugin from '@nativescript-community/ui-material-button/vue';
@@ -15,13 +11,11 @@ import ProgressPlugin from '@nativescript-community/ui-material-progress/vue';
 import RipplePlugin from '@nativescript-community/ui-material-ripple/vue';
 import SliderPlugin from '@nativescript-community/ui-material-slider/vue';
 import SpeedDialPlugin from '@nativescript-community/ui-material-speeddial/vue';
-import TabsPlugin from '@nativescript-community/ui-material-tabs/vue';
 import TextFieldPlugin from '@nativescript-community/ui-material-textfield/vue';
 import TextViewPlugin from '@nativescript-community/ui-material-textview/vue';
 
 import ActivityIndicators from './ActivityIndicators.vue';
-import BottomNavigationBar from './BottomNavigationBar.vue';
-import BottomNavigation from './BottomNavigation.vue';
+import BottomSheet from './BottomSheet.vue';
 import Buttons from './Buttons.vue';
 import CardViews from './CardViews.vue';
 import Dialogs from './Dialogs.vue';
@@ -31,9 +25,8 @@ import Sliders from './Sliders.vue';
 import SnackBar from './SnackBar.vue';
 import TextFields from './TextFields.vue';
 import TextViews from './TextView.vue';
-import BottomSheet from './BottomSheet.vue';
-import SpeedDial from './Speeddial.vue';
-import Tabs from './Tabs.vue';
+// import SpeedDial from './Speeddial.vue';
+// import Tabs from './Tabs.vue';
 import Mixins from './Mixins.vue';
 
 import '../app.scss';

@@ -4,7 +4,7 @@ import { NativeScriptMaterialProgressModule } from '@nativescript-community/ui-m
 import { ProgressComponent } from './progress.component';
 
 @NgModule({
-    declarations: [ProgressComponent],
+    imports: [ProgressComponent],
     imports: [NativeScriptCommonModule, NativeScriptMaterialProgressModule],
     schemas: [NO_ERRORS_SCHEMA]
 })

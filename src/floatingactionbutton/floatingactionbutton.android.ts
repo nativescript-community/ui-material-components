@@ -8,6 +8,9 @@ import { getRippleColor } from '@nativescript-community/ui-material-core/index.a
 let MDCFabButton: typeof com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 export class FloatingActionButton extends FloatingActionButtonBase {
+    //TODO: remove as it needs to be added after TS 5.7 change https://github.com/microsoft/TypeScript/pull/59860
+    [key: symbol]: (...args: any[]) => any | void;
+    
     nativeViewProtected: com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
     defaultPadding: number;
     public createNativeView() {

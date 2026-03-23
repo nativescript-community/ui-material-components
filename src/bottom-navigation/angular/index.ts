@@ -6,7 +6,7 @@ import { BottomNavigation, TabContentItem, TabStrip, TabStripItem } from '@nativ
 export class MaterialBottomNavigationDirective {}
 
 @NgModule({
-    declarations: [MaterialBottomNavigationDirective],
+    imports: [MaterialBottomNavigationDirective],
     exports: [MaterialBottomNavigationDirective]
 })
 export class NativeScriptMaterialBottomNavigationModule {}

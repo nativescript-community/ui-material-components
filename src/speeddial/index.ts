@@ -339,7 +339,7 @@ export class SpeedDial extends SpeedDialItemBase {
             this.mFabs.splice(index, 0, new WeakRef(child));
             this.fabsHolder.insertChild(child, index);
         } else {
-            super.insertChild(child, index);
+            return super.insertChild(child, index);
         }
     }
     addChild(child) {

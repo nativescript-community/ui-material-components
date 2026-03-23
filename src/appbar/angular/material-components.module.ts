@@ -10,7 +10,7 @@ registerElement('AppBar', () => AppBar, appBarMeta);
 
 @NgModule({
     imports: [],
-    declarations: [AppBarComponent, AppBarDirective],
+    imports: [AppBarComponent, AppBarDirective],
     exports: [AppBarComponent, AppBarDirective],
     providers: []
 })

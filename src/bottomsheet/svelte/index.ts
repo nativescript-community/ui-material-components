@@ -1,7 +1,7 @@
 import { BottomSheetOptions } from '../bottomsheet';
 import { Frame, View } from '@nativescript/core';
-import { NativeViewElementNode, createElement } from 'svelte-native/dom';
-import { PageSpec } from 'svelte-native/dom/navigation';
+import { NativeViewElementNode, createElement } from '@nativescript-community/svelte-native/dom';
+import { PageSpec } from '@nativescript-community/svelte-native/dom/navigation';
 
 declare module '@nativescript/core/ui/core/view' {
     interface View {

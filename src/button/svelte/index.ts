@@ -1,4 +1,4 @@
-import { registerNativeViewElement } from 'svelte-native/dom';
+import { registerNativeViewElement } from '@nativescript-community/svelte-native/dom';
 import { Button } from '../button';
 
 export default class ButtonPlugin {

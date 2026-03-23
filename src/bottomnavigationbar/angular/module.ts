@@ -5,7 +5,7 @@ import { DIRECTIVES } from './directives';
 export { BottomNavigationBarDirective , BottomNavigationTabDirective} from './directives';
 
 @NgModule({
-    declarations: [DIRECTIVES],
+    imports: [DIRECTIVES],
     exports: [DIRECTIVES],
 })
 export class NativeScriptMaterialBottomNavigationBarModule {}

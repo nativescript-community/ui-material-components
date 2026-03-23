@@ -4,7 +4,7 @@ import { NativeScriptMaterialActivityIndicatorModule } from '@nativescript-commu
 import { ActivityIndicatorComponent } from './activity-indicator.component';
 
 @NgModule({
-    declarations: [ActivityIndicatorComponent],
+    imports: [ActivityIndicatorComponent],
     imports: [NativeScriptCommonModule, NativeScriptMaterialActivityIndicatorModule],
     schemas: [NO_ERRORS_SCHEMA]
 })

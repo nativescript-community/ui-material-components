@@ -4,7 +4,7 @@ import { NativeScriptMaterialButtonModule } from '@nativescript-community/ui-mat
 import { ButtonsComponent } from './buttons.component';
 
 @NgModule({
-    declarations: [ButtonsComponent],
+    imports: [ButtonsComponent],
     imports: [NativeScriptCommonModule, NativeScriptMaterialButtonModule],
     schemas: [NO_ERRORS_SCHEMA]
 })

@@ -6,7 +6,7 @@ import { TabContentItem, TabStrip, TabStripItem, Tabs } from '@nativescript-comm
 export class MaterialTabsDirective {}
 
 @NgModule({
-    declarations: [MaterialTabsDirective],
+    imports: [MaterialTabsDirective],
     exports: [MaterialTabsDirective]
 })
 export class NativeScriptMaterialTabsModule {}

@@ -8,7 +8,7 @@ import { ThirdTabComponent } from './third-tab/third-tab.component';
 
 @NgModule({
     imports: [NativeScriptCommonModule, NativeScriptMaterialBottomNavigationBarModule],
-    declarations: [BottomNavigationBarComponent, FirstTabComponent, ThirdTabComponent],
+    imports: [BottomNavigationBarComponent, FirstTabComponent, ThirdTabComponent],
     schemas: [NO_ERRORS_SCHEMA]
 })
 export class BottomNavigationBarModule {}

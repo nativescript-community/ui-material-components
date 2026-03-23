@@ -6,6 +6,9 @@ import { stepSizeProperty, thumbColorProperty, thumbHollowAtStartProperty, track
 import { SliderBase } from './slider-common';
 
 export class Slider extends SliderBase {
+    //TODO: remove as it needs to be added after TS 5.7 change https://github.com/microsoft/TypeScript/pull/59860
+    [key: symbol]: (...args: any[]) => any | void;
+
     nativeViewProtected: MDCSlider;
     constructor() {
         super();

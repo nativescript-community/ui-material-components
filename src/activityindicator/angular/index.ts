@@ -6,7 +6,7 @@ import { ActivityIndicator } from '@nativescript-community/ui-material-activityi
 export class MaterialActivityIndicatorDirective {}
 
 @NgModule({
-    declarations: [MaterialActivityIndicatorDirective],
+    imports: [MaterialActivityIndicatorDirective],
     exports: [MaterialActivityIndicatorDirective]
 })
 export class NativeScriptMaterialActivityIndicatorModule {}

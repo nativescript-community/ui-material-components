@@ -33,6 +33,9 @@ export const unSelectedItemColorProperty = new CssProperty<Style, Color>({
 
 @CSSType('MDTabStrip')
 export class TabStrip extends View implements TabStripDefinition, AddChildFromBuilder, AddArrayFromBuilder {
+    //TODO: remove as it needs to be added after TS 5.7 change https://github.com/microsoft/TypeScript/pull/59860
+    [key: symbol]: (...args: any[]) => any | void;
+    
     public static itemTapEvent = 'itemTap';
     public items: TabStripItem[];
     public isIconSizeFixed: boolean;

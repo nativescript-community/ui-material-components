@@ -4,7 +4,7 @@ import { NativeScriptMaterialTabsModule } from '@nativescript-community/ui-mater
 import { TabsComponent } from './tabs.component';
 
 @NgModule({
-    declarations: [TabsComponent],
+    imports: [TabsComponent],
     imports: [NativeScriptCommonModule, NativeScriptMaterialTabsModule],
     schemas: [NO_ERRORS_SCHEMA]
 })

@@ -195,6 +195,9 @@ function initializePreLollipopStackLayout() {
 }
 
 export class Ripple extends RippleBase {
+    //TODO: remove as it needs to be added after TS 5.7 change https://github.com/microsoft/TypeScript/pull/59860
+    [key: symbol]: (...args: any[]) => any | void;
+    
     nativeViewProtected: android.view.View;
     ripple: android.graphics.drawable.RippleDrawable;
 

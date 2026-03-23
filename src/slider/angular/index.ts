@@ -6,7 +6,7 @@ import { Slider } from '@nativescript-community/ui-material-slider';
 export class MaterialSliderDirective {}
 
 @NgModule({
-    declarations: [MaterialSliderDirective],
+    imports: [MaterialSliderDirective],
     exports: [MaterialSliderDirective]
 })
 export class NativeScriptMaterialSliderModule {}

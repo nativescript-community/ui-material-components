@@ -213,6 +213,9 @@ let mixinInstalled = false;
 export function overrideViewBase() {
     const NSView = require('@nativescript/core').View;
     class ViewWithElevationAndRipple extends View {
+        //TODO: remove as it needs to be added after TS 5.7 change https://github.com/microsoft/TypeScript/pull/59860
+        [key: symbol]: (...args: any[]) => any | void;
+
         @cssProperty elevation = 0;
         @cssProperty dynamicElevationOffset = 0;
         @cssProperty rippleColor: Color;

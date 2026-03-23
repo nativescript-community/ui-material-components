@@ -4,7 +4,7 @@ import { NativeScriptMaterialCardViewModule } from '@nativescript-community/ui-m
 import { CardsComponent } from './cards.component';
 
 @NgModule({
-    declarations: [CardsComponent],
+    imports: [CardsComponent],
     imports: [NativeScriptCommonModule, NativeScriptMaterialCardViewModule],
     schemas: [NO_ERRORS_SCHEMA]
 })

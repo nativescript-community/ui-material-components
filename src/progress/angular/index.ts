@@ -6,7 +6,7 @@ import { Progress } from '@nativescript-community/ui-material-progress';
 export class MaterialProgressDirective {}
 
 @NgModule({
-    declarations: [MaterialProgressDirective],
+    imports: [MaterialProgressDirective],
     exports: [MaterialProgressDirective]
 })
 export class NativeScriptMaterialProgressModule {}

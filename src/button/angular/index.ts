@@ -6,7 +6,7 @@ import { Button } from '@nativescript-community/ui-material-button';
 export class MaterialButtonDirective {}
 
 @NgModule({
-    declarations: [MaterialButtonDirective],
+    imports: [MaterialButtonDirective],
     exports: [MaterialButtonDirective]
 })
 export class NativeScriptMaterialButtonModule {}
