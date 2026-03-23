@@ -4,6 +4,7 @@
         "android.widget:LinearLayout.LayoutParams",
         "android.view:ViewGroup",
         "android.text.method:DigitsKeyListener",
+        "android.text:TextUtils.TruncateAt",
         "com.nativescript.material.textfield:TextInputLayout",
         "com.nativescript.material.textfield:TextInputEditText"
     ]

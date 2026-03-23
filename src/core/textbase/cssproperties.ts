@@ -7,6 +7,8 @@ function convertColor(value) {
     return value;
 }
 
+export type LineBreak = 'end' | 'start' | 'middle' | 'none';
+
 export const errorColorProperty = new CssProperty<Style, Color>({
     name: 'errorColor',
     cssName: 'error-color',
@@ -102,3 +104,9 @@ export const strokeWidthFocusedProperty = new CssProperty<Style, CoreTypes.Lengt
     valueConverter: Length.parse
 });
 strokeWidthFocusedProperty.register(Style);
+
+export const lineBreakProperty = new CssProperty<Style, LineBreak>({
+    name: 'lineBreak',
+    cssName: 'line-break'
+});
+lineBreakProperty.register(Style);

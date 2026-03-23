@@ -11,6 +11,7 @@ import {
     floatingProperty,
     helperColorProperty,
     helperProperty,
+    lineBreakProperty,
     strokeColorProperty,
     strokeDisabledColorProperty,
     strokeInactiveColorProperty,
@@ -111,6 +112,25 @@ export class TextField extends TextFieldBase {
         try {
             this.layoutView.setHint(text);
         } catch (error) {}
+    }
+    [lineBreakProperty.setNative](value: string) {
+        switch (value) {
+            case "end":
+                this.nativeTextViewProtected.setEllipsize(android.text.TextUtils.TruncateAt .END);
+                break;
+            case "start":
+                this.nativeTextViewProtected.setEllipsize(android.text.TextUtils.TruncateAt .START);
+                break;
+            case "marquee":
+                this.nativeTextViewProtected.setEllipsize(android.text.TextUtils.TruncateAt .MARQUEE);
+                break;
+            case "middle":
+                this.nativeTextViewProtected.setEllipsize(android.text.TextUtils.TruncateAt .MIDDLE);
+                break;
+            case "none":
+                this.nativeTextViewProtected.setEllipsize(null);
+                break;
+        }
     }
 
     [placeholderColorProperty.setNative](value: Color) {

@@ -11,6 +11,7 @@ import {
     floatingProperty,
     helperColorProperty,
     helperProperty,
+    lineBreakProperty,
     strokeColorProperty,
     strokeDisabledColorProperty,
     strokeInactiveColorProperty,
@@ -38,6 +39,20 @@ import {
 } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
 import { TextFieldBase } from './textfield.common';
+
+function lineBreakToLineBreakMode(value: string) {
+    switch (value) {
+        case 'end':
+            return NSLineBreakMode.ByTruncatingTail;
+        case 'start':
+            return NSLineBreakMode.ByTruncatingHead;
+        case 'middle':
+            return NSLineBreakMode.ByTruncatingMiddle;
+        default:
+        case 'none':
+            return NSLineBreakMode.ByWordWrapping;
+    }
+}
 
 @NativeClass
 class MDCFilledTextFieldImpl extends MDCFilledTextField {
@@ -121,6 +136,9 @@ declare module '@nativescript/core/ui/text-field' {
 }
 
 export class TextField extends TextFieldBase {
+    //TODO: remove as it needs to be added after TS 5.7 change https://github.com/microsoft/TypeScript/pull/59860
+    [key: symbol]: (...args: any[]) => any | void;
+
     nativeViewProtected: MDCBaseTextField;
     nativeTextViewProtected: MDCBaseTextField;
     //@ts-ignore
@@ -314,6 +332,9 @@ export class TextField extends TextFieldBase {
         if (this.floating && this.variant !== 'none') {
             this.nativeViewProtected.label.text = value;
         }
+    }
+    [lineBreakProperty.setNative](value: string) {
+        this.nativeViewProtected.label.lineBreakMode = lineBreakToLineBreakMode(value);
     }
     [errorColorProperty.setNative](value: Color) {
         const color = value instanceof Color ? value : new Color(value);
