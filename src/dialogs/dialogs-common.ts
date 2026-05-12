@@ -1,4 +1,4 @@
-import { Color, CoreTypes, Font, ImageSource, View, ViewBase } from '@nativescript/core';
+import { Color, CoreTypes, Font, ImageSource, StackLayout, View, ViewBase } from '@nativescript/core';
 
 export interface MDCAlertControlerOptions {
     buttonFont?: Font;
@@ -16,6 +16,8 @@ export interface MDCAlertControlerOptions {
     titleIconTintColor?: Color;
     customTitleView?: View;
     view?: ViewBase | string;
+    messageView?: ViewBase;
+    stackViewHolder?: StackLayout;
     context?: any;
     dismissOnBackgroundTap?: boolean;
     closeCallback?: Function;

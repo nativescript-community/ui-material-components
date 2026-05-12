@@ -389,7 +389,7 @@ export function confirm(arg: any): Promise<boolean> {
     });
 }
 
-export function prompt(arg: any): Promise<PromptResult> {
+export function prompt(...args): Promise<PromptResult> {
     let options: PromptOptions & MDCAlertControlerOptions;
 
     const defaultOptions = {
@@ -398,25 +398,28 @@ export function prompt(arg: any): Promise<PromptResult> {
         inputType: inputType.text
     };
 
-    if (arguments.length === 1) {
-        if (isString(arg)) {
+    if (args.length === 1) {
+        if (isString(args[0])) {
             options = defaultOptions;
-            options.message = arg;
+            options.message = args[0];
         } else {
-            options = Object.assign(defaultOptions, arg);
+            options = Object.assign(defaultOptions, args[0]);
         }
-    } else if (arguments.length === 2) {
-        if (isString(arguments[0]) && isString(arguments[1])) {
+    } else if (args.length === 2) {
+        if (isString(args[0]) && isString(args[1])) {
             options = defaultOptions;
-            options.message = arguments[0];
-            options.defaultText = arguments[1];
+            options.message = args[0];
+            options.defaultText = args[1];
         }
     }
 
     return new Promise<PromptResult>((resolve, reject) => {
         try {
-            const stackLayout = new StackLayout();
+            const stackLayout = options.stackViewHolder ?? new StackLayout();
             stackLayout.padding = 4;
+            if (options.messageView instanceof View) {
+                stackLayout.addChild(options.messageView);
+            }
             const textField = new TextField();
             textField.hint = options.hintText;
             if (options) {
@@ -491,39 +494,42 @@ export function prompt(arg: any): Promise<PromptResult> {
     });
 }
 
-export function login(arg: any): Promise<LoginResult> {
+export function login(...args): Promise<LoginResult> {
     let options: LoginOptions & MDCAlertControlerOptions;
     const defaultOptions = {
         okButtonText: DialogStrings.OK,
         cancelButtonText: DialogStrings.CANCEL
     };
 
-    if (arguments.length === 1) {
-        if (isString(arguments[0])) {
+    if (args.length === 1) {
+        if (isString(args[0])) {
             options = defaultOptions;
-            options.message = arguments[0];
+            options.message = args[0];
         } else {
-            options = Object.assign(defaultOptions, arguments[0]);
+            options = Object.assign(defaultOptions, args[0]);
         }
-    } else if (arguments.length === 2) {
-        if (isString(arguments[0]) && isString(arguments[1])) {
+    } else if (args.length === 2) {
+        if (isString(args[0]) && isString(args[1])) {
             options = defaultOptions;
-            options.message = arguments[0];
-            options.userName = arguments[1];
+            options.message = args[0];
+            options.userName = args[1];
         }
-    } else if (arguments.length === 3) {
-        if (isString(arguments[0]) && isString(arguments[1]) && isString(arguments[2])) {
+    } else if (args.length === 3) {
+        if (isString(args[0]) && isString(args[1]) && isString(args[2])) {
             options = defaultOptions;
-            options.message = arguments[0];
-            options.userName = arguments[1];
-            options.password = arguments[2];
+            options.message = args[0];
+            options.userName = args[1];
+            options.password = args[2];
         }
     }
 
     return new Promise<LoginResult>((resolve, reject) => {
         try {
-            const stackLayout = new StackLayout();
+            const stackLayout = options.stackViewHolder ?? new StackLayout();
             stackLayout.padding = 4;
+            if (options.messageView instanceof View) {
+                stackLayout.addChild(options.messageView);
+            }
             const userNameTextField = new TextField();
             const passwordTextField = new TextField();
             userNameTextField.hint = options.userNameHint || 'Username';
@@ -582,30 +588,30 @@ export function login(arg: any): Promise<LoginResult> {
     });
 }
 
-export function action(arg: any): Promise<string> {
+export function action(...args): Promise<string> {
     let options: ActionOptions;
 
     const defaultOptions = { title: null, cancelButtonText: DialogStrings.CANCEL };
 
-    if (arguments.length === 1) {
-        if (isString(arguments[0])) {
+    if (args.length === 1) {
+        if (isString(args[0])) {
             options = defaultOptions;
-            options.message = arguments[0];
+            options.message = args[0];
         } else {
-            options = Object.assign(defaultOptions, arguments[0]);
+            options = Object.assign(defaultOptions, args[0]);
         }
-    } else if (arguments.length === 2) {
-        if (isString(arguments[0]) && isString(arguments[1])) {
+    } else if (args.length === 2) {
+        if (isString(args[0]) && isString(args[1])) {
             options = defaultOptions;
-            options.message = arguments[0];
-            options.cancelButtonText = arguments[1];
+            options.message = args[0];
+            options.cancelButtonText = args[1];
         }
-    } else if (arguments.length === 3) {
-        if (isString(arguments[0]) && isString(arguments[1]) && typeof arguments[2] !== 'undefined') {
+    } else if (args.length === 3) {
+        if (isString(args[0]) && isString(args[1]) && typeof args[2] !== 'undefined') {
             options = defaultOptions;
-            options.message = arguments[0];
-            options.cancelButtonText = arguments[1];
-            options.actions = arguments[2];
+            options.message = args[0];
+            options.cancelButtonText = args[1];
+            options.actions = args[2];
         }
     }
 
