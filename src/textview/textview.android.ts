@@ -39,7 +39,7 @@ let noneId;
 export class TextView extends TextViewBase {
     //TODO: remove as it needs to be added after TS 5.7 change https://github.com/microsoft/TypeScript/pull/59860
     [key: symbol]: (...args: any[]) => any | void;
-    
+
     editText: com.nativescript.material.textview.TextViewInputEditText;
     layoutView: com.google.android.material.textfield.TextInputLayout;
 
