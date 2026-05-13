@@ -1,0 +1,54 @@
+{
+    "name": "@nativescript-community/ui-material-segmentedbar",
+    "version": "7.2.80",
+    "description": "Material Design SegmentedBar",
+    "main": "./index",
+    "sideEffects": false,
+    "typings": "./index.d.ts",
+    "scripts": {
+        "tsc": "cpy '**/*.d.ts' '../../packages/segmentedbar' --parents --cwd=../../src/segmentedbar && tsc  --build",
+        "tsc-win": "cpy ..\\..\\src\\segmentedbar\\index.d.ts .\\ && tsc -d",
+        "build": "npm run tsc && npm run readme",
+        "build.watch": "npm run tsc -- -w",
+        "build.win": "npm run tsc-win",
+        "build.all": "npm run build && npm run build.angular",
+        "build.all.win": "npm run build.win && npm run build.angular.win",
+        "build.angular": "ng-packagr -p ../../src/segmentedbar/angular/ng-package.json -c ../../src/segmentedbar/angular/tsconfig.json && rm angular/.npmignore",
+        "build.angular.win": "ng-packagr -p ..\\..\\src\\segmentedbar\\angular\\package.json -c ..\\..\\src\\segmentedbar\\angular\\tsconfig.json",
+        "clean": "bin/rimraf ./*.d.ts ./*.js ./*.js.map ./*.tsbuildinfo ./*.mjs ./*.mjs.map ./angular ./svelte ./vue* ./react",
+        "readme": "readme generate -c ../../tools/readme/blueprint.json"
+    },
+    "nativescript": {
+        "platforms": {
+            "android": "6.2.0",
+            "ios": "6.2.0"
+        }
+    },
+    "keywords": [
+        "NativeScript",
+        "JavaScript",
+        "Android",
+        "iOS",
+        "Vue",
+        "Angular",
+        "preview|https://raw.githubusercontent.com/nativescript-community/ui-material-components/master/images/demo-segmentedbar.png"
+    ],
+    "author": {
+        "name": "Martin Guillon",
+        "email": "martin@akylas.fr"
+    },
+    "bugs": {
+        "url": "https://github.com/nativescript-community/ui-material-components/issues"
+    },
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nativescript-community/ui-material-components/tree/master/packages/segmentedbar"
+    },
+    "readmeFilename": "README.md",
+    "dependencies": {
+        "@nativescript-community/ui-material-button": "^7.2.80",
+        "@nativescript-community/ui-material-core": "^7.2.80"
+    },
+    "gitHead": "65eb2d66b4128ce58b4d3e35c83a68a6f921222c"
+}

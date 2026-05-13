@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/segmentedbar/angular",
+    "lib": {
+        "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "."
+    ]
+}

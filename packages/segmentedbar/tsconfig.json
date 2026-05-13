@@ -1,0 +1,15 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "../../src/segmentedbar",
+        "outDir": "./",
+        "paths": {
+            "@nativescript-community/ui-material-core": ["packages/core/index"],
+            "@nativescript-community/ui-material-core/*": ["packages/core/*"],
+            "@nativescript-community/ui-material-button": ["packages/button/button"],
+            "@nativescript-community/ui-material-button/*": ["packages/button/*"],
+        }
+    },
+    "include": ["../../src/segmentedbar/**/*.ts", "../../references.d.ts", "../../tools/references.d.ts", "../../src/references.d.ts"],
+    "exclude": ["../../src/segmentedbar/angular/**"]
+}

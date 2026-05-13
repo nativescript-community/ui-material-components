@@ -1,0 +1,6 @@
+{
+    "uses": [
+        "com.google.android.material.button:MaterialButtonToggleGroup",
+        "com.google.android.material.button:MaterialButtonToggleGroup.OnButtonCheckedListener"
+    ]
+}
