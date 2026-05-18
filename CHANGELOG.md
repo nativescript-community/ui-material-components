@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.0](https://github.com/nativescript-community/ui-material-component/compare/v7.2.80...v7.3.0) (2026-05-18)
+
+### Features
+
+* new component SegmentedBar. Same as core for iOS, use material component for Android ([8a83ef9](https://github.com/nativescript-community/ui-material-component/commit/8a83ef9ac0d8ace9e76f078419e192bdac19c8ab))
+* new SegmentedBar plugin ([78daaa2](https://github.com/nativescript-community/ui-material-component/commit/78daaa244a499e48329b85f82985ed18097ce060))
+
 ## [7.2.80](https://github.com/nativescript-community/ui-material-component/compare/v7.2.79...v7.2.80) (2026-05-12)
 
 ### Bug Fixes
