@@ -5,6 +5,9 @@
     "main": "./index",
     "sideEffects": false,
     "typings": "./index.d.ts",
+    "publishConfig": {
+        "access": "public"
+    },
     "scripts": {
         "tsc": "cpy '**/*.d.ts' '../../packages/segmentedbar' --parents --cwd=../../src/segmentedbar && tsc  --build",
         "tsc-win": "cpy ..\\..\\src\\segmentedbar\\index.d.ts .\\ && tsc -d",
