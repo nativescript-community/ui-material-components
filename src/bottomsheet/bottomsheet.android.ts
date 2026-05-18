@@ -149,7 +149,7 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     owner._setupAsRootView(fragment.getActivity());
                     owner.parent = Application.getRootView();
                     owner._isAddedToNativeVisualTree = true;
-                    const window = this.getDialog().getWindow();
+                    const window = fragment.getDialog().getWindow();
 
                     if (bottomSheetOptions.options?.windowSoftInputMode !== undefined) {
                         window.setSoftInputMode(bottomSheetOptions.options?.windowSoftInputMode);
