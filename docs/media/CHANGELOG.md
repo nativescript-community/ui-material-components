@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.80](https://github.com/nativescript-community/ui-material-component/compare/v7.2.79...v7.2.80) (2026-05-12)
+
+### Bug Fixes
+
+* **ui-material-dialogs:** new `stackViewHolder` and `messageView` options allowing to customize `prompt` and `login` layout ([71d3d8a](https://github.com/nativescript-community/ui-material-component/commit/71d3d8aaa6426b22a5348ca03f45a338e268bc71))
+
 ## [7.2.79](https://github.com/nativescript-community/ui-material-component/compare/v7.2.78...v7.2.79) (2026-03-23)
 
 ### Bug Fixes
