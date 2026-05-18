@@ -16,6 +16,7 @@ import SpeedDialPlugin from '@nativescript-community/ui-material-speeddial/vue';
 import TabsPlugin from '@nativescript-community/ui-material-tabs/vue';
 import TextFieldPlugin from '@nativescript-community/ui-material-textfield/vue';
 import TextViewPlugin from '@nativescript-community/ui-material-textview/vue';
+import SegmentedBarPlugin from '@nativescript-community/ui-material-segmentedbar/vue';
 
 import ActivityIndicators from './ActivityIndicators.vue';
 import BottomNavigationBar from './BottomNavigationBar.vue';
@@ -32,6 +33,7 @@ import TextViews from './TextView.vue';
 import BottomSheet from './BottomSheet.vue';
 import SpeedDial from './Speeddial.vue';
 import Tabs from './Tabs.vue';
+import SegmentedBar from './SegmentedBar.vue';
 import Mixins from './Mixins.vue';
 
 import '../app.scss';
@@ -72,6 +74,7 @@ export function installPlugin() {
     Vue.use(TabsPlugin);
     Vue.use(BottomNavigationPlugin);
     Vue.use(SpeedDialPlugin);
+    Vue.use(SegmentedBarPlugin);
 }
 
 export const demos = [
@@ -85,6 +88,7 @@ export const demos = [
     { name: 'Mixins', path: 'Mixins', component: Mixins },
     { name: 'ProgressBars', path: 'ProgressBars', component: ProgressBars },
     { name: 'Ripples', path: 'Ripples', component: Ripples },
+    { name: 'SegmentedBar', path: 'SegmentedBar', component: SegmentedBar },
     { name: 'Sliders', path: 'Sliders', component: Sliders },
     { name: 'SnackBar', path: 'SnackBar', component: SnackBar },
     { name: 'SpeedDial', path: 'SpeedDial', component: SpeedDial },

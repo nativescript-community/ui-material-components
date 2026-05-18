@@ -149,6 +149,15 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                     owner._setupAsRootView(fragment.getActivity());
                     owner.parent = Application.getRootView();
                     owner._isAddedToNativeVisualTree = true;
+                    const window = this.getDialog().getWindow();
+
+                    if (bottomSheetOptions.options?.windowSoftInputMode !== undefined) {
+                        window.setSoftInputMode(bottomSheetOptions.options?.windowSoftInputMode);
+                    } else {
+                        // the dialog seems to not follow the default activity softInputMode,
+                        // thus set we set it here.
+                        window.setSoftInputMode((owner._context as androidx.appcompat.app.AppCompatActivity).getWindow().getAttributes().softInputMode);
+                    }
                     return owner.nativeViewProtected;
                 }
                 return null;

@@ -4,6 +4,7 @@ import { itemsProperty } from '@nativescript/core/ui/segmented-bar/segmented-bar
 import { SegmentedBarBase } from './index.common';
 
 export class SegmentedBarItem extends Button {
+    public variant = 'outline';
     set title(value: string) {
         this.text = value;
     }

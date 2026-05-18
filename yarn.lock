@@ -3637,6 +3637,7 @@ __metadata:
     "@nativescript-community/ui-material-floatingactionbutton": "npm:*"
     "@nativescript-community/ui-material-progress": "npm:*"
     "@nativescript-community/ui-material-ripple": "npm:*"
+    "@nativescript-community/ui-material-segmentedbar": "npm:*"
     "@nativescript-community/ui-material-slider": "npm:*"
     "@nativescript-community/ui-material-snackbar": "npm:*"
     "@nativescript-community/ui-material-speeddial": "npm:*"
@@ -3771,7 +3772,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-material-segmentedbar@workspace:packages/segmentedbar":
+"@nativescript-community/ui-material-segmentedbar@npm:*, @nativescript-community/ui-material-segmentedbar@workspace:packages/segmentedbar":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-material-segmentedbar@workspace:packages/segmentedbar"
   dependencies:
