@@ -228,7 +228,13 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
                         coordinator.findViewById(getId('touch_outside')).setOnTouchListener(
                             new android.view.View.OnTouchListener({
                                 onTouch(view, event) {
-                                    fragment.getActivity().dispatchTouchEvent(event);
+                                    const forwardedEvent = android.view.MotionEvent.obtain(event);
+                                    forwardedEvent.setLocation(event.getRawX(), event.getRawY());
+                                    try {
+                                        fragment.getActivity().dispatchTouchEvent(forwardedEvent);
+                                    } finally {
+                                        forwardedEvent.recycle();
+                                    }
                                     return false;
                                 }
                             })
