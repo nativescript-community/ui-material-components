@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.2](https://github.com/nativescript-community/ui-material-component/compare/v7.3.1...v7.3.2) (2026-05-29)
+
+### Bug Fixes
+
+* **bottomsheet:android:** forward touch-behind events with raw coordinates ([dee2fe6](https://github.com/nativescript-community/ui-material-component/commit/dee2fe6e6d2b18fa7eced6545a44d9476bf5ac66))
+
 ## [7.3.1](https://github.com/nativescript-community/ui-material-component/compare/v7.3.0...v7.3.1) (2026-05-18)
 
 ### Bug Fixes
