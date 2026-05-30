@@ -108,7 +108,7 @@ function layoutView(controller: IMDLayoutViewController, owner: View): void {
     const safeAreaHeight = Utils.layout.round(Utils.layout.toDevicePixels(safeAreaSize.height));
 
     const widthSpec = Utils.layout.makeMeasureSpec(safeAreaWidth, Utils.layout.EXACTLY);
-    const heightSpec = Utils.layout.makeMeasureSpec(safeAreaHeight, Utils.layout.UNSPECIFIED);
+    const heightSpec = Utils.layout.makeMeasureSpec(Screen.mainScreen.heightPixels, Utils.layout.AT_MOST);
 
     // reset _cachedFrame or it will wrongly move the view on subsequent layouts
     // (owner as any)._cachedFrame = null;
@@ -179,6 +179,7 @@ function layoutView(controller: IMDLayoutViewController, owner: View): void {
             // }
             const delta = fullscreenPosition[key] - safeAreaPosition[key];
             effectiveHeight -= delta;
+            adjustedPosition[key] += delta; // extend frame into bottom safe area so background covers home indicator
         }
         if (orientation === UIDeviceOrientation.LandscapeRight || orientation === UIDeviceOrientation.LandscapeLeft) {
             const key = 'left';
@@ -269,6 +270,7 @@ class MDLayoutViewController extends UIViewController {
     ignoreBottomSafeArea: boolean;
     ignoreTopSafeArea: boolean;
     nsAnimated: boolean;
+    _trackingScrollView: UIScrollView;
     public static initWithOwner(owner: View) {
         const delegate = MDLayoutViewController.new() as MDLayoutViewController;
         delegate.owner = new WeakRef(owner);
@@ -304,6 +306,15 @@ class MDLayoutViewController extends UIViewController {
         const owner = this.owner?.get();
         if (owner) {
             layoutView(this, owner);
+        }
+        // safeAreaInsetsDidChange inflates contentInset.bottom on this layout pass, floating
+        // the sheet above the home indicator; reset it so the sheet stays at preferredSheetHeight
+        const trackingScrollView = this._trackingScrollView;
+        if (trackingScrollView) {
+            const inset = trackingScrollView.contentInset;
+            if (inset.bottom > 0) {
+                trackingScrollView.contentInset = UIEdgeInsetsMake(inset.top, inset.left, 0, inset.right);
+            }
         }
     }
 
@@ -432,7 +443,10 @@ export class ViewWithBottomSheet extends ViewWithBottomSheetBase {
         if (options.trackingScrollView) {
             const scrollView = this.getViewById(options.trackingScrollView);
             if (scrollView && scrollView.nativeViewProtected instanceof UIScrollView) {
+                scrollView.nativeViewProtected.alwaysBounceVertical = true; // required for MDC scroll/dismiss gesture coordination
                 presentationController.trackingScrollView = scrollView.nativeViewProtected;
+                // reset by MDLayoutViewController.viewDidLayoutSubviews after presentation
+                controller._trackingScrollView = scrollView.nativeViewProtected;
             }
         }
         controller.nsAnimated = true;
