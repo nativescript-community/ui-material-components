@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, ComponentRef, Injectable, Injector, Type, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Injectable, Injector, Type, ViewContainerRef } from '@angular/core';
 import type { BottomSheetOptions as MaterialBottomSheetOptions } from '@nativescript-community/ui-material-bottomsheet';
 import { AppHostView, DetachedLoader, once } from '@nativescript/angular';
 import { LayoutBase, ProxyViewContainer, View } from '@nativescript/core';
@@ -40,10 +40,9 @@ export class BottomSheetService {
         };
 
         const parentView = this.getParentView(options.viewContainerRef);
-        const factoryResolver = this.getFactoryResolver(options.viewContainerRef);
         const bottomSheetParams = this.getBottomSheetParams(options.context, sheetRef);
 
-        sheetRef.detachedLoader = this.createDetachedLoader(factoryResolver, bottomSheetParams, options.viewContainerRef);
+        sheetRef.detachedLoader = this.createDetachedLoader(bottomSheetParams, options.viewContainerRef);
 
         this.loadComponent(type, sheetRef).then((componentView) => {
             parentView.showBottomSheet({
@@ -74,12 +73,6 @@ export class BottomSheetService {
         }
 
         return parentView;
-    }
-
-    private getFactoryResolver(componentContainer: ViewContainerRef): ComponentFactoryResolver {
-        // resolve from particular module (moduleRef)
-        // or from same module as parentView (viewContainerRef)
-        return componentContainer.injector.get(ComponentFactoryResolver);
     }
 
     private createChildInjector(bottomSheetParams: BottomSheetParams, containerRef: ViewContainerRef): Injector {
@@ -114,11 +107,13 @@ export class BottomSheetService {
         return new BottomSheetParams(context, closeCallback);
     }
 
-    private createDetachedLoader(factoryResolver: ComponentFactoryResolver, bottomSheetParams: BottomSheetParams, viewContainerRef: ViewContainerRef): ComponentRef<DetachedLoader> {
-        const detachedLoaderFactory = factoryResolver.resolveComponentFactory(DetachedLoader);
+    private createDetachedLoader(bottomSheetParams: BottomSheetParams, viewContainerRef: ViewContainerRef): ComponentRef<DetachedLoader> {
         const childInjector = this.createChildInjector(bottomSheetParams, viewContainerRef);
 
-        return viewContainerRef.createComponent(detachedLoaderFactory, 0, childInjector);
+        return viewContainerRef.createComponent(DetachedLoader, {
+            index: 0,
+            injector: childInjector
+        });
     }
 
     private async loadComponent(type: Type<any>, sheetRef: SheetRef): Promise<View> {
