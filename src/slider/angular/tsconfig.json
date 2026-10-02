@@ -11,6 +11,6 @@
     },
     "include": ["./**/*.ts", "../../../references.d.ts", "../../references.d.ts"],
     "angularCompilerOptions": {
-        "enableIvy": true
+        "compilationMode": "partial"
     }
 }
