@@ -27,7 +27,7 @@ export class Progress extends ProgressBase {
         this[visibilityProperty.setNative](this.visibility);
     }
     [heightProperty.setNative](value) {
-        this.nativeViewProtected.setTrackThickness(PercentLength.toDevicePixels(value));
+        this.nativeViewProtected.setTrackThickness(PercentLength.toDevicePixels(value, NaN, NaN));
     }
     [visibilityProperty.setNative](value) {
         super[visibilityProperty.setNative](this.busy || !this.indeterminate ? value : 'hidden');

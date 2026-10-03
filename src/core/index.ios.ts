@@ -36,20 +36,20 @@ function cornerTreatment(cornerFamily: CornerFamily, cornerSize: number | CoreTy
             if (cornerSize.unit === '%') {
                 corner = MDCCornerTreatment.cornerWithCutValueType(cornerSize.value, 1);
             } else {
-                corner = MDCCornerTreatment.cornerWithCutValueType(Utils.layout.toDeviceIndependentPixels(PercentLength.toDevicePixels(cornerSize)), 0);
+                corner = MDCCornerTreatment.cornerWithCutValueType(Utils.layout.toDeviceIndependentPixels(PercentLength.toDevicePixels(cornerSize, NaN, NaN)), 0);
             }
         } else {
             if (cornerSize.unit === '%') {
                 corner = MDCCornerTreatment.cornerWithRadiusValueType(cornerSize.value, 1);
             } else {
-                corner = MDCCornerTreatment.cornerWithRadiusValueType(Utils.layout.toDeviceIndependentPixels(PercentLength.toDevicePixels(cornerSize)), 0);
+                corner = MDCCornerTreatment.cornerWithRadiusValueType(Utils.layout.toDeviceIndependentPixels(PercentLength.toDevicePixels(cornerSize, NaN, NaN)), 0);
             }
         }
     } else {
         if (cornerFamily === CornerFamily.ROUNDED) {
-            corner = MDCCornerTreatment.cornerWithRadius(Utils.layout.toDeviceIndependentPixels(PercentLength.toDevicePixels(cornerSize)));
+            corner = MDCCornerTreatment.cornerWithRadius(Utils.layout.toDeviceIndependentPixels(PercentLength.toDevicePixels(cornerSize, NaN, NaN)));
         } else {
-            corner = MDCCornerTreatment.cornerWithCut(Utils.layout.toDeviceIndependentPixels(PercentLength.toDevicePixels(cornerSize)));
+            corner = MDCCornerTreatment.cornerWithCut(Utils.layout.toDeviceIndependentPixels(PercentLength.toDevicePixels(cornerSize, NaN, NaN)));
         }
     }
     return corner;
@@ -236,7 +236,6 @@ export function getRippleColor(color: string | Color, alpha = 61.5): UIColor {
 export function overrideViewBase() {
     const NSView = require('@nativescript/core').View;
     class ViewWithElevationAndRipple extends View {
-        
         //TODO: remove as it needs to be added after TS 5.7 change https://github.com/microsoft/TypeScript/pull/59860
         [key: symbol]: (...args: any[]) => any | void;
 

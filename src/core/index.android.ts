@@ -1,4 +1,16 @@
-import { Background, Button, Color, Length, PercentLength, Utils, View, androidDynamicElevationOffsetProperty, androidElevationProperty, backgroundInternalProperty } from '@nativescript/core';
+import {
+    Background,
+    Button,
+    Color,
+    CoreTypes,
+    Length,
+    PercentLength,
+    Utils,
+    View,
+    androidDynamicElevationOffsetProperty,
+    androidElevationProperty,
+    backgroundInternalProperty
+} from '@nativescript/core';
 import { ShapeProperties } from '.';
 import { createRippleDrawable, createStateListAnimator, getAttrColor, getColorStateList, handleClearFocus, isPostLollipop, isPostMarshmallow } from './android/utils';
 import { cssProperty, dynamicElevationOffsetProperty, elevationProperty, rippleColorAlphaProperty, rippleColorProperty } from './cssproperties';
@@ -138,10 +150,10 @@ export class Themer {
                 if (options.cornerSize.unit === '%') {
                     builder.setAllCornerSizes(new RelativeCornerSize(options.cornerSize.value));
                 } else {
-                    builder.setAllCornerSizes(PercentLength.toDevicePixels(options.cornerSize));
+                    builder.setAllCornerSizes(PercentLength.toDevicePixels(options.cornerSize, NaN, NaN));
                 }
             } else {
-                builder.setAllCornerSizes(PercentLength.toDevicePixels(options.cornerSize));
+                builder.setAllCornerSizes(PercentLength.toDevicePixels(options.cornerSize, NaN, NaN));
             }
         }
         if (options.cornerSizeBottomLeft !== undefined) {
@@ -149,10 +161,10 @@ export class Themer {
                 if (options.cornerSizeBottomLeft.unit === '%') {
                     builder.setBottomLeftCornerSize(new RelativeCornerSize(options.cornerSizeBottomLeft.value));
                 } else {
-                    builder.setBottomLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomLeft));
+                    builder.setBottomLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomLeft, NaN, NaN));
                 }
             } else {
-                builder.setBottomLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomLeft));
+                builder.setBottomLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomLeft, NaN, NaN));
             }
         }
         if (options.cornerSizeBottomRight !== undefined) {
@@ -160,10 +172,10 @@ export class Themer {
                 if (options.cornerSizeBottomRight.unit === '%') {
                     builder.setBottomRightCornerSize(new RelativeCornerSize(options.cornerSizeBottomRight.value));
                 } else {
-                    builder.setBottomRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomRight));
+                    builder.setBottomRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomRight, NaN, NaN));
                 }
             } else {
-                builder.setBottomRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomRight));
+                builder.setBottomRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeBottomRight, NaN, NaN));
             }
         }
         if (options.cornerSizeTopRight !== undefined) {
@@ -171,10 +183,10 @@ export class Themer {
                 if (options.cornerSizeTopRight.unit === '%') {
                     builder.setTopRightCornerSize(new RelativeCornerSize(options.cornerSizeTopRight.value));
                 } else {
-                    builder.setTopRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopRight));
+                    builder.setTopRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopRight, NaN, NaN));
                 }
             } else {
-                builder.setTopRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopRight));
+                builder.setTopRightCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopRight, NaN, NaN));
             }
         }
         if (options.cornerSizeTopLeft !== undefined) {
@@ -182,10 +194,10 @@ export class Themer {
                 if (options.cornerSizeTopLeft.unit === '%') {
                     builder.setTopLeftCornerSize(new RelativeCornerSize(options.cornerSizeTopLeft.value));
                 } else {
-                    builder.setTopLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopLeft));
+                    builder.setTopLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopLeft, NaN, NaN));
                 }
             } else {
-                builder.setTopLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopLeft));
+                builder.setTopLeftCornerSize(PercentLength.toDevicePixels(options.cornerSizeTopLeft, NaN, NaN));
             }
         }
         this._shapes[key] = builder.build();

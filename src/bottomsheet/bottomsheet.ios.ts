@@ -256,6 +256,7 @@ function getAvailableSpaceFromParent(view: View, frame: CGRect): { safeArea: CGR
 }
 
 declare class IMDLayoutViewController extends UIViewController {
+    _trackingScrollView: UIScrollView;
     static new(): IMDLayoutViewController;
     static alloc(): IMDLayoutViewController;
     owner: WeakRef<View>;
@@ -313,6 +314,7 @@ class MDLayoutViewController extends UIViewController {
         if (trackingScrollView) {
             const inset = trackingScrollView.contentInset;
             if (inset.bottom > 0) {
+                //@ts-expect-error missing typing
                 trackingScrollView.contentInset = UIEdgeInsetsMake(inset.top, inset.left, 0, inset.right);
             }
         }
