@@ -16,6 +16,9 @@ export { TabContentItem, TabStrip, TabStripItem };
 
 const maxTabsCount = 5;
 const isPhone = Device.deviceType === 'Phone';
+// Liquid Glass (iOS 26+) ignores unselectedItemTintColor and UITabBarAppearance item colors when rendering
+// template images, so state colors have to be baked into AlwaysOriginal images.
+const preTintIcons = SDK_VERSION >= 26;
 
 @NativeClass
 class MDTabBarControllerImpl extends UITabBarController {
@@ -435,6 +438,10 @@ export class BottomNavigation extends TabNavigationBase {
 
     private setIconColor(tabStripItem: TabStripItem, forceReload = false): void {
         if (forceReload || (!this.mUnSelectedItemColor && !this.mSelectedItemColor)) {
+            if (preTintIcons && (this.mUnSelectedItemColor || this.mSelectedItemColor)) {
+                this.setPreTintedIcons(tabStripItem);
+                return;
+            }
             // if selectedItemColor or unSelectedItemColor is set we don't respect the color from the style
             const tabStripColor = this.selectedIndex === tabStripItem.index ? this.mSelectedItemColor : this.mUnSelectedItemColor;
 
@@ -443,6 +450,12 @@ export class BottomNavigation extends TabNavigationBase {
             tabStripItem.nativeView.image = image;
             tabStripItem.nativeView.selectedImage = image;
         }
+    }
+
+    private setPreTintedIcons(tabStripItem: TabStripItem): void {
+        // selectedImage is always set: when nil, UIKit falls back to the (pre-tinted) unselected image
+        tabStripItem.nativeView.image = this.getIcon(tabStripItem, this.mUnSelectedItemColor, true);
+        tabStripItem.nativeView.selectedImage = this.getIcon(tabStripItem, this.mSelectedItemColor, true);
     }
 
     public setTabBarIconColor(tabStripItem: TabStripItem, value: UIColor | Color): void {
@@ -631,6 +644,12 @@ export class BottomNavigation extends TabNavigationBase {
         if (this.mSelectedItemColor || this.mUnSelectedItemColor) {
             if (this.tabStrip && this.tabStrip.items) {
                 this.tabStrip.items.forEach((item) => {
+                    if (preTintIcons) {
+                        if (item.nativeView) {
+                            this.setPreTintedIcons(item);
+                        }
+                        return;
+                    }
                     if (this.mUnSelectedItemColor && item.nativeView) {
                         item.nativeView.image = this.getIcon(item, this.mUnSelectedItemColor);
                         item.nativeView.tintColor = this.mUnSelectedItemColor;
@@ -687,7 +706,7 @@ export class BottomNavigation extends TabNavigationBase {
         }
     }
 
-    private getIcon(tabStripItem: TabStripItem, color?: Color): UIImage {
+    private getIcon(tabStripItem: TabStripItem, color?: Color, tint = false): UIImage {
         // Image and Label children of TabStripItem
         // take priority over its `iconSource` and `title` properties
         const iconSource = tabStripItem.image && tabStripItem.image.src;
@@ -695,12 +714,14 @@ export class BottomNavigation extends TabNavigationBase {
             return null;
         }
 
+        // only explicit colors are baked in, so an unset selected color keeps following the tab bar tintColor
+        const tintColor = tint ? color : null;
         const target = tabStripItem.image;
         const font = target.style.fontInternal || Font.default;
         if (!color) {
             color = target.style.color;
         }
-        const iconTag = [iconSource, font.fontStyle, font.fontWeight, font.fontSize, font.fontFamily, color].join(';');
+        const iconTag = [iconSource, font.fontStyle, font.fontWeight, font.fontSize, font.fontFamily, color, tintColor ? 'tinted' : ''].join(';');
 
         let isFontIcon = false;
         let image: UIImage = this.mIconsCache[iconTag];
@@ -735,7 +756,10 @@ export class BottomNavigation extends TabNavigationBase {
                 if (!isFontIcon) {
                     renderingMode = this.getIconRenderingMode();
                 }
-                const originalRenderedImage = image.imageWithRenderingMode(renderingMode);
+                let originalRenderedImage = image.imageWithRenderingMode(renderingMode);
+                if (tintColor && renderingMode !== UIImageRenderingMode.AlwaysOriginal) {
+                    originalRenderedImage = image.imageWithTintColorRenderingMode(tintColor.ios, UIImageRenderingMode.AlwaysOriginal);
+                }
                 this.mIconsCache[iconTag] = originalRenderedImage;
                 image = originalRenderedImage;
             } else {
