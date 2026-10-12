@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.3](https://github.com/nativescript-community/ui-material-component/compare/v7.3.2...v7.3.3) (2026-10-03)
+
+### Bug Fixes
+
+* **angular:** publish Angular wrappers in partial compilation mode ([8539048](https://github.com/nativescript-community/ui-material-component/commit/8539048ee3ee5fbc5c3b4976f380ed1306f13e35))
+* **ios:** fix sheet scroll when trackingScrollView is set ([b0a78b1](https://github.com/nativescript-community/ui-material-component/commit/b0a78b1515508ba0e45bb0564661e2a8e0748269))
+* remove bottomsheet ComponentFactoryResolver usage ([e85387d](https://github.com/nativescript-community/ui-material-component/commit/e85387d965db3b760ccfd74944d92bdc42391ca8))
+
 ## [7.3.2](https://github.com/nativescript-community/ui-material-component/compare/v7.3.1...v7.3.2) (2026-05-29)
 
 ### Bug Fixes
