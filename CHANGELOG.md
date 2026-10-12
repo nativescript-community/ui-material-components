@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.4](https://github.com/nativescript-community/ui-material-component/compare/v7.3.3...v7.3.4) (2026-10-12)
+
+### Bug Fixes
+
+* **bottom-navigation:** apply unselected item color to icons on iOS 26 ([8a84498](https://github.com/nativescript-community/ui-material-component/commit/8a8449890d21e5ae6defa210a2ef10014c326914))
+
 ## [7.3.3](https://github.com/nativescript-community/ui-material-component/compare/v7.3.2...v7.3.3) (2026-10-03)
 
 ### Bug Fixes
