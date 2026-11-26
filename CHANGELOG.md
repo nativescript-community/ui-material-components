@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.4.0](https://github.com/nativescript-community/ui-material-component/compare/v7.3.4...v7.4.0) (2026-11-26)
+
+### Features
+
+* **svelte:** add a Svelte 5 binding in svelte5/ ([a467da7](https://github.com/nativescript-community/ui-material-component/commit/a467da7565cef69f107cddae88e2fca789240a3e))
+* **svelte:** build the svelte5/ binding against svelte-native 5 ([34e40de](https://github.com/nativescript-community/ui-material-component/commit/34e40de96ca87a8aa52180fbe5a171c3e8e6957c))
+
 ## [7.3.4](https://github.com/nativescript-community/ui-material-component/compare/v7.3.3...v7.3.4) (2026-10-12)
 
 ### Bug Fixes
