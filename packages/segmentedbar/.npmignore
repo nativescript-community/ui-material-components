@@ -9,3 +9,4 @@ tsconfig.json
 *.aar
 *.jar
 blueprint.md
+!nativescript.config.ts

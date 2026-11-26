@@ -15,7 +15,11 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    # macOS builds iOS native libraries; a plugin that does not need it can set the repository variable RELEASE_RUNNER (e.g. ubuntu-latest)
+    runs-on: ${{ vars.RELEASE_RUNNER || 'macos-latest' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,9 +31,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          registry-url: 'https://registry.npmjs.org'
 
-      
+      - name: Update npm (trusted publishing needs npm >= 11.5.1)
+        run: npm install -g npm@latest
+
+
       - uses: oNaiPs/secrets-to-env-action@v1
         with:
           secrets: ${{ toJSON(secrets) }}
@@ -42,7 +48,7 @@ jobs:
           email: dev@akylas.fr
       
       - name: install jq
-        run: sudo apt install jq
+        run: command -v jq > /dev/null || sudo apt-get install -y jq || brew install jq
       
       - name: Enable CorePack
         run: |
@@ -54,7 +60,10 @@ jobs:
         run: echo "::set-output name=dir::$(yarn config get globalFolder)"
 
       - name: Remove package.json resolutions
-        run: echo "`jq 'delpaths([["resolutions"]])' package.json`" > package.json
+        run: |
+          cp package.json "$RUNNER_TEMP/package.json"
+          cp yarn.lock "$RUNNER_TEMP/yarn.lock"
+          echo "`jq 'delpaths([["resolutions"]])' package.json`" > package.json
 
       - uses: actions/cache@v4
         name: Handle node_modules Cache
@@ -83,15 +92,25 @@ jobs:
         env: 
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
 
-      - name: run setup 
+      # lerna-lite >= 5.7 refuses to publish from a dirty working tree
+      - name: Restore package.json and yarn.lock
+        run: |
+          cp "$RUNNER_TEMP/package.json" package.json
+          cp "$RUNNER_TEMP/yarn.lock" yarn.lock
+
+      - name: run setup
         run: |
           npm run setup
-      
-      - name: "NPM Identity"
+
+      - name: "NPM Identity (token fallback)"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+          if [ -n "$NPM_TOKEN" ]; then
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> "$HOME/.npmrc"
+          else
+            echo "NPM_TOKEN not set, using npm trusted publishing (OIDC)"
+          fi
 
       - name: publish auto
         if: github.event.inputs.release_type == 'auto'
