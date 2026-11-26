@@ -279,7 +279,6 @@ export function addGridLayoutRow(gridLayout: org.nativescript.widgets.GridLayout
     if (isNewGridAPI) {
         gridLayout.addRow(value, unitType);
     } else {
-        // @ts-expect-error older API
         gridLayout.addRow(new org.nativescript.widgets.ItemSpec(value, unitType));
     }
 }
