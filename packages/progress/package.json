@@ -11,11 +11,11 @@
         "build": "npm run tsc && npm run readme",
         "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win",
-        "build.all": "npm run build && npm run build.angular",
+        "build.all": "npm run build ; npm run build.angular",
         "build.all.win": "npm run build.win && npm run build.angular.win",
         "build.angular": "ng-packagr -p ../../src/progress/angular/ng-package.json -c ../../src/progress/angular/tsconfig.json && rm angular/.npmignore",
         "build.angular.win": "ng-packagr -p ..\\..\\src\\progress\\angular\\package.json -c ..\\..\\src\\progress\\angular\\tsconfig.json",
-        "clean": "bin/rimraf ./*.d.ts ./*.js ./*.js.map ./*.tsbuildinfo ./*.mjs ./*.mjs.map ./angular ./svelte ./vue* ./react",
+        "clean": "bin/rimraf ./*.d.ts ./*.js ./*.js.map ./*.tsbuildinfo ./*.mjs ./*.mjs.map ./angular ./svelte ./svelte5 ./vue* ./react",
         "readme": "readme generate -c ../../tools/readme/blueprint.json"
     },
     "nativescript": {

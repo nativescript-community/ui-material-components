@@ -12,7 +12,7 @@
         "build.win": "npm run tsc-win",
         "build.all": "npm run build",
         "build.all.win": "npm run build.win",
-        "clean": "bin/rimraf ./*.d.ts ./*.js ./*.js.map ./*.tsbuildinfo ./*.mjs ./*.mjs.map ./angular ./svelte ./vue* ./react",
+        "clean": "bin/rimraf ./*.d.ts ./*.js ./*.js.map ./*.tsbuildinfo ./*.mjs ./*.mjs.map ./angular ./svelte ./svelte5 ./vue* ./react",
         "readme": "readme generate -c ../../tools/readme/blueprint.json"
     },
     "nativescript": {
