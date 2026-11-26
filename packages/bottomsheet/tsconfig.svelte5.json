@@ -1,0 +1,17 @@
+{
+    "extends": "../../tools/tsconfig.svelte5.json",
+    "compilerOptions": {
+        "rootDir": "../../src/bottomsheet",
+        "outDir": "./",
+        // `paths` replaces the inherited ones: keep the svelte ones of tools/tsconfig.svelte5.json
+        "paths": {
+            "svelte": ["./node_modules/svelte5"],
+            "svelte/*": ["./node_modules/svelte5/*"],
+            "@nativescript-community/svelte-native": ["./node_modules/svelte-native5"],
+            "@nativescript-community/svelte-native/*": ["./node_modules/svelte-native5/*"],
+            "@nativescript-community/ui-material-core": ["packages/core/index"],
+            "@nativescript-community/ui-material-core/*": ["packages/core/*"]
+        }
+    },
+    "include": ["../../src/bottomsheet/svelte5/**/*", "../../references.d.ts", "../../tools/references.d.ts", "../../src/references.d.ts"]
+}
