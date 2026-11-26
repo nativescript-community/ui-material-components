@@ -9,8 +9,9 @@
         }
     },
     "include": ["../../src/bottomsheet/**/*.ts", "../../references.d.ts", "../../tools/references.d.ts", "../../src/references.d.ts"],
-    "exclude": ["../../src/bottomsheet/angular/**"],
+    "exclude": ["../../src/bottomsheet/svelte5/**/*", "../../src/bottomsheet/angular/**"],
     "references": [
+        { "path": "./tsconfig.svelte5.json" },
         {
             //Need for tsc
             "path": "./tsconfig.vue3.json"
